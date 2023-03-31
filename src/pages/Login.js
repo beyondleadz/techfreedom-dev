@@ -6,12 +6,15 @@ import LoginLeft from '../assets/login/login-left.jpg'
 import Gmail from '../assets/login/gmail.png';
 import LinkedIn from '../assets/login/linkedin.png';
 import Outlook from '../assets/login/outlook.png'
+import LogoLogin from '../assets/login/logo-round.png'
 import '../assets/css/style.css'
 
 const Login = () => {
 
 
     return (
+		<>
+		<div style={{margin:20}}><a href="index.html"><img src={LogoLogin} alt=" "/></a></div>
 		<div className="logincontainer">
         <div className="layer">
 	<div className="main-agile1">
@@ -35,9 +38,9 @@ const Login = () => {
 					
 						<div className="social_icons agileinfo">
 							<ul className="top-links">
-										<li><a href="#"><img src={Gmail} height="33" width="33"/> Gmail</a></li>
-										<li><a href="#"><img src={LinkedIn} height="33" width="33"/> Linkedin</a></li>
-										<li><a href="#"><img src={Outlook} height="33" width="33"/> Outlook 365</a></li>
+										<li><a href="#"><img src={Gmail} height="33" width="33"/> </a></li>
+										<li><a href="#"><img src={LinkedIn} height="33" width="33"/> </a></li>
+										<li><a href="#"><img src={Outlook} height="33" width="33"/> </a></li>
 									</ul>
 						</div>
 						
@@ -72,6 +75,7 @@ const Login = () => {
 	</div>
 </div>
 </div>
+</>
     )
 }
 
