@@ -5,6 +5,7 @@ import Img from '../assets/login/bg-left-sign-up.jpg'
 import Gmail from '../assets/login/gmail.png';
 import LinkedIn from '../assets/login/linkedin.png';
 import Outlook from '../assets/login/outlook.png'
+import LogoLogin from '../assets/login/logo-round.png'
 import '../assets/css/style.css'
 import Signup1 from "../components/signup/Signup1";
 import Signup2 from "../components/signup/Signup2";
@@ -21,6 +22,7 @@ const Signup = () => {
     }
     return (
         <>
+		<div style={{margin:20}}><a href="index.html"><img src={LogoLogin} alt=" "/></a></div>
     <div className="logincontainer">
 	<div className="layer">
 	<div className="main-agile1">
@@ -48,9 +50,9 @@ const Signup = () => {
 		<h2>New User Sign up</h2>					
 						<div class="social_icons agileinfo">
 							<ul class="top-links">
-										<li><a href="#"><img src={Gmail} height="33" width="33"/> Gmail</a></li>
-										<li><a href="#"><img src={LinkedIn} height="33" width="33"/> Linkedin</a></li>
-										<li><a href="#"><img src={Outlook} height="33" width="33"/> Outlook 365</a></li>
+										<li><a href="#"><img src={Gmail} height="33" width="33"/> </a></li>
+										<li><a href="#"><img src={LinkedIn} height="33" width="33"/> </a></li>
+										<li><a href="#"><img src={Outlook} height="33" width="33"/>  </a></li>
 						  </ul>
 	                    </div>
                         {step.step1 && <Signup1 changeStep={changeStep}/>}

@@ -2,9 +2,12 @@ import React,{} from "react";
 import { useRoutes,NavLink } from "react-router-dom";
 
 import ForgetPassLeft from '../assets/login/bg-left-forgot-password.jpg'
+import LogoLogin from '../assets/login/logo-round.png'
 
 const ForgetPassword=()=>{
     return (
+		<>
+		<div style={{margin:20}}><a href="index.html"><img src={LogoLogin} alt=" "/></a></div>
 		<div className="logincontainer">
 	<div className="layer">
 	<div className="main-agile1">
@@ -49,7 +52,7 @@ const ForgetPassword=()=>{
 	</div>
 </div>
 </div>
-
+</>
 )
 }
 export default ForgetPassword;
