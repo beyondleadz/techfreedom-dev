@@ -43,7 +43,7 @@ const Header=()=>{
 												 </div>
 									  </div>
 										  <ul className="navbar-nav ml-lg-auto">
-											   <li className="nav-item "><a href="services.html" className="hvr-underline-from-center" >Company Search</a></li>
+											   <li className="nav-item "><NavLink to="/search-company" className="hvr-underline-from-center" >Company Search</NavLink></li>
 											   <li className="nav-item"><NavLink to="/executive-search" className="hvr-underline-from-center" >Executive Search</NavLink></li>
 											   <li className="nav-item"><NavLink to="/features" className="hvr-underline-from-center" >Features</NavLink></li>
 											   <li className="nav-item"><NavLink to="/pricing" className="hvr-underline-from-center" >Pricing</NavLink></li>

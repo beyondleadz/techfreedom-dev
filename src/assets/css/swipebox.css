@@ -60,7 +60,7 @@
     left: 50%;
     position: relative;
     transform: translateX(-50%);
-    bottom: -50px;
+    /* bottom: -50px; */
   }
   
   #portal .owl-nav button{background: none;}

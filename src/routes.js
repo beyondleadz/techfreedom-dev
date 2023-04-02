@@ -17,6 +17,7 @@ import ExecutiveSearch from './pages/ExecutiveSearch';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import ForgetPassword from './pages/ForgetPassword';
+import CompanySearch from './pages/CompanySearch';
 const AppRoutes = (props) => {
     return (
         <Router basename={DEVMODE?"":"/beyondleads"}>
@@ -37,6 +38,8 @@ const AppRoutes = (props) => {
                 <Route path='/security-policy' element={<SecurityPolicy/>}/>
                 <Route path='/terms-and-conditions' element={<TermsAndConditions/>}/>
                 <Route path='/executive-search' element={<ExecutiveSearch/>}/>
+                <Route path='/search-company' element={<CompanySearch/>}/>
+                
                 <Route path="*" element={<><center className="text-danger">Route NOT FOUND</center></>} />
             </Routes>
         </Router>
