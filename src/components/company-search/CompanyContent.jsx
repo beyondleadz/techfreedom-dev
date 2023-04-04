@@ -133,10 +133,7 @@ const CompanyContent = () => {
                     </nav>
 
                     <div className="container-fluid">
-                        <div className="d-sm-flex align-items-center justify-content-between mb-4">
-                            <h1 className="h3 mb-0 text-gray-800">Search Companies </h1>
-                            <a href="#" className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                className="fas fa-download fa-sm text-white-50"></i> Generate Report</a>                    </div>
+                        
                         <div className="row">
 
                             <div className="col-xl-12 col-lg-10">
@@ -164,8 +161,12 @@ const CompanyContent = () => {
                                                     <span>Showing 1-20 of 100 results</span>    </div>
 
                                                 <div className="buttons-container">
-                                                    <button className="btn btn-primary mr-2">Export</button>
-                                                    <button className="btn btn-secondary">Import</button>
+                                                <button className="d-none d-sm-inline-block btn btn-light mr-3"><i
+                                className="fas fa-cogs  pr-1"></i> EDIT VIEW </button>
+                                                    <button className="d-none d-sm-inline-block btn btn-light mr-3"><i
+                                className="fas fa-bolt  pr-1"></i> EXPORT TO CSV </button>
+                                                    <button className="d-none d-sm-inline-block btn btn-outline-primary"><i
+                                className="fas fa-bolt pr-1"></i> CONNECT TO CRM </button>
                                                 </div>
                                             </div>
                                             <div className="table-wrapper">
@@ -180,7 +181,8 @@ const CompanyContent = () => {
                                                             <th>Email</th>
                                                             <th>Phone Number</th>
                                                             <th>Address</th>
-                                                            <th></th>
+                                                            <th><button className="d-none d-sm-inline-block btn btn-outline-secondary"><i
+                                className="fas fa-plus pr-1"></i> ADD COLUMN </button></th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -193,9 +195,7 @@ const CompanyContent = () => {
                                                             <td>johndoe@email.com</td>
                                                             <td>123-456-7890</td>
                                                             <td>123 Main St</td>
-                                                            <td>
-                                                                <button className="btn-info mr-2">Edit</button>
-                                                                <button className="btn-success">View</button>          </td>
+                                                            <td></td>
                                                         </tr>
                                                         <tr>
                                                             <td><input type="checkbox" /></td>
@@ -206,9 +206,7 @@ const CompanyContent = () => {
                                                             <td>johndoe@email.com</td>
                                                             <td>123-456-7890</td>
                                                             <td>123 Main St</td>
-                                                            <td>
-                                                                <button className="btn-info mr-2">Edit</button>
-                                                                <button className="btn-success">View</button>          </td>
+                                                            <td></td>
                                                         </tr>
                                                         <tr>
                                                             <td><input type="checkbox" /></td>
@@ -219,9 +217,7 @@ const CompanyContent = () => {
                                                             <td>johndoe@email.com</td>
                                                             <td>123-456-7890</td>
                                                             <td>123 Main St</td>
-                                                            <td>
-                                                                <button className="btn-info mr-2">Edit</button>
-                                                                <button className="btn-success">View</button>          </td>
+                                                            <td></td>
                                                         </tr>
                                                         <tr>
                                                             <td><input type="checkbox" /></td>
@@ -232,9 +228,7 @@ const CompanyContent = () => {
                                                             <td>johndoe@email.com</td>
                                                             <td>123-456-7890</td>
                                                             <td>123 Main St</td>
-                                                            <td>
-                                                                <button className="btn-info mr-2">Edit</button>
-                                                                <button className="btn-success">View</button>          </td>
+                                                            <td></td>
                                                         </tr>
                                                         <tr>
                                                             <td><input type="checkbox" /></td>
@@ -245,9 +239,7 @@ const CompanyContent = () => {
                                                             <td>johndoe@email.com</td>
                                                             <td>123-456-7890</td>
                                                             <td>123 Main St</td>
-                                                            <td>
-                                                                <button className="btn-info mr-2">Edit</button>
-                                                                <button className="btn-success">View</button>          </td>
+                                                            <td></td>
                                                         </tr>
 
 
@@ -260,9 +252,7 @@ const CompanyContent = () => {
                                                             <td>johndoe@email.com</td>
                                                             <td>123-456-7890</td>
                                                             <td>123 Main St</td>
-                                                            <td>
-                                                                <button className="btn-info mr-2">Edit</button>
-                                                                <button className="btn-success">View</button>          </td>
+                                                            <td></td>
                                                         </tr>
                                                         <tr>
                                                             <td><input type="checkbox" /></td>
@@ -273,9 +263,7 @@ const CompanyContent = () => {
                                                             <td>johndoe@email.com</td>
                                                             <td>123-456-7890</td>
                                                             <td>123 Main St</td>
-                                                            <td>
-                                                                <button className="btn-info mr-2">Edit</button>
-                                                                <button className="btn-success">View</button>          </td>
+                                                            <td></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>

@@ -8,13 +8,14 @@ a:not([href]):not([class]):hover {
   text-decoration: none;
 }
 
-.top-tabs{ box-shadow: 5px 0px 2px 0px rgba(0, 0, 0, 0.5);
-	           display: block;
-               padding: 0.5rem 1rem;
-			   border: 1px solid transparent;
+.top-tabs{ box-shadow: 2px 0px 2px 0px rgba(0, 0, 0, 0.5);
+  display: block;
+    padding: 0.5rem 1rem;
+border: 1px solid transparent;
 border-top-left-radius: 0.25rem;
 border-top-right-radius: 0.25rem;
-margin: 0 5px;}
+margin: 0 5px; font-weight: 600;}
+
 .table-container {
   width: 100%;
   margin: 0 auto;
@@ -1459,8 +1460,6 @@ input[type="button"].btn-block {
   display: block;
   min-height: 1.5rem;
   padding-left: 1.5rem;
-  -webkit-print-color-adjust: exact;
-  color-adjust: exact;
 }
 
 .custom-control-inline {
@@ -4307,9 +4306,6 @@ button.bg-danger:focus {
   background-color: #d52a1a !important;
 }
 
-.bg-light {
-  background-color: #f8f9fc !important;
-}
 
 a.bg-light:hover, a.bg-light:focus,
 button.bg-light:hover,
@@ -4328,7 +4324,7 @@ button.bg-dark:focus {
 }
 
 .bg-white {
-  background-color: #fff !important;
+  background-color: #f8f9fa;
 }
 
 .bg-transparent {
@@ -5287,7 +5283,7 @@ a:focus {
 
 .topbar .topbar-divider {
   width: 0;
-  border-right: 1px solid #e3e6f0;
+  border:0;
   height: calc(4.375rem - 2rem);
   margin: auto 1rem;
 }
