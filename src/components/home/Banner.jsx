@@ -18,7 +18,7 @@ const BannerSection=()=>{
             <div className="col-md-6 mt-md-0 mt-5 mb-lg-0 mb-5 right-banner-2 position-relative">
                 <div className="sub-banner-image">
                     <img src={BannerImage2} className="img-fluid radius-image-full position-relative" alt=" "/>                        </div>
-                <div className="banner-style-1 d-flex align-items-center">
+                {/* <div className="banner-style-1 d-flex align-items-center">
                     <i className="fas fa-chart-line green-clr-bg"></i>
                     <h4>Lead conversion by 10X</h4>
                 </div>
@@ -29,7 +29,7 @@ const BannerSection=()=>{
                 <div className="banner-style-1 banner-style-3 d-flex align-items-center">
                     <i className="fas fa-search blue-clr-bg"></i>
                     <h4>Get Accurate Data</h4>
-                </div>
+                </div> */}
             </div>
         </div>
     </div>
