@@ -14,7 +14,7 @@ a:not([href]):not([class]):hover {
 border: 1px solid transparent;
 border-top-left-radius: 0.25rem;
 border-top-right-radius: 0.25rem;
-margin: 0 5px; font-weight: 500;
+margin: 25px 0 0 5px; font-weight: 500;
 font-size: 14px;}
 
 .table-container {
@@ -6085,7 +6085,7 @@ body.ssidebar-toggled footer.sticky-footer {
 }
 
 #wrapper .nav-item-sd .menu-item{
-font-size: 13px;
+font-size: 12px;
 font-weight: normal;
 color: #555;
 }
