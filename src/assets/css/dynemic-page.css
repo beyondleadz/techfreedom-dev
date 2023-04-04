@@ -14,7 +14,7 @@ a:not([href]):not([class]):hover {
 border: 1px solid transparent;
 border-top-left-radius: 0.25rem;
 border-top-right-radius: 0.25rem;
-margin: 25px 0 0 5px; font-weight: 500;
+margin: 2px 0 0 5px; font-weight: 500;
 font-size: 14px;}
 
 .table-container {
@@ -6070,7 +6070,7 @@ form.user .btn-user {
 body.ssidebar-toggled footer.sticky-footer {
   width: 100%;
 }
-
+.wrapper{margin-top: 5.5%;}
 #wrapper .searchbox{
   
     margin-bottom: 5px;
