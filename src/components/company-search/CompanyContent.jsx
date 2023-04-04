@@ -140,7 +140,15 @@ const CompanyContent = () => {
                                 <div className="card shadow mb-4">
                                     <div
                                         className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                        <h6 className="m-0 font-weight-bold text-primary">Company Overview</h6>
+                                        <h6 className="m-0 font-weight-bold text-primary">Showing 1-20 of 100 results</h6>
+                                        <div className="buttons-container">
+                                                <button className="d-none d-sm-inline-block btn btn-light mr-3"><i
+                                className="fas fa-cogs  pr-1"></i> EDIT VIEW </button>
+                                                    <button className="d-none d-sm-inline-block btn btn-light mr-3"><i
+                                className="fas fa-bolt  pr-1"></i> EXPORT TO CSV </button>
+                                                    <button className="d-none d-sm-inline-block btn btn-outline-primary"><i
+                                className="fas fa-bolt pr-1"></i> CONNECT TO CRM </button>
+                                                </div>
                                         <div className="dropdown no-arrow">
                                             <a className="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -156,20 +164,7 @@ const CompanyContent = () => {
                                     </div>
                                     <div className="card-body">
                                         <div className="table-container">
-                                            <div className="search-and-buttons">
-                                                <div className="result-count">
-                                                    <span>Showing 1-20 of 100 results</span>    </div>
-
-                                                <div className="buttons-container">
-                                                <button className="d-none d-sm-inline-block btn btn-light mr-3"><i
-                                className="fas fa-cogs  pr-1"></i> EDIT VIEW </button>
-                                                    <button className="d-none d-sm-inline-block btn btn-light mr-3"><i
-                                className="fas fa-bolt  pr-1"></i> EXPORT TO CSV </button>
-                                                    <button className="d-none d-sm-inline-block btn btn-outline-primary"><i
-                                className="fas fa-bolt pr-1"></i> CONNECT TO CRM </button>
-                                                </div>
-                                            </div>
-                                            <div className="table-wrapper">
+                                             <div className="table-wrapper">
                                                 <table className="data-table">
                                                     <thead>
                                                         <tr>
