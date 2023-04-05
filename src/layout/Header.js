@@ -34,7 +34,7 @@ const Header=()=>{
 										  <div className="section_room">
 										  
 										  <select id="country" onChange="change_country(this.value)" className="frm-field required">
-											  <option value="null">Advance</option>
+											  <option value="null">Advanced</option>
 											  <option value="AX">Company</option>     
 											  <option value="AX">Executive</option>
 										  </select>
