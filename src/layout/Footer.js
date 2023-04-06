@@ -31,27 +31,30 @@ const Footer=()=>{
 							<ul>
 								<h6 className="footer-title-29">Company</h6>
 								<li><NavLink to={'/about-us'}>About us</NavLink></li>
-								<li><NavLink to={'/clients'}>Our Clients</NavLink></li>
-								<li><a href="#testimonials">Testimonials</a></li>
-								<li><NavLink to={'/career'}>Check Our Careers</NavLink></li>
+								<li><NavLink to={'/clients'}>Clients</NavLink></li>
+								<li><NavLink to={'/career'}>Career</NavLink></li>
+								<li><NavLink to={'/contact-us'}>Contact us</NavLink></li>
 							</ul>
 						</div>
 						<div className="col-md-3 col-6 footer-list-29">
 							<ul>
-								<h6 className="footer-title-29">Quick Links</h6>
-								<li><a href="#management">Company Search</a></li>
-								<li><NavLink to="/executive-search">Prospecting Search</NavLink></li>
-								<li><a href="#appointment">Leads Managment</a></li>
-                                    <li><NavLink to="/about-us">Faq's</NavLink></li>
+								<h6 className="footer-title-29">Data</h6>
+								<li><a href="#our-data">Our Data</a></li>
+								<li><NavLink to={'/privacy-policy'}>Privacy Policy</NavLink></li>
+                                <li><NavLink to={'/security-policy'}> Security Policy</NavLink></li>
+                                <li><NavLink to={'/terms-and-conditions'}>Terms and Conditions</NavLink></li>
 							</ul>
 						</div>
 						<div className="col-md-3 col-6 footer-list-29 mt-md-0 mt-4">
 							<ul>
-							<h6 class="footer-title-29">More Info</h6>
-                                    <li><NavLink to={'/privacy-policy'}>Privacy Policy</NavLink></li>
-                                    <li><NavLink to={'/security-policy'}> Security Policy</NavLink></li>
-                                    <li><NavLink to={'/terms-and-conditions'}>Terms and Conditions</NavLink></li>
-								    <li><NavLink to={'/contact-us'}>Contact us</NavLink></li>
+							<h6 class="footer-title-29">Quick Links</h6>
+                                    <li><a href="#direct-dials">Direct Dials</a></li>
+                                    <li><a href="#B2B-data">B2B Data</a></li>
+                                    <li><a href="#lead-management">Lead Management</a></li>
+									<li><NavLink to="/executive-search">Prospecting Search</NavLink></li>
+									<li><a href="#prod-comp">Product Comparison</a></li>
+                                    <li><a href="#integrations">Integrations</a></li>
+								    
 							</ul>
 						</div>
 						
@@ -59,10 +62,9 @@ const Footer=()=>{
 							
 							<ul>
 							<h6 className="footer-title-29">Support</h6>
-							<li><NavLink to={'/privacy-policy'}>Privacy Policy</NavLink></li>
-                            <li><NavLink to={'/security-policy'}> Security Policy</NavLink></li>
-                            <li><NavLink to={'/terms-and-conditions'}>Terms and Conditions</NavLink></li>
-							<li><NavLink to={'/contact-us'}>Contact us</NavLink></li>							
+							<li><a href="#blog">BLOG</a></li>
+                            <li><NavLink to="/about-us">Faq's</NavLink></li>
+                            <li><a href="#resource-library">Resource Library</a></li>			
 							</ul>
 						</div>
 
@@ -71,8 +73,8 @@ const Footer=()=>{
 				<div className="col-lg-3 footer-contact-list mt-lg-0 mt-md-5 mt-4">
 					<h6 className="footer-title-29">Connect With Us</h6>
 					<ul>
-					<li><i className="fa fa-phone"></i> <strong style={{"marginLeft":15}}><a href="#"> +91-9811706966</a></strong></li>
-					<li><i className="fa fa-envelope"></i> <strong style={{"marginLeft":15}}><a href="mailto:info@beyondleadz.com">info@beyondleadz.com</a></strong></li>
+					<li><i className="fa fa-phone"></i> <strong style={{"marginLeft":15}}><a href="#"> +91-9560244995</a></strong></li>
+					<li><i className="fa fa-envelope"></i> <strong style={{"marginLeft":15}}><a href="mailto:sales@beyondleadz.com">sales@beyondleadz.com</a></strong></li>
 					</ul><br/>
 					    
 					<div className="main-social-footer-29">
