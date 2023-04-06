@@ -18665,6 +18665,7 @@ left: 100%;    padding: 8px 12px 8px 2px;
 	margin-bottom:12px;
     height: 35px;
     text-transform: uppercase;
+    z-index: 1;
   }
 
     .btn-login a {

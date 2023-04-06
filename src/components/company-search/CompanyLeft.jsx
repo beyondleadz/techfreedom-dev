@@ -41,8 +41,9 @@ const CompanyLeft = () => {
 
         <li className="nav-item-sd active">
           <a className="nav-link-sd" href="#">
-            <i className="fas fa-fw fa-tachometer-alt"></i>
-            <span>Filter</span><span className="ml-4">Advanced</span></a>
+            <i className="fas fa-filter"></i>
+            <span className="mr-4" >Filter</span>
+            <span className="btn btn-login">Advanced</span></a>
         </li>
 
 
