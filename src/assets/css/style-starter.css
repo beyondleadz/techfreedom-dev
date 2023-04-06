@@ -2933,7 +2933,7 @@ fieldset:disabled a.btn {
 
 .btn-info {
   color: #fff;
-  background-color: #17a2b8;
+  background-color: #5d44ff;
   border-color: #17a2b8;
 }
 
@@ -22356,3 +22356,5 @@ color: #fff;
 	color: var(--heading-color);
 	padding: 0px;
 }
+.fs-14{font-size: 14px; font-weight: 500;}
+.fs-12{font-size: 12px;}

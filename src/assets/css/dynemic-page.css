@@ -19,9 +19,8 @@ font-size: 14px;}
 
 .table-container {
   width: 100%;
-  margin: 0 auto;
+  margin: 0 auto;}
 
-}
 .table-container th{
   padding: 0.85rem;
   vertical-align: top;
@@ -4717,7 +4716,7 @@ a.text-success:hover, a.text-success:focus {
 }
 
 .text-info {
-  color: #36b9cc !important;
+  color: #5d44ff !important;
 }
 
 a.text-info:hover, a.text-info:focus {
@@ -6125,3 +6124,21 @@ color: #555;
 #wrapper .nav-item-sd .collapse-inner{
 padding:5px
 }
+
+@media only screen and (max-width: 768px) {
+  .mob-t {
+    font-size: 80%;
+  }
+}
+
+/* Adjust font size for even smaller screens */
+@media only screen and (max-width: 480px) {
+  .mob-t {
+    font-size: 80%;
+  }
+}
+
+
+
+
+
