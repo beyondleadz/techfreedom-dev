@@ -17,9 +17,18 @@ const CompanyLeft = () => {
   })
 
   const openMenu = (menu) => {
-    console.log(menu,open,'sdfjslkd')
     setopen({
-      ...open,
+      ...{
+        country:false,
+        state:false,
+        city:false,
+        industry:false, 
+        companyType:false,
+        employeeCount:false, 
+        revenue:false,
+        utility:false,
+        pages:false
+      },
       [menu]:!open[menu]
     })
   }
@@ -31,9 +40,9 @@ const CompanyLeft = () => {
 
 
         <li className="nav-item-sd active">
-          <a className="nav-link-sd" href="index.html">
+          <a className="nav-link-sd" href="#">
             <i className="fas fa-fw fa-tachometer-alt"></i>
-            <span>Filter</span></a>
+            <span>Filter</span><span className="ml-4">Advanced</span></a>
         </li>
 
 

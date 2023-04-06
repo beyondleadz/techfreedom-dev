@@ -2810,13 +2810,13 @@ fieldset:disabled a.btn {
 
 .btn-primary {
   color: #fff;
-  background-color: #ff4c4c;
+  background-color: #fdc401;
   border: none;
 }
 
 .btn-primary:hover {
   color: #fff;
-  background-color: #956fef;
+  background-color: #5d44ff;
   box-shadow: none;
 }
 
@@ -3057,13 +3057,13 @@ fieldset:disabled a.btn {
 
 .btn-light {
   color: #212529;
-  background-color: #f8f9fa;
-  border-color: #f8f9fa;
+  background-color: #e2e6ea;
+  border-color: #e2e6ea;
 }
 
 .btn-light:hover {
   color: #212529;
-  background-color: #e2e6ea;
+  background-color: #eee;
   border-color: #dae0e5;
 }
 
@@ -3450,8 +3450,8 @@ fieldset:disabled a.btn {
 
 .btn-lg,
 .btn-group-lg>.btn {
-  padding: 0.5rem 1rem;
-  font-size: 1.25rem;
+  padding: 2px 9px;
+  font-size: 1rem;
   line-height: 1.5;
   border-radius: 0.3rem;
 }
