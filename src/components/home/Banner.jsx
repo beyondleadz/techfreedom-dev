@@ -9,9 +9,9 @@ const BannerSection=()=>{
             <div className="col-md-6 pr-lg-5">
                 <h3 className="mb-lg-4 mb-3 title">
                 Double your <span>Qualified Leads</span></h3>
-                <p className="mr-5">Unleash the power of data to drive your sales growth - discover our B2B database and lead management solutions today!</p>
-                <p className="mr-5">- Get 100% Verified  B2B data that converts to higher sales revenue</p>
-                <p className="mr-5">- Best prospecting solution and  actionable insights for faster conversions</p>
+                <p className="mr-5"> - Unleash the power of data to drive your sales growth</p>
+                <p className="mr-5"> - Get 100% Verified B2B data that converts to higher sales revenue</p>
+                <p className="mr-5"> - Best prospecting solution and actionable insights for faster conversions</p>
                 <div className="mt-md-5 mt-4 mb-lg-0 mb-4">
                     <a className="btn btn-style" href="about.html">Start Free Trial</a>  <a className="btn btn-style" href="about.html">See Plans</a>                        </div>
             </div>

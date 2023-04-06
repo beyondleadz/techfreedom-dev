@@ -19,19 +19,28 @@ const Plans=()=>{
 				<div className="pricing-grids">
 						<div className="pricing-grid1">
 							<div className="price-value one">
-									<h4><a href="#"> Sales Pro</a></h4>
-									<div className="small">you have small enterprises and light usage</div>
+									<h4><a href="#">Basic</a></h4>
+									<div className="small">You have small enterprises and light usage.</div>
 							</div>
 							<div className="price-bg">
 							<ul>
-								<li className="whyt"><a href="#"><i className="fa fa-check" aria-hidden="true"></i></a></li>
-								<li><a href="#"><i className="fa fa-check" aria-hidden="true"></i></a></li>
-								<li className="whyt"><a href="#">5 E-Mail Address </a></li>
-								<li><a href="#">50GB Monthly Bandwidth </a></li>	
-								<li className="whyt"><a href="#"><i className="fa fa-check" aria-hidden="true"></i></a></li>							
-								<li><a href="#"><i className="fa fa-check" aria-hidden="true"></i></a></li>
-								
+								<li className="whyt"><a href="#"><strong>Rs.2000 </strong>(Billed Annually)</a></li>
+								<li><a href="#">500 Monthly Data Credits</a></li>
+								<li className="whyt"><a href="#"><i className="fa fa-times" aria-hidden="true"></i></a></li>
+								<li><a href="#"><strong>500 Email Credits</strong></a></li>	
+								<li className="whyt"><a href="#"><strong>20 Direct Dials</strong></a></li>							
+								<li><a href="#">User License 1</a></li>
+								<li className="whyt"><a href="#"><strong>Company Info. (Basic)</strong></a></li>
+								<li><a href="#"><strong>Executive Info (Basic)</strong></a></li>
+								<li className="whyt"><a href="#"><strong>Executive Biography</strong></a></li>
+								<li><a href="#">Social Intelligence</a></li>
+								<li className="whyt"><a href="#">Save Search</a></li>
+								<li><a href="#"><i className="fa fa-times" aria-hidden="true"></i></a></li>
+								<li className="whyt"><a href="#"><i className="fa fa-times" aria-hidden="true"></i></a></li>
+								<li><a href="#"><i className="fa fa-times" aria-hidden="true"></i></a></li>
+								<li><a href="#"><i className="fa fa-times" aria-hidden="true"></i></a></li>
 								<li className="whyt lost"><a href="#"><i className="fa fa-times" aria-hidden="true"></i></a></li>
+								
 							</ul>
 							<div className="cart1">
 								<a className="popup-with-zoom-anim" href="#small-dialog">GET QUOTE</a>							</div>
@@ -42,18 +51,27 @@ const Plans=()=>{
 
 							<div className="price-value two">
 							
-								<h4><a href="#">Analyzer</a></h4>
-								<div className="small">you have medium & large enterprises and medium usage</div>
+								<h4><a href="#">Growth</a></h4>
+								<div className="small">You have medium & large enterprises and medium usage.</div>
 															</div>
 							<div className="price-bg">
 							<ul>
-								<li className="whyt"><a href="#"><i className="fa fa-check" aria-hidden="true"></i></a></li>
-								<li><a href="#"><i className="fa fa-check" aria-hidden="true"></i></a></li>
-								<li className="whyt"><a href="#">10 E-Mail Address </a></li>
-								<li><a href="#">100GB Monthly Bandwidth </a></li>
-								<li className="whyt"><a href="#"><i className="fa fa-check" aria-hidden="true"></i></a></li>							
-								<li><a href="#"><i className="fa fa-check" aria-hidden="true"></i></a></li>
-								<li className="whyt lost"><a href="#"><i className="fa fa-times" aria-hidden="true"></i></a></li>
+							<li className="whyt"><a href="#"><strong>Rs.5000 </strong>(Billed Annually)</a></li>
+								<li><a href="#">2000 Monthly Data Credits</a></li>
+								<li className="whyt"><a href="#">Lead Management</a></li>
+								<li><a href="#"><strong>2000 Email Credits</strong></a></li>	
+								<li className="whyt"><a href="#"><strong>200 Direct Dials</strong></a></li>							
+								<li><a href="#">User License 2</a></li>
+								<li className="whyt"><a href="#"><strong>Company Info</strong></a></li>
+								<li><a href="#"><strong>Executive Info</strong></a></li>
+								<li className="whyt"><a href="#"><strong>Executive Biography</strong></a></li>
+								<li><a href="#">Social Intelligence</a></li>
+								<li className="whyt"><a href="#">Save Search</a></li>
+								<li><a href="#">News & Articles</a></li>
+								<li className="whyt"><a href="#"><strong>Integrations</strong></a></li>
+								<li><a href="#"><strong>Data Recommendation</strong></a></li>
+								<li><a href="#"><strong>Alerts & Notification</strong></a></li>
+								<li className="whyt lost"><a href="#"><strong>Reports</strong></a></li>
 							</ul>
 							<div className="cart2">
 								<a className="popup-with-zoom-anim active" href="#small-dialog">GET QUOTE</a>							</div>
@@ -62,19 +80,28 @@ const Plans=()=>{
 						
 						<div className="pricing-grid3">
 							<div className="price-value three">
-								<h4><a href="#">Professional</a></h4>
-								<div className="small">you have large enterprises & research organisation and heavy usage</div>
+								<h4><a href="#">Pro</a></h4>
+								<div className="small">You have large enterprises & research organisation and heavy usage.</div>
 								
 							</div>
 							<div className="price-bg">
 							<ul>
-								<li className="whyt"><a href="#"><i className="fa fa-check" aria-hidden="true"></i> </a></li>
-								<li><a href="#"><i className="fa fa-check" aria-hidden="true"></i></a></li>
-								<li className="whyt"><a href="#"><i className="fa fa-check" aria-hidden="true"></i> </a></li>
-								<li><a href="#">300GB Monthly Bandwidth</a></li>
-								<li className="whyt"><a href="#"><i className="fa fa-check" aria-hidden="true"></i></a></li>							
-								<li><a href="#"><i className="fa fa-check" aria-hidden="true"></i></a></li>
-								<li className="whyt lost"><a href="#">Fully Support</a></li>
+							<li className="whyt"><a href="#"><strong>Rs.12500 </strong>(Billed Annually)</a></li>
+								<li><a href="#">10000 Monthly Data Credits</a></li>
+								<li className="whyt"><a href="#">Lead Management</a></li>
+								<li><a href="#"><strong>10000 Email Credits</strong></a></li>	
+								<li className="whyt"><a href="#"><strong>500 Direct Dials</strong></a></li>							
+								<li><a href="#">User License 5</a></li>
+								<li className="whyt"><a href="#"><strong>Company Info</strong></a></li>
+								<li><a href="#"><strong>Executive Info</strong></a></li>
+								<li className="whyt"><a href="#"><strong>Executive Biography</strong></a></li>
+								<li><a href="#">Social Intelligence</a></li>
+								<li className="whyt"><a href="#">Save Search</a></li>
+								<li><a href="#">News & Articles</a></li>
+								<li className="whyt"><a href="#"><strong>Integrations</strong></a></li>
+								<li><a href="#"><strong>Data Recommendation</strong></a></li>
+								<li><a href="#"><strong>Alerts & Notification</strong></a></li>
+								<li className="whyt lost"><a href="#"><strong>Reports</strong></a></li>
 							</ul>
 							<div className="cart3">
 								<a className="popup-with-zoom-anim" href="#small-dialog">GET QUOTE</a>							</div>

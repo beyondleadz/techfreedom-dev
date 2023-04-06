@@ -17,7 +17,7 @@ const AboutSection=()=>{
                             <i className="fas fa-business-time primary-clr-bg"></i>                        </div>
                         <div className="about-content">
                             <h5 className="mb-2"><a href="about.html">Sales Professionals</a></h5>
-                            <p>A B2B database is a valuable resource for sales teams as it provides access to accurate and detailed information on potential customers including their contact information, industry and purchasing habits. This information can help sales teams to identify and target high-potential prospects, tailor their sales approach and close deals more effectively.</p>                        </div>
+                            <p>Get Access to accurate B2B data on potential customers, including their contact information with direct dials and close deals more effectively.</p>                        </div>
                     </div>
                 </div>
                 <div className="col-lg-3 col-md-6 mt-md-0 mt-3">
@@ -26,7 +26,7 @@ const AboutSection=()=>{
 							<i className="fas fa-bullhorn green-clr-bg"></i>                        </div>
                         <div className="about-content">
                             <h5 className="mb-2"><a href="about.html">Marketing</a></h5>
-                            <p>BeyondLeadz provides marketing teams with access to accurate and up-to-date business data that can be used to develop targeted marketing campaigns. It can help marketing teams to identify potential customers, understand their needs and preferences and tailor their messaging and outreach efforts to effectively reach and engage their target audience.</p>                        </div>
+                            <p>Discover Prospective Customers, Enhance customer Engagement, Efficiently Execute Campaigns and Interact with Your Intended Audience - all through B2B Marketing data.</p>                        </div>
                     </div>
                 </div>
                 <div className="col-lg-3 col-md-6 mt-lg-0 mt-2">
@@ -36,7 +36,7 @@ const AboutSection=()=>{
                         </div>
                          <div className="about-content">
                             <h5 className="mb-2"><a href="about.html">Recruitment</a></h5>
-                            <p>Recruitment teams looking to source potential candidates for job openings in specific industries or companies. BeyondLeadz contains information on businesses, their size, location and industry, which can help recruitment teams to identify and target companies or suitable candidates for specific job roles.</p>                        
+                            <p>Profile information on businesses, their size, location, Industry and executive functions that empowers recruitment teams to target companies and candidates.</p>                        
                          </div>
                     </div>
                 </div>
@@ -46,7 +46,7 @@ const AboutSection=()=>{
 							<i className="fas fa-search blue-clr-bg"></i>                        </div>
                         <div className="about-content">
                             <h5 className="mb-2"><a href="about.html">Research</a></h5>
-                            <p>Research professionals can gain insights into industry trends, company information, and market segmentation. BeyondLeadz provides a comprehensive source of information that can be used to make informed business decisions.</p>                        </div>
+                            <p>Access to Comprehensive business information that can be used to make informed business decisions. Gain insights into industry trends, company information and market segmentation.</p>                        </div>
                     </div>
                 </div>
             </div>
