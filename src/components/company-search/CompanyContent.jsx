@@ -54,7 +54,7 @@ const CompanyContent = () => {
                                         <div className="buttons-container">
                                         <form className="d-none form-inline mr-4 navbar-search">
                         <div className="input-group">
-                        <input type = "text" className="form-control bg-light border-1" placeholder="Search for..."
+                        <input type = "text" className="form-control-sm bg-light" placeholder="Search for..."
                                 aria-label="Search" aria-describedby="basic-addon2"/>
                             <div className="input-group-append">
                                 <button className="btn btn-primary" type="button">

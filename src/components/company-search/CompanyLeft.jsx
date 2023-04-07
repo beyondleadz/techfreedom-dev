@@ -43,7 +43,7 @@ const CompanyLeft = () => {
           <a className="nav-link-sd" href="#">
             <i className="fas fa-filter"></i>
             <span className="mr-4" >Filter</span>
-            <span className="btn btn-login">Advanced</span></a>
+            <span className="btn btn-outline-primary font-weight-bold">Advanced</span></a>
         </li>
 
 
