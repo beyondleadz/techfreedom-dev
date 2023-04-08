@@ -14,6 +14,11 @@ const Plans=()=>{
        <div className="pricing-plans">
 		<div className="container">
 			<div className="price-head">
+				<ul class="cr-unit">
+				<li class="active"> USD </li>
+				<li> INR </li>
+				</ul>
+				
 				<h3>OUR PRICING PLANS</h3>
 			</div>
 				<div className="pricing-grids">
@@ -24,7 +29,7 @@ const Plans=()=>{
 							</div>
 							<div className="price-bg">
 							<ul>
-								<li className="whyt"><a href="#"><strong>Rs.2000 </strong>(Billed Annually)</a></li>
+								<li className="whyt"><a href="#"><strong>Rs.2000 </strong><span className="small">(Billed Annually)</span></a></li>
 								<li><a href="#">500 Monthly Data Credits</a></li>
 								<li className="whyt"><a href="#"><i className="fa fa-times" aria-hidden="true"></i></a></li>
 								<li><a href="#"><strong>500 Email Credits</strong></a></li>	
@@ -43,7 +48,7 @@ const Plans=()=>{
 								
 							</ul>
 							<div className="cart1">
-								<a className="popup-with-zoom-anim" href="#small-dialog">GET QUOTE</a>							</div>
+								<a className="popup-with-zoom-anim pl-3" href="#small-dialog">GET QUOTE</a>							</div>
 							</div>
 						</div>
 						<div className="pricing-grid2 pricing-grid2-highlited ">
@@ -56,7 +61,7 @@ const Plans=()=>{
 															</div>
 							<div className="price-bg">
 							<ul>
-							<li className="whyt"><a href="#"><strong>Rs.5000 </strong>(Billed Annually)</a></li>
+							<li className="whyt"><a href="#"><strong>Rs.5000 </strong><span className="small">(Billed Annually)</span></a></li>
 								<li><a href="#">2000 Monthly Data Credits</a></li>
 								<li className="whyt"><a href="#">Lead Management</a></li>
 								<li><a href="#"><strong>2000 Email Credits</strong></a></li>	
@@ -86,7 +91,7 @@ const Plans=()=>{
 							</div>
 							<div className="price-bg">
 							<ul>
-							<li className="whyt"><a href="#"><strong>Rs.12500 </strong>(Billed Annually)</a></li>
+							<li className="whyt"><a href="#"><strong>Rs.12500 </strong><span className="small">(Billed Annually)</span></a></li>
 								<li><a href="#">10000 Monthly Data Credits</a></li>
 								<li className="whyt"><a href="#">Lead Management</a></li>
 								<li><a href="#"><strong>10000 Email Credits</strong></a></li>	

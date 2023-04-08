@@ -52,14 +52,11 @@ const Header = () => {
                   </button>
 
                   <div className="section_room">
-                    <select
-                      id="country"
-                      onChange="change_country(this.value)"
-                      className="frm-field required"
-                    >
-                      <option className="p-5" value="null">Advanced</option>
-                      <option value="AX">Company</option>
-                      <option value="AX">Executive</option>
+                    <select id="country" onChange="change_country(this.value)"
+                      className=" required" >
+                      <option className="frm-field" value="null">Advanced</option>
+                      <option className="frm-field" value="AX">Company</option>
+                      <option className="frm-field" value="AX">Executive</option>
                     </select>
                   </div>
                 </div>
