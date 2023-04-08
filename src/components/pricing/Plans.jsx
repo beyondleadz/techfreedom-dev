@@ -14,11 +14,11 @@ const Plans=()=>{
        <div className="pricing-plans">
 		<div className="container">
 			<div className="price-head">
-				<ul class="cr-unit">
-				<li class="active"> USD </li>
-				<li> INR </li>
+				<ul id="cr-unit-div">
+				<li className=" cr-unit active"> INR </li>
+				<li className="cr-unit"> USD </li>
 				</ul>
-				
+			
 				<h3>OUR PRICING PLANS</h3>
 			</div>
 				<div className="pricing-grids">
@@ -27,6 +27,7 @@ const Plans=()=>{
 									<h4><a href="#">Basic</a></h4>
 									<div className="small">You have small enterprises and light usage.</div>
 							</div>
+							
 							<div className="price-bg">
 							<ul>
 								<li className="whyt"><a href="#"><strong>Rs.2000 </strong><span className="small">(Billed Annually)</span></a></li>
@@ -43,8 +44,8 @@ const Plans=()=>{
 								<li><a href="#"><i className="fa fa-times" aria-hidden="true"></i></a></li>
 								<li className="whyt"><a href="#"><i className="fa fa-times" aria-hidden="true"></i></a></li>
 								<li><a href="#"><i className="fa fa-times" aria-hidden="true"></i></a></li>
+								<li className="whyt"><a href="#"><i className="fa fa-times" aria-hidden="true"></i></a></li>
 								<li><a href="#"><i className="fa fa-times" aria-hidden="true"></i></a></li>
-								<li className="whyt lost"><a href="#"><i className="fa fa-times" aria-hidden="true"></i></a></li>
 								
 							</ul>
 							<div className="cart1">
@@ -75,8 +76,8 @@ const Plans=()=>{
 								<li><a href="#">News & Articles</a></li>
 								<li className="whyt"><a href="#"><strong>Integrations</strong></a></li>
 								<li><a href="#"><strong>Data Recommendation</strong></a></li>
-								<li><a href="#"><strong>Alerts & Notification</strong></a></li>
-								<li className="whyt lost"><a href="#"><strong>Reports</strong></a></li>
+								<li className="whyt"><a href="#"><strong>Alerts & Notification</strong></a></li>
+								<li><a href="#"><strong>Reports</strong></a></li>
 							</ul>
 							<div className="cart2">
 								<a className="popup-with-zoom-anim active" href="#small-dialog">GET QUOTE</a>							</div>
@@ -105,8 +106,8 @@ const Plans=()=>{
 								<li><a href="#">News & Articles</a></li>
 								<li className="whyt"><a href="#"><strong>Integrations</strong></a></li>
 								<li><a href="#"><strong>Data Recommendation</strong></a></li>
-								<li><a href="#"><strong>Alerts & Notification</strong></a></li>
-								<li className="whyt lost"><a href="#"><strong>Reports</strong></a></li>
+								<li className="whyt"><a href="#"><strong>Alerts & Notification</strong></a></li>
+								<li><a href="#"><strong>Reports</strong></a></li>
 							</ul>
 							<div className="cart3">
 								<a className="popup-with-zoom-anim" href="#small-dialog">GET QUOTE</a>							</div>
