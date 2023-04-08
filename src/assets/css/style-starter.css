@@ -22356,12 +22356,12 @@ color: #fff;
 }
 .fs-14{font-size: 14px; font-weight: 500;}
 .fs-12{font-size: 12px;}
-.cr-unit {
+#cr-unit-div {
   padding: 0;
   margin: 0;
   float: right;
 }
-.cr-unit li {
+.cr-unit {
   display: inline-block;
   font-family: Helvetica;
   font-size: 14px;
@@ -22371,16 +22371,14 @@ color: #fff;
   padding: 0 5px;
   cursor: pointer;}
 
-  .cr-unit li.active {
-    color: #d83f87;
-    border-color: #d83f87;
+.active, .cr-unit :hover {
+  color: #5d44ff;
+  border-color: #5d44ff;
 }
-
-.cr-unit li:active {
-  color: #d83f87;
-  border-color: #d83f87;
+li.whyt1{background:#f4f4f4;}
+li.whyt.lost {
+  padding: 0em 0em 2.5em 0;
 }
-[.cr-unit li.active="1"]:focus:not(:focus-visible) {
-  color: #d83f87;
-  border-color: #d83f87;
+.pricing-grid ul li.whyt a,.pricing-grid1 ul li.whyt a,.pricing-grid2 ul li.whyt a,.pricing-grid3 ul li.whyt a{
+	background:#f4f4f4;
 }
