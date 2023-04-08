@@ -558,7 +558,7 @@ textarea.form-control {
 .form-check-label {
   margin-bottom: 0;
 }
-
+.frm-field{padding:20px; width:10%; line-height: 1rem;}
 .form-check-inline {
   display: inline-flex;
   align-items: center;

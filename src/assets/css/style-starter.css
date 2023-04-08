@@ -21188,8 +21188,8 @@ a[data-tooltip][data-placement="bottom"]::after {
 .section_room select {
   /* padding: 10px 9px;
     width: 120%;*/
-	background: url(../images/arrow.png) no-repeat 83% center #5D44FF;
-  	background-size: 10.5px;
+	/* background: url(../images/arrow.png) no-repeat 83% center #5D44FF;
+  	background-size: 10.5px; */
     font-weight: bold;
     background: #5D44FF;
     border: none;
@@ -21237,14 +21237,14 @@ font-size:12px;
 	background-color: #fff;
   font-weight: 600;
   color:#000;
-  padding:5px;
+ 
 }
 .section_room .select option a:hover {
     line-height: 1em;
 	background-color: #fff; 
   font-size: 12px;
   color:#fdc401;
-  font-weight: 600;padding:5px;
+  font-weight: 600;
 }
 
 
@@ -22356,3 +22356,31 @@ color: #fff;
 }
 .fs-14{font-size: 14px; font-weight: 500;}
 .fs-12{font-size: 12px;}
+.cr-unit {
+  padding: 0;
+  margin: 0;
+  float: right;
+}
+.cr-unit li {
+  display: inline-block;
+  font-family: Helvetica;
+  font-size: 14px;
+  font-weight: 700;
+  color: #131415;
+  border-bottom: 1px solid #e0e5ec;
+  padding: 0 5px;
+  cursor: pointer;}
+
+  .cr-unit li.active {
+    color: #d83f87;
+    border-color: #d83f87;
+}
+
+.cr-unit li:active {
+  color: #d83f87;
+  border-color: #d83f87;
+}
+[.cr-unit li.active="1"]:focus:not(:focus-visible) {
+  color: #d83f87;
+  border-color: #d83f87;
+}
