@@ -22361,7 +22361,7 @@ color: #fff;
   margin: 0;
   float: right;
 }
-.cr-unit {
+.cr-unit  {
   display: inline-block;
   font-family: Helvetica;
   font-size: 14px;
@@ -22371,10 +22371,15 @@ color: #fff;
   padding: 0 5px;
   cursor: pointer;}
 
-.active, .cr-unit :hover {
+.cr-unit :hover  {
   color: #5d44ff;
   border-color: #5d44ff;
 }
+.cr-unit.active  {
+  color: #5d44ff;
+  border-color: #5d44ff;
+}
+
 li.whyt1{background:#f4f4f4;}
 li.whyt.lost {
   padding: 0em 0em 2.5em 0;
