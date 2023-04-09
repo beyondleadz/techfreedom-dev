@@ -2,7 +2,7 @@ import React,{useState} from "react";
 
 const CompanySearch=()=>{
     return <div className="shadow navbar-light">
-    <h3 className="card-body">Search Companies</h3>
+    <h3 className="card-body font-weight-bold">Search Companies</h3>
    <ul className="nav nav-tabs" id="myTabjustified" role="tablist">
                   <li className="nav-item" role="presentation">
                     <button className="top-tabs active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true"><i className="fa tab-img pr-2"></i>Companies</button>

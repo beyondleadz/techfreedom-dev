@@ -172,7 +172,7 @@ input[type="checkbox" i] {
   justify-content: flex-end;
   flex: 1;
   white-space: nowrap;
-  margin-left: 20px;
+  margin: 0 20px;
 }
 @media (max-width: 768px) {
   .table-container {
@@ -6140,9 +6140,8 @@ padding:5px
 }
 .btn-lit {
   color: #212529;
-  background-color: #fff;
    border:1px solid #eee;
-   border-radius: 0.3rem;padding: 7px 5px;
+   border-radius: 0.3rem;padding: 3px 2px;
 }
 
 .btn-lit:hover {
@@ -6154,13 +6153,34 @@ padding:5px
 
 .tab-img{display: inline;
 padding: 0.3rem 1rem;
-background: url(../images/enrichment-icon.jpg) no-repeat 0px 0px;}
+background: url(../images/enrichment-icon.jpg) no-repeat 0px 0px;
+background-size: 75%;}
 .tab-img1{display: inline;
   padding: 0.3rem 1rem;
-  background: url(../images/sales-icon.jpg) no-repeat 0px 0px;}
+  background: url(../images/sales-icon.jpg) no-repeat 0px 0px;
+  background-size: 75%;}
 .tab-img2{display: inline;
     padding: 0.3rem 1rem;
-    background: url(../images/marketing-icon.jpg) no-repeat 0px 0px;}
+    background: url(../images/marketing-icon.jpg) no-repeat 0px 0px;
+    background-size: 75%;}
 .pdf-img{display: inline;
-      padding: 0.3rem 0.8rem;
-      background: url(../images/printer-icon.jpg) no-repeat 0px 0px;}
+      padding: 0.3rem 0.7rem;
+      background: url(../images/printer-icon.jpg) no-repeat 55% center;
+    background-size: 80%;}
+.printer-img{display: inline;
+      padding: 0.3rem 0.7rem;
+      background: url(../images/printer-icon.jpg) no-repeat 55% center;
+    background-size: 80%;}
+.excel-img{display: inline;
+      padding: 0.3rem 0.7rem;
+      background: url(../images/printer-icon.jpg) no-repeat 55% center;
+    background-size: 80%;}
+.star-img{display: inline;
+      padding: 0.3rem 0.7rem;
+      background: url(../images/printer-icon.jpg) no-repeat 55% center;
+    background-size: 80%;}
+    .left-img {
+      display: inline;
+      padding: 0.6rem;
+      background: url(../images/printer-icon.jpg) no-repeat 85% center;
+      background-size: 70%;}

@@ -2933,8 +2933,8 @@ fieldset:disabled a.btn {
 
 .btn-info:hover {
   color: #fff;
-  background-color: #138496;
-  border-color: #117a8b;
+  background-color: #fdc401;
+  border-color: #fdc401;
 }
 
 .btn-info:focus,
@@ -22379,6 +22379,7 @@ color: #fff;
   color: #5d44ff;
   border-color: #5d44ff;
 }
+
 
 li.whyt1{background:#f4f4f4;}
 li.whyt.lost {
