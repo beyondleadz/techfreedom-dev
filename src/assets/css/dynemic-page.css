@@ -6138,5 +6138,29 @@ padding:5px
     font-size: 80%;
   }
 }
+.btn-lit {
+  color: #212529;
+  background-color: #fff;
+   border:1px solid #eee;
+   border-radius: 0.3rem;padding: 7px 5px;
+}
+
+.btn-lit:hover {
+  color: #212529;
+  background-color: #eee;
+  border:1px solid #40d6ee;
+}
 
 
+.tab-img{display: inline;
+padding: 0.3rem 1rem;
+background: url(../images/enrichment-icon.jpg) no-repeat 0px 0px;}
+.tab-img1{display: inline;
+  padding: 0.3rem 1rem;
+  background: url(../images/sales-icon.jpg) no-repeat 0px 0px;}
+.tab-img2{display: inline;
+    padding: 0.3rem 1rem;
+    background: url(../images/marketing-icon.jpg) no-repeat 0px 0px;}
+.pdf-img{display: inline;
+      padding: 0.3rem 0.8rem;
+      background: url(../images/printer-icon.jpg) no-repeat 0px 0px;}

@@ -15,30 +15,38 @@ const CompanyContent = () => {
                                    
                             <div className="buttons-container">
                                         <span className="fs-14 text-info mr-2">Quick Selection</span>
-                                                <button className=" d-sm-inline-block btn btn-light mr-1"> 1 </button>
+                                                <button className=" d-sm-inline-block btn btn-light btn-lg mr-1"> 1 </button>
                                                 <span className="mr-1">to</span>
-                                <button className=" d-sm-inline-block btn btn-light mr-1"> 3 </button>
-                                <button className=" d-sm-inline-block btn btn-info mr-3"><i
+                                <button className=" d-sm-inline-block btn btn-light btn-lg mr-1"> 3 </button>
+                                <button className=" d-sm-inline-block btn btn-info btn-lg mr-3"><i
                                 className="fas fa-arrow-right"></i> </button>
                                                     
                                                 </div> 
-                    <ul className="navbar-nav-sd ml-auto">
-                     <li><a class="nav-link-sd" href="#" id="" role="button"
-                                data-toggle="" aria-haspopup="true" aria-expanded="false">  <button className=" d-sm-inline-block btn btn-light btn-lg">
-                                                 <i class="fas fa-file-pdf text-danger" aria-hidden="true"></i>
-                                                    </button></a></li>   
-                     <li><a class="nav-link-sd " href="#" id="" role="button"
+                    <ul className="flex">
+                    <li><a class="btn-lit mr-1" href="#" id="" role="button" data-toggle="" aria-haspopup="true" aria-expanded="false">
+                        <i class="pdf-img" aria-hidden="true"></i></a></li> 
+                        <li><a class="btn-lit mr-1" href="#" id="" role="button" data-toggle="" aria-haspopup="true" aria-expanded="false">
+                        <i class="pdf-img" aria-hidden="true"></i></a></li>
+                        <li><a class="btn-lit mr-1" href="#" id="" role="button" data-toggle="" aria-haspopup="true" aria-expanded="false">
+                        <i class="pdf-img" aria-hidden="true"></i></a></li>
+                        <li><a class="btn-lit mr-1" href="#" id="" role="button" data-toggle="" aria-haspopup="true" aria-expanded="false">
+                        <i class="pdf-img" aria-hidden="true"></i></a></li> 
+                         {/* <li><a class="nav-link-sd " href="#" id="" role="button"
+                                data-toggle="" aria-haspopup="true" aria-expanded="false"><button className=" d-sm-inline-block btn-lg btn btn-light">
+                                                        <i class="fas fa-pdf text-info" aria-hidden="true"></i>
+                                                    </button></a></li> */}
+                     {/* <li><a class="nav-link-sd " href="#" id="" role="button"
                                 data-toggle="" aria-haspopup="true" aria-expanded="false"><button className=" d-sm-inline-block btn-lg btn btn-light">
                                                         <i class="fas fa-print text-info" aria-hidden="true"></i>
-                                                    </button></a></li>
-                     <li><a class="nav-link-sd " href="#" id="" role="button"
+                                                    </button></a></li> */}
+                     {/* <li><a class="nav-link-sd " href="#" id="" role="button"
                                 data-toggle="" aria-haspopup="true" aria-expanded="false"><button className=" d-sm-inline-block btn-lg btn btn-light">
                                                         <i class="fas fa-file-excel  text-success " aria-hidden="true"></i>
                                                     </button></a> </li>   
                      <li><a class="nav-link-sd " href="#" id="" role="button"
                                 data-toggle="" aria-haspopup="true" aria-expanded="false"><button className=" d-sm-inline-block btn-lg btn btn-light mr-4">
                                                         <i class="fas fa-star text-warning" aria-hidden="true"></i>
-                                                    </button></a></li>
+                                                    </button></a></li> */}
                     </ul>
                     </nav>
 
