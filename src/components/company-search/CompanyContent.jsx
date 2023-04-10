@@ -5,8 +5,8 @@ const CompanyContent = () => {
     <>
       <div id="content-wrapper" className="d-flex flex-column">
         <div id="content">
-          <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top">
-            <div className="buttons-container quickselection">
+          <nav className="navbar navbar-light bg-white topbar mb-4 static-top">
+            <div className="buttons-container m-mt quickselection">
                 <div>
               <span className="fs-12 mr-2">Quick Selection</span>
               <button className=" fs-12 d-sm-inline-block btn btn-light btn-lg mr-1">
@@ -21,7 +21,7 @@ const CompanyContent = () => {
               </button>
               <button className="fs-12  btn btn-info btn-lg  mr-3">Select All</button>
               </div>
-              <ul className="flex">
+              <ul className="flex  m-mt">
                 <li>
                   <a
                     class="btn-lit mr-2"
