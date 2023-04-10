@@ -16,6 +16,8 @@ const CompanyLeft = () => {
     pages:false
   })
 
+  const [menuVisible,setMenuVisible] = useState(true)
+
   const openMenu = (menu) => {
     setopen({
       ...{
@@ -33,10 +35,15 @@ const CompanyLeft = () => {
     })
   }
 
+  const openLeftMenu = () => {
+    setMenuVisible(!menuVisible)
+  }
 
+console.log(menuVisible,'sjdfk')
   return (
     <>
-      <ul className="navbar-nav-sd bg-light ssidebar ssidebar-light accordion" id="accordionsidebar">
+      <button className="filter-button" onClick={openLeftMenu}>Filter</button>
+      <ul className={`navbar-nav-sd bg-light ssidebar ssidebar-light accordion ${menuVisible ? "showLeftMenu" : ""}`} id="accordionsidebar">
 
 
         <li className="nav-item-sd active">

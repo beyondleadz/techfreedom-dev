@@ -22375,9 +22375,14 @@ color: #fff;
   color: #5d44ff;
   border-color: #5d44ff;
 }
-.cr-unit.active  {
+.cr-unit.activeblue  {
   color: #5d44ff;
   border-color: #5d44ff;
+}
+
+.cr-unit.activered  {
+  color: #ed1717;
+  border-color: #ed1717;
 }
 
 

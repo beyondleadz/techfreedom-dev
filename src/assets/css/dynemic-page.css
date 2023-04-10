@@ -6210,3 +6210,57 @@ background-size: 75%;}
         padding: 0.6rem;
         background: url(../images/employee-count-icon.png) no-repeat 85% center;
         background-size: 85%;}
+
+.filter-button{
+  display: none;
+}
+.quickselectioninput{
+  width: 20px;
+  border:1px solid #ddd;
+  text-align: center;
+}
+
+@media screen and (max-width: 760px) {
+  .filter-button{
+    display: block;
+  }
+  #wrapper{
+    flex-direction: column;
+    margin-top: 15px;
+  }
+
+  .showLeftMenu{
+    height: 0;
+    overflow: hidden;
+    min-height: 0;
+  }
+
+  #myTabjustified{
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+  }
+
+  #myTabjustified::-webkit-scrollbar {
+    display: none;
+}
+
+.ssidebar .nav-item-sd .collapse{
+  position: relative;
+  left: 20px;
+}
+.quickselection{
+  flex-direction: column;
+}
+
+.textsearch.buttons-container{
+  padding: 0 0 0 20px;
+    margin: 0;
+}
+.textsearch.buttons-container form{
+  margin-right: 0;
+}
+.textsearch.buttons-container form .input-group{
+  flex-wrap: nowrap;
+}
+
+}

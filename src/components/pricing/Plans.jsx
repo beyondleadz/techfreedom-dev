@@ -9,14 +9,27 @@ import FeaturesImageIntelligence from '../../assets/images/features-social-intel
 import FeaturesRadiusImage from  '../../assets/images/features-radius-icon.png';
 
 const Plans=()=>{
+
+	const [active,setActive] = useState('INR')
+
+	const changeCurrency = (curr) => {
+		if(curr === 'INR'){
+			setActive('INR')
+		}
+		if(curr === 'USD'){
+			setActive('USD')
+		}
+	}
+
+
     return (
     <>
        <div className="pricing-plans">
 		<div className="container">
 			<div className="price-head">
 				<ul id="cr-unit-div">
-				<li className=" cr-unit active"> INR </li>
-				<li className="cr-unit"> USD </li>
+				<li className={`cr-unit ${active === 'INR' ? 'activeblue': ''}`} onClick={() => changeCurrency('INR')}> INR </li>
+				<li className={`cr-unit ${active === 'USD' ? 'activered': ''}`} onClick={() => changeCurrency('USD')}> USD </li>
 				</ul>
 			
 				<h3>OUR PRICING PLANS</h3>
