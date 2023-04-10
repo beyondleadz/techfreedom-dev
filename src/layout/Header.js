@@ -72,36 +72,38 @@ const Header = () => {
                   <div className="row">
                     <div className="column-left">
                       <h2>Capabilities</h2>
-                      <i className="icondrop Prospecting"></i>
+                      <i className="icondrop leads"></i>
                       <a href="#">
-                        <h3> Prospecting </h3>
+                        <h3> Leads </h3>
                         <span className="menu-sub">
-                          Create your ideal filter based prospecting list
+                        Profile your ideal customers and build your leads
+                        </span>
+                      </a>
+
+                      <i className="icondrop list-building-icon"></i>
+                      <a href="#">
+                        <h3> List Building </h3>
+                        <span className="menu-sub">
+                        Create a list of potential customers{" "}
                         </span>
                       </a>
 
                       <i className="icondrop enrichment"></i>
                       <a href="#">
-                        <h3> Enrichment </h3>
+                        <h3> Data Enrichment </h3>
                         <span className="menu-sub">
-                          Build a high-performing sales pipeline{" "}
+                        Match and append data{" "}
                         </span>
                       </a>
 
-                      <i className="icondrop api-icon"></i>
-                      <a href="#">
-                        <h3> API </h3>
-                        <span className="menu-sub">
-                          Build a high-performing sales pipeline{" "}
-                        </span>
-                      </a>
+                      
                     </div>
                     <div className="column1">
                       <i className="icondrop extension"></i>
                       <a href="#">
                         <h3> Extension </h3>
                         <span className="menu-sub">
-                          Find prospects on Linkedin & anywhere on the web
+                        Build data through Linkedin and Web real time
                         </span>
                       </a>
 
@@ -109,7 +111,7 @@ const Header = () => {
                       <a href="#">
                         <h3> Intigrations </h3>
                         <span className="menu-sub">
-                          Build a high-performing sales pipeline{" "}
+                        Integrate with your existing crm or app{" "}
                         </span>
                       </a>
                     </div>
@@ -121,7 +123,7 @@ const Header = () => {
                       <a href="#">
                         <h3> Sales </h3>
                         <span className="menu-sub">
-                          Build a high-performing sales pipeline{" "}
+                        Find more leads and build your pipeline{" "}
                         </span>
                       </a>
 
@@ -129,44 +131,48 @@ const Header = () => {
                       <a href="#">
                         <h3> Marketing </h3>
                         <span className="menu-sub">
-                          Build a high-performing sales pipeline{" "}
+                        Profile your targeted audience{" "}
                         </span>
                       </a>
 
                       <i className="icondrop recruiters"></i>
                       <a href="#">
-                        <h3> Recruiting </h3>
+                        <h3> HR & Recruiting </h3>
                         <span className="menu-sub">
-                          Build a high-performing sales pipeline{" "}
+                        Reach out to top hiring talent and companies{" "}
                         </span>
                       </a>
                     </div>
 
                     <div className="column">
                       <h2>Industries</h2>
-                      <i className="icondrop sales"></i>
+                      <i className="icondrop hospitality-travel"></i>
                       <a href="#">
-                        <h3> Sales </h3>
+                        <h3> Hospitality & Travel </h3>
                         <span className="menu-sub">
-                          Build a high-performing sales pipeline{" "}
+                        Streamline your Marketing efforts{" "}
                         </span>
                       </a>
 
                       <i className="icondrop marketing"></i>
                       <a href="#">
-                        <h3> Marketing </h3>
+                        <h3> Technology </h3>
                         <span className="menu-sub">
-                          Build a high-performing sales pipeline{" "}
+                        Automate and Optimize lead generation{" "}
                         </span>
                       </a>
 
-                      <i className="icondrop recruiters"></i>
+                      <i className="icondrop finance"></i>
                       <a href="#">
-                        <h3> Recruiting </h3>
+                        <h3> Finance </h3>
                         <span className="menu-sub">
-                          Build a high-performing sales pipeline{" "}
+                        Gain insights into potential clients{" "}
                         </span>
                       </a>
+                      <span className="menu-sub">
+                      …more industries{" "}
+                        </span>
+                       
                     </div>
                   </div>
                 </div>
