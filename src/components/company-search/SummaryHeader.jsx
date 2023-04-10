@@ -14,7 +14,7 @@ const CompanySearch=()=>{
                     <button className="top-tabs" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false"><i className="fa fa-database pr-2"></i>Org Chart</button>
                   </li>
                   <li className="nav-item" role="presentation">
-                    <button className="top-tabs" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false"><i className="fa fa-database pr-2"></i>Filter By Dept.</button>
+                    <button className="top-tabs" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false"><i className="fa fa-database pr-2"></i>filter By Dept.</button>
                   </li>
                 </ul>
               </div>  

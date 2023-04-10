@@ -9,7 +9,9 @@
   justify-content: space-between;
   /*padding: 0.5rem 1rem;*/
   background-color: #5D44FF; /*000*/
+  margin: 0 0 0 140px;
 }
+
 
 .navbar-drop a {
   float: left;
@@ -24,7 +26,7 @@
   float: left;
   overflow: hidden; width:100%; 
 }
-
+.dropdown-menu1 .dropbtn i {font-size: 16px;}
 .dropdown-menu1 .dropbtn {
   font-size: 12px;  
   border: none;
@@ -197,13 +199,13 @@ margin-top: 0.8em;
 	background: url(../images/integrations-icon.jpg) no-repeat 0px 0px;
 }
 .sales{
-	background: url(../images/sales-icon.svg) no-repeat 0px 0px;
+	background: url(../images/sales-icon.jpg) no-repeat 0px 0px;
 }
 .marketing{
 	background: url(../images/marketing-icon.jpg) no-repeat 0px 0px;
 }
 .recruiters{
-	background: url(../images/recruiters-icon.svg) no-repeat 0px 0px;
+	background: url(../images/recruiters-icon.jpg) no-repeat 0px 0px;
 }
 /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 600px) {
@@ -216,6 +218,10 @@ margin-top: 0.8em;
 }
 .column-left{ width: 80%; display: block; float:none;  margin:0 0 0 20px; padding:10px 0 0 20px; height: fit-content; background-image:none;
 }
+.navbar-drop {
+  padding: 10px 1px;
+text-decoration: none;
+margin:0;}
 
 .navbar-drop a {
     padding: 10px 1px;

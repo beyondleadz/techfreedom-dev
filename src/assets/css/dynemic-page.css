@@ -19,9 +19,8 @@ font-size: 14px;}
 
 .table-container {
   width: 100%;
-  margin: 0 auto;
+  margin: 0 auto;}
 
-}
 .table-container th{
   padding: 0.85rem;
   vertical-align: top;
@@ -173,7 +172,7 @@ input[type="checkbox" i] {
   justify-content: flex-end;
   flex: 1;
   white-space: nowrap;
-  margin-left: 20px;
+  margin: 0 20px;
 }
 @media (max-width: 768px) {
   .table-container {
@@ -498,6 +497,7 @@ select.form-control:focus::-ms-value {
   font-size: 0.875rem;
   line-height: 1.5;
   border-radius: 0.2rem;
+  border: 1px solid #d0d0ca;
 }
 
 .form-control-lg {
@@ -558,7 +558,7 @@ textarea.form-control {
 .form-check-label {
   margin-bottom: 0;
 }
-
+.frm-field{padding:20px; width:10%; line-height: 1rem;}
 .form-check-inline {
   display: inline-flex;
   align-items: center;
@@ -4717,7 +4717,7 @@ a.text-success:hover, a.text-success:focus {
 }
 
 .text-info {
-  color: #36b9cc !important;
+  color: #5d44ff !important;
 }
 
 a.text-info:hover, a.text-info:focus {
@@ -5257,7 +5257,7 @@ a:focus {
 }
 
 .topbar {
-  height: 2.375rem;
+  height: 4.375rem;
 }
 
 .topbar #ssidebarToggleTop {
@@ -6124,4 +6124,143 @@ color: #555;
 
 #wrapper .nav-item-sd .collapse-inner{
 padding:5px
+}
+
+@media only screen and (max-width: 768px) {
+  .mob-t {
+    font-size: 80%;
+  }
+}
+
+/* Adjust font size for even smaller screens */
+@media only screen and (max-width: 480px) {
+  .mob-t {
+    font-size: 80%;
+  }
+}
+.btn-lit {
+  color: #212529;
+   border:1px solid #eee;
+   border-radius: 0.3rem;padding: 3px 2px;
+}
+
+.btn-lit:hover {
+  color: #212529;
+  background-color: #eee;
+  border:1px solid #40d6ee;
+}
+
+
+.tab-img{display: inline;
+padding: 0.3rem 1rem;
+background: url(../images/companies-icon.png) no-repeat 0px 0px;
+background-size: 75%;}
+.tab-img1{display: inline;
+  padding: 0.3rem 1rem;
+  background: url(../images/executive-icon.png) no-repeat 0px 0px;
+  background-size: 75%;}
+.tab-img2{display: inline;
+    padding: 0.3rem 1rem;
+    background: url(../images/leads-icon.png) no-repeat 0px 0px;
+    background-size: 75%;}
+.pdf-img{display: inline;
+      padding: 0.3rem 0.7rem;
+      background: url(../images/pdf-icon.png) no-repeat 55% center;
+    background-size: 100%;}
+.printer-img{display: inline;
+      padding: 0.3rem 0.7rem;
+      background: url(../images/xls-icon.png) no-repeat 55% center;
+    background-size: 100%;}
+.excel-img{display: inline;
+      padding: 0.3rem 0.7rem;
+      background: url(../images/printer-icon.png) no-repeat 55% center;
+      background-size: 85%;}
+.star-img{display: inline;
+      padding: 0.3rem 0.7rem;
+      background: url(../images/star-icon.png) no-repeat 55% center;    
+      background-size: 85%;}
+
+.left-industry-img {
+      display: inline;
+      padding: 0.6rem;
+      background: url(../images/industry-icon.png) no-repeat 85% center;
+      background-size: 85%;}
+.left-revenue-range-img {
+      display: inline;
+      padding: 0.6rem;
+      background: url(../images/revenue-range-icon.png) no-repeat 85% center;
+      background-size: 85%;}
+.left-country-img {
+        display: inline;
+        padding: 0.6rem;
+        background: url(../images/country-icon.png) no-repeat 85% center;
+        background-size: 85%;}       
+.left-state-img {
+        display: inline;
+        padding: 0.6rem;
+        background: url(../images/state-icon.png) no-repeat 85% center;
+        background-size: 85%;}      
+.left-city-img {
+      display: inline;
+      padding: 0.6rem;
+      background: url(../images/city-icon.png) no-repeat 85% center;
+      background-size: 85%;}
+.left-employee-count-img {
+        display: inline;
+        padding: 0.6rem;
+        background: url(../images/employee-count-icon.png) no-repeat 85% center;
+        background-size: 85%;}
+
+.filter-button{
+  display: none;
+}
+.quickselectioninput{
+  width: 20px;
+  border:1px solid #ddd;
+  text-align: center;
+}
+
+@media screen and (max-width: 760px) {
+  .filter-button{
+    display: block;
+  }
+  #wrapper{
+    flex-direction: column;
+    margin-top: 15px;
+  }
+
+  .showLeftMenu{
+    height: 0;
+    overflow: hidden;
+    min-height: 0;
+  }
+
+  #myTabjustified{
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+  }
+
+  #myTabjustified::-webkit-scrollbar {
+    display: none;
+}
+
+.ssidebar .nav-item-sd .collapse{
+  position: relative;
+  left: 20px;
+}
+.quickselection{
+  flex-direction: column;
+}
+
+.textsearch.buttons-container{
+  padding: 0 0 0 20px;
+    margin: 0;
+}
+.textsearch.buttons-container form{
+  margin-right: 0;
+}
+.textsearch.buttons-container form .input-group{
+  flex-wrap: nowrap;
+}
+
 }
