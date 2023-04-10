@@ -11,13 +11,18 @@ import FeaturesRadiusImage from  '../../assets/images/features-radius-icon.png';
 const Plans=()=>{
 
 	const [active,setActive] = useState('INR')
-
+	const [price,setPrice]=useState({basic:2000,growth:5000,pro:12500})
+	const [currencySymbol,setCurrencySymbol]=useState('Rs.');
 	const changeCurrency = (curr) => {
 		if(curr === 'INR'){
 			setActive('INR')
+			setCurrencySymbol('Rs.')
+			setPrice({basic:2000,growth:5000,pro:12500})
 		}
 		if(curr === 'USD'){
 			setActive('USD')
+			setCurrencySymbol('$')
+			setPrice({basic:25,growth:62,pro:156})
 		}
 	}
 
@@ -43,7 +48,7 @@ const Plans=()=>{
 							
 							<div className="price-bg">
 							<ul>
-								<li className="whyt"><a href="#"><strong>Rs.2000 </strong><span className="small">(Billed Annually)</span></a></li>
+								<li className="whyt"><a href="#"><strong>{currencySymbol}{price.basic} </strong><span className="small">(Billed Annually)</span></a></li>
 								<li><a href="#">500 Monthly Data Credits</a></li>
 								<li className="whyt"><a href="#"><i className="fa fa-times" aria-hidden="true"></i></a></li>
 								<li><a href="#"><strong>500 Email Credits</strong></a></li>	
@@ -75,7 +80,7 @@ const Plans=()=>{
 															</div>
 							<div className="price-bg">
 							<ul>
-							<li className="whyt"><a href="#"><strong>Rs.5000 </strong><span className="small">(Billed Annually)</span></a></li>
+							<li className="whyt"><a href="#"><strong>{currencySymbol}{price.growth} </strong><span className="small">(Billed Annually)</span></a></li>
 								<li><a href="#">2000 Monthly Data Credits</a></li>
 								<li className="whyt"><a href="#">Lead Management</a></li>
 								<li><a href="#"><strong>2000 Email Credits</strong></a></li>	
@@ -105,7 +110,7 @@ const Plans=()=>{
 							</div>
 							<div className="price-bg">
 							<ul>
-							<li className="whyt"><a href="#"><strong>Rs.12500 </strong><span className="small">(Billed Annually)</span></a></li>
+							<li className="whyt"><a href="#"><strong>{currencySymbol}{price.pro} </strong><span className="small">(Billed Annually)</span></a></li>
 								<li><a href="#">10000 Monthly Data Credits</a></li>
 								<li className="whyt"><a href="#">Lead Management</a></li>
 								<li><a href="#"><strong>10000 Email Credits</strong></a></li>	
