@@ -9,11 +9,29 @@ import FeaturesImageIntelligence from '../../assets/images/features-social-intel
 import FeaturesRadiusImage from  '../../assets/images/features-radius-icon.png';
 
 const Plans=()=>{
+
+	const [active,setActive] = useState('INR')
+
+	const changeCurrency = (curr) => {
+		if(curr === 'INR'){
+			setActive('INR')
+		}
+		if(curr === 'USD'){
+			setActive('USD')
+		}
+	}
+
+
     return (
     <>
        <div className="pricing-plans">
 		<div className="container">
 			<div className="price-head">
+				<ul id="cr-unit-div">
+				<li className={`cr-unit ${active === 'INR' ? 'activeblue': ''}`} onClick={() => changeCurrency('INR')}> INR </li>
+				<li className={`cr-unit ${active === 'USD' ? 'activered': ''}`} onClick={() => changeCurrency('USD')}> USD </li>
+				</ul>
+			
 				<h3>OUR PRICING PLANS</h3>
 			</div>
 				<div className="pricing-grids">
@@ -22,9 +40,10 @@ const Plans=()=>{
 									<h4><a href="#">Basic</a></h4>
 									<div className="small">You have small enterprises and light usage.</div>
 							</div>
+							
 							<div className="price-bg">
 							<ul>
-								<li className="whyt"><a href="#"><strong>Rs.2000 </strong>(Billed Annually)</a></li>
+								<li className="whyt"><a href="#"><strong>Rs.2000 </strong><span className="small">(Billed Annually)</span></a></li>
 								<li><a href="#">500 Monthly Data Credits</a></li>
 								<li className="whyt"><a href="#"><i className="fa fa-times" aria-hidden="true"></i></a></li>
 								<li><a href="#"><strong>500 Email Credits</strong></a></li>	
@@ -38,12 +57,12 @@ const Plans=()=>{
 								<li><a href="#"><i className="fa fa-times" aria-hidden="true"></i></a></li>
 								<li className="whyt"><a href="#"><i className="fa fa-times" aria-hidden="true"></i></a></li>
 								<li><a href="#"><i className="fa fa-times" aria-hidden="true"></i></a></li>
+								<li className="whyt"><a href="#"><i className="fa fa-times" aria-hidden="true"></i></a></li>
 								<li><a href="#"><i className="fa fa-times" aria-hidden="true"></i></a></li>
-								<li className="whyt lost"><a href="#"><i className="fa fa-times" aria-hidden="true"></i></a></li>
 								
 							</ul>
 							<div className="cart1">
-								<a className="popup-with-zoom-anim" href="#small-dialog">GET QUOTE</a>							</div>
+								<a className="popup-with-zoom-anim pl-3" href="#small-dialog">GET QUOTE</a>							</div>
 							</div>
 						</div>
 						<div className="pricing-grid2 pricing-grid2-highlited ">
@@ -56,7 +75,7 @@ const Plans=()=>{
 															</div>
 							<div className="price-bg">
 							<ul>
-							<li className="whyt"><a href="#"><strong>Rs.5000 </strong>(Billed Annually)</a></li>
+							<li className="whyt"><a href="#"><strong>Rs.5000 </strong><span className="small">(Billed Annually)</span></a></li>
 								<li><a href="#">2000 Monthly Data Credits</a></li>
 								<li className="whyt"><a href="#">Lead Management</a></li>
 								<li><a href="#"><strong>2000 Email Credits</strong></a></li>	
@@ -70,8 +89,8 @@ const Plans=()=>{
 								<li><a href="#">News & Articles</a></li>
 								<li className="whyt"><a href="#"><strong>Integrations</strong></a></li>
 								<li><a href="#"><strong>Data Recommendation</strong></a></li>
-								<li><a href="#"><strong>Alerts & Notification</strong></a></li>
-								<li className="whyt lost"><a href="#"><strong>Reports</strong></a></li>
+								<li className="whyt"><a href="#"><strong>Alerts & Notification</strong></a></li>
+								<li><a href="#"><strong>Reports</strong></a></li>
 							</ul>
 							<div className="cart2">
 								<a className="popup-with-zoom-anim active" href="#small-dialog">GET QUOTE</a>							</div>
@@ -86,7 +105,7 @@ const Plans=()=>{
 							</div>
 							<div className="price-bg">
 							<ul>
-							<li className="whyt"><a href="#"><strong>Rs.12500 </strong>(Billed Annually)</a></li>
+							<li className="whyt"><a href="#"><strong>Rs.12500 </strong><span className="small">(Billed Annually)</span></a></li>
 								<li><a href="#">10000 Monthly Data Credits</a></li>
 								<li className="whyt"><a href="#">Lead Management</a></li>
 								<li><a href="#"><strong>10000 Email Credits</strong></a></li>	
@@ -100,8 +119,8 @@ const Plans=()=>{
 								<li><a href="#">News & Articles</a></li>
 								<li className="whyt"><a href="#"><strong>Integrations</strong></a></li>
 								<li><a href="#"><strong>Data Recommendation</strong></a></li>
-								<li><a href="#"><strong>Alerts & Notification</strong></a></li>
-								<li className="whyt lost"><a href="#"><strong>Reports</strong></a></li>
+								<li className="whyt"><a href="#"><strong>Alerts & Notification</strong></a></li>
+								<li><a href="#"><strong>Reports</strong></a></li>
 							</ul>
 							<div className="cart3">
 								<a className="popup-with-zoom-anim" href="#small-dialog">GET QUOTE</a>							</div>
