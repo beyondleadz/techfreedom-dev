@@ -19,7 +19,7 @@ const CompanyContent = () => {
               <button className=" fs-12 d-sm-inline-block btn btn-info btn-lg mr-1">
                 <i className="fas fs-12 fa-arrow-right"></i>{" "}
               </button>
-              <span className="fs-12 text-info mr-3">Select All</span>
+              <button className="fs-12  btn btn-info btn-lg  mr-3">Select All</button>
               </div>
               <ul className="flex">
                 <li>
