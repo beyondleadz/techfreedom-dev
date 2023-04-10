@@ -6153,34 +6153,60 @@ padding:5px
 
 .tab-img{display: inline;
 padding: 0.3rem 1rem;
-background: url(../images/enrichment-icon.jpg) no-repeat 0px 0px;
+background: url(../images/companies-icon.png) no-repeat 0px 0px;
 background-size: 75%;}
 .tab-img1{display: inline;
   padding: 0.3rem 1rem;
-  background: url(../images/sales-icon.jpg) no-repeat 0px 0px;
+  background: url(../images/executive-icon.png) no-repeat 0px 0px;
   background-size: 75%;}
 .tab-img2{display: inline;
     padding: 0.3rem 1rem;
-    background: url(../images/marketing-icon.jpg) no-repeat 0px 0px;
+    background: url(../images/leads-icon.png) no-repeat 0px 0px;
     background-size: 75%;}
 .pdf-img{display: inline;
       padding: 0.3rem 0.7rem;
-      background: url(../images/printer-icon.jpg) no-repeat 55% center;
-    background-size: 80%;}
+      background: url(../images/pdf-icon.png) no-repeat 55% center;
+    background-size: 100%;}
 .printer-img{display: inline;
       padding: 0.3rem 0.7rem;
-      background: url(../images/printer-icon.jpg) no-repeat 55% center;
-    background-size: 80%;}
+      background: url(../images/xls-icon.png) no-repeat 55% center;
+    background-size: 100%;}
 .excel-img{display: inline;
       padding: 0.3rem 0.7rem;
-      background: url(../images/printer-icon.jpg) no-repeat 55% center;
-    background-size: 80%;}
+      background: url(../images/printer-icon.png) no-repeat 55% center;
+      background-size: 85%;}
 .star-img{display: inline;
       padding: 0.3rem 0.7rem;
-      background: url(../images/printer-icon.jpg) no-repeat 55% center;
-    background-size: 80%;}
-    .left-img {
+      background: url(../images/star-icon.png) no-repeat 55% center;    
+      background-size: 85%;}
+
+.left-industry-img {
       display: inline;
       padding: 0.6rem;
-      background: url(../images/printer-icon.jpg) no-repeat 85% center;
-      background-size: 70%;}
+      background: url(../images/industry-icon.png) no-repeat 85% center;
+      background-size: 85%;}
+.left-revenue-range-img {
+      display: inline;
+      padding: 0.6rem;
+      background: url(../images/revenue-range-icon.png) no-repeat 85% center;
+      background-size: 85%;}
+.left-country-img {
+        display: inline;
+        padding: 0.6rem;
+        background: url(../images/country-icon.png) no-repeat 85% center;
+        background-size: 85%;}       
+.left-state-img {
+        display: inline;
+        padding: 0.6rem;
+        background: url(../images/state-icon.png) no-repeat 85% center;
+        background-size: 85%;}      
+.left-city-img {
+      display: inline;
+      padding: 0.6rem;
+      background: url(../images/city-icon.png) no-repeat 85% center;
+      background-size: 85%;}
+.left-employee-count-img {
+        display: inline;
+        padding: 0.6rem;
+        background: url(../images/employee-count-icon.png) no-repeat 85% center;
+        background-size: 85%;}
