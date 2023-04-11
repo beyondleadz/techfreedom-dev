@@ -19,8 +19,7 @@ import Signup from './pages/Signup';
 import ForgetPassword from './pages/ForgetPassword';
 import CompanySearch from './pages/CompanySearch';
 import CompanySummary from './pages/CompanySummary';
-// import Test from './pages/Test';
-import Demo from './pages/Demo';
+
 const AppRoutes = (props) => {
     return (
         <Router basename={DEVMODE?"":"/beyondleads"}>
