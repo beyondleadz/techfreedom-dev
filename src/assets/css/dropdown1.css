@@ -210,6 +210,9 @@ margin-top: 0.8em;
 .finance{
 	background: url(../images/finance-icon.jpg) no-repeat 0px 0px;
 }
+.technology{
+	background: url(../images/technology-icon.jpg) no-repeat 0px 0px;
+}
 /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 600px) {
 .icondrop {margin-top:0.5em;}

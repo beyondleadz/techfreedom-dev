@@ -154,7 +154,7 @@ const Header = () => {
                         </span>
                       </a>
 
-                      <i className="icondrop marketing"></i>
+                      <i className="icondrop technology"></i>
                       <a href="#">
                         <h3> Technology </h3>
                         <span className="menu-sub">
