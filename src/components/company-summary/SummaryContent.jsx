@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const CompanyContent = () => {
+const SummaryContent = () => {
     return (
         <>
             <div id="content-wrapper" className="d-flex flex-column">
@@ -286,4 +286,4 @@ const CompanyContent = () => {
     )
 }
 
-export default CompanyContent
+export default SummaryContent

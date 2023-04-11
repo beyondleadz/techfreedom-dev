@@ -1,8 +1,8 @@
 import React,{useState} from "react";
 
-const CompanySearch=()=>{
+const CompanySummary=()=>{
     return <div className="shadow navbar-light">
-    <h3 className="card-body">Search Companies</h3>
+    <h3 className="card-body">Company Summary</h3>
    <ul className="nav nav-tabs" id="myTabjustified" role="tablist">
                   <li className="nav-item" role="presentation">
                     <button className="top-tabs active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true"><i className="fa fa-industry pr-2"></i>Company Summery</button>
@@ -20,4 +20,4 @@ const CompanySearch=()=>{
               </div>  
     
 }
-export default CompanySearch;
+export default CompanySummary;
