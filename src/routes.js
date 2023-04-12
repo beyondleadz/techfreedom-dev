@@ -18,15 +18,11 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import ForgetPassword from './pages/ForgetPassword';
 import CompanySearch from './pages/CompanySearch';
-<<<<<<< HEAD
 import CompanySummary from './pages/CompanySummary';
-
-=======
-import Summary from './pages/Summary';
+//import Summary from './pages/Summary';
 import OurData from './pages/OurData';
 // import Test from './pages/Test';
 import Demo from './pages/Demo';
->>>>>>> main
 const AppRoutes = (props) => {
     return (
         <Router basename={DEVMODE?"":"/beyondleads"}>
@@ -49,7 +45,7 @@ const AppRoutes = (props) => {
                 <Route path='/executive-search' element={<ExecutiveSearch/>}/>
                 <Route path='/search-company' element={<CompanySearch/>}/>
                 <Route path='/company-summary' element={<CompanySummary/>}/>
-                <Route path='/summary' element={<Summary/>}/>
+                {/* <Route path='/summary' element={<Summary/>}/> */}
                 <Route path='/our-data' element={<OurData/>}/>
                 {/* <Route path='/test' element={<Test/>}/> */}
                 <Route path='/demo' element={<Demo/>}/>
