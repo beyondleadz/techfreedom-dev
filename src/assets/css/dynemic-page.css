@@ -35,7 +35,7 @@ font-size: 14px;}
   border-top: 1px solid #dee2e6;
   font-size:12px;
   font-weight:600; 
-  line-height:20px;  
+  line-height:10px;  
 }
 .search-input {
   padding: 8px 16px;
@@ -186,7 +186,7 @@ input[type="checkbox" i] {
 
   .data-table th,
   .data-table td {
-    padding: 2px;
+    padding: 1px;
   }
 }
 .lead {
@@ -6246,7 +6246,8 @@ background-size: 75%;}
 
 .ssidebar .nav-item-sd .collapse{
   position: relative;
-  left: 20px;
+  left: 1px;
+  margin: 0 10px;
 }
 .quickselection{
   flex-direction: column;
@@ -6262,5 +6263,7 @@ background-size: 75%;}
 .textsearch.buttons-container form .input-group{
   flex-wrap: nowrap;
 }
+.m-mt{margin: 0.5rem 0;}
 
 }
+
