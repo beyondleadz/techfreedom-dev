@@ -19,6 +19,7 @@ import Signup from './pages/Signup';
 import ForgetPassword from './pages/ForgetPassword';
 import CompanySearch from './pages/CompanySearch';
 import Summary from './pages/Summary';
+import OurData from './pages/OurData';
 // import Test from './pages/Test';
 import Demo from './pages/Demo';
 const AppRoutes = (props) => {
@@ -43,6 +44,7 @@ const AppRoutes = (props) => {
                 <Route path='/executive-search' element={<ExecutiveSearch/>}/>
                 <Route path='/search-company' element={<CompanySearch/>}/>
                 <Route path='/summary' element={<Summary/>}/>
+                <Route path='/our-data' element={<OurData/>}/>
                 {/* <Route path='/test' element={<Test/>}/> */}
                 <Route path='/demo' element={<Demo/>}/>
 
