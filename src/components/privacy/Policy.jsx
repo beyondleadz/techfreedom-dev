@@ -68,11 +68,7 @@ If you reject cookies you may still use our site but your ability to use some ar
 <p>By Using our website and signing up for BeyondLeadz services, you consent to the collection and use of the previously mentioned information by Beyondleadz. This policy is subject to change. Privacy issues represent a growing concern for all web users. To keep up to date with BeyondLeadz policies, please check this page frequently. <br/>
 We reserve the right to change , modify, add or remove portions of this policy at any time. If we make any material changes we will notify you by email (sent to the email address specified in your account) or by means of a notice on this Site prior to the change becoming effective. </p>
 
-<<<<<<< HEAD
-<h5>Contact Us :</h5>
-=======
 <h5>Contact Us:</h5>
->>>>>>> 1726ea6a395b27e71eb8d0d434f9aac148b5f745
 <p>If you have any questions or suggestions regarding our privacy policy, please contact us via email <a href="mailto:contact@beyondleadz.com" style={{"color":"#5D44FF"}}>contact@Beyondleadz.com</a></p>
 
 		</div>
