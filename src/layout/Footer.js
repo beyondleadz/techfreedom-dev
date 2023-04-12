@@ -39,7 +39,7 @@ const Footer=()=>{
 						<div className="col-md-3 col-6 footer-list-29">
 							<ul>
 								<h6 className="footer-title-29">Data</h6>
-								<li><a href="#our-data">Our Data</a></li>
+								<li><NavLink to={'/our-data'}>Our Data</NavLink></li>
 								<li><NavLink to={'/privacy-policy'}>Privacy Policy</NavLink></li>
                                 <li><NavLink to={'/security-policy'}> Security Policy</NavLink></li>
                                 <li><NavLink to={'/terms-and-conditions'}>Terms and Conditions</NavLink></li>

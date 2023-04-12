@@ -14,8 +14,9 @@ const BannerSection=()=>{
                         
             
             
-                    <div className="mt-md-5 mt-4 mb-lg-0 mb-4">
-                        <a className="btn btn-style" href="about.html">Start Free Trial</a>  <a className="btn btn-style" href="about.html">See Plans</a>                        </div>
+                    {/* <div className="mt-md-5 mt-4 mb-lg-0 mb-4">
+                        <a className="btn btn-style" href="about.html">Start Free Trial</a>  <a className="btn btn-style" href="about.html">See Plans</a>                        
+                    </div> */}
                 </div>
                 <div className="col-md-6 mt-md-0 mt-5 mb-lg-0 mb-5 right-banner-2 position-relative">
                     <div className="sub-banner-inner-image">

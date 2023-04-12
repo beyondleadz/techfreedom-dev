@@ -179,14 +179,11 @@ display: inline-block;
 margin-right: 1em;
 margin-top: 0.8em;
 }
-.Prospecting {
+.leads {
 	background: url(../images/prospecting-icon.jpg) no-repeat 0px 0px;
-	/*color: #FFFFFF;*/
-	border-color: #FF0000;
-	border: thin;
 }
-.api-icon{
-	background: url(../images/api-icon.jpg) no-repeat 0px 0px;
+.list-building-icon{
+	background: url(../images/list-building-icon.jpg) no-repeat 0px 0px;
 }
 .enrichment{
 	background: url(../images/enrichment-icon.jpg) no-repeat 0px 0px;
@@ -206,6 +203,15 @@ margin-top: 0.8em;
 }
 .recruiters{
 	background: url(../images/recruiters-icon.jpg) no-repeat 0px 0px;
+}
+.hospitality-travel{
+	background: url(../images/hospitality-travel-icon.jpg) no-repeat 0px 0px;
+}
+.finance{
+	background: url(../images/finance-icon.jpg) no-repeat 0px 0px;
+}
+.technology{
+	background: url(../images/technology-icon.jpg) no-repeat 0px 0px;
 }
 /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 600px) {
