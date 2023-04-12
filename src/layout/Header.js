@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useRoutes, NavLink } from "react-router-dom";
 import Logo from "../assets/images/logo.jpg";
 import "../assets/css/dropdown1.css";
+import "../assets/css/line-awesome.css";
+import "../assets/css/line-awesome.min.css";
 const Header = () => {
   const [showNav, setShowNav] = useState();
   const toggleNav = (ele) => {
@@ -72,7 +74,7 @@ const Header = () => {
                   <div className="row">
                     <div className="column-left">
                       <h2>Capabilities</h2>
-                      <i className="icondrop leads"></i>
+                      <i className="icondrop leads"></i>                      
                       <a href="#">
                         <h3> Leads </h3>
                         <span className="menu-sub">
