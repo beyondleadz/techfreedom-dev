@@ -22354,6 +22354,24 @@ color: #fff;
 	color: var(--heading-color);
 	padding: 0px;
 }
+.privacy-security-term ol li {
+  margin-left:50px;
+  }
+.privacy-security-term ul li {
+    margin-left:50px;
+    }  
+  .privacy-security-term ol li a {
+  color:#5D44FF;
+  font-size: 14px;
+  font-weight: 400;
+  }
+  .privacy-security-term ol li a:hover {
+  color:#5D44FF;
+  }
+  .privacy-security-term1 ol li {
+  margin-left:0px;
+  }
+
 .fs-14{font-size: 14px; font-weight: 500;}
 .fs-12{font-size: 12px;}
 #cr-unit-div {

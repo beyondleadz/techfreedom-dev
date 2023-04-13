@@ -8,35 +8,39 @@ const Terms=()=>{
 		<div className="privacy-security-term">
 		<h3 align="center"><strong>Beyond Leadz Terms & Conditions</strong></h3><br/>
 
-    <ol>
+    
   	<ol>
-  	  <li style={{marginLeft:50}}><a href="#1" style={{"color":"#5D44FF"}}><strong>1.</strong> Service Agreement</a></li>
-  	  <li style={{marginLeft:50}}><a href="#2" style={{"color":"#5D44FF"}}><strong>2.</strong> Definitions </a></li>
-  	  <li style={{marginLeft:50}}><a href="#3" style={{"color":"#5D44FF"}}><strong>3.</strong> Free Trial</a></li>
-  	  <li style={{marginLeft:50}}><a href="#4" style={{"color":"#5D44FF"}}><strong>4.</strong> Our Responsibilities</a></li>
-  	  <li style={{marginLeft:50}}><a href="#5" style={{"color":"#5D44FF"}}><strong>5.</strong> Use of Services and Content</a></li>
-  	  <li style={{marginLeft:50}}><a href="#6" style={{"color":"#5D44FF"}}><strong>6.</strong> Non-beyondleadz.com providers</a></li>
-      <li style={{marginLeft:50}}><a href="#7" style={{"color":"#5D44FF"}}><strong>7.</strong> Fees and Payment for Purchased Services</a></li>
-      <li style={{marginLeft:50}}><a href="#8" style={{"color":"#5D44FF"}}><strong>8.</strong> Proprietary Rights and Licenses </a></li>
-      <li style={{marginLeft:50}}><a href="#9" style={{"color":"#5D44FF"}}><strong>9.</strong> Confidentiality </a></li>
-      <li style={{marginLeft:50}}><a href="#10" style={{"color":"#5D44FF"}}><strong>10.</strong> Representations, Warranties, Exclusive Remedies and Disclaimers </a></li>
-      <li style={{marginLeft:50}}><a href="#11" style={{"color":"#5D44FF"}}><strong>11.</strong> Term and Termination </a></li>
-      <li style={{marginLeft:50}}><a href="#12" style={{"color":"#5D44FF"}}><strong>12.</strong> General Provisions </a></li>
-      <li style={{marginLeft:50}}><a href="#13" style={{"color":"#5D44FF"}}><strong>13.</strong> Arbitration and Governing Law </a></li>
-      <li style={{marginLeft:50}}><a href="#14" style={{"color":"#5D44FF"}}><strong>14.</strong> Miscellaneous </a></li>
-      <li style={{marginLeft:50}}><a href="#15" style={{"color":"#5D44FF"}}><strong>15.</strong> Contact Us </a></li>
+  	  <li><a href="#1"><strong>1.</strong> Service Agreement</a></li>
+  	  <li><a href="#2"><strong>2.</strong> Definitions </a></li>
+  	  <li><a href="#3"><strong>3.</strong> Free Trial</a></li>
+  	  <li><a href="#4"><strong>4.</strong> Our Responsibilities</a></li>
+  	  <li><a href="#5"><strong>5.</strong> Use of Services and Content</a></li>
+  	  <li><a href="#6"><strong>6.</strong> Non-beyondleadz.com providers</a></li>
+      <li><a href="#7"><strong>7.</strong> Fees and Payment for Purchased Services</a></li>
+      <li><a href="#8"><strong>8.</strong> Proprietary Rights and Licenses </a></li>
+      <li><a href="#9"><strong>9.</strong> Confidentiality </a></li>
+      <li><a href="#10"><strong>10.</strong> Representations, Warranties, Exclusive Remedies and Disclaimers </a></li>
+      <li><a href="#11"><strong>11.</strong> Term and Termination </a></li>
+      <li><a href="#12"><strong>12.</strong> General Provisions </a></li>
+      <li><a href="#13"><strong>13.</strong> Arbitration and Governing Law </a></li>
+      <li><a href="#14"><strong>14.</strong> Miscellaneous </a></li>
+      <li><a href="#15"><strong>15.</strong> Contact Us </a></li>
 	  </ol>
-</ol>
-<br/>
-<a name="1">
-<h5>1. SERVICE AGREEMENT</h5></a>
+
+
+<a name="1"></a>
+<p></p>
+<p></p>
+<h5>1. SERVICE AGREEMENT</h5>
 <p style={{marginLeft:100}}>This agreement governs Your acquisition and use of our services.this agreement will also govern free trial, if you register for a free trial of our services.</p>
 <p style={{marginLeft:100}}>Use of the <strong>“beyondleadz.com”</strong>  application means Your acceptance to the terms of this agreement. if you are entering into this agreement on behalf of a company or other legal entity, you represent that you have the authority to bind such entity and its affiliates to these terms and conditions, in which case the terms "you" or "Your" shall refer to such entity and its affiliates. If you do not have such authority, or if you do not agree with these terms and conditions, you must not accept this agreement and may not use the services.
 You may not access the Services if you are our direct competitor, except with our prior written consent. In addition, you may not access the Services for purposes of monitoring their availability, performance or functionality, or for any other benchmarking or competitive purposes.</p>
 <p style={{marginLeft:100}}>This Agreement was last updated on January 7, 2023. It is effective between You and Us as of the date of You start using Application.</p>
 
-<a name="2">
-<h5>2. DEFINITIONS</h5></a>					
+
+
+<p><a name="2"></a></p>
+<h5>2. DEFINITIONS</h5>					
 <p style={{marginLeft:100}}><strong>“Agreement”</strong> means this Subscription Agreement.</p>
 <p style={{marginLeft:100}}><strong>“Affiliate”</strong> means any entity that directly or indirectly controls, is controlled by, or is under common control with the subject entity. "Control," for purposes of this definition, means direct or indirect ownership or control of more than 50% of the voting interests of the subject entity.</p>			
 <p style={{marginLeft:100}}><strong>“Beta Services”</strong> means our services that are not generally available to customers.</p>			
@@ -180,11 +184,13 @@ The courts of Delhi shall have exclusive jurisdiction with regards to any matter
 <p style={{marginLeft:100}}><strong>Force Majeure -</strong> In no event shall we be held liable or be deemed to be in the breach thereof for any failure or delay of performance resulting from any governmental action, fire, flood, insurrection, earthquake, power failure, network failure, riot, explosion, embargo, strikes (whether legal or illegal),  terrorist act, labor or material shortage, transport interruption of any kind or work slowdown or any other condition not reasonably within our control.
 </p>
 
+<p></p>
 <a name="15">
 <h5>15. Acknowledgment</h5></a>
 <p style={{marginLeft:100}}>You acknowledge that you have read and agreed to the Terms and conditions detailed out as above and you agree to abide by the rules and regulations set forth by Beyondleadz. 
 </p>
 
+<p></p>
 <a name="15">
 <h5>16. Contact US</h5></a>
 <p style={{marginLeft:100}}>Please contact us  if you have any questions regarding our Terms & Conditions and please report any violations to <a href="mailto:contact@beyondleadz.com" style={{"color":"#5D44FF"}}>contact@Beyondleadz.com</a>

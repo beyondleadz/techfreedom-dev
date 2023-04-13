@@ -6151,18 +6151,25 @@ padding:5px
 }
 
 
-.tab-img{display: inline;
+.tab-img{
+display: inline;
 padding: 0.3rem 1rem;
-background: url(../images/companies-icon.png) no-repeat 0px 0px;
+font-size: 25px;
 background-size: 75%;}
-.tab-img1{display: inline;
-  padding: 0.3rem 1rem;
-  background: url(../images/executive-icon.png) no-repeat 0px 0px;
-  background-size: 75%;}
-.tab-img2{display: inline;
-    padding: 0.3rem 1rem;
-    background: url(../images/leads-icon.png) no-repeat 0px 0px;
-    background-size: 75%;}
+/* background: url(../images/companies-icon.png) no-repeat 0px 0px;*/
+/* background: url(../images/executive-icon.png) no-repeat 0px 0px; */
+/* background: url(../images/leads-icon.png) no-repeat 0px 0px; */
+
+.la-building:before {  
+  color: #5000FF;
+}
+.la-user-tie:before {
+    color: #5000FF;
+  }
+.la-address-book:before {
+      color: #5000FF;
+  }
+  
 .pdf-img{display: inline;
       padding: 0.3rem 0.7rem;
       background: url(../images/pdf-icon.png) no-repeat 55% center;

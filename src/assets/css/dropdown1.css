@@ -182,48 +182,37 @@ margin-top: 0em;
 }
 
 .la-user-friends:before {
-  content: "\f58c"; 
-  color: #FF5F65;
+  color: #FF010B;
 }
 .la-user-plus:before {
-  content: "\f58c"; 
-  color: #41D4E4;
+  color: #01CCE2;
 }
 .la-cloud-upload-alt:before {
-  content: "\f58c"; 
-  color: #5D44FF;
+  color: #5000FF;
 }
-.la-la-link:before {
-  content: "\f58c"; 
-  color: #F5A623;
+.la-link:before {
+  color: #EBB601;
 }
-.la-la-plug:before {
-  content: "\f58c"; 
-  color: #8550FB;
+.la-plug:before {
+  color: #013BFA;
 }
 .la-handshake:before {
-  content: "\f58c"; 
-  color: #FF5F65;
+  color: #FF010B;
 }
 .la-suitcase:before {
-  content: "\f58c"; 
-  color: #41D4E4;
+  color: #01CCE2;
 }
-.la-user-tie:before {
-  content: "\f58c"; 
-  color: #8550FB;
+.la-user-tie:before {  
+  color: #5000FF;
 }
 .la-hotel:before {
-  content: "\f58c"; 
-  color: #FF5F65;
+  color: #FF010B;
 }
 .la-microchip:before {
-  content: "\f58c"; 
-  color: #41D4E4;
+  color: #01CCE2;
 }
 .la-money-bill-wave:before {
-  content: "\f58c"; 
-  color: #8550FB;
+  color: #5000FF;
 }
 
 /* .leads {

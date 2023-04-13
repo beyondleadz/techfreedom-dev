@@ -31,12 +31,12 @@ const Policy=()=>{
 <p>Industry statistics, trends, news & articles etc.. Any of this information is not made public or shared with a third party except for</p>
 <ol>
   	<ol>
-  	  <li style={{marginLeft:50}}><strong>1.</strong> With an exclusive permission from the person or an organization.</li>
-  	  <li style={{marginLeft:50}}><strong>2.</strong> When the said person is a part of an organization and being reflected in Beyond Leadz marketing data.</li>
-  	  <li style={{marginLeft:50}}><strong>3.</strong> Where a third party performs services on behalf of BeyondLeadz and has agreed to keep such information confidential such as an email service provider to             send emails on our behalf.</li>
-  	  <li style={{marginLeft:50}}><strong>4.</strong> When in news articles or through publicly available sources.</li>
-  	  <li style={{marginLeft:50}}><strong>5.</strong> In the event Beyondleadz goes through a business transition, such as a merger acquisition by another company or sale of all or a portion of its assets, your personally identifiable information will likely be among the assets transferred. You will be notified via a prominent notice on our website for 30             days of such change of ownership or control of you personal information </li>
-  	  <li style={{marginLeft:50}}><strong>6.</strong> Under special circumstances such as when BeyondLeadz believes that the law requires it (such as to comply with a subpoena, or similar legal process) or as             permitted in terms of this policy</li>
+  	  <li><strong>1.</strong> With an exclusive permission from the person or an organization.</li>
+  	  <li><strong>2.</strong> When the said person is a part of an organization and being reflected in Beyond Leadz marketing data.</li>
+  	  <li><strong>3.</strong> Where a third party performs services on behalf of BeyondLeadz and has agreed to keep such information confidential such as an email service provider to             send emails on our behalf.</li>
+  	  <li><strong>4.</strong> When in news articles or through publicly available sources.</li>
+  	  <li><strong>5.</strong> In the event Beyondleadz goes through a business transition, such as a merger acquisition by another company or sale of all or a portion of its assets, your personally identifiable information will likely be among the assets transferred. You will be notified via a prominent notice on our website for 30             days of such change of ownership or control of you personal information </li>
+  	  <li><strong>6.</strong> Under special circumstances such as when BeyondLeadz believes that the law requires it (such as to comply with a subpoena, or similar legal process) or as             permitted in terms of this policy</li>
 	  </ol>
 </ol>
 <p>Beyondleadz, does not display user/executive email addresses on our portal/marketplace till the user is covered under express agreement with us and agreed to our terms of use, anti-spamming policy to avoid extraction by email extractors.</p>
