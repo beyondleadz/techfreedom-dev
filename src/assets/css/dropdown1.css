@@ -170,49 +170,96 @@
 }
 .icondrop{
 font-size: 25px;
-color: #FDC401;
+/* color: #FDC401; */
 float: left;
-padding-top: 25px;
+padding-top: 20px;
 width: 24px;
 height: 22px;
 display: inline-block;
 margin-right: 1em;
-margin-top: 0.8em;
+margin-top: 0em;
+/* margin-top: 0.8em; */
 }
-.leads {
-	background: url(../images/prospecting-icon.jpg) no-repeat 0px 0px;
+
+.la-user-friends:before {
+  content: "\f58c"; 
+  color: #FF5F65;
+}
+.la-user-plus:before {
+  content: "\f58c"; 
+  color: #41D4E4;
+}
+.la-cloud-upload-alt:before {
+  content: "\f58c"; 
+  color: #5D44FF;
+}
+.la-la-link:before {
+  content: "\f58c"; 
+  color: #F5A623;
+}
+.la-la-plug:before {
+  content: "\f58c"; 
+  color: #8550FB;
+}
+.la-handshake:before {
+  content: "\f58c"; 
+  color: #FF5F65;
+}
+.la-suitcase:before {
+  content: "\f58c"; 
+  color: #41D4E4;
+}
+.la-user-tie:before {
+  content: "\f58c"; 
+  color: #8550FB;
+}
+.la-hotel:before {
+  content: "\f58c"; 
+  color: #FF5F65;
+}
+.la-microchip:before {
+  content: "\f58c"; 
+  color: #41D4E4;
+}
+.la-money-bill-wave:before {
+  content: "\f58c"; 
+  color: #8550FB;
+}
+
+/* .leads {
+	background: url(../images/prospecting-icon.svg) no-repeat 0px 0px;
 }
 .list-building-icon{
-	background: url(../images/list-building-icon.jpg) no-repeat 0px 0px;
+	background: url(../images/list-building-icon.svg) no-repeat 0px 0px;
 }
 .enrichment{
-	background: url(../images/enrichment-icon.jpg) no-repeat 0px 0px;
+	background: url(../images/enrichment-icon.svg) no-repeat 0px 0px;
 }
 .extension{
-	background: url(../images/extension-icon.jpg) no-repeat 0px 0px;
+	background: url(../images/extension-icon.svg) no-repeat 0px 0px;
 }
 
 .integrations {
-	background: url(../images/integrations-icon.jpg) no-repeat 0px 0px;
+	background: url(../images/integrations-icon.svg) no-repeat 0px 0px;
 }
 .sales{
-	background: url(../images/sales-icon.jpg) no-repeat 0px 0px;
+	background: url(../images/sales-icon.svg) no-repeat 0px 0px;
 }
 .marketing{
-	background: url(../images/marketing-icon.jpg) no-repeat 0px 0px;
+	background: url(../images/marketing-icon.svg) no-repeat 0px 0px;
 }
 .recruiters{
-	background: url(../images/recruiters-icon.jpg) no-repeat 0px 0px;
+	background: url(../images/recruiters-icon.svg) no-repeat 0px 0px;
 }
 .hospitality-travel{
-	background: url(../images/hospitality-travel-icon.jpg) no-repeat 0px 0px;
+	background: url(../images/hospitality-travel-icon.svg) no-repeat 0px 0px;
 }
 .finance{
-	background: url(../images/finance-icon.jpg) no-repeat 0px 0px;
+	background: url(../images/finance-icon.svg) no-repeat 0px 0px;
 }
 .technology{
-	background: url(../images/technology-icon.jpg) no-repeat 0px 0px;
-}
+	background: url(../images/technology-icon.svg) no-repeat 0px 0px;
+} */
 /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 600px) {
 .icondrop {margin-top:0.5em;}

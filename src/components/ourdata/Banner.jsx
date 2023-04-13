@@ -10,13 +10,10 @@ const BannerSection=()=>{
                 <div className="col-md-6 pr-lg-5 ">
                     <h3 className="mb-lg-4 mb-3 title">
                     <span>Our </span>Data</h3>
-                 <p className="mr-5">Nemo enim ipsam oluptatem quia reoluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eosqui ratione.</p>
+                 <p className="mr-5">"Good data quality isn't just a nice-to-have, it's a business necessity! So let's make sure your data is accurate and as compliant as a rule-following penguin wearing a suit."
+</p>
                         
-            
-            
-                    {/* <div className="mt-md-5 mt-4 mb-lg-0 mb-4">
-                        <a className="btn btn-style" href="about.html">Start Free Trial</a>  <a className="btn btn-style" href="about.html">See Plans</a>                        </div>
-                 */}
+
                  </div>
                 <div className="col-md-6 mt-md-0 mt-5 mb-lg-0 mb-5 right-banner-2 position-relative">
                     <div className="sub-banner-inner-image">

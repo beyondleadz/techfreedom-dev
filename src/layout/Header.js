@@ -74,7 +74,8 @@ const Header = () => {
                   <div className="row">
                     <div className="column-left">
                       <h2>Capabilities</h2>
-                      <i className="icondrop leads"></i>                      
+                      {/* <i className="icondrop leads"></i>                       */}
+                      <i className="icondrop las la-user-friends"></i>
                       <a href="#">
                         <h3> Leads </h3>
                         <span className="menu-sub">
@@ -82,7 +83,8 @@ const Header = () => {
                         </span>
                       </a>
 
-                      <i className="icondrop list-building-icon"></i>
+                      {/* <i className="icondrop list-building-icon"></i> */}
+                      <i className="icondrop la la-user-plus"></i>
                       <a href="#">
                         <h3> List Building </h3>
                         <span className="menu-sub">
@@ -90,7 +92,8 @@ const Header = () => {
                         </span>
                       </a>
 
-                      <i className="icondrop enrichment"></i>
+                      {/* <i className="icondrop enrichment"></i> */}
+                      <i className="icondrop la la-cloud-upload-alt"></i>
                       <a href="#">
                         <h3> Data Enrichment </h3>
                         <span className="menu-sub">
@@ -101,7 +104,8 @@ const Header = () => {
                       
                     </div>
                     <div className="column1">
-                      <i className="icondrop extension"></i>
+                      {/* <i className="icondrop extension"></i> */}
+                      <i className="icondrop las la-link"></i>
                       <a href="#">
                         <h3> Extension </h3>
                         <span className="menu-sub">
@@ -109,7 +113,8 @@ const Header = () => {
                         </span>
                       </a>
 
-                      <i className="icondrop integrations"></i>
+                      {/* <i className="icondrop integrations"></i> */}
+                      <i className="icondrop la la-plug"></i>
                       <a href="#">
                         <h3> Intigrations </h3>
                         <span className="menu-sub">
@@ -121,7 +126,8 @@ const Header = () => {
                     <div className="column">
                       <h2>Functions</h2>
 
-                      <i className="icondrop sales"></i>
+                      {/* <i className="icondrop sales"></i> */}
+                      <i className="icondrop la la-handshake"></i>
                       <a href="#">
                         <h3> Sales </h3>
                         <span className="menu-sub">
@@ -129,7 +135,8 @@ const Header = () => {
                         </span>
                       </a>
 
-                      <i className="icondrop marketing"></i>
+                      {/* <i className="icondrop marketing"></i> */}
+                      <i className="icondrop la la-suitcase"></i>
                       <a href="#">
                         <h3> Marketing </h3>
                         <span className="menu-sub">
@@ -137,7 +144,8 @@ const Header = () => {
                         </span>
                       </a>
 
-                      <i className="icondrop recruiters"></i>
+                      {/* <i className="icondrop recruiters"></i> */}
+                      <i className="icondrop la la-user-tie"></i>
                       <a href="#">
                         <h3> HR & Recruiting </h3>
                         <span className="menu-sub">
@@ -148,7 +156,8 @@ const Header = () => {
 
                     <div className="column">
                       <h2>Industries</h2>
-                      <i className="icondrop hospitality-travel"></i>
+                      {/* <i className="icondrop hospitality-travel"></i> */}
+                      <i className="icondrop las la-hotel"></i>
                       <a href="#">
                         <h3> Hospitality & Travel </h3>
                         <span className="menu-sub">
@@ -156,7 +165,8 @@ const Header = () => {
                         </span>
                       </a>
 
-                      <i className="icondrop technology"></i>
+                      {/* <i className="icondrop technology"></i> */}
+                      <i className="icondrop la la-microchip"></i>
                       <a href="#">
                         <h3> Technology </h3>
                         <span className="menu-sub">
@@ -164,7 +174,8 @@ const Header = () => {
                         </span>
                       </a>
 
-                      <i className="icondrop finance"></i>
+                      {/* <i className="icondrop finance"></i> */}
+                      <i className="icondrop la la-money-bill-wave"></i>
                       <a href="#">
                         <h3> Finance </h3>
                         <span className="menu-sub">
