@@ -32,7 +32,7 @@ const CompanyContent = () => {
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    <i class="pdf-img" aria-hidden="true"></i>
+                    <i class="right-icons la la-file-pdf" aria-hidden="true"></i>
                   </a>
                 </li>
                 <li>
@@ -45,7 +45,7 @@ const CompanyContent = () => {
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    <i class="printer-img" aria-hidden="true"></i>
+                    <i class="right-icons la la-file-excel" aria-hidden="true"></i>
                   </a>
                 </li>
                 <li>
@@ -58,7 +58,7 @@ const CompanyContent = () => {
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    <i class="excel-img" aria-hidden="true"></i>
+                    <i class="right-icons la la-print" aria-hidden="true"></i>
                   </a>
                 </li>
                 <li>
@@ -71,7 +71,7 @@ const CompanyContent = () => {
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    <i class="star-img" aria-hidden="true"></i>
+                    <i class="right-icons la la-star" aria-hidden="true"></i>
                   </a>
                 </li>
               </ul>

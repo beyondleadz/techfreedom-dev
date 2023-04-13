@@ -6169,54 +6169,65 @@ background-size: 75%;}
 .la-address-book:before {
       color: #5000FF;
   }
-  
-.pdf-img{display: inline;
-      padding: 0.3rem 0.7rem;
-      background: url(../images/pdf-icon.png) no-repeat 55% center;
-    background-size: 100%;}
-.printer-img{display: inline;
-      padding: 0.3rem 0.7rem;
-      background: url(../images/xls-icon.png) no-repeat 55% center;
-    background-size: 100%;}
-.excel-img{display: inline;
-      padding: 0.3rem 0.7rem;
-      background: url(../images/printer-icon.png) no-repeat 55% center;
-      background-size: 85%;}
-.star-img{display: inline;
-      padding: 0.3rem 0.7rem;
-      background: url(../images/star-icon.png) no-repeat 55% center;    
-      background-size: 85%;}
 
-.left-industry-img {
+.right-icons{
+      display: inline;
+      /* padding: 0.3rem 0.7rem; */
+      font-size: 23px;      
+    background-size: 100%;}
+ /* background: url(../images/pdf-icon.png) no-repeat 55% center; */
+ /* background: url(../images/xls-icon.png) no-repeat 55% center; */
+ /* background: url(../images/printer-icon.png) no-repeat 55% center; */
+ /* background: url(../images/star-icon.png) no-repeat 55% center;     */
+
+.la-file-pdf:before {
+      color: #F3060F;
+    }
+.la-file-excel:before {
+      color: #019F14;
+    }
+.la-print:before {
+      color: #01CCE2;
+    }
+.la-star:before {
+      color: #EBB601;
+    }
+
+.left-company-menu-icons {
       display: inline;
       padding: 0.6rem;
-      background: url(../images/industry-icon.png) no-repeat 85% center;
-      background-size: 85%;}
-.left-revenue-range-img {
-      display: inline;
-      padding: 0.6rem;
-      background: url(../images/revenue-range-icon.png) no-repeat 85% center;
-      background-size: 85%;}
-.left-country-img {
-        display: inline;
-        padding: 0.6rem;
-        background: url(../images/country-icon.png) no-repeat 85% center;
-        background-size: 85%;}       
-.left-state-img {
-        display: inline;
-        padding: 0.6rem;
-        background: url(../images/state-icon.png) no-repeat 85% center;
-        background-size: 85%;}      
-.left-city-img {
-      display: inline;
-      padding: 0.6rem;
-      background: url(../images/city-icon.png) no-repeat 85% center;
-      background-size: 85%;}
-.left-employee-count-img {
-        display: inline;
-        padding: 0.6rem;
-        background: url(../images/employee-count-icon.png) no-repeat 85% center;
-        background-size: 85%;}
+      font-size: 25px;
+      /* background: url(../images/industry-icon.png) no-repeat 85% center; */
+      /* background: url(../images/revenue-range-icon.png) no-repeat 85% center; */
+        /* background: url(../images/country-icon.png) no-repeat 85% center; */
+        /* background: url(../images/state-icon.png) no-repeat 85% center; */
+      /* background: url(../images/city-icon.png) no-repeat 85% center; */
+        /* background: url(../images/employee-count-icon.png) no-repeat 85% center; */
+      background-size: 85%;
+    }
+
+  .la-globe:before {
+        color: #FF010B;
+      }
+
+      .la-map-marked-alt:before {
+        color: #FF010B;
+      }
+      .la-map-marker:before {
+        color: #FF010B;
+      }
+      .la-industry:before {
+        color: #FF010B;
+      }
+      .la-city:before {
+        color: #FF010B;
+      }
+      .la-users:before {
+        color: #FF010B;
+      }
+.la-money-bill:before {
+        color: #FF010B;
+      }
 
 .filter-button{
   display: none;

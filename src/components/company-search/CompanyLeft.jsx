@@ -57,7 +57,7 @@ console.log(menuVisible,'sjdfk')
         <li className="nav-item-sd">
           <a className={`nav-link-sd nav-item-sd ${!open?.country && 'collapsed'}`}  onClick={() => openMenu('country')} href="#" data-toggle="collapse" data-target="#collapseTwo"
             aria-expanded="true" aria-controls="collapseTwo">
-            <i className="left-country-img"></i>
+            <i className="left-company-menu-icons la la-globe"></i>
             <span className="menu-item">Country</span>                </a>
           <div id="collapseTwo" className={`collapse ${open?.country && 'show'}`} aria-labelledby="headingTwo" data-parent="#accordionsidebar">
             <div className="bg-white py-2 collapse-inner rounded">
@@ -71,7 +71,7 @@ console.log(menuVisible,'sjdfk')
         <li className="nav-item-sd">
           <a className={`nav-link-sd ${!open?.state && 'collapsed'}`}  onClick={() => openMenu('state')} href="#" data-toggle="collapse" data-target="#collapseTwo"
             aria-expanded="true" aria-controls="collapseTwo">
-            <i className="left-state-img"></i>
+            <i className="left-company-menu-icons las la-map-marked-alt"></i>
             <span className="menu-item">State</span>                </a>
           <div id="collapseTwo" className={`collapse ${open?.state && 'show'}`} aria-labelledby="headingTwo" data-parent="#accordionsidebar">
             <div className="bg-white py-2 collapse-inner rounded">
@@ -85,7 +85,7 @@ console.log(menuVisible,'sjdfk')
         <li className="nav-item-sd">
           <a className={`nav-link-sd ${!open?.city && 'collapsed'}`}  onClick={() => openMenu('city')} href="#" data-toggle="collapse" data-target="#collapseTwo"
             aria-expanded="true" aria-controls="collapseTwo">
-            <i className="left-city-img"></i>
+            <i className="left-company-menu-icons la la-map-marker"></i>
             <span className="menu-item">City</span>                </a>
           <div id="collapseTwo" className={`collapse ${open?.city && 'show'}`} aria-labelledby="headingTwo" data-parent="#accordionsidebar">
             <div className="bg-white py-2 collapse-inner rounded">
@@ -99,7 +99,7 @@ console.log(menuVisible,'sjdfk')
         <li className="nav-item-sd">
           <a className={`nav-link-sd ${!open?.industry && 'collapsed'}`}  onClick={() => openMenu('industry')} href="#" data-toggle="collapse" data-target="#collapseTwo"
             aria-expanded="true" aria-controls="collapseTwo">
-            <i className="left-industry-img"></i>
+            <i className="left-company-menu-icons las la-industry"></i>
             <span className="menu-item">Industry</span>                </a>
           <div id="collapseTwo" className={`collapse ${open?.industry && 'show'}`} aria-labelledby="headingTwo" data-parent="#accordionsidebar">
             <div className="bg-white py-2 collapse-inner rounded">
@@ -113,7 +113,7 @@ console.log(menuVisible,'sjdfk')
         <li className="nav-item-sd">
           <a className={`nav-link-sd ${!open?.companyType && 'collapsed'}`}  onClick={() => openMenu('companyType')} href="#" data-toggle="collapse" data-target="#collapseTwo"
             aria-expanded="true" aria-controls="collapseTwo">
-            <i className="left-industry-img"></i>
+            <i className="left-company-menu-icons la la-city"></i>
             <span className="menu-item">Company Type</span>                </a>
           <div id="collapseTwo" className={`collapse ${open?.companyType && 'show'}`} aria-labelledby="headingTwo" data-parent="#accordionsidebar">
             <div className="bg-white py-2 collapse-inner rounded">
@@ -127,7 +127,7 @@ console.log(menuVisible,'sjdfk')
         <li className="nav-item-sd">
           <a className={`nav-link-sd ${!open?.employeeCount && 'collapsed'}`}  onClick={() => openMenu('employeeCount')} href="#" data-toggle="collapse" data-target="#collapseTwo"
             aria-expanded="true" aria-controls="collapseTwo">
-            <i className="left-employee-count-img"></i>
+            <i className="left-company-menu-icons las la-users"></i>
             <span className="menu-item">Employee Count</span>               </a>
           <div id="collapseTwo" className={`collapse ${open?.employeeCount && 'show'}`} aria-labelledby="headingTwo" data-parent="#accordionsidebar">
             <div className="bg-white py-2 collapse-inner rounded">
@@ -141,7 +141,7 @@ console.log(menuVisible,'sjdfk')
         <li className="nav-item-sd">
           <a className={`nav-link-sd ${!open?.revenue && 'collapsed'}`}  onClick={() => openMenu('revenue')} href="#" data-toggle="collapse" data-target="#collapseTwo"
             aria-expanded="true" aria-controls="collapseTwo">
-            <i className="left-revenue-range-img"></i>
+            <i className="left-company-menu-icons las la-money-bill"></i>
             <span className="menu-item">Revenue Range</span>                </a>
           <div id="collapseTwo" className={`collapse ${open?.revenue && 'show'}`} aria-labelledby="headingTwo" data-parent="#accordionsidebar">
             <div className="bg-white py-2 collapse-inner rounded">
