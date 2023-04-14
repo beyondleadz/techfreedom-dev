@@ -28,7 +28,7 @@ const DirectDials=()=>{
 <p>Overall, having access to direct dials and mobile numbers in B2B data can help businesses streamline their communication, improve their targeting efforts, and ultimately, drive better results from their marketing and sales efforts.
 </p>
 </div>
-<div class="privacy-security-term" align="center">
+<div className="privacy-security-term" align="center">
  <img src={AccurateProspectDataImage} style={{width:700, height:200}} title="" alt=""/></div>
 
 		</div>

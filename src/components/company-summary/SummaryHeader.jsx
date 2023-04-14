@@ -41,7 +41,7 @@ const CompanySummary = () => {
                     aria-expanded="false"
                   >
                     {/* <i class="pdf-img" aria-hidden="true"></i> */}
-                    <i className="fa fa-briefcase pr-2" style={{"color":"#5D44FF"}}></i>
+                    <i class="right-icons la la-file-pdf" aria-hidden="true"></i>
                   </a>
                 </li>
                 <li>
@@ -54,7 +54,7 @@ const CompanySummary = () => {
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    <i class="printer-img" aria-hidden="true"></i>
+                    <i class="right-icons la la-file-excel" aria-hidden="true"></i>
                   </a>
                 </li>
                 <li>
@@ -67,7 +67,7 @@ const CompanySummary = () => {
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    <i class="excel-img" aria-hidden="true"></i>
+                    <i className="right-icons la la-print" aria-hidden="true"></i>
                   </a>
                 </li>
                 <li>
@@ -80,9 +80,54 @@ const CompanySummary = () => {
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    <i class="star-img" aria-hidden="true"></i>
+                    <i className="right-icons la la-envelope" aria-hidden="true"></i>
                   </a>
                 </li>
+                <li>
+                  <a
+                    class="btn-lit mr-2"
+                    href="#"
+                    id=""
+                    role="button"
+                    data-toggle=""
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <i className="right-icons las la-share-square" aria-hidden="true"></i>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    class="btn-lit mr-2"
+                    href="#"
+                    id=""
+                    role="button"
+                    data-toggle=""
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <i className="right-icons la la-star" aria-hidden="true"></i>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    class="btn-lit mr-2"
+                    href="#"
+                    id=""
+                    role="button"
+                    data-toggle=""
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <i className="right-icons las la-flag" aria-hidden="true"></i>
+                  </a>
+                </li>
+
+
+
+
+
+
               </ul>
             </div>
       </div>

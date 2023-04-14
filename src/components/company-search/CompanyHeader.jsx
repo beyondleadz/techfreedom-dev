@@ -11,7 +11,7 @@ const CompanySearch=()=>{
                     <button className="top-tabs" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false"><i className="fa tab-img la la-user-tie"></i>Executive</button>
                   </li>
                   <li className="nav-item" role="presentation">
-                    <button className="top-tabs" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false"><i className="fa tab-img la la-address-book"></i>Leads</button>
+                    <button className="top-tabs" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false"><i className="fa tab-img las la-user-friends"></i>Leads</button>
                   </li>
                   
                 </ul>
