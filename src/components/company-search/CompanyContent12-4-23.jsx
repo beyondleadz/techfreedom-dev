@@ -9,13 +9,13 @@ const CompanyContent = () => {
             <div className="buttons-container m-mt quickselection">
                 <div>
               <span className="fs-12 mr-2">Quick Selection</span>
-              <div className=" fs-12 d-sm-inline-block mr-1">
+              <button className=" fs-12 d-sm-inline-block btn btn-light btn-lg mr-1">
                 <input type="text" className="quickselectioninput"/>
-              </div>
+              </button>
               <span className=" fs-12 mr-1">to</span>
-              <div className="  fs-12 d-sm-inline-block mr-1">
+              <button className="  fs-12 d-sm-inline-block btn btn-light btn-lg mr-1">
                 <input type="text" className="quickselectioninput"/>
-              </div>
+              </button>
               <button className=" fs-12 d-sm-inline-block btn btn-info btn-lg mr-1">
                 <i className="fas fs-12 fa-arrow-right"></i>{" "}
               </button>
@@ -32,7 +32,7 @@ const CompanyContent = () => {
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    <i class="right-icons la la-file-pdf" aria-hidden="true"></i>
+                    <i class="pdf-img" aria-hidden="true"></i>
                   </a>
                 </li>
                 <li>
@@ -45,12 +45,12 @@ const CompanyContent = () => {
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    <i className="right-icons la la-file-excel" aria-hidden="true"></i>
+                    <i class="printer-img" aria-hidden="true"></i>
                   </a>
                 </li>
                 <li>
                   <a
-                    className="btn-lit mr-2"
+                    class="btn-lit mr-2"
                     href="#"
                     id=""
                     role="button"
@@ -58,16 +58,12 @@ const CompanyContent = () => {
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-<<<<<<< HEAD
-                    <i class="right-icons la la-print" aria-hidden="true"></i>
-=======
-                    <i className="excel-img" aria-hidden="true"></i>
->>>>>>> dev-jaya
+                    <i class="excel-img" aria-hidden="true"></i>
                   </a>
                 </li>
                 <li>
                   <a
-                    className="btn-lit mr-2"
+                    class="btn-lit mr-2"
                     href="#"
                     id=""
                     role="button"
@@ -75,11 +71,7 @@ const CompanyContent = () => {
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-<<<<<<< HEAD
-                    <i class="right-icons la la-star" aria-hidden="true"></i>
-=======
-                    <i className="star-img" aria-hidden="true"></i>
->>>>>>> dev-jaya
+                    <i class="star-img" aria-hidden="true"></i>
                   </a>
                 </li>
               </ul>

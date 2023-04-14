@@ -4898,7 +4898,7 @@ a:focus {
 #wrapper #content-wrapper {
   background-color: #f8f9fc;
   width: 100%;
-  overflow-x: hidden;
+  overflow-x: hidden; margin-top: 1px;
 }
 
 #wrapper #content-wrapper #content {
@@ -5257,7 +5257,7 @@ a:focus {
 }
 
 .topbar {
-  height: 4.375rem;
+  height: 4.2rem;
 }
 
 .topbar #ssidebarToggleTop {
@@ -6114,6 +6114,7 @@ color: #555;
     box-sizing: border-box;
     margin: 0;
     padding: 10px;
+    padding-top: 0px;
     color: #777;
 }
 
@@ -6125,6 +6126,71 @@ color: #555;
 #wrapper .nav-item-sd .collapse-inner{
 padding:5px
 }
+
+.headercontainer{
+  display:flex;
+  border-bottom: 1px solid #dee2e6;
+  height: 145px;
+}
+
+.logobox{
+  width: 205px;
+  padding: 25px;
+  position:absolute;
+
+}
+
+.logobox img{
+  width:100%;
+  display: block;
+}
+.descbox{
+  padding-top: 25px;
+  padding-left: 200px;
+}
+.navigation{
+  position: relative;
+  top: -2.7rem;
+  margin-left: 193px;
+}
+
+.onscroll{
+  position: sticky;
+    top: 74px;
+    z-index: 10;
+    background: #fff;
+}
+
+.onscroll .headercontainer{
+  height: auto;
+    align-items: center;
+}
+
+.onscroll .headercontainer .logobox{
+  width: 74px;
+    height: auto;
+    padding: 10px;
+    position: relative
+}
+
+.onscroll .headercontainer .descbox{
+  padding: 0;
+}
+
+.onscroll .headercontainer .title{
+  display: none;
+}
+
+.onscroll  .navigation{
+  top: 0;
+    padding: 0;
+    margin: 10px 0 0;
+}
+.s-company{width: 70px;
+  height: 50px;
+  padding: 10px;}
+
+ .s-company-content { max-width:50%;}
 
 @media only screen and (max-width: 768px) {
   .mob-t {
@@ -6151,8 +6217,82 @@ padding:5px
 }
 
 
-.tab-img{
-display: inline;
+.org-chart ul {
+  padding-top: 20px; 
+  position: relative;
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  }
+  .org-chart li {
+  float: left; text-align: center;
+  list-style-type: none;
+  position: relative;
+  padding: 20px 5px 0 5px; 
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  }
+  .org-chart li::before, .org-chart li::after{
+  content: '';
+  position: absolute; top: 0; right: 50%;
+  border-top: 2px solid #ccc;
+  width: 50%; height: 20px;
+  }
+  .org-chart li::after{
+  right: auto; left: 50%;
+  border-left: 2px solid #ccc;
+  }
+  .org-chart li:only-child::after, .org-chart li:only-child::before {
+  display: none;
+  }
+  .org-chart li:only-child{ padding-top: 0;}
+  .org-chart li:first-child::before, .org-chart li:last-child::after{
+  border: 0 none;
+  }
+  .org-chart li:last-child::before{
+  border-right: 1px solid #ccc;
+  border-radius: 0 5px 0 0;
+  -webkit-border-radius: 0 5px 0 0;
+  -moz-border-radius: 0 5px 0 0;
+  }
+  .org-chart li:first-child::after{
+  border-radius: 5px 0 0 0;
+  -webkit-border-radius: 5px 0 0 0;
+  -moz-border-radius: 5px 0 0 0;
+  }
+  .org-chart ul ul::before{
+  content: '';
+  position: absolute; top: 0; left: 50%;
+  border-left: 2px solid #ccc;
+  width: 0; height: 20px;
+  }
+  .org-chart li a{
+  border: 2px solid #ccc;
+  padding: 5px 10px;
+  text-decoration: none;
+  color: #666;
+  font-family: arial, verdana, tahoma;
+  font-size: 13px;
+  font-weight:600;
+  display: inline-block;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  }
+  .org-chart li a:hover, .org-chart li a:hover+ul li a {
+  background: #c8e4f8; color: #000; border: 1px solid #94a0b4;
+  }
+  .org-chart li a:hover+ul li::after, 
+  .org-chart li a:hover+ul li::before, 
+  .org-chart li a:hover+ul::before, 
+  .org-chart li a:hover+ul ul::before{
+  border-color: #808080;
+  }
+.tab-img{display: inline;
 padding: 0.3rem 1rem;
 font-size: 25px;
 background-size: 75%;}
@@ -6254,12 +6394,17 @@ background-size: 75%;}
   .showLeftMenu{
     height: 0;
     overflow: hidden;
-    min-height: 0;
+    min-height: 0;     margin: 0;
+    padding: 0;
   }
 
   #myTabjustified{
     flex-wrap: nowrap;
     overflow-x: scroll;
+  }
+
+  #myTabjustified li{
+    white-space:nowrap;
   }
 
   #myTabjustified::-webkit-scrollbar {
@@ -6286,6 +6431,6 @@ background-size: 75%;}
   flex-wrap: nowrap;
 }
 .m-mt{margin: 0.5rem 0;}
-
+.d-sm-inline-block{display: inline-block;}
 }
 
