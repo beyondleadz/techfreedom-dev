@@ -58,11 +58,7 @@ const CompanyContent = () => {
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-<<<<<<< HEAD
                     <i class="right-icons la la-print" aria-hidden="true"></i>
-=======
-                    <i className="excel-img" aria-hidden="true"></i>
->>>>>>> dev-jaya
                   </a>
                 </li>
                 <li>
@@ -75,11 +71,7 @@ const CompanyContent = () => {
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-<<<<<<< HEAD
-                    <i class="right-icons la la-star" aria-hidden="true"></i>
-=======
-                    <i className="star-img" aria-hidden="true"></i>
->>>>>>> dev-jaya
+                    <i className="right-icons la la-star" aria-hidden="true"></i>
                   </a>
                 </li>
               </ul>
