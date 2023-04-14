@@ -212,7 +212,15 @@
 }
 
 .logincontainer .form-check input[type="checkbox"] {
-    display: none;
+    /* display: none; */
+	position: absolute;
+    width: 18px;
+    height: 18px;
+    top: 0;
+    left: 0;
+    padding: 0;
+    margin: 0;
+    opacity: 0.001;
 }
 
 .logincontainer .form-check input[type="checkbox"]+label:before {
