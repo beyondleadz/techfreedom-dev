@@ -48,12 +48,12 @@ const Footer=()=>{
 						<div className="col-md-3 col-6 footer-list-29 mt-md-0 mt-4">
 							<ul>
 							<h6 class="footer-title-29">Quick Links</h6>
-                                    <li><a href="#direct-dials">Direct Dials</a></li>
-                                    <li><a href="#B2B-data">B2B Data</a></li>
-                                    <li><a href="#lead-management">Lead Management</a></li>
+                                    <li><NavLink to={'/direct-dials'}>Direct Dials</NavLink></li>
+									<li><NavLink to={'/b2b-data'}>B2B Data</NavLink></li>
+									<li><NavLink to={'/lead-management'}>Lead Management</NavLink></li>
 									<li><NavLink to="/executive-search">Prospecting Search</NavLink></li>
-									<li><a href="#prod-comp">Product Comparison</a></li>
-                                    <li><a href="#integrations">Integrations</a></li>
+									<li><NavLink to={'/product-comparison'}>Product Comparison</NavLink></li>
+									<li><NavLink to={'/integrations'}>Integrations</NavLink></li>
 								    
 							</ul>
 						</div>
