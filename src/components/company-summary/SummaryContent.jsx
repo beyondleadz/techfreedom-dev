@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import logo from "../../assets/images/amazon.png";
+import OrgChartImg from "../../assets/images/executive-search-connect-icon.jpg";
+
+
 const SummaryContent = () => {
     return (
         <>
@@ -267,7 +270,7 @@ About Company</div>
     
     <div class="org-chart">
 <ul>
-<li><a href="#"><img src="assets/images/executive-search-connect-icon.jpg" /><br />General Manager</a>
+<li><a href="#"><img src={OrgChartImg}/><br />General Manager</a>
 <ul><li>
 <a href="#">Manager 1</a>
 <ul><li>
