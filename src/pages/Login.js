@@ -1,5 +1,5 @@
 import React, {useState}from "react";
-import { useRoutes,NavLink } from "react-router-dom";
+import { useRoutes,NavLink, redirect,useNavigate } from "react-router-dom";
 
 import Img from '../assets/login/horizental-line.jpg'
 import LoginLeft from '../assets/login/login-left.jpg'
@@ -7,10 +7,49 @@ import Gmail from '../assets/login/gmail.png';
 import LinkedIn from '../assets/login/linkedin.png';
 import Outlook from '../assets/login/outlook.png'
 import LogoLogin from '../assets/login/logo-round.png'
+import { signInUrl } from "../constant/Constant";
+import {postMethod} from "../services/HttpServices"
 import '../assets/css/style.css'
 
 const Login = () => {
+	const [form,setForm] = useState({username:"",password:""})
+    const [errorObj,setError] = useState()
+	const navigate = useNavigate();
 
+	const OnInputChange=(ele)=>{
+		setForm({
+			...form,
+			[ele.target.name]:ele.target.value
+		})        
+	}
+	const validateForm=()=>{
+		let errObj; let errCnt=false;
+		if(!form?.username){
+			errCnt=true;
+			errObj={
+				...errObj,
+				username:"Please enter username."
+			}
+		}
+		if(!form?.password){
+			errCnt=true;
+			errObj={
+				...errObj,
+				password:"Please enter password."
+			}
+		}
+		setError(errObj);
+		if (!errCnt) {
+			//calling api
+			postMethod(signInUrl,form).then((res)=>{
+			sessionStorage.setItem("token",res.data.id_token);
+			navigate("/");
+            }).catch((error)=>{
+				setError({error:"Invalid Credentials"});
+                setForm({username:"",password:""});
+            }) 
+		}
+	}
 
     return (
 		<>
@@ -32,7 +71,7 @@ const Login = () => {
 		</div>
 	
 		<div className="w3layouts-main">
-		<i class="fa fa-arrow-circle-right" aria-hidden="true" style={{"fontSize":"45px","color":"#5D44FF"}}></i>
+		<i className="fa fa-arrow-circle-right" aria-hidden="true" style={{"fontSize":"45px","color":"#5D44FF"}}></i>
 		{/* <i className="fa fa-sign-in" aria-hidden="true"></i> */}
 		<h2>Sign in  with</h2>
 					
@@ -45,20 +84,22 @@ const Login = () => {
 						</div>
 						
 						<p align="center"><img src={Img} align="absmiddle"/></p>
-						<form action="#" method="post">
+						<form>
 							<div className="email">
-							<input placeholder="E Mail Address*" name="Email" type="email" required=""/>
+							<input placeholder="Username*" name="username" type="text" value={form?.username} required="" onChange={OnInputChange}/>
 							<span className="icons i1"><i className="fa fa-envelope" aria-hidden="true"></i></span>
+							<p>{errorObj?.username}</p>
 							</div>
 							<div className="email">
-							<input placeholder="Password*" name="Password" type="password" required=""/>
+							<input placeholder="Password*" name="password" type="password" value={form?.password} required="" onChange={OnInputChange}/>
 							<span className="icons i2"><i className="fa fa-unlock" aria-hidden="true"></i></span>
+							<p>{errorObj?.password}</p>
 							</div>
-							<input type="button" value="Login" name="login"/>
+							<input type="button" value="Login" name="login" onClick={validateForm}/>
 							
 							 <div className="form-row bottom">
                                     <div className="form-check" align="left"><input type="checkbox" id="remenber" name="remenber" value="remenber"/>
-                                     <label for="remember"> Remember Me?</label> <NavLink to={"/forgetpassword"} className="forgot">Forgot Password?</NavLink>
+                                     <label htmlFor="remember"> Remember Me?</label> <NavLink to={"/forgetpassword"} className="forgot">Forgot Password?</NavLink>
                                     </div>
                                 </div>
 							
