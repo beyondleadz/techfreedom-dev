@@ -40,7 +40,8 @@ const CompanySummary = () => {
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    <i class="pdf-img" aria-hidden="true"></i>
+                    {/* <i class="pdf-img" aria-hidden="true"></i> */}
+                    <i className="fa fa-briefcase pr-2" style={{"color":"#5D44FF"}}></i>
                   </a>
                 </li>
                 <li>
@@ -98,7 +99,7 @@ const CompanySummary = () => {
               aria-controls="home"
               aria-selected="true"
             >
-              <i className="fa fa-industry pr-2"></i>Company Summary
+              <i className="fa fa-city pr-2" style={{"color":"#5D44FF"}}></i>Company Summary
             </button>
           </li>
           <li className="nav-item" role="presentation">
@@ -112,7 +113,7 @@ const CompanySummary = () => {
               aria-controls="profile"
               aria-selected="false"
             >
-              <i className="fa fa-suitcase pr-2"></i>Employees
+              <i className="fa fa-user-friends pr-2" style={{"color":"#5D44FF"}}></i>Employees
             </button>
           </li>
           <li className="nav-item" role="presentation">
@@ -126,7 +127,7 @@ const CompanySummary = () => {
               aria-controls="contact"
               aria-selected="false"
             >
-              <i className="fa fa-database pr-2"></i>Org Chart
+              <i className="fa fa-sitemap pr-2" style={{"color":"#5D44FF"}}></i>Org Chart
             </button>
           </li>
           <li className="nav-item" role="presentation">
@@ -140,7 +141,7 @@ const CompanySummary = () => {
               aria-controls="contact"
               aria-selected="false"
             >
-              <i className="fa fa-database pr-2"></i>filter By Dept.
+              <i className="fa fa-briefcase pr-2" style={{"color":"#5D44FF"}}></i>filter By Dept.
             </button>
           </li>
         </ul>

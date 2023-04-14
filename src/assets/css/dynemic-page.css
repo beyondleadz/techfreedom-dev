@@ -5257,7 +5257,7 @@ a:focus {
 }
 
 .topbar {
-  height: 4.375rem;
+  height: 4.2rem;
 }
 
 .topbar #ssidebarToggleTop {
@@ -6114,6 +6114,7 @@ color: #555;
     box-sizing: border-box;
     margin: 0;
     padding: 10px;
+    padding-top: 0px;
     color: #777;
 }
 
