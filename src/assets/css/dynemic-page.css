@@ -6206,28 +6206,32 @@ background-size: 75%;}
       background-size: 85%;
     }
 
-  .la-globe:before {
-        color: #FF010B;
-      }
+    .la-filter:before {
+      color: #5000FF;
+      font-size: 18px;
+    }
+    .la-globe:before {
+      color: #FF010B;
+    }
 
-      .la-map-marked-alt:before {
-        color: #FF010B;
-      }
-      .la-map-marker:before {
-        color: #FF010B;
-      }
-      .la-industry:before {
-        color: #FF010B;
-      }
-      .la-city:before {
-        color: #FF010B;
-      }
-      .la-users:before {
-        color: #FF010B;
-      }
+    .la-map-marked-alt:before {
+      color: #FF010B;
+    }
+    .la-map-marker:before {
+      color: #FF010B;
+    }
+    .la-industry:before {
+      color: #FF010B;
+    }
+    .la-city:before {
+      color: #FF010B;
+    }
+    .la-users:before {
+      color: #FF010B;
+    }
 .la-money-bill:before {
-        color: #FF010B;
-      }
+      color: #FF010B;
+    }
 
 .filter-button{
   display: none;

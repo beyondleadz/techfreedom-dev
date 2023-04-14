@@ -48,7 +48,7 @@ console.log(menuVisible,'sjdfk')
 
         <li className="nav-item-sd active">
           <a className="nav-link-sd" href="#">
-            <i className="fas fa-filter"></i>
+            <i className="left-company-menu-icons la la-filter"></i>
             <span className="mr-4" >Filter</span>
             <span className="btn btn-outline-primary font-weight-bold">Advanced</span></a>
         </li>

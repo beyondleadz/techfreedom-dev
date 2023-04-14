@@ -1,5 +1,5 @@
 import React,{useState} from "react";
-import AccurateProspectDataImage from "../../assets/images/direct-dials-bottom.png";
+import AccurateProspectDataImage from "../../assets/images/direct-dials-bottom1.jpg";
 
 
 const DirectDials=()=>{
