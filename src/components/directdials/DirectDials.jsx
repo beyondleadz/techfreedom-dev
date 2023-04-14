@@ -29,7 +29,7 @@ const DirectDials=()=>{
 </p>
 </div>
 <div class="privacy-security-term" align="center">
- <img src={AccurateProspectDataImage} style={{width:700, height:179}} title="" alt=""/></div>
+ <img src={AccurateProspectDataImage} style={{width:700, height:200}} title="" alt=""/></div>
 
 		</div>
 	

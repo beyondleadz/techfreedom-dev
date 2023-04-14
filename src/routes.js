@@ -22,6 +22,9 @@ import CompanySummary from './pages/CompanySummary';
 //import Summary from './pages/Summary';
 import OurData from './pages/OurData';
 import DirectDials from './pages/DirectDials';
+import LeadsManagement from './pages/LeadsManagement';
+
+
 // import Test from './pages/Test';
 import Demo from './pages/Demo';
 const AppRoutes = (props) => {
@@ -49,6 +52,8 @@ const AppRoutes = (props) => {
                 {/* <Route path='/summary' element={<Summary/>}/> */}
                 <Route path='/our-data' element={<OurData/>}/>
                 <Route path='/direct-dials' element={<DirectDials/>}/>
+                <Route path='/lead-management' element={<LeadsManagement/>}/>
+                
                 {/* <Route path='/test' element={<Test/>}/> */}
                 <Route path='/demo' element={<Demo/>}/>
                 
