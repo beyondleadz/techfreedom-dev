@@ -10,7 +10,7 @@ const BannerSection=()=>{
                 <div className="col-md-6 pr-lg-5 ">
                     <h3 className="mb-lg-4 mb-3 title">
                     <span>Direct </span>Dials</h3>
-                 <p className="mr-5">"Our terms and conditions are like a box of chocolates - you never know what you're gonna get, but we promise it'll be sweet!"
+                 <p className="mr-5">"BeyondLeadz offers its users access to Direct dials and mobile numbers"
 </p>
                         
             

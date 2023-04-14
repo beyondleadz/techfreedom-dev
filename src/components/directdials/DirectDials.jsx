@@ -1,5 +1,5 @@
 import React,{useState} from "react";
-import AccurateProspectDataImage from "../../assets/images/direct-dials-bottom1.jpg";
+import AccurateProspectDataImage from "../../assets/images/direct-dials-bottom.jpg";
 
 
 const DirectDials=()=>{
@@ -29,7 +29,7 @@ const DirectDials=()=>{
 </p>
 </div>
 <div class="privacy-security-term" align="center">
- <img src={AccurateProspectDataImage} title="" alt=""/></div>
+ <img src={AccurateProspectDataImage} style={{width:700, height:179}} title="" alt=""/></div>
 
 		</div>
 	
