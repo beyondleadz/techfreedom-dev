@@ -3,6 +3,8 @@ import { useRoutes,NavLink } from "react-router-dom";
 import FooterPrivacyImg from '../assets/images/privacy-small.png'
 import FooterSpamImg from '../assets/images/spam-small.png'
 import FooterRatingImg from '../assets/images/rating-small.png'
+import FooterSslSecuredImg from '../assets/images/ssl-secured-small.png'
+
 const Footer=()=>{
 	window.onscroll = function () {
 		scrollFunction()
@@ -84,7 +86,7 @@ const Footer=()=>{
 						<a href="#instagram" className="instagram"><i className="fab fa-instagram"></i></a>                        </div>
 				
 				</div>
-				<p style={{"marginTop":15}}><li><img src={FooterPrivacyImg} alt="" title=""/><img src={FooterSpamImg} alt="" title=""/><img src={FooterRatingImg} alt="" title=""/></li></p>
+				<p style={{"marginTop":15}}><li><img src={FooterPrivacyImg} alt="" title=""/><img src={FooterSpamImg} alt="" title=""/><img src={FooterRatingImg} alt="" title=""/><img src={FooterSslSecuredImg} alt="" title=""/></li></p>
 			</div>
 			<p style={{"textAlign":"center"}} className="copy-footer-29 mt-4">© 2023 Beyond Leadz. All rights reserved. Design by <a href="http://techfreedomonline.com/" target="_blank">Tech Freedom Online</a></p>
 		</div>
