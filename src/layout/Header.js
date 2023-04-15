@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useRoutes, NavLink } from "react-router-dom";
 import Logo from "../assets/images/logo.jpg";
+import MoreArrowImg from "../assets/images/arrow.png";
 import "../assets/css/dropdown1.css";
 import "../assets/css/line-awesome.css";
 import "../assets/css/line-awesome.min.css";
@@ -67,8 +68,8 @@ const Header = () => {
             <div className="navbar-drop">
               <div className="dropdown-menu1">
                 <button className="dropbtn">
-                  More
-                  <i className="fa fa-caret-down"></i>
+                  More <img src={MoreArrowImg} />
+                  {/* <i className="fa fa-caret-down"></i> */}
                 </button>
                 <div className="dropdown-menu-content">
                   <div className="row">

@@ -24,7 +24,7 @@ const CompanyContent = () => {
               <ul className="flex  m-mt">
                 <li>
                   <a
-                    class="btn-lit mr-2"
+                    class=" mr-2"
                     href="#"
                     id=""
                     role="button"
@@ -37,7 +37,7 @@ const CompanyContent = () => {
                 </li>
                 <li>
                   <a
-                    class="btn-lit mr-2"
+                    class=" mr-2"
                     href="#"
                     id=""
                     role="button"
@@ -50,7 +50,7 @@ const CompanyContent = () => {
                 </li>
                 <li>
                   <a
-                    className="btn-lit mr-2"
+                    className=" mr-2"
                     href="#"
                     id=""
                     role="button"
@@ -63,7 +63,7 @@ const CompanyContent = () => {
                 </li>
                 <li>
                   <a
-                    className="btn-lit mr-2"
+                    className=" mr-2"
                     href="#"
                     id=""
                     role="button"

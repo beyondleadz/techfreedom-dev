@@ -21210,6 +21210,19 @@ a[data-tooltip][data-placement="bottom"]::after {
     background-size: 10% ;
     -webkit-appearance: none;
 }
+
+.top-more {
+    background: #5D44FF;
+    border: none;
+	border-radius: 6px;
+    color: #fff;
+    outline: none;
+    font-size: 14px;
+    margin-bottom: 0;
+    background: url(../images/arrow.png) no-repeat 88% center #5D44FF;
+    background-size: 10% ;
+   
+}
 .header-middle .form input[type="submit"]{
    background: url(../images/search.png) no-repeat 2px 0px #FDC401;
     width: 100%;
