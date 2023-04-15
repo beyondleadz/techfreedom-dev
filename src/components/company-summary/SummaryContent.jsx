@@ -20,7 +20,7 @@ About Company</div>
     
     <table className="table table-responsive ">
   <tbody>
-    <tr><td colspan="2"><span className="font-weight-bold">Deutsche Bank</span>,a Frankfurt-based global investment bank, offers financial products and services to corporate and institutional clients.
+    <tr><td colspan="2"><span className="font-weight-bold">Deutsche Bank</span><br/>,a Frankfurt-based global investment bank, offers financial products and services to corporate and institutional clients.
 Frankfurt, Hessen, Germany</td></tr>
     
        <tr>
@@ -54,15 +54,15 @@ Contacts</div>
 <div className="card-body">
      <div className="row">
     <div className="container">
-  <div className="row">
+  <div className="row fs-14">
     <div className="col-8 col-sm-6 pt-2"><p>Abid Nasir
 Global COO Lending and Deposits, Wealth Management
 Executive
 Management</p></div>
     <div className="col-6 col-sm-3 pt-2">1 email found</div>
-    <div className="col-6 col-sm-3 text-center ">
-    <div className="btn btn-login  align-items-center"> <i className="fas fa-bolt pr-2"></i>VIEW                
-                </div><div className="buttons-container">
+    <div className="col-6 col-sm-3 text-right ">
+    <div className="btn btn-primary text-black mb-3 align-items-center"> <i className="fas fa-bolt pr-2"></i>VIEW                
+                </div><div className="buttons-container1">
                  <ul className="d-flex  m-mt">
                 <li>
                   <a
@@ -124,10 +124,10 @@ Global COO Lending and Deposits, Wealth Management
 Executive
 Management</p></div>
     <div className="col-6 col-sm-3 pt-2">1 email found</div>
-    <div className="col-6 col-sm-3 text-center ">
-    <div className="btn btn-login  align-items-center"> <i className="fas fa-bolt pr-2"></i>VIEW                
+    <div className="col-6 col-sm-3 text-right">
+    <div className="btn btn-primary text-black mb-3 align-items-center"> <i className="fas fa-bolt pr-2"></i>VIEW                
                 </div>
-                <div className="buttons-container">
+                <div className="buttons-container1">
                  <ul className="d-flex  m-mt">
                 <li>
                   <a
@@ -190,10 +190,10 @@ Global COO Lending and Deposits, Wealth Management
 Executive
 Management</p></div>
     <div className="col-6 col-sm-3 pt-2">1 email found</div>
-    <div className="col-6 col-sm-3 text-center ">
-    <div className="btn btn-login  align-items-center"> <i className="fas fa-bolt pr-2"></i>VIEW                
+    <div className="col-6 col-sm-3 text-right">
+    <div className="btn btn-primary text-black mb-3 align-items-center"> <i className="fas fa-bolt pr-2"></i>VIEW                
                 </div>
-                <div className="buttons-container">
+                <div className="buttons-container1">
                  <ul className="d-flex  m-mt">
                 <li>
                   <a
@@ -320,7 +320,7 @@ About Company</div>
     <img src={logo} />
     </div>
     <div className="col">
-     <span className="font-weight-bold">Deutsche Bank,a Frankfurt-based global investment bank</span>
+     <span className="fs-14">Deutsche Bank,a Frankfurt-based global investment bank</span>
     </div>
   </div>
   <div className="row">
@@ -328,7 +328,7 @@ About Company</div>
     <img src={logo} />
     </div>
     <div className="col">
-     <span className="font-weight-bold">Deutsche Bank,a Frankfurt-based global investment bank</span>
+     <span className="fs-14">Deutsche Bank,a Frankfurt-based global investment bank</span>
     </div>
   </div>
                                </div>
