@@ -186,7 +186,7 @@ const CompanySummary = () => {
               aria-controls="contact"
               aria-selected="false"
             >
-              <i className="fa fa-briefcase pr-2" style={{"color":"#5D44FF"}}></i>filter By Dept.
+              <i className="tab-img las la-code-branch"></i>filter By Dept.
             </button>
           </li>
         </ul>

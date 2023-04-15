@@ -53,7 +53,7 @@ const Login = () => {
 
     return (
 		<>
-		<div style={{margin:20}}><a href="index.html"><img src={LogoLogin} alt=" "/></a></div>
+		<div style={{margin:20}}><NavLink to={"/"}><img src={LogoLogin} /></NavLink></div>
 		<div className="logincontainer">
         <div className="layer">
 	<div className="main-agile1">
