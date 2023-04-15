@@ -18878,7 +18878,8 @@ h4.small-text-banner {
 .orng-clr-bg {
     color: #000;
     background: var(primary-color);
-    padding: 0 5px;
+    /* padding: 0 5px; */
+    padding: 0 6px 5px 0;
     font-weight: bold;
 }
 .green-clr-bg {
