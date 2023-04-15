@@ -6302,10 +6302,10 @@ padding:5px
   }
 
 
-.tab-img{display: inline;
-padding: 0.3rem 1rem;
-font-size: 25px;
-background-size: 75%;}
+.tab-img{    display: inline;
+  padding: 0.2rem 0.5rem;
+  font-size: 22px;
+  background-size: 75%;}
 /* background: url(../images/companies-icon.png) no-repeat 0px 0px;*/
 /* background: url(../images/executive-icon.png) no-repeat 0px 0px; */
 /* background: url(../images/leads-icon.png) no-repeat 0px 0px; */
