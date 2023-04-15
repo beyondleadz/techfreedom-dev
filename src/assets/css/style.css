@@ -843,3 +843,10 @@
 
 
 }
+
+.logincontainer .error{
+	font-size: 14px;
+    color: red;
+    text-align: left;
+    padding-left: 20px;
+}
