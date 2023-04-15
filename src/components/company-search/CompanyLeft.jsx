@@ -54,7 +54,7 @@ console.log(menuVisible,'sjdfk')
         </li>
 
 
-        <li className="nav-item-sd mt-2">
+        <li className="nav-item-sd">
           <a className={`nav-link-sd mt-3 nav-item-sd ${!open?.country && 'collapsed'}`}  onClick={() => openMenu('country')} href="#" data-toggle="collapse" data-target="#collapseTwo"
             aria-expanded="true" aria-controls="collapseTwo">
             <i className="left-company-menu-icons la la-globe"></i>
