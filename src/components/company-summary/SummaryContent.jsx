@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import logo from "../../assets/images/amazon.png";
-import OrgChartImg from "../../assets/images/executive-search-connect-icon.jpg";
+import OrgChartImg from "../../assets/images/org-chart-employee-icon.png";
 
 
 const SummaryContent = () => {
@@ -74,7 +74,7 @@ Management</p></div>
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    <i class="pdf-img" aria-hidden="true"></i>
+                    <i class="right-icons la la-envelope" aria-hidden="true"></i>
                   </a>
                 </li>
                 <li>
@@ -87,7 +87,7 @@ Management</p></div>
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    <i class="printer-img" aria-hidden="true"></i>
+                    <i class="right-icons las la-share-square" aria-hidden="true"></i>
                   </a>
                 </li>
                 <li>
@@ -100,7 +100,7 @@ Management</p></div>
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    <i class="excel-img" aria-hidden="true"></i>
+                    <i className="right-icons la la-print" aria-hidden="true"></i>
                   </a>
                 </li>
                 <li>
@@ -113,7 +113,7 @@ Management</p></div>
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    <i class="star-img" aria-hidden="true"></i>
+                    <i className="right-icons la la-star" aria-hidden="true"></i>
                   </a>
                 </li>
               </ul>
@@ -129,7 +129,7 @@ Management</p></div>
                 </div>
                 <div className="buttons-container1">
                  <ul className="d-flex  m-mt">
-                <li>
+                 <li>
                   <a
                     class="btn-lit mr-2"
                     href="#"
@@ -139,7 +139,7 @@ Management</p></div>
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    <i class="pdf-img" aria-hidden="true"></i>
+                    <i class="right-icons la la-envelope" aria-hidden="true"></i>
                   </a>
                 </li>
                 <li>
@@ -152,7 +152,7 @@ Management</p></div>
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    <i class="printer-img" aria-hidden="true"></i>
+                    <i class="right-icons las la-share-square" aria-hidden="true"></i>
                   </a>
                 </li>
                 <li>
@@ -165,7 +165,7 @@ Management</p></div>
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    <i class="excel-img" aria-hidden="true"></i>
+                    <i className="right-icons la la-print" aria-hidden="true"></i>
                   </a>
                 </li>
                 <li>
@@ -178,9 +178,10 @@ Management</p></div>
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    <i class="star-img" aria-hidden="true"></i>
+                    <i className="right-icons la la-star" aria-hidden="true"></i>
                   </a>
                 </li>
+                
               </ul>
             </div>
                 </div>
@@ -195,7 +196,7 @@ Management</p></div>
                 </div>
                 <div className="buttons-container1">
                  <ul className="d-flex  m-mt">
-                <li>
+                 <li>
                   <a
                     class="btn-lit mr-2"
                     href="#"
@@ -205,7 +206,7 @@ Management</p></div>
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    <i class="pdf-img" aria-hidden="true"></i>
+                    <i class="right-icons la la-envelope" aria-hidden="true"></i>
                   </a>
                 </li>
                 <li>
@@ -218,7 +219,7 @@ Management</p></div>
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    <i class="printer-img" aria-hidden="true"></i>
+                    <i class="right-icons las la-share-square" aria-hidden="true"></i>
                   </a>
                 </li>
                 <li>
@@ -231,7 +232,7 @@ Management</p></div>
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    <i class="excel-img" aria-hidden="true"></i>
+                    <i className="right-icons la la-print" aria-hidden="true"></i>
                   </a>
                 </li>
                 <li>
@@ -244,7 +245,7 @@ Management</p></div>
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    <i class="star-img" aria-hidden="true"></i>
+                    <i className="right-icons la la-star" aria-hidden="true"></i>
                   </a>
                 </li>
               </ul>
@@ -268,37 +269,44 @@ About Company</div>
 <div className="card-body">
     <div className="row">
     
-    <div class="org-chart">
+    <div className="org-chart">
 <ul>
 <li><a href="#"><img src={OrgChartImg}/><br />General Manager</a>
-<ul><li>
-<a href="#">Manager 1</a>
-<ul><li>
-<a href="#">Executive 1-1</a>
-</li>
-</ul>
-</li>
-<li><a href="#">Manager 2</a></li>
-<ul><li>
-<a href="#">Executive 2-1</a>
-</li><li>
-<a href="#">Executive 2-2</a>
-<ul><li>
-<a href="#">Employee</a>
-</li><li>
-<a href="#">Employee</a>
-</li><li>
-<a href="#">Employee</a>
-</li></ul></li><li>
-<a href="#">Executive 2-3</a>
-</li></ul><li>
-<a href="#">Manager 3</a>
-<ul><li>
-<a href="#">Executive 3-1</a>
-</li>
+
+<ul>
+<li><a href="#">Manager 1</a>
+<ul>
+<li><a href="#">Executive 1-1</a></li>
 </ul>
 </li>
 </ul>
+
+
+<li><a href="#">Manager 2</a>
+
+<ul>
+<li><a href="#">Executive 2-1</a></li>
+<li><a href="#">Executive 2-2</a>
+<ul>
+<li><a href="#">Employee</a></li>
+<li><a href="#">Employee</a></li>
+<li><a href="#">Employee</a></li>
+</ul>
+</li>
+
+<li><a href="#">Executive 2-3</a></li>
+
+</ul>
+</li>
+
+
+<li><a href="#">Manager 3</a>
+<ul>
+<li><a href="#">Executive 3-1</a></li>
+</ul>
+</li>
+
+
 </li>
 </ul>
 </div>

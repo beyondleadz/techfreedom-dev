@@ -6300,6 +6300,8 @@ padding:5px
   .org-chart li a:hover+ul ul::before{
   border-color: #808080;
   }
+
+
 .tab-img{display: inline;
 padding: 0.3rem 1rem;
 font-size: 25px;
@@ -6314,9 +6316,12 @@ background-size: 75%;}
 .la-user-tie:before {
     color: #5000FF;
   }
-.la-address-book:before {
+.la-user-friends:before {
       color: #5000FF;
   }
+  .la-code-branch:before {
+    color: #5000FF;
+} 
 
 .right-icons{
       display: inline;
@@ -6339,6 +6344,12 @@ background-size: 75%;}
     }
 .la-star:before {
       color: #EBB601;
+    }
+    .la-envelope:before {
+      color: #F3060F;
+    }
+    .la-flag:before {
+      color: #F3060F;
     }
 
 .left-company-menu-icons {

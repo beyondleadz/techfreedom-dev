@@ -53,7 +53,7 @@ const Login = () => {
 
     return (
 		<>
-		<div style={{margin:20}}><a href="index.html"><img src={LogoLogin} alt=" "/></a></div>
+		<div style={{margin:20}}><NavLink to={"/"}><img src={LogoLogin} /></NavLink></div>
 		<div className="logincontainer">
         <div className="layer">
 	<div className="main-agile1">
@@ -88,12 +88,12 @@ const Login = () => {
 							<div className="email">
 							<input placeholder="Username*" name="username" type="text" value={form?.username} required="" onChange={OnInputChange}/>
 							<span className="icons i1"><i className="fa fa-envelope" aria-hidden="true"></i></span>
-							<p>{errorObj?.username}</p>
+							<div class="error">{errorObj?.username}</div>
 							</div>
 							<div className="email">
 							<input placeholder="Password*" name="password" type="password" value={form?.password} required="" onChange={OnInputChange}/>
 							<span className="icons i2"><i className="fa fa-unlock" aria-hidden="true"></i></span>
-							<p>{errorObj?.password}</p>
+							<div class="error">{errorObj?.password}</div>
 							</div>
 							<input type="button" value="Login" name="login" onClick={validateForm}/>
 							
