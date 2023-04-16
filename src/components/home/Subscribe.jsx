@@ -14,7 +14,7 @@ const Subscribe = () => {
              <h4>SIGN UP FOR NEWSLETTER !</h4>
            </div>
              <div className="subscribe2">
-             <div class="form">
+             <div className="form">
                  <input type="text" className="text" placeholder="Email"/>
                  <input type="submit" value="Submit"/>
              </div>

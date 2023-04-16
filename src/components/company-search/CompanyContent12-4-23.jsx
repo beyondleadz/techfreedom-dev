@@ -24,7 +24,7 @@ const CompanyContent = () => {
               <ul className="flex  m-mt">
                 <li>
                   <a
-                    class="btn-lit mr-2"
+                    className="btn-lit mr-2"
                     href="#"
                     id=""
                     role="button"
@@ -32,12 +32,12 @@ const CompanyContent = () => {
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    <i class="pdf-img" aria-hidden="true"></i>
+                    <i className="pdf-img" aria-hidden="true"></i>
                   </a>
                 </li>
                 <li>
                   <a
-                    class="btn-lit mr-2"
+                    className="btn-lit mr-2"
                     href="#"
                     id=""
                     role="button"
@@ -45,12 +45,12 @@ const CompanyContent = () => {
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    <i class="printer-img" aria-hidden="true"></i>
+                    <i className="printer-img" aria-hidden="true"></i>
                   </a>
                 </li>
                 <li>
                   <a
-                    class="btn-lit mr-2"
+                    className="btn-lit mr-2"
                     href="#"
                     id=""
                     role="button"
@@ -58,12 +58,12 @@ const CompanyContent = () => {
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    <i class="excel-img" aria-hidden="true"></i>
+                    <i className="excel-img" aria-hidden="true"></i>
                   </a>
                 </li>
                 <li>
                   <a
-                    class="btn-lit mr-2"
+                    className="btn-lit mr-2"
                     href="#"
                     id=""
                     role="button"
@@ -71,7 +71,7 @@ const CompanyContent = () => {
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    <i class="star-img" aria-hidden="true"></i>
+                    <i className="star-img" aria-hidden="true"></i>
                   </a>
                 </li>
               </ul>

@@ -37,10 +37,10 @@ const BannerSection=()=>{
     <p style={{marginBottom:5}}>Well, You go Beyond Leads!</p>
     <p style={{marginBottom:5}}>BeyondLeadz is a revolutionary new tool developed by a team of seasoned Sales & Marketing professionals who have successfully build and executed  sales strategies globally! BeyondLeadz is built with a promise to provide you accurate and actionable business information  that helps you find leads that are perfect for your business. It uses cutting-edge technology to provide you accurate and actionable B2B database that helps you find potential customers who are a perfect match for your products or services. With Beyond Leads, you'll never run out of leads again and always get to higher sales closing!</p>
 </div>
-<section class="w3l-services py-5" id="services">
-        <div class="container py-md-5 py-4">
-            <div class="title-heading-w3 mx-auto text-center mb-sm-5 mb-4 pb-xl-4" style={{maxWidth:700}}>
-                <h3 class="title-style mb-2" style={{marginBottom:-50}}>Access the most comprehensive B2B database to fuel your business growth and stay ahead of the competition!</h3>
+<section className="w3l-services py-5" id="services">
+        <div className="container py-md-5 py-4">
+            <div className="title-heading-w3 mx-auto text-center mb-sm-5 mb-4 pb-xl-4" style={{maxWidth:700}}>
+                <h3 className="title-style mb-2" style={{marginBottom:-50}}>Access the most comprehensive B2B database to fuel your business growth and stay ahead of the competition!</h3>
 				
             </div>
 	     </div>

@@ -66,7 +66,7 @@ Management</p></div>
                  <ul className="d-flex  m-mt">
                 <li>
                   <a
-                    class="btn-lit mr-2"
+                    className="btn-lit mr-2"
                     href="#"
                     id=""
                     role="button"
@@ -74,12 +74,12 @@ Management</p></div>
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    <i class="right-icons la la-envelope" aria-hidden="true"></i>
+                    <i className="right-icons la la-envelope" aria-hidden="true"></i>
                   </a>
                 </li>
                 <li>
                   <a
-                    class="btn-lit mr-2"
+                    className="btn-lit mr-2"
                     href="#"
                     id=""
                     role="button"
@@ -87,12 +87,12 @@ Management</p></div>
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    <i class="right-icons las la-share-square" aria-hidden="true"></i>
+                    <i className="right-icons las la-share-square" aria-hidden="true"></i>
                   </a>
                 </li>
                 <li>
                   <a
-                    class="btn-lit mr-2"
+                    className="btn-lit mr-2"
                     href="#"
                     id=""
                     role="button"
@@ -105,7 +105,7 @@ Management</p></div>
                 </li>
                 <li>
                   <a
-                    class="btn-lit mr-2"
+                    className="btn-lit mr-2"
                     href="#"
                     id=""
                     role="button"
@@ -131,7 +131,7 @@ Management</p></div>
                  <ul className="d-flex  m-mt">
                  <li>
                   <a
-                    class="btn-lit mr-2"
+                    className="btn-lit mr-2"
                     href="#"
                     id=""
                     role="button"
@@ -139,12 +139,12 @@ Management</p></div>
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    <i class="right-icons la la-envelope" aria-hidden="true"></i>
+                    <i className="right-icons la la-envelope" aria-hidden="true"></i>
                   </a>
                 </li>
                 <li>
                   <a
-                    class="btn-lit mr-2"
+                    className="btn-lit mr-2"
                     href="#"
                     id=""
                     role="button"
@@ -152,12 +152,12 @@ Management</p></div>
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    <i class="right-icons las la-share-square" aria-hidden="true"></i>
+                    <i className="right-icons las la-share-square" aria-hidden="true"></i>
                   </a>
                 </li>
                 <li>
                   <a
-                    class="btn-lit mr-2"
+                    className="btn-lit mr-2"
                     href="#"
                     id=""
                     role="button"
@@ -170,7 +170,7 @@ Management</p></div>
                 </li>
                 <li>
                   <a
-                    class="btn-lit mr-2"
+                    className="btn-lit mr-2"
                     href="#"
                     id=""
                     role="button"
@@ -198,7 +198,7 @@ Management</p></div>
                  <ul className="d-flex  m-mt">
                  <li>
                   <a
-                    class="btn-lit mr-2"
+                    className="btn-lit mr-2"
                     href="#"
                     id=""
                     role="button"
@@ -206,12 +206,12 @@ Management</p></div>
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    <i class="right-icons la la-envelope" aria-hidden="true"></i>
+                    <i className="right-icons la la-envelope" aria-hidden="true"></i>
                   </a>
                 </li>
                 <li>
                   <a
-                    class="btn-lit mr-2"
+                    className="btn-lit mr-2"
                     href="#"
                     id=""
                     role="button"
@@ -219,12 +219,12 @@ Management</p></div>
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    <i class="right-icons las la-share-square" aria-hidden="true"></i>
+                    <i className="right-icons las la-share-square" aria-hidden="true"></i>
                   </a>
                 </li>
                 <li>
                   <a
-                    class="btn-lit mr-2"
+                    className="btn-lit mr-2"
                     href="#"
                     id=""
                     role="button"
@@ -237,7 +237,7 @@ Management</p></div>
                 </li>
                 <li>
                   <a
-                    class="btn-lit mr-2"
+                    className="btn-lit mr-2"
                     href="#"
                     id=""
                     role="button"

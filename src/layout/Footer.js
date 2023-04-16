@@ -49,7 +49,7 @@ const Footer=()=>{
 						</div>
 						<div className="col-md-3 col-6 footer-list-29 mt-md-0 mt-4">
 							<ul>
-							<h6 class="footer-title-29">Quick Links</h6>
+							<h6 className="footer-title-29">Quick Links</h6>
                                     <li><NavLink to={'/direct-dials'}>Direct Dials</NavLink></li>
 									<li><NavLink to={'/b2b-data'}>B2B Data</NavLink></li>
 									<li><NavLink to={'/lead-management'}>Lead Management</NavLink></li>

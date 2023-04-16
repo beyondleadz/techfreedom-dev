@@ -32,7 +32,7 @@ const CompanySummary = () => {
                  <ul className="d-flex  m-mt">
                 <li>
                   <a
-                    class="btn-lit mr-2"
+                    className="btn-lit mr-2"
                     href="#"
                     id=""
                     role="button"
@@ -40,13 +40,13 @@ const CompanySummary = () => {
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    {/* <i class="pdf-img" aria-hidden="true"></i> */}
-                    <i class="right-icons la la-file-pdf" aria-hidden="true"></i>
+                    {/* <i className="pdf-img" aria-hidden="true"></i> */}
+                    <i className="right-icons la la-file-pdf" aria-hidden="true"></i>
                   </a>
                 </li>
                 <li>
                   <a
-                    class="btn-lit mr-2"
+                    className="btn-lit mr-2"
                     href="#"
                     id=""
                     role="button"
@@ -54,12 +54,12 @@ const CompanySummary = () => {
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    <i class="right-icons la la-file-excel" aria-hidden="true"></i>
+                    <i className="right-icons la la-file-excel" aria-hidden="true"></i>
                   </a>
                 </li>
                 <li>
                   <a
-                    class="btn-lit mr-2"
+                    className="btn-lit mr-2"
                     href="#"
                     id=""
                     role="button"
@@ -72,7 +72,7 @@ const CompanySummary = () => {
                 </li>
                 <li>
                   <a
-                    class="btn-lit mr-2"
+                    className="btn-lit mr-2"
                     href="#"
                     id=""
                     role="button"
@@ -85,7 +85,7 @@ const CompanySummary = () => {
                 </li>
                 <li>
                   <a
-                    class="btn-lit mr-2"
+                    className="btn-lit mr-2"
                     href="#"
                     id=""
                     role="button"
@@ -98,7 +98,7 @@ const CompanySummary = () => {
                 </li>
                 <li>
                   <a
-                    class="btn-lit mr-2"
+                    className="btn-lit mr-2"
                     href="#"
                     id=""
                     role="button"
@@ -111,7 +111,7 @@ const CompanySummary = () => {
                 </li>
                 <li>
                   <a
-                    class="btn-lit mr-2"
+                    className="btn-lit mr-2"
                     href="#"
                     id=""
                     role="button"

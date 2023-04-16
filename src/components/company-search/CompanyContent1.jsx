@@ -126,16 +126,16 @@ const CompanyContent = () => {
                                     <a className="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>                            </div>
                             </li>
                         <button className="d-none d-sm-inline-block btn btn-light btn-lg m-2">
-                                                        <i class="fas fa-file-pdf" aria-hidden="true"></i>
+                                                        <i className="fas fa-file-pdf" aria-hidden="true"></i>
                                                     </button> 
                         <button className="d-none d-sm-inline-block btn-lg btn btn-light mr-2">
-                                                        <i class="fas fa-print" aria-hidden="true"></i>
+                                                        <i className="fas fa-print" aria-hidden="true"></i>
                                                     </button>                         
                         <button className="d-none d-sm-inline-block btn-lg btn btn-light mr-2">
-                                                        <i class="fas fa-file-excel" aria-hidden="true"></i>
+                                                        <i className="fas fa-file-excel" aria-hidden="true"></i>
                                                     </button> 
                         <button className="d-none d-sm-inline-block btn-lg btn btn-light mr-2">
-                                                        <i class="fas fa-star" aria-hidden="true"></i>
+                                                        <i className="fas fa-star" aria-hidden="true"></i>
                                                     </button>
                                                    
                             <div className="topbar-divider d-none d-sm-block"></div>

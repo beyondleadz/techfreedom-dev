@@ -24,7 +24,7 @@ const CompanyContent = () => {
               <ul className="flex  m-mt">
                 <li>
                   <a
-                    class="btn-lit mr-2"
+                    className="btn-lit mr-2"
                     href="#"
                     id=""
                     role="button"
@@ -32,12 +32,12 @@ const CompanyContent = () => {
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    <i class="right-icons la la-file-pdf" aria-hidden="true"></i>
+                    <i className="right-icons la la-file-pdf" aria-hidden="true"></i>
                   </a>
                 </li>
                 <li>
                   <a
-                    class="btn-lit mr-2"
+                    className="btn-lit mr-2"
                     href="#"
                     id=""
                     role="button"
@@ -58,7 +58,7 @@ const CompanyContent = () => {
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    <i class="right-icons la la-print" aria-hidden="true"></i>
+                    <i className="right-icons la la-print" aria-hidden="true"></i>
                   </a>
                 </li>
                 <li>
