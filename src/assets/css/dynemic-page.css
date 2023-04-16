@@ -6230,6 +6230,7 @@ padding:5px
   padding-top: 20px; 
   position: relative;
   transition: all 0.5s;
+  font-size: 10px;
   -webkit-transition: all 0.5s;
   -moz-transition: all 0.5s;
   }
@@ -6237,7 +6238,7 @@ padding:5px
   float: left; text-align: center;
   list-style-type: none;
   position: relative;
-  padding: 20px 5px 0 5px; 
+  padding: 20px 2px 0 2px; 
   transition: all 0.5s;
   -webkit-transition: all 0.5s;
   -moz-transition: all 0.5s;
