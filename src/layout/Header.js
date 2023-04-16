@@ -51,7 +51,7 @@ const Header = () => {
             className={(showNav ? "show" : "") + " collapse navbar-collapse"}
             id="navbarTogglerDemo02"
           >
-
+            <div className="search-advance">
               <div className="search-box position-relative">
                 <input
                   type="search"
@@ -76,6 +76,7 @@ const Header = () => {
                   <li className="selected-field" onClick={() => setValue('Executive')}>Executive</li>
                 </ul>
               </div>
+              {/* </div> */}
 
             <div className="navbar-drop">
               <div className="dropdown-menu1">
@@ -196,6 +197,7 @@ const Header = () => {
                   </div>
                 </div>
               </div>
+            </div>
             </div>
             <ul className="navbar-nav ml-lg-auto">
               <li className="nav-item ">
