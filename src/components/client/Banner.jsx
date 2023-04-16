@@ -10,7 +10,7 @@ const BannerSection=()=>{
                 <div className="col-md-6 pr-lg-5 ">
                     <h3 className="mb-lg-4 mb-3 title">
                     <span>Our </span>Clients</h3>
-                    <p className="mr-5">Beyond Leadz helps you gain unparalleled access to structured B2B information with</p>
+                    <p className="mr-5">"Our customers love us so much, they've even started naming their pets after us!"</p>
                         
             
             
