@@ -1,10 +1,15 @@
 import React,{useState} from "react";
 import CompanyDetailshImage from '../../assets/images/executive-search-industry-icon.jpg'
-import BenifitsSalaryImage from '../../assets/images/career-salary-icon.jpg';
+import UnlimitedSearchImage from '../../assets/images/executive-search-propect-icon.jpg';
 import AdvanceSearchImage from '../../assets/images/features-advance-search-icon.jpg';
-import CareerFunImage from "../../assets/images/career-fun-icon1.jpg";
+import OrgChartImage from "../../assets/images/features-org-icon.jpg";
 import LeadsImage from "../../assets/images/executive-search-no-emp-icon.jpg";
-import UnlimitedSearchImage from "../../assets/images/executive-search-propect-icon.jpg";
+import NewsArticlesImage from "../../assets/images/features-news-icon.jpg";
+import ExecutiveImage from "../../assets/images/features-executive-icon.jpg";
+import SalesSignalsImage from "../../assets/images/features-sales-signals-icon.jpg";
+import SalesTriggersImage from "../../assets/images/features-sales-triggers-icon.jpg";
+import SellingRadiusImage from "../../assets/images/features-selling-radius-icon.jpg";
+
 						
 const Feature = () => {
     return (
@@ -28,7 +33,7 @@ const Feature = () => {
 
 					<div className="col-sm-4 agile-choose-grid">
 						<div className="choose-icon">
-						<img src={BenifitsSalaryImage} height="60" width="60" alt="" className="img-fluid radius-career-icon-image"/>
+						<img src={ExecutiveImage} height="60" width="60" alt="" className="img-fluid radius-career-icon-image"/>
 						</div>
 						<div className="choose-info-career">
 							<h4>Executive Details</h4>
@@ -47,7 +52,7 @@ const Feature = () => {
 					
 					<div className="col-sm-4 agile-choose-grid" position-relative>
 						<div className="choose-icon">
-                        <img src={CareerFunImage} height="60" width="60" alt="" className="img-fluid radius-career-icon-image"/>
+                        <img src={OrgChartImage} height="60" width="60" alt="" className="img-fluid radius-career-icon-image"/>
 						</div>
 						<div className="choose-info-career">
 							<h4>Org. Chart</h4>
@@ -67,7 +72,7 @@ const Feature = () => {
 					
 					<div className="col-sm-4 agile-choose-grid">
 						<div className="choose-icon">
-						<img src={UnlimitedSearchImage} height="60" width="60" alt="" className="img-fluid radius-career-icon-image"/>
+						<img src={NewsArticlesImage} height="60" width="60" alt="" className="img-fluid radius-career-icon-image"/>
 						</div>
 						<div className="choose-info-career">
 							<h4>News Articles</h4>
@@ -77,7 +82,7 @@ const Feature = () => {
 
 					<div className="col-sm-4 agile-choose-grid">
 						<div className="choose-icon">
-						<img src={UnlimitedSearchImage} height="60" width="60" alt="" className="img-fluid radius-career-icon-image"/>
+						<img src={SalesSignalsImage} height="60" width="60" alt="" className="img-fluid radius-career-icon-image"/>
 						</div>
 						<div className="choose-info-career">
 							<h4>Signals -Important Markers</h4>
@@ -87,7 +92,7 @@ const Feature = () => {
 
 					<div className="col-sm-4 agile-choose-grid">
 						<div className="choose-icon">
-						<img src={UnlimitedSearchImage} height="60" width="60" alt="" className="img-fluid radius-career-icon-image"/>
+						<img src={SalesTriggersImage} height="60" width="60" alt="" className="img-fluid radius-career-icon-image"/>
 						</div>
 						<div className="choose-info-career">
 							<h4>Sales Triggers</h4>
@@ -97,7 +102,7 @@ const Feature = () => {
 
 					<div className="col-sm-4 agile-choose-grid">
 						<div className="choose-icon">
-						<img src={UnlimitedSearchImage} height="60" width="60" alt="" className="img-fluid radius-career-icon-image"/>
+						<img src={SellingRadiusImage} height="60" width="60" alt="" className="img-fluid radius-career-icon-image"/>
 						</div>
 						<div className="choose-info-career">
 							<h4>Selling Radius</h4>
