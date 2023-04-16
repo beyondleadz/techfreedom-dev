@@ -14,7 +14,7 @@ const AboutSection=()=>{
                 </div>
                 <div className="col-xl-5 col-lg-6 offset-xl-1 mt-lg-0 mt-5">
                     <h3 className="title-style">Come be a part of the team that's making it happen</h3>
-                    <p className="mt-lg-4 mt-3 mb-sm-5 mb-4">Lorem ipsum viverra feugiat. Pellen tesque libero ut justo, ultrices in ligula. Semper at tempufddfel. </p>
+                    <p className="mt-lg-4 mt-3 mb-sm-5 mb-4">Together, we can turn our vision into reality and make a positive impact in the world.</p>
                     
                 </div>
             </div>
