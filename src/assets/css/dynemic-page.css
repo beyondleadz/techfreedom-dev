@@ -6339,6 +6339,12 @@ padding:5px
       color: #F3060F;
     }
  
+.la:hover::before {
+      color: #fdc401;
+    }
+    .las:hover::before {
+      color: #fdc401;
+    }
 .la-file-excel:before {
       color: #019F14;
     }
