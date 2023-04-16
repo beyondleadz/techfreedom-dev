@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import logo from "../../assets/images/logo.jpg";
+import logo from "../../assets/images/d-bank1.png";
 const CompanySummary = () => {
   useEffect(() => {
     const content = document.getElementById("onScroll");
@@ -32,7 +32,7 @@ const CompanySummary = () => {
                  <ul className="d-flex  m-mt">
                 <li>
                   <a
-                    class="btn-lit mr-2"
+                    class=" mr-2"
                     href="#"
                     id=""
                     role="button"
@@ -46,7 +46,7 @@ const CompanySummary = () => {
                 </li>
                 <li>
                   <a
-                    class="btn-lit mr-2"
+                    class=" mr-2"
                     href="#"
                     id=""
                     role="button"
@@ -59,7 +59,7 @@ const CompanySummary = () => {
                 </li>
                 <li>
                   <a
-                    class="btn-lit mr-2"
+                    class=" mr-2"
                     href="#"
                     id=""
                     role="button"
@@ -72,7 +72,7 @@ const CompanySummary = () => {
                 </li>
                 <li>
                   <a
-                    class="btn-lit mr-2"
+                    class=" mr-2"
                     href="#"
                     id=""
                     role="button"
@@ -85,7 +85,7 @@ const CompanySummary = () => {
                 </li>
                 <li>
                   <a
-                    class="btn-lit mr-2"
+                    class=" mr-2"
                     href="#"
                     id=""
                     role="button"
@@ -98,7 +98,7 @@ const CompanySummary = () => {
                 </li>
                 <li>
                   <a
-                    class="btn-lit mr-2"
+                    class=" mr-2"
                     href="#"
                     id=""
                     role="button"
@@ -111,7 +111,7 @@ const CompanySummary = () => {
                 </li>
                 <li>
                   <a
-                    class="btn-lit mr-2"
+                    class=" mr-2"
                     href="#"
                     id=""
                     role="button"
@@ -132,7 +132,7 @@ const CompanySummary = () => {
             </div>
       </div>
       <div className="navigation ">
-        <ul className="nav nav-tabs" id="myTabjustified" role="tablist">
+        <ul className="nav" id="myTabjustified" role="tablist">
           <li className="nav-item" role="presentation">
             <button
               className="top-tabs active"
@@ -144,7 +144,7 @@ const CompanySummary = () => {
               aria-controls="home"
               aria-selected="true"
             >
-              <i className="fa fa-city pr-2" style={{"color":"#5D44FF"}}></i>Company Summary
+              <i className="fa fa-city pr-2" style={{"color":"#5D44FF"}}></i>Summary
             </button>
           </li>
           <li className="nav-item" role="presentation">

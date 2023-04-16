@@ -68,8 +68,8 @@ const Header = () => {
             <div className="navbar-drop">
               <div className="dropdown-menu1">
                 <button className="dropbtn">
-                  More <img src={MoreArrowImg} />
-                  {/* <i className="fa fa-caret-down"></i> */}
+                  More
+                  <i className="fa fa-caret-down"></i>
                 </button>
                 <div className="dropdown-menu-content">
                   <div className="row">

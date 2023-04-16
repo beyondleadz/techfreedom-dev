@@ -250,7 +250,7 @@ svg {
 table {
   border-collapse: collapse;
 }
-
+table a{color:#007bff;}
 caption {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
@@ -3094,8 +3094,8 @@ fieldset:disabled a.btn {
 
 .btn-dark {
   color: #fff;
-  background-color: #343a40;
-  border-color: #343a40;
+  background-color: #a1b1c2;
+  border-color: #a1b1c2;
 }
 
 .btn-dark:hover {

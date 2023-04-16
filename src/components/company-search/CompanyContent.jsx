@@ -3,8 +3,8 @@ import React, { useState } from "react";
 const CompanyContent = () => {
   return (
     <>
-      <div id="content-wrapper" className="d-flex flex-column">
-        <div id="content">
+      <div id="content-wrapper" className="d-flex flex-column ">
+        <div id="content" className="shadow">
           <nav className="navbar navbar-light bg-white topbar mb-4 static-top">
             <div className="buttons-container m-mt quickselection">
                 <div>

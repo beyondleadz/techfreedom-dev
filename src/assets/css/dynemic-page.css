@@ -6194,9 +6194,10 @@ padding:5px
     padding: 0;
     margin: 10px 0 0;
 }
-.s-company{width: 70px;
-  height: 50px;
-  padding: 10px;}
+.s-company{max-block-size: fit-content;
+  max-width: 60px;
+  height: auto;
+  width: 100%;}
 
  .s-company-content { max-width:50%;}
 
@@ -6309,7 +6310,7 @@ padding:5px
 /* background: url(../images/companies-icon.png) no-repeat 0px 0px;*/
 /* background: url(../images/executive-icon.png) no-repeat 0px 0px; */
 /* background: url(../images/leads-icon.png) no-repeat 0px 0px; */
-
+.la-share-square:before{color:#5c43fd;}
 .la-building:before {  
   color: #5000FF;
 }
