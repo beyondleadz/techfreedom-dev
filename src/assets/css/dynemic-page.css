@@ -6454,3 +6454,55 @@ padding:5px
 .d-sm-inline-block{display: inline-block;}
 }
 
+.selected-area{
+  width: 110px;
+  font-size: 12px;
+  text-align: center; 
+  position: relative;
+  }
+
+  .selected span::after{
+    content: "\f0d7";
+    margin-left:5px;
+    display: inline-block;
+    font-size: 16px;
+  }
+
+  .selected{padding: 10px 5px; font-weight:bold; color: #fff; font-size: 14px; cursor: pointer;}
+  .selected-field{padding:5px;}
+  .selected-advance {
+    float: left;
+    overflow: hidden;
+    width: 100%;
+}
+  .selected-advance .btn-advance {
+    font-size: 12px;
+    border: none;
+    outline: none;
+    color: white;
+    padding: 28px 15px;
+    background-color: #1c294e;
+    font: inherit;
+    margin: 0;
+}
+
+.selected-area ul {
+  display: none;
+  
+  flex-direction: column;
+    position: absolute;
+    width: 100%;
+    background: #fff;
+}
+
+.selected-area ul.show{display: flex;}
+
+.selected-area ul li{
+  padding: 5px 0;
+  cursor: pointer;
+}
+
+.selected-area ul li:hover{
+color: orange;
+
+}
