@@ -23,18 +23,18 @@ About Company</div>
     <tr><td colspan="2"><span className="font-weight-bold">Deutsche Bank</span>,a Frankfurt-based global investment bank, offers financial products and services to corporate and institutional clients.
 </td></tr>
 <tr>
-  <td><i class=" fa  fa-globe mr-2" aria-hidden="true"></i><strong>Website</strong></td>
+  <td className="row-cols-5 td-w-2"><i class=" fa  fa-globe mr-2" aria-hidden="true"></i><strong>Website</strong></td>
   <td><a data-ceid="company_website" title="Amazon website" target="_blank" rel="nofollow noreferrer" href="https://www.amazon.com">
                                         https://www.Deutsche.com</a></td></tr>
-  <tr>  <td><i class=" fa  fa-money"></i><strong>Revenue</strong></td>
-  <td>$280.52 billion</td> </tr> <tr> <td><i class=" fa  fa-usd" aria-hidden="true"></i><strong>Funding</strong></td>
+  <tr>  <td><i class=" fa  fa-money-check mr-2"></i><strong>Revenue</strong></td>
+  <td>$280.52 billion</td> </tr> <tr> <td><i class=" fa fa-university mr-2" aria-hidden="true"></i><strong>Funding</strong></td>
   <td>$48.00 Million</td></tr>
   <tr> <td><i class=" fa  fa-users mr-2"></i><strong>Employees</strong></td>
  <td class="employee-count" >809,221 <span>
-    (<a rel="nofollow noreferrer" title="Search for Amazon Employees" href="/person?employer[]=&quot;amazon.com&quot;" target="_blank">687,052 on RocketReach</a>)
+    (<a rel="nofollow noreferrer" title="Search for Amazon Employees" href="/person?employer[]=&quot;amazon.com&quot;" target="_blank">687,052 on Deutsche Bank</a>)
   </span></td></tr>
                 
-  <tr> <td><i class=" fa  fa-founded"></i><strong>Founded</strong></td>
+  <tr> <td><i class=" fa  fa-map-pin mr-2"></i><strong>Founded</strong></td>
                             <td>1994</td> </tr><tr>
                         
   
@@ -50,8 +50,8 @@ About Company</div>
                             (206) 266-1821
                         </td>
                                             </tr>
- <tr><td><i class=" mr-2 fa  fa-tech"></i><span className="font-weight-bold" Technologies></span></td>
-<td><div ng-init="trackUniqueVisitorsCompanyLanding(['JavaScript', 'HTML', 'PHP'])">
+ <tr><td><i class=" mr-2 fa  fa-laptop"></i><span className="font-weight-bold" >Technologies</span></td>
+<td><div >
  <span> JavaScript, HTML, PHP
   <strong> +1282 more</strong> <strong> (view full list) </strong>
                         
@@ -61,7 +61,7 @@ About Company</div>
   
                 <tr>
                 
-                    </tr><tr> <td><i class=" fa  fa-categories"></i><strong>Category</strong></td>
+                    </tr><tr> <td><i class=" fa fa-th-large mr-2"></i><strong>Category</strong></td>
                             <td><span>Retail,</span><span>Internet,</span>
                                 
                                 <span>Software Development,</span>
@@ -112,22 +112,7 @@ About Company</div>
                                 
                             </td>
                     </tr> 
-       <tr>
-      <td scope="row" className="font-weight-bold">Investor Type</td>
-      <td>Investment Bank</td>
-          </tr>
-          <tr>
-      <td scope="row" className="font-weight-bold">Invesment Stage</td>
-      <td>Debt, Early Stage Venture, Late Stage Venture, Post-Ipo, Private Equity</td>
-          </tr>
-          <tr>
-      <td scope="row" className="font-weight-bold">website</td>
-      <td>www.db.com</td>
-          </tr>
-          <tr>
-      <td scope="row" className="font-weight-bold">CB Rank (Investor)</td>
-      <td>1</td>
-          </tr>
+      
           </tbody></table>
 
 </div>
