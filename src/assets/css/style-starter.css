@@ -273,8 +273,8 @@ button {
 }
 
 button:focus {
-  outline: 1px dotted;
-  outline: 5px auto -webkit-focus-ring-color;
+  /* outline: 1px dotted; */
+  outline: 1px auto #fdc401;
 }
 
 input,
@@ -2384,7 +2384,7 @@ select.form-control:focus::-ms-value {
   padding-left: 0;
 }
 
-
+.form-control-sm placeholder{ color: #dbdada;}
 
 .form-control-lg {
   height: calc(1.5em + 1rem + 2px);
@@ -4072,7 +4072,7 @@ input[type="button"].btn-block {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
-
+.input-group ::placeholder{color:#dbdbdb;}
 .custom-control {
   position: relative;
   display: block;
@@ -11150,8 +11150,8 @@ a:hover,
 button,
 button:hover {
   text-decoration: none;
-  transition: .5s all;
-  -moz-transition: .5s all;
+  /* transition: .5s all;
+  -moz-transition: .5s all; */
 }
 
 iframe {

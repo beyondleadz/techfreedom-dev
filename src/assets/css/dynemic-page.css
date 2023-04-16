@@ -74,7 +74,8 @@ font-size: 14px;}
 
 .pagination a {
   color: #333;
-  padding: 8px 16px;
+  font-size: 12px;
+  padding: 2px 8px;
   text-decoration: none;
   border: 1px solid #ddd;
   border-radius: 4px;
@@ -123,24 +124,7 @@ font-size: 14px;}
   background-color: #f2f2f2;
 }
 
-.pagination {
-  margin-top: 16px;
-  display: flex;
-  justify-content: center;
-}
 
-.pagination a {
-  color: #333;
-  padding: 8px 16px;
-  text-decoration: none;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  transition: background-color 0.3s;
-}
-
-.pagination a:hover {
-  background-color: #ddd;
-}
 input[type="checkbox" i] {
     background-color: initial;
     cursor: default;
@@ -185,11 +169,11 @@ input[type="checkbox" i] {
 @media (max-width: 768px) {
   .table-container {
     width: 100%;
-    padding: 0 16px;
+    padding: 0 10px;
   }
 
   .data-table {
-    font-size: 12px;
+    font-size: 10px;
   }
 
   .data-table th,
@@ -5642,7 +5626,8 @@ a:focus {
     margin-right: 0.25rem;
   }
   .ssidebar .nav-item-sd .nav-link-sd span {
-    font-size: 0.85rem;
+    /* font-size: 0.85rem; */
+    font-size: 0.80rem;
     display: inline;
   }
   .ssidebar .nav-item-sd .nav-link-sd[data-toggle="collapse"]::after {
@@ -6078,7 +6063,7 @@ form.user .btn-user {
 body.ssidebar-toggled footer.sticky-footer {
   width: 100%;
 }
-.wrapper{margin-top: 5.5%;}
+.wrapper{margin-top: 5.5%; background-color: #f8f9fa;}
 #wrapper .searchbox{
   
     margin-bottom: 5px;
@@ -6376,29 +6361,36 @@ padding:5px
 
     .la-filter:before {
       color: #5000FF;
-      font-size: 18px;
-    }
+      font-size: 1.2rem;}
+
     .la-globe:before {
-      color: #FF010B;
+      color: #5000FF;
+      font-size: 1.2rem;
     }
 
     .la-map-marked-alt:before {
-      color: #FF010B;
+      color: #5000FF;
+      font-size: 1.2rem;
     }
     .la-map-marker:before {
-      color: #FF010B;
+      color: #5000FF;
+      font-size: 1.2rem;
     }
     .la-industry:before {
-      color: #FF010B;
+      color: #5000FF;
+      font-size: 1.2rem;
     }
     .la-city:before {
-      color: #FF010B;
+      color: #5000FF;
+      font-size: 1.2rem;
     }
     .la-users:before {
-      color: #FF010B;
+      color: #5000FF;
+      font-size: 1.2rem;
     }
 .la-money-bill:before {
-      color: #FF010B;
+      color: #5000FF;
+      font-size: 1.2rem;
     }
 
 .filter-button{

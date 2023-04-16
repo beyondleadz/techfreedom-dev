@@ -1,7 +1,7 @@
 import React,{useState} from "react";
 
 const CompanySearch=()=>{
-    return <div className="shadow navbar-light">
+    return <div className="navbar-light">
     <h3 className="card-body font-weight-bold">Search Companies</h3>
    <ul className="nav nav-tabs" id="myTabjustified" role="tablist">
                   <li className="nav-item" role="presentation">

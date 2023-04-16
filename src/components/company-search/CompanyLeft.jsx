@@ -42,15 +42,15 @@ const CompanyLeft = () => {
 console.log(menuVisible,'sjdfk')
   return (
     <>
-      <button className="filter-button" onClick={openLeftMenu}>Filter</button>
-      <ul className={`navbar-nav-sd bg-light mt-3 ssidebar ssidebar-light accordion ${menuVisible ? "showLeftMenu" : ""}`} id="accordionsidebar">
+      <button className="filter-button btn-primary" onClick={openLeftMenu}>Filter</button>
+      <ul className={`navbar-nav-sd bg-light mt-2 ssidebar ssidebar-light accordion ${menuVisible ? "showLeftMenu" : ""}`} id="accordionsidebar">
 
 
         <li className="nav-item-sd active">
           <a className="nav-link-sd" href="#">
             <i className="left-company-menu-icons la la-filter"></i>
             <span className="mr-4" >Filter</span>
-            <span className="btn btn-outline-primary font-weight-bold">Advanced</span></a>
+            <span className="btn btn-outline-primary btn-sm">Advanced</span></a>
         </li>
 
 
