@@ -1914,7 +1914,7 @@ pre code {
   font-size:12px;  
   font-weight:600; 
 }
-
+.table td i {color: #fdc401;}
 .table td {
   padding: 0.25rem 0.5rem;
   vertical-align: top;
