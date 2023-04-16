@@ -6488,7 +6488,7 @@ padding:5px
 
 .selected-area ul {
   display: none;
-  
+  z-index: 10;
   flex-direction: column;
     position: absolute;
     width: 100%;
@@ -6505,4 +6505,9 @@ padding:5px
 .selected-area ul li:hover{
 color: orange;
 
+}
+
+.search-advance {
+    display: flex;
+    align-items:center;
 }
