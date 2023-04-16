@@ -8,8 +8,8 @@ const BannerSection=()=>{
             <div className="row align-items-center py-4">
                 <div className="col-md-6 pr-lg-5 ">
                     <h3 className="mb-lg-4 mb-3 title">
-                    <span>Career with </span>Us</h3>
-                 <p className="mr-5">Nemo enim ipsam oluptatem quia reoluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eosqui ratione.</p>
+                    <span>Come </span>Join Us!</h3>
+                 <p className="mr-5">Attracting top talent is crucial for any company, and Beyond Leadz is no exception!</p>
                         
             
             
@@ -24,7 +24,7 @@ const BannerSection=()=>{
                 </div>
                 <ul className="breadcrumbs-custom-path">
                 <li><a href="index.html">Home</a></li>
-                <li className="active"><i className="fas fa-angle-right mx-2"></i>About</li>
+                <li className="active"><i className="fas fa-angle-right mx-2"></i>Career</li>
             </ul>
             </div>
         </div>

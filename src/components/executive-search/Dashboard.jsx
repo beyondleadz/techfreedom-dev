@@ -1,5 +1,5 @@
 import React,{useEffect,useState} from "react";
-import DashboardSearchImage from "../../assets/images/executive-search-dashboard-icon.jpg"
+import DashboardSearchImage from '../../assets/images/executive-search-dashboard-icon.jpg'
 import ExecutiveLeadsImage from "../../assets/images/leads.jpg"
 import ExecutiveSearchImage from '../../assets/images/executive-search-company-name-icon.jpg'
 import ExecutiveSearchImage1 from '../../assets/images/executive-search-company-location-icon.jpg'
@@ -13,6 +13,7 @@ import ExecutiveSearchImage7 from '../../assets/images/executive-search-seniorit
 
 import ExecutiveSearchImage8 from '../../assets/images/executive-search-contact-phone-icon.jpg'
 import ExecutiveSearchImage9 from '../../assets/images/executive-search-dept-icon.jpg'
+
 					
 
 
@@ -29,7 +30,7 @@ const Dashboard = () => {
                                             </div>
               </div>
                 <div className="col-lg-6 section-width align-self">
-				<img src="DashboardSearchImage" style={{"paddingLeft":"3rem"}} alt="" title=""/>
+				<img src={DashboardSearchImage} style={{"paddingLeft":"3rem"}} alt="" title=""/>
                     <h3 className="title-style-video-left pr-xl-5">Dashboard Analytics</h3>
 					 <p className="mt-lg-4 mt-3 pbl-3"><i className="fa fa-check" aria-hidden="true"></i> Get immediate visibility into your team’s prospecting activity.</p>
 					 <p className="mt-lg-4 mt-3 pbl-3"><i className="fa fa-check" aria-hidden="true"></i> Understand better how credits are being used.</p>

@@ -22,7 +22,7 @@ const Policy=()=>{
 <p>Company details, details of the business, Financials, other information about their operations, Products/Services, lines of business etc. </p>			
 
 <h5>Personal Information </h5>
-<p>When  you request a free account,Fill out our full registration form or contact us for support through our site or via our live chat service we will collect information about you such as your name, email id, address and phone number.</p>
+<p>When you request a free account, Fill out our full registration form or contact us for support through our site or via our live chat service we will collect information about you such as your name, email id, address and phone number.</p>
  
 <h5>Executive Information</h5>				
 <p>Background Information regarding company Management, educational and career histories Company key decision makers, name, contact details Email ids, phone number designation etc. If an Individual has added information on companies’ behalf or we collected any information from publicly available sources and you wish for us to no longer use this information you may contact us at contact@beyondleadz.com</p>	

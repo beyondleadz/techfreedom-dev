@@ -2,7 +2,6 @@ import React,{useState} from "react";
 import ProspectSearchImage from "../../assets/images/prospect-search.jpg";
 import leadsImage from "../../assets/images/leads.jpg";
 import DirectDialImage from "../../assets/images/direct-dials-business-emails.jpg";
-
 import FeatureOrgImage from "../../assets/images/features-org-icon.png";
 import FeatureSearchImage from "../../assets/images/features-search-icon.png";
 import FeaturesImageIntelligence from '../../assets/images/features-social-intelligenc-icon.png';
