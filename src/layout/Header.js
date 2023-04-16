@@ -1,14 +1,27 @@
 import React, { useState } from "react";
 import { useRoutes, NavLink } from "react-router-dom";
 import Logo from "../assets/images/logo.jpg";
+import MoreArrowImg from "../assets/images/arrow.png";
 import "../assets/css/dropdown1.css";
 import "../assets/css/line-awesome.css";
 import "../assets/css/line-awesome.min.css";
 const Header = () => {
   const [showNav, setShowNav] = useState();
+  const [dropDownToggle, setDropdownToggle] = useState(false);
+  const [selectedValue,setSelectedValue] = useState('Advanced')
   const toggleNav = (ele) => {
     setShowNav(!showNav);
   };
+
+  const toggleDropdown = () => {
+    setDropdownToggle(!dropDownToggle)
+  }
+
+  const setValue = (val) => {
+    setSelectedValue(val)
+    setDropdownToggle(!dropDownToggle)
+  }
+
   return (
     <header id="site-header" className="fixed-top">
       <div className="container">
@@ -38,32 +51,32 @@ const Header = () => {
             className={(showNav ? "show" : "") + " collapse navbar-collapse"}
             id="navbarTogglerDemo02"
           >
-            <div className=" navbar">
-              <div className="search">
-                <div className="search-box position-relative">
-                  <input
-                    type="search"
-                    placeholder="Search"
-                    name="search"
-                    required="required"
-                    autofocus=""
-                    className="search-popup"
-                  />
-                  <button type="submit" className="btn search-btn">
-                    <i className="fa fa-search" aria-hidden="true"></i>
-                  </button>
 
-                  <div className="section_room">
-                    <select id="country" onChange="change_country(this.value)"
-                      className=" required" >
-                      <option className="frm-field" value="null">Advanced</option>
-                      <option className="frm-field" value="AX">Company</option>
-                      <option className="frm-field" value="AX">Executive</option>
-                    </select>
-                  </div>
-                </div>
+              <div className="search-box position-relative">
+                <input
+                  type="search"
+                  placeholder="Search"
+                  name="search"
+                  required="required"
+                  autofocus=""
+                  className="search-popup"
+                />
+                <button type="submit" className="btn search-btn">
+                  <i className="fa fa-search" aria-hidden="true"></i>
+                </button>
               </div>
-            </div>
+
+              <div className="selected-area">
+                <div className="selected" onClick={toggleDropdown}>{selectedValue}
+                <span className="fa"></span>
+                </div>
+                <ul className={dropDownToggle ? 'show' : ""}>
+                  <li className="selected-field" onClick={() => setValue('Advanced')}>Advanced</li>
+                  <li className="selected-field" onClick={() => setValue('Company')}>Company</li>
+                  <li className="selected-field" onClick={() => setValue('Executive')}>Executive</li>
+                </ul>
+              </div>
+
             <div className="navbar-drop">
               <div className="dropdown-menu1">
                 <button className="dropbtn">
@@ -79,7 +92,7 @@ const Header = () => {
                       <a href="#">
                         <h3> Leads </h3>
                         <span className="menu-sub">
-                        Profile your ideal customers and build your leads
+                          Profile your ideal customers and build your leads
                         </span>
                       </a>
 
@@ -88,7 +101,7 @@ const Header = () => {
                       <a href="#">
                         <h3> List Building </h3>
                         <span className="menu-sub">
-                        Create a list of potential customers{" "}
+                          Create a list of potential customers{" "}
                         </span>
                       </a>
 
@@ -96,12 +109,8 @@ const Header = () => {
                       <i className="icondrop la la-cloud-upload-alt"></i>
                       <a href="#">
                         <h3> Data Enrichment </h3>
-                        <span className="menu-sub">
-                        Match and append data{" "}
-                        </span>
+                        <span className="menu-sub">Match and append data </span>
                       </a>
-
-                      
                     </div>
                     <div className="column1">
                       {/* <i className="icondrop extension"></i> */}
@@ -109,7 +118,7 @@ const Header = () => {
                       <a href="#">
                         <h3> Extension </h3>
                         <span className="menu-sub">
-                        Build data through Linkedin and Web real time
+                          Build data through Linkedin and Web real time
                         </span>
                       </a>
 
@@ -118,7 +127,7 @@ const Header = () => {
                       <a href="#">
                         <h3> Intigrations </h3>
                         <span className="menu-sub">
-                        Integrate with your existing crm or app{" "}
+                          Integrate with your existing crm or app{" "}
                         </span>
                       </a>
                     </div>
@@ -131,7 +140,7 @@ const Header = () => {
                       <a href="#">
                         <h3> Sales </h3>
                         <span className="menu-sub">
-                        Find more leads and build your pipeline{" "}
+                          Find more leads and build your pipeline{" "}
                         </span>
                       </a>
 
@@ -140,7 +149,7 @@ const Header = () => {
                       <a href="#">
                         <h3> Marketing </h3>
                         <span className="menu-sub">
-                        Profile your targeted audience{" "}
+                          Profile your targeted audience{" "}
                         </span>
                       </a>
 
@@ -149,7 +158,7 @@ const Header = () => {
                       <a href="#">
                         <h3> HR & Recruiting </h3>
                         <span className="menu-sub">
-                        Reach out to top hiring talent and companies{" "}
+                          Reach out to top hiring talent and companies{" "}
                         </span>
                       </a>
                     </div>
@@ -161,7 +170,7 @@ const Header = () => {
                       <a href="#">
                         <h3> Hospitality & Travel </h3>
                         <span className="menu-sub">
-                        Streamline your Marketing efforts{" "}
+                          Streamline your Marketing efforts{" "}
                         </span>
                       </a>
 
@@ -170,7 +179,7 @@ const Header = () => {
                       <a href="#">
                         <h3> Technology </h3>
                         <span className="menu-sub">
-                        Automate and Optimize lead generation{" "}
+                          Automate and Optimize lead generation{" "}
                         </span>
                       </a>
 
@@ -179,13 +188,10 @@ const Header = () => {
                       <a href="#">
                         <h3> Finance </h3>
                         <span className="menu-sub">
-                        Gain insights into potential clients{" "}
+                          Gain insights into potential clients{" "}
                         </span>
                       </a>
-                      <span className="menu-sub">
-                      …more industries{" "}
-                        </span>
-                       
+                      <span className="menu-sub">…more industries </span>
                     </div>
                   </div>
                 </div>

@@ -3,8 +3,8 @@ import React, { useState } from "react";
 const CompanyContent = () => {
   return (
     <>
-      <div id="content-wrapper" className="d-flex flex-column">
-        <div id="content">
+      <div id="content-wrapper" className="d-flex flex-column ">
+        <div id="content" className="shadow">
           <nav className="navbar navbar-light bg-white topbar mb-4 static-top">
             <div className="buttons-container m-mt quickselection">
                 <div>
@@ -24,7 +24,7 @@ const CompanyContent = () => {
               <ul className="flex  m-mt">
                 <li>
                   <a
-                    className="btn-lit mr-2"
+                    class=" mr-2"
                     href="#"
                     id=""
                     role="button"
@@ -37,7 +37,7 @@ const CompanyContent = () => {
                 </li>
                 <li>
                   <a
-                    className="btn-lit mr-2"
+                    class=" mr-2"
                     href="#"
                     id=""
                     role="button"
@@ -50,7 +50,7 @@ const CompanyContent = () => {
                 </li>
                 <li>
                   <a
-                    className="btn-lit mr-2"
+                    className=" mr-2"
                     href="#"
                     id=""
                     role="button"
@@ -63,7 +63,7 @@ const CompanyContent = () => {
                 </li>
                 <li>
                   <a
-                    className="btn-lit mr-2"
+                    className=" mr-2"
                     href="#"
                     id=""
                     role="button"

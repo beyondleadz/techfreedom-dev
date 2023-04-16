@@ -10,11 +10,11 @@ a:not([href]):not([class]):hover {
 
 .top-tabs{ box-shadow: 2px 0px 2px 0px rgba(0, 0, 0, 0.5);
   display: block;
-    padding: 0.5rem 1rem;
+    padding: 0.2rem 0.5rem;
 border: 1px solid transparent;
 border-top-left-radius: 0.25rem;
 border-top-right-radius: 0.25rem;
-margin: 2px 0 0 5px; font-weight: 500;
+margin: 2px 0 0 6px; font-weight: 500;
 font-size: 14px;}
 
 .table-container {
@@ -34,7 +34,7 @@ font-size: 14px;}
   vertical-align: top;
   border-top: 1px solid #dee2e6;
   font-size:12px;
-  font-weight:600; 
+  font-weight:normal; 
   line-height:10px;  
 }
 .search-input {
@@ -74,7 +74,8 @@ font-size: 14px;}
 
 .pagination a {
   color: #333;
-  padding: 8px 16px;
+  font-size: 12px;
+  padding: 2px 8px;
   text-decoration: none;
   border: 1px solid #ddd;
   border-radius: 4px;
@@ -123,24 +124,7 @@ font-size: 14px;}
   background-color: #f2f2f2;
 }
 
-.pagination {
-  margin-top: 16px;
-  display: flex;
-  justify-content: center;
-}
 
-.pagination a {
-  color: #333;
-  padding: 8px 16px;
-  text-decoration: none;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  transition: background-color 0.3s;
-}
-
-.pagination a:hover {
-  background-color: #ddd;
-}
 input[type="checkbox" i] {
     background-color: initial;
     cursor: default;
@@ -172,16 +156,24 @@ input[type="checkbox" i] {
   justify-content: flex-end;
   flex: 1;
   white-space: nowrap;
-  margin: 0 20px;
+  margin: 0 20px; line-height: 12px;
+}
+
+.buttons-container1 {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 1;
+  white-space: nowrap;
 }
 @media (max-width: 768px) {
   .table-container {
     width: 100%;
-    padding: 0 16px;
+    padding: 0 10px;
   }
 
   .data-table {
-    font-size: 12px;
+    font-size: 10px;
   }
 
   .data-table th,
@@ -5634,7 +5626,8 @@ a:focus {
     margin-right: 0.25rem;
   }
   .ssidebar .nav-item-sd .nav-link-sd span {
-    font-size: 0.85rem;
+    /* font-size: 0.85rem; */
+    font-size: 0.80rem;
     display: inline;
   }
   .ssidebar .nav-item-sd .nav-link-sd[data-toggle="collapse"]::after {
@@ -6070,7 +6063,7 @@ form.user .btn-user {
 body.ssidebar-toggled footer.sticky-footer {
   width: 100%;
 }
-.wrapper{margin-top: 5.5%;}
+.wrapper{margin-top: 5.5%; background-color: #f8f9fa;}
 #wrapper .searchbox{
   
     margin-bottom: 5px;
@@ -6150,7 +6143,7 @@ padding:5px
 }
 .navigation{
   position: relative;
-  top: -2.7rem;
+  top: -2rem;
   margin-left: 193px;
 }
 
@@ -6186,9 +6179,10 @@ padding:5px
     padding: 0;
     margin: 10px 0 0;
 }
-.s-company{width: 70px;
-  height: 50px;
-  padding: 10px;}
+.s-company{max-block-size: fit-content;
+  max-width: 60px;
+  height: auto;
+  width: 100%;}
 
  .s-company-content { max-width:50%;}
 
@@ -6207,7 +6201,7 @@ padding:5px
 .btn-lit {
   color: #212529;
    border:1px solid #eee;
-   border-radius: 0.3rem;padding: 3px 2px;
+   border-radius: 0.3rem;padding: 5px 2px;
 }
 
 .btn-lit:hover {
@@ -6221,6 +6215,7 @@ padding:5px
   padding-top: 20px; 
   position: relative;
   transition: all 0.5s;
+  font-size: 10px;
   -webkit-transition: all 0.5s;
   -moz-transition: all 0.5s;
   }
@@ -6228,7 +6223,7 @@ padding:5px
   float: left; text-align: center;
   list-style-type: none;
   position: relative;
-  padding: 20px 5px 0 5px; 
+  padding: 20px 2px 0 2px; 
   transition: all 0.5s;
   -webkit-transition: all 0.5s;
   -moz-transition: all 0.5s;
@@ -6294,14 +6289,14 @@ padding:5px
   }
 
 
-.tab-img{display: inline;
-padding: 0.3rem 1rem;
-font-size: 25px;
-background-size: 75%;}
+.tab-img{    display: inline;
+  padding: 0.2rem 0.5rem;
+  font-size: 22px;
+  background-size: 75%;}
 /* background: url(../images/companies-icon.png) no-repeat 0px 0px;*/
 /* background: url(../images/executive-icon.png) no-repeat 0px 0px; */
 /* background: url(../images/leads-icon.png) no-repeat 0px 0px; */
-
+.la-share-square:before{color:#5c43fd;}
 .la-building:before {  
   color: #5000FF;
 }
@@ -6327,6 +6322,13 @@ background-size: 75%;}
 
 .la-file-pdf:before {
       color: #F3060F;
+    }
+ 
+.la:hover::before {
+      color: #fdc401;
+    }
+    .las:hover::before {
+      color: #fdc401;
     }
 .la-file-excel:before {
       color: #019F14;
@@ -6359,29 +6361,36 @@ background-size: 75%;}
 
     .la-filter:before {
       color: #5000FF;
-      font-size: 18px;
-    }
+      font-size: 1.2rem;}
+
     .la-globe:before {
-      color: #FF010B;
+      color: #5000FF;
+      font-size: 1.2rem;
     }
 
     .la-map-marked-alt:before {
-      color: #FF010B;
+      color: #5000FF;
+      font-size: 1.2rem;
     }
     .la-map-marker:before {
-      color: #FF010B;
+      color: #5000FF;
+      font-size: 1.2rem;
     }
     .la-industry:before {
-      color: #FF010B;
+      color: #5000FF;
+      font-size: 1.2rem;
     }
     .la-city:before {
-      color: #FF010B;
+      color: #5000FF;
+      font-size: 1.2rem;
     }
     .la-users:before {
-      color: #FF010B;
+      color: #5000FF;
+      font-size: 1.2rem;
     }
 .la-money-bill:before {
-      color: #FF010B;
+      color: #5000FF;
+      font-size: 1.2rem;
     }
 
 .filter-button{
@@ -6445,3 +6454,55 @@ background-size: 75%;}
 .d-sm-inline-block{display: inline-block;}
 }
 
+.selected-area{
+  width: 110px;
+  font-size: 12px;
+  text-align: center; 
+  position: relative;
+  }
+
+  .selected span::after{
+    content: "\f0d7";
+    margin-left:5px;
+    display: inline-block;
+    font-size: 16px;
+  }
+
+  .selected{padding: 10px 5px; font-weight:bold; color: #fff; font-size: 14px; cursor: pointer;}
+  .selected-field{padding:5px;}
+  .selected-advance {
+    float: left;
+    overflow: hidden;
+    width: 100%;
+}
+  .selected-advance .btn-advance {
+    font-size: 12px;
+    border: none;
+    outline: none;
+    color: white;
+    padding: 28px 15px;
+    background-color: #1c294e;
+    font: inherit;
+    margin: 0;
+}
+
+.selected-area ul {
+  display: none;
+  
+  flex-direction: column;
+    position: absolute;
+    width: 100%;
+    background: #fff;
+}
+
+.selected-area ul.show{display: flex;}
+
+.selected-area ul li{
+  padding: 5px 0;
+  cursor: pointer;
+}
+
+.selected-area ul li:hover{
+color: orange;
+
+}
