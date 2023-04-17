@@ -1,0 +1,1 @@
+export const INDUSTRY_LIST = "INDUSTRY_LIST";
