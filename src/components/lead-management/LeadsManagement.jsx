@@ -18,9 +18,9 @@ const LeadsManagement=()=>{
   	  <li><strong>2.</strong> Website </li>
   	  <li><strong>3.</strong> Social Channels</li>
   	  <li><strong>4.</strong> Web Forms</li>
-	  <li><strong>2.</strong> Chats </li>
-  	  <li><strong>2.</strong> Landing Pages </li>
-  	  <li><strong>2.</strong> Online Channels </li>
+	  <li><strong>5.</strong> Chats </li>
+  	  <li><strong>6.</strong> Landing Pages </li>
+  	  <li><strong>7.</strong> Online Channels </li>
 	  </ol>
 <p></p>
 <h5>Online Channels </h5>
