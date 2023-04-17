@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import CLogo from "../../assets/images/d-bank1.png";
 
 const CompanyContent = () => {
   return (
@@ -82,7 +83,7 @@ const CompanyContent = () => {
             <div className="row">
               <div className="col-xl-12 col-lg-10">
                 <div className="card shadow mb-4">
-                  <div className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <div className="card-header py-3 f-rev d-flex align-items-center justify-content-between">
                     <h6 className="m-0 font-weight-bold text-primary mob-t">
                       Showing 1-20 of 100 results
                     </h6>
@@ -104,13 +105,13 @@ const CompanyContent = () => {
                           </div>
                         </div>
                       </form>
-                      <button className="d-none d-sm-inline-block btn btn-outline-primary">
+                      <button className="d-none d-sm-inline-block ml-2 btn btn-outline-primary">
                         <i className="fas fa-bolt pr-1"></i> CONNECT TO CRM{" "}
                       </button>
                     </div>
                   </div>
                   <div className="card-body">
-                    <div className="table-container">
+                    <div className="table-container text-nowrap">
                       <div className="table-wrapper">
                         <table className="data-table">
                           <thead>
@@ -139,9 +140,9 @@ const CompanyContent = () => {
                                 <input type="checkbox" />
                               </td>
                               <td>1</td>
-                              <td>John Doe</td>
-                              <td>25</td>
-                              <td>Male</td>
+                              <td> <span className="companyLogo"><img src={CLogo} /></span>Deutsche Bank </td>
+                              <td>Banking, Finance, Financial </td>
+                              <td>Frankfurt, Hessen, Germany</td>
                               <td>johndoe@email.com</td>
                               <td>123-456-7890</td>
                               <td>123 Main St</td>
@@ -152,9 +153,9 @@ const CompanyContent = () => {
                                 <input type="checkbox" />
                               </td>
                               <td>2</td>
-                              <td>John Doe</td>
-                              <td>25</td>
-                              <td>Male</td>
+                              <td> <span className="companyLogo"><img src={CLogo} /></span>Deutsche Bank </td>
+                              <td>Banking, Finance, Financial </td>
+                              <td>Frankfurt, Hessen, Germany</td>
                               <td>johndoe@email.com</td>
                               <td>123-456-7890</td>
                               <td>123 Main St</td>
@@ -165,9 +166,9 @@ const CompanyContent = () => {
                                 <input type="checkbox" />
                               </td>
                               <td>3</td>
-                              <td>John Doe</td>
-                              <td>25</td>
-                              <td>Male</td>
+                              <td> <span className="companyLogo"><img src={CLogo} /></span>Deutsche Bank </td>
+                              <td>Banking, Finance, Financial </td>
+                              <td>Frankfurt, Hessen, Germany</td>
                               <td>johndoe@email.com</td>
                               <td>123-456-7890</td>
                               <td>123 Main St</td>
@@ -178,9 +179,9 @@ const CompanyContent = () => {
                                 <input type="checkbox" />
                               </td>
                               <td>4</td>
-                              <td>John Doe</td>
-                              <td>25</td>
-                              <td>Male</td>
+                              <td> <span className="companyLogo"><img src={CLogo} /></span>Deutsche Bank </td>
+                              <td>Banking, Finance, Financial </td>
+                              <td>Frankfurt, Hessen, Germany</td>
                               <td>johndoe@email.com</td>
                               <td>123-456-7890</td>
                               <td>123 Main St</td>
@@ -191,9 +192,9 @@ const CompanyContent = () => {
                                 <input type="checkbox" />
                               </td>
                               <td>5</td>
-                              <td>John Doe</td>
-                              <td>25</td>
-                              <td>Male</td>
+                              <td> <span className="companyLogo"><img src={CLogo} /></span>Deutsche Bank </td>
+                              <td>Banking, Finance, Financial </td>
+                              <td>Frankfurt, Hessen, Germany</td>
                               <td>johndoe@email.com</td>
                               <td>123-456-7890</td>
                               <td>123 Main St</td>
@@ -204,10 +205,10 @@ const CompanyContent = () => {
                               <td>
                                 <input type="checkbox" />
                               </td>
-                              <td>18</td>
-                              <td>John Doe</td>
-                              <td>25</td>
-                              <td>Male</td>
+                              <td>6</td>
+                              <td> <span className="companyLogo"><img src={CLogo} /></span>Deutsche Bank </td>
+                              <td>Banking, Finance, Financial </td>
+                              <td>Frankfurt, Hessen, Germany</td>
                               <td>johndoe@email.com</td>
                               <td>123-456-7890</td>
                               <td>123 Main St</td>
@@ -217,10 +218,10 @@ const CompanyContent = () => {
                               <td>
                                 <input type="checkbox" />
                               </td>
-                              <td>19</td>
-                              <td>John Doe</td>
-                              <td>25</td>
-                              <td>Male</td>
+                              <td>7</td>
+                              <td> <span className="companyLogo"><img src={CLogo} /></span>Deutsche Bank </td>
+                              <td>Banking, Finance, Financial </td>
+                              <td>Frankfurt, Hessen, Germany</td>
                               <td>johndoe@email.com</td>
                               <td>123-456-7890</td>
                               <td>123 Main St</td>

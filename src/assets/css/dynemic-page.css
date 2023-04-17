@@ -111,9 +111,11 @@ font-size: 14px;}
 
 .data-table th,
 .data-table td {
-  padding: 8px;
+  padding: 5px 8px;
   text-align: left;
   border-bottom: 1px solid #ddd;
+  vertical-align: -webkit-baseline-middle;
+  
 }
 
 .data-table th {
@@ -178,7 +180,7 @@ input[type="checkbox" i] {
 
   .data-table th,
   .data-table td {
-    padding: 1px;
+    padding: 5px;
   }
 }
 .lead {
@@ -486,7 +488,7 @@ select.form-control:focus::-ms-value {
 .form-control-sm {
   height: calc(1.5em + 0.5rem + 2px);
   padding: 0.25rem 0.5rem;
-  font-size: 0.875rem;
+  font-size: 0.775rem;
   line-height: 1.5;
   border-radius: 0.2rem;
   border: 1px solid #d0d0ca;
@@ -953,7 +955,9 @@ input[type="button"].btn-block {
     right: 0;
     left: auto;
   }
+  
 }
+
 
 @media (min-width: 768px) {
   .dropdown-menu-md-left {
@@ -964,6 +968,7 @@ input[type="button"].btn-block {
     right: 0;
     left: auto;
   }
+  
 }
 
 @media (min-width: 992px) {
@@ -2409,6 +2414,12 @@ input[type="button"].btn-block {
 .card-header-pills {
   margin-right: -0.625rem;
   margin-left: -0.625rem;
+}
+@media (max-width: 1200px) {
+.card .f-rev{flex-direction: unset !important;}}
+@media (max-width: 760px) {
+.card .f-rev{flex-direction:column-reverse !important;}
+
 }
 
 .card-img-overlay {
@@ -4605,6 +4616,7 @@ button.bg-dark:focus {
   .text-sm-center {
     text-align: center !important;
   }
+  
 }
 
 @media (min-width: 768px) {
@@ -6519,3 +6531,11 @@ color: orange;
   margin: 3px 0;
   color:#777;
 }
+.companyLogo{
+  width: 25px; 
+  height: auto; 
+  display: inline-block; 
+  line-height: 25px; 
+  text-rendering: auto; 
+  vertical-align: -webkit-baseline-middle;
+  margin-right: 7px;}
