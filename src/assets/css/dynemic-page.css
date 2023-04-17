@@ -111,9 +111,11 @@ font-size: 14px;}
 
 .data-table th,
 .data-table td {
-  padding: 8px;
+  padding: 5px 8px;
   text-align: left;
   border-bottom: 1px solid #ddd;
+  vertical-align: -webkit-baseline-middle;
+  
 }
 
 .data-table th {
@@ -6521,3 +6523,11 @@ color: orange;
     display: flex;
     align-items:center;
 }
+.companyLogo{
+  width: 25px; 
+  height: auto; 
+  display: inline-block; 
+  line-height: 25px; 
+  text-rendering: auto; 
+  vertical-align: -webkit-baseline-middle;
+  margin-right: 7px;}
