@@ -1,7 +1,7 @@
 import React,{useState} from "react";
 import { useRoutes,NavLink } from "react-router-dom";
 
-import MNC11Image from '../../assets/images/mnc11.png';
+import PanasonicImage from '../../assets/images/client-logo-panasonic.jpg';
 import MNC22Image from  '../../assets/images/mnc22.png';
 import MNC33Image from '../../assets/images/mnc33.png';
 import MNC44Image from  '../../assets/images/mnc44.png';
@@ -20,26 +20,26 @@ const Services=()=>{
 				<div className="row agile-choose-grids">
 					<div className="col-sm-3 agile-choose-grid" position-relative>
 						<div className="choose-icon">
-						<a href="#" className="client-logo"><img src={MNC11Image} className="img-responsive" alt="partner" /></a>
+						<a href="#" className="client-logo"><img src={PanasonicImage} className="img-responsive" alt="client" /></a>
 						</div>
 						
 					</div>
 					<div className="col-sm-3 agile-choose-grid">
 						<div className="choose-icon">
-						<a href="#" className="client-logo"><img src={MNC22Image} className="img-responsive" alt="partner" /></a>
+						<a href="#" className="client-logo"><img src={MNC22Image} className="img-responsive" alt="client" /></a>
 						</div>
 						
 					</div>
 					<div className="col-sm-3 agile-choose-grid">
 						<div className="choose-icon">
-						<a href="#" className="client-logo"><img src={MNC33Image} className="img-responsive" alt="partner" /></a>
+						<a href="#" className="client-logo"><img src={MNC33Image} className="img-responsive" alt="client" /></a>
 						</div>
 						
 					</div>
 					
 					<div className="col-sm-3 agile-choose-grid">
 						<div className="choose-icon">
-						<a href="#" className="client-logo"><img src={MNC44Image} className="img-responsive" alt="partner" /></a>
+						<a href="#" className="client-logo"><img src={MNC44Image} className="img-responsive" alt="client" /></a>
 						</div>
 						
 					</div>
@@ -47,28 +47,28 @@ const Services=()=>{
 					
 					<div className="col-sm-3 agile-choose-grid" position-relative>
 						<div className="choose-icon">
-						<a href="#" className="client-logo"><img src={MNC55Image} className="img-responsive" alt="partner" /></a>
+						<a href="#" className="client-logo"><img src={MNC55Image} className="img-responsive" alt="client" /></a>
 						</div>
 						
 					</div>
 					
 					<div className="col-sm-3 agile-choose-grid">
 						<div className="choose-icon">
-						<a href="#" className="client-logo"><img src={MNC66Image} className="img-responsive" alt="partner" /></a>
+						<a href="#" className="client-logo"><img src={MNC66Image} className="img-responsive" alt="client" /></a>
 						</div>
 						
 					</div>
 					
 					<div className="col-sm-3 agile-choose-grid">
 						<div className="choose-icon">
-						<a href="#" className="client-logo"><img src={MNC88Image} className="img-responsive" alt="partner" /></a>
+						<a href="#" className="client-logo"><img src={MNC88Image} className="img-responsive" alt="client" /></a>
 						</div>
 						
 					</div>
 					
 					<div className="col-sm-3 agile-choose-grid">
 						<div className="choose-icon">
-						<a href="#" className="client-logo"><img src={MNC77Image} className="img-responsive" alt="partner" /></a>
+						<a href="#" className="client-logo"><img src={MNC77Image} className="img-responsive" alt="client" /></a>
 						</div>
 						
 					</div>
