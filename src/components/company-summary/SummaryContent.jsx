@@ -343,7 +343,7 @@ About Company</div>
 <div className="card-body">
     <div className="row">
     <div class="orgchart">
-<nav class="nav">
+<nav class="org">
 			<ul>
 				<li>
 					<a href="#"><span><img src={OrgChartImg} /><br />General Manager</span></a>

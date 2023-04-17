@@ -6465,18 +6465,18 @@ color: orange;
   
   
   
-  .orgchart .nav {
+  .orgchart .org {
     margin: 20px auto;
     width: 455px;
     min-height: auto;
   }
   
-  .orgchart .nav ul {
+  .orgchart .org ul {
     position: relative;
     padding-top: 20px; 
   }
   
-  .orgchart .nav li {
+  .orgchart .org li {
     position: relative;
     padding: 20px 3px 0 3px; 
     float: left; 
@@ -6485,7 +6485,7 @@ color: orange;
     list-style-type: none; 
   }
   
-  .orgchart .nav li::before, .nav li::after{
+  .orgchart .org li::before, .org li::after{
     content: '';
     position: absolute; 
     top: 0; 
@@ -6495,32 +6495,32 @@ color: orange;
     border-top: 1px solid #000;
   }
   
-  .orgchart .nav li::after{
+  .orgchart .org li::after{
     left: 50%;
     right: auto; 
     
     border-left: 1px solid #000;
   }
   
-  .orgchart .nav li:only-child::after, .nav li:only-child::before {
+  .orgchart .org li:only-child::after, .org li:only-child::before {
     content: '';
     display: none;
   }
   
-  .orgchart .nav li:only-child{ padding-top: 0;}
-  .orgchart .nav li:first-child::before, .nav li:last-child::after{
+  .orgchart .org li:only-child{ padding-top: 0;}
+  .orgchart .org li:first-child::before, .org li:last-child::after{
     border: 0 none;
   }
   
-  .orgchart .nav li:last-child::before{
+  .orgchart .org li:last-child::before{
     border-right: 1px solid #000;
     border-radius: 0 5px 0 0;
   }
   
-  .orgchart .nav li:first-child::after{
+  .orgchart .org li:first-child::after{
       border-radius: 5px 0 0 0;
   }
-  .orgchart .nav ul ul::before{
+  .orgchart .org ul ul::before{
     content: '';
     position: absolute; top: 0; left: 50%;
     border-left: 1px solid #000;
@@ -6528,7 +6528,7 @@ color: orange;
     height: 20px;
   }
   
-  .orgchart .nav li a{
+  .orgchart .org li a{
     display: inline-block;
     padding: 5px 10px;
     
@@ -6542,16 +6542,16 @@ color: orange;
     font-size: 11px;
   }
   
-  .orgchart .nav li a:hover, .nav li a:hover+ul li a {
+  .orgchart .org li a:hover, .org li a:hover+ul li a {
     color: #000;
     background: #fdc401;   
     border: 1px solid #94a0b4;
   }
   
-  .orgchart .nav li a:hover+ul li::after, 
-  .orgchart .nav li a:hover+ul li::before, 
-  .orgchart .nav li a:hover+ul::before, 
-  .orgchart .nav li a:hover+ul ul::before{
+  .orgchart .org li a:hover+ul li::after, 
+  .orgchart .org li a:hover+ul li::before, 
+  .orgchart .org li a:hover+ul::before, 
+  .orgchart .org li a:hover+ul ul::before{
     content: '';
     border-color: #94a0b4;
   }
