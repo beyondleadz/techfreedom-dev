@@ -82,7 +82,7 @@ const CompanyContent = () => {
             <div className="row">
               <div className="col-xl-12 col-lg-10">
                 <div className="card shadow mb-4">
-                  <div className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <div className="card-header py-3 f-rev d-flex align-items-center justify-content-between">
                     <h6 className="m-0 font-weight-bold text-primary mob-t">
                       Showing 1-20 of 100 results
                     </h6>
@@ -104,13 +104,13 @@ const CompanyContent = () => {
                           </div>
                         </div>
                       </form>
-                      <button className="d-none d-sm-inline-block btn btn-outline-primary">
+                      <button className="d-none d-sm-inline-block ml-2 btn btn-outline-primary">
                         <i className="fas fa-bolt pr-1"></i> CONNECT TO CRM{" "}
                       </button>
                     </div>
                   </div>
                   <div className="card-body">
-                    <div className="table-container">
+                    <div className="table-container text-nowrap">
                       <div className="table-wrapper">
                         <table className="data-table">
                           <thead>
