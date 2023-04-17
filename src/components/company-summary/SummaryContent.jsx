@@ -342,48 +342,120 @@ Contacts</div>
 About Company</div>
 <div className="card-body">
     <div className="row">
-    
-    <div className="org-chart">
-<ul>
-<li><a href="#"><img src={OrgChartImg}/><br />General Manager</a>
-
-<ul>
-<li><a href="#">Manager 1</a>
-<ul>
-<li><a href="#">Executive 1-1</a></li>
-</ul>
-</li>
-</ul>
-
-
-<li><a href="#">Manager 2</a>
-
-<ul>
-<li><a href="#">Executive 2-1</a></li>
-<li><a href="#">Executive 2-2</a>
-<ul>
-<li><a href="#">Employee</a></li>
-<li><a href="#">Employee</a></li>
-<li><a href="#">Employee</a></li>
-</ul>
-</li>
-
-<li><a href="#">Executive 2-3</a></li>
-
-</ul>
-</li>
-
-
-<li><a href="#">Manager 3</a>
-<ul>
-<li><a href="#">Executive 3-1</a></li>
-</ul>
-</li>
-
-
-</li>
-</ul>
-</div>
+    <figure>
+  
+  <ul class="tree">
+  <li><img src={OrgChartImg} /><br />General Manager
+      <ul>
+        <li><code>head</code>
+          <ul>
+            <li><code>title</code></li>
+          </ul>
+        </li>
+        <li><code>body</code>
+          <ul>
+            <li><code>header</code>
+              <ul>
+                <li><code>h1</code></li>
+                <li><code>p</code></li>
+              </ul>
+            </li>
+            <li><code>nav</code>
+              <ul>
+                <li><code>a</code></li>
+                <li><code>a</code></li>
+                <li><code>a</code></li>
+                <li><code>a</code></li>
+              </ul>
+            </li>
+            <li><code>main</code>
+              <ul>
+                <li><code>h1</code></li>
+                <li><code>article</code>
+                  <ul>
+                    <li><code>h2</code></li>
+                    <li><code>p</code></li>
+                    <li><code>p</code></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><code>aside</code>
+              <ul>
+                <li><code>h2</code></li>
+                <li><code>p</code></li>
+                <li><code>p</code>
+                  <ul>
+                    <li><code>a</code></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><code>footer</code>
+              <ul>
+                <li><code>nav</code>
+                  <ul>
+                    <li><code>a</code></li>
+                    <li><code>a</code></li>
+                    <li><code>a</code></li>
+                    <li><code>a</code></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</figure>
+<figure> 
+  <ul class="tree">
+    <li><span><img src={OrgChartImg} /><br />General Manager</span>
+      <ul>
+        <li><span>About us</span>
+          <ul>
+            <li><span>Our history</span>
+              <ul>
+                <li><span>Founder</span></li>
+              </ul>
+            </li>
+            <li><span>Our board</span>
+              <ul>
+                <li><span>Brad Whiteman</span></li>
+                <li><span>Cynthia Tolken</span></li>
+                <li><span>Bobby Founderson</span></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><span>Our products</span>
+          <ul>
+            <li><span>The Widget 2000™</span>
+              <ul>
+                <li><span>Order form</span></li>
+              </ul>
+            </li>
+            <li><span>The McGuffin V2</span>
+              <ul>
+                <li><span>Order form</span></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><span>Contact us</span>
+          <ul>
+            <li><span>Social media</span>
+              <ul>
+                <li><span>Facebook</span></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</figure>
 
 </div>
 </div>
