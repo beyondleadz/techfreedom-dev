@@ -1,14 +1,35 @@
 import { element } from "prop-types";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getIndustryList } from "../../actionCreator/companyListingActionCreater";
+import {
+  getIndustryList,
+  getLocation,
+  getCompanyTypeList,
+  getEmployeeCountList,
+  getRevenuerangeList
+} from "../../actionCreator/companyListingActionCreater";
 const CompanyLeft = () => {
   //usestate,useeffect,function
   const dispatch = useDispatch();
   const [industryList, setIndustryList] = useState();
+  const [companyTypeList,setCompanyTypeList]=useState();
+  const [employeeCountList,setEmployeeCountList]=useState();
+  const [revenuerangeList,setRevenuerangeList]=useState();
 
   const industryOrgList = useSelector(
     (state) => state.companyListingReducer.industryList
+  );
+  const companyTypeOrgList = useSelector(
+    (state) => state.companyListingReducer.companyTypeList
+  );
+  const employeeCountOrgList = useSelector(
+    (state) => state.companyListingReducer.employeeCountList
+  );
+  const revenueRangeOrgList = useSelector(
+    (state) => state.companyListingReducer.revenueRangeList
+  );
+  const location = useSelector(
+    (state) => state.companyListingReducer.geoLocation
   );
 
   //console.log("industryList",industryList)
@@ -26,12 +47,32 @@ const CompanyLeft = () => {
 
   const [menuVisible, setMenuVisible] = useState(true);
 
-  useEffect(() => {
+  useMemo(() => {
+    //console.log("kdkfjdkljdlfjk");
     dispatch(getIndustryList());
+    dispatch(getLocation());
+    dispatch(getCompanyTypeList());
+    dispatch(getEmployeeCountList());
+    dispatch(getRevenuerangeList());
   }, []);
+
   useEffect(() => {
-    setIndustryList(industryOrgList);
+    setIndustryList(industryOrgList);    
   }, [industryOrgList]);
+  
+  useEffect(() => {
+    setCompanyTypeList(companyTypeOrgList);    
+  }, [companyTypeOrgList]);
+
+  useEffect(() => {
+    setEmployeeCountList(employeeCountOrgList);    
+  }, [employeeCountOrgList]);
+
+  useEffect(() => {
+    setRevenuerangeList(revenueRangeOrgList);    
+  }, [revenueRangeOrgList]);
+
+  //console.log(location, "locationlocationlocationlocation");
 
   const filterKeyword = (type, ele) => {
     if (type === "industry") {
@@ -40,7 +81,26 @@ const CompanyLeft = () => {
       );
       // console.log(ele.target.value, filterdData);
       setIndustryList(filterdData);
+    }else if (type === "revenuerange") {
+      const filterdData1 = revenueRangeOrgList.filter((item) =>
+        item?.name.toLowerCase().includes(ele.target.value.toLowerCase())
+      );
+      // console.log(ele.target.value, filterdData);
+      setRevenuerangeList(filterdData1);
+    }else if (type === "employeecount") {
+      const filterdData2 = employeeCountOrgList.filter((item) =>
+        item?.name.toLowerCase().includes(ele.target.value.toLowerCase())
+      );
+      // console.log(ele.target.value, filterdData);
+      setEmployeeCountList(filterdData2);
+    }else if (type === "companytype") {
+      const filterdData3 = companyTypeOrgList.filter((item) =>
+        item?.name.toLowerCase().includes(ele.target.value.toLowerCase())
+      );
+      // console.log(ele.target.value, filterdData);
+      setCompanyTypeList(filterdData3);
     }
+    
   };
 
   const openMenu = (menu) => {
@@ -64,7 +124,7 @@ const CompanyLeft = () => {
     setMenuVisible(!menuVisible);
   };
 
-  console.log(menuVisible, "sjdfk");
+ // console.log(menuVisible, "sjdfk");
   return (
     <>
       <button className="filter-button btn-primary" onClick={openLeftMenu}>
@@ -113,14 +173,18 @@ const CompanyLeft = () => {
                   className="searchboxinput"
                 />
               </h6>
-              <a className="collapse-item" href="buttons.html">
-                <input type="checkbox" />
-                Buttons
-              </a>
-              <a className="collapse-item" href="cards.html">
-                <input type="checkbox" />
-                Cards
-              </a>{" "}
+
+              <ul>
+                {location &&
+                  location.map((item) => {
+                    return (
+                      <li key={item.country} className="collapse-item">
+                        <input type="checkbox" />
+                        {item?.country}
+                      </li>
+                    );
+                  })}
+              </ul>
             </div>
           </div>
         </li>
@@ -151,14 +215,20 @@ const CompanyLeft = () => {
                   className="searchboxinput"
                 />
               </h6>
-              <a className="collapse-item" href="buttons.html">
-                <input type="checkbox" />
-                Buttons
-              </a>
-              <a className="collapse-item" href="cards.html">
-                <input type="checkbox" />
-                Cards
-              </a>{" "}
+              <ul>
+                {location &&
+                  location.map((item) => {
+                    return item?.state.map((state) => {
+                      const [stateName] = Object.keys(state)
+                      return (
+                        <li key={stateName} className="collapse-item">
+                          <input type="checkbox" />
+                          {stateName}
+                        </li>
+                      );
+                    });
+                  })}
+              </ul>
             </div>
           </div>
         </li>
@@ -189,14 +259,24 @@ const CompanyLeft = () => {
                   className="searchboxinput"
                 />
               </h6>
-              <a className="collapse-item" href="buttons.html">
-                <input type="checkbox" />
-                Buttons
-              </a>
-              <a className="collapse-item" href="cards.html">
-                <input type="checkbox" />
-                Cards
-              </a>{" "}
+              {location &&
+                  location.map((item) => {                    
+                    return item?.state.map((state) => {
+                     return Object.values(state).map((cities)=>{
+                      return cities.map((city)=>{
+                        return (
+                          <li key={city} className="collapse-item">
+                            <input type="checkbox" />
+                            {city}
+                          </li>
+                        );
+                      })
+                     
+                     })
+                    
+                    });
+                  })}
+              
             </div>
           </div>
         </li>
@@ -229,16 +309,16 @@ const CompanyLeft = () => {
                 />
               </h6>
               <ul>
-              {industryList &&
-                industryList.map((item) => {
-                  return (
-                    <li key={item.id} className="collapse-item">
-                      <input type="checkbox" />
-                      {item?.name}
-                    </li>
-                  );
-                })}
-                </ul>
+                {industryList &&
+                  industryList.map((item) => {
+                    return (
+                      <li key={item.id} className="collapse-item">
+                        <input type="checkbox" />
+                        {item?.name}
+                      </li>
+                    );
+                  })}
+              </ul>
             </div>
           </div>
         </li>
@@ -267,16 +347,19 @@ const CompanyLeft = () => {
                   type="text"
                   placeholder="Search"
                   className="searchboxinput"
+                  onChange={(ele) => filterKeyword("companytype", ele)}
                 />
               </h6>
-              <a className="collapse-item" href="buttons.html">
-                <input type="checkbox" />
-                Buttons
-              </a>
-              <a className="collapse-item" href="cards.html">
-                <input type="checkbox" />
-                Cards
-              </a>{" "}
+              {
+                companyTypeList && companyTypeList.map((item)=>{
+                  return (
+                    <li key={item.id} className="collapse-item">
+                      <input type="checkbox" />
+                      {item?.name}
+                    </li>
+                  );
+                })
+              }
             </div>
           </div>
         </li>
@@ -305,16 +388,19 @@ const CompanyLeft = () => {
                   type="text"
                   placeholder="Search"
                   className="searchboxinput"
+                  onChange={(ele) => filterKeyword("employeecount", ele)}
                 />
               </h6>
-              <a className="collapse-item" href="buttons.html">
-                <input type="checkbox" />
-                Buttons
-              </a>
-              <a className="collapse-item" href="cards.html">
-                <input type="checkbox" />
-                Cards
-              </a>{" "}
+              {
+                employeeCountList && employeeCountList.map((item)=>{
+                  return (
+                    <li key={item.id} className="collapse-item">
+                      <input type="checkbox" />
+                      {item?.name}
+                    </li>
+                  );
+                })
+              }
             </div>
           </div>
         </li>
@@ -343,16 +429,19 @@ const CompanyLeft = () => {
                   type="text"
                   placeholder="Search"
                   className="searchboxinput"
+                  onChange={(ele) => filterKeyword("revenuerange", ele)}
                 />
               </h6>
-              <a className="collapse-item" href="buttons.html">
-                <input type="checkbox" />
-                Buttons
-              </a>
-              <a className="collapse-item" href="cards.html">
-                <input type="checkbox" />
-                Cards
-              </a>{" "}
+              {
+                revenuerangeList && revenuerangeList.map((item)=>{
+                  return (
+                    <li key={item.id} className="collapse-item">
+                      <input type="checkbox" />
+                      {item?.name}
+                    </li>
+                  );
+                })
+              }
             </div>
           </div>
         </li>

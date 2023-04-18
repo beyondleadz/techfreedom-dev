@@ -1,1 +1,5 @@
 export const INDUSTRY_LIST = "INDUSTRY_LIST";
+export const GEOLOCATION = "GEOLOCATION";
+export const COMPANY_TYPE = "COMPANY_TYPE";
+export const EMPLOYEE_COUNT = "EMPLOYEE_COUNT";
+export const REVENUE_RANGE = "REVENUE_RANGE";

@@ -1,26 +1,51 @@
-import {
-  INDUSTRY_LIST,
-} from "../actionType/companyListingType";
-import {getAuthMethod} from '../services/HttpServices';
-import { industryApiUrl } from "../constant/Constant";
+import { INDUSTRY_LIST, GEOLOCATION,COMPANY_TYPE,EMPLOYEE_COUNT,REVENUE_RANGE} from "../actionType/companyListingType";
+import { getAuthMethod } from "../services/HttpServices";
+import { industryApiUrl,employeeCountApiUrl,companyTypeApiUrl,revenueRangeApiUrl } from "../constant/Constant";
+import { Geolocation } from "../constant/Geolocation";
 
-export const getIndustryList = (payload) =>(dispatch)=> {
-  // return getAuthMethod(industryApiUrl).then(res=>{
-  //   console.log(res.data)
-  //   dispatch(
-  //     {
-  //       type: INDUSTRY_LIST,
-  //       payload: res.data,
-  //     }
-  //   )
-    
-  // }
-  return dispatch(
-    {
+export const getIndustryList = (payload) => (dispatch) => {
+  return getAuthMethod(industryApiUrl).then((res) => {
+    dispatch({
       type: INDUSTRY_LIST,
-      payload: [{id:1,name:"Animation"},{id:2,name:"Accounting"}],
-    }
-  )
-  //)
-  
+      payload: res.data,
+    });
+  });
+  // return dispatch(
+  //   {
+  //     type: INDUSTRY_LIST,
+  //     payload: [{id:1,name:"Animation"},{id:2,name:"Accounting"}],
+  //   }
+  // )
 };
+
+export const getCompanyTypeList = (payload) => (dispatch) => {
+  return getAuthMethod(companyTypeApiUrl).then((res) => {
+    dispatch({
+      type: COMPANY_TYPE,
+      payload: res.data,
+    });
+  });  
+};
+
+export const getEmployeeCountList = (payload) => (dispatch) => {
+  return getAuthMethod(employeeCountApiUrl).then((res) => {
+    dispatch({
+      type: EMPLOYEE_COUNT,
+      payload: res.data,
+    });
+  });  
+};
+
+export const getRevenuerangeList = (payload) => (dispatch) => {
+  return getAuthMethod(revenueRangeApiUrl).then((res) => {
+    dispatch({
+      type: REVENUE_RANGE,
+      payload: res.data,
+    });
+  });  
+};
+
+export const getLocation = (payload) => ({
+  type: GEOLOCATION,
+  payload: Geolocation,
+});
