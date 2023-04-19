@@ -8,11 +8,9 @@ const InternalSystemsIntegration = () => {
         <div className="container py-md-5 py-4">
             <div className="row py-lg-4">
                 <div className="col-lg-6 section-width align-self">
-				<img src={ExecutiveSearchConnect} alt="" title=""/>
-                    <h3 className="title-style pr-xl-5">Connect with Decision-Makers</h3>
-	<p className="mt-lg-4 mt-3 pb-3"><i className="fa fa-check" aria-hidden="true"></i> Get verified contact data to connect with the right decision‑makers.</p>
-	<p className="mt-lg-4 mt-3 pb-3"><i className="fa fa-check" aria-hidden="true"></i> Add contacts to your Outreach sequences so you can build pipeline faster.</p>
-	<p className="mt-lg-4 mt-3 pb-3"><i className="fa fa-check" aria-hidden="true"></i> Personalize your communication with pre-built email templates tailored just for you.</p>
+				{/* <img src={ExecutiveSearchConnect} alt="" title=""/> */}
+                    <h3 className="title-style pr-xl-5">Internal Systems Integration:</h3>
+                    <p className="mt-lg-4 mt-3 pb-3">Integrating BeyondLeadz with internal systems such as marketing automation or sales enablement platforms can help businesses streamline their sales and marketing processes. By using BeyondLeadz B2B data to segment their database and target their outreach efforts, businesses can improve their lead generation efforts and ensure that the right messages are reaching the right people. Integrating BeyondLeadz B2B data with marketing automation platforms can also help businesses track and analyze their marketing campaigns, enabling them to refine their strategies and improve their ROI.</p>
 				 </div>
                 <div className="col-lg-6 history-info mt-5 pt-lg-0 pt-5">
                     <div className="position-relative img-border">

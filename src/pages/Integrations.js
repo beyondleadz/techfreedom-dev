@@ -3,7 +3,7 @@ import Layout from "../layout/Layout";
 import Banner from "../components/integrations/Banner";
 import CRMIntegration from "../components/integrations/CRMIntegration";
 import InternalSystemsIntegration from "../components/integrations/InternalSystemsIntegration";
-import LaserLists from "../components/integrations/LaserLists";
+import ThirdPartyApplicationsIntegration from "../components/integrations/ThirdPartyApplicationsIntegration";
 // import Connect from "../components/integrations/InternalSystemsIntegration";
 
 const ExecutiveSearch = () => {
@@ -14,7 +14,7 @@ const ExecutiveSearch = () => {
         <Banner/>
         <CRMIntegration/>
         <InternalSystemsIntegration/>
-        <LaserLists/>
+        <ThirdPartyApplicationsIntegration/>
         {/* <Connect/> */}
     </Layout>
     
