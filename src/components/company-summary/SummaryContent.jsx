@@ -14,7 +14,7 @@ const SummaryContent = () => {
 					<div className="col-md-12">
           <div className="card shadow mt-4 mb-4">
             
-<div className="card-header font-weight-bold">
+<div className="card-header1">
 <div className="navigation ">
         <ul className="nav" id="myTabjustified" role="tablist">
           <li className="nav-item" role="presentation">
@@ -28,7 +28,7 @@ const SummaryContent = () => {
               aria-controls="home"
               aria-selected="true"
             >
-              <i className="fa fa-city pr-2" style={{"color":"#5D44FF"}}></i>Summary
+              <i className="fa fa-city pr-2" style={{"color":"#5D44FF"}}></i>About Company
             </button>
           </li>
           <li className="nav-item" role="presentation">
@@ -42,7 +42,7 @@ const SummaryContent = () => {
               aria-controls="profile"
               aria-selected="false"
             >
-              <i className="fa fa-user-friends pr-2" style={{"color":"#5D44FF"}}></i>Employees
+              <i className="fa fa-user-friends pr-2" style={{"color":"#5D44FF"}}></i> Key Executives
             </button>
           </li>
           <li className="nav-item" role="presentation">
@@ -56,7 +56,7 @@ const SummaryContent = () => {
               aria-controls="contact"
               aria-selected="false"
             >
-              <i className="fa fa-sitemap pr-2" style={{"color":"#5D44FF"}}></i>Org Chart
+              <i className="fa fa-sitemap pr-2" style={{"color":"#5D44FF"}}></i> Filter by Department 
             </button>
           </li>
           <li className="nav-item" role="presentation">
@@ -70,7 +70,7 @@ const SummaryContent = () => {
               aria-controls="contact"
               aria-selected="false"
             >
-              <i className="fa fa-suitcase pr-2" style={{"color":"#5D44FF"}}></i>filter By Dept.</button>
+              <i className="fa fa-suitcase pr-2" style={{"color":"#5D44FF"}}></i>Org.Chart</button>
           </li>
         </ul>
       </div></div>
@@ -81,35 +81,19 @@ const SummaryContent = () => {
   <tbody>
     <tr><td colspan="2"><span className="font-weight-bold">Deutsche Bank</span>,a Frankfurt-based global investment bank, offers financial products and services to corporate and institutional clients.
 </td></tr>
-<tr>
-  <td className="row-cols-5 td-w-2"><i class=" fa  fa-globe mr-2" aria-hidden="true"></i><strong>Website</strong></td>
-  <td><a data-ceid="company_website" title="Amazon website" target="_blank" rel="nofollow noreferrer" href="https://www.amazon.com">
-                                        https://www.Deutsche.com</a></td></tr>
-  <tr>  <td><i class=" fa  fa-money-check mr-2"></i><strong>Revenue</strong></td>
-  <td>$280.52 billion</td> </tr> <tr> <td><i class=" fa fa-university mr-2" aria-hidden="true"></i><strong>Funding</strong></td>
-  <td>$48.00 Million</td></tr>
-  <tr> <td><i class=" fa  fa-users mr-2"></i><strong>Employees</strong></td>
+<tr> <td className="width3"><i class=" fa  fa-users mr-2"></i><strong>Employees</strong></td>
  <td class="employee-count" >809,221 <span>
     (<a rel="nofollow noreferrer" title="Search for Amazon Employees" href="/person?employer[]=&quot;amazon.com&quot;" target="_blank">687,052 on Deutsche Bank</a>)
   </span></td></tr>
-                
-  <tr> <td><i class=" fa  fa-map-pin mr-2"></i><strong>Founded</strong></td>
-                            <td>1994</td> </tr><tr>
-                        
+  <tr>  <td><i class=" fa  fa-money-check mr-2"></i><strong>Revenue Range</strong></td>
+  <td>$280.52 billion</td> </tr> <tr> <td><i class=" fa fa-university mr-2" aria-hidden="true"></i><strong>Company Type</strong></td>
+  <td>$48.00 Million</td></tr>
   
-                            <td><i class=" fa  fa-map-marker mr-2"></i><strong>Address</strong></td>
-                            <td> <a data-ceid="company_address" target="_blank" title="Amazon location" rel="nofollow noreferrer" href="https://www.google.com/maps?q=410%20Terry%20Ave%20N%2C%20Seattle%2C%20Washington%2098109%2C%20US">
-                                        410 Terry Ave N, Seattle, Washington 98109, US
-                                    </a> </td> </tr>
-                                     <tr><td><i class=" fa  fa-mobile mr-2"></i><strong>Phone</strong></td>
-                            <td>
-                                <a rel="nofollow noreferrer" title="Amazon's phone" href="tel:(206) 266-1000">(206) 266-1000</a>
-                            </td> </tr><tr><td><i class=" fa  fa-fax mr-2"></i><strong>Fax</strong></td>
-                        <td>
-                            (206) 266-1821
-                        </td>
-                                            </tr>
- <tr><td><i class=" mr-2 fa  fa-laptop"></i><span className="font-weight-bold" >Technologies</span></td>
+                
+  <tr> <td><i class=" fa  fa-map-pin mr-2"></i><strong>Industry</strong></td>
+                            <td>Banking, Finance</td> </tr>
+                                     
+ <tr><td><i class=" mr-2 fa  fa-laptop"></i><span className="font-weight-bold" >Technographics</span></td>
 <td><div >
  <span> JavaScript, HTML, PHP
   <strong> +1282 more</strong> <strong> (view full list) </strong>
@@ -120,7 +104,7 @@ const SummaryContent = () => {
   
                 <tr>
                 
-                    </tr><tr> <td><i class=" fa fa-th-large mr-2"></i><strong>Category</strong></td>
+                    </tr><tr> <td><i class=" fa fa-th-large mr-2"></i><strong>Product and Services</strong></td>
                             <td><span>Retail,</span><span>Internet,</span>
                                 
                                 <span>Software Development,</span>
@@ -217,7 +201,8 @@ Contacts</div>
                               <td>johndoe@email.com</td>
                               <td>011 42356892</td>
                               <td>+91 9810098100</td>
-                              <td></td>
+                              <td><button className="d-none d-sm-inline-block btn btn-outline-secondary">
+                                  <i className="fas fa-plus pr-1"></i> MOVE TO LEADS{" "} </button></td>
                             </tr>
                             <tr>
                               <td>
@@ -230,7 +215,8 @@ Contacts</div>
                               <td>johndoe@email.com</td>
                               <td>011 42356892</td>
                               <td>+91 9810098100</td>
-                              <td></td>
+                              <td><button className="d-none d-sm-inline-block btn btn-outline-secondary">
+                                  <i className="fas fa-plus pr-1"></i> MOVE TO LEADS{" "} </button></td>
                             </tr>
                             <tr>
                               <td>
@@ -243,7 +229,8 @@ Contacts</div>
                               <td>johndoe@email.com</td>
                               <td>011 42356892</td>
                               <td>+91 9810098100</td>
-                              <td></td>
+                              <td><button className="d-none d-sm-inline-block btn btn-outline-secondary">
+                                  <i className="fas fa-plus pr-1"></i> MOVE TO LEADS{" "} </button></td>
                             </tr>
                             <tr>
                               <td>
@@ -256,7 +243,8 @@ Contacts</div>
                               <td>johndoe@email.com</td>
                               <td>011 42356892</td>
                               <td>+91 9810098100</td>
-                              <td></td>
+                              <td><button className="d-none d-sm-inline-block btn btn-outline-secondary">
+                                  <i className="fas fa-plus pr-1"></i> MOVE TO LEADS{" "} </button></td>
                             </tr>
                             <tr>
                               <td>
@@ -269,7 +257,8 @@ Contacts</div>
                               <td>johndoe@email.com</td>
                               <td>011 42356892</td>
                               <td>+91 9810098100</td>
-                              <td></td>
+                              <td><button className="d-none d-sm-inline-block btn btn-outline-secondary">
+                                  <i className="fas fa-plus pr-1"></i> MOVE TO LEADS{" "} </button></td>
                             </tr>
 
                             <tr>
@@ -283,7 +272,8 @@ Contacts</div>
                               <td>johndoe@email.com</td>
                               <td>011 42356892</td>
                               <td>+91 9810098100</td>
-                              <td></td>
+                              <td><button className="d-none d-sm-inline-block btn btn-outline-secondary">
+                                  <i className="fas fa-plus pr-1"></i> MOVE TO LEADS{" "} </button></td>
                             </tr>
                             <tr>
                               <td>
@@ -296,7 +286,8 @@ Contacts</div>
                               <td>johndoe@email.com</td>
                               <td>011 42356892</td>
                               <td>+91 9810098100</td>
-                              <td></td>
+                              <td><button className="d-none d-sm-inline-block btn btn-outline-secondary">
+                                  <i className="fas fa-plus pr-1"></i> MOVE TO LEADS{" "} </button></td>
                             </tr>
                           </tbody>
                         </table>
@@ -416,10 +407,10 @@ Contacts</div>
     <img src={logo} />
     </div>
     <div className="col">
-     <div className="mb-2"><h5>ICICI Corporate Banking</h5></div>
+     <div className="mb-2"><p className="font-weight-bold">ICICI Corporate Banking</p></div>
       
-      <p className="font-weight-bold">India, London, England, United Kingdom</p>
-      <p>179 Contacts . 10001+ employees .</p>
+      <p className="fs-12">India, London, England, United Kingdom</p>
+      <p className="fs-12">179 Contacts . 10001+ employees .</p>
       <button className="btn btn-dark mr-2 p-1">Banking</button>
       <button className="btn btn-dark mr-2 p-1">Finance</button>
       <button className="btn btn-dark mr-2 p-1">Services</button>
@@ -434,10 +425,10 @@ Contacts</div>
     <img src={logo} />
     </div>
     <div className="col mt-3">
-     <div className="mb-2"><h5>ICICI Corporate Banking</h5></div>
+    <div className="mb-2"><p className="font-weight-bold">ICICI Corporate Banking</p></div>
       
-      <p className="font-weight-bold">India, London, England, United Kingdom</p>
-      <p>179 Contacts . 10001+ employees .</p>
+      <p className="fs-12">India, London, England, United Kingdom</p>
+      <p className="fs-12">179 Contacts . 10001+ employees .</p>
       <button className="btn btn-dark mr-2 p-1">Banking</button>
       <button className="btn btn-dark mr-2 p-1">Finance</button>
       <button className="btn btn-dark mr-2 p-1">Services</button>
