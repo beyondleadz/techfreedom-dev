@@ -81,19 +81,19 @@ const SummaryContent = () => {
   <tbody>
     <tr><td colspan="2"><span className="font-weight-bold">Deutsche Bank</span>,a Frankfurt-based global investment bank, offers financial products and services to corporate and institutional clients.
 </td></tr>
-<tr> <td className="width3"><i class=" fa  fa-users mr-2"></i><strong>Employees</strong></td>
- <td class="employee-count" >809,221 <span>
+<tr> <td className="width3"><i className=" fa  fa-users mr-2"></i><strong>Employees</strong></td>
+ <td className="employee-count" >809,221 <span>
     (<a rel="nofollow noreferrer" title="Search for Amazon Employees" href="/person?employer[]=&quot;amazon.com&quot;" target="_blank">687,052 on Deutsche Bank</a>)
   </span></td></tr>
-  <tr>  <td><i class=" fa  fa-money-check mr-2"></i><strong>Revenue Range</strong></td>
-  <td>$280.52 billion</td> </tr> <tr> <td><i class=" fa fa-university mr-2" aria-hidden="true"></i><strong>Company Type</strong></td>
+  <tr>  <td><i className=" fa  fa-money-check mr-2"></i><strong>Revenue Range</strong></td>
+  <td>$280.52 billion</td> </tr> <tr> <td><i className=" fa fa-university mr-2" aria-hidden="true"></i><strong>Company Type</strong></td>
   <td>$48.00 Million</td></tr>
   
                 
-  <tr> <td><i class=" fa  fa-map-pin mr-2"></i><strong>Industry</strong></td>
+  <tr> <td><i className=" fa  fa-map-pin mr-2"></i><strong>Industry</strong></td>
                             <td>Banking, Finance</td> </tr>
                                      
- <tr><td><i class=" mr-2 fa  fa-laptop"></i><span className="font-weight-bold" >Technographics</span></td>
+ <tr><td><i className=" mr-2 fa  fa-laptop"></i><span className="font-weight-bold" >Technographics</span></td>
 <td><div >
  <span> JavaScript, HTML, PHP
   <strong> +1282 more</strong> <strong> (view full list) </strong>
@@ -104,7 +104,7 @@ const SummaryContent = () => {
   
                 <tr>
                 
-                    </tr><tr> <td><i class=" fa fa-th-large mr-2"></i><strong>Product and Services</strong></td>
+                    </tr><tr> <td><i className=" fa fa-th-large mr-2"></i><strong>Product and Services</strong></td>
                             <td><span>Retail,</span><span>Internet,</span>
                                 
                                 <span>Software Development,</span>
@@ -184,8 +184,8 @@ Contacts</div>
                               <th>Phone Number</th>
                               <th>Direct Dial/Mobile</th>
                               <th>
-                                <button className="d-none d-sm-inline-block btn btn-outline-secondary">
-                                  <i className="fas fa-plus pr-1"></i> MOVE TO LEADS{" "} </button>
+                              <button className="d-none d-sm-inline-block small btn btn-primary text-black">
+                                   MOVE TO LEADS{" "} </button>
                               </th>
                             </tr>
                           </thead>
@@ -198,11 +198,11 @@ Contacts</div>
                              
                               <td>John Mathew </td>
                               <td>Delivery Head</td>
-                              <td>johndoe@email.com</td>
-                              <td>011 42356892</td>
-                              <td>+91 9810098100</td>
-                              <td><button className="d-none d-sm-inline-block btn btn-outline-secondary">
-                                  <i className="fas fa-plus pr-1"></i> MOVE TO LEADS{" "} </button></td>
+                              <td><h4 className=" la  la-envelope text-info "></h4></td>
+                              <td><h4 className=" la  la-phone text-info "></h4></td>
+                              <td><h4 className=" la  la-mobile text-info"></h4></td>
+                              <td><button className="d-none d-sm-inline-block small btn btn-primary text-black">
+                                   MOVE TO LEADS{" "} </button></td>
                             </tr>
                             <tr>
                               <td>
@@ -212,11 +212,11 @@ Contacts</div>
                               
                               <td>John Mathew </td>
                               <td>Delivery Head</td>
-                              <td>johndoe@email.com</td>
-                              <td>011 42356892</td>
-                              <td>+91 9810098100</td>
-                              <td><button className="d-none d-sm-inline-block btn btn-outline-secondary">
-                                  <i className="fas fa-plus pr-1"></i> MOVE TO LEADS{" "} </button></td>
+                              <td><h4 className=" la  la-envelope text-info "></h4></td>
+                              <td><h4 className=" la  la-phone text-info "></h4></td>
+                              <td><h4 className=" la  la-mobile text-info"></h4></td>
+                              <td><button className="d-none d-sm-inline-block small btn btn-primary text-black">
+                                   MOVE TO LEADS{" "} </button></td>
                             </tr>
                             <tr>
                               <td>
@@ -226,11 +226,11 @@ Contacts</div>
                               
                               <td>John Mathew </td>
                               <td>Delivery Head</td>
-                              <td>johndoe@email.com</td>
-                              <td>011 42356892</td>
-                              <td>+91 9810098100</td>
-                              <td><button className="d-none d-sm-inline-block btn btn-outline-secondary">
-                                  <i className="fas fa-plus pr-1"></i> MOVE TO LEADS{" "} </button></td>
+                              <td><h4 className=" la  la-envelope text-info "></h4></td>
+                              <td><h4 className=" la  la-phone text-info "></h4></td>
+                              <td><h4 className=" la  la-mobile text-info"></h4></td>
+                              <td><button className="d-none d-sm-inline-block small btn btn-primary text-black">
+                                   MOVE TO LEADS{" "} </button></td>
                             </tr>
                             <tr>
                               <td>
@@ -240,11 +240,11 @@ Contacts</div>
                               
                               <td>John Mathew </td>
                               <td>Delivery Head</td>
-                              <td>johndoe@email.com</td>
-                              <td>011 42356892</td>
-                              <td>+91 9810098100</td>
-                              <td><button className="d-none d-sm-inline-block btn btn-outline-secondary">
-                                  <i className="fas fa-plus pr-1"></i> MOVE TO LEADS{" "} </button></td>
+                              <td><h4 className=" la  la-envelope text-info "></h4></td>
+                              <td><h4 className=" la  la-phone text-info "></h4></td>
+                              <td><h4 className=" la  la-mobile text-info"></h4></td>
+                              <td><button className="d-none d-sm-inline-block small btn btn-primary text-black">
+                                   MOVE TO LEADS{" "} </button></td>
                             </tr>
                             <tr>
                               <td>
@@ -254,11 +254,11 @@ Contacts</div>
                               
                               <td>John Mathew </td>
                               <td>Delivery Head</td>
-                              <td>johndoe@email.com</td>
-                              <td>011 42356892</td>
-                              <td>+91 9810098100</td>
-                              <td><button className="d-none d-sm-inline-block btn btn-outline-secondary">
-                                  <i className="fas fa-plus pr-1"></i> MOVE TO LEADS{" "} </button></td>
+                              <td><h4 className=" la  la-envelope text-info "></h4></td>
+                              <td><h4 className=" la  la-phone text-info "></h4></td>
+                              <td><h4 className=" la  la-mobile text-info"></h4></td>
+                              <td><button className="d-none d-sm-inline-block small btn btn-primary text-black">
+                                   MOVE TO LEADS{" "} </button></td>
                             </tr>
 
                             <tr>
@@ -269,11 +269,11 @@ Contacts</div>
                               
                               <td>John Mathew </td>
                               <td>Delivery Head</td>
-                              <td>johndoe@email.com</td>
-                              <td>011 42356892</td>
-                              <td>+91 9810098100</td>
-                              <td><button className="d-none d-sm-inline-block btn btn-outline-secondary">
-                                  <i className="fas fa-plus pr-1"></i> MOVE TO LEADS{" "} </button></td>
+                              <td><h4 className=" la  la-envelope text-info "></h4></td>
+                              <td><h4 className=" la  la-phone text-info "></h4></td>
+                              <td><h4 className=" la  la-mobile text-info"></h4></td>
+                              <td><button className="d-none d-sm-inline-block small btn btn-primary text-black">
+                                   MOVE TO LEADS{" "} </button></td>
                             </tr>
                             <tr>
                               <td>
@@ -283,11 +283,11 @@ Contacts</div>
                              
                               <td>John Mathew </td>
                               <td>Delivery Head</td>
-                              <td>johndoe@email.com</td>
-                              <td>011 42356892</td>
-                              <td>+91 9810098100</td>
-                              <td><button className="d-none d-sm-inline-block btn btn-outline-secondary">
-                                  <i className="fas fa-plus pr-1"></i> MOVE TO LEADS{" "} </button></td>
+                              <td><h4 className=" la  la-envelope text-info "></h4></td>
+                              <td><h4 className=" la  la-phone text-info "></h4></td>
+                              <td><h4 className=" la  la-mobile text-info"></h4></td>
+                              <td><button className="d-none d-sm-inline-block small btn btn-primary text-black">
+                                   MOVE TO LEADS{" "} </button></td>
                             </tr>
                           </tbody>
                         </table>
@@ -409,14 +409,14 @@ Contacts</div>
     <div className="col">
      <div className="mb-2"><p className="font-weight-bold">ICICI Corporate Banking</p></div>
       
-      <p className="fs-12">India, London, England, United Kingdom</p>
-      <p className="fs-12">179 Contacts . 10001+ employees .</p>
-      <button className="btn btn-dark mr-2 p-1">Banking</button>
-      <button className="btn btn-dark mr-2 p-1">Finance</button>
-      <button className="btn btn-dark mr-2 p-1">Services</button>
-      <button className="btn btn-dark mr-2 p-1">FinTech</button>
-      <button className="btn btn-light mr-2 p-1">More..</button>
-      <span className="fs-12">ICICI is a global financial services company that provides various financial products and services worldwide.</span>
+      <div className="fs-12">India, London, England, United Kingdom</div>
+      <div className="fs-12">179 Contacts . 10001+ employees .</div>
+      <button className="btn btn-dark mr-2 small">Banking</button>
+      <button className="btn btn-dark mr-2 small">Finance</button>
+      <button className="btn btn-dark mr-2 small">Services</button>
+      <button className="btn btn-dark mr-2 small">FinTech</button>
+      <button className="btn btn-light mr-2 small">More..</button>
+      <div className="fs-12">ICICI is a global financial services company that provides various financial products and services worldwide.</div>
       
     </div>
   </div>
@@ -425,16 +425,16 @@ Contacts</div>
     <img src={logo} />
     </div>
     <div className="col mt-3">
-    <div className="mb-2"><p className="font-weight-bold">ICICI Corporate Banking</p></div>
+     <div className="mb-2"><p className="font-weight-bold">ICICI Corporate Banking</p></div>
       
-      <p className="fs-12">India, London, England, United Kingdom</p>
-      <p className="fs-12">179 Contacts . 10001+ employees .</p>
-      <button className="btn btn-dark mr-2 p-1">Banking</button>
-      <button className="btn btn-dark mr-2 p-1">Finance</button>
-      <button className="btn btn-dark mr-2 p-1">Services</button>
-      <button className="btn btn-dark mr-2 p-1">FinTech</button>
-      <button className="btn btn-light mr-2 p-1">More..</button>
-      <span className="fs-12">ICICI is a global financial services company that provides various financial products and services worldwide.</span>
+      <div className="fs-12">India, London, England, United Kingdom</div>
+      <div className="fs-12">179 Contacts . 10001+ employees .</div>
+      <button className="btn btn-dark mr-2 small">Banking</button>
+      <button className="btn btn-dark mr-2 small">Finance</button>
+      <button className="btn btn-dark mr-2 small">Services</button>
+      <button className="btn btn-dark mr-2 small">FinTech</button>
+      <button className="btn btn-light mr-2 small">More..</button>
+      <div className="fs-12">ICICI is a global financial services company that provides various financial products and services worldwide.</div>
       
     </div>
   </div>
