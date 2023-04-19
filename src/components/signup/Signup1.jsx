@@ -1,11 +1,13 @@
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 import { useRoutes,NavLink } from "react-router-dom";
-
+import { useSelector,useDispatch } from "react-redux";
+import {formActionStep1} from '../../actionCreator/signUpActionCreater';
 import horizentalImage from '../../assets/login/horizental-line.jpg';
 
 const Step1=({changeStep})=>{
 	const [form,setForm]=useState({});
 	const [errorObj,setError] = useState()
+	const dispatch = useDispatch()
 	const OnInputChange=(ele)=>{
 		setForm({
 			...form,
@@ -51,11 +53,11 @@ const Step1=({changeStep})=>{
 		}
 		setError(errObj);
 		if(!errCnt){
-		changeStep(2,form)
+		changeStep(2);
+		dispatch(formActionStep1(form))
 		}
+		
 	}
-
-	
 
     return (
         <>
@@ -64,28 +66,28 @@ const Step1=({changeStep})=>{
 							<div className="email">
 							<input placeholder="First Name*" name="firstName" type="text" required="" value={form?.firstName} onChange={OnInputChange}/>
 							<span className="icons i1"><i className="fa fa-user" aria-hidden="true"></i></span>
-							<div class="error">{errorObj?.firstName}</div>
+							<div className="error">{errorObj?.firstName}</div>
 							</div>
 							<div className="email">
 							<input placeholder="Last Name*" name="lastName" type="text" required="" value={form?.lastName} onChange={OnInputChange}/>
 							<span className="icons i1"><i className="fa fa-user" aria-hidden="true"></i></span>
-							<div class="error">{errorObj?.lastName}</div>
+							<div className="error">{errorObj?.lastName}</div>
 							</div>
 							<div className="email">
 							<input placeholder="Username*" name="login" type="text" required="" value={form?.login} onChange={OnInputChange}/>
 							<span className="icons i1"><i className="fa fa-user" aria-hidden="true"></i></span>
-							<div class="error">{errorObj?.login}</div>
+							<div className="error">{errorObj?.login}</div>
 							</div>
 							
 							<div className="email">
 							<input placeholder="E Mail Address*" name="email" type="email" required="" value={form?.email} onChange={OnInputChange}/>
 							<span className="icons i1"><i className="fa fa-envelope" aria-hidden="true"></i></span>
-							<div class="error">{errorObj?.email}</div>
+							<div className="error">{errorObj?.email}</div>
 							</div>
 							<div className="email">
 							<input placeholder="Password*" name="password" type="password" required="" value={form?.password} onChange={OnInputChange}/>
 							<span className="icons i2"><i className="fa fa-lock" aria-hidden="true"></i></span>
-							<div class="error">{errorObj?.password}</div>
+							<div className="error">{errorObj?.password}</div>
 							</div>
 							<input type="button" value="Create Account" name="register" onClick={sendData}/>
 							<h7>Already have an account?  <NavLink to={"/signin"} style={{"color":"#5D44FF"}}>Login</NavLink></h7>

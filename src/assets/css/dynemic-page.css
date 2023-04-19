@@ -6490,6 +6490,14 @@ color: orange;
     display: flex;
     align-items:center;
 }
+
+#wrapper .nav-item-sd li.collapse-item {
+  font-size: 12px;
+  font-weight: normal;
+  padding: 0;
+  margin: 3px 0;
+  color:#777;
+}
 .companyLogo{
   width: 25px; 
   height: auto; 
