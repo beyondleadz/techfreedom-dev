@@ -17,7 +17,7 @@ const CompanySummary = () => {
   });
 
   return (
-    <div className="shadow navbar-light" id="onScroll">
+    <div className=" navbar-light" id="onScroll">
       {/* <h3 className="card-body font-weight-bold">Company Summary</h3> */}
       <div className="headercontainer">
         <div className="logobox">
@@ -36,7 +36,7 @@ const CompanySummary = () => {
         </div>
         <div className="descbox1">
           <div>Is this company data relevant to you? <a href="#" id="" role="button" data-toggle=""aria-haspopup="true"
-                    aria-expanded="false"><i class="right-icons fa fa-thumbs-up" aria-hidden="true"></i></a></div>
+                    aria-expanded="false"><i class="right-icons small fa fa-thumbs-up" aria-hidden="true"></i></a></div>
           <div font-weight-bold><button class="btn btn-outline-dark font-weight-bold mr-2 p-1">Really Not</button>
           <button class="btn btn-outline-dark font-weight-bold mr-2 p-1">Yes!</button></div>
         </div>
@@ -46,7 +46,9 @@ const CompanySummary = () => {
                     aria-expanded="false"><i class="right-icons la la-file-pdf" aria-hidden="true"></i>
                   </a></li>
                          
-              
+                  <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
+                    aria-expanded="false"><i class="right-icons la la-file-excel" aria-hidden="true"></i>
+                  </a></li>
                 
               <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
                     aria-expanded="false">
