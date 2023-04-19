@@ -1,6 +1,6 @@
 import React,{useState} from "react";
-import CompnySearchImage from '../../assets/images/company-search2.jpg'
-import CompnySearchIconImage from '../../assets/images/executive-search-company-icon.jpg'
+import CRMIntegrationImage from '../../assets/images/crm-integration.jpg'
+// import CompnySearchIconImage from '../../assets/images/executive-search-company-icon.jpg'
 
 const CRMIntegration=()=>{
     return <> 
@@ -8,7 +8,7 @@ const CRMIntegration=()=>{
          
         <div className="container">
 		<div className="privacy-security-term">
-		<h3 align="center"><strong>Integrations</strong></h3><br/>
+		<h3 align="center"><strong>Beyond Leadz Integrations</strong></h3><br/>
 {/* <h5>B2B Business Profiles</h5> */}
 <p><strong>BeyondLeadz</strong> provides information about businesses and their decision-makers, such as their contact details, company size, industry, and revenue. <strong>BeyondLedz</strong> is a valuable resource for businesses looking to target their sales and marketing efforts more effectively, by identifying and engaging with the right prospects at the right time. However, simply having access to B2B data is not enough - businesses also need to integrate this data with their CRM, internal systems, and third-party applications to fully realize its value.
 </p>
@@ -19,7 +19,7 @@ const CRMIntegration=()=>{
             <div className="row py-lg-4">
 			<div className="col-lg-6 history-info mt-5 pt-lg-0 pt-5">
                     <div className="position-relative img-border">
-                        <img src={CompnySearchImage} className="img-fluid video-popup-image" alt="video-popup"/>                    </div>
+                        <img src={CRMIntegrationImage} className="img-fluid video-popup-image" alt="video-popup"/>                    </div>
               </div>
                 <div className="col-lg-6 section-width align-self">
 				{/* <img src={CompnySearchIconImage} style={{"paddingLeft":"3rem"}}/> */}

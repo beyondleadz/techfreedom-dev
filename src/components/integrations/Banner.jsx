@@ -11,7 +11,7 @@ const BannerSection=()=>{
                 <div className="row align-items-center py-4">
                     <div className="col-md-6 pr-lg-5 ">
                         <h3 className="mb-lg-4 mb-3 title">
-						Data <span>Integrations</span></h3>
+						Data <span> Integrations</span></h3>
                         <p className="mr-5">Discover qualified prospects in seconds with Beyond Leadz’s all-in-one prospecting tool.</p>
                     </div>
                     <div className="col-md-6 mt-md-0 mt-5 mb-lg-0 mb-5 right-banner-2 position-relative">
