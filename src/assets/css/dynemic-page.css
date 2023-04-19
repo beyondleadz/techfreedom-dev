@@ -6094,7 +6094,7 @@ body.ssidebar-toggled footer.sticky-footer {
   border: 1px solid #ddd;
   padding: 3px;
   height: 30px;
-  width: 100%;
+  width: 100%; overflow:scroll;
 }
 
 #wrapper .nav-item-sd .menu-item{
