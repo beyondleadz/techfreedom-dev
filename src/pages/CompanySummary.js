@@ -7,7 +7,7 @@ const CompanySummary=()=>{
     return (
         <>
         <Layout>
-        <div class="wrapper">
+        <div className="wrapper">
             <SummaryHeader/>
             <div id="wrapper">
                <SummaryContent/>

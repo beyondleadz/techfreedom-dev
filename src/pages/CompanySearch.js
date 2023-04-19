@@ -8,7 +8,7 @@ const CompanySearch=()=>{
     return (
         <>
         <Layout>
-        <div class="wrapper">
+        <div className="wrapper">
             <CompanyHeader/>
             <div id="wrapper">
                 <CompanyLeft/>

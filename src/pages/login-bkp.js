@@ -68,14 +68,14 @@ const Login1 = () => {
                                 <div className="log-input">
                                     <div className="log-input-left has-error">
                                        <input type="text" className="user" name="userName" value={form?.userName} onChange={onChange}/>
-                                       <p class="help-block">{errorObj?.userName}</p>                                               
+                                       <p className="help-block">{errorObj?.userName}</p>                                               
                                     </div>
                                     <div className="clearfix"> </div>
                                 </div>
                                 <div className="log-input">
                                     <div className="log-input-left has-error">
                                        <input type="password" className="lock" name="password" value={form?.password}  onChange={onChange}/>
-                                       <p class="help-block">{errorObj?.password}</p>    
+                                       <p className="help-block">{errorObj?.password}</p>    
                                     </div>
                                     <div className="clearfix"> </div>
                                 </div>

@@ -2,7 +2,7 @@ import axios from "axios";
 import { getBaseUrl } from "../config";
 
 const token = window.sessionStorage.getItem('token')
-
+console.log("token",token)
 const restService = axios.create({
     baseURL: getBaseUrl(),
     headers: {

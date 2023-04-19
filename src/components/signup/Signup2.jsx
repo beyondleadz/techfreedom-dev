@@ -1,8 +1,10 @@
 import React,{useState} from "react";
-
-const Step2=({changeStep,signupData})=>{
+import {formActionStep2} from '../../actionCreator/signUpActionCreater';
+import { useSelector,useDispatch } from "react-redux";
+const Step2=({changeStep})=>{
 	const [form,setForm]=useState({});
 	const [errorObj,setError] = useState()
+	const dispatch = useDispatch()
 	const OnInputChange=(ele)=>{
 		setForm({
 			...form,
@@ -27,9 +29,10 @@ const Step2=({changeStep,signupData})=>{
 		}
 		setError(errObj);
 		if(!errCnt){
-		const combinedData={...signupData,...form}
+		// const combinedData={...signupData,...form}
 		//console.log(signupData,form)
-		changeStep(3,combinedData)
+		changeStep(3)
+		dispatch(formActionStep2(form))
 		}
 	}
     return (
@@ -39,12 +42,12 @@ const Step2=({changeStep,signupData})=>{
 							<div className="email">
 							<input placeholder="Website URL*" name="websiteUrl" type="text" required=""  value={form?.websiteUrl} onChange={OnInputChange}/>
 							<span className="icons i1"><i className="fa fa-user" aria-hidden="true"></i></span>
-							<div class="error">{errorObj?.websiteUrl}</div>
+							<div className="error">{errorObj?.websiteUrl}</div>
 							</div>
 							<div className="email">
 							<input placeholder="Company Name*" name="companyName" type="text" required="" value={form?.companyName} onChange={OnInputChange}/>
 							<span className="icons i1"><i className="fa fa-user" aria-hidden="true"></i></span>
-							<div class="error">{errorObj?.companyName}</div>
+							<div className="error">{errorObj?.companyName}</div>
 							</div>
 							<input type="button" value="Save & Continue" name="register"  onClick={sendData}/>
 						</form>
