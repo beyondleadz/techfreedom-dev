@@ -159,7 +159,7 @@ const CompanyContent = () => {
                               </td>
                               <td><span className="companyLogo"><img src={CLogo} /></span>{item?.name}</td>
                               <td>{item?.industry?.name}</td>
-                              <td>{item?.city}, {item?.state}, {item?.country}</td>
+                              <td>{item?.address}, {item?.city}, {item?.state}, {item?.country}</td>
                               <td>{item?.phoneNo}</td>
                               <td></td>
                               <td></td>
