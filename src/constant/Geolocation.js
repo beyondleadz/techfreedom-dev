@@ -1,7 +1,6 @@
 export const Geolocation = [
   {
-    country: "India",
-    state: [
+    India: [
       { "Andaman & Nicobar": ["South Andaman"] },
       {
         "Andhra Pradesh": [
@@ -281,7 +280,9 @@ export const Geolocation = [
           "Virar",
         ],
       },
-      { Manipur: ["Imphal West", "Imphal East", "Churachandpur", "Ukhrul"] },
+      {
+        Manipur: ["Imphal West", "Imphal East", "Churachandpur", "Ukhrul"],
+      },
       { Meghalaya: ["Shillong", "CherraPunji"] },
       { Mizoram: ["Aizwal"] },
       { Nagaland: ["Dimapur", "Kohima"] },
@@ -487,5 +488,6 @@ export const Geolocation = [
         ],
       },
     ],
-  },
+  }
+  
 ];

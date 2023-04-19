@@ -1,38 +1,22 @@
-import { element } from "prop-types";
 import React, { useEffect, useState, useMemo } from "react";
+import _ from "lodash";
 import { useSelector, useDispatch } from "react-redux";
 import {
   getIndustryList,
   getLocation,
   getCompanyTypeList,
   getEmployeeCountList,
-  getRevenuerangeList
+  getRevenuerangeList,
 } from "../../actionCreator/companyListingActionCreater";
 const CompanyLeft = () => {
-  //usestate,useeffect,function
   const dispatch = useDispatch();
   const [industryList, setIndustryList] = useState();
-  const [companyTypeList,setCompanyTypeList]=useState();
-  const [employeeCountList,setEmployeeCountList]=useState();
-  const [revenuerangeList,setRevenuerangeList]=useState();
-
-  const industryOrgList = useSelector(
-    (state) => state.companyListingReducer.industryList
-  );
-  const companyTypeOrgList = useSelector(
-    (state) => state.companyListingReducer.companyTypeList
-  );
-  const employeeCountOrgList = useSelector(
-    (state) => state.companyListingReducer.employeeCountList
-  );
-  const revenueRangeOrgList = useSelector(
-    (state) => state.companyListingReducer.revenueRangeList
-  );
-  const location = useSelector(
-    (state) => state.companyListingReducer.geoLocation
-  );
-
-  //console.log("industryList",industryList)
+  const [companyTypeList, setCompanyTypeList] = useState();
+  const [employeeCountList, setEmployeeCountList] = useState();
+  const [revenuerangeList, setRevenuerangeList] = useState();
+  const [location, setLocation] = useState();
+  const [citiesList, setCitiesList] = useState();
+  const [selectedState, setSelectedState] = useState([]);
   const [open, setopen] = useState({
     country: false,
     state: false,
@@ -44,11 +28,11 @@ const CompanyLeft = () => {
     utility: false,
     pages: false,
   });
-
   const [menuVisible, setMenuVisible] = useState(true);
 
+  const companyFilterList = useSelector((state) => state.companyListingReducer);
+
   useMemo(() => {
-    //console.log("kdkfjdkljdlfjk");
     dispatch(getIndustryList());
     dispatch(getLocation());
     dispatch(getCompanyTypeList());
@@ -57,50 +41,93 @@ const CompanyLeft = () => {
   }, []);
 
   useEffect(() => {
-    setIndustryList(industryOrgList);    
-  }, [industryOrgList]);
-  
-  useEffect(() => {
-    setCompanyTypeList(companyTypeOrgList);    
-  }, [companyTypeOrgList]);
+    setIndustryList(companyFilterList?.industryList);
+    setCompanyTypeList(companyFilterList?.companyTypeList);
+    setEmployeeCountList(companyFilterList?.employeeCountList);
+    setRevenuerangeList(companyFilterList?.revenueRangeList);
+    setLocation(companyFilterList?.geoLocation);
+    setCitiesList(companyFilterList?.geoLocation);
+  }, [companyFilterList]);
 
   useEffect(() => {
-    setEmployeeCountList(employeeCountOrgList);    
-  }, [employeeCountOrgList]);
-
-  useEffect(() => {
-    setRevenuerangeList(revenueRangeOrgList);    
-  }, [revenueRangeOrgList]);
-
-  //console.log(location, "locationlocationlocationlocation");
+    let newFilterdLocation = [];
+    let allSelectedStates = [];
+    companyFilterList?.geoLocation.forEach((location) => {
+      Object.keys(location).forEach((country) => {
+        location[country].forEach((state) => {
+          const [stateName] = Object.keys(state);
+          if (_.includes(selectedState, stateName)) {
+            console.log([country]);
+            allSelectedStates = [...allSelectedStates, state];
+          }
+        });
+        newFilterdLocation = [
+          {
+            [country]: allSelectedStates,
+          },
+        ];
+      });
+    });
+    setCitiesList(newFilterdLocation);
+  }, [selectedState]);
 
   const filterKeyword = (type, ele) => {
+    console.log(type,citiesList)
     if (type === "industry") {
-      const filterdData = industryOrgList.filter((item) =>
+      const filterdData = companyFilterList?.industryList.filter((item) =>
         item?.name.toLowerCase().includes(ele.target.value.toLowerCase())
       );
       // console.log(ele.target.value, filterdData);
       setIndustryList(filterdData);
-    }else if (type === "revenuerange") {
-      const filterdData1 = revenueRangeOrgList.filter((item) =>
+    } else if (type === "revenuerange") {
+      const filterdData1 = companyFilterList?.revenueRangeList.filter((item) =>
         item?.name.toLowerCase().includes(ele.target.value.toLowerCase())
       );
       // console.log(ele.target.value, filterdData);
       setRevenuerangeList(filterdData1);
-    }else if (type === "employeecount") {
-      const filterdData2 = employeeCountOrgList.filter((item) =>
+    } else if (type === "employeecount") {
+      const filterdData2 = companyFilterList?.employeeCountList.filter((item) =>
         item?.name.toLowerCase().includes(ele.target.value.toLowerCase())
       );
       // console.log(ele.target.value, filterdData);
       setEmployeeCountList(filterdData2);
-    }else if (type === "companytype") {
-      const filterdData3 = companyTypeOrgList.filter((item) =>
+    } else if (type === "companytype") {
+      const filterdData3 = companyFilterList?.companyTypeList.filter((item) =>
         item?.name.toLowerCase().includes(ele.target.value.toLowerCase())
       );
+
       // console.log(ele.target.value, filterdData);
       setCompanyTypeList(filterdData3);
     }
-    
+    else if (type === "city") {
+      const filterdData4 = []
+      // const filterdData4 = citiesList?.filter((item) =>
+      //   item?.name.toLowerCase().includes(ele.target.value.toLowerCase())
+      // );
+      citiesList.forEach((location) => {
+        Object.keys(location).forEach((country) => {
+          location[country].forEach((state) => {
+            const [stateName] = Object.keys(state);
+            Object.values(state).forEach((cities) => {
+              cities.forEach((city) => {
+
+              })
+              console.log(cities,'sdkfjsldfj')
+            })
+            // if (_.includes(selectedState, stateName)) {
+            //   console.log([country]);
+            //   allSelectedStates = [...allSelectedStates, state];
+            // }
+          });
+          // newFilterdLocation = [
+          //   {
+          //     [country]: allSelectedStates,
+          //   },
+          // ];
+        });
+      });
+      // setCitiesList(filterdData4)
+    }
   };
 
   const openMenu = (menu) => {
@@ -120,11 +147,14 @@ const CompanyLeft = () => {
     });
   };
 
+  const filterState = (e) => {
+    setSelectedState([...selectedState, e.target.name]);
+  };
+
   const openLeftMenu = () => {
     setMenuVisible(!menuVisible);
   };
 
- // console.log(menuVisible, "sjdfk");
   return (
     <>
       <button className="filter-button btn-primary" onClick={openLeftMenu}>
@@ -137,7 +167,7 @@ const CompanyLeft = () => {
         id="accordionsidebar"
       >
         <li className="nav-item-sd active">
-          <a className="nav-link-sd" href="#">
+          <a className="nav-link-sd">
             <i className="left-company-menu-icons la la-filter"></i>
             <span className="mr-4">Filter</span>
             <span className="btn btn-outline-primary btn-sm">Advanced</span>
@@ -150,7 +180,6 @@ const CompanyLeft = () => {
               !open?.country && "collapsed"
             }`}
             onClick={() => openMenu("country")}
-            href="#"
             data-toggle="collapse"
             data-target="#collapseTwo"
             aria-expanded="true"
@@ -176,11 +205,12 @@ const CompanyLeft = () => {
 
               <ul>
                 {location &&
-                  location.map((item) => {
+                  location.map((country) => {
+                    const [countryName] = Object.keys(country);
                     return (
-                      <li key={item.country} className="collapse-item">
+                      <li key={countryName} className="collapse-item">
                         <input type="checkbox" />
-                        {item?.country}
+                        {countryName}
                       </li>
                     );
                   })}
@@ -192,7 +222,6 @@ const CompanyLeft = () => {
           <a
             className={`nav-link-sd ${!open?.state && "collapsed"}`}
             onClick={() => openMenu("state")}
-            href="#"
             data-toggle="collapse"
             data-target="#collapseTwo"
             aria-expanded="true"
@@ -217,15 +246,21 @@ const CompanyLeft = () => {
               </h6>
               <ul>
                 {location &&
-                  location.map((item) => {
-                    return item?.state.map((state) => {
-                      const [stateName] = Object.keys(state)
-                      return (
-                        <li key={stateName} className="collapse-item">
-                          <input type="checkbox" />
-                          {stateName}
-                        </li>
-                      );
+                  location.map((country) => {
+                    return Object.values(country).map((states) => {
+                      return states.map((state) => {
+                        const [stateName] = Object.keys(state);
+                        return (
+                          <li key={stateName} className="collapse-item">
+                            <input
+                              type="checkbox"
+                              name={stateName}
+                              onChange={filterState}
+                            />
+                            {stateName}
+                          </li>
+                        );
+                      });
                     });
                   })}
               </ul>
@@ -236,7 +271,6 @@ const CompanyLeft = () => {
           <a
             className={`nav-link-sd ${!open?.city && "collapsed"}`}
             onClick={() => openMenu("city")}
-            href="#"
             data-toggle="collapse"
             data-target="#collapseTwo"
             aria-expanded="true"
@@ -257,26 +291,29 @@ const CompanyLeft = () => {
                   type="text"
                   placeholder="Search"
                   className="searchboxinput"
+                  onChange={(ele) => filterKeyword("city", ele)}
                 />
               </h6>
-              {location &&
-                  location.map((item) => {                    
-                    return item?.state.map((state) => {
-                     return Object.values(state).map((cities)=>{
-                      return cities.map((city)=>{
-                        return (
-                          <li key={city} className="collapse-item">
-                            <input type="checkbox" />
-                            {city}
-                          </li>
-                        );
-                      })
-                     
-                     })
-                    
+
+              <ul>
+                {citiesList &&
+                  citiesList.map((country) => {
+                    return Object.values(country).map((states) => {
+                      return states.map((state) => {
+                        return Object.values(state).map((cities) => {
+                          return cities.map((city) => {
+                            return (
+                              <li key={city} className="collapse-item">
+                                <input type="checkbox" />
+                                {city}
+                              </li>
+                            );
+                          });
+                        });
+                      });
                     });
                   })}
-              
+              </ul>
             </div>
           </div>
         </li>
@@ -284,7 +321,6 @@ const CompanyLeft = () => {
           <a
             className={`nav-link-sd ${!open?.industry && "collapsed"}`}
             onClick={() => openMenu("industry")}
-            href="#"
             data-toggle="collapse"
             data-target="#collapseTwo"
             aria-expanded="true"
@@ -326,7 +362,6 @@ const CompanyLeft = () => {
           <a
             className={`nav-link-sd ${!open?.companyType && "collapsed"}`}
             onClick={() => openMenu("companyType")}
-            href="#"
             data-toggle="collapse"
             data-target="#collapseTwo"
             aria-expanded="true"
@@ -350,16 +385,15 @@ const CompanyLeft = () => {
                   onChange={(ele) => filterKeyword("companytype", ele)}
                 />
               </h6>
-              {
-                companyTypeList && companyTypeList.map((item)=>{
+              {companyTypeList &&
+                companyTypeList.map((item) => {
                   return (
                     <li key={item.id} className="collapse-item">
                       <input type="checkbox" />
                       {item?.name}
                     </li>
                   );
-                })
-              }
+                })}
             </div>
           </div>
         </li>
@@ -367,7 +401,6 @@ const CompanyLeft = () => {
           <a
             className={`nav-link-sd ${!open?.employeeCount && "collapsed"}`}
             onClick={() => openMenu("employeeCount")}
-            href="#"
             data-toggle="collapse"
             data-target="#collapseTwo"
             aria-expanded="true"
@@ -391,16 +424,15 @@ const CompanyLeft = () => {
                   onChange={(ele) => filterKeyword("employeecount", ele)}
                 />
               </h6>
-              {
-                employeeCountList && employeeCountList.map((item)=>{
+              {employeeCountList &&
+                employeeCountList.map((item) => {
                   return (
                     <li key={item.id} className="collapse-item">
                       <input type="checkbox" />
                       {item?.name}
                     </li>
                   );
-                })
-              }
+                })}
             </div>
           </div>
         </li>
@@ -408,7 +440,6 @@ const CompanyLeft = () => {
           <a
             className={`nav-link-sd ${!open?.revenue && "collapsed"}`}
             onClick={() => openMenu("revenue")}
-            href="#"
             data-toggle="collapse"
             data-target="#collapseTwo"
             aria-expanded="true"
@@ -432,16 +463,15 @@ const CompanyLeft = () => {
                   onChange={(ele) => filterKeyword("revenuerange", ele)}
                 />
               </h6>
-              {
-                revenuerangeList && revenuerangeList.map((item)=>{
+              {revenuerangeList &&
+                revenuerangeList.map((item) => {
                   return (
                     <li key={item.id} className="collapse-item">
                       <input type="checkbox" />
                       {item?.name}
                     </li>
                   );
-                })
-              }
+                })}
             </div>
           </div>
         </li>

@@ -1,6 +1,6 @@
-import { INDUSTRY_LIST, GEOLOCATION,COMPANY_TYPE,EMPLOYEE_COUNT,REVENUE_RANGE} from "../actionType/companyListingType";
-import { getAuthMethod } from "../services/HttpServices";
-import { industryApiUrl,employeeCountApiUrl,companyTypeApiUrl,revenueRangeApiUrl } from "../constant/Constant";
+import { INDUSTRY_LIST, GEOLOCATION,COMPANY_TYPE,EMPLOYEE_COUNT,REVENUE_RANGE,COMPANYLIST} from "../actionType/companyListingType";
+import { getAuthMethod,getMethod } from "../services/HttpServices";
+import { industryApiUrl,employeeCountApiUrl,companyTypeApiUrl,revenueRangeApiUrl,companyListingApiUrl } from "../constant/Constant";
 import { Geolocation } from "../constant/Geolocation";
 
 export const getIndustryList = (payload) => (dispatch) => {
@@ -40,6 +40,15 @@ export const getRevenuerangeList = (payload) => (dispatch) => {
   return getAuthMethod(revenueRangeApiUrl).then((res) => {
     dispatch({
       type: REVENUE_RANGE,
+      payload: res.data,
+    });
+  });  
+};
+
+export const getCompanyList = (payload) => (dispatch) => {
+  return getMethod(companyListingApiUrl).then((res) => {
+    dispatch({
+      type: COMPANYLIST,
       payload: res.data,
     });
   });  

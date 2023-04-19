@@ -2,12 +2,13 @@ import {
   SIGNUP_STEP1,
   SIGNUP_STEP2,
   SIGNUP_STEP3,
+  LOGIN,
 } from "../actionType/signUpType";
 
 const initialState = {
   signUpStep1Data: {},
   signUpStep2Data: {},
-//   signUpStep3Data: {},
+  signInData: {},
 };
 
 const SignUpReducer = (state = initialState, action) => {
@@ -18,8 +19,8 @@ const SignUpReducer = (state = initialState, action) => {
       return { ...state, signUpStep1Data: payload };
     case SIGNUP_STEP2:
       return { ...state, signUpStep2Data: payload };
-    // case SIGNUP_STEP3:
-    //   return { ...state, signUpStep3Data: payload };
+    case LOGIN:
+      return { ...state, signInData: payload };
     default:
       return state;
   }

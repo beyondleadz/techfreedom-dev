@@ -4,6 +4,7 @@ import {
   COMPANY_TYPE,
   EMPLOYEE_COUNT,
   REVENUE_RANGE,
+  COMPANYLIST,
 } from "../actionType/companyListingType";
 
 const initialState = {
@@ -11,7 +12,8 @@ const initialState = {
   geoLocation: [],
   companyTypeList:[],
   employeeCountList:[],
-  revenueRangeList:[]
+  revenueRangeList:[],
+  companyList:[],
 
 };
 
@@ -29,6 +31,8 @@ const CompanyListingReducer = (state = initialState, action) => {
       return { ...state, employeeCountList: payload };
     case REVENUE_RANGE:
       return { ...state, revenueRangeList: payload };
+    case COMPANYLIST:
+      return { ...state, companyList:payload};  
     default:
       return state;
   }

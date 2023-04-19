@@ -1,9 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import CLogo from "../../assets/images/d-bank1.png";
-
+import { useSelector, useDispatch } from "react-redux";
+import {
+  getCompanyList,
+} from "../../actionCreator/companyListingActionCreater";
 const CompanyContent = () => {
+  const dispatch = useDispatch();
+  const [companyList,setCompanyList]=useState();
+  const companyFilterList = useSelector((state) => state.companyListingReducer);
+
+  useMemo(() => {
+    dispatch(getCompanyList());
+  }, []);
+
+  useEffect(()=>{
+    setCompanyList(companyFilterList?.companyList);    
+  }, [companyFilterList])
   return (
     <>
+    
+
       <div id="content-wrapper" className="d-flex flex-column ">
         <div id="content" className="shadow">
           <nav className="navbar navbar-light bg-white topbar mb-4 static-top">
@@ -119,13 +135,11 @@ const CompanyContent = () => {
                               <th>
                                 <input type="checkbox" />
                               </th>
-                              <th>ID</th>
-                              <th>Organization Name</th>
-                              <th>Industries</th>
+                              <th>Company Name</th>
+                              <th>Industry</th>
                               <th>Location</th>
-                              <th>Email</th>
                               <th>Phone Number</th>
-                              <th>Address</th>
+                              <th>Social</th>
                               <th>
                                 <button className="d-none d-sm-inline-block btn btn-outline-secondary">
                                   <i className="fas fa-plus pr-1"></i> ADD
@@ -135,98 +149,25 @@ const CompanyContent = () => {
                             </tr>
                           </thead>
                           <tbody>
-                            <tr>
+                          {companyList &&
+                  companyList.map((item) => {
+                    let CLogo=item?.companyLogoUrl;
+                    return (
+                      <tr key={item.id}>
                               <td>
                                 <input type="checkbox" />
                               </td>
-                              <td>1</td>
-                              <td> <span className="companyLogo"><img src={CLogo} /></span>Deutsche Bank </td>
-                              <td>Banking, Finance, Financial </td>
-                              <td>Frankfurt, Hessen, Germany</td>
-                              <td>johndoe@email.com</td>
-                              <td>123-456-7890</td>
-                              <td>123 Main St</td>
+                              <td><span className="companyLogo"><img src={CLogo} /></span>{item?.name}</td>
+                              <td>{item?.industry?.name}</td>
+                              <td>{item?.city}, {item?.state}, {item?.country}</td>
+                              <td>{item?.phoneNo}</td>
+                              <td></td>
                               <td></td>
                             </tr>
-                            <tr>
-                              <td>
-                                <input type="checkbox" />
-                              </td>
-                              <td>2</td>
-                              <td> <span className="companyLogo"><img src={CLogo} /></span>Deutsche Bank </td>
-                              <td>Banking, Finance, Financial </td>
-                              <td>Frankfurt, Hessen, Germany</td>
-                              <td>johndoe@email.com</td>
-                              <td>123-456-7890</td>
-                              <td>123 Main St</td>
-                              <td></td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <input type="checkbox" />
-                              </td>
-                              <td>3</td>
-                              <td> <span className="companyLogo"><img src={CLogo} /></span>Deutsche Bank </td>
-                              <td>Banking, Finance, Financial </td>
-                              <td>Frankfurt, Hessen, Germany</td>
-                              <td>johndoe@email.com</td>
-                              <td>123-456-7890</td>
-                              <td>123 Main St</td>
-                              <td></td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <input type="checkbox" />
-                              </td>
-                              <td>4</td>
-                              <td> <span className="companyLogo"><img src={CLogo} /></span>Deutsche Bank </td>
-                              <td>Banking, Finance, Financial </td>
-                              <td>Frankfurt, Hessen, Germany</td>
-                              <td>johndoe@email.com</td>
-                              <td>123-456-7890</td>
-                              <td>123 Main St</td>
-                              <td></td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <input type="checkbox" />
-                              </td>
-                              <td>5</td>
-                              <td> <span className="companyLogo"><img src={CLogo} /></span>Deutsche Bank </td>
-                              <td>Banking, Finance, Financial </td>
-                              <td>Frankfurt, Hessen, Germany</td>
-                              <td>johndoe@email.com</td>
-                              <td>123-456-7890</td>
-                              <td>123 Main St</td>
-                              <td></td>
-                            </tr>
-
-                            <tr>
-                              <td>
-                                <input type="checkbox" />
-                              </td>
-                              <td>6</td>
-                              <td> <span className="companyLogo"><img src={CLogo} /></span>Deutsche Bank </td>
-                              <td>Banking, Finance, Financial </td>
-                              <td>Frankfurt, Hessen, Germany</td>
-                              <td>johndoe@email.com</td>
-                              <td>123-456-7890</td>
-                              <td>123 Main St</td>
-                              <td></td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <input type="checkbox" />
-                              </td>
-                              <td>7</td>
-                              <td> <span className="companyLogo"><img src={CLogo} /></span>Deutsche Bank </td>
-                              <td>Banking, Finance, Financial </td>
-                              <td>Frankfurt, Hessen, Germany</td>
-                              <td>johndoe@email.com</td>
-                              <td>123-456-7890</td>
-                              <td>123 Main St</td>
-                              <td></td>
-                            </tr>
+                    );
+                  })
+      }
+                            
                           </tbody>
                         </table>
                       </div>
