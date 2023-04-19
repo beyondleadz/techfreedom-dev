@@ -16,7 +16,15 @@ border-top-left-radius: 0.25rem;
 border-top-right-radius: 0.25rem;
 margin: 2px 0 0 6px; font-weight: 500;
 font-size: 14px;}
-
+.top-tabs1 {
+   display: block;
+  padding: 0.2rem 0.5rem;
+    margin: 2px 0 0 6px;
+  font-weight: 600;
+  font-size: 16px;
+  background-color: #f8f9fc;
+  border: none;
+}
 .table-container {
   width: 100%;
   margin: 0 auto;}
@@ -6135,7 +6143,8 @@ padding:5px
 .headercontainer{
   display:flex;
   border-bottom: 1px solid #dee2e6;
-  height: 145px;
+  /* height: 145px; */  height: 165px;
+
 }
 
 .logobox{
@@ -6149,14 +6158,27 @@ padding:5px
   width:100%;
   display: block;
 }
+.descbox1{
+ 
+  border-radius: 0.5rem; border: 1px solid #eee;
+  padding: 10px 10px 10px 20px;
+    margin-top: 50px;
+    right: 160px;
+    position: absolute;
+    background-color: #fff;
+    font-size: 12px; font-weight: 600;
+}
+
+
 .descbox{
   padding-top: 25px;
   padding-left: 200px;
+  padding-bottom: 15px;
 }
 .navigation{
-  position: relative;
-  top: -2rem;
-  margin-left: 193px;
+  /* position: relative;
+  top: -2rem; */
+  margin-left: 1px;
 }
 
 .onscroll{
@@ -6249,7 +6271,7 @@ padding:5px
       display: inline;
       /* padding: 0.3rem 0.7rem; */
       font-size: 23px;      
-    background-size: 100%;}
+    background-size: 100%; color: blue;}
  /* background: url(../images/pdf-icon.png) no-repeat 55% center; */
  /* background: url(../images/xls-icon.png) no-repeat 55% center; */
  /* background: url(../images/printer-icon.png) no-repeat 55% center; */
@@ -6460,7 +6482,7 @@ color: orange;
     height: 100%;
       /* background: #f8f9fa; */
     font-family: 'Fjalla One', sans-serif;
-    font-size: 18px;
+    font-size: 18px; overflow: auto;
   }
   
   
