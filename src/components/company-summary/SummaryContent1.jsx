@@ -185,133 +185,210 @@ const SummaryContent = () => {
 <div className="card-header font-weight-bold">
 Contacts</div>
 <div className="card-body">
-                    <div className="table-container text-nowrap">
-                      <div className="table-wrapper">
-                        <table className="data-table">
-                          <thead>
-                            <tr>
-                              <th>
-                                <input type="checkbox" />
-                              </th>
-                              <th>ID</th>
-                              <th>Executive Name</th>
-                              <th>Designation</th>
-                              <th>Email</th>
-                              <th>Phone Number</th>
-                              <th>Direct Dial/Mobile</th>
-                              <th>
-                                <button className="d-none d-sm-inline-block btn btn-outline-secondary">
-                                  <i className="fas fa-plus pr-1"></i> MOVE TO LEADS{" "} </button>
-                              </th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td>
-                                <input type="checkbox" />
-                              </td>
-                              <td>1</td>
-                             
-                              <td>John Mathew </td>
-                              <td>Delivery Head</td>
-                              <td>johndoe@email.com</td>
-                              <td>011 42356892</td>
-                              <td>+91 9810098100</td>
-                              <td></td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <input type="checkbox" />
-                              </td>
-                              <td>2</td>
-                              
-                              <td>John Mathew </td>
-                              <td>Delivery Head</td>
-                              <td>johndoe@email.com</td>
-                              <td>011 42356892</td>
-                              <td>+91 9810098100</td>
-                              <td></td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <input type="checkbox" />
-                              </td>
-                              <td>3</td>
-                              
-                              <td>John Mathew </td>
-                              <td>Delivery Head</td>
-                              <td>johndoe@email.com</td>
-                              <td>011 42356892</td>
-                              <td>+91 9810098100</td>
-                              <td></td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <input type="checkbox" />
-                              </td>
-                              <td>4</td>
-                              
-                              <td>John Mathew </td>
-                              <td>Delivery Head</td>
-                              <td>johndoe@email.com</td>
-                              <td>011 42356892</td>
-                              <td>+91 9810098100</td>
-                              <td></td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <input type="checkbox" />
-                              </td>
-                              <td>5</td>
-                              
-                              <td>John Mathew </td>
-                              <td>Delivery Head</td>
-                              <td>johndoe@email.com</td>
-                              <td>011 42356892</td>
-                              <td>+91 9810098100</td>
-                              <td></td>
-                            </tr>
+     <div className="row">
+    <div className="container">
+  <div className="row fs-14">
+    <div className="col-8 col-sm-6 pt-2"><p className="font-weight-bold">Abid Nasir</p>
+    <p>Global COO Lending and Deposits, Wealth Management</p>
+<p>Executive</p>
+<p>Management</p></div>
+    <div className="col-6 col-sm-3 pt-2">1 email found</div>
+    <div className="col-6 col-sm-3 text-right ">
+    <div className="btn btn-primary text-black mb-3 align-items-center"> <i className="fas fa-bolt pr-2"></i>VIEW                
+                </div><div className="buttons-container1">
+                 <ul className="d-flex  m-mt">
+                <li>
+                  <a
+                    class=" mr-2"
+                    href="#"
+                    id=""
+                    role="button"
+                    data-toggle=""
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <i class="right-icons la la-envelope" aria-hidden="true"></i>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    class=" mr-2"
+                    href="#"
+                    id=""
+                    role="button"
+                    data-toggle=""
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <i class="right-icons las la-share-square" aria-hidden="true"></i>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    class="  mr-2"
+                    href="#"
+                    id=""
+                    role="button"
+                    data-toggle=""
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <i className="right-icons la la-print" aria-hidden="true"></i>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    class="  mr-2"
+                    href="#"
+                    id=""
+                    role="button"
+                    data-toggle=""
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <i className="right-icons la la-star" aria-hidden="true"></i>
+                  </a>
+                </li>
+              </ul>
+            </div></div>
+    <div className="w-100"></div>
+    <div className="col-8 col-sm-6 pt-2"><p className="font-weight-bold">Abid Nasir</p>
+    <p>Global COO Lending and Deposits, Wealth Management</p>
+<p>Executive</p>
+<p>Management</p></div>
+    <div className="col-6 col-sm-3 pt-2">1 email found</div>
+    <div className="col-6 col-sm-3 text-right">
+    <div className="btn btn-primary text-black mb-3 align-items-center"> <i className="fas fa-bolt pr-2"></i>VIEW                
+                </div>
+                <div className="buttons-container1">
+                 <ul className="d-flex  m-mt">
+                 <li>
+                  <a
+                    class="  mr-2"
+                    href="#"
+                    id=""
+                    role="button"
+                    data-toggle=""
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <i class="right-icons la la-envelope" aria-hidden="true"></i>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    class="  mr-2"
+                    href="#"
+                    id=""
+                    role="button"
+                    data-toggle=""
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <i class="right-icons las la-share-square" aria-hidden="true"></i>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    class="  mr-2"
+                    href="#"
+                    id=""
+                    role="button"
+                    data-toggle=""
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <i className="right-icons la la-print" aria-hidden="true"></i>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    class="  mr-2"
+                    href="#"
+                    id=""
+                    role="button"
+                    data-toggle=""
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <i className="right-icons la la-star" aria-hidden="true"></i>
+                  </a>
+                </li>
+                
+              </ul>
+            </div>
+                </div>
+                <div className="w-100"></div>
+    <div className="col-8 col-sm-6 pt-2"><p className="font-weight-bold">Abid Nasir</p>
+    <p>Global COO Lending and Deposits, Wealth Management</p>
+<p>Executive</p>
+<p>Management</p></div>
+    <div className="col-6 col-sm-3 pt-2">1 email found</div>
+    <div className="col-6 col-sm-3 text-right">
+    <div className="btn btn-primary text-black mb-3 align-items-center"> <i className="fas fa-bolt pr-2"></i>VIEW                
+                </div>
+                <div className="buttons-container1">
+                 <ul className="d-flex  m-mt">
+                 <li>
+                  <a
+                    class="  mr-2"
+                    href="#"
+                    id=""
+                    role="button"
+                    data-toggle=""
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <i class="right-icons la la-envelope" aria-hidden="true"></i>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    class="  mr-2"
+                    href="#"
+                    id=""
+                    role="button"
+                    data-toggle=""
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <i class="right-icons las la-share-square" aria-hidden="true"></i>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    class="  mr-2"
+                    href="#"
+                    id=""
+                    role="button"
+                    data-toggle=""
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <i className="right-icons la la-print" aria-hidden="true"></i>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    class="  mr-2"
+                    href="#"
+                    id=""
+                    role="button"
+                    data-toggle=""
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <i className="right-icons la la-star" aria-hidden="true"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+                </div>
+  </div>
+</div>
 
-                            <tr>
-                              <td>
-                                <input type="checkbox" />
-                              </td>
-                              <td>6</td>
-                              
-                              <td>John Mathew </td>
-                              <td>Delivery Head</td>
-                              <td>johndoe@email.com</td>
-                              <td>011 42356892</td>
-                              <td>+91 9810098100</td>
-                              <td></td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <input type="checkbox" />
-                              </td>
-                              <td>7</td>
-                             
-                              <td>John Mathew </td>
-                              <td>Delivery Head</td>
-                              <td>johndoe@email.com</td>
-                              <td>011 42356892</td>
-                              <td>+91 9810098100</td>
-                              <td></td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div className="pagination">
-                        <a href="#">Previous</a>
-                        <a href="#">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
-                        <a href="#">4</a>
-                        <a href="#">5</a>
-                        <a href="#">Next</a>
-                      </div>
-                    </div>
-                  </div>
+</div>
+</div>
  </div>
 
 					</div>
