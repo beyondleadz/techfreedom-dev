@@ -1,6 +1,6 @@
 import React,{useState} from "react";
 import ExecutiveSearchConnect from '../../assets/images/executive-search-connect-icon.jpg'
-import ProspectSearchImage from "../../assets/images/prospect-search.jpg"
+import InternalSystemsIntegrationImage from "../../assets/images/internal-systems-integration.jpg"
 
 const InternalSystemsIntegration = () => {
     return(
@@ -14,7 +14,7 @@ const InternalSystemsIntegration = () => {
 				 </div>
                 <div className="col-lg-6 history-info mt-5 pt-lg-0 pt-5">
                     <div className="position-relative img-border">
-                        <img src={ProspectSearchImage} className="img-fluid video-popup-image" alt="video-popup"/>
+                        <img src={InternalSystemsIntegrationImage} className="img-fluid video-popup-image" alt="video-popup"/>
                     </div>
                 </div>
             </div>

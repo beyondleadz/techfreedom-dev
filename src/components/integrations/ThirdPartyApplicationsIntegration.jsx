@@ -1,6 +1,6 @@
 import React,{useState} from "react";
 import ExecutiveSearchIconImage from "../../assets/images/executive-search-leads-icon.jpg"
-import ExecutiveLeadsImage from "../../assets/images/leads.jpg"
+import ThirdPartyApplicationsIntegrationImage from "../../assets/images/third-party-application-integration.jpg"
 
 const LaserLists = () => {
     return (
@@ -9,7 +9,7 @@ const LaserLists = () => {
             <div className="row py-lg-4">
 			<div className="col-lg-6 history-info mt-5 pt-lg-0 pt-5">
                     <div className="position-relative img-border">
-                        <img src={ExecutiveLeadsImage} className="img-fluid video-popup-image" alt="video-popup"/>                    </div>
+                        <img src={ThirdPartyApplicationsIntegrationImage} className="img-fluid video-popup-image" alt="video-popup"/>                    </div>
               </div>
                 <div className="col-lg-6 section-width align-self">
 				{/* <img src={ExecutiveSearchIconImage} style={{"paddingLeft":"3rem"}} alt="" title=""/> */}
