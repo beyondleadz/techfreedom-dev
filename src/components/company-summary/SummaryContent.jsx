@@ -81,7 +81,7 @@ const SummaryContent = () => {
   <tbody>
     <tr><td colspan="2"><span className="font-weight-bold">Deutsche Bank</span>,a Frankfurt-based global investment bank, offers financial products and services to corporate and institutional clients.
 </td></tr>
-<tr> <td className="width3"><i className=" fa  fa-users mr-2"></i><strong>Employees</strong></td>
+<tr> <td className="width3"><i className=" fa  fa-users mr-2"></i><strong>Employees Range</strong></td>
  <td className="employee-count" >809,221 <span>
     (<a rel="nofollow noreferrer" title="Search for Amazon Employees" href="/person?employer[]=&quot;amazon.com&quot;" target="_blank">687,052 on Deutsche Bank</a>)
   </span></td></tr>
