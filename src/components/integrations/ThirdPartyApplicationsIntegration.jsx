@@ -2,7 +2,7 @@ import React,{useState} from "react";
 import ExecutiveSearchIconImage from "../../assets/images/executive-search-leads-icon.jpg"
 import ThirdPartyApplicationsIntegrationImage from "../../assets/images/third-party-application-integration.jpg"
 
-const LaserLists = () => {
+const ThirdPartyApplicationsIntegration = () => {
     return (
 <section className="w3l-ab-section-left py-5">
         <div className="container py-md-5 py-4">
@@ -25,4 +25,4 @@ const LaserLists = () => {
     )
 }
 
-export default LaserLists;
+export default ThirdPartyApplicationsIntegration;
