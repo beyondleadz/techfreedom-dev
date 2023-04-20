@@ -35,20 +35,10 @@ const CompanySummary = () => {
                                         https://www.Deutsche.com</div>
                                         <div className="fs-12 ml-3 pt-1 pl-2">
                                           <span className="  mr-2"> 
-<<<<<<< HEAD
 <i class="lab fs-25 text-info  la-facebook-square"></i>
 <i class="lab fs-25 text-info  la-twitter-square"></i>
 <i class="lab fs-25 text-info  la-linkedin"></i>
 {/* <i class="fab fa-github me-2"></i>
-=======
-<i className="btn btn-info fab fa-facebook-f mr-1"></i>
-<i className="btn btn-info fab fa-twitter mr-1"></i>
-<i className="btn btn-primary fab fa-instagram mr-1"></i>
-<i className="btn btn-info fab fa-linkedin-in mr-1"></i>
-{/*<i className="btn btn-secondary fab fa-google mr-1"></i>
-<i className="btn btn-secondary fab fa-youtube mr-1"></i>
- <i class="fab fa-github me-2"></i>
->>>>>>> ecc373dcc72abccb3467384043ea1932ce3562b1
 <i class="fab fa-whatsapp me-2"></i>*/}</span> 
           </div>         
         </div>
