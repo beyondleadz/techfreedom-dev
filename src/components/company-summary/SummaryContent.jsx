@@ -407,7 +407,7 @@ Contacts</div>
     </div>
     <div className="col">
      <div><a className="font-weight-bold fs-14 text-dark"  title="" href="#" target="">ICICI Corporate Banking</a></div>
-       <div className="fs-12">banking, finance</div>
+       <div className="fs-12">Banking, Finance</div>
       <div className="fs-12">Noida India</div>
     </div>
   </div>
@@ -416,8 +416,8 @@ Contacts</div>
     <img src={logo} />
     </div>
     <div className="col">
-     <div><p className="font-weight-bold">ICICI Corporate Banking</p></div>
-       <div className="fs-12">banking, finance</div>
+    <div><a className="font-weight-bold fs-14 text-dark"  title="" href="#" target="">ICICI Corporate Banking</a></div>
+       <div className="fs-12">Banking, Finance</div>
       <div className="fs-12">Noida India</div>
     </div>
   </div>
@@ -426,8 +426,8 @@ Contacts</div>
     <img src={logo} />
     </div>
     <div className="col">
-     <div><p className="font-weight-bold">ICICI Corporate Banking</p></div>
-       <div className="fs-12">banking, finance</div>
+    <div><a className="font-weight-bold fs-14 text-dark"  title="" href="#" target="">ICICI Corporate Banking</a></div>
+       <div className="fs-12">Banking, Finance</div>
       <div className="fs-12">Noida India</div>
     </div>
   </div>
@@ -436,8 +436,8 @@ Contacts</div>
     <img src={logo} />
     </div>
     <div className="col">
-     <div><p className="font-weight-bold">ICICI Corporate Banking</p></div>
-       <div className="fs-12">banking, finance</div>
+    <div><a className="font-weight-bold fs-14 text-dark"  title="" href="#" target="">ICICI Corporate Banking</a></div>
+       <div className="fs-12">Banking, Finance</div>
       <div className="fs-12">Noida India</div>
     </div>
   </div>
@@ -446,8 +446,8 @@ Contacts</div>
     <img src={logo} />
     </div>
     <div className="col">
-    <div><p className="font-weight-bold">ICICI Corporate Banking</p></div>
-       <div className="fs-12">banking, finance</div>
+    <div><a className="font-weight-bold fs-14 text-dark"  title="" href="#" target="">ICICI Corporate Banking</a></div>
+       <div className="fs-12">Banking, Finance</div>
       <div className="fs-12">Noida India</div>
     </div>
   </div><div className="fs-12 text-right"><button className="btn btn-light mr-2 small">5 More..</button></div>
