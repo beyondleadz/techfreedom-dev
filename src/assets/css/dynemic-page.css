@@ -16,17 +16,25 @@ border-top-left-radius: 0.25rem;
 border-top-right-radius: 0.25rem;
 margin: 2px 0 0 6px; font-weight: 500;
 font-size: 14px;}
-.top-tabs1 {box-shadow: 2px 0px 2px 0px rgba(0, 0, 0, 0.5);
-   display: block;
-  padding: 0.2rem 0.5rem 0;
-    margin: 2px 0 0 6px;
-  font-weight: 500;
-  font-size: 14px;
-  background-color: #f8f9fc;
-  border: 1px solid transparent;
-border-top-left-radius: 0.25rem;
-border-top-right-radius: 0.25rem;
+.top-tabs1 {
+  /* box-shadow: 2px 0px 2px 0px rgba(0, 0, 0, 0.5); */ 
+    display: block;
+    padding: 0.6rem 0.5rem;
+    padding-top: 0.6rem;
+    padding-right: 0.5rem;
+    padding-bottom: 0.6rem;
+    padding-left: 0.5rem;
+    margin: 2px 0 0 0;
+    font-weight: 500;
+    font-size: 14px;
+    background-color: #f8f9fc;
+    border: 1px solid #e3e6f0;
+   
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
 }
+  
+
 .table-container {
   width: 100%;
   margin: 0 auto;}
@@ -4917,7 +4925,7 @@ a:focus {
 }
 
 #wrapper #content-wrapper {
-  background-color: #f8f9fc;
+  /* background-color: #f8f9fc; */
   width: 100%;
   overflow-x: hidden; margin-top: 1px;
 }
@@ -6092,7 +6100,7 @@ form.user .btn-user {
 body.ssidebar-toggled footer.sticky-footer {
   width: 100%;
 }
-.wrapper{margin-top: 5.5%; background-color: #f8f9fa;}
+ .wrapper{margin-top: 5.5%; /*background-color: #f8f9fa; */}
 #wrapper .searchbox{
   
     margin-bottom: 5px;
@@ -6169,19 +6177,19 @@ padding:5px
 }
 .descbox1{
    border-radius: 0.5rem; border: 1px solid #eee;
-  padding: 10px 10px 10px 20px;
+  padding: 10px 10px 20px 10px;
     /* margin-top: 50px;
     right: 180px; */
     /* position: absolute; */
     background-color: #fff;
-    font-size: 11px; font-weight: 400;
+    font-size: 10px; font-weight: 400; text-align:center;
 }
 .descbox1 .btn-outline-dark {
   color: #343a40;
   border-color: #343a40;
-  font-size: 10px; padding: 3px 10px;
+  font-size: 10px; padding: 3px 6px;
 }
-
+.brdr-b{border-bottom: 1px solid #ccc; }
 .descbox1 .btn-outline-dark:hover {
   color: #fff;
   background-color: #343a40;
@@ -6192,7 +6200,7 @@ padding:5px
 .descbox1 .btn-outline-dark.focus {
   box-shadow: 0 0 0 0.2rem rgba(52, 58, 64, 0.5);
 }
-.width3{width:30%}
+.width3{width:25%}
 .width2{width:20%}
 .descbox{
   padding-top: 25px;
@@ -6238,9 +6246,10 @@ padding:5px
     margin: 10px 0 0;
 }
 .s-company{max-block-size: fit-content;
-  max-width: 60px;
+  max-width: 20px;
   height: auto;
-  width: 100%;}
+  width: 100%;
+  margin: 0 0 0 10px;}
 
  .s-company-content { max-width:50%;}
 

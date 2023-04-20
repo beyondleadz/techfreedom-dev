@@ -25,15 +25,7 @@ const CompanySummary = () => {
         </div>
 
         <div className="descbox">
-          <div className="fs-12">INVESTMENT FIRM</div>
-          <div className="font-weight-bold mb-2 "><h3>Deutsche Bank</h3></div>
-          <div className="fs-12"><span class=" la  la-map-marker mr-2"></span><strong className="mr-2">Address</strong>
-          410 Terry Ave N, Seattle, Washington 98109, US</div>
-          <div><span class=" la text-info  la-mobile fs-20 mr-2"></span><strong className="mr-2 fs-12">Phone</strong>
-          <span className="fs-12">(206) 266-1000 </span> </div> 
-          <div className="fs-12"><span className=" la  la-globe mr-2" aria-hidden="true"></span><strong className="mr-2">Website</strong>
-                                        https://www.Deutsche.com</div>
-                                        <div className="fs-12 ml-3 pt-1 pl-2">
+          <div className="fs-12">INVESTMENT FIRM</div> <div className=" d-flex float-right fs-12 ml-3 pl-2">
                                           <span className="  mr-2"> 
 <i class="lab fs-25 text-info  la-facebook-square"></i>
 <i class="lab fs-25 text-info  la-twitter-square"></i>
@@ -41,6 +33,14 @@ const CompanySummary = () => {
 {/* <i class="fab fa-github me-2"></i>
 <i class="fab fa-whatsapp me-2"></i>*/}</span> 
           </div>         
+          <div className="font-weight-bold mb-2 "><h3>Deutsche Bank</h3></div>
+          <div className="fs-12"><span class=" la  la-map-marker mr-2"></span><strong className="mr-2">Address</strong>
+          410 Terry Ave N, Seattle, Washington 98109, US</div>
+          <div><span class=" la text-info  la-mobile fs-20 mr-2"></span><strong className="mr-2 fs-12">Phone</strong>
+          <span className="fs-12">(206) 266-1000 </span> </div> 
+          <div className="fs-12"><span className=" la  la-globe mr-2" aria-hidden="true"></span><strong className="mr-2">Website</strong>
+                                        https://www.Deutsche.com</div>
+                                       
         </div>
        
         <div className="buttons-container">

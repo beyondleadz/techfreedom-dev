@@ -9,17 +9,17 @@ const SummaryContent = () => {
 <div id="content-wrapper" className="d-flex flex-column">
 <div className="container-fluid">
 <div className="row">
-			<div className="col-md-8 col-custom">
+			<div className="col-md-9 col-custom">
 					<div className="row">
 					<div className="col-md-12">
-          <div className="card shadow mt-4 mb-4">
+          <div className="mt-4 mb-4">
             
-<div className="card-header1">
+<div className="">
 <div className="navigation ">
         <ul className="nav" id="myTabjustified" role="tablist">
-          <li className="nav-item" role="presentation">
+          <li className="nav-item mr-2" role="presentation">
             <button
-              className="top-tabs1 active"
+              className="top-tabs1  active"
               id="home-tab"
               data-bs-toggle="tab"
               data-bs-target="#home"
@@ -31,9 +31,9 @@ const SummaryContent = () => {
               <i className="fa fa-city pr-2" style={{"color":"#5D44FF"}}></i>About Company
             </button>
           </li>
-          <li className="nav-item" role="presentation">
+          <li className="nav-item mr-2" role="presentation">
             <button
-              className="top-tabs1"
+              className="top-tabs1 "
               id="profile-tab"
               data-bs-toggle="tab"
               data-bs-target="#profile"
@@ -45,9 +45,9 @@ const SummaryContent = () => {
               <i className="fa fa-user-friends pr-2" style={{"color":"#5D44FF"}}></i> Key Executives
             </button>
           </li>
-          <li className="nav-item" role="presentation">
+          <li className="nav-item mr-2" role="presentation">
             <button
-              className="top-tabs1"
+              className="top-tabs1 "
               id="contact-tab"
               data-bs-toggle="tab"
               data-bs-target="#contact"
@@ -74,26 +74,26 @@ const SummaryContent = () => {
           </li>
         </ul>
       </div></div>
-<div className="card-body">
+<div className="card shadow card-body">
     <div className="row">
 
     <table className="table table-responsive ">
   <tbody>
     <tr><td colspan="2"><span className="font-weight-bold">Deutsche Bank</span>,a Frankfurt-based global investment bank, offers financial products and services to corporate and institutional clients.
 </td></tr>
-<tr> <td className="width3"><i className=" fa  fa-users mr-2"></i><strong>Employees Range</strong></td>
+<tr> <td className="width3"><i className=" las  la-users mr-2"></i><strong>Employees Range</strong></td>
  <td className="employee-count" >809,221 <span>
-    (<a rel="nofollow noreferrer" title="Search for Amazon Employees" href="/person?employer[]=&quot;amazon.com&quot;" target="_blank">687,052 on Deutsche Bank</a>)
+    (687,052 on Deutsche Bank)
   </span></td></tr>
-  <tr>  <td><i className=" fa  fa-money-check mr-2"></i><strong>Revenue Range</strong></td>
-  <td>$280.52 billion</td> </tr> <tr> <td><i className=" fa fa-university mr-2" aria-hidden="true"></i><strong>Company Type</strong></td>
+  <tr>  <td><i className=" la  la-money-check mr-2"></i><strong>Revenue Range</strong></td>
+  <td>$280.52 billion</td> </tr> <tr> <td><i className=" la la-university mr-2" aria-hidden="true"></i><strong>Company Type</strong></td>
   <td>$48.00 Million</td></tr>
   
                 
-  <tr> <td><i className=" fa  fa-map-pin mr-2"></i><strong>Industry</strong></td>
+  <tr> <td><i className=" la  la-map-pin mr-2"></i><strong>Industry</strong></td>
                             <td>Banking, Finance</td> </tr>
                                      
- <tr><td><i className=" mr-2 fa  fa-laptop"></i><span className="font-weight-bold" >Technographics</span></td>
+ <tr><td><i className=" mr-2 las la-cog"></i><span className="font-weight-bold" >Technographics</span></td>
 <td><div >
  <span> JavaScript, HTML, PHP
   <strong> +1282 more</strong> <strong> (view full list) </strong>
@@ -104,7 +104,7 @@ const SummaryContent = () => {
   
                 <tr>
                 
-                    </tr><tr> <td><i className=" fa fa-th-large mr-2"></i><strong>Product and Services</strong></td>
+                    </tr><tr> <td><i className=" las la-suitcase mr-2"></i><strong>Product and Services</strong></td>
                             <td><span>Retail,</span><span>Internet,</span>
                                 
                                 <span>Software Development,</span>
@@ -184,8 +184,7 @@ Contacts</div>
                               <th>Phone Number</th>
                               <th>Direct Dial/Mobile</th>
                               <th>
-                              <button className="d-none d-sm-inline-block small btn btn-primary text-black">
-                                   MOVE TO LEADS{" "} </button>
+                              
                               </th>
                             </tr>
                           </thead>
@@ -199,10 +198,10 @@ Contacts</div>
                               <td>John Mathew </td>
                               <td>Delivery Head</td>
                               <td><h4 className=" la  la-envelope text-info "></h4></td>
-                              <td><h4 className=" la  la-phone text-info "></h4></td>
+                              <td>(206) 266-1000</td>
                               <td><h4 className=" la  la-mobile text-info"></h4></td>
                               <td><button className="d-none d-sm-inline-block small btn btn-primary text-black">
-                                   MOVE TO LEADS{" "} </button></td>
+                                   ADD TO LEADS{" "} </button></td>
                             </tr>
                             <tr>
                               <td>
@@ -213,10 +212,10 @@ Contacts</div>
                               <td>John Mathew </td>
                               <td>Delivery Head</td>
                               <td><h4 className=" la  la-envelope text-info "></h4></td>
-                              <td><h4 className=" la  la-phone text-info "></h4></td>
+                              <td>(206) 266-1000</td>
                               <td><h4 className=" la  la-mobile text-info"></h4></td>
                               <td><button className="d-none d-sm-inline-block small btn btn-primary text-black">
-                                   MOVE TO LEADS{" "} </button></td>
+                              ADD TO LEADS{" "} </button></td>
                             </tr>
                             <tr>
                               <td>
@@ -227,10 +226,10 @@ Contacts</div>
                               <td>John Mathew </td>
                               <td>Delivery Head</td>
                               <td><h4 className=" la  la-envelope text-info "></h4></td>
-                              <td><h4 className=" la  la-phone text-info "></h4></td>
+                              <td>(206) 266-1000</td>
                               <td><h4 className=" la  la-mobile text-info"></h4></td>
                               <td><button className="d-none d-sm-inline-block small btn btn-primary text-black">
-                                   MOVE TO LEADS{" "} </button></td>
+                              ADD TO LEADS{" "} </button></td>
                             </tr>
                             <tr>
                               <td>
@@ -241,10 +240,10 @@ Contacts</div>
                               <td>John Mathew </td>
                               <td>Delivery Head</td>
                               <td><h4 className=" la  la-envelope text-info "></h4></td>
-                              <td><h4 className=" la  la-phone text-info "></h4></td>
+                              <td>(206) 266-1000</td>
                               <td><h4 className=" la  la-mobile text-info"></h4></td>
                               <td><button className="d-none d-sm-inline-block small btn btn-primary text-black">
-                                   MOVE TO LEADS{" "} </button></td>
+                              ADD TO LEADS{" "} </button></td>
                             </tr>
                             <tr>
                               <td>
@@ -255,10 +254,10 @@ Contacts</div>
                               <td>John Mathew </td>
                               <td>Delivery Head</td>
                               <td><h4 className=" la  la-envelope text-info "></h4></td>
-                              <td><h4 className=" la  la-phone text-info "></h4></td>
+                              <td>(206) 266-1000</td>
                               <td><h4 className=" la  la-mobile text-info"></h4></td>
                               <td><button className="d-none d-sm-inline-block small btn btn-primary text-black">
-                                   MOVE TO LEADS{" "} </button></td>
+                              ADD TO LEADS{" "} </button></td>
                             </tr>
 
                             <tr>
@@ -270,10 +269,10 @@ Contacts</div>
                               <td>John Mathew </td>
                               <td>Delivery Head</td>
                               <td><h4 className=" la  la-envelope text-info "></h4></td>
-                              <td><h4 className=" la  la-phone text-info "></h4></td>
+                              <td>(206) 266-1000</td>
                               <td><h4 className=" la  la-mobile text-info"></h4></td>
                               <td><button className="d-none d-sm-inline-block small btn btn-primary text-black">
-                                   MOVE TO LEADS{" "} </button></td>
+                              ADD TO LEADS{" "} </button></td>
                             </tr>
                             <tr>
                               <td>
@@ -284,10 +283,10 @@ Contacts</div>
                               <td>John Mathew </td>
                               <td>Delivery Head</td>
                               <td><h4 className=" la  la-envelope text-info "></h4></td>
-                              <td><h4 className=" la  la-phone text-info "></h4></td>
+                              <td>(206) 266-1000</td>
                               <td><h4 className=" la  la-mobile text-info"></h4></td>
                               <td><button className="d-none d-sm-inline-block small btn btn-primary text-black">
-                                   MOVE TO LEADS{" "} </button></td>
+                              ADD TO LEADS{" "} </button></td>
                             </tr>
                           </tbody>
                         </table>
@@ -397,47 +396,61 @@ Contacts</div>
 				</div>
         
 			</div>
-			<div className="col-md-4 col-custom-2">
+			<div className="col-md-3 col-custom-2">
       <div className="card shadow mt-4 mb-4">
  <div className="card-header font-weight-bold">
  Similar Companies</div>
  <div className="card-body">
- <div className="row">
-    <div className="col-3 s-company img-responsive">
+ <div className="row brdr-b pb-3">
+    <div className=" s-company img-responsive">
     <img src={logo} />
     </div>
     <div className="col">
-     <div className="mb-2"><p className="font-weight-bold">ICICI Corporate Banking</p></div>
-      
-      <div className="fs-12">India, London, England, United Kingdom</div>
-      <div className="fs-12">179 Contacts . 10001+ employees .</div>
-      <button className="btn btn-dark mr-2 small">Banking</button>
-      <button className="btn btn-dark mr-2 small">Finance</button>
-      <button className="btn btn-dark mr-2 small">Services</button>
-      <button className="btn btn-dark mr-2 small">FinTech</button>
-      <button className="btn btn-light mr-2 small">More..</button>
-      <div className="fs-12">ICICI is a global financial services company that provides various financial products and services worldwide.</div>
-      
+     <div><a className="font-weight-bold fs-14 text-dark"  title="" href="#" target="">ICICI Corporate Banking</a></div>
+       <div className="fs-12">banking, finance</div>
+      <div className="fs-12">Noida India</div>
     </div>
   </div>
-  <div className="row">
-    <div className="col-3 mt-3 s-company img-responsive">
+  <div className="row mt-3 brdr-b pb-3">
+    <div className=" s-company img-responsive">
     <img src={logo} />
     </div>
-    <div className="col mt-3">
-     <div className="mb-2"><p className="font-weight-bold">ICICI Corporate Banking</p></div>
-      
-      <div className="fs-12">India, London, England, United Kingdom</div>
-      <div className="fs-12">179 Contacts . 10001+ employees .</div>
-      <button className="btn btn-dark mr-2 small">Banking</button>
-      <button className="btn btn-dark mr-2 small">Finance</button>
-      <button className="btn btn-dark mr-2 small">Services</button>
-      <button className="btn btn-dark mr-2 small">FinTech</button>
-      <button className="btn btn-light mr-2 small">More..</button>
-      <div className="fs-12">ICICI is a global financial services company that provides various financial products and services worldwide.</div>
-      
+    <div className="col">
+     <div><p className="font-weight-bold">ICICI Corporate Banking</p></div>
+       <div className="fs-12">banking, finance</div>
+      <div className="fs-12">Noida India</div>
     </div>
   </div>
+  <div className="row brdr-b pt-3 pb-3">
+    <div className=" s-company img-responsive">
+    <img src={logo} />
+    </div>
+    <div className="col">
+     <div><p className="font-weight-bold">ICICI Corporate Banking</p></div>
+       <div className="fs-12">banking, finance</div>
+      <div className="fs-12">Noida India</div>
+    </div>
+  </div>
+  <div className="row brdr-b pt-3 pb-3">
+    <div className=" s-company img-responsive">
+    <img src={logo} />
+    </div>
+    <div className="col">
+     <div><p className="font-weight-bold">ICICI Corporate Banking</p></div>
+       <div className="fs-12">banking, finance</div>
+      <div className="fs-12">Noida India</div>
+    </div>
+  </div>
+  <div className="row  pt-3 ">
+    <div className=" s-company img-responsive">
+    <img src={logo} />
+    </div>
+    <div className="col">
+    <div><p className="font-weight-bold">ICICI Corporate Banking</p></div>
+       <div className="fs-12">banking, finance</div>
+      <div className="fs-12">Noida India</div>
+    </div>
+  </div><div className="fs-12 text-right"><button className="btn btn-light mr-2 small">5 More..</button></div>
                                </div>
  </div>
  <div className="card shadow descbox1">
