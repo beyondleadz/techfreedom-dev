@@ -440,7 +440,14 @@ Contacts</div>
   </div>
                                </div>
  </div>
+ <div className="card shadow descbox1">
+          <div>Is this company data relevant to you? <a href="#" id="" role="button" data-toggle=""aria-haspopup="true"
+                    aria-expanded="false"><i class="right-icons small fa fa-thumbs-up" aria-hidden="true"></i></a></div>
+          <div font-weight-bold><button class="btn btn-outline-dark font-weight-bold mr-2 p-1">Really Not</button>
+          <button class="btn btn-outline-dark font-weight-bold mr-2 p-1">Yes!</button></div>
+        </div>
 			</div>
+     
 		</div>
 
 
