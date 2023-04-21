@@ -6378,6 +6378,10 @@ padding:5px
       color: #5000FF;
       font-size: 1.2rem;
     }
+    .table .la-users:before {
+      color: #FDC401;
+      font-size: 1.2rem;
+    }
 .la-money-bill:before {
       color: #5000FF;
       font-size: 1.2rem;
@@ -6618,3 +6622,4 @@ color: orange;
     content: '';
     border-color: #94a0b4;
   }
+.social-icons{float: left; margin: 20px 0 0 70px;}

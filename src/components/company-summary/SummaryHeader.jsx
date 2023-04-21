@@ -25,24 +25,24 @@ const CompanySummary = () => {
         </div>
 
         <div className="descbox">
-          <div className="fs-12">INVESTMENT FIRM</div> <div className=" d-flex float-right fs-12 ml-3 pl-2">
-                                          <span className="  mr-2"> 
-<i class="lab fs-25 text-info  la-facebook-square"></i>
-<i class="lab fs-25 text-info  la-twitter-square"></i>
-<i class="lab fs-25 text-info  la-linkedin"></i>
-{/* <i class="fab fa-github me-2"></i>
-<i class="fab fa-whatsapp me-2"></i>*/}</span> 
-          </div>         
+          <div className="fs-12">INVESTMENT FIRM</div> 
           <div className="font-weight-bold mb-2 "><h3>Deutsche Bank</h3></div>
           <div className="fs-12"><span class=" la  la-map-marker mr-2"></span><strong className="mr-2">Address</strong>
           410 Terry Ave N, Seattle, Washington 98109, US</div>
           <div><span class=" la text-info  la-mobile fs-20 mr-2"></span><strong className="mr-2 fs-12">Phone</strong>
           <span className="fs-12">(206) 266-1000 </span> </div> 
           <div className="fs-12"><span className=" la  la-globe mr-2" aria-hidden="true"></span><strong className="mr-2">Website</strong>
-                                        https://www.Deutsche.com</div>
+          <a class=" fs-12 font-weight-normal text-dark" title="" href="https://www.Deutsche.com" target="_blank"> https://www.Deutsche.com</a></div>
                                        
         </div>
-       
+        <div className=" d-flex social-icons fs-12 ml-3 pl-2">
+                                          <span className="  mr-2"> 
+<i class="lab fs-25 text-info la la-facebook-square"></i>
+<i class="lab fs-25 text-info la la-twitter-square"></i>
+<i class="lab fs-25 text-info  la la-linkedin-square"></i>
+{/* <i class="fab fa-github me-2"></i>
+<i class="fab fa-whatsapp me-2"></i>*/}</span> 
+          </div>         
         <div className="buttons-container">
                  <ul className="d-flex  m-mt">
                  <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
