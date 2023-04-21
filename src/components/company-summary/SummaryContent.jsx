@@ -85,12 +85,12 @@ const SummaryContent = () => {
  <td className="employee-count" >809,221 <span>
     (687,052 on Deutsche Bank)
   </span></td></tr>
-  <tr>  <td><i className=" la  la-money-check mr-2"></i><strong>Revenue Range</strong></td>
-  <td>$280.52 billion</td> </tr> <tr> <td><i className=" la la-university mr-2" aria-hidden="true"></i><strong>Company Type</strong></td>
+  <tr>  <td><i className=" las  la-money-check mr-2"></i><strong>Revenue Range</strong></td>
+  <td>$280.52 billion</td> </tr> <tr> <td><i className=" la la-city mr-2" aria-hidden="true"></i><strong>Company Type</strong></td>
   <td>$48.00 Million</td></tr>
   
                 
-  <tr> <td><i className=" la  la-map-pin mr-2"></i><strong>Industry</strong></td>
+  <tr> <td><i className="  las la-industry mr-2"></i><strong>Industry</strong></td>
                             <td>Banking, Finance</td> </tr>
                                      
  <tr><td><i className=" mr-2 las la-cog"></i><span className="font-weight-bold" >Technographics</span></td>

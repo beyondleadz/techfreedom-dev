@@ -1920,7 +1920,7 @@ pre code {
   font-size:12px;  
   font-weight:600; 
 }
-.table td i {color: #fdc401;}
+.table td i {color: #5d44ff; font-size: 15px;}
 .table td {
   padding: 0.25rem 0.5rem;
   vertical-align: top;
