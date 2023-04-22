@@ -75,37 +75,36 @@ const SummaryContent = () => {
         </ul>
       </div></div>
 <div className="card shadow card-body">
-    <div className="row">
-
-    <table className="table table-responsive ">
-  <tbody>
-    <tr><td colspan="2"><span className="font-weight-bold">Deutsche Bank</span>,a Frankfurt-based global investment bank, offers financial products and services to corporate and institutional clients.
-</td></tr>
-<tr> <td className="width3"><i className=" las  la-users mr-2"></i><strong>Employees Range</strong></td>
- <td className="employee-count" >809,221 <span>
-    (687,052 on Deutsche Bank)
-  </span></td></tr>
-  <tr>  <td><i className=" las  la-money-check mr-2"></i><strong>Revenue Range</strong></td>
-  <td>$280.52 billion</td> </tr> <tr> <td><i className=" la la-city mr-2" aria-hidden="true"></i><strong>Company Type</strong></td>
-  <td>$48.00 Million</td></tr>
-  
-                
-  <tr> <td><i className="  las la-industry mr-2"></i><strong>Industry</strong></td>
-                            <td>Banking, Finance</td> </tr>
-                                     
- <tr><td><i className=" mr-2 las la-cog"></i><span className="font-weight-bold" >Technographics</span></td>
-<td><div >
- <span> JavaScript, HTML, PHP
-  <strong> +1282 more</strong> <strong> (view full list) </strong>
-                        
-                        </span>
-                    </div>
-                </td> </tr>
-  
-                <tr>
-                
-                    </tr><tr> <td><i className=" las la-suitcase mr-2"></i><strong>Product and Services</strong></td>
-                            <td><span>Retail,</span><span>Internet,</span>
+<div class="container">
+    <div className="row fs-14">
+    
+      <div className="row data-table ">
+        <div className="col">
+          <div><i className=" las  la-users mr-2"></i><strong>Employees Range</strong></div>
+          <div className="gap-l">809,221 <span>    (687,052 on Deutsche Bank)  </span></div>
+        </div>
+        <div className="col">
+          <div><i className="  text-info las  la-money-check mr-2"></i><strong>Revenue Range</strong></div>
+          <div className="gap-l">$280.52 billion</div>
+        </div>
+        <div className="col">
+        <div><i className=" la la-city mr-2" aria-hidden="true"></i><strong>Company Type</strong></div>
+        <div className="gap-l">$48.00 Million</div>
+        </div>
+      </div>
+     
+      <div className="row mt-3">
+        <div className="col">
+        <div><i className="  las la-industry mr-2"></i><strong>Industry</strong></div>
+        <div className="gap-l">Banking, Finance</div>
+        </div>
+        <div className="col">
+        <div><i className=" mr-2 text-info las la-cog"></i><span className="font-weight-bold" >Technographics</span></div>
+        <div className="gap-l"><span> JavaScript, HTML, PHP  <strong> +1282 more (view full list) </strong></span></div>
+        </div>
+        <div className="col">
+        <div><i className=" text-info las la-suitcase mr-2"></i><strong>Product and Services</strong></div>
+        <div className="gap-l"><span>Retail,</span><span>Internet,</span>
                                 
                                 <span>Software Development,</span>
                                 
@@ -123,9 +122,7 @@ const SummaryContent = () => {
                                 
                                 <span>Delivery,</span>
                                 
-                                <span>Operations,</span>
-                                
-                                <span>Administrative Services,</span>
+                                <span>Operations,</span> <span>Administrative Services,</span>
                                 
                                 <span>Records, Videos &amp; Books,</span>
                                 
@@ -143,22 +140,18 @@ const SummaryContent = () => {
                                 
                                 <span>Commerce and Shopping,</span>
                                 
-                                <span>Media &amp; Internet,</span>
-                                
-                                <span>Telecommunications,</span>
+                                <span>Media &amp; Internet,</span><span>Telecommunications,</span>
                                 
                                 <span>Internet Services,</span>
                                 
                                 <span>SaaS,</span>
                                 
-                                <span>Shipping</span>
-                                
-                            </td>
-                    </tr> 
-      
-          </tbody></table>
+                                <span>Shipping</span></div>
+        </div>
+      </div>
 
-</div>
+  
+</div></div>
 </div>
  </div>
 					</div>
