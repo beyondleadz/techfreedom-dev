@@ -16,17 +16,25 @@ border-top-left-radius: 0.25rem;
 border-top-right-radius: 0.25rem;
 margin: 2px 0 0 6px; font-weight: 500;
 font-size: 14px;}
-.top-tabs1 {box-shadow: 2px 0px 2px 0px rgba(0, 0, 0, 0.5);
-   display: block;
-  padding: 0.2rem 0.5rem 0;
-    margin: 2px 0 0 6px;
-  font-weight: 500;
-  font-size: 14px;
-  background-color: #f8f9fc;
-  border: 1px solid transparent;
-border-top-left-radius: 0.25rem;
-border-top-right-radius: 0.25rem;
+.top-tabs1 {
+  /* box-shadow: 2px 0px 2px 0px rgba(0, 0, 0, 0.5); */ 
+    display: block;
+    padding: 0.6rem 0.5rem;
+    padding-top: 0.6rem;
+    padding-right: 0.5rem;
+    padding-bottom: 0.6rem;
+    padding-left: 0.5rem;
+    margin: 2px 0 0 0;
+    font-weight: 500;
+    font-size: 14px;
+    background-color: #f8f9fc;
+    border: 1px solid #e3e6f0;
+   
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
 }
+  
+
 .table-container {
   width: 100%;
   margin: 0 auto;}
@@ -229,11 +237,12 @@ hr {
   border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-small,
+
 .small {
   font-size: 80%;
-  font-weight: 400;
-}
+  font-size:10px;
+  font-weight: 400; 
+} 
 
 mark,
 .mark {
@@ -4876,7 +4885,7 @@ a.text-dark:hover, a.text-dark:focus {
   }
   .table td,
   .table th {
-    background-color: #fff !important;
+    background-color: #fff !important; width:20%;
   }
   .table-bordered th,
   .table-bordered td {
@@ -4896,7 +4905,13 @@ a.text-dark:hover, a.text-dark:focus {
     border-color: #e3e6f0;
   }
 }
-
+.twitter{color:#00acee;}
+.facebook{color:#3b5998;}
+.linkedin{color:#0A66C2;}
+.fs-25{font-size:25px;}
+.fs-20{font-size:20px;}
+.fs-16{font-size:16px;}
+.fs-18{font-size:18px;}
 html {
   position: relative;
   min-height: 100%;
@@ -4915,7 +4930,7 @@ a:focus {
 }
 
 #wrapper #content-wrapper {
-  background-color: #f8f9fc;
+background-color: #fff;
   width: 100%;
   overflow-x: hidden; margin-top: 1px;
 }
@@ -6090,7 +6105,7 @@ form.user .btn-user {
 body.ssidebar-toggled footer.sticky-footer {
   width: 100%;
 }
-.wrapper{margin-top: 5.5%; background-color: #f8f9fa;}
+ .wrapper{background-color: #fff;}
 #wrapper .searchbox{
   
     margin-bottom: 5px;
@@ -6150,36 +6165,36 @@ padding:5px
 .headercontainer{
   display:flex;
   /* border-bottom: 1px solid #dee2e6; */
-  /* height: 145px; */  height: 165px;
+  /* height: 145px; */  height: 155px;
 
 }
 
 .logobox{
   width: 205px;
-  padding: 25px;
+  padding: 20px;
   position:absolute;
 
 }
 
 .logobox img{
-  width:100%;
+  width:80%;
   display: block;
 }
 .descbox1{
    border-radius: 0.5rem; border: 1px solid #eee;
-  padding: 10px 10px 10px 20px;
-    margin-top: 50px;
-    right: 180px;
-    position: absolute;
+  padding: 10px 10px 20px 10px;
+    /* margin-top: 50px;
+    right: 180px; */
+    /* position: absolute; */
     background-color: #fff;
-    font-size: 10px; font-weight: 400;
+    font-size: 10px; font-weight: 400; text-align:center;
 }
 .descbox1 .btn-outline-dark {
   color: #343a40;
   border-color: #343a40;
-  font-size: 10px; padding: 3px;
+  font-size: 10px; padding: 3px 6px;
 }
-
+.brdr-b{border-bottom: 1px solid #ccc; }
 .descbox1 .btn-outline-dark:hover {
   color: #fff;
   background-color: #343a40;
@@ -6190,11 +6205,11 @@ padding:5px
 .descbox1 .btn-outline-dark.focus {
   box-shadow: 0 0 0 0.2rem rgba(52, 58, 64, 0.5);
 }
-.width3{width:30%}
+.width3{width:25%}
 .width2{width:20%}
 .descbox{
   padding-top: 25px;
-  padding-left: 200px;
+  padding-left: 180px;
   padding-bottom: 15px;
 }
 .navigation{
@@ -6236,11 +6251,17 @@ padding:5px
     margin: 10px 0 0;
 }
 .s-company{max-block-size: fit-content;
-  max-width: 60px;
+  max-width: 20px;
   height: auto;
-  width: 100%;}
+  width: 100%;
+  margin: 0 0 0 10px;}
 
  .s-company-content { max-width:50%;}
+
+ .softexpand{
+  height: 0;
+  overflow: hidden;
+ }
 
 @media only screen and (max-width: 768px) {
   .mob-t {
@@ -6302,7 +6323,9 @@ padding:5px
 .la-file-pdf:before {
       color: #F3060F;
     }
- 
+    .lab:hover::before {
+      color: #fdc401;
+    }
 .la:hover::before {
       color: #fdc401;
     }
@@ -6367,6 +6390,7 @@ padding:5px
       color: #5000FF;
       font-size: 1.2rem;
     }
+   
 .la-money-bill:before {
       color: #5000FF;
       font-size: 1.2rem;
@@ -6599,6 +6623,9 @@ color: orange;
     background: #fdc401;   
     border: 1px solid #94a0b4;
   }
+
+.gap-l{margin-left:30px;}
+
   
   .orgchart .org li a:hover+ul li::after, 
   .orgchart .org li a:hover+ul li::before, 
@@ -6615,3 +6642,4 @@ color: orange;
   .companyname{
     white-space: nowrap;
   }
+.social-icons{float: left; margin: 40px 0 0 70px;}
