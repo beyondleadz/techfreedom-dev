@@ -163,13 +163,12 @@ const SummaryContent = () => {
                               <div className="gap-l">
                                 <span>Retail, </span>
                                 <span>Internet, </span>
-                                <span>Software, </span>
                                 <span>e-Commerce, </span> 
                                 
                                
                                 <div className={showMore ? "" : "softexpand"}>
                                                                   
-                                  
+                                <span>Software, </span> 
                                 <span>Business Development, </span>
                                   <span>Crowdsourcing, </span>
                                   <span>Retail Software, </span>
