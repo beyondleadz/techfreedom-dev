@@ -161,36 +161,36 @@ const SummaryContent = () => {
                                 <strong>Product and Services</strong>
                               </div>
                               <div className="gap-l">
-                                <span>Retail,</span>
-                                <span>Internet,</span>
+                                <span>Retail, </span>
+                                <span>Internet, </span>
 
-                                <span>e-Commerce,</span> 
-                                <span>Business Development,</span>
+                                <span>e-Commerce, </span> 
+                                <span>Business Development, </span>
                                
                                 <div className={showMore ? "" : "softexpand"}>
                                                                   
                                   
-                                  <span>Software,</span>
-                                  <span>Crowdsourcing,</span>
-                                  <span>Retail Software,</span>
-                                  <span>Delivery,</span>
-                                  <span>Operations,</span>{" "}
-                                  <span>Administrative Services,</span>
-                                  <span>Records, Videos &amp; Books,</span>
-                                  <span>Delivery Service,</span>
-                                  <span>Television Stations,</span>
-                                  <span>Transportation,</span>
-                                  <span>Broadcasting,</span>
-                                  <span>E-Commerce,</span>
-                                  <span>Cable &amp; Satellite,</span>
-                                  <span>Commerce and Shopping,</span>
-                                  <span>Media &amp; Internet,</span>
-                                  <span>Telecommunications,</span>
-                                  <span>Internet Services,</span>
-                                  <span>SaaS,</span>
-                                  <span>Shipping</span>
-                                  <span>Software Development,</span>
-                                  <span>Consumer Electronics &amp; Computers,</span>
+                                  <span>Software, </span>
+                                  <span>Crowdsourcing, </span>
+                                  <span>Retail Software, </span>
+                                  <span>Delivery, </span>
+                                  <span>Operations, </span>{" "}
+                                  <span>Administrative Services, </span>
+                                  <span>Records, Videos &amp; Books, </span>
+                                  <span>Delivery Service, </span>
+                                  <span>Television Stations, </span>
+                                  <span>Transportation, </span>
+                                  <span>Broadcasting, </span>
+                                  <span>E-Commerce, </span>
+                                  <span>Cable &amp; Satellite, </span>
+                                  <span>Commerce and Shopping, </span>
+                                  <span>Media &amp; Internet, </span>
+                                  <span>Telecommunications, </span>
+                                  <span>Internet Services, </span>
+                                  <span>SaaS, </span>
+                                  <span>Shipping, </span>
+                                  <span>Software Development, </span>
+                                  <span>Consumer Electronics &amp; Computers</span>
                                 </div>
                                 <button class="btn btn-light mr-2 " onClick={onClickShowMore}>
                                   {showMore ? "Hide.." : "More.."}
