@@ -219,7 +219,7 @@ const CompanyContent = () => {
 
                     <div className="buttons-container textsearch">
                       <Search
-                        placeholder="input search text"
+                        placeholder="Product & Services"
                         allowClear
                         onSearch={onSearch}
                         style={{ width: 200 }}

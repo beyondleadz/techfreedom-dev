@@ -188,7 +188,7 @@ const CompanyLeft = () => {
         Filter
       </button>
       <ul
-        className={`navbar-nav-sd bg-light ssidebar ssidebar-light accordion ${
+        className={`navbar-nav-sd mt-5 ssidebar ssidebar-light accordion ${
           menuVisible ? "showLeftMenu" : ""
         }`}
         id="accordionsidebar"
