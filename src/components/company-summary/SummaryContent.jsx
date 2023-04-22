@@ -507,7 +507,7 @@ const SummaryContent = () => {
               </div>
             </div>
             <div className="col-md-3 col-custom-2">
-              <div className="card shadow mt-4 mb-4">
+              <div className="card shadow mt-5 mb-4">
                 <div className="card-header font-weight-bold">
                   Similar Companies
                 </div>

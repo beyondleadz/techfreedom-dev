@@ -6320,11 +6320,20 @@ padding:5px
  /* background: url(../images/xls-icon.png) no-repeat 55% center; */
  /* background: url(../images/printer-icon.png) no-repeat 55% center; */
  /* background: url(../images/star-icon.png) no-repeat 55% center;     */
-
+ .la-mobile:before{color:000;}
+ .la-mobile:hover::before {
+  color: #fdc401;
+}
+.la-map-marker:before{color:000;}
+.la-map-marker:hover::before{color:fdc401;}
 .la-file-pdf:before {
       color: #F3060F;
     }
     .lab:hover::before {
+      color: #fdc401;
+    }
+
+    span .la:hover::before {
       color: #fdc401;
     }
 .la:hover::before {
@@ -6371,6 +6380,10 @@ padding:5px
       font-size: 1.2rem;
     }
 
+    .la-globe:hover::before {
+      color: #fdc401; 
+    }
+
     .la-map-marked-alt:before {
       color: #5000FF;
       font-size: 1.2rem;
@@ -6396,7 +6409,15 @@ padding:5px
       color: #5000FF;
       font-size: 1.2rem;
     }
-
+    .las:hover::before {
+      color: #fdc401;
+    }
+    .la:hover::before {
+      color: #fdc401;
+    }
+    .fa:hover::before {
+      color: #fdc401;
+    }
 .filter-button{
   display: none;
 }
