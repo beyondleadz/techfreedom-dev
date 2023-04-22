@@ -5,6 +5,7 @@ import {
   EMPLOYEE_COUNT,
   REVENUE_RANGE,
   COMPANYLIST,
+  COMPANY_SEARCH_PAYLOAD,
 } from "../actionType/companyListingType";
 
 const initialState = {
@@ -14,7 +15,7 @@ const initialState = {
   employeeCountList:[],
   revenueRangeList:[],
   companyList:[],
-
+  companySearchPayload:{}
 };
 
 const CompanyListingReducer = (state = initialState, action) => {
@@ -33,7 +34,9 @@ const CompanyListingReducer = (state = initialState, action) => {
       return { ...state, revenueRangeList: payload };
     case COMPANYLIST:
       return { ...state, companyList:payload};  
-    default:
+    case COMPANY_SEARCH_PAYLOAD:
+      return {...state,companySearchPayload:{...state.companySearchPayload,payload}};  
+    default:      
       return state;
   }
 };

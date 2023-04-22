@@ -7,7 +7,9 @@ import {
   getCompanyTypeList,
   getEmployeeCountList,
   getRevenuerangeList,
+  createCompanySearchPayload,
 } from "../../actionCreator/companyListingActionCreater";
+import { LEFT_FILETERS_SIZE } from "../../config";
 const CompanyLeft = () => {
   const dispatch = useDispatch();
   const [industryList, setIndustryList] = useState();
@@ -33,6 +35,7 @@ const CompanyLeft = () => {
   const companyFilterList = useSelector((state) => state.companyListingReducer);
 
   useMemo(() => {
+    /*?page=0&size=10&sort=id,asc */
     dispatch(getIndustryList());
     dispatch(getLocation());
     dispatch(getCompanyTypeList());
@@ -50,83 +53,74 @@ const CompanyLeft = () => {
   }, [companyFilterList]);
 
   useEffect(() => {
-    let newFilterdLocation = [];
-    let allSelectedStates = [];
-    companyFilterList?.geoLocation.forEach((location) => {
-      Object.keys(location).forEach((country) => {
-        location[country].forEach((state) => {
-          const [stateName] = Object.keys(state);
-          if (_.includes(selectedState, stateName)) {
-            console.log([country]);
-            allSelectedStates = [...allSelectedStates, state];
-          }
-        });
-        newFilterdLocation = [
-          {
-            [country]: allSelectedStates,
-          },
-        ];
-      });
-    });
-    setCitiesList(newFilterdLocation);
+    let filteredObj = _.cloneDeep(location);
+    const filteredCities = companyFilterList?.geoLocation?.cities?.filter(
+      (city) => {
+        return selectedState?.some(
+          (selCity) =>{
+            return selCity.state_id === city.state_id
+          } 
+        );
+      }
+    );
+    filteredObj = {
+      ...filteredObj,
+      cities: filteredCities,
+    };
+
+    setLocation(
+      selectedState.length ? filteredObj : companyFilterList?.geoLocation
+    );
+    setCitiesList(
+      selectedState.length ? filteredObj : companyFilterList?.geoLocation
+    );
   }, [selectedState]);
 
   const filterKeyword = (type, ele) => {
-    console.log(type,citiesList)
     if (type === "industry") {
       const filterdData = companyFilterList?.industryList.filter((item) =>
         item?.name.toLowerCase().includes(ele.target.value.toLowerCase())
       );
-      // console.log(ele.target.value, filterdData);
       setIndustryList(filterdData);
     } else if (type === "revenuerange") {
       const filterdData1 = companyFilterList?.revenueRangeList.filter((item) =>
         item?.name.toLowerCase().includes(ele.target.value.toLowerCase())
       );
-      // console.log(ele.target.value, filterdData);
       setRevenuerangeList(filterdData1);
     } else if (type === "employeecount") {
       const filterdData2 = companyFilterList?.employeeCountList.filter((item) =>
         item?.name.toLowerCase().includes(ele.target.value.toLowerCase())
       );
-      // console.log(ele.target.value, filterdData);
       setEmployeeCountList(filterdData2);
     } else if (type === "companytype") {
       const filterdData3 = companyFilterList?.companyTypeList.filter((item) =>
         item?.name.toLowerCase().includes(ele.target.value.toLowerCase())
       );
-
-      // console.log(ele.target.value, filterdData);
       setCompanyTypeList(filterdData3);
-    }
-    else if (type === "city") {
-      const filterdData4 = []
-      // const filterdData4 = citiesList?.filter((item) =>
-      //   item?.name.toLowerCase().includes(ele.target.value.toLowerCase())
-      // );
-      citiesList.forEach((location) => {
-        Object.keys(location).forEach((country) => {
-          location[country].forEach((state) => {
-            const [stateName] = Object.keys(state);
-            Object.values(state).forEach((cities) => {
-              cities.forEach((city) => {
-
-              })
-              console.log(cities,'sdkfjsldfj')
-            })
-            // if (_.includes(selectedState, stateName)) {
-            //   console.log([country]);
-            //   allSelectedStates = [...allSelectedStates, state];
-            // }
-          });
-          // newFilterdLocation = [
-          //   {
-          //     [country]: allSelectedStates,
-          //   },
-          // ];
-        });
+    } else if (type === "city") {
+    
+      let filteredObj = _.cloneDeep(location);
+      const filteredCities = citiesList?.cities?.filter((item) => {
+        return item?.name
+          .toLowerCase()
+          .includes(ele.target.value.toLowerCase());
       });
-      // setCitiesList(filterdData4)
+      filteredObj = {
+        ...filteredObj,
+        cities: filteredCities,
+      };
+      setLocation(filteredObj);
+    } else if (type === "state") {
+      let filteredObj = _.cloneDeep(location);
+      const filteredStates = companyFilterList?.geoLocation?.states?.filter(
+        (item) =>
+          item?.name.toLowerCase().includes(ele.target.value.toLowerCase())
+      );
+      filteredObj = {
+        ...filteredObj,
+        states: filteredStates,
+      };
+      setLocation(filteredObj);
     }
   };
 
@@ -147,12 +141,45 @@ const CompanyLeft = () => {
     });
   };
 
-  const filterState = (e) => {
-    setSelectedState([...selectedState, e.target.name]);
+  const selectStates = (ele, selState) => {
+    if (ele.currentTarget.checked) {
+      setSelectedState([...selectedState, selState]);
+      dispatch(createCompanySearchPayload());
+      //createCompanySearchPayload()
+    } else {
+      const removedItem = selectedState.filter(
+        (item) => item.state_id !== selState.state_id
+      );
+      setSelectedState([...removedItem]);
+    }
   };
 
   const openLeftMenu = () => {
     setMenuVisible(!menuVisible);
+  };
+
+  const menuOptions = (arrObj, key = null) => {
+    // console.log(arrObj,"vvccxvcv")
+    if (!arrObj) return;
+    let menuSize = [];
+    const data = _.cloneDeep(arrObj);
+    if (arrObj?.length < LEFT_FILETERS_SIZE.length) {
+      menuSize = data.splice(0, arrObj?.length);
+    } else {
+      menuSize = data.splice(0, LEFT_FILETERS_SIZE.length);
+    }
+
+    return menuSize.map((val) => {
+      return (
+        <li className="collapse-item">
+          <input
+            type="checkbox"
+            onChange={(ele) => (key ? selectStates(ele, val) : null)}
+          />
+          {val?.name}
+        </li>
+      );
+    });
   };
 
   return (
@@ -161,7 +188,7 @@ const CompanyLeft = () => {
         Filter
       </button>
       <ul
-        className={`navbar-nav-sd bg-light mt-2 ssidebar ssidebar-light accordion ${
+        className={`navbar-nav-sd bg-light ssidebar ssidebar-light accordion ${
           menuVisible ? "showLeftMenu" : ""
         }`}
         id="accordionsidebar"
@@ -204,16 +231,20 @@ const CompanyLeft = () => {
               </h6>
 
               <ul>
-                {location &&
-                  location.map((country) => {
-                    const [countryName] = Object.keys(country);
+                {menuOptions(location?.countries)}
+                {location?.countries?.length > LEFT_FILETERS_SIZE.length && (
+                  <span>View More</span>
+                )}
+
+                {/* {location &&
+                  location?.countries?.map((country) => {
                     return (
-                      <li key={countryName} className="collapse-item">
+                      <li key={country?.country_id} className="collapse-item">
                         <input type="checkbox" />
-                        {countryName}
+                        {country?.name}
                       </li>
                     );
-                  })}
+                  })} */}
               </ul>
             </div>
           </div>
@@ -242,27 +273,26 @@ const CompanyLeft = () => {
                   type="text"
                   placeholder="Search"
                   className="searchboxinput"
+                  onChange={(ele) => filterKeyword("state", ele)}
                 />
               </h6>
               <ul>
-                {location &&
-                  location.map((country) => {
-                    return Object.values(country).map((states) => {
-                      return states.map((state) => {
-                        const [stateName] = Object.keys(state);
-                        return (
-                          <li key={stateName} className="collapse-item">
-                            <input
-                              type="checkbox"
-                              name={stateName}
-                              onChange={filterState}
-                            />
-                            {stateName}
-                          </li>
-                        );
-                      });
-                    });
-                  })}
+                {menuOptions(location?.states, "state")}
+                {location?.states?.length > LEFT_FILETERS_SIZE.length && (
+                  <span>View More</span>
+                )}
+                {/* {location &&
+                  location?.states?.map((state) => {
+                    return (
+                      <li key={state?.state_id} className="collapse-item">
+                        <input
+                          type="checkbox"
+                          onChange={(ele) => selectStates(ele, state)}
+                        />
+                        {state?.name}
+                      </li>
+                    );
+                  })} */}
               </ul>
             </div>
           </div>
@@ -277,7 +307,7 @@ const CompanyLeft = () => {
             aria-controls="collapseTwo"
           >
             <i className="left-company-menu-icons la la-map-marker"></i>
-            <span className="menu-item">City</span>{" "}
+            <span className="menu-item">City</span>
           </a>
           <div
             id="collapseTwo"
@@ -296,23 +326,10 @@ const CompanyLeft = () => {
               </h6>
 
               <ul>
-                {citiesList &&
-                  citiesList.map((country) => {
-                    return Object.values(country).map((states) => {
-                      return states.map((state) => {
-                        return Object.values(state).map((cities) => {
-                          return cities.map((city) => {
-                            return (
-                              <li key={city} className="collapse-item">
-                                <input type="checkbox" />
-                                {city}
-                              </li>
-                            );
-                          });
-                        });
-                      });
-                    });
-                  })}
+                {menuOptions(location?.cities)}
+                {location?.cities?.length > LEFT_FILETERS_SIZE.length && (
+                  <span>View More</span>
+                )}
               </ul>
             </div>
           </div>
@@ -345,7 +362,12 @@ const CompanyLeft = () => {
                 />
               </h6>
               <ul>
-                {industryList &&
+                {menuOptions(industryList)}
+                {industryList?.length > LEFT_FILETERS_SIZE.length && (
+                  <span>View More</span>
+                )}
+
+                {/* {industryList &&
                   industryList.map((item) => {
                     return (
                       <li key={item.id} className="collapse-item">
@@ -353,7 +375,7 @@ const CompanyLeft = () => {
                         {item?.name}
                       </li>
                     );
-                  })}
+                  })} */}
               </ul>
             </div>
           </div>
@@ -385,7 +407,12 @@ const CompanyLeft = () => {
                   onChange={(ele) => filterKeyword("companytype", ele)}
                 />
               </h6>
-              {companyTypeList &&
+              {menuOptions(companyTypeList)}
+              {companyTypeList?.length > LEFT_FILETERS_SIZE.length && (
+                <span>View More</span>
+              )}
+
+              {/* {companyTypeList &&
                 companyTypeList.map((item) => {
                   return (
                     <li key={item.id} className="collapse-item">
@@ -393,7 +420,7 @@ const CompanyLeft = () => {
                       {item?.name}
                     </li>
                   );
-                })}
+                })} */}
             </div>
           </div>
         </li>
@@ -463,7 +490,7 @@ const CompanyLeft = () => {
                   onChange={(ele) => filterKeyword("revenuerange", ele)}
                 />
               </h6>
-              {revenuerangeList &&
+              {/* {revenuerangeList &&
                 revenuerangeList.map((item) => {
                   return (
                     <li key={item.id} className="collapse-item">
@@ -471,7 +498,11 @@ const CompanyLeft = () => {
                       {item?.name}
                     </li>
                   );
-                })}
+                })} */}
+              {menuOptions(revenuerangeList)}
+              {revenuerangeList?.length > LEFT_FILETERS_SIZE.length && (
+                <span>View More</span>
+              )}
             </div>
           </div>
         </li>

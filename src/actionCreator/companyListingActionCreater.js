@@ -1,4 +1,4 @@
-import { INDUSTRY_LIST, GEOLOCATION,COMPANY_TYPE,EMPLOYEE_COUNT,REVENUE_RANGE,COMPANYLIST} from "../actionType/companyListingType";
+import { INDUSTRY_LIST, GEOLOCATION,COMPANY_TYPE,EMPLOYEE_COUNT,REVENUE_RANGE,COMPANYLIST,COMPANY_SEARCH_PAYLOAD} from "../actionType/companyListingType";
 import { getAuthMethod,getMethod } from "../services/HttpServices";
 import { industryApiUrl,employeeCountApiUrl,companyTypeApiUrl,revenueRangeApiUrl,companyListingApiUrl } from "../constant/Constant";
 import { Geolocation } from "../constant/Geolocation";
@@ -10,12 +10,6 @@ export const getIndustryList = (payload) => (dispatch) => {
       payload: res.data,
     });
   });
-  // return dispatch(
-  //   {
-  //     type: INDUSTRY_LIST,
-  //     payload: [{id:1,name:"Animation"},{id:2,name:"Accounting"}],
-  //   }
-  // )
 };
 
 export const getCompanyTypeList = (payload) => (dispatch) => {
@@ -57,4 +51,9 @@ export const getCompanyList = (payload) => (dispatch) => {
 export const getLocation = (payload) => ({
   type: GEOLOCATION,
   payload: Geolocation,
+});
+
+export const createCompanySearchPayload = (payload) => ({
+  type: COMPANYLIST,
+  payload: payload,
 });

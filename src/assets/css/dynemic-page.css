@@ -45,7 +45,7 @@ border-top-right-radius: 0.25rem;
   border-top: 1px solid #dee2e6;
   font-size:12px;
   font-weight:normal; 
-  line-height:10px;  
+  /* line-height:10px;   */
 }
 .search-input {
   padding: 8px 16px;
@@ -4599,9 +4599,9 @@ button.bg-dark:focus {
   white-space: normal !important;
 }
 
-.text-nowrap {
+/* .text-nowrap {
   white-space: nowrap !important;
-}
+} */
 
 .text-truncate {
   overflow: hidden;
@@ -6606,4 +6606,12 @@ color: orange;
   .orgchart .org li a:hover+ul ul::before{
     content: '';
     border-color: #94a0b4;
+  }
+
+  .ant-table-content *:before, *:after{
+    margin-left: 0;
+  }
+
+  .companyname{
+    white-space: nowrap;
   }

@@ -4,7 +4,7 @@ import HeaderImage from '../../assets/images/integrations-header.jpg'
 const BannerSection=()=>{
     return(
     <>
-    <section id="home" className="w3l-banner py-5">
+    <section id="home" className="w3l-banner">
         <div className="banner-image">        </div>
         <div className="banner-content">
             <div className="container pb-md-4">

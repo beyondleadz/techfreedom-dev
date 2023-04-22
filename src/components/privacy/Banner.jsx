@@ -2,7 +2,7 @@ import React,{useState} from "react";
 import { useRoutes,NavLink } from "react-router-dom";
 import PrivacyHeaderImage from '../../assets/images/privacy-policy-header.jpg'
 const BannerSection=()=>{
-    return(  <section id="home" className="w3l-banner py-5">
+    return(  <section id="home" className="w3l-banner">
     <div className="banner-image">        </div>
     <div className="banner-content">
         <div className="container pb-md-4">
