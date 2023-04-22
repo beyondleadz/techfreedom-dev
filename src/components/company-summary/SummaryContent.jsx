@@ -68,7 +68,7 @@ const SummaryContent = () => {
                               aria-selected="false"
                             >
                               <i
-                                className="fa fa-sitemap pr-2"
+                                className="fa fa-suitcase pr-2"
                                 style={{ color: "#5D44FF" }}
                               ></i>{" "}
                               Filter by Department
@@ -86,7 +86,7 @@ const SummaryContent = () => {
                               aria-selected="false"
                             >
                               <i
-                                className="fa fa-suitcase pr-2"
+                                className="fa fa-sitemap pr-2"
                                 style={{ color: "#5D44FF" }}
                               ></i>
                               Org.Chart
@@ -163,14 +163,14 @@ const SummaryContent = () => {
                               <div className="gap-l">
                                 <span>Retail, </span>
                                 <span>Internet, </span>
-
+                                <span>Software, </span>
                                 <span>e-Commerce, </span> 
-                                <span>Business Development, </span>
+                                
                                
                                 <div className={showMore ? "" : "softexpand"}>
                                                                   
                                   
-                                  <span>Software, </span>
+                                <span>Business Development, </span>
                                   <span>Crowdsourcing, </span>
                                   <span>Retail Software, </span>
                                   <span>Delivery, </span>
