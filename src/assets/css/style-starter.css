@@ -10915,7 +10915,7 @@ a.text-dark:focus {
   color: rgba(0, 0, 0, 0.5) ;
 }
 .text-black:before {  
-  color: #5188ff;
+  color:#3b5998;
 }
 
 .text-black:hover::before {
