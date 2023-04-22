@@ -6163,19 +6163,19 @@ padding:5px
 .headercontainer{
   display:flex;
   /* border-bottom: 1px solid #dee2e6; */
-  /* height: 145px; */  height: 175px;
+  /* height: 145px; */  height: 155px;
 
 }
 
 .logobox{
   width: 205px;
-  padding: 25px;
+  padding: 20px;
   position:absolute;
 
 }
 
 .logobox img{
-  width:100%;
+  width:80%;
   display: block;
 }
 .descbox1{
@@ -6207,7 +6207,7 @@ padding:5px
 .width2{width:20%}
 .descbox{
   padding-top: 25px;
-  padding-left: 200px;
+  padding-left: 180px;
   padding-bottom: 15px;
 }
 .navigation{
