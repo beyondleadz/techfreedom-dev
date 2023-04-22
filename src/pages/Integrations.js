@@ -6,7 +6,7 @@ import InternalSystemsIntegration from "../components/integrations/InternalSyste
 import ThirdPartyApplicationsIntegration from "../components/integrations/ThirdPartyApplicationsIntegration";
 // import Connect from "../components/integrations/InternalSystemsIntegration";
 
-const ExecutiveSearch = () => {
+const Integrations = () => {
 
     return(
         <>
@@ -24,4 +24,4 @@ const ExecutiveSearch = () => {
 
 }
 
-export default ExecutiveSearch;
+export default Integrations;
