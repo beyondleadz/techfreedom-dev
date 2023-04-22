@@ -4912,6 +4912,7 @@ a.text-dark:hover, a.text-dark:focus {
 .fs-20{font-size:20px;}
 .fs-16{font-size:16px;}
 .fs-18{font-size:18px;}
+.fs-23{font-size:23px;}
 html {
   position: relative;
   min-height: 100%;
@@ -6366,7 +6367,7 @@ padding:5px
       font-size: 1.2rem;}
 
     .la-globe:before {
-      color: #5000FF;
+      /* color: #5000FF; */
       font-size: 1.2rem;
     }
 
@@ -6375,19 +6376,19 @@ padding:5px
       font-size: 1.2rem;
     }
     .la-map-marker:before {
-      color: #5000FF;
+      /* color: #5000FF; */
       font-size: 1.2rem;
     }
     .la-industry:before {
-      color: #5000FF;
+      /* color: #5000FF; */
       font-size: 1.2rem;
     }
     .la-city:before {
-      color: #5000FF;
+      /* color: #5000FF; */
       font-size: 1.2rem;
     }
     .la-users:before {
-      color: #5000FF;
+      /* color: #5000FF; */
       font-size: 1.2rem;
     }
    
