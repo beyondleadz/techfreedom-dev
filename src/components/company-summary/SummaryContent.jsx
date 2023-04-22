@@ -8,6 +8,8 @@ const SummaryContent = () => {
     setShowMore(!showMore)
   }
 
+  
+
   return (
     <>
       <div id="content-wrapper" className="d-flex flex-column">
@@ -32,7 +34,7 @@ const SummaryContent = () => {
                               aria-selected="true"
                             >
                               <i
-                                className="fa fa-city pr-2" ></i>
+                                className="text-black fa fa-city pr-2" ></i>
                               About Company
                             </button>
                           </li>
@@ -48,7 +50,7 @@ const SummaryContent = () => {
                               aria-selected="false"
                             >
                               <i
-                                className="fa fa-user-friends pr-2"></i>{" "}
+                                className="text-black fa fa-user-friends pr-2"></i>{" "}
                               Key Executives
                             </button>
                           </li>
@@ -64,7 +66,7 @@ const SummaryContent = () => {
                               aria-selected="false"
                             >
                               <i
-                                className="fa fa-suitcase pr-2"></i>{" "}
+                                className="text-black fa fa-suitcase pr-2"></i>{" "}
                               Filter by Department
                             </button>
                           </li>
@@ -80,7 +82,7 @@ const SummaryContent = () => {
                               aria-selected="false"
                             >
                               <i
-                                className="fa fa-sitemap pr-2"></i>
+                                className="text-black fa fa-sitemap pr-2"></i>
                               Org.Chart
                             </button>
                           </li>
