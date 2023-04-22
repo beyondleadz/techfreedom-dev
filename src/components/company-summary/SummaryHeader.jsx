@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from "react";
 import logo from "../../assets/images/d-bank1.png";
 const CompanySummary = () => {
-  useEffect(() => {
-    const content = document.getElementById("onScroll");
-    window.addEventListener("scroll", (e) => {
-      var scrolled = document.scrollingElement.scrollTop;
-      var position = window.scrollY;
-      if (position > 150) {
-        content.classList.add("onscroll");
-      }else{
-        content.classList.remove("onscroll");
-      }
+  // useEffect(() => {
+  //   const content = document.getElementById("onScroll");
+  //   window.addEventListener("scroll", (e) => {
+  //     var scrolled = document.scrollingElement.scrollTop;
+  //     var position = window.scrollY;
+  //     if (position > 150) {
+  //       content.classList.add("onscroll");
+  //     }else{
+  //       content.classList.remove("onscroll");
+  //     }
 
-      console.log(e, "slkjdflsk", position);
-    });
-  });
+  //     console.log(e, "slkjdflsk", position);
+  //   });
+  // });
 
   return (
     <div className=" navbar-light" id="onScroll">
@@ -37,9 +37,9 @@ const CompanySummary = () => {
         </div>
         <div className=" d-flex social-icons fs-12 ml-3 pl-2">
                                           <span className="  mr-2"> 
-<i class="lab fs-20 facebook la la-facebook"></i>
-<i class="lab fs-20  twitter la la-twitter"></i>
-<i class="lab fs-20 text-info  la la-linkedin"></i>
+<i class="lab fs-20 facebook lab la-facebook"></i>
+<i class="lab fs-20  twitter la la-twitter-square"></i>
+<i class="lab fs-20 text-info  lab la-linkedin"></i>
 {/* <i class="fab fa-github me-2"></i>
 <i class="fab fa-whatsapp me-2"></i>*/}</span> 
           </div>         

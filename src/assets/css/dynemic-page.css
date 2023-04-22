@@ -6258,6 +6258,11 @@ padding:5px
 
  .s-company-content { max-width:50%;}
 
+ .softexpand{
+  height: 0;
+  overflow: hidden;
+ }
+
 @media only screen and (max-width: 768px) {
   .mob-t {
     font-size: 80%;
@@ -6318,7 +6323,9 @@ padding:5px
 .la-file-pdf:before {
       color: #F3060F;
     }
- 
+    .lab:hover::before {
+      color: #fdc401;
+    }
 .la:hover::before {
       color: #fdc401;
     }
