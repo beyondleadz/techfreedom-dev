@@ -3249,14 +3249,14 @@ fieldset:disabled a.btn {
 }
 
 .btn-outline-info {
-  color: #17a2b8;
-  border-color: #17a2b8;
+  color: #5d44ff;
+  border-color: #5d44ff;
 }
 
 .btn-outline-info:hover {
   color: #fff;
-  background-color: #17a2b8;
-  border-color: #17a2b8;
+  background-color: #5d44ff;
+  border-color: #5d44ff;
 }
 
 .btn-outline-info:focus,

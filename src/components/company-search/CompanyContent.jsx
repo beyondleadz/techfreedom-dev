@@ -240,6 +240,9 @@ const CompanyContent = () => {
                           </div>
                         </div>
                       </form> */}
+                      <button className="d-none d-sm-inline-block ml-2 btn btn-outline-info">
+                        <i className="fas fa-save pr-1"></i> SAVE SEARCH{" "}
+                      </button>
                       <button className="d-none d-sm-inline-block ml-2 btn btn-outline-primary">
                         <i className="fas fa-bolt pr-1"></i> CONNECT TO CRM{" "}
                       </button>
