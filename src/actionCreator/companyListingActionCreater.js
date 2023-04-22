@@ -40,6 +40,7 @@ export const getRevenuerangeList = (payload) => (dispatch) => {
 };
 
 export const getCompanyList = (payload) => (dispatch) => {
+  console.log(payload,'jslfdjlskjdfl')
   return getMethod(companyListingApiUrl).then((res) => {
     dispatch({
       type: COMPANYLIST,
@@ -53,7 +54,10 @@ export const getLocation = (payload) => ({
   payload: Geolocation,
 });
 
-export const createCompanySearchPayload = (payload) => ({
-  type: COMPANYLIST,
-  payload: payload,
-});
+export const createCompanySearchPayload = (payload) => {
+  return {
+    type: COMPANY_SEARCH_PAYLOAD,
+    payload: payload,
+  }
+  
+};

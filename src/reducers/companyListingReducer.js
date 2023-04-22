@@ -11,16 +11,25 @@ import {
 const initialState = {
   industryList: [],
   geoLocation: [],
-  companyTypeList:[],
-  employeeCountList:[],
-  revenueRangeList:[],
-  companyList:[],
-  companySearchPayload:{}
+  companyTypeList: [],
+  employeeCountList: [],
+  revenueRangeList: [],
+  companyList: [],
+  companySearchPayload: {
+    country: [],
+    state: [],
+    city: [],
+    industry: [],
+    companytype: [],
+    employeecount: [],
+    revenuerange: [],
+  },
 };
 
 const CompanyListingReducer = (state = initialState, action) => {
-  //   console.log(state, action, "skdjfslkdfjkl");
+  // console.log(state, action, "skdjfslkdfjkl");
   const { type, payload } = action;
+  console.log(type, payload, "sklfsjldfksd");
   switch (type) {
     case INDUSTRY_LIST:
       return { ...state, industryList: payload };
@@ -33,10 +42,10 @@ const CompanyListingReducer = (state = initialState, action) => {
     case REVENUE_RANGE:
       return { ...state, revenueRangeList: payload };
     case COMPANYLIST:
-      return { ...state, companyList:payload};  
+      return { ...state, companyList: payload };
     case COMPANY_SEARCH_PAYLOAD:
-      return {...state,companySearchPayload:{...state.companySearchPayload,payload}};  
-    default:      
+      return { ...state, companySearchPayload: payload };
+    default:
       return state;
   }
 };

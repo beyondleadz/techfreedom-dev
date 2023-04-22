@@ -61,7 +61,7 @@ const CompanyContent = () => {
 
   useEffect(() => {
     let data = [];
-    companyFilterList?.companyList.forEach((record) => {
+    companyFilterList?.companyList?.forEach((record) => {
       data = [
         ...data,
         {

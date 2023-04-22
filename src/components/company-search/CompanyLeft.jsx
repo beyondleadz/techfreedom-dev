@@ -8,6 +8,7 @@ import {
   getEmployeeCountList,
   getRevenuerangeList,
   createCompanySearchPayload,
+  getCompanyList
 } from "../../actionCreator/companyListingActionCreater";
 import { LEFT_FILETERS_SIZE } from "../../config";
 const CompanyLeft = () => {
@@ -56,11 +57,9 @@ const CompanyLeft = () => {
     let filteredObj = _.cloneDeep(location);
     const filteredCities = companyFilterList?.geoLocation?.cities?.filter(
       (city) => {
-        return selectedState?.some(
-          (selCity) =>{
-            return selCity.state_id === city.state_id
-          } 
-        );
+        return selectedState?.some((selCity) => {
+          return selCity.state_id === city.state_id;
+        });
       }
     );
     filteredObj = {
@@ -98,7 +97,6 @@ const CompanyLeft = () => {
       );
       setCompanyTypeList(filterdData3);
     } else if (type === "city") {
-    
       let filteredObj = _.cloneDeep(location);
       const filteredCities = citiesList?.cities?.filter((item) => {
         return item?.name
@@ -144,8 +142,6 @@ const CompanyLeft = () => {
   const selectStates = (ele, selState) => {
     if (ele.currentTarget.checked) {
       setSelectedState([...selectedState, selState]);
-      dispatch(createCompanySearchPayload());
-      //createCompanySearchPayload()
     } else {
       const removedItem = selectedState.filter(
         (item) => item.state_id !== selState.state_id
@@ -156,6 +152,28 @@ const CompanyLeft = () => {
 
   const openLeftMenu = () => {
     setMenuVisible(!menuVisible);
+  };
+
+  const createPayload = (ele, val, key) => {
+    let data = {};
+    if (ele.currentTarget.checked) {
+      data = {
+        ...companyFilterList?.companySearchPayload,
+        [key]: [...companyFilterList?.companySearchPayload[key], val.name],
+      };
+    } else {
+      data = {
+        ...companyFilterList?.companySearchPayload,
+        [key]: companyFilterList?.companySearchPayload[key].filter(
+          (item) => item !== val.name
+        ),
+      };
+    }
+    if (key === "state") {
+      selectStates(ele, val);
+    }
+    dispatch(createCompanySearchPayload(data));
+    dispatch(getCompanyList(data))
   };
 
   const menuOptions = (arrObj, key = null) => {
@@ -174,7 +192,7 @@ const CompanyLeft = () => {
         <li className="collapse-item">
           <input
             type="checkbox"
-            onChange={(ele) => (key ? selectStates(ele, val) : null)}
+            onChange={(ele) => createPayload(ele, val, key)}
           />
           {val?.name}
         </li>
@@ -231,7 +249,7 @@ const CompanyLeft = () => {
               </h6>
 
               <ul>
-                {menuOptions(location?.countries)}
+                {menuOptions(location?.countries, "country")}
                 {location?.countries?.length > LEFT_FILETERS_SIZE.length && (
                   <span>View More</span>
                 )}
@@ -326,7 +344,7 @@ const CompanyLeft = () => {
               </h6>
 
               <ul>
-                {menuOptions(location?.cities)}
+                {menuOptions(location?.cities, "city")}
                 {location?.cities?.length > LEFT_FILETERS_SIZE.length && (
                   <span>View More</span>
                 )}
@@ -362,7 +380,7 @@ const CompanyLeft = () => {
                 />
               </h6>
               <ul>
-                {menuOptions(industryList)}
+                {menuOptions(industryList, "industry")}
                 {industryList?.length > LEFT_FILETERS_SIZE.length && (
                   <span>View More</span>
                 )}
@@ -407,7 +425,7 @@ const CompanyLeft = () => {
                   onChange={(ele) => filterKeyword("companytype", ele)}
                 />
               </h6>
-              {menuOptions(companyTypeList)}
+              {menuOptions(companyTypeList, "companytype")}
               {companyTypeList?.length > LEFT_FILETERS_SIZE.length && (
                 <span>View More</span>
               )}
@@ -451,7 +469,11 @@ const CompanyLeft = () => {
                   onChange={(ele) => filterKeyword("employeecount", ele)}
                 />
               </h6>
-              {employeeCountList &&
+              {menuOptions(employeeCountList, "employeecount")}
+              {employeeCountList?.length > LEFT_FILETERS_SIZE.length && (
+                <span>View More</span>
+              )}
+              {/* {employeeCountList &&
                 employeeCountList.map((item) => {
                   return (
                     <li key={item.id} className="collapse-item">
@@ -459,7 +481,7 @@ const CompanyLeft = () => {
                       {item?.name}
                     </li>
                   );
-                })}
+                })} */}
             </div>
           </div>
         </li>
@@ -499,7 +521,7 @@ const CompanyLeft = () => {
                     </li>
                   );
                 })} */}
-              {menuOptions(revenuerangeList)}
+              {menuOptions(revenuerangeList, "revenuerange")}
               {revenuerangeList?.length > LEFT_FILETERS_SIZE.length && (
                 <span>View More</span>
               )}
