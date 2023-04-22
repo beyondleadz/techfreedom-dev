@@ -4905,6 +4905,9 @@ a.text-dark:hover, a.text-dark:focus {
     border-color: #e3e6f0;
   }
 }
+.twitter{color:#00acee;}
+.facebook{color:#3b5998;}
+.linkedin{color:#0A66C2;}
 .fs-25{font-size:25px;}
 .fs-20{font-size:20px;}
 html {
@@ -4925,7 +4928,7 @@ a:focus {
 }
 
 #wrapper #content-wrapper {
-  /* background-color: #f8f9fc; */
+background-color: #fff;
   width: 100%;
   overflow-x: hidden; margin-top: 1px;
 }
@@ -6100,7 +6103,7 @@ form.user .btn-user {
 body.ssidebar-toggled footer.sticky-footer {
   width: 100%;
 }
- .wrapper{margin-top: 5.5%; /*background-color: #f8f9fa; */}
+ .wrapper{margin-top: 5.5%; background-color: #fff;}
 #wrapper .searchbox{
   
     margin-bottom: 5px;

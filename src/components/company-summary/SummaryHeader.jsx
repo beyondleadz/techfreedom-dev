@@ -37,9 +37,9 @@ const CompanySummary = () => {
         </div>
         <div className=" d-flex social-icons fs-12 ml-3 pl-2">
                                           <span className="  mr-2"> 
-<i class="lab fs-25 text-info la la-facebook-square"></i>
-<i class="lab fs-25 text-info la la-twitter-square"></i>
-<i class="lab fs-25 text-info  la la-linkedin-square"></i>
+<i class="lab fs-20 facebook la la-facebook"></i>
+<i class="lab fs-20  twitter la la-twitter"></i>
+<i class="lab fs-20 text-info  la la-linkedin"></i>
 {/* <i class="fab fa-github me-2"></i>
 <i class="fab fa-whatsapp me-2"></i>*/}</span> 
           </div>         

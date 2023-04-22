@@ -197,7 +197,7 @@ Contacts</div>
                              
                               <td>John Mathew </td>
                               <td>Delivery Head</td>
-                              <td><h4 className=" la  la-envelope text-info "></h4></td>
+                              <td><h4 className="  la  la-envelope-open-text text-info  "></h4></td>
                               <td>(206) 266-1000</td>
                               <td><h4 className=" la  la-mobile text-info"></h4></td>
                               <td><button className="d-none d-sm-inline-block small btn btn-primary text-black">
@@ -211,7 +211,7 @@ Contacts</div>
                               
                               <td>John Mathew </td>
                               <td>Delivery Head</td>
-                              <td><h4 className=" la  la-envelope text-info "></h4></td>
+                              <td><h4 className="  la  la-envelope-open-text text-info  "></h4></td>
                               <td>(206) 266-1000</td>
                               <td><h4 className=" la  la-mobile text-info"></h4></td>
                               <td><button className="d-none d-sm-inline-block small btn btn-primary text-black">
@@ -225,7 +225,7 @@ Contacts</div>
                               
                               <td>John Mathew </td>
                               <td>Delivery Head</td>
-                              <td><h4 className=" la  la-envelope text-info "></h4></td>
+                              <td><h4 className="  la  la-envelope-open-text text-info  "></h4></td>
                               <td>(206) 266-1000</td>
                               <td><h4 className=" la  la-mobile text-info"></h4></td>
                               <td><button className="d-none d-sm-inline-block small btn btn-primary text-black">
@@ -239,7 +239,7 @@ Contacts</div>
                               
                               <td>John Mathew </td>
                               <td>Delivery Head</td>
-                              <td><h4 className=" la  la-envelope text-info "></h4></td>
+                              <td><h4 className="  la  la-envelope-open-text text-info  "></h4></td>
                               <td>(206) 266-1000</td>
                               <td><h4 className=" la  la-mobile text-info"></h4></td>
                               <td><button className="d-none d-sm-inline-block small btn btn-primary text-black">
@@ -253,7 +253,7 @@ Contacts</div>
                               
                               <td>John Mathew </td>
                               <td>Delivery Head</td>
-                              <td><h4 className=" la  la-envelope text-info "></h4></td>
+                              <td><h4 className="  la  la-envelope-open-text text-info  "></h4></td>
                               <td>(206) 266-1000</td>
                               <td><h4 className=" la  la-mobile text-info"></h4></td>
                               <td><button className="d-none d-sm-inline-block small btn btn-primary text-black">
@@ -268,7 +268,7 @@ Contacts</div>
                               
                               <td>John Mathew </td>
                               <td>Delivery Head</td>
-                              <td><h4 className=" la  la-envelope text-info "></h4></td>
+                              <td><h4 className="  la  la-envelope-open-text text-info  "></h4></td>
                               <td>(206) 266-1000</td>
                               <td><h4 className=" la  la-mobile text-info"></h4></td>
                               <td><button className="d-none d-sm-inline-block small btn btn-primary text-black">
@@ -282,9 +282,9 @@ Contacts</div>
                              
                               <td>John Mathew </td>
                               <td>Delivery Head</td>
-                              <td><h4 className=" la  la-envelope text-info "></h4></td>
+                              <td><h4 className="  la  la-envelope-open-text text-info  "></h4></td>
                               <td>(206) 266-1000</td>
-                              <td><h4 className=" la  la-mobile text-info"></h4></td>
+                              <td><h4 class="btn btn-primary pr-1 small text-black align-items-center"> <i class="las la-mobile fs-12 pt-1 pr-1"></i>VIEW</h4></td>
                               <td><button className="d-none d-sm-inline-block small btn btn-primary text-black">
                               ADD TO LEADS{" "} </button></td>
                             </tr>
