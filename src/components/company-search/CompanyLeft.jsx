@@ -34,7 +34,7 @@ const CompanyLeft = () => {
   });
   const [menuVisible, setMenuVisible] = useState(true);
 
-  const [openAdvancedModel, setOpenAdvancedModel] = useState(false);
+  const [openAdvancedModel, setOpenAdvancedModel] = useState({open:false,key:0});
   const companyFilterList = useSelector((state) => state.companyListingReducer);
 
   useMemo(() => {
@@ -203,7 +203,7 @@ const CompanyLeft = () => {
   };
 
   const openAdvancedFilter = () => {
-    setOpenAdvancedModel(true);
+    setOpenAdvancedModel({open:true,key:0});
   };
 
   return (
@@ -262,7 +262,7 @@ const CompanyLeft = () => {
               <ul>
                 {menuOptions(location?.countries, "country")}
                 {location?.countries?.length > LEFT_FILETERS_SIZE.length && (
-                  <span>View More</span>
+                  <span onClick={() => setOpenAdvancedModel({open:true,key:1})}>View More</span>
                 )}
               </ul>
             </div>
@@ -298,7 +298,7 @@ const CompanyLeft = () => {
               <ul>
                 {menuOptions(location?.states, "state")}
                 {location?.states?.length > LEFT_FILETERS_SIZE.length && (
-                  <span>View More</span>
+                  <span onClick={() => setOpenAdvancedModel({open:true,key:2})}>View More</span>
                 )}
               </ul>
             </div>
@@ -335,7 +335,7 @@ const CompanyLeft = () => {
               <ul>
                 {menuOptions(location?.cities, "city")}
                 {location?.cities?.length > LEFT_FILETERS_SIZE.length && (
-                  <span>View More</span>
+                  <span onClick={() => setOpenAdvancedModel({open:true,key:3})}>View More</span>
                 )}
               </ul>
             </div>
@@ -371,7 +371,7 @@ const CompanyLeft = () => {
               <ul>
                 {menuOptions(industryList, "industry")}
                 {industryList?.length > LEFT_FILETERS_SIZE.length && (
-                  <span>View More</span>
+                  <span onClick={() => setOpenAdvancedModel({open:true,key:4})}>View More</span>
                 )}
               </ul>
             </div>
@@ -406,7 +406,7 @@ const CompanyLeft = () => {
               </h6>
               {menuOptions(companyTypeList, "companytype")}
               {companyTypeList?.length > LEFT_FILETERS_SIZE.length && (
-                <span>View More</span>
+                <span onClick={() => setOpenAdvancedModel({open:true,key:5})}>View More</span>
               )}
             </div>
           </div>
@@ -440,7 +440,7 @@ const CompanyLeft = () => {
               </h6>
               {menuOptions(employeeCountList, "employeecount")}
               {employeeCountList?.length > LEFT_FILETERS_SIZE.length && (
-                <span>View More</span>
+                <span onClick={() => setOpenAdvancedModel({open:true,key:6})}>View More</span>
               )}
             </div>
           </div>
@@ -474,16 +474,16 @@ const CompanyLeft = () => {
               </h6>
               {menuOptions(revenuerangeList, "revenuerange")}
               {revenuerangeList?.length > LEFT_FILETERS_SIZE.length && (
-                <span>View More</span>
+                <span onClick={() => setOpenAdvancedModel({open:true,key:7})}>View More</span>
               )}
             </div>
           </div>
         </li>
       </ul>
-      {openAdvancedModel && (
+      {openAdvancedModel.open && (
         <AdvancedFilter
           setOpenAdvancedModel={setOpenAdvancedModel}
-          open={openAdvancedModel}
+          openAdvancedModel={openAdvancedModel}
         />
       )}
     </>
