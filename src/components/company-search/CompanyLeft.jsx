@@ -8,8 +8,9 @@ import {
   getEmployeeCountList,
   getRevenuerangeList,
   createCompanySearchPayload,
-  getCompanyList
+  getCompanyList,
 } from "../../actionCreator/companyListingActionCreater";
+import AdvancedFilter from "./AdvancedFilter";
 import { LEFT_FILETERS_SIZE } from "../../config";
 const CompanyLeft = () => {
   const dispatch = useDispatch();
@@ -33,6 +34,7 @@ const CompanyLeft = () => {
   });
   const [menuVisible, setMenuVisible] = useState(true);
 
+  const [openAdvancedModel, setOpenAdvancedModel] = useState(false);
   const companyFilterList = useSelector((state) => state.companyListingReducer);
 
   useMemo(() => {
@@ -173,7 +175,7 @@ const CompanyLeft = () => {
       selectStates(ele, val);
     }
     dispatch(createCompanySearchPayload(data));
-    dispatch(getCompanyList(data))
+    dispatch(getCompanyList(data));
   };
 
   const menuOptions = (arrObj, key = null) => {
@@ -200,6 +202,10 @@ const CompanyLeft = () => {
     });
   };
 
+  const openAdvancedFilter = () => {
+    setOpenAdvancedModel(true);
+  };
+
   return (
     <>
       <button className="filter-button btn-primary" onClick={openLeftMenu}>
@@ -215,7 +221,12 @@ const CompanyLeft = () => {
           <a className="nav-link-sd">
             <i className="left-company-menu-icons la la-filter"></i>
             <span className="mr-4">Filter</span>
-            <span className="btn btn-outline-primary btn-sm">Advanced</span>
+            <span
+              className="btn btn-outline-primary btn-sm"
+              onClick={openAdvancedFilter}
+            >
+              Advanced
+            </span>
           </a>
         </li>
 
@@ -253,16 +264,6 @@ const CompanyLeft = () => {
                 {location?.countries?.length > LEFT_FILETERS_SIZE.length && (
                   <span>View More</span>
                 )}
-
-                {/* {location &&
-                  location?.countries?.map((country) => {
-                    return (
-                      <li key={country?.country_id} className="collapse-item">
-                        <input type="checkbox" />
-                        {country?.name}
-                      </li>
-                    );
-                  })} */}
               </ul>
             </div>
           </div>
@@ -299,18 +300,6 @@ const CompanyLeft = () => {
                 {location?.states?.length > LEFT_FILETERS_SIZE.length && (
                   <span>View More</span>
                 )}
-                {/* {location &&
-                  location?.states?.map((state) => {
-                    return (
-                      <li key={state?.state_id} className="collapse-item">
-                        <input
-                          type="checkbox"
-                          onChange={(ele) => selectStates(ele, state)}
-                        />
-                        {state?.name}
-                      </li>
-                    );
-                  })} */}
               </ul>
             </div>
           </div>
@@ -384,16 +373,6 @@ const CompanyLeft = () => {
                 {industryList?.length > LEFT_FILETERS_SIZE.length && (
                   <span>View More</span>
                 )}
-
-                {/* {industryList &&
-                  industryList.map((item) => {
-                    return (
-                      <li key={item.id} className="collapse-item">
-                        <input type="checkbox" />
-                        {item?.name}
-                      </li>
-                    );
-                  })} */}
               </ul>
             </div>
           </div>
@@ -429,16 +408,6 @@ const CompanyLeft = () => {
               {companyTypeList?.length > LEFT_FILETERS_SIZE.length && (
                 <span>View More</span>
               )}
-
-              {/* {companyTypeList &&
-                companyTypeList.map((item) => {
-                  return (
-                    <li key={item.id} className="collapse-item">
-                      <input type="checkbox" />
-                      {item?.name}
-                    </li>
-                  );
-                })} */}
             </div>
           </div>
         </li>
@@ -473,15 +442,6 @@ const CompanyLeft = () => {
               {employeeCountList?.length > LEFT_FILETERS_SIZE.length && (
                 <span>View More</span>
               )}
-              {/* {employeeCountList &&
-                employeeCountList.map((item) => {
-                  return (
-                    <li key={item.id} className="collapse-item">
-                      <input type="checkbox" />
-                      {item?.name}
-                    </li>
-                  );
-                })} */}
             </div>
           </div>
         </li>
@@ -512,15 +472,6 @@ const CompanyLeft = () => {
                   onChange={(ele) => filterKeyword("revenuerange", ele)}
                 />
               </h6>
-              {/* {revenuerangeList &&
-                revenuerangeList.map((item) => {
-                  return (
-                    <li key={item.id} className="collapse-item">
-                      <input type="checkbox" />
-                      {item?.name}
-                    </li>
-                  );
-                })} */}
               {menuOptions(revenuerangeList, "revenuerange")}
               {revenuerangeList?.length > LEFT_FILETERS_SIZE.length && (
                 <span>View More</span>
@@ -529,6 +480,12 @@ const CompanyLeft = () => {
           </div>
         </li>
       </ul>
+      {openAdvancedModel && (
+        <AdvancedFilter
+          setOpenAdvancedModel={setOpenAdvancedModel}
+          open={openAdvancedModel}
+        />
+      )}
     </>
   );
 };

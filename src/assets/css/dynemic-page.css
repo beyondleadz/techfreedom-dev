@@ -6643,3 +6643,12 @@ color: orange;
     white-space: nowrap;
   }
 .social-icons{float: left; margin: 40px 0 0 70px;}
+.advancedfilter .ant-modal-title{
+font-size: 18px;
+}
+.advancedfilter .filterheader{display: flex; align-items: center;justify-content: space-between; margin-bottom: 10px;}
+.advancedfilter .filterblk{    border: 1px solid #eee;
+  padding: 10px;
+  border-radius: 5px; margin-bottom: 20px;}
+.filterblk h2{font-size: 15px; font-weight: 500;}
+.ant-checkbox-group label{width: 33%;}
