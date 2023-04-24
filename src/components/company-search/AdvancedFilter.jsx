@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useMemo } from "react";
 import _ from "lodash";
 import { Modal, Checkbox, Input } from "antd";
+import {saveAdvancedSelectedFilters} from '../../actionCreator/companyListingActionCreater'
 import { SearchOutlined } from "@ant-design/icons";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -157,7 +158,7 @@ const AdvancedFilter = ({ setOpenAdvancedModel, openAdvancedModel }) => {
     setStatesList(filterdData);
     setCheckAllStates(selectedStateList.length === statesList.length);
     setSelectedStateList([]);
-    setCheckAllStates(false)
+    setCheckAllStates(false);
   };
 
   const updateStates = (el) => {
@@ -244,7 +245,7 @@ const AdvancedFilter = ({ setOpenAdvancedModel, openAdvancedModel }) => {
     setCitiesList(filterdData);
     setCheckAllCities(selectedCitiesList.length === citiesList.length);
     setSelectedCitiesList([]);
-    setCheckAllCities(false)
+    setCheckAllCities(false);
   };
 
   const updateCities = (el) => {
@@ -529,9 +530,20 @@ const AdvancedFilter = ({ setOpenAdvancedModel, openAdvancedModel }) => {
   /*End revenue range */
 
   const handleOk = () => {
+    dispatch(
+      saveAdvancedSelectedFilters({
+        selectedCountry: countriesList,
+        selectedState: selectedStateList,
+        selectedCity: selectedCitiesList,
+        selectedIndustry: selectedIndustryList,
+        selectedCompanytype: companyTypeList,
+        selectedEmployeecount: employeeCountList,
+        selectedRevenuerange: revenueRangeList,
+      })
+    );
     console.log(
-        countriesList,
-        selectedStateList,
+      countriesList,
+      selectedStateList,
       selectedCitiesList,
       "skjldflskdj",
       selectedIndustryList,

@@ -6,6 +6,7 @@ import {
   REVENUE_RANGE,
   COMPANYLIST,
   COMPANY_SEARCH_PAYLOAD,
+  ADVANCED_SELECTED_FILTERS,
 } from "../actionType/companyListingType";
 
 const initialState = {
@@ -15,6 +16,15 @@ const initialState = {
   employeeCountList: [],
   revenueRangeList: [],
   companyList: [],
+  selectedAdvancedFilters: {
+    selectedCountry: [],
+    selectedState: [],
+    selectedCity: [],
+    selectedIndustry: [],
+    selectedCompanytype: [],
+    selectedEmployeecount: [],
+    selectedRevenuerange: [],
+  },
   companySearchPayload: {
     country: [],
     state: [],
@@ -45,6 +55,12 @@ const CompanyListingReducer = (state = initialState, action) => {
       return { ...state, companyList: payload };
     case COMPANY_SEARCH_PAYLOAD:
       return { ...state, companySearchPayload: payload };
+    case ADVANCED_SELECTED_FILTERS:
+      return {
+        ...state,
+        selectedAdvancedFilters: payload,
+      };
+
     default:
       return state;
   }
