@@ -3249,14 +3249,14 @@ fieldset:disabled a.btn {
 }
 
 .btn-outline-info {
-  color: #17a2b8;
-  border-color: #17a2b8;
+  color: #5d44ff;
+  border-color: #5d44ff;
 }
 
 .btn-outline-info:hover {
   color: #fff;
-  background-color: #17a2b8;
-  border-color: #17a2b8;
+  background-color: #5d44ff;
+  border-color: #5d44ff;
 }
 
 .btn-outline-info:focus,
@@ -8654,7 +8654,7 @@ button.bg-dark:focus {
 
 .mt-5,
 .my-5 {
-  margin-top: 1rem ;
+  margin-top: 4.2rem ;
 }
 
 .mr-5,
@@ -10913,6 +10913,13 @@ a.text-dark:focus {
 
 .text-black-50 {
   color: rgba(0, 0, 0, 0.5) ;
+}
+.text-black:before {  
+  color:#3b5998;
+}
+
+.text-black:hover::before {
+  color: #fdc401;
 }
 .text-black {
   color:#000; ;

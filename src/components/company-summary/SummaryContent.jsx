@@ -8,6 +8,8 @@ const SummaryContent = () => {
     setShowMore(!showMore)
   }
 
+  
+
   return (
     <>
       <div id="content-wrapper" className="d-flex flex-column">
@@ -32,9 +34,7 @@ const SummaryContent = () => {
                               aria-selected="true"
                             >
                               <i
-                                className="fa fa-city pr-2"
-                                style={{ color: "#5D44FF" }}
-                              ></i>
+                                className="text-black fa fa-city pr-2" ></i>
                               About Company
                             </button>
                           </li>
@@ -50,9 +50,7 @@ const SummaryContent = () => {
                               aria-selected="false"
                             >
                               <i
-                                className="fa fa-user-friends pr-2"
-                                style={{ color: "#5D44FF" }}
-                              ></i>{" "}
+                                className="text-black fa fa-user-friends pr-2"></i>{" "}
                               Key Executives
                             </button>
                           </li>
@@ -68,9 +66,7 @@ const SummaryContent = () => {
                               aria-selected="false"
                             >
                               <i
-                                className="fa fa-suitcase pr-2"
-                                style={{ color: "#5D44FF" }}
-                              ></i>{" "}
+                                className="text-black fa fa-suitcase pr-2"></i>{" "}
                               Filter by Department
                             </button>
                           </li>
@@ -86,9 +82,7 @@ const SummaryContent = () => {
                               aria-selected="false"
                             >
                               <i
-                                className="fa fa-sitemap pr-2"
-                                style={{ color: "#5D44FF" }}
-                              ></i>
+                                className="text-black fa fa-sitemap pr-2"></i>
                               Org.Chart
                             </button>
                           </li>
@@ -105,7 +99,7 @@ const SummaryContent = () => {
                           <div className="row mt-3 w-100- ">
                             <div className="col w-col-3">
                               <div>
-                                <i className=" las  la-users mr-2"></i>
+                                <i className="text-black la  la-users mr-2"></i>
                                 <strong>Employees Range</strong>
                               </div>
                               <div className="gap-l">
@@ -115,7 +109,7 @@ const SummaryContent = () => {
                             </div>
                             <div className="col w-col-3">
                               <div>
-                                <i className="  text-info las  la-money-check mr-2"></i>
+                                <i className="  text-black las  la-money-check mr-2"></i>
                                 <strong>Revenue Range</strong>
                               </div>
                               <div className="gap-l">$280.52 billion</div>
@@ -123,7 +117,7 @@ const SummaryContent = () => {
                             <div className="col w-col-3">
                               <div>
                                 <i
-                                  className=" la la-city mr-2"
+                                  className=" text-black la la-city mr-2"
                                   aria-hidden="true"
                                 ></i>
                                 <strong>Company Type</strong>
@@ -135,14 +129,14 @@ const SummaryContent = () => {
                           <div className="row mt-3 w-100-">
                             <div className="col w-col-3">
                               <div>
-                                <i className="  las la-industry mr-2"></i>
+                                <i className=" text-black las la-industry mr-2"></i>
                                 <strong>Industry</strong>
                               </div>
                               <div className="gap-l">Banking, Finance</div>
                             </div>
                             <div className="col w-col-3">
                               <div>
-                                <i className=" mr-2 text-info las la-cog"></i>
+                                <i className=" mr-2 text-black las la-cog"></i>
                                 <span className="font-weight-bold">
                                   Technographics
                                 </span>
@@ -157,7 +151,7 @@ const SummaryContent = () => {
                             </div>
                             <div className="col w-col-3">
                               <div>
-                                <i className=" text-info fs-16 las la-suitcase mr-2"></i>
+                                <i className=" text-black fs-16 las la-suitcase mr-2"></i>
                                 <strong>Product and Services</strong>
                               </div>
                               <div className="gap-l">
@@ -235,7 +229,7 @@ const SummaryContent = () => {
                                 <td>John Mathew </td>
                                 <td>Delivery Head</td>
                                 <td>
-                                  <h4 className="   btn fs-25 la  la-envelope-open-text text-info   "></h4>
+                                  <h4 className="  fs-23 btn  la  la-envelope-open-text text-black   "></h4>
                                 </td>
                                 <td>(206) 266-1000</td>
                                 <td>
@@ -260,7 +254,7 @@ const SummaryContent = () => {
                                 <td>John Mathew </td>
                                 <td>Delivery Head</td>
                                 <td>
-                                  <h4 className="  la  la-envelope-open-text text-info  "></h4>
+                                  <h4 className=" fs-23 btn la  la-envelope-open-text text-black  "></h4>
                                 </td>
                                 <td>(206) 266-1000</td>
                                 <td>
@@ -285,7 +279,7 @@ const SummaryContent = () => {
                                 <td>John Mathew </td>
                                 <td>Delivery Head</td>
                                 <td>
-                                  <h4 className="  la  la-envelope-open-text text-info  "></h4>
+                                  <h4 className=" fs-23 btn la  la-envelope-open-text text-black  "></h4>
                                 </td>
                                 <td>(206) 266-1000</td>
                                 <td>
@@ -310,7 +304,7 @@ const SummaryContent = () => {
                                 <td>John Mathew </td>
                                 <td>Delivery Head</td>
                                 <td>
-                                  <h4 className="  la  la-envelope-open-text text-info  "></h4>
+                                  <h4 className=" fs-23 btn la  la-envelope-open-text text-black  "></h4>
                                 </td>
                                 <td>(206) 266-1000</td>
                                 <td>
@@ -335,7 +329,7 @@ const SummaryContent = () => {
                                 <td>John Mathew </td>
                                 <td>Delivery Head</td>
                                 <td>
-                                  <h4 className="  la  la-envelope-open-text text-info  "></h4>
+                                  <h4 className=" fs-23 btn la  la-envelope-open-text text-black  "></h4>
                                 </td>
                                 <td>(206) 266-1000</td>
                                 <td>
@@ -361,7 +355,7 @@ const SummaryContent = () => {
                                 <td>John Mathew </td>
                                 <td>Delivery Head</td>
                                 <td>
-                                  <h4 className="  la  la-envelope-open-text text-info  "></h4>
+                                  <h4 className="fs-23  btn la  la-envelope-open-text text-black  "></h4>
                                 </td>
                                 <td>(206) 266-1000</td>
                                 <td>
@@ -386,7 +380,7 @@ const SummaryContent = () => {
                                 <td>John Mathew </td>
                                 <td>Delivery Head</td>
                                 <td>
-                                  <h4 className="  la  la-envelope-open-text text-info  "></h4>
+                                  <h4 className=" fs-23 btn la  la-envelope-open-text text-black "></h4>
                                 </td>
                                 <td>(206) 266-1000</td>
                                 <td>
@@ -515,7 +509,7 @@ const SummaryContent = () => {
               </div>
             </div>
             <div className="col-md-3 col-custom-2">
-              <div className="card shadow mt-4 mb-4">
+              <div className="card shadow mt-5 mb-4">
                 <div className="card-header font-weight-bold">
                   Similar Companies
                 </div>

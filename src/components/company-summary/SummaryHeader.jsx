@@ -27,11 +27,11 @@ const CompanySummary = () => {
         <div className="descbox">
           <div className="fs-12">INVESTMENT FIRM</div> 
           <div className="font-weight-bold mb-2 "><h3>Deutsche Bank</h3></div>
-          <div className="fs-12"><span class=" la  la-map-marker mr-2"></span><strong className="mr-2">Address</strong>
+          <div className="fs-12"><span class=" text-black la la-map-marker mr-2"></span><strong className="mr-2">Address</strong>
           410 Terry Ave N, Seattle, Washington 98109, US</div>
-          <div><span class=" la text-info  la-mobile fs-20 mr-2"></span><strong className="mr-2 fs-12">Phone</strong>
+          <div><span class=" la text-black  la-mobile fs-20 mr-2"></span><strong className="mr-2 fs-12">Phone</strong>
           <span className="fs-12">(206) 266-1000 </span> </div> 
-          <div className="fs-12"><span className=" la  la-globe mr-2" aria-hidden="true"></span><strong className="mr-2">Website</strong>
+          <div className="fs-12"><span className="text-black la  la-globe mr-2" aria-hidden="true"></span><strong className="mr-2">Website</strong>
           <a class=" fs-12 font-weight-normal text-dark" title="" href="https://www.Deutsche.com" target="_blank"> https://www.Deutsche.com</a></div>
                                        
         </div>

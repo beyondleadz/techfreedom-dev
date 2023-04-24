@@ -4352,7 +4352,7 @@ button.bg-dark:focus {
 }
 
 .bg-white {
-  background-color: #f8f9fa;
+  background-color: #fff;
 }
 
 .bg-transparent {
@@ -4912,6 +4912,7 @@ a.text-dark:hover, a.text-dark:focus {
 .fs-20{font-size:20px;}
 .fs-16{font-size:16px;}
 .fs-18{font-size:18px;}
+.fs-23{font-size:23px;}
 html {
   position: relative;
   min-height: 100%;
@@ -5768,7 +5769,7 @@ background-color: #fff;
 }
 
 .ssidebar-light .nav-item-sd .nav-link-sd i {
-  color: #d1d3e2;
+  color: #5d44ff;
 }
 
 .ssidebar-light .nav-item-sd .nav-link-sd:active, .ssidebar-light .nav-item-sd .nav-link-sd:focus, .ssidebar-light .nav-item-sd .nav-link-sd:hover {
@@ -6117,7 +6118,7 @@ body.ssidebar-toggled footer.sticky-footer {
 
 #wrapper .nav-item-sd .menu-item{
 font-size: 12px;
-font-weight: normal;
+font-weight: bold;
 color: #555;
 }
 
@@ -6315,11 +6316,20 @@ padding:5px
  /* background: url(../images/xls-icon.png) no-repeat 55% center; */
  /* background: url(../images/printer-icon.png) no-repeat 55% center; */
  /* background: url(../images/star-icon.png) no-repeat 55% center;     */
-
+ .la-mobile:before{color:000;}
+ .la-mobile:hover::before {
+  color: #fdc401;
+}
+.la-map-marker:before{color:000;}
+.la-map-marker:hover::before{color:fdc401;}
 .la-file-pdf:before {
       color: #F3060F;
     }
     .lab:hover::before {
+      color: #fdc401;
+    }
+
+    span .la:hover::before {
       color: #fdc401;
     }
 .la:hover::before {
@@ -6362,8 +6372,12 @@ padding:5px
       font-size: 1.2rem;}
 
     .la-globe:before {
-      color: #5000FF;
+      /* color: #5000FF; */
       font-size: 1.2rem;
+    }
+
+    .la-globe:hover::before {
+      color: #fdc401; 
     }
 
     .la-map-marked-alt:before {
@@ -6371,19 +6385,19 @@ padding:5px
       font-size: 1.2rem;
     }
     .la-map-marker:before {
-      color: #5000FF;
+      /* color: #5000FF; */
       font-size: 1.2rem;
     }
     .la-industry:before {
-      color: #5000FF;
+      /* color: #5000FF; */
       font-size: 1.2rem;
     }
     .la-city:before {
-      color: #5000FF;
+      /* color: #5000FF; */
       font-size: 1.2rem;
     }
     .la-users:before {
-      color: #5000FF;
+      /* color: #5000FF; */
       font-size: 1.2rem;
     }
    
@@ -6391,7 +6405,15 @@ padding:5px
       color: #5000FF;
       font-size: 1.2rem;
     }
-
+    .las:hover::before {
+      color: #fdc401;
+    }
+    .la:hover::before {
+      color: #fdc401;
+    }
+    .fa:hover::before {
+      color: #fdc401;
+    }
 .filter-button{
   display: none;
 }
