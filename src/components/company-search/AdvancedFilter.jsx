@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useMemo } from "react";
 import _ from "lodash";
-import { Modal, Checkbox } from "antd";
+import { Modal, Checkbox, Input } from "antd";
+import { SearchOutlined } from "@ant-design/icons";
 import { useSelector, useDispatch } from "react-redux";
 
 const AdvancedFilter = ({ setOpenAdvancedModel, openAdvancedModel }) => {
@@ -17,9 +18,11 @@ const AdvancedFilter = ({ setOpenAdvancedModel, openAdvancedModel }) => {
 
   const companyFilterList = useSelector((state) => state.companyListingReducer);
 
+  const [selectedCitiesList, setSelectedCitiesList] = useState([]);
   const [citiesList, setCitiesList] = useState([]);
   const [checkAllCities, setCheckAllCities] = useState(false);
 
+  const [selectedIndustryList, setSelectedIndustryList] = useState([]);
   const [industryList, setIndustryList] = useState([]);
   const [checkAllIndustry, setCheckAllIndustry] = useState(false);
 
@@ -39,6 +42,15 @@ const AdvancedFilter = ({ setOpenAdvancedModel, openAdvancedModel }) => {
       setFilteredCitiesList(companyFilterList?.geoLocation?.cities);
     }
   }, [statesList]);
+
+  useEffect(() => {
+    setIndustryList(companyFilterList?.industryList);
+    // setCompanyTypeList(companyFilterList?.companyTypeList);
+    // setEmployeeCountList(companyFilterList?.employeeCountList);
+    // setRevenueRangeList(companyFilterList?.revenueRangeList);
+    // setLocation(companyFilterList?.geoLocation);
+    // setCitiesList(companyFilterList?.geoLocation);
+  }, [companyFilterList]);
 
   /*Countries Start */
   const showCountriesList = () => {
@@ -103,7 +115,6 @@ const AdvancedFilter = ({ setOpenAdvancedModel, openAdvancedModel }) => {
   /*Countries End */
 
   /*State Start */
-
   const showStatesList = () => {
     return (
       <>
@@ -112,6 +123,10 @@ const AdvancedFilter = ({ setOpenAdvancedModel, openAdvancedModel }) => {
           <Checkbox onChange={onStatesCheckAllChange} checked={checkAllStates}>
             Check all
           </Checkbox>
+        </div>
+
+        <div className="searchbox">
+          <Input placeholder="Search" prefix={<SearchOutlined />} />
         </div>
 
         <CheckboxGroup onChange={onStatesChange} value={statesList}>
@@ -247,10 +262,18 @@ const AdvancedFilter = ({ setOpenAdvancedModel, openAdvancedModel }) => {
           </Checkbox>
         </div>
 
-        <CheckboxGroup onChange={onIndustryChange} value={industryList}>
+        <div className="searchbox">
+          <Input
+            placeholder="Search"
+            prefix={<SearchOutlined />}
+            onChange={filterList}
+          />
+        </div>
+
+        <CheckboxGroup onChange={onIndustryChange} value={selectedIndustryList}>
           <>
             <ul>
-              {companyFilterList?.industryList?.map((item) => (
+              {industryList?.map((item) => (
                 <li>
                   <Checkbox
                     key={item.id}
@@ -268,24 +291,33 @@ const AdvancedFilter = ({ setOpenAdvancedModel, openAdvancedModel }) => {
     );
   };
 
+  const filterList = (ele) => {
+    const filterdData = companyFilterList?.industryList.filter((item) =>
+      item?.name.toLowerCase().includes(ele.target.value.toLowerCase())
+    );
+    setIndustryList(filterdData);
+    setCheckAllIndustry(selectedIndustryList.length === industryList.length);
+    setSelectedIndustryList([]);
+  };
+
   const updateIndustries = (el) => {
     let newList = [];
     if (el.target.checked) {
-      newList = [...industryList, el.target.value];
+      newList = [...selectedIndustryList, el.target.value];
     } else {
-      newList = industryList.filter(
+      newList = selectedIndustryList.filter(
         (listItem) => listItem.id !== el.target.value.id
       );
     }
-    setIndustryList(newList);
+    setSelectedIndustryList(newList);
   };
 
   const onIndustryChange = (list) => {
-    setCheckAllIndustry(list.length === companyFilterList?.industryList.length);
+    setCheckAllIndustry(list.length === industryList.length);
   };
 
   const onIndustryCheckAllChange = (e) => {
-    setIndustryList(e.target.checked ? companyFilterList?.industryList : []);
+    setSelectedIndustryList(e.target.checked ? industryList : []);
     setCheckAllIndustry(e.target.checked);
   };
 
@@ -486,7 +518,7 @@ const AdvancedFilter = ({ setOpenAdvancedModel, openAdvancedModel }) => {
       statesList,
       countriesList,
       "skjldflskdj",
-      industryList,
+      selectedIndustryList,
       citiesList,
       companyTypeList,
       employeeCountList,

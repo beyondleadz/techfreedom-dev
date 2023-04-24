@@ -6413,10 +6413,13 @@ padding:5px
     padding: 10px;
     border-radius: 5px; margin-bottom: 20px;}
   .filterblk h2{font-size: 15px; font-weight: 500;}
-  .ant-checkbox-group ul{width: 100%;}
-  .ant-checkbox-group ul li{width: 33%;
+  .advancedfilter .ant-checkbox-group{width:100%}
+  .advancedfilter .ant-checkbox-group ul{width: 100%;}
+  .advancedfilter .ant-checkbox-group ul li{width: 33%;
     float: left;
     box-sizing: border-box;margin:3px 0}
+
+    .advancedfilter .searchbox{margin:10px 0}
 
 @media screen and (max-width: 760px) {
   .filter-button{
