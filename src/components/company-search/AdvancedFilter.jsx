@@ -13,9 +13,25 @@ const AdvancedFilter = ({
 }) => {
   const dispatch = useDispatch();
   const companyFilterList = useSelector((state) => state.companyListingReducer);
+
+  const companySelectedFilterList = useSelector((state) => state.companyListingReducer.selectedFilters);
+
   const companyFilterListIndustry = useSelector(
     (state) => state.companyListingReducer.industryList
   );
+
+  const companyFilterListCompanyType = useSelector(
+    (state) => state.companyListingReducer.companyTypeList
+  );
+
+  const companyFilterListEmployeeCountList = useSelector(
+    (state) => state.companyListingReducer.employeeCountList
+  );
+
+  const companyFilterListRevenueRangeList = useSelector(
+    (state) => state.companyListingReducer.revenueRangeList
+  );
+
   const companyFilterListCities = useSelector(
     (state) => state.companyListingReducer.geoLocation?.cities
   );
@@ -49,12 +65,17 @@ const AdvancedFilter = ({
   const [industryList, setIndustryList] = useState([]);
   const [checkAllIndustry, setCheckAllIndustry] = useState(false);
 
+  const [selectedCompanyTypeList, setSelectedCompanyTypeList] = useState([]);
   const [companyTypeList, setCompanyTypeList] = useState([]);
   const [checkAllCompanyType, setCheckAllCompanyType] = useState(false);
 
+  const [selectedemployeeCountList, setSelectedEmployeeCountList] = useState(
+    []
+  );
   const [employeeCountList, setEmployeeCountList] = useState([]);
   const [checkAllEmployeeCount, setCheckAllEmployeeCount] = useState(false);
 
+  const [selectedrevenueRangeList, setSelectedRevenueRangeList] = useState([]);
   const [revenueRangeList, setRevenueRangeList] = useState([]);
   const [checkAllRevenueRange, setCheckAllRevenueRange] = useState(false);
 
@@ -71,11 +92,26 @@ const AdvancedFilter = ({
     setIndustryList(companyFilterListIndustry);
     setCitiesList(companyFilterListCities);
     setStatesList(companyFilterListStates);
+    setCompanyTypeList(companyFilterListCompanyType);
+    setEmployeeCountList(companyFilterListEmployeeCountList);
+    setRevenueRangeList(companyFilterListRevenueRangeList);
   }, [
     companyFilterListIndustry,
     companyFilterListCities,
     companyFilterListStates,
+    companyFilterListCompanyType,
+    companyFilterListEmployeeCountList,
+    companyFilterListRevenueRangeList,
   ]);
+
+  useEffect(() => {
+    setSelectedStateList(companySelectedFilterList.selectedState)
+    setSelectedCitiesList(companySelectedFilterList.selectedCity)
+    setSelectedCompanyTypeList(companySelectedFilterList.selectedCompanytype)
+    setSelectedIndustryList(companySelectedFilterList.selectedIndustry)
+    setSelectedRevenueRangeList(companySelectedFilterList.selectedRevenuerange)
+    setSelectedEmployeeCountList(companySelectedFilterList.selectedEmployeecount)
+  },[companySelectedFilterList])
 
   const openVisibleFilter = (menu) => {
     setVisibleFilter({
@@ -431,11 +467,9 @@ const AdvancedFilter = ({
       item?.name.toLowerCase().includes(ele.target.value.toLowerCase())
     );
     setIndustryList(filterdData);
-    setCheckAllIndustry(selectedIndustryList.length === industryList.length);
     setSelectedIndustryList([]);
     setCheckAllIndustry(false);
   };
-
 
   const updateIndustries = (el) => {
     let newList = [];
@@ -478,17 +512,20 @@ const AdvancedFilter = ({
           )}
         </div>
         <div className={`filteroptions ${visibleFilter.companyType && "show"}`}>
-        <div className="searchbox">
+          <div className="searchbox">
             <Input
               placeholder="Search"
               prefix={<SearchOutlined />}
-            //   onChange={filterCompany}
+              onChange={filterCompany}
             />
           </div>
-          <CheckboxGroup onChange={onCompanyTypeChange} value={companyTypeList}>
+          <CheckboxGroup
+            onChange={onCompanyTypeChange}
+            value={selectedCompanyTypeList}
+          >
             <>
               <ul>
-                {companyFilterList?.companyTypeList?.map((item) => (
+                {companyTypeList?.map((item) => (
                   <li>
                     <Checkbox
                       key={item.id}
@@ -503,42 +540,47 @@ const AdvancedFilter = ({
             </>
           </CheckboxGroup>
 
-          {!showCheckAll &&
-            companyFilterList?.companyTypeList.length >
-              LEFT_FILETERS_SIZE.length && (
-              <div className="viewmore">
-                <span
-                  onClick={() => setOpenAdvancedModel({ open: true, key: 5 })}
-                >
-                  View More
-                </span>
-              </div>
-            )}
+          {!showCheckAll && companyTypeList.length > LEFT_FILETERS_SIZE.length && (
+            <div className="viewmore">
+              <span
+                onClick={() => setOpenAdvancedModel({ open: true, key: 5 })}
+              >
+                View More
+              </span>
+            </div>
+          )}
         </div>
       </>
     );
   };
 
+  const filterCompany = (ele) => {
+    const filterdData = companyFilterList?.companyTypeList.filter((item) =>
+      item?.name.toLowerCase().includes(ele.target.value.toLowerCase())
+    );
+    setCompanyTypeList(filterdData);
+    setSelectedCompanyTypeList([]);
+    setCheckAllCompanyType(false);
+  };
+
   const updateCompanyType = (el) => {
     let newList = [];
     if (el.target.checked) {
-      newList = [...companyTypeList, el.target.value];
+      newList = [...selectedCompanyTypeList, el.target.value];
     } else {
-      newList = companyTypeList.filter(
+      newList = selectedCompanyTypeList.filter(
         (listItem) => listItem.id !== el.target.value.id
       );
     }
-    setCompanyTypeList(newList);
+    setSelectedCompanyTypeList(newList);
   };
 
   const onCompanyTypeChange = (list) => {
-    setCheckAllCompanyType(
-      list.length === companyFilterList?.industryList.length
-    );
+    setCheckAllCompanyType(list.length === companyTypeList.length);
   };
 
   const onCompanyTypeCheckAllChange = (e) => {
-    setCompanyTypeList(e.target.checked ? companyFilterList?.industryList : []);
+    setSelectedCompanyTypeList(e.target.checked ? companyTypeList : []);
     setCheckAllCompanyType(e.target.checked);
   };
   /*End companytype */
@@ -564,13 +606,20 @@ const AdvancedFilter = ({
         <div
           className={`filteroptions ${visibleFilter.employeeCount && "show"}`}
         >
+          <div className="searchbox">
+            <Input
+              placeholder="Search"
+              prefix={<SearchOutlined />}
+              onChange={filterEmployeeCount}
+            />
+          </div>
           <CheckboxGroup
             onChange={onEmployeeCountChange}
-            value={employeeCountList}
+            value={selectedemployeeCountList}
           >
             <>
               <ul>
-                {companyFilterList?.employeeCountList?.map((item) => (
+                {employeeCountList?.map((item) => (
                   <li>
                     <Checkbox
                       key={item.id}
@@ -586,8 +635,7 @@ const AdvancedFilter = ({
           </CheckboxGroup>
 
           {!showCheckAll &&
-            companyFilterList?.employeeCountList.length >
-              LEFT_FILETERS_SIZE.length && (
+            employeeCountList.length > LEFT_FILETERS_SIZE.length && (
               <div className="viewmore">
                 <span
                   onClick={() => setOpenAdvancedModel({ open: true, key: 6 })}
@@ -601,28 +649,33 @@ const AdvancedFilter = ({
     );
   };
 
+  const filterEmployeeCount = (ele) => {
+    const filterdData = companyFilterList?.employeeCountList.filter((item) =>
+      item?.name.toLowerCase().includes(ele.target.value.toLowerCase())
+    );
+    setEmployeeCountList(filterdData);
+    setSelectedEmployeeCountList([]);
+    setCheckAllEmployeeCount(false);
+  };
+
   const updateEmployeeCount = (el) => {
     let newList = [];
     if (el.target.checked) {
-      newList = [...employeeCountList, el.target.value];
+      newList = [...selectedemployeeCountList, el.target.value];
     } else {
-      newList = employeeCountList.filter(
+      newList = selectedemployeeCountList.filter(
         (listItem) => listItem.id !== el.target.value.id
       );
     }
-    setEmployeeCountList(newList);
+    setSelectedEmployeeCountList(newList);
   };
 
   const onEmployeeCountChange = (list) => {
-    setCheckAllEmployeeCount(
-      list.length === companyFilterList?.employeeCountList.length
-    );
+    setCheckAllEmployeeCount(list.length === employeeCountList.length);
   };
 
   const onEmployeeCountCheckAllChange = (e) => {
-    setEmployeeCountList(
-      e.target.checked ? companyFilterList?.employeeCountList : []
-    );
+    setSelectedEmployeeCountList(e.target.checked ? employeeCountList : []);
     setCheckAllEmployeeCount(e.target.checked);
   };
   /*End employee count */
@@ -646,13 +699,20 @@ const AdvancedFilter = ({
           )}
         </div>
         <div className={`filteroptions ${visibleFilter.revenue && "show"}`}>
+          <div className="searchbox">
+            <Input
+              placeholder="Search"
+              prefix={<SearchOutlined />}
+              onChange={filterRevenueRange}
+            />
+          </div>
           <CheckboxGroup
             onChange={onRevenueRangeChange}
-            value={revenueRangeList}
+            value={selectedrevenueRangeList}
           >
             <>
               <ul>
-                {companyFilterList?.revenueRangeList?.map((item) => (
+                {revenueRangeList?.map((item) => (
                   <li>
                     <Checkbox
                       key={item.id}
@@ -668,8 +728,7 @@ const AdvancedFilter = ({
           </CheckboxGroup>
 
           {!showCheckAll &&
-            companyFilterList?.revenueRangeList.length >
-              LEFT_FILETERS_SIZE.length && (
+            revenueRangeList.length > LEFT_FILETERS_SIZE.length && (
               <div className="viewmore">
                 <span
                   onClick={() => setOpenAdvancedModel({ open: true, key: 7 })}
@@ -683,29 +742,33 @@ const AdvancedFilter = ({
     );
   };
 
+  const filterRevenueRange = (ele) => {
+    const filterdData = companyFilterList?.revenueRangeList.filter((item) =>
+      item?.name.toLowerCase().includes(ele.target.value.toLowerCase())
+    );
+    setRevenueRangeList(filterdData);
+    setSelectedRevenueRangeList([]);
+    setCheckAllRevenueRange(false);
+  };
+
   const updateRevenueRange = (el) => {
     let newList = [];
     if (el.target.checked) {
-      newList = [...revenueRangeList, el.target.value];
+      newList = [...selectedrevenueRangeList, el.target.value];
     } else {
-      newList = revenueRangeList.filter(
+      newList = selectedrevenueRangeList.filter(
         (listItem) => listItem.id !== el.target.value.id
       );
     }
-    console.log(newList, "sdfjsldkjfdks");
-    setRevenueRangeList(newList);
+    setSelectedRevenueRangeList(newList);
   };
 
   const onRevenueRangeChange = (list) => {
-    setCheckAllRevenueRange(
-      list.length === companyFilterList?.revenueRangeList.length
-    );
+    setCheckAllRevenueRange(list.length === revenueRangeList.length);
   };
 
   const onRevenueRangeCheckAllChange = (e) => {
-    setRevenueRangeList(
-      e.target.checked ? companyFilterList?.revenueRangeList : []
-    );
+    setSelectedRevenueRangeList(e.target.checked ? revenueRangeList : []);
     setCheckAllRevenueRange(e.target.checked);
   };
   /*End revenue range */
@@ -717,9 +780,9 @@ const AdvancedFilter = ({
         selectedState: selectedStateList,
         selectedCity: selectedCitiesList,
         selectedIndustry: selectedIndustryList,
-        selectedCompanytype: companyTypeList,
-        selectedEmployeecount: employeeCountList,
-        selectedRevenuerange: revenueRangeList,
+        selectedCompanytype: selectedCompanyTypeList,
+        selectedEmployeecount: selectedemployeeCountList,
+        selectedRevenuerange: selectedrevenueRangeList,
       })
     );
   }, [
@@ -727,39 +790,10 @@ const AdvancedFilter = ({
     selectedStateList,
     selectedCitiesList,
     selectedIndustryList,
-    companyTypeList,
-    employeeCountList,
-    revenueRangeList,
+    selectedCompanyTypeList,
+    selectedemployeeCountList,
+    selectedrevenueRangeList,
   ]);
-
-  //   const savePayload = () => {
-  //     dispatch(
-  //       saveAdvancedSelectedFilters({
-  //         selectedCountry: countriesList,
-  //         selectedState: selectedStateList,
-  //         selectedCity: selectedCitiesList,
-  //         selectedIndustry: selectedIndustryList,
-  //         selectedCompanytype: companyTypeList,
-  //         selectedEmployeecount: employeeCountList,
-  //         selectedRevenuerange: revenueRangeList,
-  //       })
-  //     );
-  //     console.log(
-  //       countriesList,
-  //       selectedStateList,
-  //       selectedCitiesList,
-  //       "skjldflskdj",
-  //       selectedIndustryList,
-  //       revenueRangeList,
-  //       employeeCountList,
-  //       companyTypeList
-  //     );
-  //     setOpenAdvancedModel({ open: false, key: 0 });
-  //   };
-
-  //   const handleCancel = () => {
-  //     setOpenAdvancedModel({ open: false, key: 0 });
-  //   };
 
   const renderJsx = () => {
     if (openAdvancedModel.key === 1) {
