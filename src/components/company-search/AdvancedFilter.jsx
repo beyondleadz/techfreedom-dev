@@ -6,19 +6,17 @@ import { useSelector, useDispatch } from "react-redux";
 
 const AdvancedFilter = ({ setOpenAdvancedModel, openAdvancedModel }) => {
   const dispatch = useDispatch();
-
-  const [confirmLoading, setConfirmLoading] = useState(false);
-  const [filteredCitiesList, setFilteredCitiesList] = useState();
+  const companyFilterList = useSelector((state) => state.companyListingReducer);
 
   const [countriesList, setCountriesList] = useState([]);
   const [checkAllCountries, setCheckAllCountries] = useState(false);
 
   const [statesList, setStatesList] = useState([]);
+  const [selectedStateList, setSelectedStateList] = useState([]);
   const [checkAllStates, setCheckAllStates] = useState(false);
 
-  const companyFilterList = useSelector((state) => state.companyListingReducer);
-
   const [selectedCitiesList, setSelectedCitiesList] = useState([]);
+  const [citiesOnSelectedStateList, setCitiesOnSelectedStateList] = useState();
   const [citiesList, setCitiesList] = useState([]);
   const [checkAllCities, setCheckAllCities] = useState(false);
 
@@ -38,18 +36,16 @@ const AdvancedFilter = ({ setOpenAdvancedModel, openAdvancedModel }) => {
   const CheckboxGroup = Checkbox.Group;
 
   useEffect(() => {
-    if (!statesList.length) {
-      setFilteredCitiesList(companyFilterList?.geoLocation?.cities);
+    if (!selectedStateList.length) {
+      setCitiesOnSelectedStateList(companyFilterList?.geoLocation?.cities);
+      setCitiesList(companyFilterList?.geoLocation?.cities);
     }
-  }, [statesList]);
+  }, [selectedStateList]);
 
   useEffect(() => {
     setIndustryList(companyFilterList?.industryList);
-    // setCompanyTypeList(companyFilterList?.companyTypeList);
-    // setEmployeeCountList(companyFilterList?.employeeCountList);
-    // setRevenueRangeList(companyFilterList?.revenueRangeList);
-    // setLocation(companyFilterList?.geoLocation);
-    // setCitiesList(companyFilterList?.geoLocation);
+    setCitiesList(companyFilterList?.geoLocation?.cities);
+    setStatesList(companyFilterList?.geoLocation?.states);
   }, [companyFilterList]);
 
   /*Countries Start */
@@ -90,10 +86,10 @@ const AdvancedFilter = ({ setOpenAdvancedModel, openAdvancedModel }) => {
   const updateCountries = (el) => {
     let newList = [];
     if (el.target.checked) {
-      newList = [...statesList, el.target.value];
+      newList = [...countriesList, el.target.value];
     } else {
-      newList = statesList.filter(
-        (listItem) => listItem.state_id !== el.target.value.state_id
+      newList = countriesList.filter(
+        (listItem) => listItem.country_id !== el.target.value.country_id
       );
     }
     setCountriesList(newList);
@@ -101,13 +97,13 @@ const AdvancedFilter = ({ setOpenAdvancedModel, openAdvancedModel }) => {
 
   const onCountryChange = (list) => {
     setCheckAllCountries(
-      list.length === companyFilterList?.geoLocation?.states.length
+      list.length === companyFilterList?.geoLocation?.countries.length
     );
   };
 
   const onCountriesCheckAllChange = (e) => {
     setCountriesList(
-      e.target.checked ? companyFilterList?.geoLocation?.states : []
+      e.target.checked ? companyFilterList?.geoLocation?.countries : []
     );
     setCheckAllCountries(e.target.checked);
   };
@@ -126,13 +122,17 @@ const AdvancedFilter = ({ setOpenAdvancedModel, openAdvancedModel }) => {
         </div>
 
         <div className="searchbox">
-          <Input placeholder="Search" prefix={<SearchOutlined />} />
+          <Input
+            placeholder="Search"
+            prefix={<SearchOutlined />}
+            onChange={filterState}
+          />
         </div>
 
-        <CheckboxGroup onChange={onStatesChange} value={statesList}>
+        <CheckboxGroup onChange={onStatesChange} value={selectedStateList}>
           <>
             <ul>
-              {companyFilterList?.geoLocation?.states.map((item) => (
+              {statesList.map((item) => (
                 <li>
                   <Checkbox
                     key={item.id}
@@ -150,16 +150,26 @@ const AdvancedFilter = ({ setOpenAdvancedModel, openAdvancedModel }) => {
     );
   };
 
+  const filterState = (ele) => {
+    const filterdData = companyFilterList?.geoLocation?.states?.filter((item) =>
+      item?.name.toLowerCase().includes(ele.target.value.toLowerCase())
+    );
+    setStatesList(filterdData);
+    setCheckAllStates(selectedStateList.length === statesList.length);
+    setSelectedStateList([]);
+    setCheckAllStates(false)
+  };
+
   const updateStates = (el) => {
     let newList = [];
     if (el.target.checked) {
-      newList = [...statesList, el.target.value];
+      newList = [...selectedStateList, el.target.value];
     } else {
-      newList = statesList.filter(
+      newList = selectedStateList.filter(
         (listItem) => listItem.state_id !== el.target.value.state_id
       );
     }
-    setStatesList(newList);
+    setSelectedStateList(newList);
   };
 
   const onStatesChange = (list) => {
@@ -175,15 +185,14 @@ const AdvancedFilter = ({ setOpenAdvancedModel, openAdvancedModel }) => {
         return city?.state_id === ct.state_id;
       });
     });
-    setFilteredCitiesList(cityList);
+    setCitiesOnSelectedStateList(cityList);
+    setCitiesList(cityList);
   };
 
   const onStatesCheckAllChange = (e) => {
-    setStatesList(
-      e.target.checked ? companyFilterList?.geoLocation?.states : []
-    );
+    setSelectedStateList(e.target.checked ? statesList : []);
     setCheckAllStates(e.target.checked);
-    setFilteredCitiesList(companyFilterList?.geoLocation?.cities);
+    updateCityBasedOnState(statesList);
   };
 
   /*state End */
@@ -193,16 +202,24 @@ const AdvancedFilter = ({ setOpenAdvancedModel, openAdvancedModel }) => {
     return (
       <>
         <div className="filterheader">
-          <h2>Cities - {filteredCitiesList?.length}</h2>
+          <h2>Cities - {citiesList?.length}</h2>
           <Checkbox onChange={onCityCheckAllChange} checked={checkAllCities}>
             Check all
           </Checkbox>
         </div>
 
-        <CheckboxGroup onChange={onCityChange} value={citiesList}>
+        <div className="searchbox">
+          <Input
+            placeholder="Search"
+            prefix={<SearchOutlined />}
+            onChange={filterCity}
+          />
+        </div>
+
+        <CheckboxGroup onChange={onCityChange} value={selectedCitiesList}>
           <>
             <ul>
-              {filteredCitiesList?.map((item) => (
+              {citiesList?.map((item) => (
                 <li>
                   <Checkbox
                     key={item.id}
@@ -220,35 +237,39 @@ const AdvancedFilter = ({ setOpenAdvancedModel, openAdvancedModel }) => {
     );
   };
 
+  const filterCity = (ele) => {
+    const filterdData = citiesOnSelectedStateList?.filter((item) =>
+      item?.name.toLowerCase().includes(ele.target.value.toLowerCase())
+    );
+    setCitiesList(filterdData);
+    setCheckAllCities(selectedCitiesList.length === citiesList.length);
+    setSelectedCitiesList([]);
+    setCheckAllCities(false)
+  };
+
   const updateCities = (el) => {
     let newList = [];
     if (el.target.checked) {
-      newList = [...citiesList, el.target.value];
+      newList = [...selectedCitiesList, el.target.value];
     } else {
-      newList = citiesList.filter(
+      newList = selectedCitiesList.filter(
         (listItem) => listItem.city_id !== el.target.value.city_id
       );
     }
-    setCitiesList(newList);
+    setSelectedCitiesList(newList);
   };
 
   const onCityChange = (list) => {
-    setCheckAllCities(
-      list.length === companyFilterList?.geoLocation?.states.length
-    );
+    setCheckAllCities(list.length === citiesList.length);
   };
 
   const onCityCheckAllChange = (e) => {
-    setCitiesList(
-      e.target.checked ? companyFilterList?.geoLocation?.cities : []
-    );
+    setSelectedCitiesList(e.target.checked ? citiesList : []);
     setCheckAllCities(e.target.checked);
   };
-
   /*City End */
 
   /*Industry Start */
-
   const showIndustryList = () => {
     return (
       <>
@@ -298,6 +319,7 @@ const AdvancedFilter = ({ setOpenAdvancedModel, openAdvancedModel }) => {
     setIndustryList(filterdData);
     setCheckAllIndustry(selectedIndustryList.length === industryList.length);
     setSelectedIndustryList([]);
+    setCheckAllIndustry(false);
   };
 
   const updateIndustries = (el) => {
@@ -320,11 +342,9 @@ const AdvancedFilter = ({ setOpenAdvancedModel, openAdvancedModel }) => {
     setSelectedIndustryList(e.target.checked ? industryList : []);
     setCheckAllIndustry(e.target.checked);
   };
-
   /*Industry End */
 
   /*start companytype */
-
   const showCompanyTypeList = () => {
     return (
       <>
@@ -381,11 +401,9 @@ const AdvancedFilter = ({ setOpenAdvancedModel, openAdvancedModel }) => {
     setCompanyTypeList(e.target.checked ? companyFilterList?.industryList : []);
     setCheckAllCompanyType(e.target.checked);
   };
-
-  /*end companytype */
+  /*End companytype */
 
   /*start employee count */
-
   const showEmployeeCountList = () => {
     return (
       <>
@@ -447,11 +465,9 @@ const AdvancedFilter = ({ setOpenAdvancedModel, openAdvancedModel }) => {
     );
     setCheckAllEmployeeCount(e.target.checked);
   };
+  /*End employee count */
 
-  /*end employee count */
-
-  /*start revenue range */
-
+  /*Start revenue range */
   const showRevenueRangeList = () => {
     return (
       <>
@@ -510,19 +526,18 @@ const AdvancedFilter = ({ setOpenAdvancedModel, openAdvancedModel }) => {
     );
     setCheckAllRevenueRange(e.target.checked);
   };
-
-  /*end revenue range */
+  /*End revenue range */
 
   const handleOk = () => {
     console.log(
-      statesList,
-      countriesList,
+        countriesList,
+        selectedStateList,
+      selectedCitiesList,
       "skjldflskdj",
       selectedIndustryList,
-      citiesList,
-      companyTypeList,
+      revenueRangeList,
       employeeCountList,
-      revenueRangeList
+      companyTypeList
     );
   };
 
@@ -601,9 +616,6 @@ const AdvancedFilter = ({ setOpenAdvancedModel, openAdvancedModel }) => {
       );
     }
   };
-
-  console.log(openAdvancedModel, "srajlksj");
-
   return (
     <>
       <Modal
@@ -612,7 +624,7 @@ const AdvancedFilter = ({ setOpenAdvancedModel, openAdvancedModel }) => {
         title="Advanced Filter"
         open={openAdvancedModel?.open}
         onOk={handleOk}
-        confirmLoading={confirmLoading}
+        // confirmLoading={confirmLoading}
         onCancel={handleCancel}
       >
         {renderJsx()}
