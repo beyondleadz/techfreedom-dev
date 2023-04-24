@@ -14,7 +14,9 @@ const AdvancedFilter = ({
   const dispatch = useDispatch();
   const companyFilterList = useSelector((state) => state.companyListingReducer);
 
-  const companySelectedFilterList = useSelector((state) => state.companyListingReducer.selectedFilters);
+  const companySelectedFilterList = useSelector(
+    (state) => state.companyListingReducer.selectedFilters
+  );
 
   const companyFilterListIndustry = useSelector(
     (state) => state.companyListingReducer.industryList
@@ -35,6 +37,9 @@ const AdvancedFilter = ({
   const companyFilterListCities = useSelector(
     (state) => state.companyListingReducer.geoLocation?.cities
   );
+  const companyFilterListCountries = useSelector(
+    (state) => state.companyListingReducer.geoLocation?.countries
+  );
   const companyFilterListStates = useSelector(
     (state) => state.companyListingReducer.geoLocation?.states
   );
@@ -50,6 +55,7 @@ const AdvancedFilter = ({
   });
 
   const [countriesList, setCountriesList] = useState([]);
+  const [selectedCountryList, setSelectedCountryList] = useState([]);
   const [checkAllCountries, setCheckAllCountries] = useState(false);
 
   const [statesList, setStatesList] = useState([]);
@@ -89,6 +95,7 @@ const AdvancedFilter = ({
   }, [selectedStateList]);
 
   useEffect(() => {
+    setCountriesList(companyFilterListCountries);
     setIndustryList(companyFilterListIndustry);
     setCitiesList(companyFilterListCities);
     setStatesList(companyFilterListStates);
@@ -96,6 +103,7 @@ const AdvancedFilter = ({
     setEmployeeCountList(companyFilterListEmployeeCountList);
     setRevenueRangeList(companyFilterListRevenueRangeList);
   }, [
+    companyFilterListCountries,
     companyFilterListIndustry,
     companyFilterListCities,
     companyFilterListStates,
@@ -105,13 +113,44 @@ const AdvancedFilter = ({
   ]);
 
   useEffect(() => {
-    setSelectedStateList(companySelectedFilterList.selectedState)
-    setSelectedCitiesList(companySelectedFilterList.selectedCity)
-    setSelectedCompanyTypeList(companySelectedFilterList.selectedCompanytype)
-    setSelectedIndustryList(companySelectedFilterList.selectedIndustry)
-    setSelectedRevenueRangeList(companySelectedFilterList.selectedRevenuerange)
-    setSelectedEmployeeCountList(companySelectedFilterList.selectedEmployeecount)
-  },[companySelectedFilterList])
+    setSelectedCountryList(companySelectedFilterList.selectedCountry);
+    setCheckAllCountries(
+      companySelectedFilterList.selectedCountry.length ===
+        companyFilterListCountries.length
+    );
+    setSelectedStateList(companySelectedFilterList.selectedState);
+    setCheckAllStates(
+      companySelectedFilterList.selectedState.length ===
+        companyFilterListStates.length
+    );
+    setSelectedCitiesList(companySelectedFilterList.selectedCity);
+    setCheckAllCities(
+      companySelectedFilterList.selectedCity.length ===
+        companyFilterListCities.length
+    );
+    setSelectedCompanyTypeList(companySelectedFilterList.selectedCompanytype);
+    setCheckAllCompanyType(
+      companySelectedFilterList.selectedCompanytype.length ===
+        companyFilterListCompanyType.length
+    );
+    setSelectedIndustryList(companySelectedFilterList.selectedIndustry);
+    setCheckAllIndustry(
+      companySelectedFilterList.selectedIndustry.length ===
+        companyFilterListIndustry.length
+    );
+    setSelectedRevenueRangeList(companySelectedFilterList.selectedRevenuerange);
+    setCheckAllRevenueRange(
+      companySelectedFilterList.selectedRevenuerange.length ===
+        companyFilterListRevenueRangeList.length
+    );
+    setSelectedEmployeeCountList(
+      companySelectedFilterList.selectedEmployeecount
+    );
+    setCheckAllEmployeeCount(
+      companySelectedFilterList.selectedEmployeecount.length ===
+        companyFilterListEmployeeCountList.length
+    );
+  }, [companySelectedFilterList]);
 
   const openVisibleFilter = (menu) => {
     setVisibleFilter({
@@ -149,10 +188,10 @@ const AdvancedFilter = ({
           )}
         </div>
         <div className={`filteroptions ${visibleFilter.country && "show"}`}>
-          <CheckboxGroup onChange={onCountryChange} value={countriesList}>
+          <CheckboxGroup onChange={onCountryChange} value={selectedCountryList}>
             <>
               <ul>
-                {companyFilterList?.geoLocation?.countries.map((item) => (
+                {countriesList.map((item) => (
                   <li>
                     <Checkbox
                       key={item.id}
@@ -166,17 +205,15 @@ const AdvancedFilter = ({
               </ul>
             </>
           </CheckboxGroup>
-          {!showCheckAll &&
-            companyFilterList?.geoLocation?.countries.length >
-              LEFT_FILETERS_SIZE.length && (
-              <div className="viewmore">
-                <span
-                  onClick={() => setOpenAdvancedModel({ open: true, key: 1 })}
-                >
-                  View More
-                </span>
-              </div>
-            )}
+          {!showCheckAll && countriesList.length > LEFT_FILETERS_SIZE.length && (
+            <div className="viewmore">
+              <span
+                onClick={() => setOpenAdvancedModel({ open: true, key: 1 })}
+              >
+                View More
+              </span>
+            </div>
+          )}
         </div>
       </>
     );
@@ -185,26 +222,35 @@ const AdvancedFilter = ({
   const updateCountries = (el) => {
     let newList = [];
     if (el.target.checked) {
-      newList = [...countriesList, el.target.value];
+      newList = [...selectedCountryList, el.target.value];
     } else {
-      newList = countriesList.filter(
+      newList = selectedCountryList.filter(
         (listItem) => listItem.country_id !== el.target.value.country_id
       );
     }
-    setCountriesList(newList);
+    setSelectedCountryList(newList);
+    dispatch(
+      saveAdvancedSelectedFilters({
+        ...companySelectedFilterList,
+        selectedCountry: newList,
+      })
+    );
   };
 
   const onCountryChange = (list) => {
-    setCheckAllCountries(
-      list.length === companyFilterList?.geoLocation?.countries.length
-    );
+    setCheckAllCountries(list.length === countriesList.length);
   };
 
   const onCountriesCheckAllChange = (e) => {
-    setCountriesList(
-      e.target.checked ? companyFilterList?.geoLocation?.countries : []
-    );
+    console.log(e.target.checked, "e.target.checkede.target.checked");
+    setSelectedCountryList(e.target.checked ? countriesList : []);
     setCheckAllCountries(e.target.checked);
+    dispatch(
+      saveAdvancedSelectedFilters({
+        ...companySelectedFilterList,
+        selectedCountry: e.target.checked ? countriesList : [],
+      })
+    );
   };
 
   /*Countries End */
@@ -288,6 +334,12 @@ const AdvancedFilter = ({
       );
     }
     setSelectedStateList(newList);
+    dispatch(
+      saveAdvancedSelectedFilters({
+        ...companySelectedFilterList,
+        selectedState: newList,
+      })
+    );
   };
 
   const onStatesChange = (list) => {
@@ -311,6 +363,12 @@ const AdvancedFilter = ({
     setSelectedStateList(e.target.checked ? statesList : []);
     setCheckAllStates(e.target.checked);
     updateCityBasedOnState(statesList);
+    dispatch(
+      saveAdvancedSelectedFilters({
+        ...companySelectedFilterList,
+        selectedState: e.target.checked ? statesList : [],
+      })
+    );
   };
 
   /*state End */
@@ -320,7 +378,7 @@ const AdvancedFilter = ({
     return (
       <>
         <div className="filterheader" onClick={() => openVisibleFilter("city")}>
-          <h2>Cities - {citiesList?.length}</h2>
+          <h2>Cities</h2>
           {showCheckAll && (
             <Checkbox onChange={onCityCheckAllChange} checked={checkAllCities}>
               Check all
@@ -388,6 +446,12 @@ const AdvancedFilter = ({
       );
     }
     setSelectedCitiesList(newList);
+    dispatch(
+      saveAdvancedSelectedFilters({
+        ...companySelectedFilterList,
+        selectedCity: newList,
+      })
+    );
   };
 
   const onCityChange = (list) => {
@@ -397,6 +461,12 @@ const AdvancedFilter = ({
   const onCityCheckAllChange = (e) => {
     setSelectedCitiesList(e.target.checked ? citiesList : []);
     setCheckAllCities(e.target.checked);
+    dispatch(
+      saveAdvancedSelectedFilters({
+        ...companySelectedFilterList,
+        selectedCity: e.target.checked ? citiesList : [],
+      })
+    );
   };
   /*City End */
 
@@ -481,6 +551,12 @@ const AdvancedFilter = ({
       );
     }
     setSelectedIndustryList(newList);
+    dispatch(
+      saveAdvancedSelectedFilters({
+        ...companySelectedFilterList,
+        selectedIndustry: newList,
+      })
+    );
   };
 
   const onIndustryChange = (list) => {
@@ -490,6 +566,12 @@ const AdvancedFilter = ({
   const onIndustryCheckAllChange = (e) => {
     setSelectedIndustryList(e.target.checked ? industryList : []);
     setCheckAllIndustry(e.target.checked);
+    dispatch(
+      saveAdvancedSelectedFilters({
+        ...companySelectedFilterList,
+        selectedIndustry: e.target.checked ? industryList : [],
+      })
+    );
   };
   /*Industry End */
 
@@ -573,6 +655,12 @@ const AdvancedFilter = ({
       );
     }
     setSelectedCompanyTypeList(newList);
+    dispatch(
+      saveAdvancedSelectedFilters({
+        ...companySelectedFilterList,
+        selectedCompanytype: newList,
+      })
+    );
   };
 
   const onCompanyTypeChange = (list) => {
@@ -582,6 +670,12 @@ const AdvancedFilter = ({
   const onCompanyTypeCheckAllChange = (e) => {
     setSelectedCompanyTypeList(e.target.checked ? companyTypeList : []);
     setCheckAllCompanyType(e.target.checked);
+    dispatch(
+      saveAdvancedSelectedFilters({
+        ...companySelectedFilterList,
+        selectedCompanytype: e.target.checked ? companyTypeList : [],
+      })
+    );
   };
   /*End companytype */
 
@@ -668,6 +762,12 @@ const AdvancedFilter = ({
       );
     }
     setSelectedEmployeeCountList(newList);
+    dispatch(
+      saveAdvancedSelectedFilters({
+        ...companySelectedFilterList,
+        selectedEmployeecount: newList,
+      })
+    );
   };
 
   const onEmployeeCountChange = (list) => {
@@ -677,6 +777,12 @@ const AdvancedFilter = ({
   const onEmployeeCountCheckAllChange = (e) => {
     setSelectedEmployeeCountList(e.target.checked ? employeeCountList : []);
     setCheckAllEmployeeCount(e.target.checked);
+    dispatch(
+      saveAdvancedSelectedFilters({
+        ...companySelectedFilterList,
+        selectedEmployeecount: e.target.checked ? employeeCountList : [],
+      })
+    );
   };
   /*End employee count */
 
@@ -761,6 +867,12 @@ const AdvancedFilter = ({
       );
     }
     setSelectedRevenueRangeList(newList);
+    dispatch(
+      saveAdvancedSelectedFilters({
+        ...companySelectedFilterList,
+        selectedRevenuerange: newList,
+      })
+    );
   };
 
   const onRevenueRangeChange = (list) => {
@@ -770,30 +882,37 @@ const AdvancedFilter = ({
   const onRevenueRangeCheckAllChange = (e) => {
     setSelectedRevenueRangeList(e.target.checked ? revenueRangeList : []);
     setCheckAllRevenueRange(e.target.checked);
+    dispatch(
+      saveAdvancedSelectedFilters({
+        ...companySelectedFilterList,
+        selectedRevenuerange: e.target.checked ? revenueRangeList : [],
+      })
+    );
   };
   /*End revenue range */
 
-  useEffect(() => {
-    dispatch(
-      saveAdvancedSelectedFilters({
-        selectedCountry: countriesList,
-        selectedState: selectedStateList,
-        selectedCity: selectedCitiesList,
-        selectedIndustry: selectedIndustryList,
-        selectedCompanytype: selectedCompanyTypeList,
-        selectedEmployeecount: selectedemployeeCountList,
-        selectedRevenuerange: selectedrevenueRangeList,
-      })
-    );
-  }, [
-    countriesList,
-    selectedStateList,
-    selectedCitiesList,
-    selectedIndustryList,
-    selectedCompanyTypeList,
-    selectedemployeeCountList,
-    selectedrevenueRangeList,
-  ]);
+  //   useEffect(() => {
+  //     console.log(companySelectedFilterList,'companySelectedFilterList')
+  //     dispatch(
+  //       saveAdvancedSelectedFilters({
+  //         selectedCountry: countriesList,
+  //         selectedState: selectedStateList,
+  //         selectedCity: selectedCitiesList,
+  //         selectedIndustry: selectedIndustryList,
+  //         selectedCompanytype: selectedCompanyTypeList,
+  //         selectedEmployeecount: selectedemployeeCountList,
+  //         selectedRevenuerange: selectedrevenueRangeList,
+  //       })
+  //     );
+  //   }, [
+  //     countriesList,
+  //     selectedStateList,
+  //     selectedCitiesList,
+  //     selectedIndustryList,
+  //     selectedCompanyTypeList,
+  //     selectedemployeeCountList,
+  //     selectedrevenueRangeList,
+  //   ]);
 
   const renderJsx = () => {
     if (openAdvancedModel.key === 1) {
