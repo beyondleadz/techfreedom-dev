@@ -32,6 +32,8 @@ const AdvancedFilter = ({ setOpenAdvancedModel, openAdvancedModel }) => {
   const [revenueRangeList, setRevenueRangeList] = useState([]);
   const [checkAllRevenueRange, setCheckAllRevenueRange] = useState(false);
 
+  const CheckboxGroup = Checkbox.Group;
+
   useEffect(() => {
     if (!statesList.length) {
       setFilteredCitiesList(companyFilterList?.geoLocation?.cities);
@@ -39,31 +41,11 @@ const AdvancedFilter = ({ setOpenAdvancedModel, openAdvancedModel }) => {
   }, [statesList]);
 
   /*Countries Start */
-
   const showCountriesList = () => {
-    if (!companyFilterList?.geoLocation?.countries) return;
-    let optionValues = [];
-    companyFilterList?.geoLocation?.countries.forEach((item) => {
-      optionValues = [...optionValues, { label: item.name, value: item.name }];
-    });
-
-    let list = [];
-    countriesList.forEach((item) => {
-      list = [...list, item.name];
-    });
-
-    console.log(
-      list,
-      "countriesListcountriesList",
-      optionValues,
-      "countriesList",
-      countriesList
-    );
-
     return (
       <>
         <div className="filterheader">
-          <h2>Country</h2>
+          <h2>Countries</h2>
           <Checkbox
             onChange={onCountriesCheckAllChange}
             checked={checkAllCountries}
@@ -72,39 +54,48 @@ const AdvancedFilter = ({ setOpenAdvancedModel, openAdvancedModel }) => {
           </Checkbox>
         </div>
 
-        <Checkbox.Group
-          style={{ width: "100%" }}
-          onChange={onCountryChange}
-          value={list}
-        >
-          <ul>
-            {optionValues.map((item) => {
-              return (
+        <CheckboxGroup onChange={onCountryChange} value={countriesList}>
+          <>
+            <ul>
+              {companyFilterList?.geoLocation?.countries.map((item) => (
                 <li>
-                  <Checkbox value={item.value}>{item.value}</Checkbox>
+                  <Checkbox
+                    key={item.id}
+                    value={item}
+                    onChange={($event) => updateCountries($event)}
+                  >
+                    {item.name}
+                  </Checkbox>
                 </li>
-              );
-            })}
-          </ul>
-        </Checkbox.Group>
+              ))}
+            </ul>
+          </>
+        </CheckboxGroup>
       </>
     );
   };
 
+  const updateCountries = (el) => {
+    let newList = [];
+    if (el.target.checked) {
+      newList = [...statesList, el.target.value];
+    } else {
+      newList = statesList.filter(
+        (listItem) => listItem.state_id !== el.target.value.state_id
+      );
+    }
+    setCountriesList(newList);
+  };
+
   const onCountryChange = (list) => {
-    let optionValues = [];
-    list.forEach((item) => {
-      optionValues = [...optionValues, { name: item }];
-    });
-    setCountriesList(optionValues);
     setCheckAllCountries(
-      list.length === companyFilterList?.geoLocation?.countries.length
+      list.length === companyFilterList?.geoLocation?.states.length
     );
   };
 
   const onCountriesCheckAllChange = (e) => {
     setCountriesList(
-      e.target.checked ? companyFilterList?.geoLocation?.countries : []
+      e.target.checked ? companyFilterList?.geoLocation?.states : []
     );
     setCheckAllCountries(e.target.checked);
   };
@@ -114,17 +105,6 @@ const AdvancedFilter = ({ setOpenAdvancedModel, openAdvancedModel }) => {
   /*State Start */
 
   const showStatesList = () => {
-    if (!companyFilterList?.geoLocation?.states) return;
-    let optionValues = [];
-    companyFilterList?.geoLocation?.states.forEach((item) => {
-      optionValues = [...optionValues, { label: item.name, value: item.name }];
-    });
-
-    let list = [];
-    statesList.forEach((item) => {
-      list = [...list, item.name];
-    });
-
     return (
       <>
         <div className="filterheader">
@@ -134,32 +114,40 @@ const AdvancedFilter = ({ setOpenAdvancedModel, openAdvancedModel }) => {
           </Checkbox>
         </div>
 
-        <Checkbox.Group
-          style={{ width: "100%" }}
-          onChange={onStatesChange}
-          value={list}
-        >
-          <ul>
-            {optionValues.map((item) => {
-              return (
+        <CheckboxGroup onChange={onStatesChange} value={statesList}>
+          <>
+            <ul>
+              {companyFilterList?.geoLocation?.states.map((item) => (
                 <li>
-                  <Checkbox value={item.value}>{item.value}</Checkbox>
+                  <Checkbox
+                    key={item.id}
+                    value={item}
+                    onChange={($event) => updateStates($event)}
+                  >
+                    {item.name}
+                  </Checkbox>
                 </li>
-              );
-            })}
-          </ul>
-        </Checkbox.Group>
+              ))}
+            </ul>
+          </>
+        </CheckboxGroup>
       </>
     );
   };
 
+  const updateStates = (el) => {
+    let newList = [];
+    if (el.target.checked) {
+      newList = [...statesList, el.target.value];
+    } else {
+      newList = statesList.filter(
+        (listItem) => listItem.state_id !== el.target.value.state_id
+      );
+    }
+    setStatesList(newList);
+  };
+
   const onStatesChange = (list) => {
-    console.log(list, "sfdkjslkdfj");
-    let optionValues = [];
-    list.forEach((item, index) => {
-      optionValues = [...optionValues, { name: item }];
-    });
-    setStatesList(optionValues);
     setCheckAllStates(
       list.length === companyFilterList?.geoLocation?.states.length
     );
@@ -167,19 +155,8 @@ const AdvancedFilter = ({ setOpenAdvancedModel, openAdvancedModel }) => {
   };
 
   const updateCityBasedOnState = (list) => {
-    const stateIds = companyFilterList?.geoLocation?.states.filter((state) => {
-      return list.some((st) => {
-        return state?.name === st;
-      });
-    });
     const cityList = companyFilterList?.geoLocation?.cities.filter((city) => {
-      return stateIds.some((ct) => {
-        console.log(
-          city?.state_id,
-          ct.state_id,
-          "city?.name === ct",
-          city?.state_id === ct.state_id
-        );
+      return list.some((ct) => {
         return city?.state_id === ct.state_id;
       });
     });
@@ -196,90 +173,68 @@ const AdvancedFilter = ({ setOpenAdvancedModel, openAdvancedModel }) => {
 
   /*state End */
 
-  //   City Fiter start
-  const onCityCheckAllChange = (e) => {
-    setCitiesList(e.target.checked ? filteredCitiesList : []);
-    setCheckAllCities(e.target.checked);
-  };
-
-  const onCityChange = (list) => {
-    let optionValues = [];
-    list.forEach((item, index) => {
-      optionValues = [...optionValues, { name: item }];
-    });
-    setCitiesList(optionValues);
-    setCheckAllCities(list.length === filteredCitiesList.length);
-  };
-
+  /* City Start */
   const showCitiesList = () => {
-    if (!filteredCitiesList) return;
-    let optionValues = [];
-    filteredCitiesList.forEach((item) => {
-      optionValues = [...optionValues, { label: item.name, value: item.name }];
-    });
-
-    let list = [];
-    citiesList.forEach((item) => {
-      list = [...list, item.name];
-    });
-
     return (
       <>
         <div className="filterheader">
-          <h2>Cities - {filteredCitiesList.length}</h2>
+          <h2>Cities - {filteredCitiesList?.length}</h2>
           <Checkbox onChange={onCityCheckAllChange} checked={checkAllCities}>
             Check all
           </Checkbox>
         </div>
 
-        <Checkbox.Group
-          style={{ width: "100%" }}
-          onChange={onCityChange}
-          value={list}
-        >
-          <ul>
-            {optionValues.map((item) => {
-              return (
+        <CheckboxGroup onChange={onCityChange} value={citiesList}>
+          <>
+            <ul>
+              {filteredCitiesList?.map((item) => (
                 <li>
-                  <Checkbox value={item.value}>{item.value}</Checkbox>
+                  <Checkbox
+                    key={item.id}
+                    value={item}
+                    onChange={($event) => updateCities($event)}
+                  >
+                    {item.name}
+                  </Checkbox>
                 </li>
-              );
-            })}
-          </ul>
-        </Checkbox.Group>
+              ))}
+            </ul>
+          </>
+        </CheckboxGroup>
       </>
     );
   };
 
-  //city filter end
-
-  //start industry filter
-
-  const onIndustryCheckAllChange = (e) => {
-    setIndustryList(e.target.checked ? companyFilterList?.industryList : []);
-    setCheckAllIndustry(e.target.checked);
+  const updateCities = (el) => {
+    let newList = [];
+    if (el.target.checked) {
+      newList = [...citiesList, el.target.value];
+    } else {
+      newList = citiesList.filter(
+        (listItem) => listItem.city_id !== el.target.value.city_id
+      );
+    }
+    setCitiesList(newList);
   };
 
-  const onIndustryChange = (list) => {
-    let optionValues = [];
-    list.forEach((item, index) => {
-      optionValues = [...optionValues, { name: item }];
-    });
-    setIndustryList(optionValues);
-    setCheckAllIndustry(list.length === companyFilterList?.industryList.length);
+  const onCityChange = (list) => {
+    setCheckAllCities(
+      list.length === companyFilterList?.geoLocation?.states.length
+    );
   };
+
+  const onCityCheckAllChange = (e) => {
+    setCitiesList(
+      e.target.checked ? companyFilterList?.geoLocation?.cities : []
+    );
+    setCheckAllCities(e.target.checked);
+  };
+
+  /*City End */
+
+  /*Industry Start */
+
   const showIndustryList = () => {
-    if (!companyFilterList?.industryList) return;
-    let optionValues = [];
-    companyFilterList?.industryList.forEach((item) => {
-      optionValues = [...optionValues, { label: item.id, value: item.name }];
-    });
-
-    let list = [];
-    industryList.forEach((item) => {
-      list = [...list, item.name];
-    });
-
     return (
       <>
         <div className="filterheader">
@@ -292,56 +247,53 @@ const AdvancedFilter = ({ setOpenAdvancedModel, openAdvancedModel }) => {
           </Checkbox>
         </div>
 
-        <Checkbox.Group
-          style={{ width: "100%" }}
-          onChange={onIndustryChange}
-          value={list}
-        >
-          <ul>
-            {optionValues.map((item) => {
-              return (
+        <CheckboxGroup onChange={onIndustryChange} value={industryList}>
+          <>
+            <ul>
+              {companyFilterList?.industryList?.map((item) => (
                 <li>
-                  <Checkbox value={item.value}>{item.value}</Checkbox>
+                  <Checkbox
+                    key={item.id}
+                    value={item}
+                    onChange={($event) => updateIndustries($event)}
+                  >
+                    {item.name}
+                  </Checkbox>
                 </li>
-              );
-            })}
-          </ul>
-        </Checkbox.Group>
+              ))}
+            </ul>
+          </>
+        </CheckboxGroup>
       </>
     );
   };
-  // end industry list
 
-  //start company type filter
-  const onCompanyTypeCheckAllChange = (e) => {
-    setCompanyTypeList(
-      e.target.checked ? companyFilterList?.companyTypeList : []
-    );
-    setCheckAllCompanyType(e.target.checked);
+  const updateIndustries = (el) => {
+    let newList = [];
+    if (el.target.checked) {
+      newList = [...industryList, el.target.value];
+    } else {
+      newList = industryList.filter(
+        (listItem) => listItem.id !== el.target.value.id
+      );
+    }
+    setIndustryList(newList);
   };
 
-  const onCompanyTypeChange = (list) => {
-    let optionValues = [];
-    list.forEach((item, index) => {
-      optionValues = [...optionValues, { name: item }];
-    });
-    setCompanyTypeList(optionValues);
-    setCheckAllCompanyType(
-      list.length === companyFilterList?.companyTypeList.length
-    );
+  const onIndustryChange = (list) => {
+    setCheckAllIndustry(list.length === companyFilterList?.industryList.length);
   };
+
+  const onIndustryCheckAllChange = (e) => {
+    setIndustryList(e.target.checked ? companyFilterList?.industryList : []);
+    setCheckAllIndustry(e.target.checked);
+  };
+
+  /*Industry End */
+
+  /*start companytype */
+
   const showCompanyTypeList = () => {
-    if (!companyFilterList?.companyTypeList) return;
-    let optionValues = [];
-    companyFilterList?.companyTypeList.forEach((item) => {
-      optionValues = [...optionValues, { label: item.id, value: item.name }];
-    });
-
-    let list = [];
-    companyTypeList.forEach((item) => {
-      list = [...list, item.name];
-    });
-
     return (
       <>
         <div className="filterheader">
@@ -354,57 +306,55 @@ const AdvancedFilter = ({ setOpenAdvancedModel, openAdvancedModel }) => {
           </Checkbox>
         </div>
 
-        <Checkbox.Group
-          style={{ width: "100%" }}
-          onChange={onCompanyTypeChange}
-          value={list}
-        >
-          <ul>
-            {optionValues.map((item) => {
-              return (
+        <CheckboxGroup onChange={onCompanyTypeChange} value={companyTypeList}>
+          <>
+            <ul>
+              {companyFilterList?.companyTypeList?.map((item) => (
                 <li>
-                  <Checkbox value={item.value}>{item.value}</Checkbox>
+                  <Checkbox
+                    key={item.id}
+                    value={item}
+                    onChange={($event) => updateCompanyType($event)}
+                  >
+                    {item.name}
+                  </Checkbox>
                 </li>
-              );
-            })}
-          </ul>
-        </Checkbox.Group>
+              ))}
+            </ul>
+          </>
+        </CheckboxGroup>
       </>
     );
   };
 
-  //end company type filter
-  //start employee count filter
-  const onEmployeeCountCheckAllChange = (e) => {
-    setEmployeeCountList(
-      e.target.checked ? companyFilterList?.employeeCountList : []
-    );
-    setCheckAllEmployeeCount(e.target.checked);
+  const updateCompanyType = (el) => {
+    let newList = [];
+    if (el.target.checked) {
+      newList = [...companyTypeList, el.target.value];
+    } else {
+      newList = companyTypeList.filter(
+        (listItem) => listItem.id !== el.target.value.id
+      );
+    }
+    setCompanyTypeList(newList);
   };
 
-  const onEmployeeCountChange = (list) => {
-    let optionValues = [];
-    list.forEach((item, index) => {
-      optionValues = [...optionValues, { name: item }];
-    });
-    setEmployeeCountList(optionValues);
-
-    setCheckAllEmployeeCount(
-      list.length === companyFilterList?.employeeCountList.length
+  const onCompanyTypeChange = (list) => {
+    setCheckAllCompanyType(
+      list.length === companyFilterList?.industryList.length
     );
   };
+
+  const onCompanyTypeCheckAllChange = (e) => {
+    setCompanyTypeList(e.target.checked ? companyFilterList?.industryList : []);
+    setCheckAllCompanyType(e.target.checked);
+  };
+
+  /*end companytype */
+
+  /*start employee count */
+
   const showEmployeeCountList = () => {
-    if (!companyFilterList?.employeeCountList) return;
-    let optionValues = [];
-    companyFilterList?.employeeCountList.forEach((item) => {
-      optionValues = [...optionValues, { label: item.id, value: item.name }];
-    });
-
-    let list = [];
-    employeeCountList.forEach((item) => {
-      list = [...list, item.name];
-    });
-
     return (
       <>
         <div className="filterheader">
@@ -417,57 +367,60 @@ const AdvancedFilter = ({ setOpenAdvancedModel, openAdvancedModel }) => {
           </Checkbox>
         </div>
 
-        <Checkbox.Group
-          style={{ width: "100%" }}
+        <CheckboxGroup
           onChange={onEmployeeCountChange}
-          value={list}
+          value={employeeCountList}
         >
-          <ul>
-            {optionValues.map((item) => {
-              return (
+          <>
+            <ul>
+              {companyFilterList?.employeeCountList?.map((item) => (
                 <li>
-                  <Checkbox value={item.value}>{item.value}</Checkbox>
+                  <Checkbox
+                    key={item.id}
+                    value={item}
+                    onChange={($event) => updateEmployeeCount($event)}
+                  >
+                    {item.name}
+                  </Checkbox>
                 </li>
-              );
-            })}
-          </ul>
-        </Checkbox.Group>
+              ))}
+            </ul>
+          </>
+        </CheckboxGroup>
       </>
     );
   };
 
-  //end employee count filter
-  //start revenue range filter
-
-  const onRevenueRangeCheckAllChange = (e) => {
-    setRevenueRangeList(
-      e.target.checked ? companyFilterList?.revenueRangeList : []
-    );
-    setCheckAllRevenueRange(e.target.checked);
+  const updateEmployeeCount = (el) => {
+    let newList = [];
+    if (el.target.checked) {
+      newList = [...employeeCountList, el.target.value];
+    } else {
+      newList = employeeCountList.filter(
+        (listItem) => listItem.id !== el.target.value.id
+      );
+    }
+    setEmployeeCountList(newList);
   };
 
-  const onRevenueRangeChange = (list) => {
-    let optionValues = [];
-    list.forEach((item, index) => {
-      optionValues = [...optionValues, { name: item }];
-    });
-    setRevenueRangeList(optionValues);
-    setCheckAllRevenueRange(
-      list.length === companyFilterList?.revenueRangeList.length
+  const onEmployeeCountChange = (list) => {
+    setCheckAllEmployeeCount(
+      list.length === companyFilterList?.employeeCountList.length
     );
   };
+
+  const onEmployeeCountCheckAllChange = (e) => {
+    setEmployeeCountList(
+      e.target.checked ? companyFilterList?.employeeCountList : []
+    );
+    setCheckAllEmployeeCount(e.target.checked);
+  };
+
+  /*end employee count */
+
+  /*start revenue range */
+
   const showRevenueRangeList = () => {
-    if (!companyFilterList?.revenueRangeList) return;
-    let optionValues = [];
-    companyFilterList?.revenueRangeList.forEach((item) => {
-      optionValues = [...optionValues, { label: item.id, value: item.name }];
-    });
-
-    let list = [];
-    revenueRangeList.forEach((item) => {
-      list = [...list, item.name];
-    });
-
     return (
       <>
         <div className="filterheader">
@@ -480,24 +433,53 @@ const AdvancedFilter = ({ setOpenAdvancedModel, openAdvancedModel }) => {
           </Checkbox>
         </div>
 
-        <Checkbox.Group
-          style={{ width: "100%" }}
-          onChange={onRevenueRangeChange}
-          value={list}
-        >
-          <ul>
-            {optionValues.map((item) => {
-              return (
+        <CheckboxGroup onChange={onRevenueRangeChange} value={revenueRangeList}>
+          <>
+            <ul>
+              {companyFilterList?.revenueRangeList?.map((item) => (
                 <li>
-                  <Checkbox value={item.value}>{item.value}</Checkbox>
+                  <Checkbox
+                    key={item.id}
+                    value={item}
+                    onChange={($event) => updateRevenueRange($event)}
+                  >
+                    {item.name}
+                  </Checkbox>
                 </li>
-              );
-            })}
-          </ul>
-        </Checkbox.Group>
+              ))}
+            </ul>
+          </>
+        </CheckboxGroup>
       </>
     );
   };
+
+  const updateRevenueRange = (el) => {
+    let newList = [];
+    if (el.target.checked) {
+      newList = [...revenueRangeList, el.target.value];
+    } else {
+      newList = revenueRangeList.filter(
+        (listItem) => listItem.id !== el.target.value.id
+      );
+    }
+    setRevenueRangeList(newList);
+  };
+
+  const onRevenueRangeChange = (list) => {
+    setCheckAllRevenueRange(
+      list.length === companyFilterList?.revenueRangeList.length
+    );
+  };
+
+  const onRevenueRangeCheckAllChange = (e) => {
+    setRevenueRangeList(
+      e.target.checked ? companyFilterList?.revenueRangeList : []
+    );
+    setCheckAllRevenueRange(e.target.checked);
+  };
+
+  /*end revenue range */
 
   const handleOk = () => {
     console.log(
@@ -505,7 +487,10 @@ const AdvancedFilter = ({ setOpenAdvancedModel, openAdvancedModel }) => {
       countriesList,
       "skjldflskdj",
       industryList,
-      citiesList
+      citiesList,
+      companyTypeList,
+      employeeCountList,
+      revenueRangeList
     );
   };
 
