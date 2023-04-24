@@ -6503,6 +6503,8 @@ padding:5px
       font-size: 13px;
     }
 
+  .contentbody{width:calc(100% - 240px)}
+
 @media screen and (max-width: 760px) {
   .filter-button{
     display: block;
