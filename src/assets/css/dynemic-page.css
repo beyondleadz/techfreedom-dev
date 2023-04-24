@@ -6106,10 +6106,6 @@ body.ssidebar-toggled footer.sticky-footer {
   width: 100%;
 }
  .wrapper{background-color: #fff;}
-#wrapper .searchbox{
-  
-    margin-bottom: 5px;
-}
 
 #wrapper .searchbox .searchboxinput{
   outline: none;
@@ -6405,6 +6401,10 @@ padding:5px
   text-align: center;
 }
 
+.leftmenu{
+  width: 240px;
+}
+
 .advancedfilter .ant-modal-title{
   font-size: 18px;
   }
@@ -6412,7 +6412,7 @@ padding:5px
   .advancedfilter .filterblk{    border: 1px solid #eee;
     padding: 10px;
     border-radius: 5px; margin-bottom: 20px;}
-  .filterblk h2{font-size: 15px; font-weight: 500;}
+  .filterblk h2{font-size: 13px; font-weight: 500;}
   .advancedfilter .ant-checkbox-group{width:100%}
   .advancedfilter .ant-checkbox-group ul{width: 100%;}
   .advancedfilter .ant-checkbox-group ul li{width: 33%;
@@ -6420,6 +6420,66 @@ padding:5px
     box-sizing: border-box;margin:3px 0}
 
     .advancedfilter .searchbox{margin:10px 0}
+
+
+    .leftmenufilter .filterheader{
+      background: #f4f4f4;
+      cursor: pointer;
+      position: relative;
+      padding:5px;
+      border-bottom:1px solid #e5e5e5
+    }
+
+    .leftmenufilter .filterheader::after{
+      content: "\276F";
+      margin-left:5px;
+      display: inline-block;
+      font-size: 16px;
+      font-family: 'Font Awesome\ 5 Free';
+      position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    }
+
+    .leftmenufilter .filteroptions{
+      height: 0;
+      transition: 2s;
+      overflow: hidden;
+    }
+
+    .leftmenufilter .filteroptions.show{
+      height: auto;
+    }
+
+    .leftmenufilter .ant-checkbox-group{
+      max-height: 185px;
+      overflow: hidden;
+      padding:6px;
+    }
+
+    .leftmenufilter .viewmore{
+      display: flex;
+      align-items: end;
+      width: 100%;
+      justify-content: center;
+      color: orange;
+      font-size: 12px;
+      cursor: pointer;
+      padding: 10px 0;
+    }
+
+    .leftmenufilter .searchbox{
+      padding: 5px 5px 0 5px;
+    }
+
+    .leftmenufilter .ant-checkbox-group li{
+      margin:3px 0;
+    }
+
+    .leftmenufilter .ant-checkbox-group li span{
+      font-size: 13px;
+    }
 
 @media screen and (max-width: 760px) {
   .filter-button{

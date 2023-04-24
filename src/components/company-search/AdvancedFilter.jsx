@@ -1,13 +1,37 @@
 import React, { useEffect, useState, useMemo } from "react";
 import _ from "lodash";
 import { Modal, Checkbox, Input } from "antd";
-import {saveAdvancedSelectedFilters} from '../../actionCreator/companyListingActionCreater'
+import { saveAdvancedSelectedFilters } from "../../actionCreator/companyListingActionCreater";
 import { SearchOutlined } from "@ant-design/icons";
 import { useSelector, useDispatch } from "react-redux";
+import { LEFT_FILETERS_SIZE } from "../../config";
 
-const AdvancedFilter = ({ setOpenAdvancedModel, openAdvancedModel }) => {
+const AdvancedFilter = ({
+  openAdvancedModel,
+  showCheckAll = true,
+  setOpenAdvancedModel,
+}) => {
   const dispatch = useDispatch();
   const companyFilterList = useSelector((state) => state.companyListingReducer);
+  const companyFilterListIndustry = useSelector(
+    (state) => state.companyListingReducer.industryList
+  );
+  const companyFilterListCities = useSelector(
+    (state) => state.companyListingReducer.geoLocation?.cities
+  );
+  const companyFilterListStates = useSelector(
+    (state) => state.companyListingReducer.geoLocation?.states
+  );
+
+  const [visibleFilter, setVisibleFilter] = useState({
+    country: false,
+    state: false,
+    city: false,
+    industry: false,
+    companyType: false,
+    employeeCount: false,
+    revenue: false,
+  });
 
   const [countriesList, setCountriesList] = useState([]);
   const [checkAllCountries, setCheckAllCountries] = useState(false);
@@ -44,42 +68,80 @@ const AdvancedFilter = ({ setOpenAdvancedModel, openAdvancedModel }) => {
   }, [selectedStateList]);
 
   useEffect(() => {
-    setIndustryList(companyFilterList?.industryList);
-    setCitiesList(companyFilterList?.geoLocation?.cities);
-    setStatesList(companyFilterList?.geoLocation?.states);
-  }, [companyFilterList]);
+    setIndustryList(companyFilterListIndustry);
+    setCitiesList(companyFilterListCities);
+    setStatesList(companyFilterListStates);
+  }, [
+    companyFilterListIndustry,
+    companyFilterListCities,
+    companyFilterListStates,
+  ]);
+
+  const openVisibleFilter = (menu) => {
+    setVisibleFilter({
+      ...{
+        country: false,
+        state: false,
+        city: false,
+        industry: false,
+        companyType: false,
+        employeeCount: false,
+        revenue: false,
+        utility: false,
+        pages: false,
+      },
+      [menu]: !visibleFilter[menu],
+    });
+  };
 
   /*Countries Start */
   const showCountriesList = () => {
     return (
       <>
-        <div className="filterheader">
+        <div
+          className="filterheader"
+          onClick={() => openVisibleFilter("country")}
+        >
           <h2>Countries</h2>
-          <Checkbox
-            onChange={onCountriesCheckAllChange}
-            checked={checkAllCountries}
-          >
-            Check all
-          </Checkbox>
+          {showCheckAll && (
+            <Checkbox
+              onChange={onCountriesCheckAllChange}
+              checked={checkAllCountries}
+            >
+              Check all
+            </Checkbox>
+          )}
         </div>
-
-        <CheckboxGroup onChange={onCountryChange} value={countriesList}>
-          <>
-            <ul>
-              {companyFilterList?.geoLocation?.countries.map((item) => (
-                <li>
-                  <Checkbox
-                    key={item.id}
-                    value={item}
-                    onChange={($event) => updateCountries($event)}
-                  >
-                    {item.name}
-                  </Checkbox>
-                </li>
-              ))}
-            </ul>
-          </>
-        </CheckboxGroup>
+        <div className={`filteroptions ${visibleFilter.country && "show"}`}>
+          <CheckboxGroup onChange={onCountryChange} value={countriesList}>
+            <>
+              <ul>
+                {companyFilterList?.geoLocation?.countries.map((item) => (
+                  <li>
+                    <Checkbox
+                      key={item.id}
+                      value={item}
+                      onChange={($event) => updateCountries($event)}
+                    >
+                      {item.name}
+                    </Checkbox>
+                  </li>
+                ))}
+              </ul>
+            </>
+          </CheckboxGroup>
+          {!showCheckAll &&
+            companyFilterList?.geoLocation?.countries.length >
+              LEFT_FILETERS_SIZE.length && (
+              <div className="viewmore">
+                <span
+                  onClick={() => setOpenAdvancedModel({ open: true, key: 1 })}
+                >
+                  View More
+                </span>
+              </div>
+            )}
+        </div>
       </>
     );
   };
@@ -115,38 +177,57 @@ const AdvancedFilter = ({ setOpenAdvancedModel, openAdvancedModel }) => {
   const showStatesList = () => {
     return (
       <>
-        <div className="filterheader">
+        <div
+          className="filterheader"
+          onClick={() => openVisibleFilter("state")}
+        >
           <h2>States</h2>
-          <Checkbox onChange={onStatesCheckAllChange} checked={checkAllStates}>
-            Check all
-          </Checkbox>
+          {showCheckAll && (
+            <Checkbox
+              onChange={onStatesCheckAllChange}
+              checked={checkAllStates}
+            >
+              Check all
+            </Checkbox>
+          )}
         </div>
+        <div className={`filteroptions ${visibleFilter.state && "show"}`}>
+          <div className="searchbox">
+            <Input
+              placeholder="Search"
+              prefix={<SearchOutlined />}
+              onChange={filterState}
+            />
+          </div>
 
-        <div className="searchbox">
-          <Input
-            placeholder="Search"
-            prefix={<SearchOutlined />}
-            onChange={filterState}
-          />
+          <CheckboxGroup onChange={onStatesChange} value={selectedStateList}>
+            <>
+              <ul>
+                {statesList.map((item) => (
+                  <li>
+                    <Checkbox
+                      key={item.id}
+                      value={item}
+                      onChange={($event) => updateStates($event)}
+                    >
+                      {item.name}
+                    </Checkbox>
+                  </li>
+                ))}
+              </ul>
+            </>
+          </CheckboxGroup>
+
+          {!showCheckAll && statesList.length > LEFT_FILETERS_SIZE.length && (
+            <div className="viewmore">
+              <span
+                onClick={() => setOpenAdvancedModel({ open: true, key: 2 })}
+              >
+                View More
+              </span>
+            </div>
+          )}
         </div>
-
-        <CheckboxGroup onChange={onStatesChange} value={selectedStateList}>
-          <>
-            <ul>
-              {statesList.map((item) => (
-                <li>
-                  <Checkbox
-                    key={item.id}
-                    value={item}
-                    onChange={($event) => updateStates($event)}
-                  >
-                    {item.name}
-                  </Checkbox>
-                </li>
-              ))}
-            </ul>
-          </>
-        </CheckboxGroup>
       </>
     );
   };
@@ -202,38 +283,51 @@ const AdvancedFilter = ({ setOpenAdvancedModel, openAdvancedModel }) => {
   const showCitiesList = () => {
     return (
       <>
-        <div className="filterheader">
+        <div className="filterheader" onClick={() => openVisibleFilter("city")}>
           <h2>Cities - {citiesList?.length}</h2>
-          <Checkbox onChange={onCityCheckAllChange} checked={checkAllCities}>
-            Check all
-          </Checkbox>
+          {showCheckAll && (
+            <Checkbox onChange={onCityCheckAllChange} checked={checkAllCities}>
+              Check all
+            </Checkbox>
+          )}
         </div>
+        <div className={`filteroptions ${visibleFilter.city && "show"}`}>
+          <div className="searchbox">
+            <Input
+              placeholder="Search"
+              prefix={<SearchOutlined />}
+              onChange={filterCity}
+            />
+          </div>
 
-        <div className="searchbox">
-          <Input
-            placeholder="Search"
-            prefix={<SearchOutlined />}
-            onChange={filterCity}
-          />
+          <CheckboxGroup onChange={onCityChange} value={selectedCitiesList}>
+            <>
+              <ul>
+                {citiesList?.map((item) => (
+                  <li>
+                    <Checkbox
+                      key={item.id}
+                      value={item}
+                      onChange={($event) => updateCities($event)}
+                    >
+                      {item.name}
+                    </Checkbox>
+                  </li>
+                ))}
+              </ul>
+            </>
+          </CheckboxGroup>
+
+          {!showCheckAll && citiesList.length > LEFT_FILETERS_SIZE.length && (
+            <div className="viewmore">
+              <span
+                onClick={() => setOpenAdvancedModel({ open: true, key: 3 })}
+              >
+                View More
+              </span>
+            </div>
+          )}
         </div>
-
-        <CheckboxGroup onChange={onCityChange} value={selectedCitiesList}>
-          <>
-            <ul>
-              {citiesList?.map((item) => (
-                <li>
-                  <Checkbox
-                    key={item.id}
-                    value={item}
-                    onChange={($event) => updateCities($event)}
-                  >
-                    {item.name}
-                  </Checkbox>
-                </li>
-              ))}
-            </ul>
-          </>
-        </CheckboxGroup>
       </>
     );
   };
@@ -274,41 +368,60 @@ const AdvancedFilter = ({ setOpenAdvancedModel, openAdvancedModel }) => {
   const showIndustryList = () => {
     return (
       <>
-        <div className="filterheader">
+        <div
+          className="filterheader"
+          onClick={() => openVisibleFilter("industry")}
+        >
           <h2>Industry</h2>
-          <Checkbox
-            onChange={onIndustryCheckAllChange}
-            checked={checkAllIndustry}
+          {showCheckAll && (
+            <Checkbox
+              onChange={onIndustryCheckAllChange}
+              checked={checkAllIndustry}
+            >
+              Check all
+            </Checkbox>
+          )}
+        </div>
+        <div className={`filteroptions ${visibleFilter.industry && "show"}`}>
+          <div className="searchbox">
+            <Input
+              placeholder="Search"
+              prefix={<SearchOutlined />}
+              onChange={filterList}
+            />
+          </div>
+
+          <CheckboxGroup
+            onChange={onIndustryChange}
+            value={selectedIndustryList}
           >
-            Check all
-          </Checkbox>
-        </div>
+            <>
+              <ul>
+                {industryList?.map((item) => (
+                  <li>
+                    <Checkbox
+                      key={item.id}
+                      value={item}
+                      onChange={($event) => updateIndustries($event)}
+                    >
+                      {item.name}
+                    </Checkbox>
+                  </li>
+                ))}
+              </ul>
+            </>
+          </CheckboxGroup>
 
-        <div className="searchbox">
-          <Input
-            placeholder="Search"
-            prefix={<SearchOutlined />}
-            onChange={filterList}
-          />
+          {!showCheckAll && industryList.length > LEFT_FILETERS_SIZE.length && (
+            <div className="viewmore">
+              <span
+                onClick={() => setOpenAdvancedModel({ open: true, key: 4 })}
+              >
+                View More
+              </span>
+            </div>
+          )}
         </div>
-
-        <CheckboxGroup onChange={onIndustryChange} value={selectedIndustryList}>
-          <>
-            <ul>
-              {industryList?.map((item) => (
-                <li>
-                  <Checkbox
-                    key={item.id}
-                    value={item}
-                    onChange={($event) => updateIndustries($event)}
-                  >
-                    {item.name}
-                  </Checkbox>
-                </li>
-              ))}
-            </ul>
-          </>
-        </CheckboxGroup>
       </>
     );
   };
@@ -322,6 +435,7 @@ const AdvancedFilter = ({ setOpenAdvancedModel, openAdvancedModel }) => {
     setSelectedIndustryList([]);
     setCheckAllIndustry(false);
   };
+
 
   const updateIndustries = (el) => {
     let newList = [];
@@ -349,33 +463,58 @@ const AdvancedFilter = ({ setOpenAdvancedModel, openAdvancedModel }) => {
   const showCompanyTypeList = () => {
     return (
       <>
-        <div className="filterheader">
+        <div
+          className="filterheader"
+          onClick={() => openVisibleFilter("companyType")}
+        >
           <h2>Company Type</h2>
-          <Checkbox
-            onChange={onCompanyTypeCheckAllChange}
-            checked={checkAllCompanyType}
-          >
-            Check all
-          </Checkbox>
+          {showCheckAll && (
+            <Checkbox
+              onChange={onCompanyTypeCheckAllChange}
+              checked={checkAllCompanyType}
+            >
+              Check all
+            </Checkbox>
+          )}
         </div>
+        <div className={`filteroptions ${visibleFilter.companyType && "show"}`}>
+        <div className="searchbox">
+            <Input
+              placeholder="Search"
+              prefix={<SearchOutlined />}
+            //   onChange={filterCompany}
+            />
+          </div>
+          <CheckboxGroup onChange={onCompanyTypeChange} value={companyTypeList}>
+            <>
+              <ul>
+                {companyFilterList?.companyTypeList?.map((item) => (
+                  <li>
+                    <Checkbox
+                      key={item.id}
+                      value={item}
+                      onChange={($event) => updateCompanyType($event)}
+                    >
+                      {item.name}
+                    </Checkbox>
+                  </li>
+                ))}
+              </ul>
+            </>
+          </CheckboxGroup>
 
-        <CheckboxGroup onChange={onCompanyTypeChange} value={companyTypeList}>
-          <>
-            <ul>
-              {companyFilterList?.companyTypeList?.map((item) => (
-                <li>
-                  <Checkbox
-                    key={item.id}
-                    value={item}
-                    onChange={($event) => updateCompanyType($event)}
-                  >
-                    {item.name}
-                  </Checkbox>
-                </li>
-              ))}
-            </ul>
-          </>
-        </CheckboxGroup>
+          {!showCheckAll &&
+            companyFilterList?.companyTypeList.length >
+              LEFT_FILETERS_SIZE.length && (
+              <div className="viewmore">
+                <span
+                  onClick={() => setOpenAdvancedModel({ open: true, key: 5 })}
+                >
+                  View More
+                </span>
+              </div>
+            )}
+        </div>
       </>
     );
   };
@@ -408,36 +547,56 @@ const AdvancedFilter = ({ setOpenAdvancedModel, openAdvancedModel }) => {
   const showEmployeeCountList = () => {
     return (
       <>
-        <div className="filterheader">
-          <h2>Employee Count</h2>
-          <Checkbox
-            onChange={onEmployeeCountCheckAllChange}
-            checked={checkAllEmployeeCount}
-          >
-            Check all
-          </Checkbox>
-        </div>
-
-        <CheckboxGroup
-          onChange={onEmployeeCountChange}
-          value={employeeCountList}
+        <div
+          className="filterheader"
+          onClick={() => openVisibleFilter("employeeCount")}
         >
-          <>
-            <ul>
-              {companyFilterList?.employeeCountList?.map((item) => (
-                <li>
-                  <Checkbox
-                    key={item.id}
-                    value={item}
-                    onChange={($event) => updateEmployeeCount($event)}
-                  >
-                    {item.name}
-                  </Checkbox>
-                </li>
-              ))}
-            </ul>
-          </>
-        </CheckboxGroup>
+          <h2>Employee Count</h2>
+          {showCheckAll && (
+            <Checkbox
+              onChange={onEmployeeCountCheckAllChange}
+              checked={checkAllEmployeeCount}
+            >
+              Check all
+            </Checkbox>
+          )}
+        </div>
+        <div
+          className={`filteroptions ${visibleFilter.employeeCount && "show"}`}
+        >
+          <CheckboxGroup
+            onChange={onEmployeeCountChange}
+            value={employeeCountList}
+          >
+            <>
+              <ul>
+                {companyFilterList?.employeeCountList?.map((item) => (
+                  <li>
+                    <Checkbox
+                      key={item.id}
+                      value={item}
+                      onChange={($event) => updateEmployeeCount($event)}
+                    >
+                      {item.name}
+                    </Checkbox>
+                  </li>
+                ))}
+              </ul>
+            </>
+          </CheckboxGroup>
+
+          {!showCheckAll &&
+            companyFilterList?.employeeCountList.length >
+              LEFT_FILETERS_SIZE.length && (
+              <div className="viewmore">
+                <span
+                  onClick={() => setOpenAdvancedModel({ open: true, key: 6 })}
+                >
+                  View More
+                </span>
+              </div>
+            )}
+        </div>
       </>
     );
   };
@@ -472,33 +631,54 @@ const AdvancedFilter = ({ setOpenAdvancedModel, openAdvancedModel }) => {
   const showRevenueRangeList = () => {
     return (
       <>
-        <div className="filterheader">
+        <div
+          className="filterheader"
+          onClick={() => openVisibleFilter("revenue")}
+        >
           <h2>Revenue Range</h2>
-          <Checkbox
-            onChange={onRevenueRangeCheckAllChange}
-            checked={checkAllRevenueRange}
-          >
-            Check all
-          </Checkbox>
+          {showCheckAll && (
+            <Checkbox
+              onChange={onRevenueRangeCheckAllChange}
+              checked={checkAllRevenueRange}
+            >
+              Check all
+            </Checkbox>
+          )}
         </div>
+        <div className={`filteroptions ${visibleFilter.revenue && "show"}`}>
+          <CheckboxGroup
+            onChange={onRevenueRangeChange}
+            value={revenueRangeList}
+          >
+            <>
+              <ul>
+                {companyFilterList?.revenueRangeList?.map((item) => (
+                  <li>
+                    <Checkbox
+                      key={item.id}
+                      value={item}
+                      onChange={($event) => updateRevenueRange($event)}
+                    >
+                      {item.name}
+                    </Checkbox>
+                  </li>
+                ))}
+              </ul>
+            </>
+          </CheckboxGroup>
 
-        <CheckboxGroup onChange={onRevenueRangeChange} value={revenueRangeList}>
-          <>
-            <ul>
-              {companyFilterList?.revenueRangeList?.map((item) => (
-                <li>
-                  <Checkbox
-                    key={item.id}
-                    value={item}
-                    onChange={($event) => updateRevenueRange($event)}
-                  >
-                    {item.name}
-                  </Checkbox>
-                </li>
-              ))}
-            </ul>
-          </>
-        </CheckboxGroup>
+          {!showCheckAll &&
+            companyFilterList?.revenueRangeList.length >
+              LEFT_FILETERS_SIZE.length && (
+              <div className="viewmore">
+                <span
+                  onClick={() => setOpenAdvancedModel({ open: true, key: 7 })}
+                >
+                  View More
+                </span>
+              </div>
+            )}
+        </div>
       </>
     );
   };
@@ -512,6 +692,7 @@ const AdvancedFilter = ({ setOpenAdvancedModel, openAdvancedModel }) => {
         (listItem) => listItem.id !== el.target.value.id
       );
     }
+    console.log(newList, "sdfjsldkjfdks");
     setRevenueRangeList(newList);
   };
 
@@ -529,7 +710,7 @@ const AdvancedFilter = ({ setOpenAdvancedModel, openAdvancedModel }) => {
   };
   /*End revenue range */
 
-  const handleOk = () => {
+  useEffect(() => {
     dispatch(
       saveAdvancedSelectedFilters({
         selectedCountry: countriesList,
@@ -541,21 +722,44 @@ const AdvancedFilter = ({ setOpenAdvancedModel, openAdvancedModel }) => {
         selectedRevenuerange: revenueRangeList,
       })
     );
-    console.log(
-      countriesList,
-      selectedStateList,
-      selectedCitiesList,
-      "skjldflskdj",
-      selectedIndustryList,
-      revenueRangeList,
-      employeeCountList,
-      companyTypeList
-    );
-  };
+  }, [
+    countriesList,
+    selectedStateList,
+    selectedCitiesList,
+    selectedIndustryList,
+    companyTypeList,
+    employeeCountList,
+    revenueRangeList,
+  ]);
 
-  const handleCancel = () => {
-    setOpenAdvancedModel({ open: false, key: 0 });
-  };
+  //   const savePayload = () => {
+  //     dispatch(
+  //       saveAdvancedSelectedFilters({
+  //         selectedCountry: countriesList,
+  //         selectedState: selectedStateList,
+  //         selectedCity: selectedCitiesList,
+  //         selectedIndustry: selectedIndustryList,
+  //         selectedCompanytype: companyTypeList,
+  //         selectedEmployeecount: employeeCountList,
+  //         selectedRevenuerange: revenueRangeList,
+  //       })
+  //     );
+  //     console.log(
+  //       countriesList,
+  //       selectedStateList,
+  //       selectedCitiesList,
+  //       "skjldflskdj",
+  //       selectedIndustryList,
+  //       revenueRangeList,
+  //       employeeCountList,
+  //       companyTypeList
+  //     );
+  //     setOpenAdvancedModel({ open: false, key: 0 });
+  //   };
+
+  //   const handleCancel = () => {
+  //     setOpenAdvancedModel({ open: false, key: 0 });
+  //   };
 
   const renderJsx = () => {
     if (openAdvancedModel.key === 1) {
@@ -628,20 +832,6 @@ const AdvancedFilter = ({ setOpenAdvancedModel, openAdvancedModel }) => {
       );
     }
   };
-  return (
-    <>
-      <Modal
-        width={"90%"}
-        wrapClassName="advancedfilter"
-        title="Advanced Filter"
-        open={openAdvancedModel?.open}
-        onOk={handleOk}
-        // confirmLoading={confirmLoading}
-        onCancel={handleCancel}
-      >
-        {renderJsx()}
-      </Modal>
-    </>
-  );
+  return <>{renderJsx()}</>;
 };
 export default AdvancedFilter;

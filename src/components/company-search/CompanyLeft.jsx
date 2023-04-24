@@ -9,7 +9,9 @@ import {
   getRevenuerangeList,
   createCompanySearchPayload,
   getCompanyList,
+  saveAdvancedSelectedFilters,
 } from "../../actionCreator/companyListingActionCreater";
+import AdvancedFilterModel from "./AdvancedFilterModel";
 import AdvancedFilter from "./AdvancedFilter";
 import { LEFT_FILETERS_SIZE } from "../../config";
 const CompanyLeft = () => {
@@ -34,7 +36,10 @@ const CompanyLeft = () => {
   });
   const [menuVisible, setMenuVisible] = useState(true);
 
-  const [openAdvancedModel, setOpenAdvancedModel] = useState({open:false,key:0});
+  const [openAdvancedModel, setOpenAdvancedModel] = useState({
+    open: false,
+    key: 0,
+  });
   const companyFilterList = useSelector((state) => state.companyListingReducer);
 
   useMemo(() => {
@@ -56,6 +61,9 @@ const CompanyLeft = () => {
   }, [companyFilterList]);
 
   useEffect(() => {
+
+    console.log(selectedState,'selectedStateselectedState')
+
     let filteredObj = _.cloneDeep(location);
     const filteredCities = companyFilterList?.geoLocation?.cities?.filter(
       (city) => {
@@ -68,6 +76,8 @@ const CompanyLeft = () => {
       ...filteredObj,
       cities: filteredCities,
     };
+   
+    console.log(filteredCities,'filteredCitiesfilteredCities')
 
     setLocation(
       selectedState.length ? filteredObj : companyFilterList?.geoLocation
@@ -134,15 +144,13 @@ const CompanyLeft = () => {
         companyType: false,
         employeeCount: false,
         revenue: false,
-        utility: false,
-        pages: false,
       },
       [menu]: !open[menu],
     });
   };
 
   const selectStates = (ele, selState) => {
-    if (ele.currentTarget.checked) {
+    if (ele.target.checked) {
       setSelectedState([...selectedState, selState]);
     } else {
       const removedItem = selectedState.filter(
@@ -156,30 +164,35 @@ const CompanyLeft = () => {
     setMenuVisible(!menuVisible);
   };
 
-  const createPayload = (ele, val, key) => {
+  const createPayload = (ele, item, key, prop) => {
     let data = {};
     if (ele.currentTarget.checked) {
       data = {
-        ...companyFilterList?.companySearchPayload,
-        [key]: [...companyFilterList?.companySearchPayload[key], val.name],
+        [key]: [...companyFilterList?.selectedFilters[key], item],
       };
     } else {
       data = {
-        ...companyFilterList?.companySearchPayload,
-        [key]: companyFilterList?.companySearchPayload[key].filter(
-          (item) => item !== val.name
+        [key]: companyFilterList?.selectedFilters[key].filter(
+          (item) => item[prop] !== item[prop]
         ),
       };
     }
-    if (key === "state") {
-      selectStates(ele, val);
+    if (key === "selectedState") {
+      selectStates(ele, item);
     }
-    dispatch(createCompanySearchPayload(data));
-    dispatch(getCompanyList(data));
+    // dispatch(
+    //   saveAdvancedSelectedFilters({
+    //     ...companyFilterList?.selectedFilters,
+    //     ...data,
+    //   })
+    // );
+
+    // dispatch(createCompanySearchPayload(data));
+    // dispatch(getCompanyList(data));
   };
 
-  const menuOptions = (arrObj, key = null) => {
-    console.log(arrObj,"vvccxvcv")
+  const menuOptions = (arrObj, key = null, prop = "id") => {
+    console.log(arrObj, "vvccxvcv");
     if (!arrObj) return;
     let menuSize = [];
     const data = _.cloneDeep(arrObj);
@@ -189,36 +202,30 @@ const CompanyLeft = () => {
       menuSize = data.splice(0, LEFT_FILETERS_SIZE.length);
     }
 
-    return menuSize.map((val) => {
+    return menuSize.map((item) => {
       return (
         <li className="collapse-item">
           <input
             type="checkbox"
-            onChange={(ele) => createPayload(ele, val, key)}
+            onChange={(ele) => createPayload(ele, item, key, prop)}
           />
-          {val?.name}
+          {item?.name}
         </li>
       );
     });
   };
 
   const openAdvancedFilter = () => {
-    setOpenAdvancedModel({open:true,key:0});
+    setOpenAdvancedModel({ open: true, key: 0 });
   };
 
   return (
     <>
-      <button className="filter-button btn-primary" onClick={openLeftMenu}>
+    <div>
+    <button className="filter-button btn-primary" onClick={openLeftMenu}>
         Filter
       </button>
-      <ul
-        className={`navbar-nav-sd bg-light ssidebar ssidebar-light accordion ${
-          menuVisible ? "showLeftMenu" : ""
-        }`}
-        id="accordionsidebar"
-      >
-        <li className="nav-item-sd active">
-          <a className="nav-link-sd">
+      <a className="nav-link-sd">
             <i className="left-company-menu-icons la la-filter"></i>
             <span className="mr-4">Filter</span>
             <span
@@ -228,9 +235,19 @@ const CompanyLeft = () => {
               Advanced
             </span>
           </a>
-        </li>
+    </div>
+    
+      {/* <ul
+        className={`navbar-nav-sd bg-light ssidebar ssidebar-light accordion ${
+          menuVisible ? "showLeftMenu" : ""
+        }`}
+        id="accordionsidebar"
+      >
+        <li className="nav-item-sd active">
+       
+        </li> */}
 
-        <li className="nav-item-sd">
+        {/* <li className="nav-item-sd">
           <a
             className={`nav-link-sd mt-3 nav-item-sd ${
               !open?.country && "collapsed"
@@ -260,9 +277,17 @@ const CompanyLeft = () => {
               </h6>
 
               <ul>
-                {menuOptions(location?.countries, "country")}
+                {menuOptions(
+                  location?.countries,
+                  "selectedCountry",
+                  "country_id"
+                )}
                 {location?.countries?.length > LEFT_FILETERS_SIZE.length && (
-                  <span onClick={() => setOpenAdvancedModel({open:true,key:1})}>View More</span>
+                  <span
+                    onClick={() => setOpenAdvancedModel({ open: true, key: 1 })}
+                  >
+                    View More
+                  </span>
                 )}
               </ul>
             </div>
@@ -296,9 +321,13 @@ const CompanyLeft = () => {
                 />
               </h6>
               <ul>
-                {menuOptions(location?.states, "state")}
+                {menuOptions(location?.states, "selectedState", "state_id")}
                 {location?.states?.length > LEFT_FILETERS_SIZE.length && (
-                  <span onClick={() => setOpenAdvancedModel({open:true,key:2})}>View More</span>
+                  <span
+                    onClick={() => setOpenAdvancedModel({ open: true, key: 2 })}
+                  >
+                    View More
+                  </span>
                 )}
               </ul>
             </div>
@@ -333,9 +362,14 @@ const CompanyLeft = () => {
               </h6>
 
               <ul>
-                {menuOptions(location?.cities, "city")}
+                {console.log(location?.cities,'location?.cities')}
+                {menuOptions(location?.cities, "selectedCity", "city_id")}
                 {location?.cities?.length > LEFT_FILETERS_SIZE.length && (
-                  <span onClick={() => setOpenAdvancedModel({open:true,key:3})}>View More</span>
+                  <span
+                    onClick={() => setOpenAdvancedModel({ open: true, key: 3 })}
+                  >
+                    View More
+                  </span>
                 )}
               </ul>
             </div>
@@ -369,9 +403,13 @@ const CompanyLeft = () => {
                 />
               </h6>
               <ul>
-                {menuOptions(industryList, "industry")}
+                {menuOptions(industryList, "selectedIndustry")}
                 {industryList?.length > LEFT_FILETERS_SIZE.length && (
-                  <span onClick={() => setOpenAdvancedModel({open:true,key:4})}>View More</span>
+                  <span
+                    onClick={() => setOpenAdvancedModel({ open: true, key: 4 })}
+                  >
+                    View More
+                  </span>
                 )}
               </ul>
             </div>
@@ -401,12 +439,16 @@ const CompanyLeft = () => {
                   type="text"
                   placeholder="Search"
                   className="searchboxinput"
-                  onChange={(ele) => filterKeyword("companytype", ele)}
+                  onChange={(ele) => filterKeyword("selectedCompanytype", ele)}
                 />
               </h6>
               {menuOptions(companyTypeList, "companytype")}
               {companyTypeList?.length > LEFT_FILETERS_SIZE.length && (
-                <span onClick={() => setOpenAdvancedModel({open:true,key:5})}>View More</span>
+                <span
+                  onClick={() => setOpenAdvancedModel({ open: true, key: 5 })}
+                >
+                  View More
+                </span>
               )}
             </div>
           </div>
@@ -435,12 +477,18 @@ const CompanyLeft = () => {
                   type="text"
                   placeholder="Search"
                   className="searchboxinput"
-                  onChange={(ele) => filterKeyword("employeecount", ele)}
+                  onChange={(ele) =>
+                    filterKeyword("selectedEmployeecount", ele)
+                  }
                 />
               </h6>
               {menuOptions(employeeCountList, "employeecount")}
               {employeeCountList?.length > LEFT_FILETERS_SIZE.length && (
-                <span onClick={() => setOpenAdvancedModel({open:true,key:6})}>View More</span>
+                <span
+                  onClick={() => setOpenAdvancedModel({ open: true, key: 6 })}
+                >
+                  View More
+                </span>
               )}
             </div>
           </div>
@@ -472,16 +520,23 @@ const CompanyLeft = () => {
                   onChange={(ele) => filterKeyword("revenuerange", ele)}
                 />
               </h6>
-              {menuOptions(revenuerangeList, "revenuerange")}
+              {menuOptions(revenuerangeList, "selectedRevenuerange")}
               {revenuerangeList?.length > LEFT_FILETERS_SIZE.length && (
-                <span onClick={() => setOpenAdvancedModel({open:true,key:7})}>View More</span>
+                <span
+                  onClick={() => setOpenAdvancedModel({ open: true, key: 7 })}
+                >
+                  View More
+                </span>
               )}
             </div>
           </div>
-        </li>
-      </ul>
+        </li> */}
+      {/* </ul> */}
+      <div className="leftmenufilter">
+      <AdvancedFilter openAdvancedModel={openAdvancedModel} showCheckAll={false} setOpenAdvancedModel={setOpenAdvancedModel}/>
+      </div>
       {openAdvancedModel.open && (
-        <AdvancedFilter
+        <AdvancedFilterModel
           setOpenAdvancedModel={setOpenAdvancedModel}
           openAdvancedModel={openAdvancedModel}
         />

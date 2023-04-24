@@ -16,7 +16,7 @@ const initialState = {
   employeeCountList: [],
   revenueRangeList: [],
   companyList: [],
-  selectedAdvancedFilters: {
+  selectedFilters: {
     selectedCountry: [],
     selectedState: [],
     selectedCity: [],
@@ -58,7 +58,7 @@ const CompanyListingReducer = (state = initialState, action) => {
     case ADVANCED_SELECTED_FILTERS:
       return {
         ...state,
-        selectedAdvancedFilters: payload,
+        selectedFilters: payload,
       };
 
     default:

@@ -16,8 +16,12 @@ const CompanySearch = () => {
       label: <span > <i className="fa tab-img la la-building"></i>Companies</span>,
       children: (
         <div id="wrapper">
+          <div className="leftmenu">
           <CompanyLeft />
+          </div>
+          <div className="contentbody">
           <CompanyContent />
+          </div>
         </div>
       ),
     },
