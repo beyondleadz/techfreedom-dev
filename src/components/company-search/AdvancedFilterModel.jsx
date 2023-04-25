@@ -33,7 +33,7 @@ const AdvancedFilterModel = ({ setOpenAdvancedModel, openAdvancedModel }) => {
   return (
     <>
       <Modal
-        width={"90%"}
+        width={"80%"}
         wrapClassName="advancedfilter"
         title="Advanced Filter"
         open={openAdvancedModel?.open}
