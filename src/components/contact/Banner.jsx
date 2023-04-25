@@ -2,7 +2,8 @@ import React,{useState} from "react";
 import { useRoutes,NavLink } from "react-router-dom";
 import ContactHeaderImage from '../../assets/images/contact-us-header.jpg'
 const BannerSection=()=>{
-    return(<section id="home" className="w3l-bannery-5">
+    return(
+    <section id="home" className="w3l-banner">
     <div className="banner-image">        </div>
     <div className="banner-content">
         <div className="container pb-md-4">
