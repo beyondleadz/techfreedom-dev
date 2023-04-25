@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useMemo } from "react";
 import _ from "lodash";
 import { Modal, Checkbox, Input } from "antd";
-import { saveAdvancedSelectedFilters } from "../../actionCreator/companyListingActionCreater";
+import { saveAdvancedSelectedFilters,getCompanyList } from "../../actionCreator/companyListingActionCreater";
 import { SearchOutlined } from "@ant-design/icons";
 import { useSelector, useDispatch } from "react-redux";
 import { LEFT_FILETERS_SIZE } from "../../config";
@@ -13,6 +13,8 @@ const AdvancedFilter = ({
 }) => {
   const dispatch = useDispatch();
   const companyFilterList = useSelector((state) => state.companyListingReducer);
+
+  const companyPaginationValue = useSelector((state) => state.companyListingReducer.paginationValue);
 
   const companySelectedFilterList = useSelector(
     (state) => state.companyListingReducer.selectedFilters
@@ -174,10 +176,13 @@ const AdvancedFilter = ({
     return (
       <>
         <div
-          className="filterheader"
+          className={`filterheader la ${visibleFilter.country && "show"}`}
           onClick={() => openVisibleFilter("country")}
         >
-          <h2>Countries</h2>
+          <h2>
+            <i className="left-company-menu-icons la la-globe"></i>
+            <span>Countries</span>
+          </h2>
           {showCheckAll && (
             <Checkbox
               onChange={onCountriesCheckAllChange}
@@ -187,7 +192,14 @@ const AdvancedFilter = ({
             </Checkbox>
           )}
         </div>
-        <div className={`filteroptions ${visibleFilter.country && "show"}`}>
+        <div className="filteroptions">
+          <div className="searchbox">
+            <Input
+              placeholder="Search"
+              prefix={<SearchOutlined />}
+              onChange={filterCountry}
+            />
+          </div>
           <CheckboxGroup onChange={onCountryChange} value={selectedCountryList}>
             <>
               <ul>
@@ -219,6 +231,16 @@ const AdvancedFilter = ({
     );
   };
 
+  const filterCountry = (ele) => {
+    const filterdData = companyFilterList?.geoLocation?.countries?.filter(
+      (item) =>
+        item?.name.toLowerCase().includes(ele.target.value.toLowerCase())
+    );
+    setCountriesList(filterdData);
+    setSelectedCountryList([]);
+    setCheckAllStates(false);
+  };
+
   const updateCountries = (el) => {
     let newList = [];
     if (el.target.checked) {
@@ -229,12 +251,15 @@ const AdvancedFilter = ({
       );
     }
     setSelectedCountryList(newList);
+    //console.log(companySelectedFilterList,"companySelectedFilterListcompanySelectedFilterList")
+    const payload = {
+      ...companySelectedFilterList,
+      selectedCountry: newList,
+    }
     dispatch(
-      saveAdvancedSelectedFilters({
-        ...companySelectedFilterList,
-        selectedCountry: newList,
-      })
-    );
+      saveAdvancedSelectedFilters(payload)
+    )
+    dispatch(getCompanyList(payload,companyPaginationValue));
   };
 
   const onCountryChange = (list) => {
@@ -245,12 +270,15 @@ const AdvancedFilter = ({
     console.log(e.target.checked, "e.target.checkede.target.checked");
     setSelectedCountryList(e.target.checked ? countriesList : []);
     setCheckAllCountries(e.target.checked);
+    const payload = {
+      ...companySelectedFilterList,
+      selectedCountry: e.target.checked ? countriesList : [],
+    }
     dispatch(
-      saveAdvancedSelectedFilters({
-        ...companySelectedFilterList,
-        selectedCountry: e.target.checked ? countriesList : [],
-      })
-    );
+      saveAdvancedSelectedFilters(payload)
+    )
+    dispatch(getCompanyList(payload,companyPaginationValue));
+
   };
 
   /*Countries End */
@@ -260,10 +288,13 @@ const AdvancedFilter = ({
     return (
       <>
         <div
-          className="filterheader"
+          className={`filterheader la ${visibleFilter.state && "show"}`}
           onClick={() => openVisibleFilter("state")}
         >
-          <h2>States</h2>
+          <h2>
+            <i className="left-company-menu-icons las la-map-marked-alt"></i>
+            <span>States</span>
+          </h2>
           {showCheckAll && (
             <Checkbox
               onChange={onStatesCheckAllChange}
@@ -273,7 +304,7 @@ const AdvancedFilter = ({
             </Checkbox>
           )}
         </div>
-        <div className={`filteroptions ${visibleFilter.state && "show"}`}>
+        <div className="filteroptions">
           <div className="searchbox">
             <Input
               placeholder="Search"
@@ -319,7 +350,6 @@ const AdvancedFilter = ({
       item?.name.toLowerCase().includes(ele.target.value.toLowerCase())
     );
     setStatesList(filterdData);
-    setCheckAllStates(selectedStateList.length === statesList.length);
     setSelectedStateList([]);
     setCheckAllStates(false);
   };
@@ -334,12 +364,14 @@ const AdvancedFilter = ({
       );
     }
     setSelectedStateList(newList);
+    const payload = {
+      ...companySelectedFilterList,
+      selectedState: newList,
+    }
     dispatch(
-      saveAdvancedSelectedFilters({
-        ...companySelectedFilterList,
-        selectedState: newList,
-      })
-    );
+      saveAdvancedSelectedFilters(payload)
+    )
+    dispatch(getCompanyList(payload,companyPaginationValue));
   };
 
   const onStatesChange = (list) => {
@@ -363,12 +395,14 @@ const AdvancedFilter = ({
     setSelectedStateList(e.target.checked ? statesList : []);
     setCheckAllStates(e.target.checked);
     updateCityBasedOnState(statesList);
+    const payload = {
+      ...companySelectedFilterList,
+      selectedState: e.target.checked ? statesList : [],
+    }
     dispatch(
-      saveAdvancedSelectedFilters({
-        ...companySelectedFilterList,
-        selectedState: e.target.checked ? statesList : [],
-      })
-    );
+      saveAdvancedSelectedFilters(payload)
+    )
+    dispatch(getCompanyList(payload,companyPaginationValue));
   };
 
   /*state End */
@@ -377,15 +411,18 @@ const AdvancedFilter = ({
   const showCitiesList = () => {
     return (
       <>
-        <div className="filterheader" onClick={() => openVisibleFilter("city")}>
-          <h2>Cities</h2>
+        <div className={`filterheader la ${visibleFilter.city && "show"}`} onClick={() => openVisibleFilter("city")}>
+          <h2>
+            <i className="left-company-menu-icons la la-map-marker"></i>
+            <span>Cities</span>
+          </h2>
           {showCheckAll && (
             <Checkbox onChange={onCityCheckAllChange} checked={checkAllCities}>
               Check all
             </Checkbox>
           )}
         </div>
-        <div className={`filteroptions ${visibleFilter.city && "show"}`}>
+        <div className="filteroptions">
           <div className="searchbox">
             <Input
               placeholder="Search"
@@ -431,7 +468,6 @@ const AdvancedFilter = ({
       item?.name.toLowerCase().includes(ele.target.value.toLowerCase())
     );
     setCitiesList(filterdData);
-    setCheckAllCities(selectedCitiesList.length === citiesList.length);
     setSelectedCitiesList([]);
     setCheckAllCities(false);
   };
@@ -446,12 +482,14 @@ const AdvancedFilter = ({
       );
     }
     setSelectedCitiesList(newList);
+    const payload = {
+      ...companySelectedFilterList,
+      selectedCity: newList,
+    }
     dispatch(
-      saveAdvancedSelectedFilters({
-        ...companySelectedFilterList,
-        selectedCity: newList,
-      })
-    );
+      saveAdvancedSelectedFilters(payload)
+    )
+    dispatch(getCompanyList(payload,companyPaginationValue));
   };
 
   const onCityChange = (list) => {
@@ -461,12 +499,15 @@ const AdvancedFilter = ({
   const onCityCheckAllChange = (e) => {
     setSelectedCitiesList(e.target.checked ? citiesList : []);
     setCheckAllCities(e.target.checked);
+
+    const payload = {
+      ...companySelectedFilterList,
+      selectedCity: e.target.checked ? citiesList : [],
+    }
     dispatch(
-      saveAdvancedSelectedFilters({
-        ...companySelectedFilterList,
-        selectedCity: e.target.checked ? citiesList : [],
-      })
-    );
+      saveAdvancedSelectedFilters(payload)
+    )
+    dispatch(getCompanyList(payload,companyPaginationValue));
   };
   /*City End */
 
@@ -475,10 +516,13 @@ const AdvancedFilter = ({
     return (
       <>
         <div
-          className="filterheader"
+          className={`filterheader la ${visibleFilter.industry && "show"}`}
           onClick={() => openVisibleFilter("industry")}
         >
-          <h2>Industry</h2>
+          <h2>
+            <i className="left-company-menu-icons las la-industry"></i>
+            <span>Industry</span>
+          </h2>
           {showCheckAll && (
             <Checkbox
               onChange={onIndustryCheckAllChange}
@@ -488,7 +532,7 @@ const AdvancedFilter = ({
             </Checkbox>
           )}
         </div>
-        <div className={`filteroptions ${visibleFilter.industry && "show"}`}>
+        <div className="filteroptions">
           <div className="searchbox">
             <Input
               placeholder="Search"
@@ -551,12 +595,15 @@ const AdvancedFilter = ({
       );
     }
     setSelectedIndustryList(newList);
+  
+    const payload = {
+      ...companySelectedFilterList,
+      selectedIndustry: newList,
+    }
     dispatch(
-      saveAdvancedSelectedFilters({
-        ...companySelectedFilterList,
-        selectedIndustry: newList,
-      })
-    );
+      saveAdvancedSelectedFilters(payload)
+    )
+    dispatch(getCompanyList(payload,companyPaginationValue));
   };
 
   const onIndustryChange = (list) => {
@@ -566,12 +613,15 @@ const AdvancedFilter = ({
   const onIndustryCheckAllChange = (e) => {
     setSelectedIndustryList(e.target.checked ? industryList : []);
     setCheckAllIndustry(e.target.checked);
+    const payload = {
+      ...companySelectedFilterList,
+      selectedIndustry: e.target.checked ? industryList : [],
+    }
     dispatch(
-      saveAdvancedSelectedFilters({
-        ...companySelectedFilterList,
-        selectedIndustry: e.target.checked ? industryList : [],
-      })
-    );
+      saveAdvancedSelectedFilters(payload)
+    )
+    dispatch(getCompanyList(payload,companyPaginationValue));
+    
   };
   /*Industry End */
 
@@ -580,10 +630,13 @@ const AdvancedFilter = ({
     return (
       <>
         <div
-          className="filterheader"
+          className={`filterheader la ${visibleFilter.companyType && "show"}`}
           onClick={() => openVisibleFilter("companyType")}
         >
-          <h2>Company Type</h2>
+          <h2>
+            <i className="left-company-menu-icons la la-city"></i>
+            <span>Company Type</span>
+          </h2>
           {showCheckAll && (
             <Checkbox
               onChange={onCompanyTypeCheckAllChange}
@@ -593,7 +646,7 @@ const AdvancedFilter = ({
             </Checkbox>
           )}
         </div>
-        <div className={`filteroptions ${visibleFilter.companyType && "show"}`}>
+        <div className="filteroptions">
           <div className="searchbox">
             <Input
               placeholder="Search"
@@ -655,12 +708,15 @@ const AdvancedFilter = ({
       );
     }
     setSelectedCompanyTypeList(newList);
+  
+    const payload = {
+      ...companySelectedFilterList,
+      selectedCompanytype: newList,
+    }
     dispatch(
-      saveAdvancedSelectedFilters({
-        ...companySelectedFilterList,
-        selectedCompanytype: newList,
-      })
-    );
+      saveAdvancedSelectedFilters(payload)
+    )
+    dispatch(getCompanyList(payload,companyPaginationValue));
   };
 
   const onCompanyTypeChange = (list) => {
@@ -670,12 +726,17 @@ const AdvancedFilter = ({
   const onCompanyTypeCheckAllChange = (e) => {
     setSelectedCompanyTypeList(e.target.checked ? companyTypeList : []);
     setCheckAllCompanyType(e.target.checked);
+  
+    
+    const payload = {
+      ...companySelectedFilterList,
+      selectedCompanytype: e.target.checked ? companyTypeList : [],
+    }
     dispatch(
-      saveAdvancedSelectedFilters({
-        ...companySelectedFilterList,
-        selectedCompanytype: e.target.checked ? companyTypeList : [],
-      })
-    );
+      saveAdvancedSelectedFilters(payload)
+    )
+    dispatch(getCompanyList(payload,companyPaginationValue));
+
   };
   /*End companytype */
 
@@ -684,10 +745,13 @@ const AdvancedFilter = ({
     return (
       <>
         <div
-          className="filterheader"
+          className={`filterheader la ${visibleFilter.employeeCount && "show"}`}
           onClick={() => openVisibleFilter("employeeCount")}
         >
-          <h2>Employee Count</h2>
+          <h2>
+            <i className="left-company-menu-icons las la-users"></i>
+            <span>Employee Count</span>
+          </h2>
           {showCheckAll && (
             <Checkbox
               onChange={onEmployeeCountCheckAllChange}
@@ -698,7 +762,7 @@ const AdvancedFilter = ({
           )}
         </div>
         <div
-          className={`filteroptions ${visibleFilter.employeeCount && "show"}`}
+          className="filteroptions"
         >
           <div className="searchbox">
             <Input
@@ -762,12 +826,14 @@ const AdvancedFilter = ({
       );
     }
     setSelectedEmployeeCountList(newList);
+    const payload = {
+      ...companySelectedFilterList,
+      selectedEmployeecount: newList,
+    }
     dispatch(
-      saveAdvancedSelectedFilters({
-        ...companySelectedFilterList,
-        selectedEmployeecount: newList,
-      })
-    );
+      saveAdvancedSelectedFilters(payload)
+    )
+    dispatch(getCompanyList(payload,companyPaginationValue));
   };
 
   const onEmployeeCountChange = (list) => {
@@ -777,12 +843,16 @@ const AdvancedFilter = ({
   const onEmployeeCountCheckAllChange = (e) => {
     setSelectedEmployeeCountList(e.target.checked ? employeeCountList : []);
     setCheckAllEmployeeCount(e.target.checked);
+  
+    const payload = {
+      ...companySelectedFilterList,
+      selectedEmployeecount: e.target.checked ? employeeCountList : [],
+    }
     dispatch(
-      saveAdvancedSelectedFilters({
-        ...companySelectedFilterList,
-        selectedEmployeecount: e.target.checked ? employeeCountList : [],
-      })
-    );
+      saveAdvancedSelectedFilters(payload)
+    )
+    dispatch(getCompanyList(payload,companyPaginationValue));
+
   };
   /*End employee count */
 
@@ -791,10 +861,13 @@ const AdvancedFilter = ({
     return (
       <>
         <div
-          className="filterheader"
+          className={`filterheader la ${visibleFilter.revenue && "show"}`}
           onClick={() => openVisibleFilter("revenue")}
         >
-          <h2>Revenue Range</h2>
+          <h2>
+            <i className="left-company-menu-icons las la-money-bill"></i>
+            <span>Revenue Range</span>
+          </h2>
           {showCheckAll && (
             <Checkbox
               onChange={onRevenueRangeCheckAllChange}
@@ -804,7 +877,7 @@ const AdvancedFilter = ({
             </Checkbox>
           )}
         </div>
-        <div className={`filteroptions ${visibleFilter.revenue && "show"}`}>
+        <div className="filteroptions">
           <div className="searchbox">
             <Input
               placeholder="Search"
@@ -867,12 +940,16 @@ const AdvancedFilter = ({
       );
     }
     setSelectedRevenueRangeList(newList);
+    
+    const payload = {
+      ...companySelectedFilterList,
+      selectedRevenuerange: newList,
+    }
     dispatch(
-      saveAdvancedSelectedFilters({
-        ...companySelectedFilterList,
-        selectedRevenuerange: newList,
-      })
-    );
+      saveAdvancedSelectedFilters(payload)
+    )
+    dispatch(getCompanyList(payload,companyPaginationValue));
+
   };
 
   const onRevenueRangeChange = (list) => {
@@ -882,12 +959,15 @@ const AdvancedFilter = ({
   const onRevenueRangeCheckAllChange = (e) => {
     setSelectedRevenueRangeList(e.target.checked ? revenueRangeList : []);
     setCheckAllRevenueRange(e.target.checked);
+
+    const payload = {
+      ...companySelectedFilterList,
+      selectedRevenuerange: e.target.checked ? revenueRangeList : [],
+    }
     dispatch(
-      saveAdvancedSelectedFilters({
-        ...companySelectedFilterList,
-        selectedRevenuerange: e.target.checked ? revenueRangeList : [],
-      })
-    );
+      saveAdvancedSelectedFilters(payload)
+    )
+    dispatch(getCompanyList(payload,companyPaginationValue));
   };
   /*End revenue range */
 

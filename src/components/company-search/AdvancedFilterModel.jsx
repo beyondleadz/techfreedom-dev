@@ -2,7 +2,7 @@ import React, { useEffect, useState, useMemo } from "react";
 import _ from "lodash";
 import AdvancedFilter from "./AdvancedFilter";
 import { Modal, Checkbox, Input } from "antd";
-import { saveAdvancedSelectedFilters } from "../../actionCreator/companyListingActionCreater";
+import { saveAdvancedSelectedFilters,getCompanyList } from "../../actionCreator/companyListingActionCreater";
 import { SearchOutlined } from "@ant-design/icons";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -13,9 +13,22 @@ const AdvancedFilterModel = ({ setOpenAdvancedModel, openAdvancedModel }) => {
   const handleOk = () => {
     setOpenAdvancedModel({ open: false, key: 0 });
   };
+  //const companyPaginationValue = useSelector((state) => state.companyListingReducer.paginationValue);
 
   const handleCancel = () => {
+    dispatch(
+      saveAdvancedSelectedFilters({
+        selectedCountry: [],
+        selectedState: [],
+        selectedCity: [],
+        selectedIndustry: [],
+        selectedCompanytype: [],
+        selectedEmployeecount: [],
+        selectedRevenuerange: [],
+      })
+    );
     setOpenAdvancedModel({ open: false, key: 0 });
+    dispatch(getCompanyList());
   };
   return (
     <>
@@ -27,7 +40,7 @@ const AdvancedFilterModel = ({ setOpenAdvancedModel, openAdvancedModel }) => {
         onOk={handleOk}
         // confirmLoading={confirmLoading}
         onCancel={handleCancel}
-        maskStyle={{background:'rgba(0,0,0,0.8)'}}
+        maskStyle={{ background: "rgba(0,0,0,0.8)" }}
       >
         <AdvancedFilter openAdvancedModel={openAdvancedModel} />
       </Modal>

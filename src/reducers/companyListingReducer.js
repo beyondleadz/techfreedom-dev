@@ -7,7 +7,9 @@ import {
   COMPANYLIST,
   COMPANY_SEARCH_PAYLOAD,
   ADVANCED_SELECTED_FILTERS,
+  PAGINATION_VALUE,
 } from "../actionType/companyListingType";
+import { PAGE_LENGTH } from "../config";
 
 const initialState = {
   industryList: [],
@@ -24,6 +26,7 @@ const initialState = {
     selectedCompanytype: [],
     selectedEmployeecount: [],
     selectedRevenuerange: [],
+    searchKeyword:"",
   },
   companySearchPayload: {
     country: [],
@@ -33,6 +36,10 @@ const initialState = {
     companytype: [],
     employeecount: [],
     revenuerange: [],
+  },
+  paginationValue: {
+    start: 0,
+    end: PAGE_LENGTH,
   },
 };
 
@@ -55,6 +62,8 @@ const CompanyListingReducer = (state = initialState, action) => {
       return { ...state, companyList: payload };
     case COMPANY_SEARCH_PAYLOAD:
       return { ...state, companySearchPayload: payload };
+      case PAGINATION_VALUE:
+      return { ...state, paginationValue: payload };
     case ADVANCED_SELECTED_FILTERS:
       return {
         ...state,

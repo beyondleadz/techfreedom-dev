@@ -1,36 +1,43 @@
 import React, { useEffect, useState, useMemo } from "react";
 import CLogo from "../../assets/images/d-bank1.png";
 import { useSelector, useDispatch } from "react-redux";
-import { Dropdown, Space } from 'antd';
+import { Dropdown, Space } from "antd";
 import _ from "lodash";
 // import "antd/dist/antd.css";
 import { Table, Input } from "antd";
-import { getCompanyList } from "../../actionCreator/companyListingActionCreater";
+import { PAGE_LENGTH } from "../../config";
+import {
+  getCompanyList,
+  savePaginationValues,
+  saveAdvancedSelectedFilters,
+} from "../../actionCreator/companyListingActionCreater";
+
+
 
 const CompanyContent = () => {
   const { Search } = Input;
-  const items= [
+  const items = [
     {
       label: <a href="https://www.antgroup.com">1st menu item</a>,
-      key: '0',
+      key: "0",
     },
     {
       label: <a href="https://www.aliyun.com">2nd menu item</a>,
-      key: '1',
+      key: "1",
     },
     {
-      type: 'divider',
+      type: "divider",
     },
     {
-      label: '3rd menu item',
-      key: '3',
+      label: "3rd menu item",
+      key: "3",
     },
   ];
   const columns = [
     {
       title: <div className="companyname">Company Name</div>,
       dataIndex: "name",
-      fixed:"left"
+      fixed: "left",
     },
     {
       title: "Industry",
@@ -54,6 +61,12 @@ const CompanyContent = () => {
   const dispatch = useDispatch();
   const [companyList, setCompanyList] = useState();
   const companyFilterList = useSelector((state) => state.companyListingReducer);
+  const companySelectedFilterList = useSelector(
+    (state) => state.companyListingReducer.selectedFilters
+  );
+  const paginationValue = useSelector(
+    (state) => state.companyListingReducer.paginationValue
+  );
 
   useMemo(() => {
     dispatch(getCompanyList());
@@ -95,34 +108,44 @@ const CompanyContent = () => {
   };
 
   const onSearch = (val) => {
+    const payload = {
+      ...companySelectedFilterList,
+      searchKeyword: val,
+    }
+    dispatch(
+      saveAdvancedSelectedFilters(payload)
+    )
+    dispatch(getCompanyList(payload,paginationValue));
+    
+    /*console.log(companyList,'companyList',getCompanyList);
     let filterList = [];
     if (val) {
       companyList.forEach((record) => {
         if (record?.name.toLowerCase().includes(val.toLowerCase())) {
-          filterList = [
-            ...filterList,
-            record,
-          ];
+          filterList = [...filterList, record];
         }
       });
     } else {
       filterList = _.cloneDeep(companyFilterList?.companyList);
     }
-    setCompanyList(filterList);
+    setCompanyList(filterList);*/
   };
 
-  const onPageChange=(page,pageSize)=>{
-     console.log(page,pageSize,"pager")
-  }
+  const onPageChange = (page, pageSize) => {
+    console.log(page, pageSize, "pager", companySelectedFilterList);
+    const pageValues = {
+      start: page,
+      end: pageSize,
+    };
+    dispatch(savePaginationValues(pageValues));
+    dispatch(getCompanyList(pageValues, companySelectedFilterList));
+  };
 
   return (
     <>
-
       <div id="content-wrapper" className="d-flex flex-column ">
         <div id="content" className="shadow">
-      
-
-          <div className="container-fluid">
+          <div className="container-fluid pl-0 pr-0">
             <div className="row">
               <div className="col-xl-12 col-lg-10 pl-0">
                 <div className="card shadow mb-4">
@@ -138,22 +161,7 @@ const CompanyContent = () => {
                         onSearch={onSearch}
                         style={{ width: 200 }}
                       />
-                      {/* <form className="d-none form-inline mr-4 navbar-search">
-                        <div className="input-group">
-                          <input
-                            type="text"
-                            className="form-control-sm bg-light"
-                            placeholder="Search for..."
-                            aria-label="Search"
-                            aria-describedby="basic-addon2"
-                          />
-                          <div className="input-group-append">
-                            <button className="btn btn-primary" type="button">
-                              <i className="fas fa-search fa-sm"></i>{" "}
-                            </button>
-                          </div>
-                        </div>
-                      </form> */}
+
                       <button className="d-none d-sm-inline-block ml-2 btn btn-outline-info">
                         <i className="fas fa-save pr-1"></i> SAVE SEARCH{" "}
                       </button>
@@ -176,71 +184,14 @@ const CompanyContent = () => {
                             responsive: true,
                             total: companyList?.length,
                             // pageSizeOptions: ["5", "10", "15", "15"],
-                            pageSize: 10,
+                            pageSize: PAGE_LENGTH,
                             // showSizeChanger: true,
-                            defaultPageSize: 10,
+                            // defaultPageSize: 10,
                             position: ["bottomCenter"],
-                            onChange:onPageChange
+                            onChange: onPageChange,
                           }}
                         />
-                        {/* <table className="data-table">
-                          <thead>
-                            <tr>
-                              <th>
-                                <input type="checkbox" />
-                              </th>
-                              <th>Company Name</th>
-                              <th>Industry</th>
-                              <th>Location</th>
-                              <th>Phone Number</th>
-                              <th>Social</th>
-                              <th>
-                                <button className="d-none d-sm-inline-block btn btn-outline-secondary">
-                                  <i className="fas fa-plus pr-1"></i> ADD
-                                  COLUMN{" "}
-                                </button>
-                              </th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {companyList &&
-                              companyList.map((item) => {
-                                let CLogo = item?.companyLogoUrl;
-                                return (
-                                  <tr key={item.id}>
-                                    <td>
-                                      <input type="checkbox" />
-                                    </td>
-                                    <td>
-                                      <span className="companyLogo">
-                                        <img src={CLogo} />
-                                      </span>
-                                      {item?.name}
-                                    </td>
-                                    <td>{item?.industry?.name}</td>
-                                    <td>
-                                      {item?.address}, {item?.city},
-                                      {item?.state}, {item?.country}
-                                    </td>
-                                    <td>{item?.phoneNo}</td>
-                                    <td></td>
-                                    <td></td>
-                                  </tr>
-                                );
-                              })}
-                          </tbody>
-                        </table> */}
                       </div>
-                      {/* <div className="pagination">
-                        <a href="#">Previous</a>
-                        <a href="#">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
-                        <a href="#">4</a>
-                        <a href="#">5</a>
-                        <a href="#">Next</a>
-                        
-                      </div> */}
                     </div>
                   </div>
                 </div>

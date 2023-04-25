@@ -7,6 +7,7 @@ import {
   COMPANYLIST,
   COMPANY_SEARCH_PAYLOAD,
   ADVANCED_SELECTED_FILTERS,
+  PAGINATION_VALUE,
 } from "../actionType/companyListingType";
 import { getAuthMethod, getMethod } from "../services/HttpServices";
 import {
@@ -17,6 +18,7 @@ import {
   companyListingApiUrl,
 } from "../constant/Constant";
 import { Geolocation } from "../constant/Geolocation";
+import { createPayload } from "../utils/utils";
 
 export const getIndustryList = (payload) => (dispatch) => {
   return getAuthMethod(industryApiUrl).then((res) => {
@@ -54,8 +56,9 @@ export const getRevenuerangeList = (payload) => (dispatch) => {
   });
 };
 
-export const getCompanyList = (payload) => (dispatch) => {
-  console.log(payload, "jslfdjlskjdfl");
+export const getCompanyList = (payload,paginationValues) => (dispatch) => {
+  const url =  createPayload(payload,paginationValues,companyListingApiUrl);
+ // console.log(url,'urlurlurl')
   return getMethod(companyListingApiUrl).then((res) => {
     dispatch({
       type: COMPANYLIST,
@@ -82,3 +85,13 @@ export const saveAdvancedSelectedFilters = (payload) => {
     payload: payload,
   };
 };
+
+export const savePaginationValues = (payload) => {
+  return {
+    type: PAGINATION_VALUE,
+    payload: payload,
+  };
+};
+
+
+

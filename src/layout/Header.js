@@ -240,7 +240,7 @@ const Header = () => {
               </li>
               <li className="nav-item">
                 <NavLink
-                  to="/executive-search"
+                  to="/search-executive"
                   className="hvr-underline-from-center"
                 >
                   Executive Search

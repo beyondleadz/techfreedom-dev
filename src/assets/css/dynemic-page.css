@@ -999,6 +999,10 @@ input[type="button"].btn-block {
     right: 0;
     left: auto;
   }
+  .leftmenu{
+    width: 220px;
+  }
+  .contentbody{width:calc(100% - 240px)}
 }
 
 @media (min-width: 1200px) {
@@ -2379,6 +2383,11 @@ input[type="button"].btn-block {
   flex: 1 1 auto;
   min-height: 1px;
   padding: 1.25rem;
+}
+.pagetitle{
+  font-size: 24px;
+  font-weight: 700;
+  padding: 40px 15px;
 }
 
 .card-title {
@@ -5292,7 +5301,7 @@ background-color: #fff;
 }
 
 .topbar {
-  height: 4.2rem;
+  padding:0 0 15px 0;
 }
 
 .topbar #ssidebarToggleTop {
@@ -6372,7 +6381,7 @@ padding:5px
       font-size: 1.2rem;}
 
     .la-globe:before {
-      /* color: #5000FF; */
+      color: #5000FF;
       font-size: 1.2rem;
     }
 
@@ -6385,19 +6394,19 @@ padding:5px
       font-size: 1.2rem;
     }
     .la-map-marker:before {
-      /* color: #5000FF; */
+      color: #5000FF;
       font-size: 1.2rem;
     }
     .la-industry:before {
-      /* color: #5000FF; */
+      color: #5000FF;
       font-size: 1.2rem;
     }
     .la-city:before {
-      /* color: #5000FF; */
+      color: #5000FF;
       font-size: 1.2rem;
     }
     .la-users:before {
-      /* color: #5000FF; */
+      color: #5000FF;
       font-size: 1.2rem;
     }
    
@@ -6423,10 +6432,6 @@ padding:5px
   text-align: center;
 }
 
-.leftmenu{
-  width: 240px;
-}
-
 .advancedfilter .ant-modal-title{
   font-size: 18px;
   }
@@ -6434,7 +6439,9 @@ padding:5px
   .advancedfilter .filterblk{    border: 1px solid #eee;
     padding: 10px;
     border-radius: 5px; margin-bottom: 20px;}
-  .filterblk h2{font-size: 13px; font-weight: 500;}
+  .filterblk h2{font-size: 12px; font-weight: 500;    display: flex;
+    align-items: center;}
+    .filterblk h2 span{position: relative; display: inline-block; top: 2px;}
   .advancedfilter .ant-checkbox-group{width:100%}
   .advancedfilter .ant-checkbox-group ul{width: 100%;}
   .advancedfilter .ant-checkbox-group ul li{width: 33%;
@@ -6443,25 +6450,38 @@ padding:5px
 
     .advancedfilter .searchbox{margin:10px 0}
 
+    .advancedfilter .filterheader h2{
+      font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji';
+      font-size: 15px;
+    }
+    .advancedfilter .filterheader label span{font-weight: 500; font-size: 12px;}
 
     .leftmenufilter .filterheader{
-      background: #f4f4f4;
       cursor: pointer;
       position: relative;
       padding:5px;
-      border-bottom:1px solid #e5e5e5
+      width: 100%;
     }
+    .leftmenufilter .filterheader h2{
+      font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji';
+    }
+    
 
     .leftmenufilter .filterheader::after{
-      content: "\276F";
+      content: '\f105';
       margin-left:5px;
       display: inline-block;
       font-size: 16px;
       font-family: 'Font Awesome\ 5 Free';
       position: absolute;
-    right: 10px;
-    top: 50%;
+    right: 20px;
+    top: 55%;
     transform: translateY(-50%);
+    color: #777;
+    }
+
+    .leftmenufilter .filterheader.show::after{
+      content: '\f107';
     }
 
     .leftmenufilter .filteroptions{
@@ -6470,14 +6490,14 @@ padding:5px
       overflow: hidden;
     }
 
-    .leftmenufilter .filteroptions.show{
+    .leftmenufilter .filterheader.show+.filteroptions{
       height: auto;
     }
 
     .leftmenufilter .ant-checkbox-group{
       max-height: 185px;
       overflow: hidden;
-      padding:6px;
+      padding:6px 20px;
     }
 
     .leftmenufilter .viewmore{
@@ -6492,7 +6512,7 @@ padding:5px
     }
 
     .leftmenufilter .searchbox{
-      padding: 5px 5px 0 5px;
+      padding: 5px 15px 0 15px;
     }
 
     .leftmenufilter .ant-checkbox-group li{
@@ -6503,18 +6523,22 @@ padding:5px
       font-size: 13px;
     }
 
-  .contentbody{width:calc(100% - 240px)}
+  .leftmenuheading .deskmenu{display: flex;justify-content: space-between;padding: 0 20px 10px 6px; font-weight: 700;}
 
 @media screen and (max-width: 760px) {
+  .leftmenuheading {padding:10px 0;}
+
   .filter-button{
     display: block;
+    width: 100%;
+    border: 1px solid black;
   }
   #wrapper{
     flex-direction: column;
     margin-top: 15px;
   }
 
-  .showLeftMenu{
+  .hideLeftMenu{
     height: 0;
     overflow: hidden;
     min-height: 0;     margin: 0;
@@ -6555,7 +6579,8 @@ padding:5px
 }
 .m-mt{margin: 0.5rem 0;}
 .d-sm-inline-block{display: inline-block;}
-.ant-checkbox-group ul li{width: 50%;}
+.ant-checkbox-group ul li{width: 100%;}
+.leftmenuheading .deskmenu{padding: 20px 10px 10px 6px;}
 }
 
 .selected-area{
