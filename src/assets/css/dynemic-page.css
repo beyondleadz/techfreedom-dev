@@ -6524,7 +6524,13 @@ padding:5px
     }
 
   .leftmenuheading .deskmenu{display: flex;justify-content: space-between;padding: 0 20px 10px 6px; font-weight: 700;}
-
+    .companyname{cursor: pointer;}
+    .loader{
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 @media screen and (max-width: 760px) {
   .leftmenuheading {padding:10px 0;}
 

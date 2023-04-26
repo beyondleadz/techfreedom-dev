@@ -44,9 +44,7 @@ const initialState = {
 };
 
 const CompanyListingReducer = (state = initialState, action) => {
-  // console.log(state, action, "skdjfslkdfjkl");
   const { type, payload } = action;
-  console.log(type, payload, "sklfsjldfksd");
   switch (type) {
     case INDUSTRY_LIST:
       return { ...state, industryList: payload };

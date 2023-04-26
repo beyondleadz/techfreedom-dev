@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useMemo } from "react";
+import { useNavigate } from "react-router-dom";
 import CLogo from "../../assets/images/d-bank1.png";
 import { useSelector, useDispatch } from "react-redux";
 import { Dropdown, Space } from "antd";
@@ -11,8 +12,11 @@ import {
   savePaginationValues,
   saveAdvancedSelectedFilters,
 } from "../../actionCreator/companyListingActionCreater";
-
-
+import {
+  getCompanyDetails,
+  getEmployeeList,
+} from "../../actionCreator/companyDetailsActionCreator";
+import Loader from "../loader";
 
 const CompanyContent = () => {
   const { Search } = Input;
@@ -37,6 +41,13 @@ const CompanyContent = () => {
     {
       title: <div className="companyname">Company Name</div>,
       dataIndex: "name",
+      render: (text, row) => {
+        return (
+          <span className="companyname" onClick={() => getDetails(row.key)}>
+            {text}
+          </span>
+        );
+      },
       fixed: "left",
     },
     {
@@ -59,6 +70,7 @@ const CompanyContent = () => {
   ];
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [companyList, setCompanyList] = useState();
   const companyFilterList = useSelector((state) => state.companyListingReducer);
   const companySelectedFilterList = useSelector(
@@ -111,28 +123,12 @@ const CompanyContent = () => {
     const payload = {
       ...companySelectedFilterList,
       searchKeyword: val,
-    }
-    dispatch(
-      saveAdvancedSelectedFilters(payload)
-    )
-    dispatch(getCompanyList(payload,paginationValue));
-    
-    /*console.log(companyList,'companyList',getCompanyList);
-    let filterList = [];
-    if (val) {
-      companyList.forEach((record) => {
-        if (record?.name.toLowerCase().includes(val.toLowerCase())) {
-          filterList = [...filterList, record];
-        }
-      });
-    } else {
-      filterList = _.cloneDeep(companyFilterList?.companyList);
-    }
-    setCompanyList(filterList);*/
+    };
+    dispatch(saveAdvancedSelectedFilters(payload));
+    dispatch(getCompanyList(payload, paginationValue));
   };
 
   const onPageChange = (page, pageSize) => {
-    console.log(page, pageSize, "pager", companySelectedFilterList);
     const pageValues = {
       start: page,
       end: pageSize,
@@ -141,7 +137,13 @@ const CompanyContent = () => {
     dispatch(getCompanyList(pageValues, companySelectedFilterList));
   };
 
-  return (
+  const getDetails = (id) => {
+    dispatch(getCompanyDetails(id));
+    dispatch(getEmployeeList(id));
+    navigate("/company-summary");
+  };
+
+  return companyList ? (
     <>
       <div id="content-wrapper" className="d-flex flex-column ">
         <div id="content" className="shadow">
@@ -163,10 +165,10 @@ const CompanyContent = () => {
                       />
 
                       <button className="d-none d-sm-inline-block ml-2 btn btn-outline-info">
-                        <i className="fas fa-save pr-1"></i> SAVE SEARCH{" "}
+                        <i className="fas fa-save pr-1"></i> SAVE SEARCH
                       </button>
                       <button className="d-none d-sm-inline-block ml-2 btn btn-outline-primary">
-                        <i className="fas fa-bolt pr-1"></i> CONNECT TO CRM{" "}
+                        <i className="fas fa-bolt pr-1"></i> CONNECT TO CRM
                       </button>
                     </div>
                   </div>
@@ -201,6 +203,8 @@ const CompanyContent = () => {
         </div>
       </div>
     </>
+  ) : (
+    <Loader />
   );
 };
 
