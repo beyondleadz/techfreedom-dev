@@ -92,10 +92,7 @@ const SummaryContent = () => {
                     <div className="card shadow card-body">
                       <div class="container">
                         <div className="row mt-3 mb-2 w-100- fs-14">
-                        <div className="col"> 
-                          <strong>Deutsche Bank</strong>, a Frankfurt-based
-                          global investment bank, offers financial products and
-                          services to corporate and institutional clients.</div>
+                        
                           <div className="row mt-3 w-100- ">
                             <div className="col w-col-3">
                               <div>
@@ -151,6 +148,40 @@ const SummaryContent = () => {
                             </div>
                             <div className="col w-col-3">
                               <div>
+                                <i className=" mr-2 text-black fs-18 las la-cog"></i>
+                                <span className="font-weight-bold">
+                                  Updated on, <div className="gap-l font-weight-normal">Wednesday, April 26, 2023</div>
+                                </span>
+                              </div>
+                              <div className="gap-l">
+                                {" "}
+                                JavaScript, HTML, PHP
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="row mt-4 w-100-">
+                            
+                          <div className="col w-col-3">
+                              <div>
+                                <i className=" text-black fs-18 las la-suitcase mr-2"></i>
+                                <strong>Discription of business</strong>
+                              </div>
+                              <div className="gap-l">
+                                <span>Deutsche Bank, a Frankfurt </span> 
+                                
+                               
+                                <div className={showMore ? "" : "softexpand"}>
+                                                                 
+                                <span>-based global investment bank, offers financial products and services to corporate and institutional clients.</span>
+                                </div>
+                                <button class="btn btn-light mr-2 " onClick={onClickShowMore}>
+                                  {showMore ? "Hide.." : "More.."}
+                                </button>
+                              </div>
+                            </div>
+                            <div className="col w-col-3">
+                              <div>
                                 <i className=" text-black fs-18 las la-suitcase mr-2"></i>
                                 <strong>Product and Services</strong>
                               </div>
@@ -190,7 +221,11 @@ const SummaryContent = () => {
                                 </button>
                               </div>
                             </div>
+                            <div className="col w-col-3"></div>
+                            
                           </div>
+
+                          
                         </div>
                       </div>
                     </div>
