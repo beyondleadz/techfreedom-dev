@@ -6526,10 +6526,22 @@ padding:5px
   .leftmenuheading .deskmenu{display: flex;justify-content: space-between;padding: 0 20px 10px 6px; font-weight: 700;}
     .companyname{cursor: pointer;}
     .loader{
-      height: 100%;
+      height: 250px;
       display: flex;
       justify-content: center;
       align-items: center;
+    }
+    .nodata{
+      height: 250px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .companysummary .ant-tabs-nav{
+       margin-bottom: 0;
+    }
+    .companyintro{
+      font-weight: 400;;
     }
 @media screen and (max-width: 760px) {
   .leftmenuheading {padding:10px 0;}

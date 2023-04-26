@@ -72,6 +72,7 @@ const CompanyContent = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [companyList, setCompanyList] = useState();
+  const [loading,setLoading] = useState(true)
   const companyFilterList = useSelector((state) => state.companyListingReducer);
   const companySelectedFilterList = useSelector(
     (state) => state.companyListingReducer.selectedFilters
@@ -104,6 +105,17 @@ const CompanyContent = () => {
 
     setCompanyList(data);
   }, [companyFilterList]);
+
+
+  useEffect(() => {
+
+  },[companyList])
+
+  
+  useEffect(() => {
+    companyList && companyList.length ? setLoading(false) : setLoading(true);
+  },[companyList]);
+
 
   const rowSelection = {
     onChange: (selectedRowKeys, selectedRows) => {
@@ -143,7 +155,9 @@ const CompanyContent = () => {
     navigate("/company-summary");
   };
 
-  return companyList ? (
+  console.log(companyList,'skjflskdjfkl')
+
+  return !loading ? (
     <>
       <div id="content-wrapper" className="d-flex flex-column ">
         <div id="content" className="shadow">
