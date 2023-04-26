@@ -6,8 +6,9 @@ const SummaryContent = () => {
   const [showMore,setShowMore] = useState(false)
   const onClickShowMore = () => {
     setShowMore(!showMore)
-  }
+  };
 
+ 
   
 
   return (
@@ -91,10 +92,10 @@ const SummaryContent = () => {
                     </div>
                     <div className="card shadow card-body">
                       <div class="container">
-                        <div className="row mt-3 mb-2 w-100- fs-14">
+                        <div className="row  mb-2 w-100- fs-14">
                         
-                          <div className="row mt-3 w-100- ">
-                            <div className="col w-col-3">
+                          <div className="row c-details w-100- ">
+                            <div className="col mt-3 w-col-3">
                               <div>
                                 <i className="text-black la  la-users mr-2"></i>
                                 <strong>Employees Range</strong>
@@ -104,14 +105,14 @@ const SummaryContent = () => {
                                
                               </div>
                             </div>
-                            <div className="col w-col-3">
+                            <div className="col mt-3 w-col-3">
                               <div>
                                 <i className="  text-black las fs-16 la-money-check mr-2"></i>
                                 <strong>Revenue Range</strong>
                               </div>
                               <div className="gap-l">$280.52 billion</div>
                             </div>
-                            <div className="col w-col-3">
+                            <div className="col mt-3 w-col-3">
                               <div>
                                 <i
                                   className=" text-black la la-city mr-2"
@@ -123,15 +124,15 @@ const SummaryContent = () => {
                             </div>
                           </div>
                         
-                          <div className="row mt-3 w-100-">
-                            <div className="col w-col-3">
+                          <div className="row c-details w-100-">
+                            <div className="col mt-3 w-col-3">
                               <div>
                                 <i className=" text-black las la-industry mr-2"></i>
                                 <strong>Industry</strong>
                               </div>
                               <div className="gap-l">Banking, Finance</div>
                             </div>
-                            <div className="col w-col-3">
+                            <div className="col mt-3 w-col-3">
                               <div>
                                 <i className=" mr-2 text-black fs-18 las la-cog"></i>
                                 <span className="font-weight-bold">
@@ -142,7 +143,7 @@ const SummaryContent = () => {
                                 JavaScript, HTML, PHP
                                        </div>
                             </div>
-                            <div className="col w-col-3">
+                            <div className="col mt-3 w-col-3">
                               <div>
                                 <i className=" mr-2 text-black fs-18 las la-calendar"></i>
                                 <span className="font-weight-bold">
@@ -153,9 +154,9 @@ const SummaryContent = () => {
                             </div>
                           </div>
 
-                          <div className="row mt-4 w-100-">
+                          <div className="row c-details w-100-">
                             
-                          <div className="col w-col-3">
+                          <div className="col mt-3 w-col-3">
                               <div>
                                 <i className=" text-black fs-18 las la-suitcase mr-2"></i>
                                 <strong>Discription of business</strong>
@@ -166,14 +167,14 @@ const SummaryContent = () => {
                                
                                 <div className={showMore ? "" : "softexpand"}>
                                                                  
-                                <span>-based global investment bank, offers financial products and services to corporate and institutional clients.</span>
+                                <div>-based global investment bank, </div><div>offers financial products and services to </div><div>corporate and institutional clients.</div>
                                 </div>
                                 <button class="btn btn-light mr-2 " onClick={onClickShowMore}>
                                   {showMore ? "Hide.." : "More.."}
                                 </button>
                               </div>
                             </div>
-                            <div className="col w-col-3">
+                            <div className="col mt-3 w-col-3">
                               <div>
                                 <i className=" text-black fs-18 las la-suitcase mr-2"></i>
                                 <strong>Product and Services</strong>
@@ -186,35 +187,17 @@ const SummaryContent = () => {
                                
                                 <div className={showMore ? "" : "softexpand"}>
                                                                   
-                                <span>Software, </span> 
-                                <span>Business Development, </span>
-                                  <span>Crowdsourcing, </span>
-                                  <span>Retail Software, </span>
-                                  <span>Delivery, </span>
-                                  <span>Operations, </span>{" "}
-                                  <span>Administrative Services, </span>
-                                  <span>Records, Videos &amp; Books, </span>
-                                  <span>Delivery Service, </span>
-                                  <span>Television Stations, </span>
-                                  <span>Transportation, </span>
-                                  <span>Broadcasting, </span>
-                                  <span>E-Commerce, </span>
-                                  <span>Cable &amp; Satellite, </span>
-                                  <span>Commerce and Shopping, </span>
-                                  <span>Media &amp; Internet, </span>
-                                  <span>Telecommunications, </span>
-                                  <span>Internet Services, </span>
-                                  <span>SaaS, </span>
-                                  <span>Shipping, </span>
-                                  <span>Software Development, </span>
-                                  <span>Consumer Electronics &amp; Computers</span>
-                                </div>
+                                <div>Software, Business Development, </div><div>Crowdsourcing, Retail Software,Delivery,</div><div> Operations,
+                                  Administrative Services,</div><div> Records, Videos &amp; Books, Delivery Service,</div> <div>Television Stations, Transportation,</div><div> Broadcasting, E-Commerce,
+                                  Cable &amp; </div><div>Satellite, Commerce and Shopping, Media &amp;</div><div> Internet, Telecommunications,
+                                  Internet </div><div>Services, SaaS, Shipping, Software </div><div>Development, Consumer Electronics &amp; </div><div>Computers
+                                </div></div>
                                 <button class="btn btn-light mr-2 " onClick={onClickShowMore}>
                                   {showMore ? "Hide.." : "More.."}
                                 </button>
                               </div>
                             </div>
-                            <div className="col w-col-3"></div>
+                            <div className="col mt-3 w-col-3"></div>
                             
                           </div>
 
@@ -257,18 +240,18 @@ const SummaryContent = () => {
                                 <td>John Mathew </td>
                                 <td>Delivery Head</td>
                                 <td>
-                                  <h4 className="  fs-23 btn  la  la-envelope-open-text text-black   "></h4>
+                                  <h4 className="  fs-23 btn  la  la-envelope text-black   "></h4>
                                 </td>
                                 <td>(206) 266-1000</td>
                                 <td>
                                   <h4 class="btn btn-primary pr-1 small text-black align-items-center">
                                     {" "}
-                                    <i class="las la-mobile fs-12 pt-1 pr-1"></i>
+                                    <i class="las la-mobile fs-12  pr-1"></i>
                                     VIEW
                                   </h4>
                                 </td>
                                 <td>
-                                  <button className="d-none d-sm-inline-block small btn btn-primary text-black">
+                                  <button className="d-none d-sm-inline-block pl-1 small btn btn-primary text-black">
                                     ADD TO LEADS{" "}
                                   </button>
                                 </td>
@@ -282,18 +265,18 @@ const SummaryContent = () => {
                                 <td>John Mathew </td>
                                 <td>Delivery Head</td>
                                 <td>
-                                  <h4 className=" fs-23 btn la  la-envelope-open-text text-black  "></h4>
+                                  <h4 className=" fs-23 btn la  la-envelope text-black  "></h4>
                                 </td>
                                 <td>(206) 266-1000</td>
                                 <td>
                                   <h4 class="btn btn-primary pr-1 small text-black align-items-center">
                                     {" "}
-                                    <i class="las la-mobile fs-12 pt-1 pr-1"></i>
+                                    <i class="las la-mobile fs-12 pr-1"></i>
                                     VIEW
                                   </h4>
                                 </td>
                                 <td>
-                                  <button className="d-none d-sm-inline-block small btn btn-primary text-black">
+                                  <button className="d-none d-sm-inline-block pl-1 small btn btn-primary text-black">
                                     ADD TO LEADS{" "}
                                   </button>
                                 </td>
@@ -307,18 +290,18 @@ const SummaryContent = () => {
                                 <td>John Mathew </td>
                                 <td>Delivery Head</td>
                                 <td>
-                                  <h4 className=" fs-23 btn la  la-envelope-open-text text-black  "></h4>
+                                  <h4 className=" fs-23 btn la  la-envelope text-black  "></h4>
                                 </td>
                                 <td>(206) 266-1000</td>
                                 <td>
                                   <h4 class="btn btn-primary pr-1 small text-black align-items-center">
                                     {" "}
-                                    <i class="las la-mobile fs-12 pt-1 pr-1"></i>
+                                    <i class="las la-mobile fs-12 pr-1"></i>
                                     VIEW
                                   </h4>
                                 </td>
                                 <td>
-                                  <button className="d-none d-sm-inline-block small btn btn-primary text-black">
+                                  <button className="d-none d-sm-inline-block pl-1 small btn btn-primary text-black">
                                     ADD TO LEADS{" "}
                                   </button>
                                 </td>
@@ -332,18 +315,18 @@ const SummaryContent = () => {
                                 <td>John Mathew </td>
                                 <td>Delivery Head</td>
                                 <td>
-                                  <h4 className=" fs-23 btn la  la-envelope-open-text text-black  "></h4>
+                                  <h4 className=" fs-23 btn la  la-envelope text-black  "></h4>
                                 </td>
                                 <td>(206) 266-1000</td>
                                 <td>
                                   <h4 class="btn btn-primary pr-1 small text-black align-items-center">
                                     {" "}
-                                    <i class="las la-mobile fs-12 pt-1 pr-1"></i>
+                                    <i class="las la-mobile fs-12 pr-1"></i>
                                     VIEW
                                   </h4>
                                 </td>
                                 <td>
-                                  <button className="d-none d-sm-inline-block small btn btn-primary text-black">
+                                  <button className="d-none d-sm-inline-block pl-1 small btn btn-primary text-black">
                                     ADD TO LEADS{" "}
                                   </button>
                                 </td>
@@ -357,18 +340,18 @@ const SummaryContent = () => {
                                 <td>John Mathew </td>
                                 <td>Delivery Head</td>
                                 <td>
-                                  <h4 className=" fs-23 btn la  la-envelope-open-text text-black  "></h4>
+                                  <h4 className=" fs-23 btn la  la-envelope text-black  "></h4>
                                 </td>
                                 <td>(206) 266-1000</td>
                                 <td>
                                   <h4 class="btn btn-primary pr-1 small text-black align-items-center">
                                     {" "}
-                                    <i class="las la-mobile fs-12 pt-1 pr-1"></i>
+                                    <i class="las la-mobile fs-12 pr-1"></i>
                                     VIEW
                                   </h4>
                                 </td>
                                 <td>
-                                  <button className="d-none d-sm-inline-block small btn btn-primary text-black">
+                                  <button className="d-none d-sm-inline-block pl-1 small btn btn-primary text-black">
                                     ADD TO LEADS{" "}
                                   </button>
                                 </td>
@@ -383,18 +366,18 @@ const SummaryContent = () => {
                                 <td>John Mathew </td>
                                 <td>Delivery Head</td>
                                 <td>
-                                  <h4 className="fs-23  btn la  la-envelope-open-text text-black  "></h4>
+                                  <h4 className="fs-23  btn la  la-envelope text-black  "></h4>
                                 </td>
                                 <td>(206) 266-1000</td>
                                 <td>
                                   <h4 class="btn btn-primary pr-1 small text-black align-items-center">
                                     {" "}
-                                    <i class="las la-mobile fs-12 pt-1 pr-1"></i>
+                                    <i class="las la-mobile fs-12 pr-1"></i>
                                     VIEW
                                   </h4>
                                 </td>
                                 <td>
-                                  <button className="d-none d-sm-inline-block small btn btn-primary text-black">
+                                  <button className="d-none d-sm-inline-block pl-1 small btn btn-primary text-black">
                                     ADD TO LEADS{" "}
                                   </button>
                                 </td>
@@ -408,18 +391,18 @@ const SummaryContent = () => {
                                 <td>John Mathew </td>
                                 <td>Delivery Head</td>
                                 <td>
-                                  <h4 className=" fs-23 btn la  la-envelope-open-text text-black "></h4>
+                                  <h4 className=" fs-23 btn la  la-envelope text-black "></h4>
                                 </td>
                                 <td>(206) 266-1000</td>
                                 <td>
                                   <h4 class="btn btn-primary pr-1 small text-black align-items-center">
                                     {" "}
-                                    <i class="las la-mobile fs-12 pt-1 pr-1"></i>
+                                    <i class="las la-mobile fs-12 pr-1"></i>
                                     VIEW
                                   </h4>
                                 </td>
                                 <td>
-                                  <button className="d-none d-sm-inline-block small btn btn-primary text-black">
+                                  <button className="d-none d-sm-inline-block pl-1 small btn btn-primary text-black">
                                     ADD TO LEADS{" "}
                                   </button>
                                 </td>

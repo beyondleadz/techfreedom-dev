@@ -2352,6 +2352,7 @@ input[type="button"].btn-block {
   border-radius: 0.35rem;
 }
 
+
 .card > hr {
   margin-right: 0;
   margin-left: 0;
@@ -6281,6 +6282,29 @@ padding:5px
   .mob-t {
     font-size: 80%;
   }
+  .logobox img{ width: 74px;
+    height: auto;
+    padding: 10px;
+    position: relative}
+
+    .social-icons{flex-direction: column;
+      white-space: nowrap;
+      margin: 5px 0 0 70px !important;
+      padding: 0;}
+    .buttons-container{margin: 0 10px;}
+    .descbox{    padding: 20px 70px 0;
+      flex-wrap: wrap;
+      white-space: break-spaces;}
+    .logobox{margin: 0;
+      padding: 10px 0;
+      /* position: relative; */
+      /* display: flex; */
+      /* flex-direction: column; */
+      width: 74px;}
+    .headercontainer{flex-direction: column;
+      white-space: nowrap;
+      margin: 0;
+      padding: 0; height: 210px;}
 }
 .btn-lit {
   color: #212529;
@@ -6358,7 +6382,7 @@ padding:5px
       color: #EBB601;
     }
     .la-envelope:before {
-      color: #F3060F;
+      color: #5d44ff;
     }
     .la-flag:before {
       color: #F3060F;
