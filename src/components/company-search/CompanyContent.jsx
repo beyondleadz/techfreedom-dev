@@ -192,7 +192,7 @@ const CompanyContent = () => {
               <div className="col-xl-12 col-lg-10 pl-0">
                 <div className="card shadow mb-4">
                   <div className="card-header py-3 f-rev d-flex align-items-center justify-content-between">
-                    <h6 className="m-0 font-weight-bold text-primary mob-t">
+                    <h6 className="m-0 ml-2 font-weight-bold text-primary mob-t">
                       Showing 1-{PAGE_LENGTH} of {companyFilterList?.totalCount} results
                     </h6>
 

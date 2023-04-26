@@ -2385,9 +2385,10 @@ input[type="button"].btn-block {
   padding: 1.25rem;
 }
 .pagetitle{
-  font-size: 24px;
-  font-weight: 700;
-  padding: 40px 15px;
+  font-size: 1.75rem;
+  font-weight: bold;
+  padding: 30px 15px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 .card-title {
@@ -6171,13 +6172,13 @@ padding:5px
 .headercontainer{
   display:flex;
   /* border-bottom: 1px solid #dee2e6; */
-  /* height: 145px; */  height: 155px;
+  /* height: 145px; */  height: 155px; padding-right: 70px;
 
 }
 
 .logobox{
   width: 205px;
-  padding: 20px;
+  padding: 37px;
   position:absolute;
 
 }
