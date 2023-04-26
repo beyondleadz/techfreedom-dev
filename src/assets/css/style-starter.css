@@ -10915,14 +10915,14 @@ a.text-dark:focus {
   color: rgba(0, 0, 0, 0.5) ;
 }
 .text-black:before {  
-  color:#3b5998;
+  color:#5d44ff;
 }
 
 .text-black:hover::before {
   color: #fdc401;
 }
 .text-black {
-  color:#000; ;
+  color:#5d44ff;
 }
 
 .text-white-50 {

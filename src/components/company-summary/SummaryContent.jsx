@@ -109,7 +109,7 @@ const SummaryContent = () => {
                             </div>
                             <div className="col w-col-3">
                               <div>
-                                <i className="  text-black las  la-money-check mr-2"></i>
+                                <i className="  text-black las fs-16 la-money-check mr-2"></i>
                                 <strong>Revenue Range</strong>
                               </div>
                               <div className="gap-l">$280.52 billion</div>
@@ -136,7 +136,7 @@ const SummaryContent = () => {
                             </div>
                             <div className="col w-col-3">
                               <div>
-                                <i className=" mr-2 text-black las la-cog"></i>
+                                <i className=" mr-2 text-black fs-18 las la-cog"></i>
                                 <span className="font-weight-bold">
                                   Technographics
                                 </span>
@@ -151,7 +151,7 @@ const SummaryContent = () => {
                             </div>
                             <div className="col w-col-3">
                               <div>
-                                <i className=" text-black fs-16 las la-suitcase mr-2"></i>
+                                <i className=" text-black fs-18 las la-suitcase mr-2"></i>
                                 <strong>Product and Services</strong>
                               </div>
                               <div className="gap-l">
