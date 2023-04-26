@@ -6541,8 +6541,19 @@ padding:5px
        margin-bottom: 0;
     }
     .companyintro{
-      font-weight: 400;;
+      font-weight: 400;
     }
+        .orgnode {
+          padding: 10px;
+          border-radius: 5px;
+          display: inline-block;
+          border: 2px solid grey;
+          width: 100px;
+          font-size: 12px;
+        }
+        /* li:hover  .orgnode {
+          background-color: #00acee;
+        } */
 @media screen and (max-width: 760px) {
   .leftmenuheading {padding:10px 0;}
 

@@ -34,7 +34,11 @@ const KeyExecutives = () => {
     },
     {
       title: "Direct Dial/Mobile    ",
-      dataIndex: "exfunction",
+      dataIndex: "directDial",
+    },
+    {
+      title: "",
+      dataIndex: "leads",
     },
   ];
 
@@ -45,11 +49,22 @@ const KeyExecutives = () => {
         ...data,
         {
           key: record.id,
+          id:record.id,
           fullname: record.fullname,
           title: record?.title,
           emailId: record?.emailId,
           phoneNo: record.phoneNo,
-          exfunction: `social`,
+          directDial: (
+            <h4 class="btn btn-primary pr-1 small text-black align-items-center">
+              <i class="las la-mobile fs-12 pt-1 pr-1"></i>
+              VIEW
+            </h4>
+          ),
+          leads: (
+            <button className="d-none d-sm-inline-block small btn btn-primary text-black">
+              ADD TO LEADS
+            </button>
+          ),
         },
       ];
     });

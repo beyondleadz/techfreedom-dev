@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 import CLogo from "../../assets/images/d-bank1.png";
 import { useSelector, useDispatch } from "react-redux";
 import { Dropdown, Space } from "antd";
@@ -82,12 +82,38 @@ const CompanyContent = () => {
   );
 
   useMemo(() => {
-    dispatch(getCompanyList());
+    dispatch(getCompanyList({},paginationValue));
   }, []);
+
+  const renderSocialLinks = (socialLinks) => {
+    console.log(socialLinks,'renderSocialLinks')
+    return socialLinks?.map((link) => {
+      if (link?.name === "facebook") {
+        return (
+          <Link to={link?.proifileUrl} target="_blank">
+            <i class="lab fs-20 facebook lab la-facebook"></i>
+          </Link>
+        );
+      } else if (link?.name === "Linkedin") {
+        return (
+          <Link to={link?.proifileUrl} target="_blank">
+            <i class="lab fs-20 text-info  lab la-linkedin"></i>
+          </Link>
+        );
+      } else if (link?.name === "twitter") {
+        return (
+          <Link to={link?.proifileUrl} target="_blank">
+            <i class="lab fs-20  twitter la la-twitter-square"></i>
+          </Link>
+        );
+      }
+    });
+  };
 
   useEffect(() => {
     let data = [];
     companyFilterList?.companyList?.forEach((record) => {
+      console.log(record,'recordrecordrecord')
       data = [
         ...data,
         {
@@ -96,7 +122,7 @@ const CompanyContent = () => {
           industry: record?.industry?.name,
           location: `${record?.address}, ${record?.city}, ${record?.state}, ${record?.country}`,
           phone: record.phoneNo,
-          social: `social`,
+          social:renderSocialLinks(record?.socialLinks),
         },
       ];
     });
@@ -142,11 +168,11 @@ const CompanyContent = () => {
 
   const onPageChange = (page, pageSize) => {
     const pageValues = {
-      start: page,
+      start: page-1,
       end: pageSize,
     };
     dispatch(savePaginationValues(pageValues));
-    dispatch(getCompanyList(pageValues, companySelectedFilterList));
+    dispatch(getCompanyList(companySelectedFilterList,pageValues));
   };
 
   const getDetails = (id) => {
@@ -167,7 +193,7 @@ const CompanyContent = () => {
                 <div className="card shadow mb-4">
                   <div className="card-header py-3 f-rev d-flex align-items-center justify-content-between">
                     <h6 className="m-0 font-weight-bold text-primary mob-t">
-                      Showing 1-20 of 100 results
+                      Showing 1-{PAGE_LENGTH} of {companyFilterList?.totalCount} results
                     </h6>
 
                     <div className="buttons-container textsearch">
@@ -198,7 +224,7 @@ const CompanyContent = () => {
                           dataSource={companyList}
                           pagination={{
                             responsive: true,
-                            total: companyList?.length,
+                            total: companyFilterList?.totalCount,
                             // pageSizeOptions: ["5", "10", "15", "15"],
                             pageSize: PAGE_LENGTH,
                             // showSizeChanger: true,

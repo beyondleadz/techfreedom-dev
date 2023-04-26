@@ -44,7 +44,7 @@ const initialState = {
 };
 
 const CompanyListingReducer = (state = initialState, action) => {
-  const { type, payload } = action;
+  const { type, payload,count } = action || {};
   switch (type) {
     case INDUSTRY_LIST:
       return { ...state, industryList: payload };
@@ -57,7 +57,7 @@ const CompanyListingReducer = (state = initialState, action) => {
     case REVENUE_RANGE:
       return { ...state, revenueRangeList: payload };
     case COMPANYLIST:
-      return { ...state, companyList: payload };
+      return { ...state, companyList: payload, totalCount:count };
     case COMPANY_SEARCH_PAYLOAD:
       return { ...state, companySearchPayload: payload };
       case PAGINATION_VALUE:
