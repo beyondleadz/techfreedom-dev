@@ -100,8 +100,8 @@ const SummaryContent = () => {
                                 <strong>Employees Range</strong>
                               </div>
                               <div className="gap-l">
-                                809,221{" "}
-                                <span> (687,052 on Deutsche Bank) </span>
+                              687,052-809,221
+                               
                               </div>
                             </div>
                             <div className="col w-col-3">
@@ -119,7 +119,7 @@ const SummaryContent = () => {
                                 ></i>
                                 <strong>Company Type</strong>
                               </div>
-                              <div className="gap-l">$48.00 Million</div>
+                              <div className="gap-l">Banking, Finance</div>
                             </div>
                           </div>
                         
@@ -139,24 +139,17 @@ const SummaryContent = () => {
                                 </span>
                               </div>
                               <div className="gap-l">
-                                {" "}
-                                JavaScript, HTML, PHP{" "}
-                                <div>
-                                  <strong>+1282 more (view full list) </strong>
-                                </div>{" "}
-                              </div>
+                                JavaScript, HTML, PHP
+                                       </div>
                             </div>
                             <div className="col w-col-3">
                               <div>
-                                <i className=" mr-2 text-black fs-18 las la-cog"></i>
+                                <i className=" mr-2 text-black fs-18 las la-calendar"></i>
                                 <span className="font-weight-bold">
-                                  Updated on, <div className="gap-l font-weight-normal">Wednesday, April 26, 2023</div>
+                                  Updated on <div className="gap-l font-weight-normal">Wednesday, April 26, 2023</div>
                                 </span>
                               </div>
-                              <div className="gap-l">
-                                {" "}
-                                JavaScript, HTML, PHP
-                              </div>
+                             
                             </div>
                           </div>
 
