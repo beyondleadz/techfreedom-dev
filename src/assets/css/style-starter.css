@@ -847,7 +847,7 @@ pre code {
   position: relative;
   width: 100%;
   padding-right: 15px;
-  padding-left: 15px;
+  padding-left: 23px;
 }
 
 .col {
@@ -22303,7 +22303,7 @@ html[xmlns] .slides {display: block;
 .col-md-3 {
 position: relative;
   min-height: 1px;
-  padding-right: 15px;
+  padding-right: 32px;
   padding-left: 15px;
   float: left;
 }
