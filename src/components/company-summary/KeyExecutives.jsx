@@ -27,6 +27,14 @@ const KeyExecutives = () => {
     {
       title: "Email",
       dataIndex: "emailId",
+      render: (text) => {
+        const token = sessionStorage.getItem('token');
+        if(token){
+          return text
+        }else{
+          return <h4 className="  fs-23 btn  la  la-envelope-open-text text-black   "></h4>
+        }
+      }
     },
     {
       title: "Phone Number",

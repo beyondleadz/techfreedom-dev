@@ -1,9 +1,11 @@
-import React, { useEffect, useState, useMemo } from "react";
+import React from "react";
 import _ from "lodash";
 import AdvancedFilter from "./AdvancedFilter";
-import { Modal, Checkbox, Input } from "antd";
-import { saveAdvancedSelectedFilters,getCompanyList } from "../../actionCreator/companyListingActionCreater";
-import { SearchOutlined } from "@ant-design/icons";
+import { Modal } from "antd";
+import {
+  saveAdvancedSelectedFilters,
+  getCompanyList,
+} from "../../actionCreator/companyListingActionCreater";
 import { useSelector, useDispatch } from "react-redux";
 
 const AdvancedFilterModel = ({ setOpenAdvancedModel, openAdvancedModel }) => {

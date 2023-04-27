@@ -6267,7 +6267,7 @@ padding:5px
  .s-company-content { max-width:50%;}
 
  .softexpand{
-  height: 0;
+  height: 25px;
   overflow: hidden;
  }
 
@@ -6520,7 +6520,6 @@ padding:5px
     }
 
     .leftmenufilter .ant-checkbox-group{
-      max-height: 185px;
       overflow: hidden;
       padding:6px 20px;
     }

@@ -8,6 +8,7 @@ import {
   COMPANY_SEARCH_PAYLOAD,
   ADVANCED_SELECTED_FILTERS,
   PAGINATION_VALUE,
+  DOWNLOAD_COMPANYLIST
 } from "../actionType/companyListingType";
 import { getAuthMethod, getMethod } from "../services/HttpServices";
 import {
@@ -68,6 +69,17 @@ export const getCompanyList = (payload,paginationValues) => (dispatch) => {
     });
   });
 };
+
+export const downloadCompanyList = (payload,urlSubstring) => (dispatch) => {
+  const url =  createPayload(payload,null,`${companyListingApiUrl}/${urlSubstring}`);
+  return getMethod(url).then((res) => {
+    dispatch({
+      type: DOWNLOAD_COMPANYLIST,
+      payload: res.data,
+    });
+  });
+};
+
 
 export const getLocation = (payload) => ({
   type: GEOLOCATION,
