@@ -6267,7 +6267,7 @@ padding:5px
  .s-company-content { max-width:50%;}
 
  .softexpand{
-  height: 0;
+  height: 25px;
   overflow: hidden;
  }
 
