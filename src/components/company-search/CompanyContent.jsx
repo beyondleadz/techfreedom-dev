@@ -1,36 +1,54 @@
 import React, { useEffect, useState, useMemo } from "react";
+import { useNavigate,Link } from "react-router-dom";
 import CLogo from "../../assets/images/d-bank1.png";
 import { useSelector, useDispatch } from "react-redux";
-import { Dropdown, Space } from 'antd';
+import { Dropdown, Space } from "antd";
 import _ from "lodash";
 // import "antd/dist/antd.css";
 import { Table, Input } from "antd";
-import { getCompanyList } from "../../actionCreator/companyListingActionCreater";
+import { PAGE_LENGTH } from "../../config";
+import {
+  getCompanyList,
+  savePaginationValues,
+  saveAdvancedSelectedFilters,
+} from "../../actionCreator/companyListingActionCreater";
+import {
+  getCompanyDetails,
+  getEmployeeList,
+} from "../../actionCreator/companyDetailsActionCreator";
+import Loader from "../loader";
 
 const CompanyContent = () => {
   const { Search } = Input;
-  const items= [
+  const items = [
     {
       label: <a href="https://www.antgroup.com">1st menu item</a>,
-      key: '0',
+      key: "0",
     },
     {
       label: <a href="https://www.aliyun.com">2nd menu item</a>,
-      key: '1',
+      key: "1",
     },
     {
-      type: 'divider',
+      type: "divider",
     },
     {
-      label: '3rd menu item',
-      key: '3',
+      label: "3rd menu item",
+      key: "3",
     },
   ];
   const columns = [
     {
       title: <div className="companyname">Company Name</div>,
       dataIndex: "name",
-      fixed:"left"
+      render: (text, row) => {
+        return (
+          <span className="companyname" onClick={() => getDetails(row.key)}>
+            {text}
+          </span>
+        );
+      },
+      fixed: "left",
     },
     {
       title: "Industry",
@@ -52,16 +70,50 @@ const CompanyContent = () => {
   ];
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [companyList, setCompanyList] = useState();
+  const [loading,setLoading] = useState(true)
   const companyFilterList = useSelector((state) => state.companyListingReducer);
+  const companySelectedFilterList = useSelector(
+    (state) => state.companyListingReducer.selectedFilters
+  );
+  const paginationValue = useSelector(
+    (state) => state.companyListingReducer.paginationValue
+  );
 
   useMemo(() => {
-    dispatch(getCompanyList());
+    dispatch(getCompanyList({},paginationValue));
   }, []);
+
+  const renderSocialLinks = (socialLinks) => {
+    console.log(socialLinks,'renderSocialLinks')
+    return socialLinks?.map((link) => {
+      if (link?.name === "facebook") {
+        return (
+          <Link to={link?.proifileUrl} target="_blank">
+            <i class="lab fs-20 facebook lab la-facebook"></i>
+          </Link>
+        );
+      } else if (link?.name === "Linkedin") {
+        return (
+          <Link to={link?.proifileUrl} target="_blank">
+            <i class="lab fs-20 text-info  lab la-linkedin"></i>
+          </Link>
+        );
+      } else if (link?.name === "twitter") {
+        return (
+          <Link to={link?.proifileUrl} target="_blank">
+            <i class="lab fs-20  twitter la la-twitter-square"></i>
+          </Link>
+        );
+      }
+    });
+  };
 
   useEffect(() => {
     let data = [];
-    companyFilterList?.companyList.forEach((record) => {
+    companyFilterList?.companyList?.forEach((record) => {
+      console.log(record,'recordrecordrecord')
       data = [
         ...data,
         {
@@ -70,7 +122,7 @@ const CompanyContent = () => {
           industry: record?.industry?.name,
           location: `${record?.address}, ${record?.city}, ${record?.state}, ${record?.country}`,
           phone: record.phoneNo,
-          social: `social`,
+          social:renderSocialLinks(record?.socialLinks),
         },
       ];
     });
@@ -79,6 +131,17 @@ const CompanyContent = () => {
 
     setCompanyList(data);
   }, [companyFilterList]);
+
+
+  useEffect(() => {
+
+  },[companyList])
+
+  
+  useEffect(() => {
+    companyList && companyList.length ? setLoading(false) : setLoading(true);
+  },[companyList]);
+
 
   const rowSelection = {
     onChange: (selectedRowKeys, selectedRows) => {
@@ -95,153 +158,57 @@ const CompanyContent = () => {
   };
 
   const onSearch = (val) => {
-    let filterList = [];
-    if (val) {
-      companyList.forEach((record) => {
-        if (record?.name.toLowerCase().includes(val.toLowerCase())) {
-          filterList = [
-            ...filterList,
-            record,
-          ];
-        }
-      });
-    } else {
-      filterList = _.cloneDeep(companyFilterList?.companyList);
-    }
-    setCompanyList(filterList);
+    const payload = {
+      ...companySelectedFilterList,
+      searchKeyword: val,
+    };
+    dispatch(saveAdvancedSelectedFilters(payload));
+    dispatch(getCompanyList(payload, paginationValue));
   };
 
-  const onPageChange=(page,pageSize)=>{
-     console.log(page,pageSize,"pager")
-  }
+  const onPageChange = (page, pageSize) => {
+    const pageValues = {
+      start: page-1,
+      end: pageSize,
+    };
+    dispatch(savePaginationValues(pageValues));
+    dispatch(getCompanyList(companySelectedFilterList,pageValues));
+  };
 
-  return (
+  const getDetails = (id) => {
+    dispatch(getCompanyDetails(id));
+    dispatch(getEmployeeList(id));
+    navigate("/company-summary");
+  };
+
+  console.log(companyList,'skjflskdjfkl')
+
+  return !loading ? (
     <>
-
       <div id="content-wrapper" className="d-flex flex-column ">
         <div id="content" className="shadow">
-          <nav className="navbar navbar-light bg-white topbar mb-4 static-top">
-            <div className="buttons-container m-mt quickselection">
-            <h3 className="card-body font-weight-bold">Search Companies</h3>
-              <div>              
-                <span className="fs-12 mr-2">Quick Selection</span>
-                <div className=" fs-12 d-sm-inline-block mr-1">
-                  <input type="text" className="quickselectioninput" />
-                </div>
-                <span className=" fs-12 mr-1">to</span>
-                <div className="  fs-12 d-sm-inline-block mr-1">
-                  <input type="text" className="quickselectioninput" />
-                </div>
-                <button className=" fs-12 d-sm-inline-block btn btn-info btn-lg mr-1">
-                  <i className="fas fs-12 fa-arrow-right"></i>{" "}
-                </button>
-                <button className="fs-12  btn btn-info btn-lg  mr-3">
-                  Select All
-                </button>
-              </div>
-              <ul className="flex  m-mt">
-                <li>
-                  <a
-                    className=" mr-2"
-                    href="#"
-                    id=""
-                    role="button"
-                    data-toggle=""
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    <i
-                      className="right-icons la la-file-pdf"
-                      aria-hidden="true"
-                    ></i>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className=" mr-2"
-                    href="#"
-                    id=""
-                    role="button"
-                    data-toggle=""
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    <i
-                      className="right-icons la la-file-excel"
-                      aria-hidden="true"
-                    ></i>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className=" mr-2"
-                    href="#"
-                    id=""
-                    role="button"
-                    data-toggle=""
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    <i
-                      className="right-icons la la-print"
-                      aria-hidden="true"
-                    ></i>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className=" mr-2"
-                    href="#"
-                    id=""
-                    role="button"
-                    data-toggle=""
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    <i
-                      className="right-icons la la-star"
-                      aria-hidden="true"
-                    ></i>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </nav>
-
-          <div className="container-fluid">
+          <div className="container-fluid pl-0 pr-0">
             <div className="row">
-              <div className="col-xl-12 col-lg-10">
+              <div className="col-xl-12 col-lg-10 pl-0">
                 <div className="card shadow mb-4">
                   <div className="card-header py-3 f-rev d-flex align-items-center justify-content-between">
-                    <h6 className="m-0 font-weight-bold text-primary mob-t">
-                      Showing 1-20 of 100 results
+                    <h6 className="m-0 ml-2 font-weight-bold text-primary mob-t">
+                      Showing 1-{PAGE_LENGTH} of {companyFilterList?.totalCount} results
                     </h6>
 
                     <div className="buttons-container textsearch">
                       <Search
-                        placeholder="input search text"
+                        placeholder="Product & Services"
                         allowClear
                         onSearch={onSearch}
                         style={{ width: 200 }}
                       />
-                      {/* <form className="d-none form-inline mr-4 navbar-search">
-                        <div className="input-group">
-                          <input
-                            type="text"
-                            className="form-control-sm bg-light"
-                            placeholder="Search for..."
-                            aria-label="Search"
-                            aria-describedby="basic-addon2"
-                          />
-                          <div className="input-group-append">
-                            <button className="btn btn-primary" type="button">
-                              <i className="fas fa-search fa-sm"></i>{" "}
-                            </button>
-                          </div>
-                        </div>
-                      </form> */}
+
+                      <button className="d-none d-sm-inline-block ml-2 btn btn-outline-info">
+                        <i className="fas fa-save pr-1"></i> SAVE SEARCH
+                      </button>
                       <button className="d-none d-sm-inline-block ml-2 btn btn-outline-primary">
-                        <i className="fas fa-bolt pr-1"></i> CONNECT TO CRM{" "}
+                        <i className="fas fa-bolt pr-1"></i> CONNECT TO CRM
                       </button>
                     </div>
                   </div>
@@ -257,73 +224,16 @@ const CompanyContent = () => {
                           dataSource={companyList}
                           pagination={{
                             responsive: true,
-                            total: companyList?.length,
+                            total: companyFilterList?.totalCount,
                             // pageSizeOptions: ["5", "10", "15", "15"],
-                            pageSize: 10,
+                            pageSize: PAGE_LENGTH,
                             // showSizeChanger: true,
-                            defaultPageSize: 10,
+                            // defaultPageSize: 10,
                             position: ["bottomCenter"],
-                            onChange:onPageChange
+                            onChange: onPageChange,
                           }}
                         />
-                        {/* <table className="data-table">
-                          <thead>
-                            <tr>
-                              <th>
-                                <input type="checkbox" />
-                              </th>
-                              <th>Company Name</th>
-                              <th>Industry</th>
-                              <th>Location</th>
-                              <th>Phone Number</th>
-                              <th>Social</th>
-                              <th>
-                                <button className="d-none d-sm-inline-block btn btn-outline-secondary">
-                                  <i className="fas fa-plus pr-1"></i> ADD
-                                  COLUMN{" "}
-                                </button>
-                              </th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {companyList &&
-                              companyList.map((item) => {
-                                let CLogo = item?.companyLogoUrl;
-                                return (
-                                  <tr key={item.id}>
-                                    <td>
-                                      <input type="checkbox" />
-                                    </td>
-                                    <td>
-                                      <span className="companyLogo">
-                                        <img src={CLogo} />
-                                      </span>
-                                      {item?.name}
-                                    </td>
-                                    <td>{item?.industry?.name}</td>
-                                    <td>
-                                      {item?.address}, {item?.city},
-                                      {item?.state}, {item?.country}
-                                    </td>
-                                    <td>{item?.phoneNo}</td>
-                                    <td></td>
-                                    <td></td>
-                                  </tr>
-                                );
-                              })}
-                          </tbody>
-                        </table> */}
                       </div>
-                      {/* <div className="pagination">
-                        <a href="#">Previous</a>
-                        <a href="#">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
-                        <a href="#">4</a>
-                        <a href="#">5</a>
-                        <a href="#">Next</a>
-                        
-                      </div> */}
                     </div>
                   </div>
                 </div>
@@ -333,6 +243,8 @@ const CompanyContent = () => {
         </div>
       </div>
     </>
+  ) : (
+    <Loader />
   );
 };
 
