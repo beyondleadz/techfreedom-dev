@@ -1,0 +1,2 @@
+export const COMPANY_DETAILS = 'COMPANY_DETAILS'
+export const EMPLOYEE_LIST = 'EMPLOYEE_LIST'

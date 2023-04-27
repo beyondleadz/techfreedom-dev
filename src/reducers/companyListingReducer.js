@@ -6,21 +6,47 @@ import {
   REVENUE_RANGE,
   COMPANYLIST,
   COMPANY_SEARCH_PAYLOAD,
+  ADVANCED_SELECTED_FILTERS,
+  PAGINATION_VALUE,
+  DOWNLOAD_COMPANYLIST
 } from "../actionType/companyListingType";
+import { PAGE_LENGTH } from "../config";
 
 const initialState = {
   industryList: [],
   geoLocation: [],
-  companyTypeList:[],
-  employeeCountList:[],
-  revenueRangeList:[],
-  companyList:[],
-  companySearchPayload:{}
+  companyTypeList: [],
+  employeeCountList: [],
+  revenueRangeList: [],
+  companyList: [],
+  selectedFilters: {
+    selectedCountry: [],
+    selectedState: [],
+    selectedCity: [],
+    selectedIndustry: [],
+    selectedCompanytype: [],
+    selectedEmployeecount: [],
+    selectedRevenuerange: [],
+    searchKeyword: "",
+    excelDownload: "",
+  },
+  companySearchPayload: {
+    country: [],
+    state: [],
+    city: [],
+    industry: [],
+    companytype: [],
+    employeecount: [],
+    revenuerange: [],
+  },
+  paginationValue: {
+    start: 0,
+    end: PAGE_LENGTH,
+  },
 };
 
 const CompanyListingReducer = (state = initialState, action) => {
-  //   console.log(state, action, "skdjfslkdfjkl");
-  const { type, payload } = action;
+  const { type, payload, count } = action || {};
   switch (type) {
     case INDUSTRY_LIST:
       return { ...state, industryList: payload };
@@ -33,10 +59,20 @@ const CompanyListingReducer = (state = initialState, action) => {
     case REVENUE_RANGE:
       return { ...state, revenueRangeList: payload };
     case COMPANYLIST:
-      return { ...state, companyList:payload};  
+      return { ...state, companyList: payload, totalCount: count };
     case COMPANY_SEARCH_PAYLOAD:
-      return {...state,companySearchPayload:{...state.companySearchPayload,payload}};  
-    default:      
+      return { ...state, companySearchPayload: payload };
+    case PAGINATION_VALUE:
+      return { ...state, paginationValue: payload };
+    case ADVANCED_SELECTED_FILTERS:
+      return {
+        ...state,
+        selectedFilters: payload,
+      };
+    case DOWNLOAD_COMPANYLIST:
+      return { ...state, excelDownload: payload };
+
+    default:
       return state;
   }
 };

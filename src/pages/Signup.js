@@ -8,28 +8,26 @@ import Outlook from "../assets/login/outlook.png";
 import LogoLogin from "../assets/login/logo-round.png";
 import "../assets/css/style.css";
 import Signup1 from "../components/signup/Signup1";
-import Signup2 from "../components/signup/Signup2";
-import Signup3 from "../components/signup/Signup3";
-import { signUpUrl } from "../constant/Constant";
-import {postMethod} from "../services/HttpServices"
+// import Signup2 from "../components/signup/Signup2";
+// import Signup3 from "../components/signup/Signup3";
+// import { signUpUrl } from "../constant/Constant";
+// import {postMethod} from "../services/HttpServices"
 import { useSelector,useDispatch } from "react-redux";
 const Signup = () => {
-  const [step, setStep] = useState({ step1: true, step2: false, step3: false });
-  const [signupData, setSignupData] = useState();
-  const signUpFormData = useSelector(state => state.SignUpReducer)
+  // const [step, setStep] = useState({ step1: true, step2: false, step3: false });
+  // const [signupData, setSignupData] = useState();
+  // const signUpFormData = useSelector(state => state.SignUpReducer)
   const navigate = useNavigate();
-  const changeStep = (stepCnt) => {
-    setSignupData({
-      ...signupData,
-    //   ...data,
-    });
-    // console.log(data);
-    if (stepCnt === 2) {
-      setStep({ step1: false, step2: true, step3: false });
-    } else if (stepCnt === 3) {
-      setStep({ step1: false, step2: false, step3: true });
-    }
-  };
+  // const changeStep = (stepCnt) => {
+  //   setSignupData({
+  //     ...signupData,
+  //   });
+  //   if (stepCnt === 2) {
+  //     setStep({ step1: false, step2: true, step3: false });
+  //   } else if (stepCnt === 3) {
+  //     setStep({ step1: false, step2: false, step3: true });
+  //   }
+  // };
 //   const submitData = () => {
 // 	const {signUpStep1Data,signUpStep2Data,signUpStep3Data} = signUpFormData;
 // 	// console.log(signUpStep1Data,'signUpFormDatasignUpFormData',signUpStep2Data,signUpStep3Data)
@@ -120,13 +118,13 @@ const Signup = () => {
                   </li>
                 </ul>
               </div>
-              {step.step1 && <Signup1 changeStep={changeStep} />}
-              {step.step2 && (
+              <Signup1 />
+              {/* {step.step2 && (
                 <Signup2 changeStep={changeStep}/>
               )}
               {step.step3 && (
                 <Signup3 />
-              )}
+              )} */}
             </div>
             <div className="clear"></div>
           </div>
