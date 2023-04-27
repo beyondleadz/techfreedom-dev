@@ -243,6 +243,7 @@ const CompanyLeft = () => {
               openAdvancedModel={openAdvancedModel}
               showCheckAll={false}
               setOpenAdvancedModel={setOpenAdvancedModel}
+              showNumberofRecords={8}
             />
           </div>
         </div>

@@ -1,7 +1,10 @@
 import React, { useEffect, useState, useMemo } from "react";
 import _ from "lodash";
 import { Modal, Checkbox, Input } from "antd";
-import { saveAdvancedSelectedFilters,getCompanyList } from "../../actionCreator/companyListingActionCreater";
+import {
+  saveAdvancedSelectedFilters,
+  getCompanyList,
+} from "../../actionCreator/companyListingActionCreater";
 import { SearchOutlined } from "@ant-design/icons";
 import { useSelector, useDispatch } from "react-redux";
 import { LEFT_FILETERS_SIZE } from "../../config";
@@ -10,11 +13,14 @@ const AdvancedFilter = ({
   openAdvancedModel,
   showCheckAll = true,
   setOpenAdvancedModel,
+  showNumberofRecords = null,
 }) => {
   const dispatch = useDispatch();
   const companyFilterList = useSelector((state) => state.companyListingReducer);
 
-  const companyPaginationValue = useSelector((state) => state.companyListingReducer.paginationValue);
+  const companyPaginationValue = useSelector(
+    (state) => state.companyListingReducer.paginationValue
+  );
 
   const companySelectedFilterList = useSelector(
     (state) => state.companyListingReducer.selectedFilters
@@ -203,17 +209,35 @@ const AdvancedFilter = ({
           <CheckboxGroup onChange={onCountryChange} value={selectedCountryList}>
             <>
               <ul>
-                {countriesList.map((item) => (
-                  <li>
-                    <Checkbox
-                      key={item.id}
-                      value={item}
-                      onChange={($event) => updateCountries($event)}
-                    >
-                      {item.name}
-                    </Checkbox>
-                  </li>
-                ))}
+                {countriesList.map((item,index) => {
+                  if (showNumberofRecords) {
+                    return (
+                      index < showNumberofRecords && (
+                        <li>
+                          <Checkbox
+                            key={item.id}
+                            value={item}
+                            onChange={($event) => updateCompanyType($event)}
+                          >
+                            {item.name}
+                          </Checkbox>
+                        </li>
+                      )
+                    );
+                  } else {
+                    return (
+                      <li>
+                        <Checkbox
+                          key={item.id}
+                          value={item}
+                          onChange={($event) => updateCountries($event)}
+                        >
+                          {item.name}
+                        </Checkbox>
+                      </li>
+                    );
+                  }
+                })}
               </ul>
             </>
           </CheckboxGroup>
@@ -255,11 +279,9 @@ const AdvancedFilter = ({
     const payload = {
       ...companySelectedFilterList,
       selectedCountry: newList,
-    }
-    dispatch(
-      saveAdvancedSelectedFilters(payload)
-    )
-    dispatch(getCompanyList(payload,companyPaginationValue));
+    };
+    dispatch(saveAdvancedSelectedFilters(payload));
+    dispatch(getCompanyList(payload, companyPaginationValue));
   };
 
   const onCountryChange = (list) => {
@@ -273,12 +295,9 @@ const AdvancedFilter = ({
     const payload = {
       ...companySelectedFilterList,
       selectedCountry: e.target.checked ? countriesList : [],
-    }
-    dispatch(
-      saveAdvancedSelectedFilters(payload)
-    )
-    dispatch(getCompanyList(payload,companyPaginationValue));
-
+    };
+    dispatch(saveAdvancedSelectedFilters(payload));
+    dispatch(getCompanyList(payload, companyPaginationValue));
   };
 
   /*Countries End */
@@ -316,17 +335,35 @@ const AdvancedFilter = ({
           <CheckboxGroup onChange={onStatesChange} value={selectedStateList}>
             <>
               <ul>
-                {statesList.map((item) => (
-                  <li>
-                    <Checkbox
-                      key={item.id}
-                      value={item}
-                      onChange={($event) => updateStates($event)}
-                    >
-                      {item.name}
-                    </Checkbox>
-                  </li>
-                ))}
+                {statesList.map((item, index) => {
+                  if (showNumberofRecords) {
+                    return (
+                      index < showNumberofRecords && (
+                        <li>
+                          <Checkbox
+                            key={item.id}
+                            value={item}
+                            onChange={($event) => updateStates($event)}
+                          >
+                            {item.name}
+                          </Checkbox>
+                        </li>
+                      )
+                    );
+                  } else {
+                    return (
+                      <li>
+                        <Checkbox
+                          key={item.id}
+                          value={item}
+                          onChange={($event) => updateStates($event)}
+                        >
+                          {item.name}
+                        </Checkbox>
+                      </li>
+                    );
+                  }
+                })}
               </ul>
             </>
           </CheckboxGroup>
@@ -367,11 +404,9 @@ const AdvancedFilter = ({
     const payload = {
       ...companySelectedFilterList,
       selectedState: newList,
-    }
-    dispatch(
-      saveAdvancedSelectedFilters(payload)
-    )
-    dispatch(getCompanyList(payload,companyPaginationValue));
+    };
+    dispatch(saveAdvancedSelectedFilters(payload));
+    dispatch(getCompanyList(payload, companyPaginationValue));
   };
 
   const onStatesChange = (list) => {
@@ -398,11 +433,9 @@ const AdvancedFilter = ({
     const payload = {
       ...companySelectedFilterList,
       selectedState: e.target.checked ? statesList : [],
-    }
-    dispatch(
-      saveAdvancedSelectedFilters(payload)
-    )
-    dispatch(getCompanyList(payload,companyPaginationValue));
+    };
+    dispatch(saveAdvancedSelectedFilters(payload));
+    dispatch(getCompanyList(payload, companyPaginationValue));
   };
 
   /*state End */
@@ -411,7 +444,10 @@ const AdvancedFilter = ({
   const showCitiesList = () => {
     return (
       <>
-        <div className={`filterheader la ${visibleFilter.city && "show"}`} onClick={() => openVisibleFilter("city")}>
+        <div
+          className={`filterheader la ${visibleFilter.city && "show"}`}
+          onClick={() => openVisibleFilter("city")}
+        >
           <h2>
             <i className="left-company-menu-icons la la-map-marker"></i>
             <span>Cities</span>
@@ -434,17 +470,35 @@ const AdvancedFilter = ({
           <CheckboxGroup onChange={onCityChange} value={selectedCitiesList}>
             <>
               <ul>
-                {citiesList?.map((item) => (
-                  <li>
-                    <Checkbox
-                      key={item.id}
-                      value={item}
-                      onChange={($event) => updateCities($event)}
-                    >
-                      {item.name}
-                    </Checkbox>
-                  </li>
-                ))}
+                {citiesList?.map((item, index) => {
+                  if (showNumberofRecords) {
+                    return (
+                      index < showNumberofRecords && (
+                        <li>
+                          <Checkbox
+                            key={item.id}
+                            value={item}
+                            onChange={($event) => updateCities($event)}
+                          >
+                            {item.name}
+                          </Checkbox>
+                        </li>
+                      )
+                    );
+                  } else {
+                    return (
+                      <li>
+                        <Checkbox
+                          key={item.id}
+                          value={item}
+                          onChange={($event) => updateCities($event)}
+                        >
+                          {item.name}
+                        </Checkbox>
+                      </li>
+                    );
+                  }
+                })}
               </ul>
             </>
           </CheckboxGroup>
@@ -485,11 +539,9 @@ const AdvancedFilter = ({
     const payload = {
       ...companySelectedFilterList,
       selectedCity: newList,
-    }
-    dispatch(
-      saveAdvancedSelectedFilters(payload)
-    )
-    dispatch(getCompanyList(payload,companyPaginationValue));
+    };
+    dispatch(saveAdvancedSelectedFilters(payload));
+    dispatch(getCompanyList(payload, companyPaginationValue));
   };
 
   const onCityChange = (list) => {
@@ -503,11 +555,9 @@ const AdvancedFilter = ({
     const payload = {
       ...companySelectedFilterList,
       selectedCity: e.target.checked ? citiesList : [],
-    }
-    dispatch(
-      saveAdvancedSelectedFilters(payload)
-    )
-    dispatch(getCompanyList(payload,companyPaginationValue));
+    };
+    dispatch(saveAdvancedSelectedFilters(payload));
+    dispatch(getCompanyList(payload, companyPaginationValue));
   };
   /*City End */
 
@@ -547,17 +597,35 @@ const AdvancedFilter = ({
           >
             <>
               <ul>
-                {industryList?.map((item) => (
-                  <li>
-                    <Checkbox
-                      key={item.id}
-                      value={item}
-                      onChange={($event) => updateIndustries($event)}
-                    >
-                      {item.name}
-                    </Checkbox>
-                  </li>
-                ))}
+                {industryList?.map((item, index) => {
+                  if (showNumberofRecords) {
+                    return (
+                      index < showNumberofRecords && (
+                        <li>
+                          <Checkbox
+                            key={item.id}
+                            value={item}
+                            onChange={($event) => updateIndustries($event)}
+                          >
+                            {item.name}
+                          </Checkbox>
+                        </li>
+                      )
+                    );
+                  } else {
+                    return (
+                      <li>
+                        <Checkbox
+                          key={item.id}
+                          value={item}
+                          onChange={($event) => updateIndustries($event)}
+                        >
+                          {item.name}
+                        </Checkbox>
+                      </li>
+                    );
+                  }
+                })}
               </ul>
             </>
           </CheckboxGroup>
@@ -595,15 +663,13 @@ const AdvancedFilter = ({
       );
     }
     setSelectedIndustryList(newList);
-  
+
     const payload = {
       ...companySelectedFilterList,
       selectedIndustry: newList,
-    }
-    dispatch(
-      saveAdvancedSelectedFilters(payload)
-    )
-    dispatch(getCompanyList(payload,companyPaginationValue));
+    };
+    dispatch(saveAdvancedSelectedFilters(payload));
+    dispatch(getCompanyList(payload, companyPaginationValue));
   };
 
   const onIndustryChange = (list) => {
@@ -616,12 +682,9 @@ const AdvancedFilter = ({
     const payload = {
       ...companySelectedFilterList,
       selectedIndustry: e.target.checked ? industryList : [],
-    }
-    dispatch(
-      saveAdvancedSelectedFilters(payload)
-    )
-    dispatch(getCompanyList(payload,companyPaginationValue));
-    
+    };
+    dispatch(saveAdvancedSelectedFilters(payload));
+    dispatch(getCompanyList(payload, companyPaginationValue));
   };
   /*Industry End */
 
@@ -660,17 +723,35 @@ const AdvancedFilter = ({
           >
             <>
               <ul>
-                {companyTypeList?.map((item) => (
-                  <li>
-                    <Checkbox
-                      key={item.id}
-                      value={item}
-                      onChange={($event) => updateCompanyType($event)}
-                    >
-                      {item.name}
-                    </Checkbox>
-                  </li>
-                ))}
+                {companyTypeList?.map((item, index) => {
+                  if (showNumberofRecords) {
+                    return (
+                      index < showNumberofRecords && (
+                        <li>
+                          <Checkbox
+                            key={item.id}
+                            value={item}
+                            onChange={($event) => updateCompanyType($event)}
+                          >
+                            {item.name}
+                          </Checkbox>
+                        </li>
+                      )
+                    );
+                  } else {
+                    return (
+                      <li>
+                        <Checkbox
+                          key={item.id}
+                          value={item}
+                          onChange={($event) => updateCompanyType($event)}
+                        >
+                          {item.name}
+                        </Checkbox>
+                      </li>
+                    );
+                  }
+                })}
               </ul>
             </>
           </CheckboxGroup>
@@ -708,15 +789,13 @@ const AdvancedFilter = ({
       );
     }
     setSelectedCompanyTypeList(newList);
-  
+
     const payload = {
       ...companySelectedFilterList,
       selectedCompanytype: newList,
-    }
-    dispatch(
-      saveAdvancedSelectedFilters(payload)
-    )
-    dispatch(getCompanyList(payload,companyPaginationValue));
+    };
+    dispatch(saveAdvancedSelectedFilters(payload));
+    dispatch(getCompanyList(payload, companyPaginationValue));
   };
 
   const onCompanyTypeChange = (list) => {
@@ -726,17 +805,13 @@ const AdvancedFilter = ({
   const onCompanyTypeCheckAllChange = (e) => {
     setSelectedCompanyTypeList(e.target.checked ? companyTypeList : []);
     setCheckAllCompanyType(e.target.checked);
-  
-    
+
     const payload = {
       ...companySelectedFilterList,
       selectedCompanytype: e.target.checked ? companyTypeList : [],
-    }
-    dispatch(
-      saveAdvancedSelectedFilters(payload)
-    )
-    dispatch(getCompanyList(payload,companyPaginationValue));
-
+    };
+    dispatch(saveAdvancedSelectedFilters(payload));
+    dispatch(getCompanyList(payload, companyPaginationValue));
   };
   /*End companytype */
 
@@ -761,9 +836,7 @@ const AdvancedFilter = ({
             </Checkbox>
           )}
         </div>
-        <div
-          className="filteroptions"
-        >
+        <div className="filteroptions">
           <div className="searchbox">
             <Input
               placeholder="Search"
@@ -777,17 +850,35 @@ const AdvancedFilter = ({
           >
             <>
               <ul>
-                {employeeCountList?.map((item) => (
-                  <li>
-                    <Checkbox
-                      key={item.id}
-                      value={item}
-                      onChange={($event) => updateEmployeeCount($event)}
-                    >
-                      {item.name}
-                    </Checkbox>
-                  </li>
-                ))}
+                {employeeCountList?.map((item, index) => {
+                  if (showNumberofRecords) {
+                    return (
+                      index < showNumberofRecords && (
+                        <li>
+                          <Checkbox
+                            key={item.id}
+                            value={item}
+                            onChange={($event) => updateCompanyType($event)}
+                          >
+                            {item.name}
+                          </Checkbox>
+                        </li>
+                      )
+                    );
+                  } else {
+                    return (
+                      <li>
+                        <Checkbox
+                          key={item.id}
+                          value={item}
+                          onChange={($event) => updateEmployeeCount($event)}
+                        >
+                          {item.name}
+                        </Checkbox>
+                      </li>
+                    );
+                  }
+                })}
               </ul>
             </>
           </CheckboxGroup>
@@ -829,11 +920,9 @@ const AdvancedFilter = ({
     const payload = {
       ...companySelectedFilterList,
       selectedEmployeecount: newList,
-    }
-    dispatch(
-      saveAdvancedSelectedFilters(payload)
-    )
-    dispatch(getCompanyList(payload,companyPaginationValue));
+    };
+    dispatch(saveAdvancedSelectedFilters(payload));
+    dispatch(getCompanyList(payload, companyPaginationValue));
   };
 
   const onEmployeeCountChange = (list) => {
@@ -843,16 +932,13 @@ const AdvancedFilter = ({
   const onEmployeeCountCheckAllChange = (e) => {
     setSelectedEmployeeCountList(e.target.checked ? employeeCountList : []);
     setCheckAllEmployeeCount(e.target.checked);
-  
+
     const payload = {
       ...companySelectedFilterList,
       selectedEmployeecount: e.target.checked ? employeeCountList : [],
-    }
-    dispatch(
-      saveAdvancedSelectedFilters(payload)
-    )
-    dispatch(getCompanyList(payload,companyPaginationValue));
-
+    };
+    dispatch(saveAdvancedSelectedFilters(payload));
+    dispatch(getCompanyList(payload, companyPaginationValue));
   };
   /*End employee count */
 
@@ -891,17 +977,37 @@ const AdvancedFilter = ({
           >
             <>
               <ul>
-                {revenueRangeList?.map((item) => (
-                  <li>
-                    <Checkbox
-                      key={item.id}
-                      value={item}
-                      onChange={($event) => updateRevenueRange($event)}
-                    >
-                      {item.name}
-                    </Checkbox>
-                  </li>
-                ))}
+                {revenueRangeList?.map((item, index) => {
+                  if (showNumberofRecords) {
+                    return (
+                      index < showNumberofRecords && (
+                        <li>
+                          <Checkbox
+                            key={item.id}
+                            value={item}
+                            onChange={($event) => updateCompanyType($event)}
+                          >
+                            {item.name}
+                          </Checkbox>
+                        </li>
+                      )
+                    );
+                  } else {
+                    return (
+                    <li>
+                     
+                      <Checkbox
+                        key={item.id}
+                        value={item}
+                        onChange={($event) => updateRevenueRange($event)}
+                      >
+                        {item.name}
+                      </Checkbox>
+                      
+                    </li>
+                    )
+                  }
+                })}
               </ul>
             </>
           </CheckboxGroup>
@@ -940,16 +1046,13 @@ const AdvancedFilter = ({
       );
     }
     setSelectedRevenueRangeList(newList);
-    
+
     const payload = {
       ...companySelectedFilterList,
       selectedRevenuerange: newList,
-    }
-    dispatch(
-      saveAdvancedSelectedFilters(payload)
-    )
-    dispatch(getCompanyList(payload,companyPaginationValue));
-
+    };
+    dispatch(saveAdvancedSelectedFilters(payload));
+    dispatch(getCompanyList(payload, companyPaginationValue));
   };
 
   const onRevenueRangeChange = (list) => {
@@ -963,11 +1066,9 @@ const AdvancedFilter = ({
     const payload = {
       ...companySelectedFilterList,
       selectedRevenuerange: e.target.checked ? revenueRangeList : [],
-    }
-    dispatch(
-      saveAdvancedSelectedFilters(payload)
-    )
-    dispatch(getCompanyList(payload,companyPaginationValue));
+    };
+    dispatch(saveAdvancedSelectedFilters(payload));
+    dispatch(getCompanyList(payload, companyPaginationValue));
   };
   /*End revenue range */
 

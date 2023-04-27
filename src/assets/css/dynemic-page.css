@@ -6520,7 +6520,6 @@ padding:5px
     }
 
     .leftmenufilter .ant-checkbox-group{
-      max-height: 185px;
       overflow: hidden;
       padding:6px 20px;
     }
