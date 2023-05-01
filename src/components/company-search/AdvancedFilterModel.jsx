@@ -36,6 +36,7 @@ const AdvancedFilterModel = ({ setOpenAdvancedModel, openAdvancedModel }) => {
     <>
       <Modal
         width={"80%"}
+        bodyStyle={{ overflowY: 'auto', maxHeight: 'calc(100vh - 230px)' }}
         wrapClassName="advancedfilter"
         title="Advanced Filter"
         open={openAdvancedModel?.open}

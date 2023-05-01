@@ -38,8 +38,7 @@ const AboutCompany = () => {
                 <strong>Employees Range</strong>
               </div>
               <div className="gap-l">
-                {companyDetails?.totalEmployees}{" "}
-                <span> on {companyDetails?.name} </span>
+                {companyDetails?.totalEmployees}
               </div>
             </div>
             <div className="col w-col-3">
@@ -57,7 +56,7 @@ const AboutCompany = () => {
                 ></i>
                 <strong>Company Type</strong>
               </div>
-              <div className="gap-l">$48.00 Million</div>
+              <div className="gap-l">{companyDetails?.category?.name}</div>
             </div>
           </div>
 
@@ -97,9 +96,10 @@ const AboutCompany = () => {
                 <div className={`contentcontainer ${showMoreIntroduction ? "" : "softexpand"}`}>
                   {companyDetails?.introduction}
                 </div>
+                {companyDetails?.introduction?
                 <button class="btn btn-light mr-2 " onClick={onClickShowMoreIntroduction}>
                   {showMoreIntroduction ? "Hide.." : "More.."}
-                </button>
+                </button>:""}
               </div>
             </div>
 
@@ -112,35 +112,12 @@ const AboutCompany = () => {
                 <div
                   className={`contentcontainer ${showMoreProducts ? "" : "softexpand"}`}
                 >
-                  <span>Retail, </span>
-                  <span>Internet, </span>
-                  <span>e-Commerce, </span>
-                  <span>Software, </span>
-                  <span>Business Development, </span>
-                  <span>Crowdsourcing, </span>
-                  <span>Retail Software, </span>
-                  <span>Delivery, </span>
-                  <span>Operations, </span>{" "}
-                  <span>Administrative Services, </span>
-                  <span>Records, Videos &amp; Books, </span>
-                  <span>Delivery Service, </span>
-                  <span>Television Stations, </span>
-                  <span>Transportation, </span>
-                  <span>Broadcasting, </span>
-                  <span>E-Commerce, </span>
-                  <span>Cable &amp; Satellite, </span>
-                  <span>Commerce and Shopping, </span>
-                  <span>Media &amp; Internet, </span>
-                  <span>Telecommunications, </span>
-                  <span>Internet Services, </span>
-                  <span>SaaS, </span>
-                  <span>Shipping, </span>
-                  <span>Software Development, </span>
-                  <span>Consumer Electronics &amp; Computers</span>
+                 {companyDetails?.shortIntro}
                 </div>
+                {companyDetails?.shortIntro ?
                 <button class="btn btn-light mr-2 " onClick={onClickshowMoreProducts}>
                   {showMoreProducts ? "Hide.." : "More.."}
-                </button>
+                </button>:""}
               </div>
             </div>
           </div>

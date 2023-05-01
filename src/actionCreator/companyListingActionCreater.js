@@ -72,7 +72,7 @@ export const getCompanyList = (payload,paginationValues) => (dispatch) => {
 
 export const downloadCompanyList = (payload,urlSubstring) => (dispatch) => {
   const url =  createPayload(payload,null,`${companyListingApiUrl}/${urlSubstring}`);
-  return getMethod(url).then((res) => {
+  return getAuthMethod(url).then((res) => {
     dispatch({
       type: DOWNLOAD_COMPANYLIST,
       payload: res.data,

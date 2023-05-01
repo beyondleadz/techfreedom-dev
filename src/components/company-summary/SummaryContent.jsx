@@ -1,11 +1,36 @@
 import React, { useState } from "react";
-import { Tabs } from "antd";
+import { Tabs, Dropdown, Space } from "antd";
+import { useSelector, useDispatch } from "react-redux";
 import logo from "../../assets/images/icici.jpg";
 import AboutCompany from "./AboutCompany";
 import KeyExecutives from "./KeyExecutives";
 import OrgChart from "./OrgChart";
 
 const SummaryContent = () => {
+  const [dropDownToggle, setDropdownToggle] = useState(false);
+  const [tabActiveKey, setTabActiveKey] = useState("1");
+  const [selectedValue, setSelectedValue] = useState("Filter by Department");
+  const departmentList = useSelector(
+    (state) => state.companyDetailsReducer.departmentList
+  );
+  const filterItems = [
+    {
+      label: <a href="https://www.antgroup.com">1st menu item</a>,
+      key: "5",
+    },
+    {
+      label: <a href="https://www.aliyun.com">2nd menu item</a>,
+      key: "6",
+    },
+    {
+      type: "divider",
+    },
+    {
+      label: "3rd menu item",
+      key: "7",
+    },
+  ];
+
   const items = [
     {
       key: "1",
@@ -25,17 +50,23 @@ const SummaryContent = () => {
       ),
       children: <KeyExecutives />,
     },
+    // {
+    //   key: "3",
+    //   label: (
+    //     <div className="deptdropdowncontainer">
+    //       <div >
+    //         <i className="text-black fa fa-suitcase pr-2"></i>Filter by
+    //         Department
+    //       </div>
+    //       <ul className="departmentDropdown">
+    //         <li>items</li>
+    //       </ul>
+    //     </div>
+    //   ),
+    //   children: <div>department</div>,
+    // },
     {
       key: "3",
-      label: (
-        <span>
-          <i className="text-black fa fa-suitcase pr-2"></i>Filter by Department
-        </span>
-      ),
-      children: <div>department</div>,
-    },
-    {
-      key: "4",
       label: (
         <span>
           <i className="text-black fa fa-sitemap pr-2"></i>Org. Chart
@@ -45,7 +76,21 @@ const SummaryContent = () => {
     },
   ];
 
-  const onChange = () => {};
+  const onChange = (key) => {
+    setTabActiveKey(key)
+  };
+
+  const toggleDropdown = () => {
+    setDropdownToggle(!dropDownToggle);
+  };
+
+  const setValue = (val) => {
+    setSelectedValue(val);
+    setDropdownToggle(!dropDownToggle);
+    setTabActiveKey("2")
+  };
+
+  console.log(departmentList, "departmentListdepartmentList");
 
   return (
     <>
@@ -55,13 +100,41 @@ const SummaryContent = () => {
             <div className="col-md-9 col-custom">
               <div className="row">
                 <div className="col-md-12">
-                  <div className="mt-4 mb-4">
-                    <Tabs
-                      defaultActiveKey="1"
-                      items={items}
-                      onChange={onChange}
-                      type="card"
-                    />
+                  <div className="mt-4 mb-4 summarycontainer">
+                    <div>
+                      {
+                        console.log(tabActiveKey,'tabActiveKeytabActiveKey')
+                      }
+                      <Tabs
+                        // defaultActiveKey="1"
+                        activeKey={tabActiveKey}
+                        items={items}
+                        onChange={onChange}
+                        type="card"
+                      />
+                    </div>
+                    <div className="departmentcontainer ">
+                      <div
+                        className="selectedlabel fa"
+                        onClick={toggleDropdown}
+                      >
+                        <i className="text-black fa fa-suitcase pr-2"></i>
+                        <span>{selectedValue}</span>
+                      </div>
+                      <ul
+                        className={`departmentOptions ${
+                          dropDownToggle ? "show" : ""
+                        }`}
+                      >
+                        {departmentList?.map((item) => {
+                          return (
+                            <li onClick={() => setValue(item?.name)}>
+                              {item?.name}
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -207,10 +280,6 @@ const SummaryContent = () => {
     </>
   );
 
-
-
-
-
   // return (
   //   <>
   //     <div id="content-wrapper" className="d-flex flex-column">
@@ -293,7 +362,7 @@ const SummaryContent = () => {
   //                   <div className="card shadow card-body">
   //                     <div class="container">
   //                       <div className="row mt-3 mb-2 w-100- fs-14">
-  //                       <div className="col"> 
+  //                       <div className="col">
   //                         <strong>Deutsche Bank</strong>, a Frankfurt-based
   //                         global investment bank, offers financial products and
   //                         services to corporate and institutional clients.</div>
@@ -326,7 +395,7 @@ const SummaryContent = () => {
   //                             <div className="gap-l">$48.00 Million</div>
   //                           </div>
   //                         </div>
-                        
+
   //                         <div className="row mt-3 w-100-">
   //                           <div className="col w-col-3">
   //                             <div>
@@ -358,12 +427,11 @@ const SummaryContent = () => {
   //                             <div className="gap-l">
   //                               <span>Retail, </span>
   //                               <span>Internet, </span>
-  //                               <span>e-Commerce, </span> 
-                                
-                               
+  //                               <span>e-Commerce, </span>
+
   //                               <div>
-                                                                  
-  //                               <span>Software, </span> 
+
+  //                               <span>Software, </span>
   //                               <span>Business Development, </span>
   //                                 <span>Crowdsourcing, </span>
   //                                 <span>Retail Software, </span>
@@ -849,20 +917,6 @@ const SummaryContent = () => {
   //     </div>
   //   </>
   // );
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 };
 
 export default SummaryContent;

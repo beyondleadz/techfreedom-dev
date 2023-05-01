@@ -1,16 +1,32 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState ,useMemo} from "react";
 import Layout from "../layout/Layout";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import SummaryContent from "../components/company-summary/SummaryContent";
 import SummaryHeader from "../components/company-summary/SummaryHeader";
+import {
+  getCompanyDetails,
+  getEmployeeList,
+  getDepartmentList
+} from "../actionCreator/companyDetailsActionCreator";
+import {useParams} from "react-router-dom";
 import NoDataFound from "../components/NoData";
 import "../assets/css/dynemic-page.css";
 import Loader from "../components/loader";
 const CompanySummary = () => {
+
+  const {id} = useParams();
+  const dispatch = useDispatch()
   const companyDetails = useSelector(
     (state) => state.companyDetailsReducer.companyDetails
   );
   const [loading, setLoading] = useState(true);
+
+  useMemo(() => {
+    console.log(id,'skjflkdjf')
+    dispatch(getDepartmentList())
+    dispatch(getCompanyDetails(id));
+    dispatch(getEmployeeList(id));
+  },[] )
 
   useEffect(() => {
     Object.keys(companyDetails).length ? setLoading(false) : setLoading(true);

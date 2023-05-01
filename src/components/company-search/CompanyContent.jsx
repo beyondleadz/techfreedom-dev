@@ -1,10 +1,7 @@
 import React, { useEffect, useState, useMemo } from "react";
-import { useNavigate,Link } from "react-router-dom";
-import CLogo from "../../assets/images/d-bank1.png";
+import { useNavigate, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { Dropdown, Space } from "antd";
 import _ from "lodash";
-// import "antd/dist/antd.css";
 import { Table, Input } from "antd";
 import { PAGE_LENGTH } from "../../config";
 import {
@@ -12,10 +9,6 @@ import {
   savePaginationValues,
   saveAdvancedSelectedFilters,
 } from "../../actionCreator/companyListingActionCreater";
-import {
-  getCompanyDetails,
-  getEmployeeList,
-} from "../../actionCreator/companyDetailsActionCreator";
 import Loader from "../loader";
 
 const CompanyContent = () => {
@@ -72,7 +65,7 @@ const CompanyContent = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [companyList, setCompanyList] = useState();
-  const [loading,setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
   const companyFilterList = useSelector((state) => state.companyListingReducer);
   const companySelectedFilterList = useSelector(
     (state) => state.companyListingReducer.selectedFilters
@@ -82,11 +75,10 @@ const CompanyContent = () => {
   );
 
   useMemo(() => {
-    dispatch(getCompanyList({},paginationValue));
+    dispatch(getCompanyList({}, paginationValue));
   }, []);
 
   const renderSocialLinks = (socialLinks) => {
-    console.log(socialLinks,'renderSocialLinks')
     return socialLinks?.map((link) => {
       if (link?.name === "facebook") {
         return (
@@ -113,7 +105,6 @@ const CompanyContent = () => {
   useEffect(() => {
     let data = [];
     companyFilterList?.companyList?.forEach((record) => {
-      console.log(record,'recordrecordrecord')
       data = [
         ...data,
         {
@@ -122,7 +113,7 @@ const CompanyContent = () => {
           industry: record?.industry?.name,
           location: `${record?.address}, ${record?.city}, ${record?.state}, ${record?.country}`,
           phone: record.phoneNo,
-          social:renderSocialLinks(record?.socialLinks),
+          social: renderSocialLinks(record?.socialLinks),
         },
       ];
     });
@@ -132,16 +123,11 @@ const CompanyContent = () => {
     setCompanyList(data);
   }, [companyFilterList]);
 
+  useEffect(() => {}, [companyList]);
 
-  useEffect(() => {
-
-  },[companyList])
-
-  
   useEffect(() => {
     companyList && companyList.length ? setLoading(false) : setLoading(true);
-  },[companyList]);
-
+  }, [companyList]);
 
   const rowSelection = {
     onChange: (selectedRowKeys, selectedRows) => {
@@ -168,20 +154,18 @@ const CompanyContent = () => {
 
   const onPageChange = (page, pageSize) => {
     const pageValues = {
-      start: page-1,
+      start: page - 1,
       end: pageSize,
     };
     dispatch(savePaginationValues(pageValues));
-    dispatch(getCompanyList(companySelectedFilterList,pageValues));
+    dispatch(getCompanyList(companySelectedFilterList, pageValues));
   };
 
   const getDetails = (id) => {
-    dispatch(getCompanyDetails(id));
-    dispatch(getEmployeeList(id));
-    navigate("/company-summary");
+    navigate(`/company-summary/${id}`);
   };
 
-  console.log(companyList,'skjflskdjfkl')
+  console.log(companyList, "skjflskdjfkl");
 
   return !loading ? (
     <>
@@ -193,7 +177,8 @@ const CompanyContent = () => {
                 <div className="card shadow mb-4">
                   <div className="card-header py-3 f-rev d-flex align-items-center justify-content-between">
                     <h6 className="m-0 ml-2 font-weight-bold text-primary mob-t">
-                      Showing 1-{PAGE_LENGTH} of {companyFilterList?.totalCount} results
+                      Showing 1-{PAGE_LENGTH} of {companyFilterList?.totalCount}
+                      results
                     </h6>
 
                     <div className="buttons-container textsearch">
@@ -225,10 +210,7 @@ const CompanyContent = () => {
                           pagination={{
                             responsive: true,
                             total: companyFilterList?.totalCount,
-                            // pageSizeOptions: ["5", "10", "15", "15"],
                             pageSize: PAGE_LENGTH,
-                            // showSizeChanger: true,
-                            // defaultPageSize: 10,
                             position: ["bottomCenter"],
                             onChange: onPageChange,
                           }}

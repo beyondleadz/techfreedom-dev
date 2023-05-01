@@ -50,7 +50,8 @@ const AppRoutes = (props) => {
                 <Route path='/executive-search' element={<ExecutiveSearch/>}/>
                 <Route path='/search-company' element={<CompanySearch tab='1'/>}/>
                 <Route path='/search-executive' element={<CompanySearch tab='2'/>}/>
-                <Route path='/company-summary' element={<CompanySummary/>}/>
+                {/* <Route path='/company-summary' element={<CompanySummary/>}/> */}
+                <Route path='/company-summary/:id' element={<CompanySummary/>}/>
                 {/* <Route path='/summary' element={<Summary/>}/> */}
                 <Route path='/our-data' element={<OurData/>}/>
                 <Route path='/direct-dials' element={<DirectDials/>}/>
