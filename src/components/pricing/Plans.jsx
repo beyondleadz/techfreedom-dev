@@ -43,12 +43,13 @@ const Plans=()=>{
 						<div className="pricing-grid1">
 							<div className="price-value one">
 									<h4><a href="#">Basic</a></h4>
+									<div><a href="#"><strong style={{fontSize:20}}>{currencySymbol}{price.basic} </strong><span className="small"><strong>(Billed Annually)</strong></span></a></div>
 									<div className="small">You have small enterprises and light usage.</div>
 							</div>
 							
 							<div className="price-bg">
 							<ul>
-								<li className="whyt"><a href="#"><strong>{currencySymbol}{price.basic} </strong><span className="small">(Billed Annually)</span></a></li>
+								{/* <li className="whyt"><a href="#"><strong style={{fontSize:20}}>{currencySymbol}{price.basic} </strong><span className="small"><strong>(Billed Annually)</strong></span></a></li> */}
 								<li><a href="#">500 Monthly Data Credits</a></li>
 								<li className="whyt"><a href="#"><i className="fa fa-times" aria-hidden="true"></i></a></li>
 								<li><a href="#"><strong>500 Email Credits</strong></a></li>	
@@ -76,11 +77,12 @@ const Plans=()=>{
 							<div className="price-value two">
 							
 								<h4><a href="#">Growth</a></h4>
+								<div><a href="#"><strong style={{fontSize:20}}>{currencySymbol}{price.basic} </strong><span className="small"><strong>(Billed Annually)</strong></span></a></div>
 								<div className="small">You have medium & large enterprises and medium usage.</div>
 															</div>
 							<div className="price-bg">
 							<ul>
-							<li className="whyt"><a href="#"><strong>{currencySymbol}{price.growth} </strong><span className="small">(Billed Annually)</span></a></li>
+							{/* <li className="whyt"><a href="#"><strong>{currencySymbol}{price.growth} </strong><span className="small">(Billed Annually)</span></a></li> */}
 								<li><a href="#">2000 Monthly Data Credits</a></li>
 								<li className="whyt"><a href="#">Lead Management</a></li>
 								<li><a href="#"><strong>2000 Email Credits</strong></a></li>	
@@ -105,12 +107,13 @@ const Plans=()=>{
 						<div className="pricing-grid3">
 							<div className="price-value three">
 								<h4><a href="#">Pro</a></h4>
+								<div><a href="#"><strong style={{fontSize:20}}>{currencySymbol}{price.basic} </strong><span className="small"><strong>(Billed Annually)</strong></span></a></div>
 								<div className="small">You have large enterprises & research organisation and heavy usage.</div>
 								
 							</div>
 							<div className="price-bg">
 							<ul>
-							<li className="whyt"><a href="#"><strong>{currencySymbol}{price.pro} </strong><span className="small">(Billed Annually)</span></a></li>
+							{/* <li className="whyt"><a href="#"><strong>{currencySymbol}{price.pro} </strong><span className="small">(Billed Annually)</span></a></li> */}
 								<li><a href="#">10000 Monthly Data Credits</a></li>
 								<li className="whyt"><a href="#">Lead Management</a></li>
 								<li><a href="#"><strong>10000 Email Credits</strong></a></li>	
