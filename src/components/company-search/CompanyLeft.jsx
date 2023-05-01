@@ -251,6 +251,7 @@ const CompanyLeft = () => {
         <AdvancedFilterModel
           setOpenAdvancedModel={setOpenAdvancedModel}
           openAdvancedModel={openAdvancedModel}
+          showNumberofRecords={36}
         />
       )}
     </>

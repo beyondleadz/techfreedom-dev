@@ -28,6 +28,7 @@ const CompanySummary = () => {
   }, []);
 
   useMemo(() => {
+    console.log(companyDetails,'companyDetailscompanyDetails')
     if (Object.keys(companyDetails).length) {
       dispatch(
         getSimilarCompanyList(
@@ -54,7 +55,7 @@ const CompanySummary = () => {
           <div className="wrapper companysummary">
             <SummaryHeader />
             <div id="wrapper">
-              <SummaryContent id={id} />
+              <SummaryContent />
             </div>
           </div>
         ) : (

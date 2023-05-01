@@ -16,20 +16,9 @@ const AboutCompany = () => {
     setshowMoreIntroduction(!showMoreIntroduction);
   }
 
-  //   const renderIndustry = (list,start,end) => {
-  //     let industryList = _.cloneDeep(list);
-  //     console.log(industryList,'sjfslkdfjl')
-  //     // industryList = industryList?.splice(start,end)
-  //     // return industryList.map((item) => {
-  //     //     return <span>{item.name}, </span>
-  //     // })
-  //   }
-
-  console.log(companyDetails, "sdkjfkls");
-
   return (
     <div className="card shadow card-body">
-      <div class="container">
+      <div className="container">
         <div className="row mt-3 mb-2 w-100- fs-14">
           <div className="row mt-3 w-100- ">
             <div className="col w-col-3">
@@ -85,7 +74,7 @@ const AboutCompany = () => {
           </div>
 
           <div className="row mt-3 w-100-">
-            <div className="col w-col-3" style={{ maxWidth: "33.3%" }}>
+            {/* <div className="col w-col-3" style={{ maxWidth: "33.3%" }}>
               <div>
                 <i className=" mr-2 text-black las la-cog"></i>
                 <span className="font-weight-bold">
@@ -97,13 +86,13 @@ const AboutCompany = () => {
                   {companyDetails?.introduction}
                 </div>
                 {companyDetails?.introduction?
-                <button class="btn btn-light mr-2 " onClick={onClickShowMoreIntroduction}>
+                <button className="btn btn-light mr-2 " onClick={onClickShowMoreIntroduction}>
                   {showMoreIntroduction ? "Hide.." : "More.."}
                 </button>:""}
               </div>
-            </div>
+            </div> */}
 
-            <div className="col w-col-3" style={{ maxWidth: "33.3%" }}>
+            <div className="col w-col-9" style={{ maxWidth: "96.3%" }}>
               <div>
                 <i className=" text-black fs-16 las la-suitcase mr-2"></i>
                 <strong>Product and Services</strong>
@@ -115,7 +104,7 @@ const AboutCompany = () => {
                  {companyDetails?.shortIntro}
                 </div>
                 {companyDetails?.shortIntro ?
-                <button class="btn btn-light mr-2 " onClick={onClickshowMoreProducts}>
+                <button className="btn btn-light mr-2 " onClick={onClickshowMoreProducts}>
                   {showMoreProducts ? "Hide.." : "More.."}
                 </button>:""}
               </div>

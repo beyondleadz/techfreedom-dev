@@ -34,11 +34,17 @@ const CompanyContent = () => {
     {
       title: <div className="companyname">Company Name</div>,
       dataIndex: "name",
-      render: (text, row) => {
+      render: (record, row) => {
+        console.log(record, "rowrowrow");
         return (
-          <span className="companyname" onClick={() => getDetails(row.key)}>
-            {text}
-          </span>
+          <div className="namecol">
+            <div className="logo">
+              <img src={record?.companyLogoUrl} />
+            </div>
+            <span className="companyname" onClick={() => getDetails(row.key)}>
+              {record?.name}
+            </span>
+          </div>
         );
       },
       fixed: "left",
@@ -109,7 +115,7 @@ const CompanyContent = () => {
         ...data,
         {
           key: record.id,
-          name: record.name,
+          name: record,
           industry: record?.industry?.name,
           location: `${record?.address}, ${record?.city}, ${record?.state}, ${record?.country}`,
           phone: record.phoneNo,

@@ -27,12 +27,18 @@ export const getCompanyDetails = (id) => (dispatch) => {
   });
 };
 
+
+export const resetEmployeeList = () => ({
+  type: EMPLOYEE_LIST,
+  payload: [],
+})
+
+
 export const getEmployeeList = (id, department) => (dispatch) => {
   let url = `${employeeListUrl}?companyId.in=${id}`;
   if (department) {
     url += `&exfunction.in=${department}`;
   }
-  // const url = `${employeeListUrl}?companyId.in=${id}`;
   return getMethod(url).then((res) => {
     dispatch({
       type: EMPLOYEE_LIST,

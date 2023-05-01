@@ -8,7 +8,7 @@ import {
 } from "../../actionCreator/companyListingActionCreater";
 import { useSelector, useDispatch } from "react-redux";
 
-const AdvancedFilterModel = ({ setOpenAdvancedModel, openAdvancedModel }) => {
+const AdvancedFilterModel = ({ setOpenAdvancedModel, openAdvancedModel,showNumberofRecords }) => {
   const dispatch = useDispatch();
   const companyFilterList = useSelector((state) => state.companyListingReducer);
 
@@ -36,7 +36,7 @@ const AdvancedFilterModel = ({ setOpenAdvancedModel, openAdvancedModel }) => {
     <>
       <Modal
         width={"80%"}
-        bodyStyle={{ overflowY: 'auto', maxHeight: 'calc(100vh - 230px)' }}
+        // bodyStyle={{ overflowY: 'auto', maxHeight: 'calc(100vh - 230px)' }}
         wrapClassName="advancedfilter"
         title="Advanced Filter"
         open={openAdvancedModel?.open}
@@ -45,7 +45,7 @@ const AdvancedFilterModel = ({ setOpenAdvancedModel, openAdvancedModel }) => {
         onCancel={handleCancel}
         maskStyle={{ background: "rgba(0,0,0,0.8)" }}
       >
-        <AdvancedFilter openAdvancedModel={openAdvancedModel} />
+        <AdvancedFilter openAdvancedModel={openAdvancedModel} showNumberofRecords={showNumberofRecords} />
       </Modal>
     </>
   );

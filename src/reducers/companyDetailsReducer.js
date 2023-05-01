@@ -16,7 +16,6 @@ const initialState = {
 
 const CompanyDetailsReducer = (state = initialState, action) => {
   const { type, payload } = action;
-  console.log(type, payload, "sklfsjldfksd");
   switch (type) {
     case COMPANY_DETAILS:
       return { ...state, companyDetails: payload };

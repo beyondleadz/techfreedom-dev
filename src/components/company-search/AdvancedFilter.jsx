@@ -7,7 +7,7 @@ import {
 } from "../../actionCreator/companyListingActionCreater";
 import { SearchOutlined } from "@ant-design/icons";
 import { useSelector, useDispatch } from "react-redux";
-import { LEFT_FILETERS_SIZE } from "../../config";
+import { LEFT_FILETERS_SIZE, MORE_FILETERS_SIZE } from "../../config";
 
 const AdvancedFilter = ({
   openAdvancedModel,
@@ -92,7 +92,7 @@ const AdvancedFilter = ({
   const [selectedrevenueRangeList, setSelectedRevenueRangeList] = useState([]);
   const [revenueRangeList, setRevenueRangeList] = useState([]);
   const [checkAllRevenueRange, setCheckAllRevenueRange] = useState(false);
-
+  const [viewMore, setViewMore] = useState(true);
   const CheckboxGroup = Checkbox.Group;
 
   useEffect(() => {
@@ -159,7 +159,9 @@ const AdvancedFilter = ({
         companyFilterListEmployeeCountList.length
     );
   }, [companySelectedFilterList]);
-
+  const setShowHideData = () => {
+    setViewMore(!viewMore);
+  };
   const openVisibleFilter = (menu) => {
     setVisibleFilter({
       ...{
@@ -209,7 +211,7 @@ const AdvancedFilter = ({
           <CheckboxGroup onChange={onCountryChange} value={selectedCountryList}>
             <>
               <ul>
-                {countriesList.map((item,index) => {
+                {countriesList.map((item, index) => {
                   if (showNumberofRecords) {
                     return (
                       index < showNumberofRecords && (
@@ -471,7 +473,7 @@ const AdvancedFilter = ({
             <>
               <ul>
                 {citiesList?.map((item, index) => {
-                  if (showNumberofRecords) {
+                  if (viewMore && showNumberofRecords) {
                     return (
                       index < showNumberofRecords && (
                         <li>
@@ -509,6 +511,14 @@ const AdvancedFilter = ({
                 onClick={() => setOpenAdvancedModel({ open: true, key: 3 })}
               >
                 View More
+              </span>
+            </div>
+          )}
+
+          {showCheckAll && citiesList.length > MORE_FILETERS_SIZE.length && (
+            <div className="advancemodel viewmore">
+              <span onClick={setShowHideData}>
+                {viewMore ? "View More" : "Hide"}
               </span>
             </div>
           )}
@@ -994,18 +1004,16 @@ const AdvancedFilter = ({
                     );
                   } else {
                     return (
-                    <li>
-                     
-                      <Checkbox
-                        key={item.id}
-                        value={item}
-                        onChange={($event) => updateRevenueRange($event)}
-                      >
-                        {item.name}
-                      </Checkbox>
-                      
-                    </li>
-                    )
+                      <li>
+                        <Checkbox
+                          key={item.id}
+                          value={item}
+                          onChange={($event) => updateRevenueRange($event)}
+                        >
+                          {item.name}
+                        </Checkbox>
+                      </li>
+                    );
                   }
                 })}
               </ul>
