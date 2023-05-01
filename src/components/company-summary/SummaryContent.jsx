@@ -1,35 +1,30 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Tabs, Dropdown, Space } from "antd";
 import { useSelector, useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 import logo from "../../assets/images/icici.jpg";
 import AboutCompany from "./AboutCompany";
 import KeyExecutives from "./KeyExecutives";
 import OrgChart from "./OrgChart";
+import { getEmployeeList } from "../../actionCreator/companyDetailsActionCreator";
 
 const SummaryContent = () => {
+  const dispatch = useDispatch();
+  const { id } = useParams();
+  console.log(id, "jrajsdldjfk");
   const [dropDownToggle, setDropdownToggle] = useState(false);
   const [tabActiveKey, setTabActiveKey] = useState("1");
+  const [similarList, setSimilarList] = useState();
   const [selectedValue, setSelectedValue] = useState("Filter by Department");
   const departmentList = useSelector(
     (state) => state.companyDetailsReducer.departmentList
   );
-  const filterItems = [
-    {
-      label: <a href="https://www.antgroup.com">1st menu item</a>,
-      key: "5",
-    },
-    {
-      label: <a href="https://www.aliyun.com">2nd menu item</a>,
-      key: "6",
-    },
-    {
-      type: "divider",
-    },
-    {
-      label: "3rd menu item",
-      key: "7",
-    },
-  ];
+  const companyDetails = useSelector(
+    (state) => state.companyDetailsReducer.companyDetails
+  );
+  const similarCompanyList = useSelector(
+    (state) => state.companyDetailsReducer.similarCompanyList
+  );
 
   const items = [
     {
@@ -50,21 +45,6 @@ const SummaryContent = () => {
       ),
       children: <KeyExecutives />,
     },
-    // {
-    //   key: "3",
-    //   label: (
-    //     <div className="deptdropdowncontainer">
-    //       <div >
-    //         <i className="text-black fa fa-suitcase pr-2"></i>Filter by
-    //         Department
-    //       </div>
-    //       <ul className="departmentDropdown">
-    //         <li>items</li>
-    //       </ul>
-    //     </div>
-    //   ),
-    //   children: <div>department</div>,
-    // },
     {
       key: "3",
       label: (
@@ -76,18 +56,26 @@ const SummaryContent = () => {
     },
   ];
 
+  useEffect(() => {
+    const list = similarCompanyList?.filter(
+      (item) => !item?.id === companyDetails?.id
+    );
+    setSimilarList(list);
+  }, [similarCompanyList]);
+
   const onChange = (key) => {
-    setTabActiveKey(key)
+    setTabActiveKey(key);
   };
 
   const toggleDropdown = () => {
     setDropdownToggle(!dropDownToggle);
   };
 
-  const setValue = (val) => {
-    setSelectedValue(val);
+  const setValue = (selectedItem) => {
+    dispatch(getEmployeeList(id, selectedItem?.id));
+    setSelectedValue(selectedItem?.name);
     setDropdownToggle(!dropDownToggle);
-    setTabActiveKey("2")
+    setTabActiveKey("2");
   };
 
   console.log(departmentList, "departmentListdepartmentList");
@@ -102,9 +90,7 @@ const SummaryContent = () => {
                 <div className="col-md-12">
                   <div className="mt-4 mb-4 summarycontainer">
                     <div>
-                      {
-                        console.log(tabActiveKey,'tabActiveKeytabActiveKey')
-                      }
+                      {console.log(tabActiveKey, "tabActiveKeytabActiveKey")}
                       <Tabs
                         // defaultActiveKey="1"
                         activeKey={tabActiveKey}
@@ -128,9 +114,7 @@ const SummaryContent = () => {
                       >
                         {departmentList?.map((item) => {
                           return (
-                            <li onClick={() => setValue(item?.name)}>
-                              {item?.name}
-                            </li>
+                            <li onClick={() => setValue(item)}>{item?.name}</li>
                           );
                         })}
                       </ul>
@@ -142,28 +126,38 @@ const SummaryContent = () => {
             <div className="col-md-3 col-custom-2">
               <div className="card shadow mt-5 mb-4">
                 <div className="card-header font-weight-bold">
+                  {console.log(
+                    similarCompanyList,
+                    "similarCompanyListsimilarCompanyList",
+                    similarList
+                  )}
                   Similar Companies
                 </div>
                 <div className="card-body">
-                  <div className="row brdr-b pb-3">
-                    <div className=" s-company img-responsive">
-                      <img src={logo} />
-                    </div>
-                    <div className="col">
-                      <div>
-                        <a
-                          className="font-weight-bold fs-14 text-dark"
-                          title=""
-                          href="#"
-                          target=""
-                        >
-                          ICICI Corporate Banking
-                        </a>
+                  {similarCompanyList?.map((item) => {
+                    return (
+                      <div className="row brdr-b pb-3">
+                        <div className=" s-company img-responsive">
+                          <img src={item?.companyLogoUrl} />
+                        </div>
+                        <div className="col">
+                          <div>
+                            <a
+                              className="font-weight-bold fs-14 text-dark"
+                              title=""
+                              href="#"
+                              target=""
+                            >
+                              {item?.name}
+                            </a>
+                          </div>
+                          <div className="fs-12">{item.industry?.name}</div>
+                          <div className="fs-12">{item?.address}</div>
+                        </div>
                       </div>
-                      <div className="fs-12">Banking, Finance</div>
-                      <div className="fs-12">Noida India</div>
-                    </div>
-                  </div>
+                    );
+                  })}
+
                   <div className="row mt-3 brdr-b pb-3">
                     <div className=" s-company img-responsive">
                       <img src={logo} />

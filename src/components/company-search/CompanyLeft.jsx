@@ -76,8 +76,6 @@ const CompanyLeft = () => {
       cities: filteredCities,
     };
 
-    console.log(filteredCities, "filteredCitiesfilteredCities");
-
     setLocation(
       selectedState.length ? filteredObj : companyFilterList?.geoLocation
     );
