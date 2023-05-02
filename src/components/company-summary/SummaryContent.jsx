@@ -118,7 +118,9 @@ const SummaryContent = () => {
                       >
                         {departmentList?.map((item) => {
                           return (
-                            <li key={item?.id} onClick={() => setValue(item)}>{item?.name}</li>
+                            <li key={item?.id} onClick={() => setValue(item)}>
+                              {item?.name}
+                            </li>
                           );
                         })}
                       </ul>
@@ -130,11 +132,11 @@ const SummaryContent = () => {
             <div className="col-md-3 col-custom-2">
               <div className="card shadow mt-5 mb-4">
                 <div className="card-header font-weight-bold">
-                  {console.log(
+                  {/* {console.log(
                     similarCompanyList,
                     "similarCompanyListsimilarCompanyList",
                     similarList
-                  )}
+                  )} */}
                   Similar Companies
                 </div>
                 <div className="card-body">
@@ -160,7 +162,7 @@ const SummaryContent = () => {
                     );
                   })}
 
-                  <div className="row mt-3 brdr-b pb-3">
+                  {/* <div className="row mt-3 brdr-b pb-3">
                     <div className=" s-company img-responsive">
                       <img src={logo} />
                     </div>
@@ -235,12 +237,16 @@ const SummaryContent = () => {
                       <div className="fs-12">Banking, Finance</div>
                       <div className="fs-12">Noida India</div>
                     </div>
-                  </div>
-                  <div className="fs-12 text-right">
-                    <button className="btn btn-light mr-2 small">
-                      5 More..
-                    </button>
-                  </div>
+                  </div> */}
+                  {similarCompanyList?.length > 5 ? (
+                    <div className="fs-12 text-right">
+                      <button className="btn btn-light mr-2 small">
+                        5 More..
+                      </button>
+                    </div>
+                  ) : (
+                    ""
+                  )}
                 </div>
               </div>
               <div className="card shadow descbox1">

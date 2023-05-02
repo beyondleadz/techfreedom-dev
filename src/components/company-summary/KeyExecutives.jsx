@@ -3,12 +3,19 @@ import { Table, Modal, Button, Tooltip } from "antd";
 import { PAGE_LENGTH } from "../../config";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-import { submitLead } from "../../actionCreator/companyDetailsActionCreator";
+import {
+  submitLead,
+  resetLead,
+} from "../../actionCreator/companyDetailsActionCreator";
 import popupImg from "../../assets/images/free-user-login-prompt.jpg.jpeg";
+import Loader from "../loader";
 const KeyExecutives = () => {
   const dispatch = useDispatch();
   const employeeList = useSelector(
     (state) => state.companyDetailsReducer.employeeList
+  );
+  const submitLeadRes = useSelector(
+    (state) => state.companyDetailsReducer?.executiveLeads
   );
 
   const [employeeData, setEmployeeData] = useState([]);
@@ -16,7 +23,7 @@ const KeyExecutives = () => {
     info: null,
     open: false,
   });
-
+  const [addToLeads, setAddToLeads] = useState(0);
   const navigate = useNavigate();
 
   const columns = [
@@ -79,7 +86,24 @@ const KeyExecutives = () => {
   ];
 
   const postLeads = (record) => {
-    dispatch(submitLead(record));
+    let leadPayload = {
+      firstname: record.firstname,
+      lastname: record.lastname,
+      fullname: record.fullname,
+      title: record.title,
+      client: record.client,
+      emailId: record.emailId,
+      phoneNo: record.phoneNo,
+      bio: record.bio,
+      description: record.description,
+    };
+    dispatch(submitLead(leadPayload));
+    setAddToLeads(record.id);
+  };
+
+  const resetLeadsData = () => {
+    dispatch(resetLead({}));
+    setAddToLeads(0);
   };
 
   useEffect(() => {
@@ -101,6 +125,13 @@ const KeyExecutives = () => {
             </h4>
           ),
           leads: (
+            // <Button
+            //   className="d-none d-sm-inline-block small btn btn-primary text-black"
+            //   loading={addToLeads ===record.id?true:false}
+            //   onClick={() => postLeads(record)}
+            // >
+            //   ADD TO LEADS
+            // </Button>
             <button
               className="d-none d-sm-inline-block small btn btn-primary text-black"
               onClick={() => postLeads(record)}
@@ -114,6 +145,7 @@ const KeyExecutives = () => {
     setEmployeeData(data);
   }, [employeeList]);
 
+  
   const openInfoModel = (info) => {
     const token = sessionStorage.getItem("token");
     if (token) {
@@ -207,6 +239,29 @@ const KeyExecutives = () => {
             </div>
           </div>
         </Modal>
+      )}
+      {Object.keys(submitLeadRes).length ? (
+        <Modal
+          width="600px"
+          closable={true}
+          open={Object.keys(submitLeadRes).length ? true : false}
+          footer={[
+            <Button key="submit" type="primary" onClick={resetLeadsData}>
+              OK
+            </Button>,
+          ]}
+        >
+          <div class="pop-up">
+            <div id="small-dialog2">
+              <p style={{ color: "#0000FF" }}>
+                New Client Leads is creted with new identifier :{" "}
+                {submitLeadRes.id}
+              </p>
+            </div>
+          </div>
+        </Modal>
+      ) : (
+        ""
       )}
     </div>
   );

@@ -9,5 +9,6 @@ export const companyExlDownloadUrl="api/companies/exl";
 export const companyPdfDownloadUrl="api/companies/pdf";
 export const employeeListUrl="api/employees";
 export const executiveDepartmentList="api/executive-functions";
+export const clientLeadsUrl="/api/client-leads";
 
 
