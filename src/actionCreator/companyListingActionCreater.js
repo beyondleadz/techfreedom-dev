@@ -61,7 +61,6 @@ export const getCompanyList = (payload,paginationValues) => (dispatch) => {
   const url =  createPayload(payload,paginationValues,companyListingApiUrl);
  // console.log(url,'urlurlurl')
   return getMethod(url).then((res) => {
-    console.log(res.headers,"response.headers");
     dispatch({
       type: COMPANYLIST,
       payload: res.data,

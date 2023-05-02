@@ -1,23 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { Table, Modal, Button } from "antd";
+import { Table, Modal, Button, Tooltip } from "antd";
 import { PAGE_LENGTH } from "../../config";
-import { useSelector,useDispatch } from "react-redux";
-import {submitLead} from '../../actionCreator/companyDetailsActionCreator'
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router";
+import { submitLead } from "../../actionCreator/companyDetailsActionCreator";
+import popupImg from "../../assets/images/free-user-login-prompt.jpg.jpeg";
 const KeyExecutives = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const employeeList = useSelector(
     (state) => state.companyDetailsReducer.employeeList
   );
 
   const [employeeData, setEmployeeData] = useState([]);
-  const [openInfoAfterLogin, setOpenInfoAfterLogin] = useState({
-    info: null,
-    open: false,
-  });
   const [openInfoBeforeLogin, setOpenInfoBeforeLogin] = useState({
     info: null,
     open: false,
   });
+
+  const navigate = useNavigate();
 
   const columns = [
     {
@@ -37,30 +37,36 @@ const KeyExecutives = () => {
     {
       title: "Email",
       dataIndex: "emailId",
-      // render: (text) => {
-      //   const token = sessionStorage.getItem('token');
-      //   if(token){
-      //     return text
-      //   }else{
-      //     return <h4 className="  fs-23 btn  la  la-envelope-open-text text-black   "></h4>
-      //   }
-      // }
-      render: (text) => (
-        <h4
-          className="  fs-23 btn  la  la-envelope-open-text text-black"
-          onClick={() => openInfoModel(text)}
-        ></h4>
-      ),
+      render: (text) => {
+        const token = sessionStorage.getItem("token");
+        return token ? (
+          <Tooltip title={text}>
+            <h4 className="  fs-23 btn  la  la-envelope-open-text text-black"></h4>
+          </Tooltip>
+        ) : (
+          <h4
+            className="  fs-23 btn  la  la-envelope-open-text text-black"
+            onClick={() => openInfoModel(text)}
+          ></h4>
+        );
+      },
     },
     {
       title: "Phone Number",
       dataIndex: "phoneNo",
-      render: (text) => (
-        <h4
-          className="  fs-23 btn  la  la-mobile text-black"
-          onClick={() => openInfoModel(text)}
-        ></h4>
-      ),
+      render: (text) => {
+        const token = sessionStorage.getItem("token");
+        return token ? (
+          <Tooltip title={text}>
+            <h4 className="  fs-23 btn  la  la-mobile text-black"></h4>
+          </Tooltip>
+        ) : (
+          <h4
+            className="  fs-23 btn  la  la-mobile text-black"
+            onClick={() => openInfoModel(text)}
+          ></h4>
+        );
+      },
     },
     {
       title: "Direct Dial/Mobile    ",
@@ -73,8 +79,8 @@ const KeyExecutives = () => {
   ];
 
   const postLeads = (record) => {
-    dispatch(submitLead(record))
-  }
+    dispatch(submitLead(record));
+  };
 
   useEffect(() => {
     let data = [];
@@ -95,7 +101,10 @@ const KeyExecutives = () => {
             </h4>
           ),
           leads: (
-            <button className="d-none d-sm-inline-block small btn btn-primary text-black" onClick={() =>postLeads(record)}>
+            <button
+              className="d-none d-sm-inline-block small btn btn-primary text-black"
+              onClick={() => postLeads(record)}
+            >
               ADD TO LEADS
             </button>
           ),
@@ -108,20 +117,19 @@ const KeyExecutives = () => {
   const openInfoModel = (info) => {
     const token = sessionStorage.getItem("token");
     if (token) {
-      setOpenInfoAfterLogin({ info: info, open: true });
       setOpenInfoBeforeLogin({ info: null, open: false });
     } else {
-      setOpenInfoAfterLogin({ info: null, open: false });
       setOpenInfoBeforeLogin({ info: null, open: true });
     }
   };
 
-  const closeInfoBeforeLogin = () => {
+  const redirectToSignup = () => {
     setOpenInfoBeforeLogin(false);
+    navigate("/signup");
   };
 
-  const closeInfoAfterLogin = () => {
-    setOpenInfoAfterLogin(false);
+  const closeInfoBeforeLogin = () => {
+    setOpenInfoBeforeLogin(false);
   };
 
   const rowSelection = {
@@ -169,32 +177,35 @@ const KeyExecutives = () => {
       />
       {openInfoBeforeLogin?.open && (
         <Modal
-          title="Basic Modal"
-          closable={false}
+          // title="Basic Modal"
+          width="600px"
+          closable={true}
           open={openInfoBeforeLogin}
+          onCancel={closeInfoBeforeLogin}
           footer={[
-            <Button key="submit" type="primary" onClick={closeInfoBeforeLogin}>
-              OK
+            <Button key="submit" type="primary" onClick={redirectToSignup}>
+              Start Free Trial
             </Button>,
           ]}
         >
-          Before login
-        </Modal>
-      )}
-
-      {openInfoAfterLogin?.open && (
-        <Modal
-          title="Basic Modal"
-          closable={false}
-          open={openInfoAfterLogin}
-          footer={[
-            <Button key="submit" type="primary" onClick={closeInfoAfterLogin}>
-              OK
-            </Button>,
-          ]}
-        >
-          {openInfoAfterLogin?.info}
-          After login
+          <div class="pop-up">
+            <div id="small-dialog2">
+              <div align="center">
+                <img src={popupImg} />
+              </div>
+              <p style={{ color: "#0000FF" }}>
+                Get 10 free verified contacts with a BeyondLeadz Pro trial
+              </p>
+              <p>
+                BeyondLeadz Pro customers close deals faster thanks to relevant
+              </p>
+              {/* <div class="mt-md-5 mt-4 mb-lg-0 mb-4" align="right">
+                <a href="login.html" class="btn btn-style mt-4">
+                  Start Free Trial
+                </a>
+              </div> */}
+            </div>
+          </div>
         </Modal>
       )}
     </div>

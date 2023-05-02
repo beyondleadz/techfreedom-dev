@@ -3,7 +3,8 @@ import {
   EMPLOYEE_LIST,
   DEPARTMENT_LIST,
   SUBMIT_EXECUTIVE_LEAD,
-  SIMILAR_COMPANYLIST
+  SIMILAR_COMPANYLIST,
+  SUBMIT_ERROR_FORM,
 } from "../actionType/companyDetailsType";
 
 const initialState = {
@@ -11,7 +12,8 @@ const initialState = {
   employeeList: [],
   departmentList: [],
   executiveLeads: {},
-  similarCompanyList:[]
+  similarCompanyList: [],
+  errorFormSubmit: [],
 };
 
 const CompanyDetailsReducer = (state = initialState, action) => {
@@ -25,9 +27,10 @@ const CompanyDetailsReducer = (state = initialState, action) => {
       return { ...state, departmentList: payload };
     case SUBMIT_EXECUTIVE_LEAD:
       return { ...state, executiveLeads: payload };
-      case SIMILAR_COMPANYLIST:
-      return { ...state, similarCompanyList: payload};
-      
+    case SIMILAR_COMPANYLIST:
+      return { ...state, similarCompanyList: payload };
+    case SUBMIT_ERROR_FORM:
+      return { ...state, errorFormSubmit: payload };
     default:
       return state;
   }

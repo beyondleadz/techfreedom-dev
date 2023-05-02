@@ -14,7 +14,6 @@ export const createPayload = (
     searchKeyword,
   } = payload || {};
 
-  console.log(selectedIndustry,'selectedIndustryselectedIndustry')
   let url = companyListingApiUrl;
   let withPagination;
   let country;

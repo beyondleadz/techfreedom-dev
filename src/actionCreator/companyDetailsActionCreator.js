@@ -4,6 +4,7 @@ import {
   DEPARTMENT_LIST,
   SUBMIT_EXECUTIVE_LEAD,
   SIMILAR_COMPANYLIST,
+  SUBMIT_ERROR_FORM
 } from "../actionType/companyDetailsType";
 import {
   getAuthMethod,
@@ -78,6 +79,15 @@ export const getSimilarCompanyList = (payload, paginationValues) => (
     dispatch({
       type: SIMILAR_COMPANYLIST,
       payload: [],
+    });
+  });
+};
+
+export const submitErrorForm = (payload) => (dispatch) => {
+  return postAuthMethod(executiveDepartmentList, payload).then((res) => {
+    dispatch({
+      type: SUBMIT_ERROR_FORM,
+      payload: res.data,
     });
   });
 };
