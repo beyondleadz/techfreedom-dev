@@ -4,7 +4,7 @@ import B2BCompanySearchImage from '../../assets/images/crm-integration.jpg'
 
 const B2BCompanySearch=()=>{
     return <> 
-    (
+    
          
         <div className="container">
 		<div className="privacy-security-term">
@@ -33,7 +33,7 @@ const B2BCompanySearch=()=>{
     </section>
 	</div>	
    
-    )
+    
     </>
 }
 export default B2BCompanySearch;
