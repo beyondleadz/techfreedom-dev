@@ -43,9 +43,10 @@ const Plans=()=>{
 						<div className="pricing-grid1">
 							<div className="price-value one">
 									<h4><a href="#">Basic</a></h4>
-									{/* <div><a href="#"><strong style={{fontSize:20}}>{currencySymbol}{price.basic} </strong><span className="small"><strong>(Billed Annually)</strong></span></a></div> */}
+									{/* <div><a href="#"><strong style={{fontSize:20}}>{currencySymbol}{price.basic} </strong><span className="small"><strong>(
+										 Annually)</strong></span></a></div> */}
 									<div><a href="#"><strong style={{fontSize:20}}>{currencySymbol}{price.basic} </strong></a></div>
-									<div><a href="#"><span className="small"><strong>(Billed Annually)</strong></span></a></div>
+									<div className="billed"><a href="#"><span className="small"><strong>(Billed Annually)</strong></span></a></div>
 									<div className="small">You have small enterprises and light usage.</div>
 							</div>
 							
@@ -81,7 +82,7 @@ const Plans=()=>{
 								<h4><a href="#">Growth</a></h4>
 								{/* <div><a href="#"><strong style={{fontSize:20}}>{currencySymbol}{price.growth} </strong><span className="small"><strong>(Billed Annually)</strong></span></a></div> */}
 								<div><a href="#"><strong style={{fontSize:20}}>{currencySymbol}{price.growth} </strong></a></div>
-								<div><a href="#"><span className="small"><strong>(Billed Annually)</strong></span></a></div>
+								<div className="billed"><a href="#"><span className="small"><strong>(Billed Annually)</strong></span></a></div>
 								<div className="small">You have medium & large enterprises and medium usage.</div>
 															</div>
 							<div className="price-bg">
@@ -113,7 +114,7 @@ const Plans=()=>{
 								<h4><a href="#">Pro</a></h4>
 								{/* <div><a href="#"><strong style={{fontSize:20}}>{currencySymbol}{price.pro} </strong><span className="small"><strong>(Billed Annually)</strong></span></a></div> */}
 								<div><a href="#"><strong style={{fontSize:20}}>{currencySymbol}{price.pro} </strong></a></div>
-								<div><a href="#"><span className="small"><strong>(Billed Annually)</strong></span></a></div>
+								<div className="billed"><a href="#"><span className="small"><strong>(Billed Annually)</strong></span></a></div>
 								<div className="small">You have large enterprises & research organisation and heavy usage.</div>
 								
 							</div>

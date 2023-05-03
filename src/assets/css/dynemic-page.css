@@ -6441,7 +6441,8 @@ cursor: pointer;
   .la-code-branch:before {
     color: #5000FF;
 } 
-
+.billed{line-height: 5px;
+  margin-bottom: 20px;}
 .right-icons{
   display: inline;
   padding: 0 0.2rem;

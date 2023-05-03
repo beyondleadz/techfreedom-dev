@@ -32,7 +32,7 @@ const AboutCompany = () => {
             </div>
             <div className="col w-col-3">
               <div>
-                <i className="  text-black las  la-money-check mr-2"></i>
+                <i className="  text-black las fs-16 la-money-check mr-2"></i>
                 <strong>Revenue Range</strong>
               </div>
               <div className="gap-l">{companyDetails?.companyRevenue}</div>
@@ -59,14 +59,14 @@ const AboutCompany = () => {
             </div>
             <div className="col w-col-3">
               <div>
-                <i className=" mr-2 text-black las la-cog"></i>
+                <i className=" mr-2 text-black fs-18 las la-cog"></i>
                 <span className="font-weight-bold">Technographics</span>
               </div>
               <div className="gap-l">JavaScript, HTML, PHP</div>
             </div>
             <div className="col w-col-3">
               <div>
-                <i className=" mr-2 text-black las la-cog"></i>
+                <i className=" mr-2 text-black fs-18 las la-calendar"></i>
                 <span className="font-weight-bold">Updated on</span>
               </div>
               <div className="gap-l">Wednesday, April 262023</div>
