@@ -172,7 +172,7 @@ input[type="checkbox" i] {
 }
 .buttons-container {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-end;
   flex: 1;
   white-space: nowrap;
@@ -6172,16 +6172,19 @@ padding:5px
 
 .headercontainer{
   display:flex;
-  /* border-bottom: 1px solid #dee2e6; */
-  /* height: 145px; */  height: 170px; padding-right: 70px;
+  padding: 0 35px;
+  height: 160px;
+  margin-top: 25px;
 
 }
 
-.logobox{
-  width: 205px;
-  padding: 25px 35px;
-  position:absolute;
+.headercontainer.setauto{height: auto;}
 
+.logobox{
+  min-width: 160px;
+  width: 160px;
+  background: #eaeaea;;
+    padding: 5px;
 }
 
 .logobox img{
@@ -6216,47 +6219,14 @@ padding:5px
 .width3{width:25%}
 .width2{width:20%}
 .descbox{
-  padding-top: 25px;
-  padding-left: 190px;
+  position: relative;
   padding-bottom: 15px;
+  margin-left: 20px;
 }
 .navigation{
   /* position: relative;
   top: -2rem; */
   margin-left: 1px;
-}
-
-.onscroll{
-  position: sticky;
-    top: 74px;
-    z-index: 10;
-    background: #fff;
-}
-
-.onscroll .headercontainer{
-  height: auto;
-    align-items: center;
-}
-
-.onscroll .headercontainer .logobox{
-  width: 74px;
-    height: auto;
-    padding: 10px;
-    position: relative
-}
-
-.onscroll .headercontainer .descbox{
-  padding: 0;
-}
-
-.onscroll .headercontainer .title{
-  display: none;
-}
-
-.onscroll  .navigation{
-  top: 0;
-    padding: 0;
-    margin: 10px 0 0;
 }
 
  .softexpand{
@@ -6376,29 +6346,25 @@ cursor: pointer;
   .mob-t {
     font-size: 80%;
   }
-  .logobox img{ width: 74px;
+  /* .logobox img{ width: 74px;
     height: auto;
     padding: 10px;
-    position: relative}
+    position: relative} */
 
     .social-icons{flex-direction: column;
       white-space: nowrap;
       margin: 5px 0 0 70px !important;
       padding: 0;}
     .buttons-container{margin: 0 10px;}
-    .descbox{    padding: 20px 70px 0;
+    /* .descbox{    padding: 20px 70px 0;
       flex-wrap: wrap;
-      white-space: break-spaces;}
-    .logobox{margin: 0;
-      padding: 10px 0;
-      /* position: relative; */
-      /* display: flex; */
-      /* flex-direction: column; */
-      width: 74px;}
+      white-space: break-spaces;} */
+
+
     .headercontainer{flex-direction: column;
       white-space: nowrap;
       margin: 0;
-      padding: 0; height: 210px;}
+      padding: 0; height: auto; padding:10px}
 }
 .btn-lit {
   color: #212529;
@@ -6662,7 +6628,15 @@ cursor: pointer;
        margin-bottom: 0;
     }
 
-    .keyexebtn{padding: 7px 10px;}
+    .companyname{    display: flex;
+      align-items: center;
+      justify-content: space-between; padding-right: 30px;}
+    .headerblk2{display: flex; align-items: center;     margin-top: 15px;
+      left: -4px;
+      position: relative;}
+    .headerblk2 > div{display: flex; align-items: center; margin-right: 20px;}
+    .headerblk2 div span::before{margin-left: 0;}
+    .keyexebtn{padding: 7px 10px; width: 100px;}
     .summarycontainer .keyexebtn:hover{background: #fdc401; border: #fdc401; color: #000;}
     .similarblk .similarinnerblk{ display: flex;}
     .similarblk .similarinnerblk .similar-desc{margin-left: 10px; position: relative; top: -6px;}
@@ -6671,13 +6645,21 @@ cursor: pointer;
   max-width: 30px;
   height: auto;
   width: 100%;}
-
+  .breadcrumcontainer{padding:25px 35px 0;}
   .similarblk .similarinnerblk .s-company-content { max-width:50%;}
     .companyintro{
       font-weight: 400;
       box-sizing: border-box;
       width: 100%;
+      margin-top: 15px;
+      height: 43px;
+      overflow: hidden;
     }
+    .companyintro.setauto{height: auto;}
+    .readmoreoverview{    position: absolute; color: orange; cursor: pointer;
+      right: 8px;
+      font-size: 12px;
+      bottom: -14px; z-index: 99;}
         .orgnode {
           padding: 10px;
           border-radius: 5px;
@@ -6690,6 +6672,10 @@ cursor: pointer;
           background-color: #00acee;
         } */
 @media screen and (max-width: 760px) {
+
+  .breadcrumcontainer{
+    padding: 10px;
+  }
   .leftmenuheading {padding:10px 0;}
 
   .filter-button{
@@ -6957,8 +6943,7 @@ color: orange;
 }
 .namecol .logo img{width:100%; display: block;}
 .companyintro{
-  padding-left: 45px;
-    padding-right: 45px;
+  
     font-size: 14px;
     font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji';
 }
@@ -6988,4 +6973,3 @@ color: orange;
 .errorformcontainer .form .formcol1{width:30%}
 .errorformcontainer .form .formcol2{width:70%}
 .errorformcontainer .formfull{width:100%; padding: 5px 0;}
-.breadcrumcontainer{padding:25px 35px 0;}

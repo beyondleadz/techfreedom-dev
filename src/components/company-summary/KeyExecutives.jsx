@@ -53,7 +53,7 @@ const KeyExecutives = () => {
         ) : (
           <h4
             className="  fs-23 btn  la  la-envelope-open-text text-black"
-            onClick={() => openInfoModel(text)}
+            onClick={() => openInfoModel()}
           ></h4>
         );
       },
@@ -61,35 +61,43 @@ const KeyExecutives = () => {
     {
       title: "Phone Number",
       dataIndex: "phoneNo",
-      render: (text) => {
-        const token = sessionStorage.getItem("token");
-        return token ? (
-          <Tooltip title={text}>
-            <h4 className="  fs-23 btn  la  la-mobile text-black"></h4>
-          </Tooltip>
-        ) : (
-          <h4
-            className="  fs-23 btn  la  la-mobile text-black"
-            onClick={() => openInfoModel(text)}
-          ></h4>
-        );
-      },
     },
     {
       title: "Direct Dial/Mobile    ",
       dataIndex: "directDial",
-      render: () => {
-        return (
+      render: (record) => {
+        const token = sessionStorage.getItem("token");
+        return token ? (
+          <Tooltip title={record?.phoneNo}>
+            <Button
+            style={{ height: "auto" }}
+            className="keyexebtn d-none d-sm-inline-block small btn btn-primary text-black"
+          >
+            <i class="las la-mobile fs-12 pt-1 pr-1"></i>
+            VIEW
+          </Button>
+          </Tooltip>
+        ) : (
           <Button
             style={{ height: "auto" }}
             className="keyexebtn d-none d-sm-inline-block small btn btn-primary text-black"
-            // loading={addToLeads === record.id ? true : false}
-            // onClick={() => postLeads(record)}
+            onClick={() => openInfoModel()}
           >
             <i class="las la-mobile fs-12 pt-1 pr-1"></i>
             VIEW
           </Button>
         );
+
+        // return (
+        //   <Button
+        //     style={{ height: "auto" }}
+        //     className="keyexebtn d-none d-sm-inline-block small btn btn-primary text-black"
+        //     onClick={() => openInfoModel(text)}
+        //   >
+        //     <i class="las la-mobile fs-12 pt-1 pr-1"></i>
+        //     VIEW
+        //   </Button>
+        // );
       },
     },
     {
@@ -152,7 +160,7 @@ const KeyExecutives = () => {
     setEmployeeData(data);
   }, [employeeList]);
 
-  const openInfoModel = (info) => {
+  const openInfoModel = () => {
     const token = sessionStorage.getItem("token");
     if (token) {
       setOpenInfoBeforeLogin({ info: null, open: false });
