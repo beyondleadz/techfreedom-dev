@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useMemo } from "react";
 import Layout from "../layout/Layout";
+import {Link} from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux";
+import { Breadcrumb } from "antd";
 import SummaryContent from "../components/company-summary/SummaryContent";
 import SummaryHeader from "../components/company-summary/SummaryHeader";
 import {
@@ -28,7 +30,7 @@ const CompanySummary = () => {
   }, []);
 
   useMemo(() => {
-    console.log(companyDetails,'companyDetailscompanyDetails')
+    console.log(companyDetails, "companyDetailscompanyDetails");
     if (Object.keys(companyDetails).length) {
       dispatch(
         getSimilarCompanyList(
@@ -53,7 +55,23 @@ const CompanySummary = () => {
       <Layout>
         {!loading ? (
           <div className="wrapper companysummary">
+            <div className="breadcrumcontainer">
+            <Breadcrumb
+              items={[
+                {
+                  title: <Link to="/">Home</Link>,
+                },
+                {
+                  title: <Link to="/search-company">Search Company</Link>,
+                },
+                {
+                  title: "Company Summary",
+                },
+              ]}
+            />
+            </div>
             <SummaryHeader />
+
             <div id="wrapper">
               <SummaryContent />
             </div>

@@ -6173,19 +6173,19 @@ padding:5px
 .headercontainer{
   display:flex;
   /* border-bottom: 1px solid #dee2e6; */
-  /* height: 145px; */  height: 155px; padding-right: 70px;
+  /* height: 145px; */  height: 170px; padding-right: 70px;
 
 }
 
 .logobox{
   width: 205px;
-  padding: 37px;
+  padding: 25px 35px;
   position:absolute;
 
 }
 
 .logobox img{
-  width:80%;
+  width:100%;
   display: block;
 }
 .descbox1{
@@ -6217,7 +6217,7 @@ padding:5px
 .width2{width:20%}
 .descbox{
   padding-top: 25px;
-  padding-left: 180px;
+  padding-left: 190px;
   padding-bottom: 15px;
 }
 .navigation{
@@ -6258,13 +6258,6 @@ padding:5px
     padding: 0;
     margin: 10px 0 0;
 }
-.s-company{max-block-size: fit-content;
-  max-width: 20px;
-  height: auto;
-  width: 100%;
-  margin: 0 0 0 10px;}
-
- .s-company-content { max-width:50%;}
 
  .softexpand{
   height: 25px;
@@ -6665,6 +6658,18 @@ cursor: pointer;
     .companysummary .ant-tabs-nav{
        margin-bottom: 0;
     }
+
+    .keyexebtn{padding: 7px 10px;}
+    .summarycontainer .keyexebtn:hover{background: #fdc401; border: #fdc401; color: #000;}
+    .similarblk .similarinnerblk{ display: flex;}
+    .similarblk .similarinnerblk .similar-desc{margin-left: 10px; position: relative; top: -6px;}
+    
+    .similarblk .similarinnerblk .s-company{max-block-size: fit-content;
+  max-width: 30px;
+  height: auto;
+  width: 100%;}
+
+  .similarblk .similarinnerblk .s-company-content { max-width:50%;}
     .companyintro{
       font-weight: 400;
       box-sizing: border-box;
@@ -6949,11 +6954,13 @@ color: orange;
 }
 .namecol .logo img{width:100%; display: block;}
 .companyintro{
-  padding-left: 28px;
-    padding-right: 28px;
+  padding-left: 45px;
+    padding-right: 45px;
     font-size: 14px;
     font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji';
 }
+
+.companyintro h3{font-size: 16px; font-weight: 500;}
 
 #small-dialog,#small-dialog1,#small-dialog2,#small-dialog3,#small-dialog4,#small-dialog5{
 	background: white;
@@ -6978,3 +6985,4 @@ color: orange;
 .errorformcontainer .form .formcol1{width:30%}
 .errorformcontainer .form .formcol2{width:70%}
 .errorformcontainer .formfull{width:100%; padding: 5px 0;}
+.breadcrumcontainer{padding:25px 35px 0;}

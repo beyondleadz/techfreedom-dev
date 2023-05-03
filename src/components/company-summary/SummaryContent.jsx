@@ -3,6 +3,7 @@ import { Tabs } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import logo from "../../assets/images/icici.jpg";
+import defaultLogo from "../../assets/images/default_company_logo.jpg";
 import AboutCompany from "./AboutCompany";
 import KeyExecutives from "./KeyExecutives";
 import OrgChart from "./OrgChart";
@@ -132,21 +133,16 @@ const SummaryContent = () => {
             <div className="col-md-3 col-custom-2">
               <div className="card shadow mt-5 mb-4">
                 <div className="card-header font-weight-bold">
-                  {/* {console.log(
-                    similarCompanyList,
-                    "similarCompanyListsimilarCompanyList",
-                    similarList
-                  )} */}
                   Similar Companies
                 </div>
-                <div className="card-body">
+                <div className="card-body similarblk">
                   {similarCompanyList?.map((item) => {
                     return (
-                      <div className="row brdr-b pb-3">
-                        <div className=" s-company img-responsive">
-                          <img src={item?.companyLogoUrl} />
+                      <div className="brdr-b pb-3 similarinnerblk">
+                        <div className="s-company img-responsive">
+                          <img src={item?.companyLogoUrl || defaultLogo} />
                         </div>
-                        <div className="col">
+                        <div className="similar-desc">
                           <div>
                             <a
                               className="font-weight-bold fs-14 text-dark"

@@ -210,7 +210,8 @@ const SummaryHeader = () => {
         </div>
       </div>
       <div className="row companyintro">
-        <div className="col-md-12">{companyDetails?.introduction}</div>
+        <h3>Overview</h3>
+        <div>{companyDetails?.introduction}</div>
       </div>
 
       {openErrorForm && (
