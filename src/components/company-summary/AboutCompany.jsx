@@ -19,9 +19,9 @@ const AboutCompany = () => {
   return (
     <div className="card shadow card-body">
       <div className="container">
-        <div className="row mt-3 mb-2 w-100- fs-14">
-          <div className="row mt-3 w-100- ">
-            <div className="col w-col-3">
+        <div className="row mb-2 w-100- fs-14">
+          <div className="row c-details w-100- ">
+            <div className="col mt-3 w-col-3">
               <div>
                 <i className="text-black la  la-users mr-2"></i>
                 <strong>Employees Range</strong>
@@ -30,14 +30,14 @@ const AboutCompany = () => {
                 {companyDetails?.totalEmployees}
               </div>
             </div>
-            <div className="col w-col-3">
+            <div className="col mt-3 w-col-3">
               <div>
                 <i className="  text-black las fs-16 la-money-check mr-2"></i>
                 <strong>Revenue Range</strong>
               </div>
               <div className="gap-l">{companyDetails?.companyRevenue}</div>
             </div>
-            <div className="col w-col-3">
+            <div className="col mt-3 w-col-3">
               <div>
                 <i
                   className=" text-black la la-city mr-2"
@@ -49,22 +49,22 @@ const AboutCompany = () => {
             </div>
           </div>
 
-          <div className="row mt-3 w-100-">
-            <div className="col w-col-3">
+          <div className="row c-details w-100-">
+            <div className="col mt-3 w-col-3">
               <div>
                 <i className=" text-black las la-industry mr-2"></i>
                 <strong>Industry</strong>
               </div>
               <div className="gap-l">{companyDetails?.industry?.name}</div>
             </div>
-            <div className="col w-col-3">
+            <div className="col mt-3 w-col-3">
               <div>
                 <i className=" mr-2 text-black fs-18 las la-cog"></i>
                 <span className="font-weight-bold">Technographics</span>
               </div>
               <div className="gap-l">JavaScript, HTML, PHP</div>
             </div>
-            <div className="col w-col-3">
+            <div className="col mt-3 w-col-3">
               <div>
                 <i className=" mr-2 text-black fs-18 las la-calendar"></i>
                 <span className="font-weight-bold">Updated on</span>
