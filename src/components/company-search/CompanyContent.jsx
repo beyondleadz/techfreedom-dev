@@ -77,7 +77,7 @@ const CompanyContent = () => {
       } else if (link?.name === "Linkedin") {
         return (
           <Link to={link?.proifileUrl} target="_blank">
-            <i class="lab fs-20 text-info  lab la-linkedin"></i>
+            <i class="lab fs-20 linkedin  lab la-linkedin"></i>
           </Link>
         );
       } else if (link?.name === "twitter") {
