@@ -78,10 +78,36 @@ const KeyExecutives = () => {
     {
       title: "Direct Dial/Mobile    ",
       dataIndex: "directDial",
+      render: () => {
+        return (
+          <Button
+            style={{ height: "auto" }}
+            className="keyexebtn d-none d-sm-inline-block small btn btn-primary text-black"
+            // loading={addToLeads === record.id ? true : false}
+            // onClick={() => postLeads(record)}
+          >
+            <i class="las la-mobile fs-12 pt-1 pr-1"></i>
+            VIEW
+          </Button>
+        );
+      },
     },
     {
       title: "",
       dataIndex: "leads",
+      render: (record) => {
+        console.log(addToLeads, record);
+        return (
+          <Button
+            style={{ height: "auto" }}
+            className="keyexebtn d-none d-sm-inline-block small btn btn-primary text-black"
+            loading={addToLeads === record.id ? true : false}
+            onClick={() => postLeads(record)}
+          >
+            ADD TO LEADS
+          </Button>
+        );
+      },
     },
   ];
 
@@ -118,34 +144,14 @@ const KeyExecutives = () => {
           title: record?.title,
           emailId: record?.emailId,
           phoneNo: record.phoneNo,
-          directDial: (
-            <h4 class="btn btn-primary pr-1 small text-black align-items-center">
-              <i class="las la-mobile fs-12 pt-1 pr-1"></i>
-              VIEW
-            </h4>
-          ),
-          leads: (
-            // <Button
-            //   className="d-none d-sm-inline-block small btn btn-primary text-black"
-            //   loading={addToLeads ===record.id?true:false}
-            //   onClick={() => postLeads(record)}
-            // >
-            //   ADD TO LEADS
-            // </Button>
-            <button
-              className="d-none d-sm-inline-block small btn btn-primary text-black"
-              onClick={() => postLeads(record)}
-            >
-              ADD TO LEADS
-            </button>
-          ),
+          directDial: record,
+          leads: record,
         },
       ];
     });
     setEmployeeData(data);
   }, [employeeList]);
 
-  
   const openInfoModel = (info) => {
     const token = sessionStorage.getItem("token");
     if (token) {
@@ -243,7 +249,7 @@ const KeyExecutives = () => {
       {Object.keys(submitLeadRes).length ? (
         <Modal
           width="600px"
-          closable={true}
+          closable={false}
           open={Object.keys(submitLeadRes).length ? true : false}
           footer={[
             <Button key="submit" type="primary" onClick={resetLeadsData}>
