@@ -6246,7 +6246,7 @@ padding:5px
 
  .departmentcontainer {
   position: absolute;
-  top: 0;
+  top: 3px;
   right: 5px;
   width: 45%;
   max-width: 200px;
@@ -6254,9 +6254,9 @@ padding:5px
 
  .selectedlabel{
   font-size: 14px;
-  background: #f0f0f0;
+  background: rgba(0, 0, 0, 0.02);
     border: 1px solid #f0f0f0;
-    border-radius: 8px;
+    border-radius: 8px 8px 0 0;
     padding: 6px 10px;
     box-sizing: border-box;
     cursor: pointer;
@@ -6297,7 +6297,7 @@ padding:5px
   position: absolute;
   display: none;
   width: 100%;
-  background: #f0f0f0;
+  background: #f7f7f7;
     border: 1px solid #f0f0f0;
     border-radius: 0 0 8px 8px;
     padding: 6px 10px;
@@ -6647,7 +6647,9 @@ cursor: pointer;
     .headerblk2 div span::before{margin-left: 0;}
     .keyexebtn{padding: 7px 10px; width: 100px;}
     .summarycontainer .keyexebtn:hover{background: #fdc401; border: #fdc401; color: #000;}
-    .similarblk .similarinnerblk{ display: flex;}
+    .similarblk .similarinnerblk{ display: flex; padding: 10px 0; 
+      border-bottom: 1px solid #eaeaea;}
+      .similarblk div:last-of-type{border-bottom: 0;}
     .similarblk .similarinnerblk .similar-desc{margin-left: 10px; position: relative; top: -6px;}
     
     .similarblk .similarinnerblk .s-company{max-block-size: fit-content;

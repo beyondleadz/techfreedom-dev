@@ -85,7 +85,7 @@ const CompanyNavigation = () => {
               aria-haspopup="true"
               aria-expanded="false"
             >
-              <i className="right-icons la la-star" aria-hidden="true"></i>
+              <i className="right-icons las la-tag" aria-hidden="true"></i>
             </a>
           </li>
         </ul>

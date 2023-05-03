@@ -52,7 +52,7 @@ const KeyExecutives = () => {
           </Tooltip>
         ) : (
           <h4
-            className="  fs-23 btn  la  la-envelope-open-text text-black"
+            className="  fs-23 btn  la  la-envelope text-black"
             onClick={() => openInfoModel()}
           ></h4>
         );
@@ -104,8 +104,8 @@ const KeyExecutives = () => {
       title: "",
       dataIndex: "leads",
       render: (record) => {
-        console.log(addToLeads, record);
-        return (
+        const token = sessionStorage.getItem("token");
+        return token ? (
           <Button
             style={{ height: "auto" }}
             className="keyexebtn d-none d-sm-inline-block small btn btn-primary text-black"
@@ -114,6 +114,15 @@ const KeyExecutives = () => {
           >
             ADD TO LEADS
           </Button>
+        ) : (
+          <Button
+            style={{ height: "auto" }}
+            className="keyexebtn d-none d-sm-inline-block small btn btn-primary text-black"
+            loading={!Object.keys(submitLeadRes).length && addToLeads === record.id ? true : false}
+            onClick={() => openInfoModel()}
+          >
+            ADD TO LEADS
+          </Button>          
         );
       },
     },
@@ -151,7 +160,7 @@ const KeyExecutives = () => {
           fullname: record.fullname,
           title: record?.title,
           emailId: record?.emailId,
-          phoneNo: record.phoneNo,
+          phoneNo: record?.company?.phoneNo,
           directDial: record,
           leads: record,
         },

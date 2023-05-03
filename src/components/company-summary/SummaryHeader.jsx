@@ -162,7 +162,7 @@ const SummaryHeader = () => {
             }`}
           >
             {/* <h3>Overview</h3> */}
-            <div>{companyDetails?.introduction}</div>
+            <div><strong className="mr-2">Description of business</strong> {companyDetails?.introduction}</div>
           </div>
           {companyDetails?.introduction && (
             <span className="readmoreoverview" onClick={toggleCompanyHeight}>
@@ -222,7 +222,7 @@ const SummaryHeader = () => {
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                <i className="right-icons la la-star" aria-hidden="true"></i>
+                <i className="right-icons las la-tag" aria-hidden="true"></i>
               </a>
             </li>
             <li>

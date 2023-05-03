@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import _ from "lodash";
 import { Table, Input } from "antd";
 import { PAGE_LENGTH } from "../../config";
+import defaultLogo from "../../assets/images/default_company_logo.jpg";
+
 import {
   getCompanyList,
   savePaginationValues,
@@ -21,7 +23,7 @@ const CompanyContent = () => {
         return (
           <div className="namecol">
             <div className="logo">
-              <img src={record?.companyLogoUrl} />
+              <img src={record?.companyLogoUrl || defaultLogo}/>
             </div>
             <span className="companyname" onClick={() => getDetails(row.key)}>
               {record?.name}
