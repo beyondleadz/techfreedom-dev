@@ -1,21 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { Tabs } from "antd";
+import _ from "lodash";
 import Layout from "../layout/Layout";
 import CompanyLeft from "../components/company-search/CompanyLeft";
 import CompanyContent from "../components/company-search/CompanyContent";
-import CompanyHeader from "../components/company-search/CompanyHeader";
 import CompanyNavigation from "../components/company-search/CompanyNavigation";
 import "../assets/css/dynemic-page.css";
-const CompanySearch = ({tab}) => {
-  console.log(tab,"tab={2}tab={2}")
+const CompanySearch = ({ tab }) => {
   const [activeTab, setActiveTab] = useState(tab);
+
+  useEffect(() => {
+    setActiveTab(tab);
+  }, [tab]);
+
   const onChange = (key) => {
     //console.log(key);
     setActiveTab(key);
   };
-  useEffect(() => {
-    setActiveTab(tab)
-  },[tab])
 
   const items = [
     {
@@ -68,7 +69,7 @@ const CompanySearch = ({tab}) => {
           <i className="fa tab-img las la-user-friends"></i>Leads
         </span>
       ),
-      children:(
+      children: (
         <div>
           <CompanyNavigation />
           <div id="wrapper">
@@ -89,9 +90,9 @@ const CompanySearch = ({tab}) => {
       <Layout>
         <div>
           <h3 className="pagetitle">
-            {activeTab == 1
+            {activeTab === 1
               ? "Search Companies"
-              : activeTab == 2
+              : activeTab === 2
               ? "Search Executive"
               : "Search Leads"}
           </h3>
