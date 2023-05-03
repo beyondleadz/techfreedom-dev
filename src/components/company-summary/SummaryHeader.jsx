@@ -89,7 +89,7 @@ const SummaryHeader = () => {
       } else if (link?.name === "Linkedin") {
         return (
           <Link to={link?.proifileUrl} key={link?.proifileUrl} target="_blank">
-            <i className="lab fs-20 text-info  lab la-linkedin"></i>
+            <i className="lab fs-20 linkedin  lab la-linkedin"></i>
           </Link>
         );
       } else if (link?.name === "twitter") {
