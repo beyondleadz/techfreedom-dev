@@ -109,7 +109,7 @@ const KeyExecutives = () => {
           <Button
             style={{ height: "auto" }}
             className="keyexebtn d-none d-sm-inline-block small btn btn-primary text-black"
-            loading={addToLeads === record.id ? true : false}
+            loading={!Object.keys(submitLeadRes).length && addToLeads === record.id ? true : false}
             onClick={() => postLeads(record)}
           >
             ADD TO LEADS
