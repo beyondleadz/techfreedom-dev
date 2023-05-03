@@ -12,7 +12,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const [showNav, setShowNav] = useState();
   const [dropDownToggle, setDropdownToggle] = useState(false);
-  const [selectedValue, setSelectedValue] = useState("Advanced");
+  const [selectedValue, setSelectedValue] = useState("Select");
   const navigate = useNavigate();
   const token = useSelector((state) => state?.SignUpReducer?.signInData);
 
@@ -27,6 +27,11 @@ const Header = () => {
   const setValue = (val) => {
     setSelectedValue(val);
     setDropdownToggle(!dropDownToggle);
+    if(val==="Company"){
+      navigate("/search-company");
+    }else{
+      navigate("/search-executive");
+    }
   };
 
   const doLogout = () => {
@@ -70,7 +75,7 @@ const Header = () => {
                   placeholder="Search"
                   name="search"
                   required="required"
-                  autofocus=""
+                  autoFocus=""
                   className="search-popup"
                 />
                 <button type="submit" className="btn search-btn">
@@ -84,12 +89,12 @@ const Header = () => {
                   <span className="fa"></span>
                 </div>
                 <ul className={dropDownToggle ? "show" : ""}>
-                  <li
+                  {/* <li
                     className="selected-field"
                     onClick={() => setValue("Advanced")}
                   >
                     Advanced
-                  </li>
+                  </li> */}
                   <li
                     className="selected-field"
                     onClick={() => setValue("Company")}

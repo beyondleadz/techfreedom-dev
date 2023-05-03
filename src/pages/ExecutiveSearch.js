@@ -1,32 +1,118 @@
-import React, {useState} from "react";
+import React, { useEffect, useState, useMemo } from "react";
+import { Tabs } from "antd";
+import _ from "lodash";
 import Layout from "../layout/Layout";
-import Banner from "../components/executive-search/Banner";
-import CompanySearch from "../components/executive-search/CompanySearch";
-import Prospects from "../components/executive-search/Prospects";
-import LaserLists from "../components/executive-search/LaserLists";
+import CompanyLeft from "../components/company-search/CompanyLeft";
+import CompanyContent from "../components/company-search/CompanyContent";
+import CompanyNavigation from "../components/company-search/CompanyNavigation";
+import "../assets/css/dynemic-page.css";
+const ExecutiveSearch = ({ tab }) => {
+  const [activeTab, setActiveTab] = useState(tab);
 
-import Connect from "../components/executive-search/Connect";
-import Dashboard from "../components/executive-search/Dashboard";
-import Clients from "../components/executive-search/Clients";
+  useEffect(() => {
+    setActiveTab(tab);
+  }, [tab]);
 
-const ExecutiveSearch = () => {
+  const onChange = (key) => {
+    //console.log(key);
+    setActiveTab(key);
+  };
 
-    return(
-        <>
-    <Layout>
-        <Banner/>
-        <CompanySearch/>
-        <Prospects/>
-        <LaserLists/>
-        <Connect/>
-        <Dashboard/>
-        <Clients/>
-    </Layout>
-    
+  const items = [
+    {
+      key: "1",
+      label: (
+        <span>
+          {" "}
+          <i className="fa tab-img la la-building"></i>Companies
+        </span>
+      ),
+      children: (
+        <div>
+          <CompanyNavigation />
+          <div id="wrapper">
+            <div className="leftmenu">
+              <CompanyLeft />
+            </div>
+            <div className="contentbody shadow">
+              <CompanyContent />
+            </div>
+          </div>
+        </div>
+      ),
+    },
+    {
+      key: "2",
+      label: (
+        <span>
+          <i className="fa tab-img la la-user-tie"></i>Executive
+        </span>
+      ),
+      children: (
+        <div>
+          <CompanyNavigation />
+          <div id="wrapper">
+            <div className="leftmenu">
+              <CompanyLeft />
+            </div>
+            <div className="contentbody shadow">
+              <CompanyContent />
+            </div>
+          </div>
+        </div>
+      ),
+    },
+    {
+      key: "3",
+      label: (
+        <span>
+          <i className="fa tab-img las la-user-friends"></i>Leads
+        </span>
+      ),
+      children: (
+        <div>
+          <CompanyNavigation />
+          <div id="wrapper">
+            <div className="leftmenu">
+              <CompanyLeft />
+            </div>
+            <div className="contentbody shadow">
+              <CompanyContent />
+            </div>
+          </div>
+        </div>
+      ),
+    },
+  ];
+
+  return (
+    <>
+      <Layout>
+        <div>
+          <h3 className="pagetitle">
+            {activeTab === 1
+              ? "Search Companies"
+              : activeTab === 2
+              ? "Search Executive"
+              : "Search Leads"}
+          </h3>
+          <Tabs
+            activeKey={activeTab}
+            items={items}
+            onChange={onChange}
+            type="card"
+          />
+        </div>
+        {/*         
+        <div className="wrapper">
+            <CompanyHeader/>
+            <div id="wrapper">
+                <CompanyLeft/>
+                <CompanyContent/>
+            </div>
+        </div> */}
+      </Layout>
     </>
-    
-    )
-
-}
-
+  );
+};
 export default ExecutiveSearch;

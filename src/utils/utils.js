@@ -13,6 +13,7 @@ export const createPayload = (
     selectedRevenuerange,
     searchKeyword,
   } = payload || {};
+
   let url = companyListingApiUrl;
   let withPagination;
   let country;
@@ -62,7 +63,7 @@ export const createPayload = (
     for (let i = 0; i < selectedIndustry.length - 1; i++) {
       ids += `${selectedIndustry[i].id},`;
     }
-    ids += selectedIndustry[selectedIndustry.length - 1].id;
+    ids += selectedIndustry[selectedIndustry.length - 1]?.id;
     industryId = `&industryId.in=${ids}`;
     url = `${url}${industryId}`;
   }

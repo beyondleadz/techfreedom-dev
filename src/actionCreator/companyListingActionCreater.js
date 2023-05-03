@@ -60,8 +60,7 @@ export const getRevenuerangeList = (payload) => (dispatch) => {
 export const getCompanyList = (payload,paginationValues) => (dispatch) => {
   const url =  createPayload(payload,paginationValues,companyListingApiUrl);
  // console.log(url,'urlurlurl')
-  return getMethod(companyListingApiUrl).then((res) => {
-    console.log(res.headers,"response.headers");
+  return getMethod(url).then((res) => {
     dispatch({
       type: COMPANYLIST,
       payload: res.data,
@@ -72,7 +71,7 @@ export const getCompanyList = (payload,paginationValues) => (dispatch) => {
 
 export const downloadCompanyList = (payload,urlSubstring) => (dispatch) => {
   const url =  createPayload(payload,null,`${companyListingApiUrl}/${urlSubstring}`);
-  return getMethod(url).then((res) => {
+  return getAuthMethod(url).then((res) => {
     dispatch({
       type: DOWNLOAD_COMPANYLIST,
       payload: res.data,

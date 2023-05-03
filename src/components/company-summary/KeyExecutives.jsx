@@ -1,13 +1,30 @@
 import React, { useState, useEffect } from "react";
-import { Table } from "antd";
+import { Table, Modal, Button, Tooltip } from "antd";
 import { PAGE_LENGTH } from "../../config";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router";
+import {
+  submitLead,
+  resetLead,
+} from "../../actionCreator/companyDetailsActionCreator";
+import popupImg from "../../assets/images/free-user-login-prompt.jpg.jpeg";
+import Loader from "../loader";
 const KeyExecutives = () => {
+  const dispatch = useDispatch();
   const employeeList = useSelector(
     (state) => state.companyDetailsReducer.employeeList
   );
+  const submitLeadRes = useSelector(
+    (state) => state.companyDetailsReducer?.executiveLeads
+  );
 
   const [employeeData, setEmployeeData] = useState([]);
+  const [openInfoBeforeLogin, setOpenInfoBeforeLogin] = useState({
+    info: null,
+    open: false,
+  });
+  const [addToLeads, setAddToLeads] = useState(0);
+  const navigate = useNavigate();
 
   const columns = [
     {
@@ -28,17 +45,35 @@ const KeyExecutives = () => {
       title: "Email",
       dataIndex: "emailId",
       render: (text) => {
-        const token = sessionStorage.getItem('token');
-        if(token){
-          return text
-        }else{
-          return <h4 className="  fs-23 btn  la  la-envelope-open-text text-black   "></h4>
-        }
-      }
+        const token = sessionStorage.getItem("token");
+        return token ? (
+          <Tooltip title={text}>
+            <h4 className="  fs-23 btn  la  la-envelope-open-text text-black"></h4>
+          </Tooltip>
+        ) : (
+          <h4
+            className="  fs-23 btn  la  la-envelope-open-text text-black"
+            onClick={() => openInfoModel(text)}
+          ></h4>
+        );
+      },
     },
     {
       title: "Phone Number",
       dataIndex: "phoneNo",
+      render: (text) => {
+        const token = sessionStorage.getItem("token");
+        return token ? (
+          <Tooltip title={text}>
+            <h4 className="  fs-23 btn  la  la-mobile text-black"></h4>
+          </Tooltip>
+        ) : (
+          <h4
+            className="  fs-23 btn  la  la-mobile text-black"
+            onClick={() => openInfoModel(text)}
+          ></h4>
+        );
+      },
     },
     {
       title: "Direct Dial/Mobile    ",
@@ -50,6 +85,27 @@ const KeyExecutives = () => {
     },
   ];
 
+  const postLeads = (record) => {
+    let leadPayload = {
+      firstname: record.firstname,
+      lastname: record.lastname,
+      fullname: record.fullname,
+      title: record.title,
+      client: record.client,
+      emailId: record.emailId,
+      phoneNo: record.phoneNo,
+      bio: record.bio,
+      description: record.description,
+    };
+    dispatch(submitLead(leadPayload));
+    setAddToLeads(record.id);
+  };
+
+  const resetLeadsData = () => {
+    dispatch(resetLead({}));
+    setAddToLeads(0);
+  };
+
   useEffect(() => {
     let data = [];
     employeeList?.forEach((record) => {
@@ -57,7 +113,7 @@ const KeyExecutives = () => {
         ...data,
         {
           key: record.id,
-          id:record.id,
+          id: record.id,
           fullname: record.fullname,
           title: record?.title,
           emailId: record?.emailId,
@@ -69,7 +125,17 @@ const KeyExecutives = () => {
             </h4>
           ),
           leads: (
-            <button className="d-none d-sm-inline-block small btn btn-primary text-black">
+            // <Button
+            //   className="d-none d-sm-inline-block small btn btn-primary text-black"
+            //   loading={addToLeads ===record.id?true:false}
+            //   onClick={() => postLeads(record)}
+            // >
+            //   ADD TO LEADS
+            // </Button>
+            <button
+              className="d-none d-sm-inline-block small btn btn-primary text-black"
+              onClick={() => postLeads(record)}
+            >
               ADD TO LEADS
             </button>
           ),
@@ -78,6 +144,25 @@ const KeyExecutives = () => {
     });
     setEmployeeData(data);
   }, [employeeList]);
+
+  
+  const openInfoModel = (info) => {
+    const token = sessionStorage.getItem("token");
+    if (token) {
+      setOpenInfoBeforeLogin({ info: null, open: false });
+    } else {
+      setOpenInfoBeforeLogin({ info: null, open: true });
+    }
+  };
+
+  const redirectToSignup = () => {
+    setOpenInfoBeforeLogin(false);
+    navigate("/signup");
+  };
+
+  const closeInfoBeforeLogin = () => {
+    setOpenInfoBeforeLogin(false);
+  };
 
   const rowSelection = {
     onChange: (selectedRowKeys, selectedRows) => {
@@ -122,213 +207,62 @@ const KeyExecutives = () => {
           onChange: onPageChange,
         }}
       />
-      {/* <div className="table-container text-nowrap">
-        <div className="table-wrapper">
-          <table className="data-table">
-            <thead>
-              <tr>
-                <th>
-                  <input type="checkbox" />
-                </th>
-                <th>ID</th>
-                <th>Executive Name</th>
-                <th>Designation</th>
-                <th>Email</th>
-                <th>Phone Number</th>
-                <th>Direct Dial/Mobile</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <input type="checkbox" />
-                </td>
-                <td>1</td>
-
-                <td>John Mathew </td>
-                <td>Delivery Head</td>
-                <td>
-                  <h4 className="  fs-23 btn  la  la-envelope-open-text text-black   "></h4>
-                </td>
-                <td>(206) 266-1000</td>
-                <td>
-                  <h4 class="btn btn-primary pr-1 small text-black align-items-center">
-                    {" "}
-                    <i class="las la-mobile fs-12 pt-1 pr-1"></i>
-                    VIEW
-                  </h4>
-                </td>
-                <td>
-                  <button className="d-none d-sm-inline-block small btn btn-primary text-black">
-                    ADD TO LEADS{" "}
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <input type="checkbox" />
-                </td>
-                <td>2</td>
-
-                <td>John Mathew </td>
-                <td>Delivery Head</td>
-                <td>
-                  <h4 className=" fs-23 btn la  la-envelope-open-text text-black  "></h4>
-                </td>
-                <td>(206) 266-1000</td>
-                <td>
-                  <h4 class="btn btn-primary pr-1 small text-black align-items-center">
-                    {" "}
-                    <i class="las la-mobile fs-12 pt-1 pr-1"></i>
-                    VIEW
-                  </h4>
-                </td>
-                <td>
-                  <button className="d-none d-sm-inline-block small btn btn-primary text-black">
-                    ADD TO LEADS{" "}
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <input type="checkbox" />
-                </td>
-                <td>3</td>
-
-                <td>John Mathew </td>
-                <td>Delivery Head</td>
-                <td>
-                  <h4 className=" fs-23 btn la  la-envelope-open-text text-black  "></h4>
-                </td>
-                <td>(206) 266-1000</td>
-                <td>
-                  <h4 class="btn btn-primary pr-1 small text-black align-items-center">
-                    {" "}
-                    <i class="las la-mobile fs-12 pt-1 pr-1"></i>
-                    VIEW
-                  </h4>
-                </td>
-                <td>
-                  <button className="d-none d-sm-inline-block small btn btn-primary text-black">
-                    ADD TO LEADS{" "}
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <input type="checkbox" />
-                </td>
-                <td>4</td>
-
-                <td>John Mathew </td>
-                <td>Delivery Head</td>
-                <td>
-                  <h4 className=" fs-23 btn la  la-envelope-open-text text-black  "></h4>
-                </td>
-                <td>(206) 266-1000</td>
-                <td>
-                  <h4 class="btn btn-primary pr-1 small text-black align-items-center">
-                    {" "}
-                    <i class="las la-mobile fs-12 pt-1 pr-1"></i>
-                    VIEW
-                  </h4>
-                </td>
-                <td>
-                  <button className="d-none d-sm-inline-block small btn btn-primary text-black">
-                    ADD TO LEADS{" "}
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <input type="checkbox" />
-                </td>
-                <td>5</td>
-
-                <td>John Mathew </td>
-                <td>Delivery Head</td>
-                <td>
-                  <h4 className=" fs-23 btn la  la-envelope-open-text text-black  "></h4>
-                </td>
-                <td>(206) 266-1000</td>
-                <td>
-                  <h4 class="btn btn-primary pr-1 small text-black align-items-center">
-                    {" "}
-                    <i class="las la-mobile fs-12 pt-1 pr-1"></i>
-                    VIEW
-                  </h4>
-                </td>
-                <td>
-                  <button className="d-none d-sm-inline-block small btn btn-primary text-black">
-                    ADD TO LEADS{" "}
-                  </button>
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  <input type="checkbox" />
-                </td>
-                <td>6</td>
-
-                <td>John Mathew </td>
-                <td>Delivery Head</td>
-                <td>
-                  <h4 className="fs-23  btn la  la-envelope-open-text text-black  "></h4>
-                </td>
-                <td>(206) 266-1000</td>
-                <td>
-                  <h4 class="btn btn-primary pr-1 small text-black align-items-center">
-                    {" "}
-                    <i class="las la-mobile fs-12 pt-1 pr-1"></i>
-                    VIEW
-                  </h4>
-                </td>
-                <td>
-                  <button className="d-none d-sm-inline-block small btn btn-primary text-black">
-                    ADD TO LEADS{" "}
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <input type="checkbox" />
-                </td>
-                <td>7</td>
-
-                <td>John Mathew </td>
-                <td>Delivery Head</td>
-                <td>
-                  <h4 className=" fs-23 btn la  la-envelope-open-text text-black "></h4>
-                </td>
-                <td>(206) 266-1000</td>
-                <td>
-                  <h4 class="btn btn-primary pr-1 small text-black align-items-center">
-                    {" "}
-                    <i class="las la-mobile fs-12 pt-1 pr-1"></i>
-                    VIEW
-                  </h4>
-                </td>
-                <td>
-                  <button className="d-none d-sm-inline-block small btn btn-primary text-black">
-                    ADD TO LEADS{" "}
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div className="pagination">
-          <a href="#">Previous</a>
-          <a href="#">1</a>
-          <a href="#">2</a>
-          <a href="#">3</a>
-          <a href="#">4</a>
-          <a href="#">5</a>
-          <a href="#">Next</a>
-        </div>
-      </div> */}
+      {openInfoBeforeLogin?.open && (
+        <Modal
+          // title="Basic Modal"
+          width="600px"
+          closable={true}
+          open={openInfoBeforeLogin}
+          onCancel={closeInfoBeforeLogin}
+          footer={[
+            <Button key="submit" type="primary" onClick={redirectToSignup}>
+              Start Free Trial
+            </Button>,
+          ]}
+        >
+          <div class="pop-up">
+            <div id="small-dialog2">
+              <div align="center">
+                <img src={popupImg} />
+              </div>
+              <p style={{ color: "#0000FF" }}>
+                Get 10 free verified contacts with a BeyondLeadz Pro trial
+              </p>
+              <p>
+                BeyondLeadz Pro customers close deals faster thanks to relevant
+              </p>
+              {/* <div class="mt-md-5 mt-4 mb-lg-0 mb-4" align="right">
+                <a href="login.html" class="btn btn-style mt-4">
+                  Start Free Trial
+                </a>
+              </div> */}
+            </div>
+          </div>
+        </Modal>
+      )}
+      {Object.keys(submitLeadRes).length ? (
+        <Modal
+          width="600px"
+          closable={true}
+          open={Object.keys(submitLeadRes).length ? true : false}
+          footer={[
+            <Button key="submit" type="primary" onClick={resetLeadsData}>
+              OK
+            </Button>,
+          ]}
+        >
+          <div class="pop-up">
+            <div id="small-dialog2">
+              <p style={{ color: "#0000FF" }}>
+                New Client Leads is creted with new identifier :{" "}
+                {submitLeadRes.id}
+              </p>
+            </div>
+          </div>
+        </Modal>
+      ) : (
+        ""
+      )}
     </div>
   );
 };
