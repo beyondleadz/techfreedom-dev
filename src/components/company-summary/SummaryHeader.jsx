@@ -244,7 +244,7 @@ const SummaryHeader = () => {
           }
           okText="Submit"
           cancelText="Cancel"
-          width="600px"
+          width="450px"
           open={openErrorForm}
           onOk={onSubmitForm}
           onCancel={closeErrorForm}
@@ -283,7 +283,7 @@ const SummaryHeader = () => {
                 <TextArea
                   name="address"
                   value={errorForm?.address?.value}
-                  rows={4}
+                  rows={2}
                   maxLength={100}
                   disabled={errorForm?.address?.disabled}
                   onChange={onInputChange}
@@ -385,7 +385,7 @@ const SummaryHeader = () => {
               <TextArea
                 name="comment"
                 value={errorForm?.comment?.value}
-                rows={6}
+                rows={3}
                 maxLength={100}
                 placeholder="Comment if any"
                 onChange={onInputChange}
