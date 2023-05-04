@@ -13,7 +13,7 @@ import Gallery from './pages/Gallery';
 import Privacy from './pages/Privacy';
 import SecurityPolicy from './pages/SecurityPolicy';
 import TermsAndConditions from './pages/TermsAndConditions';
-// import ExecutiveSearch from './pages/ExecutiveSearch';
+import ProspectingSearch from './pages/ProspectingSearch';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import ForgetPassword from './pages/ForgetPassword';
@@ -48,6 +48,7 @@ const AppRoutes = (props) => {
                 <Route path='/privacy-policy' element={<Privacy/>}/>
                 <Route path='/security-policy' element={<SecurityPolicy/>}/>
                 <Route path='/terms-and-conditions' element={<TermsAndConditions/>}/>
+                <Route path='/prospecting-search' element={<ProspectingSearch/>}/>
                 <Route path='/executive-search' element={<ExecutiveSearch/>}/>
                 <Route path='/search-company' element={<CompanySearch tab='1'/>}/>
                 <Route path='/search-executive' element={<ExecutiveSearch tab='2'/>}/>

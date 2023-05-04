@@ -88,7 +88,7 @@ const Footer = () => {
                         </NavLink>
                       </li>
                       <li>
-                        <NavLink to="/executive-search">
+                        <NavLink to="/prospecting-search">
                           Prospecting Search
                         </NavLink>
                       </li>
