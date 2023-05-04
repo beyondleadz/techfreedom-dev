@@ -18,6 +18,7 @@ const SummaryContent = () => {
   const [dropDownToggle, setDropdownToggle] = useState(false);
   const [tabActiveKey, setTabActiveKey] = useState("1");
   const [similarList, setSimilarList] = useState();
+  const [similarCount, setSimilarCount] = useState(5);
   const [selectedValue, setSelectedValue] = useState("Filter by Department");
   const departmentList = useSelector(
     (state) => state.companyDetailsReducer.departmentList
@@ -28,6 +29,10 @@ const SummaryContent = () => {
   const similarCompanyList = useSelector(
     (state) => state.companyDetailsReducer.similarCompanyList
   );
+
+  useEffect(() => {
+    setSimilarCount(similarCompanyList.length < 5 ? similarCompanyList.length : 5);
+  }, [similarCompanyList]);
 
   const items = [
     {
@@ -86,6 +91,57 @@ const SummaryContent = () => {
     setTabActiveKey("2");
   };
 
+  const renderSimilarCompanyList = () => {
+    let dd = [];
+    for (let i = 0; i < similarCount; i++) {
+      dd.push(
+        <div className="similarinnerblk">
+          <div className="s-company img-responsive">
+            <img src={similarCompanyList[i]?.companyLogoUrl || defaultLogo} />
+          </div>
+          <div className="similar-desc">
+            <div>
+              <a className="font-weight-bold fs-14 text-dark" title="">
+                {similarCompanyList[i]?.name}
+              </a>
+            </div>
+            <div className="fs-12">{similarCompanyList[i]?.industry?.name}</div>
+            <div className="fs-12">{similarCompanyList[i]?.address}</div>
+          </div>
+        </div>
+      );
+    }
+    return dd;
+    // {
+    //   similarCompanyList?.map((item, index) => {
+    //     return (
+    //       <div className="similarinnerblk">
+    //         <div className="s-company img-responsive">
+    //           <img src={item?.companyLogoUrl || defaultLogo} />
+    //         </div>
+    //         <div className="similar-desc">
+    //           <div>
+    //             <a className="font-weight-bold fs-14 text-dark" title="">
+    //               {item?.name}
+    //             </a>
+    //           </div>
+    //           <div className="fs-12">{item.industry?.name}</div>
+    //           <div className="fs-12">{item?.address}</div>
+    //         </div>
+    //       </div>
+    //     );
+    //   });
+    // }
+  };
+
+  const getMoreSimilarCount = () => {
+    if (similarCount === 5) {
+      setSimilarCount(10);
+    } else {
+      setSimilarCount(5);
+    }
+  };
+
   return (
     <>
       <div id="content-wrapper" className="d-flex flex-column">
@@ -136,27 +192,7 @@ const SummaryContent = () => {
                   Similar Companies
                 </div>
                 <div className="card-body similarblk">
-                  {similarCompanyList?.map((item) => {
-                    return (
-                      <div className="brdr-b pb-3 similarinnerblk">
-                        <div className="s-company img-responsive">
-                          <img src={item?.companyLogoUrl || defaultLogo} />
-                        </div>
-                        <div className="similar-desc">
-                          <div>
-                            <a
-                              className="font-weight-bold fs-14 text-dark"
-                              title=""
-                            >
-                              {item?.name}
-                            </a>
-                          </div>
-                          <div className="fs-12">{item.industry?.name}</div>
-                          <div className="fs-12">{item?.address}</div>
-                        </div>
-                      </div>
-                    );
-                  })}
+                  {renderSimilarCompanyList()}
 
                   {/* <div className="row mt-3 brdr-b pb-3">
                     <div className=" s-company img-responsive">
@@ -234,10 +270,15 @@ const SummaryContent = () => {
                       <div className="fs-12">Noida India</div>
                     </div>
                   </div> */}
+                </div>
+                <div>
                   {similarCompanyList?.length > 5 ? (
                     <div className="fs-12 text-right">
-                      <button className="btn btn-light mr-2 small">
-                        5 More..
+                      <button
+                        className="btn btn-light mr-2 small"
+                        onClick={getMoreSimilarCount}
+                      >
+                        {similarCount === 10 ? "Show Less" : "5 More..."}
                       </button>
                     </div>
                   ) : (

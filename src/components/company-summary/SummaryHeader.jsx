@@ -7,7 +7,6 @@ import { useSelector } from "react-redux";
 import { submitErrorForm } from "../../actionCreator/companyDetailsActionCreator";
 import { emailRegex } from "../../config";
 const SummaryHeader = () => {
-
   const formIntialValue = {
     telephone: { disabled: true, value: "", status: null },
     address: { disabled: true, value: "", status: null },
@@ -18,12 +17,13 @@ const SummaryHeader = () => {
     name: { disabled: true, value: "", status: null },
     email: { disabled: true, value: "", status: null },
     comment: { disabled: true, value: "", status: null },
-  }
+  };
 
   const dispatch = useDispatch();
   const { TextArea } = Input;
   const [openErrorForm, setOpenErrorForm] = useState(false);
   const [errorForm, setErrorForm] = useState(formIntialValue);
+  const [isCompanyBoxHeightFixed, setIsCompanyBoxHeightFixed] = useState(false);
   const companyDetails = useSelector(
     (state) => state.companyDetailsReducer.companyDetails
   );
@@ -77,7 +77,6 @@ const SummaryHeader = () => {
     setErrorForm(formIntialValue);
   };
 
-
   const renderSocialLinks = (socialLinks) => {
     return socialLinks?.map((link) => {
       if (link?.name === "facebook") {
@@ -102,57 +101,81 @@ const SummaryHeader = () => {
     });
   };
 
+  const toggleCompanyHeight = () => {
+    setIsCompanyBoxHeightFixed(!isCompanyBoxHeightFixed);
+  };
+
   return (
     <div className=" navbar-light" id="onScroll">
-      {/* <h3 className="card-body font-weight-bold">Company Summary</h3> */}
-      <div className="headercontainer">
+      <div
+        className={`headercontainer ${
+          isCompanyBoxHeightFixed ? "setauto" : ""
+        }`}
+      >
         <div className="logobox">
           <img src={companyDetails?.companyLogoUrl} />
         </div>
 
         <div className="descbox">
-          <div className="fs-12">{companyDetails?.industry?.name}</div>
-          <div className="font-weight-bold mb-2 ">
+          {/* <div className="fs-12">{companyDetails?.industry?.name}</div> */}
+          <div className="font-weight-bold mb-2 companyname">
             <h3>{companyDetails?.name}</h3>
+            <div className="">
+              <span className="">
+                {renderSocialLinks(companyDetails?.socialLinks)}
+              </span>
+            </div>
           </div>
-          <div className="fs-12">
-            <span className=" text-black la la-map-marker mr-2"></span>
-            <strong className="mr-2">Address</strong>
-            {companyDetails?.address}
+          <div className="headerblk2">
+            <div className="fs-12">
+              <span className=" text-black la la-map-marker mr-2"></span>
+              <strong className="mr-2">Address</strong>
+              {companyDetails?.address}
+            </div>
           </div>
-          <div>
-            <span className=" la text-black  la-mobile fs-20 mr-2"></span>
-            <strong className="mr-2 fs-12">Phone</strong>
-            <span className="fs-12"> {companyDetails?.phoneNo} </span>
+          <div className="headerblk2">
+            <div>
+              <span className=" la text-black  la-mobile fs-20 mr-2"></span>
+              <strong className="mr-2 fs-12">Phone</strong>
+              <span className="fs-12"> {companyDetails?.phoneNo} </span>
+            </div>
+            <div className="fs-12">
+              <span
+                className="text-black la  la-globe mr-2"
+                aria-hidden="true"
+              ></span>
+              <strong className="mr-2">Website</strong>
+              <a
+                className=" fs-12 font-weight-normal text-dark"
+                title=""
+                href={companyDetails?.wedsite}
+                target="_blank"
+              >
+                {companyDetails?.wedsite}
+              </a>
+            </div>
           </div>
-          <div className="fs-12">
-            <span
-              className="text-black la  la-globe mr-2"
-              aria-hidden="true"
-            ></span>
-            <strong className="mr-2">Website</strong>
-            <a
-              className=" fs-12 font-weight-normal text-dark"
-              title=""
-              href={companyDetails?.wedsite}
-              target="_blank"
-            >
-              {companyDetails?.wedsite}
-            </a>
-            
+
+          <div
+            className={`companyintro ${
+              isCompanyBoxHeightFixed ? "setauto" : ""
+            }`}
+          >
+            {/* <h3>Overview</h3> */}
+            <div><strong className="mr-2">Description of business</strong> {companyDetails?.introduction}</div>
           </div>
+          {companyDetails?.introduction && (
+            <span className="readmoreoverview" onClick={toggleCompanyHeight}>
+              {isCompanyBoxHeightFixed ? "Hide..." : "Read more..."}
+            </span>
+          )}
         </div>
 
-        <div className=" d-flex social-icons fs-12 ml-3 pl-2">
+        {/* <div className=" d-flex social-icons fs-12 ml-3 pl-2">
           <span className="  mr-2">
             {renderSocialLinks(companyDetails?.socialLinks)}
-            {/* <i className="lab fs-20 facebook lab la-facebook"></i>
-            <i className="lab fs-20  twitter la la-twitter-square"></i>
-            <i className="lab fs-20 text-info  lab la-linkedin"></i> */}
-            {/* <i className="fab fa-github me-2"></i>
-<i className="fab fa-whatsapp me-2"></i>*/}
           </span>
-        </div>
+        </div> */}
         <div className="buttons-container">
           <ul className="d-flex  m-mt">
             <li>
@@ -199,7 +222,7 @@ const SummaryHeader = () => {
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                <i className="right-icons la la-star" aria-hidden="true"></i>
+                <i className="right-icons las la-tag" aria-hidden="true"></i>
               </a>
             </li>
             <li>
@@ -209,10 +232,6 @@ const SummaryHeader = () => {
             </li>
           </ul>
         </div>
-      </div>
-      <div className="row companyintro">
-        <h3>Overview</h3>
-        <div>{companyDetails?.introduction}</div>
       </div>
 
       {openErrorForm && (

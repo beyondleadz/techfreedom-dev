@@ -69,6 +69,19 @@ export const getCompanyList = (payload,paginationValues) => (dispatch) => {
   });
 };
 
+export const getCompanyListWithStartAndEnd = (pageValue) => (dispatch) => {
+  let url = `${companyListingApiUrl}?start=${pageValue?.start}&end=${pageValue?.end}`;
+  return getMethod(url).then((res) => {
+    dispatch({
+      type: COMPANYLIST,
+      payload: res.data,
+      count: res?.headers['x-total-count'],
+    });
+  });
+};
+
+
+
 export const downloadCompanyList = (payload,urlSubstring) => (dispatch) => {
   const url =  createPayload(payload,null,`${companyListingApiUrl}/${urlSubstring}`);
   return getAuthMethod(url).then((res) => {
