@@ -12,7 +12,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const [showNav, setShowNav] = useState();
   const [dropDownToggle, setDropdownToggle] = useState(false);
-  const [selectedValue, setSelectedValue] = useState("Select");
+  const [selectedValue, setSelectedValue] = useState("Advance");
   const navigate = useNavigate();
   const token = useSelector((state) => state?.SignUpReducer?.signInData);
 
