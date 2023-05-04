@@ -265,7 +265,7 @@ const KeyExecutives = () => {
       )}
       {Object.keys(submitLeadRes).length ? (
         <Modal
-          width="600px"
+          width="400px"
           closable={false}
           open={Object.keys(submitLeadRes).length ? true : false}
           footer={[
