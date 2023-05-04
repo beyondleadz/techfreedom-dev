@@ -6416,7 +6416,7 @@ cursor: pointer;
 .right-icons{
   display: inline;
   padding: 0 0.2rem;
-  font-size: 18px;
+  font-size: 23px;
   background-size: 100%;
   color: blue;
   vertical-align: middle;}
@@ -6652,11 +6652,11 @@ cursor: pointer;
 
     .companyname{    display: flex;
       align-items: center;
-      justify-content: space-between; padding-right: 30px;}
+      justify-content: space-between; padding-right: 120px;}
     .headerblk2{display: flex; align-items: center;     margin-top: 15px;
       left: -4px;
       position: relative;}
-    .headerblk2 > div{display: flex; align-items: center; margin-right: 20px;}
+    .headerblk2 > div{display: flex; align-items: center;  margin-right: 150px;}
     .headerblk2 div span::before{margin-left: 0;}
     .keyexebtn{padding: 7px 10px; width: 100px;}
     .summarycontainer .keyexebtn:hover{background: #fdc401; border: #fdc401; color: #000;}
@@ -6678,12 +6678,14 @@ cursor: pointer;
       margin-top: 15px;
       height: 43px;
       overflow: hidden;
-      font-size: 13px;
+      font-size: 12px;
       line-height: 22px;
+      padding-right: 110px;
     }
     .companyintro.setauto{height: auto;}
     .readmoreoverview{    position: absolute; color: orange; cursor: pointer;
-      right: 8px;
+      right: 110px;
+      /* right: 8px; */
       font-size: 12px;
       bottom: -14px; z-index: 99;}
         .orgnode {
