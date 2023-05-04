@@ -131,7 +131,7 @@ const Header = () => {
                         </a>
 
                         {/* <i className="icondrop list-building-icon"></i> */}
-                        <i className="icondrop la la-user-plus"></i>
+                        <i className="icondrop text-success la la-user-plus"></i>
                         <a href="#">
                           <h3> List Building </h3>
                           <span className="menu-sub">

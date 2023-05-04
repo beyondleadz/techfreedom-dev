@@ -183,9 +183,9 @@ margin-top: 0em;
 .la-user-friends:before {
   color: #FF010B;
 }
-.la-user-plus:before {
+/* .la-user-plus:before {
   color: #01CCE2;
-}
+} */
 .la-cloud-upload-alt:before {
   color: #5000FF;
 }

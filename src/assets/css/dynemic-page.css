@@ -6391,7 +6391,9 @@ cursor: pointer;
 }
 
 
-
+i .la-user-plus:before {
+  color: #000;
+}
 .tab-img{    display: inline;
   padding: 0.2rem 0.5rem;
   font-size: 22px;
@@ -6419,7 +6421,7 @@ cursor: pointer;
   padding: 0 0.2rem;
   font-size: 23px;
   background-size: 100%;
-  color: blue;
+  color: #5d44ff;
   vertical-align: middle;}
  /* background: url(../images/pdf-icon.png) no-repeat 55% center; */
  /* background: url(../images/xls-icon.png) no-repeat 55% center; */
