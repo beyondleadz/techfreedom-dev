@@ -6659,7 +6659,7 @@ cursor: pointer;
       position: relative;}
     .headerblk2 > div{display: flex; align-items: center;  margin-right: 150px;}
     .headerblk2 div span::before{margin-left: 0;}
-    .keyexebtn{padding: 7px 10px; width: 100px;}
+     .keyexebtn{/*padding: 7px 10px;*/ width: 100px;} 
     .summarycontainer .keyexebtn:hover{background: #fdc401; border: #fdc401; color: #000;}
     .similarblk .similarinnerblk{ display: flex; padding: 10px 0; 
       border-bottom: 1px solid #eaeaea;}
@@ -6990,10 +6990,10 @@ color: orange;
 
 #small-dialog,#small-dialog1,#small-dialog2,#small-dialog3,#small-dialog4,#small-dialog5{
 	background: white;
-	padding:20px;
+	padding:10px;
 	text-align: left;
 	max-width: 400px;
-	margin: 40px auto;
+	margin: 15px auto;
 	position: relative;
 	text-align:center;
 	border: 9px solid#eee;
@@ -7006,7 +7006,7 @@ color: orange;
 .errorformcontainertitle h4{color: #00acee; font-size: 12px; font-weight: 500;}
 .errorformcontainertitle h2{color: #1a1a1a; font-size: 18px; font-weight: 700;}
 /* .errorformcontainer{padding:0 40px;} */
-.errorformcontainer p{margin:15px 0}
+.errorformcontainer p{margin:14px 0}
 .errorformcontainer .form{display: flex; align-items: center; justify-content: space-between; padding: 5px 0;}
 .errorformcontainer .form .formcol1{width:30%}
 .errorformcontainer .form .formcol2{width:70%}

@@ -233,7 +233,7 @@ const KeyExecutives = () => {
       {openInfoBeforeLogin?.open && (
         <Modal
           // title="Basic Modal"
-          width="600px"
+          width="400px"
           closable={true}
           open={openInfoBeforeLogin}
           onCancel={closeInfoBeforeLogin}
