@@ -2,7 +2,7 @@ import React, { useEffect, useState, useMemo } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import _ from "lodash";
-import { Table, Input } from "antd";
+import { Table, Input, Button } from "antd";
 import { PAGE_LENGTH } from "../../config";
 import defaultLogo from "../../assets/images/default_company_logo.jpg";
 
@@ -23,7 +23,7 @@ const CompanyContent = () => {
         return (
           <div className="namecol">
             <div className="logo">
-              <img src={record?.companyLogoUrl || defaultLogo}/>
+              <img src={record?.companyLogoUrl || defaultLogo} />
             </div>
             <span className="companyname" onClick={() => getDetails(row.key)}>
               {record?.name}
@@ -165,8 +165,13 @@ const CompanyContent = () => {
                 <div className="card shadow mb-4">
                   <div className="card-header py-3 f-rev d-flex align-items-center justify-content-between">
                     <h6 className="m-0 ml-2 font-weight-bold text-primary mob-t">
-                      Showing 1-{PAGE_LENGTH} of {companyFilterList?.totalCount}
-                      results
+                      Showing 1-
+                      {parseInt(PAGE_LENGTH) >
+                      parseInt(companyFilterList?.totalCount)
+                        ? companyFilterList?.totalCount
+                        : PAGE_LENGTH}
+                      <span className="m-1">of</span> {companyFilterList?.totalCount}
+                      <span className="m-1">results</span>
                     </h6>
 
                     <div className="buttons-container textsearch">
@@ -177,12 +182,12 @@ const CompanyContent = () => {
                         style={{ width: 200 }}
                       />
 
-                      <button className="d-none d-sm-inline-block ml-2 btn btn-outline-info">
+                      <Button className="d-none d-sm-inline-block ml-2">
                         <i className="fas fa-save pr-1"></i> SAVE SEARCH
-                      </button>
-                      <button className="d-none d-sm-inline-block ml-2 btn btn-outline-primary">
+                      </Button>
+                      <Button className="d-none d-sm-inline-block ml-2">
                         <i className="fas fa-bolt pr-1"></i> CONNECT TO CRM
-                      </button>
+                      </Button>
                     </div>
                   </div>
                   <div className="card-body">

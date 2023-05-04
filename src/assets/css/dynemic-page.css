@@ -186,6 +186,8 @@ input[type="checkbox" i] {
   flex: 1;
   white-space: nowrap;
 }
+
+.buttons-container.textsearch{margin-right: 0;}
 @media (max-width: 768px) {
   .table-container {
     width: 100%;
@@ -6523,12 +6525,23 @@ cursor: pointer;
 .filter-button{
   display: none;
 }
+.ant-tabs-nav{
+  width: 100%;
+}
 .quickselectioninput{
-  width: 20px;
+  width: 50px;
   border:1px solid #ddd;
   text-align: center;
 }
 
+.buttons-container-top{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 1;
+  white-space: nowrap;
+  margin: 0 20px; line-height: 12px;
+}
 .advancedfilter .ant-modal-title{
   font-size: 18px;
   }
@@ -6953,6 +6966,11 @@ color: orange;
 .namecol .logo{
   width:22px;
   margin-right: 5px;
+  height: 22px;
+  align-items: center;
+  background: #ddd;
+  display: flex;
+  padding: 1px;
 }
 .namecol .logo img{width:100%; display: block;}
 .companyintro h3{font-size: 16px; font-weight: 500;}

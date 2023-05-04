@@ -1,8 +1,18 @@
 import React, { useEffect, useState, useMemo } from "react";
 import _ from "lodash";
+import { Input, Button } from "antd";
 import { useSelector, useDispatch } from "react-redux";
-import { downloadCompanyList } from "../../actionCreator/companyListingActionCreater";
+import {
+  downloadCompanyList,
+  saveAdvancedSelectedFilters,
+  getCompanyListWithStartAndEnd,
+  getCompanyList
+} from "../../actionCreator/companyListingActionCreater";
 const CompanyNavigation = () => {
+  const [quickSelection, setQuickSelection] = useState({
+    start: 0,
+    end: 0,
+  });
   const dispatch = useDispatch();
   const companySelectedFilterList = useSelector(
     (state) => state.companyListingReducer.selectedFilters
@@ -12,29 +22,79 @@ const CompanyNavigation = () => {
     window.print();
   };
   const downloadExcel = () => {
-    dispatch(downloadCompanyList(companySelectedFilterList,'exl'));
+    dispatch(downloadCompanyList(companySelectedFilterList, "exl"));
   };
   const downloadPDF = () => {
-    dispatch(downloadCompanyList(companySelectedFilterList,'pdf'));
+    dispatch(downloadCompanyList(companySelectedFilterList, "pdf"));
   };
+
+  const onChangeQuickSelection = (e) => {
+    setQuickSelection({
+      ...quickSelection,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const emptyFilters = () => {
+    const emptyPayload = {
+      selectedCountry: [],
+      selectedState: [],
+      selectedCity: [],
+      selectedIndustry: [],
+      selectedCompanytype: [],
+      selectedEmployeecount: [],
+      selectedRevenuerange: [],
+    };
+
+    dispatch(saveAdvancedSelectedFilters(emptyPayload));
+  };
+
+  const onClickQuickSelection = () => {
+    emptyFilters();
+    dispatch(getCompanyListWithStartAndEnd(quickSelection));
+  };
+
+  const onClickSelectAll = () => {
+    emptyFilters();
+    dispatch(getCompanyList());
+  };
+
   return (
     <nav className="navbar navbar-light bg-white topbar mb-4 static-top">
-      <div className="buttons-container m-mt quickselection">
+      <div className="buttons-container-top m-mt quickselection">
         <div>
           <span className="fs-12 mr-2">Quick Selection</span>
           <div className=" fs-12 d-sm-inline-block mr-1">
-            <input type="text" className="quickselectioninput" />
+            <Input
+              name="start"
+              className="quickselectioninput"
+              maxLength={2}
+              onChange={onChangeQuickSelection}
+            />
           </div>
           <span className=" fs-12 mr-1">to</span>
           <div className="  fs-12 d-sm-inline-block mr-1">
-            <input type="text" className="quickselectioninput" />
+            <Input
+              name="end"
+              maxLength={2}
+              className="quickselectioninput"
+              onChange={onChangeQuickSelection}
+            />
           </div>
-          <button className=" fs-12 d-sm-inline-block btn btn-info btn-lg mr-1">
-            <i className="fas fs-12 fa-arrow-right"></i>{" "}
-          </button>
-          <button className="fs-12  btn btn-info btn-lg  mr-3">
+          <Button
+          type="primary"
+            className=" fs-12 d-sm-inline-block mr-1"
+            onClick={onClickQuickSelection}
+          >
+            <i className="fas fs-12 fa-arrow-right"></i>
+          </Button>
+          <Button
+          type="primary"
+            className="fs-12  mr-1"
+            onClick={onClickSelectAll}
+          >
             Select All
-          </button>
+          </Button>
         </div>
         <ul className="flex  m-mt">
           <li>

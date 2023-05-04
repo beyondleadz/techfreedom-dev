@@ -14,7 +14,6 @@ const CompanySearch = ({ tab }) => {
   }, [tab]);
 
   const onChange = (key) => {
-    //console.log(key);
     setActiveTab(key);
   };
 
@@ -23,7 +22,6 @@ const CompanySearch = ({ tab }) => {
       key: "1",
       label: (
         <span>
-          {" "}
           <i className="fa tab-img la la-building"></i>Companies
         </span>
       ),
@@ -90,9 +88,9 @@ const CompanySearch = ({ tab }) => {
       <Layout>
         <div>
           <h3 className="pagetitle">
-            {activeTab === 1
+            {parseInt(activeTab) === 1
               ? "Search Companies"
-              : activeTab === 2
+              : parseInt(activeTab) === 2
               ? "Search Executive"
               : "Search Leads"}
           </h3>
@@ -103,14 +101,6 @@ const CompanySearch = ({ tab }) => {
             type="card"
           />
         </div>
-        {/*         
-        <div className="wrapper">
-            <CompanyHeader/>
-            <div id="wrapper">
-                <CompanyLeft/>
-                <CompanyContent/>
-            </div>
-        </div> */}
       </Layout>
     </>
   );
