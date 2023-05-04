@@ -1,5 +1,5 @@
 import React,{useState} from "react";
-import B2BCompanySearchImage from '../../assets/images/crm-integration.jpg'
+import B2BCompanySearchImage from '../../assets/images/b2b-company-search.jpg'
 // import CompnySearchIconImage from '../../assets/images/executive-search-company-icon.jpg'
 
 const B2BCompanySearch=()=>{

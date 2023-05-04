@@ -19211,7 +19211,6 @@ h4.small-text-banner {
   position: relative;
   transition: all 0.5s ease 0s;
   border-color: #DADADA;
-  border-style: dotted;
 }
 
 .box-wrap:hover {
@@ -19317,7 +19316,7 @@ h4.number {
   position: absolute;
   /*border: 10px solid var(--secondary-color);*/
   border: 10px solid var(--primary-color);
-  right: -45px;
+  right: 5px; /* -45px */
   left: 45px;
   bottom: 45px;
   top: -45px;
@@ -19418,7 +19417,7 @@ h4.number {
   position: absolute;
   /*border: 10px solid var(--secondary-color);*/
   border: 10px solid var(--primary-color);
-  right: -45px;
+  right: 5px; /* -45px */
   left: 45px;
   bottom: 45px;
   top: -45px;
