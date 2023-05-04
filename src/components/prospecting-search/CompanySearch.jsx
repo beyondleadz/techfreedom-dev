@@ -4,7 +4,18 @@ import CompnySearchIconImage from '../../assets/images/executive-search-company-
 
 const CompanySearch=()=>{
     return <>
-    (<section className="about-section py-5">
+    (
+    <div className="container">
+		<div className="privacy-security-term">
+		<h3 align="center"><strong>Find Right Contacts/Company Data with Personalized Searches</strong></h3><br/>
+            <p align="center">Beyond Leadz makes it easy to find new prospects and connect with key decision-makers.
+			<br/>Uncover new accounts, track fast-growing companies, and reach out at the right time so you never miss an opportunity.
+			<br/>Conduct granular searches based on location, industry, funding and more. Try it out with these advanced searches created by prospectors like you and make them your own.</p>
+        </div>
+    </div>
+        
+        {   
+    /* <section className="about-section py-5">
         <div className="container py-lg-5 py-4">
             <div className="title-heading-w3 mx-auto text-center mb-sm-5 mb-4 pb-xl-4" style={{"maxWidth":600}}>
                 <h3 className="title-style mb-2">Find Right Contacts/Company Data with Personalized Searches</h3>
@@ -13,7 +24,7 @@ const CompanySearch=()=>{
 				<p>Conduct granular searches based on location, industry, funding and more. Try it out with these advanced searches created by prospectors like you and make them your own.</p>
             </div>
         </div>
-    </section>
+    </section> */}
 	<section className="w3l-ab-section-left py-5">
         <div className="container py-md-5 py-4">
             <div className="row py-lg-4">

@@ -7,7 +7,7 @@ import LaserLists from "../components/prospecting-search/LaserLists";
 
 import Connect from "../components/prospecting-search/Connect";
 import Dashboard from "../components/prospecting-search/Dashboard";
-import Clients from "../components/prospecting-search/Clients";
+// import Clients from "../components/prospecting-search/Clients";
 
 const ProspectingSearch = () => {
 
@@ -20,7 +20,7 @@ const ProspectingSearch = () => {
         <LaserLists/>
         <Connect/>
         <Dashboard/>
-        <Clients/>
+        {/* <Clients/> */}
     </Layout>
     
     </>
