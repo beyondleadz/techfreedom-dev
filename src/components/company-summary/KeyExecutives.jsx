@@ -112,7 +112,7 @@ const KeyExecutives = () => {
             loading={!Object.keys(submitLeadRes).length && addToLeads === record.id ? true : false}
             onClick={() => postLeads(record)}
           >
-            ADD TO LEADS
+           <i class="las la-user-plus fs-12 pt-1 pr-1"></i> ADD TO LEADS
           </Button>
         ) : (
           <Button
@@ -121,7 +121,7 @@ const KeyExecutives = () => {
             loading={!Object.keys(submitLeadRes).length && addToLeads === record.id ? true : false}
             onClick={() => openInfoModel()}
           >
-            ADD TO LEADS
+            <i class="las la-user-plus text-black fs-12 pt-1 pr-1"></i>ADD TO LEADS
           </Button>          
         );
       },

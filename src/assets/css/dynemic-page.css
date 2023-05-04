@@ -2390,7 +2390,7 @@ input[type="button"].btn-block {
 .pagetitle{
   font-size: 1.75rem;
   font-weight: bold;
-  padding: 30px 15px;
+  padding: 20px 15px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
@@ -4734,11 +4734,11 @@ button.bg-dark:focus {
 }
 
 .text-primary {
-  color: #4e73df !important;
+  color: #5d44ff !important;
 }
 
 a.text-primary:hover, a.text-primary:focus {
-  color: #224abe !important;
+  color: #5d44ff !important;
 }
 
 .text-secondary {
@@ -6659,7 +6659,7 @@ cursor: pointer;
       position: relative;}
     .headerblk2 > div{display: flex; align-items: center;  margin-right: 150px;}
     .headerblk2 div span::before{margin-left: 0;}
-     .keyexebtn{/*padding: 7px 10px;*/ width: 100px;} 
+     .keyexebtn{padding: 7px 10px; width: 100px;} 
     .summarycontainer .keyexebtn:hover{background: #fdc401; border: #fdc401; color: #000;}
     .similarblk .similarinnerblk{ display: flex; padding: 10px 0; 
       border-bottom: 1px solid #eaeaea;}
