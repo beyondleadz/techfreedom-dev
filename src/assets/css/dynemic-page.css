@@ -6391,9 +6391,7 @@ cursor: pointer;
 }
 
 
-i .la-user-plus:before {
-  color: #000;
-}
+
 .tab-img{    display: inline;
   padding: 0.2rem 0.5rem;
   font-size: 22px;
@@ -6661,7 +6659,7 @@ i .la-user-plus:before {
       position: relative;}
     .headerblk2 > div{display: flex; align-items: center;  margin-right: 150px;}
     .headerblk2 div span::before{margin-left: 0;}
-     .keyexebtn{padding: 7px 10px; width: 100px;} 
+     .keyexebtn{padding: 7px 10px; } 
     .summarycontainer .keyexebtn:hover{background: #fdc401; border: #fdc401; color: #000;}
     .similarblk .similarinnerblk{ display: flex; padding: 10px 0; 
       border-bottom: 1px solid #eaeaea;}

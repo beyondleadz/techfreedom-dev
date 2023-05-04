@@ -73,7 +73,7 @@ const KeyExecutives = () => {
             style={{ height: "auto" }}
             className="keyexebtn d-none d-sm-inline-block small btn btn-primary text-black"
           >
-            <i class="las la-mobile fs-12 pt-1 pr-1"></i>
+            <i class="las la-mobile fs-12  pr-1"></i>
             VIEW
           </Button>
           </Tooltip>
@@ -83,7 +83,7 @@ const KeyExecutives = () => {
             className="keyexebtn d-none d-sm-inline-block small btn btn-primary text-black"
             onClick={() => openInfoModel()}
           >
-            <i class="las la-mobile fs-12 pt-1 pr-1"></i>
+            <i class="las la-mobile fs-12  pr-1"></i>
             VIEW
           </Button>
         );
