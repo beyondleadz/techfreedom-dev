@@ -18,6 +18,7 @@ import {
   revenueRangeApiUrl,
   companyListingApiUrl,
 } from "../constant/Constant";
+import {dispatchStatus} from './commonActionCreator'
 import { Geolocation } from "../constant/Geolocation";
 import { createPayload } from "../utils/utils";
 
@@ -58,6 +59,7 @@ export const getRevenuerangeList = (payload) => (dispatch) => {
 };
 
 export const getCompanyList = (payload,paginationValues) => (dispatch) => {
+  dispatch(dispatchStatus(true))
   const url =  createPayload(payload,paginationValues,companyListingApiUrl);
  // console.log(url,'urlurlurl')
   return getMethod(url).then((res) => {
@@ -66,6 +68,7 @@ export const getCompanyList = (payload,paginationValues) => (dispatch) => {
       payload: res.data,
       count: res?.headers['x-total-count'],
     });
+    dispatch(dispatchStatus(false))
   });
 };
 

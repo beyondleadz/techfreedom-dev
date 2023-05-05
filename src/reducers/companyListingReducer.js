@@ -8,7 +8,7 @@ import {
   COMPANY_SEARCH_PAYLOAD,
   ADVANCED_SELECTED_FILTERS,
   PAGINATION_VALUE,
-  DOWNLOAD_COMPANYLIST
+  DOWNLOAD_COMPANYLIST,
 } from "../actionType/companyListingType";
 import { PAGE_LENGTH } from "../config";
 

@@ -55,11 +55,11 @@ const CompanyContent = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [companyList, setCompanyList] = useState();
-  const [loading, setLoading] = useState(true);
   const companyFilterList = useSelector((state) => state.companyListingReducer);
   const companySelectedFilterList = useSelector(
     (state) => state.companyListingReducer.selectedFilters
   );
+  const loading = useSelector((state) => state.CommonReducer.loading)
   const paginationValue = useSelector(
     (state) => state.companyListingReducer.paginationValue
   );
@@ -112,12 +112,6 @@ const CompanyContent = () => {
 
     setCompanyList(data);
   }, [companyFilterList]);
-
-  useEffect(() => {}, [companyList]);
-
-  useEffect(() => {
-    companyList && companyList.length ? setLoading(false) : setLoading(true);
-  }, [companyList]);
 
   const rowSelection = {
     onChange: (selectedRowKeys, selectedRows) => {
