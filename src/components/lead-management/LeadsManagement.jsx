@@ -27,7 +27,7 @@ const LeadsManagement=()=>{
 					</div>
 					<div className="col-sm-3 agile-choose-grid">
 						<div className="choose-icon">
-						<i class="las la-globe-asia" style={{"color":"#5D44FF", fontSize:35}}></i>						</div>
+						<i class="las la-globe-europe" style={{"color":"#5D44FF", fontSize:32}}></i>						</div>
 						<div className="choose-info">
 						<p>Website</p>
 						</div>
@@ -42,7 +42,7 @@ const LeadsManagement=()=>{
 					
 					<div className="col-sm-3 agile-choose-grid" position-relative>
 						<div className="choose-icon">
-						<i class="las la-file-alt" style={{"color":"#5D44FF", fontSize:35}}></i>						</div>
+						<i class="lab la-wpforms" style={{"color":"#5D44FF", fontSize:35}}></i>						</div>
 						<div className="choose-info">
 							<p>Web Forms</p>
 						</div>
