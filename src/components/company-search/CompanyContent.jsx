@@ -10,6 +10,8 @@ import {
   getCompanyList,
   savePaginationValues,
   saveAdvancedSelectedFilters,
+  selectedRow,
+  saveSearchAction,
 } from "../../actionCreator/companyListingActionCreater";
 import Loader from "../loader";
 
@@ -25,9 +27,7 @@ const CompanyContent = () => {
             <div className="logo">
               <img src={record?.companyLogoUrl || defaultLogo} />
             </div>
-            <span className="companyname" onClick={() => getDetails(row.key)}>
-              {record?.name}
-            </span>
+            <span onClick={() => getDetails(row.key)}>{record?.name}</span>
           </div>
         );
       },
@@ -59,7 +59,7 @@ const CompanyContent = () => {
   const companySelectedFilterList = useSelector(
     (state) => state.companyListingReducer.selectedFilters
   );
-  const loading = useSelector((state) => state.CommonReducer.loading)
+  const loading = useSelector((state) => state.CommonReducer.loading);
   const paginationValue = useSelector(
     (state) => state.companyListingReducer.paginationValue
   );
@@ -120,6 +120,7 @@ const CompanyContent = () => {
         "selectedRows: ",
         selectedRows
       );
+      dispatch(selectedRow(selectedRowKeys));
     },
     getCheckboxProps: (record) => ({
       disabled: record.name === "Disabled User", // Column configuration not to be checked
@@ -149,6 +150,31 @@ const CompanyContent = () => {
     navigate(`/company-summary/${id}`);
   };
 
+  const onHandleSaveSearch = () => {
+    const payload = {
+      accountId: "string",
+      dataDump: JSON.stringify(companySelectedFilterList),
+      emailId: "string",
+      fullName: "string",
+      id: 0,
+      phoneNo: "string",
+      source: "string",
+      userId: "string",
+    };
+    dispatch(saveSearchAction(payload));
+  };
+
+  const checkFilters = () => {
+    let hasFilters = true
+  
+    Object.keys(companySelectedFilterList).forEach((item) => {
+      if(companySelectedFilterList[item]?.length){
+        hasFilters =  false
+      }
+    })
+return hasFilters
+  }
+
   return !loading ? (
     <>
       <div id="content-wrapper" className="d-flex flex-column ">
@@ -164,7 +190,8 @@ const CompanyContent = () => {
                       parseInt(companyFilterList?.totalCount)
                         ? companyFilterList?.totalCount
                         : PAGE_LENGTH}
-                      <span className="m-1">of</span> {companyFilterList?.totalCount}
+                      <span className="m-1">of</span>{" "}
+                      {companyFilterList?.totalCount}
                       <span className="m-1">results</span>
                     </h6>
 
@@ -176,7 +203,12 @@ const CompanyContent = () => {
                         style={{ width: 200 }}
                       />
 
-                      <Button className="d-none d-sm-inline-block ml-2">
+                      <Button
+                        className="d-none d-sm-inline-block ml-2"
+                        onClick={onHandleSaveSearch}
+                        disabled={checkFilters()}
+                        title={checkFilters() ? 'Filters are not selected': ''}
+                      >
                         <i className="fas fa-save pr-1"></i> SAVE SEARCH
                       </Button>
                       <Button className="d-none d-sm-inline-block ml-2">

@@ -8,17 +8,23 @@ import {
   COMPANY_SEARCH_PAYLOAD,
   ADVANCED_SELECTED_FILTERS,
   PAGINATION_VALUE,
-  DOWNLOAD_COMPANYLIST
+  DOWNLOAD_COMPANYLIST,
+  SELECTED_RECORDS,
+  SAVE_SEARCH,
+  DOWNLOAD_COMPANYLIST_ERROR,
+  SAVE_SEARCH_ERROR
 } from "../actionType/companyListingType";
-import { getAuthMethod, getMethod } from "../services/HttpServices";
+import { getAuthMethod, getMethod, postAuthMethod } from "../services/HttpServices";
+import {errEnum} from '../config'
 import {
   industryApiUrl,
   employeeCountApiUrl,
   companyTypeApiUrl,
   revenueRangeApiUrl,
   companyListingApiUrl,
+  saveSearch
 } from "../constant/Constant";
-import {dispatchStatus} from './commonActionCreator'
+import { dispatchStatus } from "./commonActionCreator";
 import { Geolocation } from "../constant/Geolocation";
 import { createPayload } from "../utils/utils";
 
@@ -58,43 +64,61 @@ export const getRevenuerangeList = (payload) => (dispatch) => {
   });
 };
 
-export const getCompanyList = (payload,paginationValues) => (dispatch) => {
-  dispatch(dispatchStatus(true))
-  const url =  createPayload(payload,paginationValues,companyListingApiUrl);
- // console.log(url,'urlurlurl')
+export const getCompanyList = (payload, paginationValues) => (dispatch) => {
+  dispatch(dispatchStatus(true));
+  const url = createPayload(payload, paginationValues, companyListingApiUrl);
+  // console.log(url,'urlurlurl')
   return getMethod(url).then((res) => {
     dispatch({
       type: COMPANYLIST,
       payload: res.data,
-      count: res?.headers['x-total-count'],
+      count: res?.headers["x-total-count"],
     });
-    dispatch(dispatchStatus(false))
+    dispatch(dispatchStatus(false));
   });
 };
 
-export const getCompanyListWithStartAndEnd = (pageValue) => (dispatch) => {
-  let url = `${companyListingApiUrl}?start=${pageValue?.start}&end=${pageValue?.end}`;
+export const getCompanyListWithStartAndEnd = (paginationValues) => (
+  dispatch
+) => {
+  let url = `${companyListingApiUrl}?page=${paginationValues?.start}&size=${paginationValues?.end}`;
   return getMethod(url).then((res) => {
     dispatch({
       type: COMPANYLIST,
       payload: res.data,
-      count: res?.headers['x-total-count'],
+      count: res?.headers["x-total-count"],
     });
   });
 };
 
-
-
-export const downloadCompanyList = (payload,urlSubstring) => (dispatch) => {
-  const url =  createPayload(payload,null,`${companyListingApiUrl}/${urlSubstring}`);
-  return getAuthMethod(url).then((res) => {
-    dispatch({
-      type: DOWNLOAD_COMPANYLIST,
-      payload: res.data,
+export const downloadCompanyList = (payload, urlSubstring) => (dispatch) => {
+  // const url =  createPayload(payload,null,`${companyListingApiUrl}/${urlSubstring}`);
+  let url = "";
+  if (payload?.length) {
+    let selectedRecords = "id.in=";
+    payload?.forEach((id) => (selectedRecords += `${id},`));
+    const removedLastComma = selectedRecords.substring(
+      selectedRecords.lastIndexOf(","),
+      0
+    );
+    url = `${companyListingApiUrl}/${urlSubstring}/${removedLastComma}`;
+  } else {
+    url = `${companyListingApiUrl}/${urlSubstring}`;
+  }
+  return getAuthMethod(url)
+    .then((res) => {
+      dispatch({
+        type: DOWNLOAD_COMPANYLIST,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: DOWNLOAD_COMPANYLIST_ERROR,
+        payload: {[errEnum.DOWNLOAD_ERROR]:err.response.data.title} || 'Error Occured',
+      });
     });
-  });
 };
-
 
 export const getLocation = (payload) => ({
   type: GEOLOCATION,
@@ -122,5 +146,25 @@ export const savePaginationValues = (payload) => {
   };
 };
 
+export const selectedRow = (payload) => {
+  return {
+    type: SELECTED_RECORDS,
+    payload: payload,
+  };
+};
 
-
+export const saveSearchAction = (payload) => (dispatch) => {
+  return postAuthMethod(saveSearch,payload)
+  .then((res) => {
+    dispatch({
+      type: SAVE_SEARCH,
+      payload: res.data,
+    });
+  })
+  .catch((err) => {
+    dispatch({
+      type: SAVE_SEARCH_ERROR,
+      payload: {[errEnum.SAVE_SEARCH_ERROR]:err.response.data.title} || 'Error Occured',
+    });
+  });
+}

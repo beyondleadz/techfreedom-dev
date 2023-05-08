@@ -9,6 +9,10 @@ import {
   ADVANCED_SELECTED_FILTERS,
   PAGINATION_VALUE,
   DOWNLOAD_COMPANYLIST,
+  SELECTED_RECORDS,
+  SAVE_SEARCH,
+  DOWNLOAD_COMPANYLIST_ERROR,
+  SAVE_SEARCH_ERROR
 } from "../actionType/companyListingType";
 import { PAGE_LENGTH } from "../config";
 
@@ -28,7 +32,6 @@ const initialState = {
     selectedEmployeecount: [],
     selectedRevenuerange: [],
     searchKeyword: "",
-    excelDownload: "",
   },
   companySearchPayload: {
     country: [],
@@ -43,6 +46,10 @@ const initialState = {
     start: 0,
     end: PAGE_LENGTH,
   },
+  selectedRecords: [],
+  excelDownload: "",
+  saveSearch: "",
+  errObj: {},
 };
 
 const CompanyListingReducer = (state = initialState, action) => {
@@ -71,6 +78,14 @@ const CompanyListingReducer = (state = initialState, action) => {
       };
     case DOWNLOAD_COMPANYLIST:
       return { ...state, excelDownload: payload };
+    case SELECTED_RECORDS:
+      return { ...state, selectedRecords: payload };
+    case SAVE_SEARCH:
+      return { ...state, saveSearch: payload };
+    case DOWNLOAD_COMPANYLIST_ERROR:
+      return { ...state, errObj: { ...state.errObj, ...payload } };
+    case SAVE_SEARCH_ERROR:
+      return { ...state, errObj: { ...state.errObj, ...payload } };
 
     default:
       return state;

@@ -31,7 +31,9 @@ const SummaryContent = () => {
   );
 
   useEffect(() => {
-    setSimilarCount(similarCompanyList.length < 5 ? similarCompanyList.length : 5);
+    setSimilarCount(
+      similarCompanyList.length < 5 ? similarCompanyList.length : 5
+    );
   }, [similarCompanyList]);
 
   const items = [
@@ -92,9 +94,9 @@ const SummaryContent = () => {
   };
 
   const renderSimilarCompanyList = () => {
-    let dd = [];
+    let similarList = [];
     for (let i = 0; i < similarCount; i++) {
-      dd.push(
+      similarList.push(
         <div className="similarinnerblk">
           <div className="s-company img-responsive">
             <img src={similarCompanyList[i]?.companyLogoUrl || defaultLogo} />
@@ -111,27 +113,7 @@ const SummaryContent = () => {
         </div>
       );
     }
-    return dd;
-    // {
-    //   similarCompanyList?.map((item, index) => {
-    //     return (
-    //       <div className="similarinnerblk">
-    //         <div className="s-company img-responsive">
-    //           <img src={item?.companyLogoUrl || defaultLogo} />
-    //         </div>
-    //         <div className="similar-desc">
-    //           <div>
-    //             <a className="font-weight-bold fs-14 text-dark" title="">
-    //               {item?.name}
-    //             </a>
-    //           </div>
-    //           <div className="fs-12">{item.industry?.name}</div>
-    //           <div className="fs-12">{item?.address}</div>
-    //         </div>
-    //       </div>
-    //     );
-    //   });
-    // }
+    return similarList;
   };
 
   const getMoreSimilarCount = () => {
@@ -187,105 +169,31 @@ const SummaryContent = () => {
               </div>
             </div>
             <div className="col-md-3 col-custom-2">
-              <div className="card shadow mt-5 mb-4">
-                <div className="card-header font-weight-bold">
-                  Similar Companies
+              {renderSimilarCompanyList()?.length ? (
+                <div className="card shadow mt-5 mb-4">
+                  <div className="card-header font-weight-bold">
+                    Similar Companies
+                  </div>
+                  <div className="card-body similarblk">
+                    {renderSimilarCompanyList()}
+                  </div>
+                  <div>
+                    {similarCompanyList?.length > 5 ? (
+                      <div className="fs-12 text-right">
+                        <button
+                          className="btn btn-light mr-2 small"
+                          onClick={getMoreSimilarCount}
+                        >
+                          {similarCount === 10 ? "Show Less" : "5 More..."}
+                        </button>
+                      </div>
+                    ) : (
+                      ""
+                    )}
+                  </div>
                 </div>
-                <div className="card-body similarblk">
-                  {renderSimilarCompanyList()}
+              ) : ""}
 
-                  {/* <div className="row mt-3 brdr-b pb-3">
-                    <div className=" s-company img-responsive">
-                      <img src={logo} />
-                    </div>
-                    <div className="col">
-                      <div>
-                        <a
-                          className="font-weight-bold fs-14 text-dark"
-                          title=""
-                          href="#"
-                          target=""
-                        >
-                          ICICI Corporate Banking
-                        </a>
-                      </div>
-                      <div className="fs-12">Banking, Finance</div>
-                      <div className="fs-12">Noida India</div>
-                    </div>
-                  </div>
-                  <div className="row brdr-b pt-3 pb-3">
-                    <div className=" s-company img-responsive">
-                      <img src={logo} />
-                    </div>
-                    <div className="col">
-                      <div>
-                        <a
-                          className="font-weight-bold fs-14 text-dark"
-                          title=""
-                          href="#"
-                          target=""
-                        >
-                          ICICI Corporate Banking
-                        </a>
-                      </div>
-                      <div className="fs-12">Banking, Finance</div>
-                      <div className="fs-12">Noida India</div>
-                    </div>
-                  </div>
-                  <div className="row brdr-b pt-3 pb-3">
-                    <div className=" s-company img-responsive">
-                      <img src={logo} />
-                    </div>
-                    <div className="col">
-                      <div>
-                        <a
-                          className="font-weight-bold fs-14 text-dark"
-                          title=""
-                          href="#"
-                          target=""
-                        >
-                          ICICI Corporate Banking
-                        </a>
-                      </div>
-                      <div className="fs-12">Banking, Finance</div>
-                      <div className="fs-12">Noida India</div>
-                    </div>
-                  </div>
-                  <div className="row  pt-3 ">
-                    <div className=" s-company img-responsive">
-                      <img src={logo} />
-                    </div>
-                    <div className="col">
-                      <div>
-                        <a
-                          className="font-weight-bold fs-14 text-dark"
-                          title=""
-                          href="#"
-                          target=""
-                        >
-                          ICICI Corporate Banking
-                        </a>
-                      </div>
-                      <div className="fs-12">Banking, Finance</div>
-                      <div className="fs-12">Noida India</div>
-                    </div>
-                  </div> */}
-                </div>
-                <div>
-                  {similarCompanyList?.length > 5 ? (
-                    <div className="fs-12 text-right">
-                      <button
-                        className="btn btn-light mr-2 small"
-                        onClick={getMoreSimilarCount}
-                      >
-                        {similarCount === 10 ? "Show Less" : "5 More..."}
-                      </button>
-                    </div>
-                  ) : (
-                    ""
-                  )}
-                </div>
-              </div>
               <div className="card shadow descbox1">
                 <div>
                   Is this company data relevant to you?{" "}

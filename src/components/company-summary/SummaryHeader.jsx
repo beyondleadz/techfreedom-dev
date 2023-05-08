@@ -5,8 +5,16 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { submitErrorForm } from "../../actionCreator/companyDetailsActionCreator";
+import { downloadCompanyList } from "../../actionCreator/companyListingActionCreater";
 import { emailRegex } from "../../config";
+import { getToken } from "../../utils/utils";
+import TrialModal from "../../common/TrialModal";
+import popupImg from "../../assets/images/free-user-login-prompt.jpg.jpeg";
+import { useNavigate } from "react-router";
+
 const SummaryHeader = () => {
+  const [showModal, setShowModal] = useState(false);
+
   const formIntialValue = {
     telephone: { disabled: true, value: "", status: null },
     address: { disabled: true, value: "", status: null },
@@ -72,7 +80,29 @@ const SummaryHeader = () => {
       setErrorForm(clone);
       return false;
     }
-    dispatch(submitErrorForm(errorForm));
+
+    console.log(errorForm, "errorFormerrorForm");
+    let newPayload = {};
+    Object.keys(errorForm).forEach((key) => {
+      newPayload = {
+        ...newPayload,
+        [key]: errorForm[key].value,
+      };
+    });
+
+    const payload = {
+      accountId: "string",
+      companyId: 0,
+      description: newPayload,
+      emplaoyeeId: 0,
+      id: 0,
+      iscompany: true,
+      iscorrected: true,
+      reportedDate: "2023-05-02T18:09:08.156Z",
+      userId: "string",
+    };
+    // errorForm
+    dispatch(submitErrorForm(payload));
     setOpenErrorForm(false);
     setErrorForm(formIntialValue);
   };
@@ -103,6 +133,43 @@ const SummaryHeader = () => {
 
   const toggleCompanyHeight = () => {
     setIsCompanyBoxHeightFixed(!isCompanyBoxHeightFixed);
+  };
+
+  const checkLoginStatus = () => {
+    let isLoggedIn = false;
+    if (getToken()) {
+      setShowModal(false);
+      isLoggedIn = true;
+    } else {
+      setShowModal(true);
+      isLoggedIn = false;
+    }
+    return isLoggedIn;
+  };
+
+  const downloadExcel = (id) => {
+    //alert("g"+id)
+    const isLoggedIn = checkLoginStatus();
+    if (isLoggedIn) {
+      // dispatch(downloadCompanyList(companySelectedFilterList, "exl"));
+      dispatch(downloadCompanyList([id], "exl"));
+    }
+  };
+  const downloadPDF = (id) => {
+    const isLoggedIn = checkLoginStatus();
+    if (isLoggedIn) {
+      // dispatch(downloadCompanyList(companySelectedFilterList, "pdf"));
+      dispatch(downloadCompanyList([id], "pdf"));
+    }
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
+  const redirectToSignup = () => {
+    setShowModal(false);
+    //navigate("/signup");
   };
 
   return (
@@ -162,7 +229,10 @@ const SummaryHeader = () => {
             }`}
           >
             {/* <h3>Overview</h3> */}
-            <div><strong className="mr-2">Description of business</strong> {companyDetails?.introduction}</div>
+            <div>
+              <strong className="mr-2">Description of business</strong>{" "}
+              {companyDetails?.introduction}
+            </div>
           </div>
           {companyDetails?.introduction && (
             <span className="readmoreoverview" onClick={toggleCompanyHeight}>
@@ -181,12 +251,11 @@ const SummaryHeader = () => {
             <li>
               <a
                 className=" mr-2"
-                href="#"
-                id=""
                 role="button"
                 data-toggle=""
                 aria-haspopup="true"
                 aria-expanded="false"
+                onClick={() => downloadPDF(companyDetails?.id)}
               >
                 <i
                   className="right-icons la la-file-pdf"
@@ -198,12 +267,11 @@ const SummaryHeader = () => {
             <li>
               <a
                 className=" mr-2"
-                href="#"
-                id=""
                 role="button"
                 data-toggle=""
                 aria-haspopup="true"
                 aria-expanded="false"
+                onClick={() => downloadExcel(companyDetails?.id)}
               >
                 <i
                   className="right-icons la la-file-excel"
@@ -393,6 +461,31 @@ const SummaryHeader = () => {
             </div>
           </div>
         </Modal>
+      )}
+
+      {showModal ? (
+        <TrialModal
+          openInfoBeforeLogin={showModal}
+          closeInfoBeforeLogin={closeModal}
+          redirectToSignup={redirectToSignup}
+          buttonText="Start Free Trial"
+          modalBody={
+            <div id="small-dialog2">
+              <div align="center">
+                <img src={popupImg} />
+              </div>
+              <p style={{ color: "#0000FF" }}>
+                Get 10 free verified contacts with a BeyondLeadz Pro trial
+              </p>
+              <p>
+                BeyondLeadz Pro customers close deals faster thanks to relevant
+              </p>
+            </div>
+          }
+          modalWidth="400px"
+        />
+      ) : (
+        ""
       )}
     </div>
   );

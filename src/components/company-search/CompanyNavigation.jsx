@@ -2,30 +2,72 @@ import React, { useEffect, useState, useMemo } from "react";
 import _ from "lodash";
 import { Input, Button } from "antd";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router";
+import TrialModal from "../../common/TrialModal";
+import { getToken } from "../../utils/utils";
+import { PAGE_LENGTH } from "../../config";
 import {
   downloadCompanyList,
   saveAdvancedSelectedFilters,
   getCompanyListWithStartAndEnd,
-  getCompanyList
+  getCompanyList,
 } from "../../actionCreator/companyListingActionCreater";
+import popupImg from "../../assets/images/free-user-login-prompt.jpg.jpeg";
 const CompanyNavigation = () => {
   const [quickSelection, setQuickSelection] = useState({
     start: 0,
     end: 0,
   });
+  const [showModal, setShowModal] = useState(false);
   const dispatch = useDispatch();
   const companySelectedFilterList = useSelector(
     (state) => state.companyListingReducer.selectedFilters
   );
+  const selectedRecords = useSelector(
+    (state) => state.companyListingReducer.selectedRecords
+  );
+  const navigate = useNavigate();
 
   const printPage = () => {
-    window.print();
+    const isLoggedIn = checkLoginStatus();
+    if (isLoggedIn) {
+      window.print();
+    }
   };
+
+  const checkLoginStatus = () => {
+    let isLoggedIn = false;
+    if (getToken()) {
+      setShowModal(false);
+      isLoggedIn = true;
+    } else {
+      setShowModal(true);
+      isLoggedIn = false;
+    }
+    return isLoggedIn;
+  };
+
   const downloadExcel = () => {
-    dispatch(downloadCompanyList(companySelectedFilterList, "exl"));
+    const isLoggedIn = checkLoginStatus();
+    if (isLoggedIn) {
+      // dispatch(downloadCompanyList(companySelectedFilterList, "exl"));
+      dispatch(downloadCompanyList(selectedRecords, "exl"));
+      
+    }
   };
   const downloadPDF = () => {
-    dispatch(downloadCompanyList(companySelectedFilterList, "pdf"));
+    const isLoggedIn = checkLoginStatus();
+    if (isLoggedIn) {
+      // dispatch(downloadCompanyList(companySelectedFilterList, "pdf"));
+      dispatch(downloadCompanyList(selectedRecords, "pdf"));
+    }
+  };
+
+  const tagPage = () => {
+    const isLoggedIn = checkLoginStatus();
+    if (isLoggedIn) {
+      console.log("call tag api");
+    }
   };
 
   const onChangeQuickSelection = (e) => {
@@ -50,13 +92,35 @@ const CompanyNavigation = () => {
   };
 
   const onClickQuickSelection = () => {
-    emptyFilters();
-    dispatch(getCompanyListWithStartAndEnd(quickSelection));
+    const startValue =
+      parseInt(quickSelection?.start) === 1
+        ? 0
+        : parseInt(quickSelection?.start);
+
+    const pageValues = {
+      start: startValue,
+      end:
+        (parseInt(quickSelection.end) - startValue) * parseInt(PAGE_LENGTH) ||
+        PAGE_LENGTH,
+    };
+    if ((pageValues?.start || pageValues?.start === 0) && pageValues?.end) {
+      emptyFilters();
+      dispatch(getCompanyListWithStartAndEnd(pageValues));
+    }
   };
 
   const onClickSelectAll = () => {
     emptyFilters();
     dispatch(getCompanyList());
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
+  const redirectToSignup = () => {
+    setShowModal(false);
+    navigate("/signup");
   };
 
   return (
@@ -82,19 +146,19 @@ const CompanyNavigation = () => {
             />
           </div>
           <Button
-          type="primary"
+            type="primary"
             className=" fs-12 d-sm-inline-block mr-1"
             onClick={onClickQuickSelection}
           >
             <i className="fas fs-12 fa-arrow-right"></i>
           </Button>
-          <Button
+          {/* <Button
           type="primary"
             className="fs-12  mr-1"
             onClick={onClickSelectAll}
           >
             Select All
-          </Button>
+          </Button> */}
         </div>
         <ul className="flex  m-mt">
           <li>
@@ -144,11 +208,38 @@ const CompanyNavigation = () => {
               data-toggle=""
               aria-haspopup="true"
               aria-expanded="false"
+              onClick={tagPage}
             >
               <i className="right-icons las la-tag" aria-hidden="true"></i>
             </a>
           </li>
         </ul>
+
+        {showModal ? (
+          <TrialModal
+            openInfoBeforeLogin={showModal}
+            closeInfoBeforeLogin={closeModal}
+            redirectToSignup={redirectToSignup}
+            buttonText="Start Free Trial"
+            modalBody={
+              <div id="small-dialog2">
+                <div align="center">
+                  <img src={popupImg} />
+                </div>
+                <p style={{ color: "#0000FF" }}>
+                  Get 10 free verified contacts with a BeyondLeadz Pro trial
+                </p>
+                <p>
+                  BeyondLeadz Pro customers close deals faster thanks to
+                  relevant
+                </p>
+              </div>
+            }
+            modalWidth="400px"
+          />
+        ) : (
+          ""
+        )}
       </div>
     </nav>
   );

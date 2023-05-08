@@ -9,6 +9,7 @@ import {
 } from "../../actionCreator/companyDetailsActionCreator";
 import popupImg from "../../assets/images/free-user-login-prompt.jpg.jpeg";
 import Loader from "../loader";
+import TrialModal from "../../common/TrialModal";
 const KeyExecutives = () => {
   const dispatch = useDispatch();
   const employeeList = useSelector(
@@ -70,12 +71,12 @@ const KeyExecutives = () => {
         return token ? (
           <Tooltip title={record?.phoneNo}>
             <Button
-            style={{ height: "auto" }}
-            className="keyexebtn d-none d-sm-inline-block small btn btn-primary text-black"
-          >
-            <i class="las la-mobile fs-12  pr-1"></i>
-            VIEW
-          </Button>
+              style={{ height: "auto" }}
+              className="keyexebtn d-none d-sm-inline-block small btn btn-primary text-black"
+            >
+              <i class="las la-mobile fs-12  pr-1"></i>
+              VIEW
+            </Button>
           </Tooltip>
         ) : (
           <Button
@@ -109,20 +110,28 @@ const KeyExecutives = () => {
           <Button
             style={{ height: "auto" }}
             className="keyexebtn d-none d-sm-inline-block small btn btn-primary text-black"
-            loading={!Object.keys(submitLeadRes).length && addToLeads === record.id ? true : false}
+            loading={
+              !Object.keys(submitLeadRes).length && addToLeads === record.id
+                ? true
+                : false
+            }
             onClick={() => postLeads(record)}
           >
-           <i class="las la-user-plus fs-12 pr-1"></i> ADD TO LEADS
+            <i class="las la-user-plus fs-12 pr-1"></i> ADD TO LEADS
           </Button>
         ) : (
           <Button
             style={{ height: "auto" }}
             className="keyexebtn d-none d-sm-inline-block small btn btn-primary text-black"
-            loading={!Object.keys(submitLeadRes).length && addToLeads === record.id ? true : false}
+            loading={
+              !Object.keys(submitLeadRes).length && addToLeads === record.id
+                ? true
+                : false
+            }
             onClick={() => openInfoModel()}
           >
             <i class="las la-user-plus  fs-12  pr-1"></i>ADD TO LEADS
-          </Button>          
+          </Button>
         );
       },
     },
@@ -231,19 +240,12 @@ const KeyExecutives = () => {
         }}
       />
       {openInfoBeforeLogin?.open && (
-        <Modal
-          // title="Basic Modal"
-          width="400px"
-          closable={true}
-          open={openInfoBeforeLogin}
-          onCancel={closeInfoBeforeLogin}
-          footer={[
-            <Button key="submit" type="primary" onClick={redirectToSignup}>
-              Start Free Trial
-            </Button>,
-          ]}
-        >
-          <div class="pop-up">
+        <TrialModal
+          openInfoBeforeLogin={openInfoBeforeLogin}
+          closeInfoBeforeLogin={closeInfoBeforeLogin}
+          redirectToSignup={redirectToSignup}
+          buttonText="Start Free Trial"
+          modalBody={
             <div id="small-dialog2">
               <div align="center">
                 <img src={popupImg} />
@@ -254,14 +256,36 @@ const KeyExecutives = () => {
               <p>
                 BeyondLeadz Pro customers close deals faster thanks to relevant
               </p>
-              {/* <div class="mt-md-5 mt-4 mb-lg-0 mb-4" align="right">
-                <a href="login.html" class="btn btn-style mt-4">
-                  Start Free Trial
-                </a>
-              </div> */}
             </div>
-          </div>
-        </Modal>
+          }
+          modalWidth="400px"
+        />
+        // <Modal
+        //   // title="Basic Modal"
+        //   width="400px"
+        //   closable={true}
+        //   open={openInfoBeforeLogin}
+        //   onCancel={closeInfoBeforeLogin}
+        //   footer={[
+        //     <Button key="submit" type="primary" onClick={redirectToSignup}>
+        //       Start Free Trial
+        //     </Button>,
+        //   ]}
+        // >
+        //   <div class="pop-up">
+        //     <div id="small-dialog2">
+        //       <div align="center">
+        //         <img src={popupImg} />
+        //       </div>
+        //       <p style={{ color: "#0000FF" }}>
+        //         Get 10 free verified contacts with a BeyondLeadz Pro trial
+        //       </p>
+        //       <p>
+        //         BeyondLeadz Pro customers close deals faster thanks to relevant
+        //       </p>
+        //     </div>
+        //   </div>
+        // </Modal>
       )}
       {Object.keys(submitLeadRes).length ? (
         <Modal

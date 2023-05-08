@@ -16,6 +16,7 @@ import {
   employeeListUrl,
   executiveDepartmentList,
   clientLeadsUrl,
+  errorReport
 } from "../constant/Constant";
 import { createPayload } from "../utils/utils";
 
@@ -89,7 +90,8 @@ export const getSimilarCompanyList = (payload, paginationValues) => (
 };
 
 export const submitErrorForm = (payload) => (dispatch) => {
-  return postAuthMethod(executiveDepartmentList, payload).then((res) => {
+  console.log(payload,'payloadpayload')
+  return postAuthMethod(errorReport, payload).then((res) => {
     dispatch({
       type: SUBMIT_ERROR_FORM,
       payload: res.data,

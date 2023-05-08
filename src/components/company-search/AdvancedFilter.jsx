@@ -219,7 +219,7 @@ const AdvancedFilter = ({
                           <Checkbox
                             key={item.id}
                             value={item}
-                            onChange={($event) => updateCompanyType($event)}
+                            onChange={($event) => updateCountries($event)}
                           >
                             {item.name}
                           </Checkbox>
