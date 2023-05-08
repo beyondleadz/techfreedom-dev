@@ -163,6 +163,14 @@ const SummaryHeader = () => {
     }
   };
 
+  const tagCompany = () => {
+    console.log(companyDetails,'companyDetailscompanyDetails');
+    const isLoggedIn = checkLoginStatus();
+    if (isLoggedIn) {
+      //dispatch(downloadCompanyList([id], "pdf"));
+    }
+  };
+
   const closeModal = () => {
     setShowModal(false);
   };
@@ -283,12 +291,12 @@ const SummaryHeader = () => {
             <li>
               <a
                 className=" mr-2"
-                href="#"
                 id=""
                 role="button"
                 data-toggle=""
                 aria-haspopup="true"
                 aria-expanded="false"
+                onClick={tagCompany}
               >
                 <i className="right-icons las la-tag" aria-hidden="true"></i>
               </a>

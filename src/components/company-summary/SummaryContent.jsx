@@ -113,6 +113,24 @@ const SummaryContent = () => {
         </div>
       );
     }
+    if(!similarList.length){
+      similarList.push(
+        <div className="similarinnerblk">
+          <div className="s-company img-responsive">
+            <img src={defaultLogo} />
+          </div>
+          <div className="similar-desc">
+            <div className="font-weight-bold fs-14">
+              
+              No similar company found.
+              
+            </div>
+            {/* <div className="fs-12"></div>
+            <div className="fs-12"></div> */}
+          </div>
+        </div>
+      );
+    }
     return similarList;
   };
 
