@@ -1,6 +1,6 @@
 import React,{useState} from "react";
 import ExecutiveSearchConnect from '../../assets/images/executive-search-connect-icon.jpg'
-import B2BExecutiveSearchImage from "../../assets/images/internal-systems-integration.jpg"
+import B2BExecutiveSearchImage from "../../assets/images/b2b-executive-search.jpg"
 
 const B2BExecutiveSearch = () => {
     return(

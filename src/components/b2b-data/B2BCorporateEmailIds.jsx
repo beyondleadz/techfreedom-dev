@@ -1,6 +1,6 @@
 import React,{useState} from "react";
 import ExecutiveSearchIconImage from "../../assets/images/executive-search-leads-icon.jpg"
-import B2BCorporateEmailIdsImage from "../../assets/images/third-party-application-integration.jpg"
+import B2BCorporateEmailIdsImage from "../../assets/images/b2b-corporate-email-ids.jpg"
 
 const B2BCorporateEmailIds = () => {
     return (
