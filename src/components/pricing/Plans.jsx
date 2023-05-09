@@ -71,7 +71,7 @@ const Plans=()=>{
 								
 							</ul>
 							<div className="cart1">
-								<a className="popup-with-zoom-anim pl-3" href="#small-dialog">GET QUOTE</a>							</div>
+								<a className="popup-with-zoom-anim" href="#small-dialog">GET QUOTE</a>							</div>
 							</div>
 						</div>
 						<div className="pricing-grid2 pricing-grid2-highlited ">

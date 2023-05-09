@@ -27,6 +27,7 @@ import DirectDials from './pages/DirectDials';
 import LeadsManagement from './pages/LeadsManagement';
 import Integrations from './pages/Integrations';
 import B2BData from './pages/B2BData';
+import ExecutiveDetailsDemo from './pages/ExecutiveDetailsDemo';
 
 // import Test from './pages/Test';
 import Demo from './pages/Demo';
@@ -62,6 +63,7 @@ const AppRoutes = (props) => {
                 <Route path='/lead-management' element={<LeadsManagement/>}/>
                 <Route path='/integrations' element={<Integrations/>}/>
                 <Route path='/b2b-data' element={<B2BData/>}/>
+                <Route path='/executive-detailsdemo' element={<ExecutiveDetailsDemo/>}/>
 
                 {/* <Route path='/test' element={<Test/>}/> */}
                 <Route path='/demo' element={<Demo/>}/>
