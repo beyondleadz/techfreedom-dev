@@ -16,6 +16,42 @@ const ExecutiveContent1 = () => {
         <div className="container-fluid">
           <div className="row">
             <div className="col-md-9 col-custom">
+            <div className="row">
+            <div className="headername">
+                <div className="font-weight-bold mb-2 "><h3>Steve Pike</h3></div>
+          </div>
+                <div className="col-md-12">
+                <div className="card shadow card-body">
+                  
+                <div className="executiveheader">
+      
+      <div className="executivelogobox">
+       SP
+      </div>
+
+      <div className="executivedescbox ">
+        <div className="row mb-3">
+          <div className="col"><h5>Designation</h5>Global Head of Real Estate, Facilities & Security</div>
+          <div className="col"><h5>Company</h5><span className="text-info font-weight-bold">Dun & Bradstreet</span></div>
+        </div>
+        <div className="row pt-3 mb-3">
+        <div className="col"><h5>Email</h5> <i className=" fs-23 mr-2 align-middle la la-envelope text-black"></i><span>View Email</span></div>
+        <div className="col"><h5>Phone</h5>(206) 266-1000</div>
+        <div className="col"><h5>Social</h5>
+          <i class="lab fs-20 facebook lab la-facebook"></i>
+<i class="lab fs-20  twitter la la-twitter-square"></i>
+<i class="lab fs-20 linkedin lab la-linkedin"></i></div>
+        </div>
+        <div className="row pt-3">
+          <div className="col"><h5>Overview</h5> <span>Executive with strong experience in Large Account Management, P&L responsibility and leading high-caliber sales teams. Strong customer advocacy, communication and cross-group collaboration skills. 
+          </span> <span className="btn text-info font-weight-bold">Read More..</span></div>
+       
+          </div>
+        
+      </div>
+      </div>
+                </div>
+                  </div></div> 
               <div className="row">
                 <div className="col-md-12">
                   <div className="mt-4 mb-4">
@@ -38,28 +74,34 @@ const ExecutiveContent1 = () => {
                              Colleagues
                             </button>
                           </li>
-                          
-                          <li className="nav-item mr-2" role="presentation">
-                            <button
-                              className="top-tabs1 "
-                              id="contact-tab"
-                              data-bs-toggle="tab"
-                              data-bs-target="#contact"
-                              type="button"
-                              role="tab"
-                              aria-controls="contact"
-                              aria-selected="false"
-                            >
-                              <i
-                                className="text-black fa fa-suitcase pr-2"></i>{" "}
-                              Filter by Department
-                            </button>
-                          </li>
+                          <li className="executive">
+                          <div className="buttons-c">
+                          <ul className="d-flex  m-mt">
+                 <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
+                    aria-expanded="false"><i class="right-icons la la-file-pdf" aria-hidden="true"></i>
+                  </a></li>
                          
+                  <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
+                    aria-expanded="false"><i class="right-icons la la-file-excel" aria-hidden="true"></i>
+                  </a></li>
+                
+              <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
+                    aria-expanded="false">
+                    <i className="right-icons la la-star" aria-hidden="true"></i>
+                  </a>
+                </li>
+                 </ul>
+                          </div>
+                          </li>                                                  
                         </ul>
+                        
                       </div>
                     </div>
-                    <div className="card shadow card-body">
+                    <div className="card shadow card-body executive">
+                      <div className="buttons-container">
+                        <div className="btn btn-outline-secondary pr-1 mr-2"><i className="fs-16 mr-1 text-light la la-envelope"></i>Create List</div>
+                        <div className="btn btn-outline-secondary pr-1 mr-2"><i className="fs-16 mr-1 la la-envelope"></i>Send Campaign</div>
+                      </div>
                     <div className="table-container text-nowrap">
                         <div className="table-wrapper">
                           <table className="data-table">
@@ -271,28 +313,24 @@ const ExecutiveContent1 = () => {
                   </div>
                 </div>
               </div>
-             
-          
-
-
-
-
-
-
+             </div>
+            
+            <div className="col-md-3 col-custom-2 executive">
+            <div className="buttons-container">
+            <div className="btn btn-info mt-3 pr-2 "><i className="right-icons las la-flag" aria-hidden="true"></i>Report An Error</div>
             </div>
-            <div className="col-md-3 col-custom-2">
-            <div className="card shadow mt-5 mb-4">
+            <div className="card shadow  mb-4">
                 <div className="card-header font-weight-bold">
                   Company Info
                 </div>
-                <div className="card-body">
+                <div className="card-body executive">
                   <div className="row pb-3">
                   <div className=" btn-circle btn-lg btn-info">
                     &
                     </div>
-                    <div className="col">
-                      <div><a className="font-weight-bold fs-16 text-dark"  title="" href="#" target="" > Dun & Bradstreet    </a>
-                      </div>
+                    <div className=" pl-3">
+                      <div className="row pl-2"><a className="font-weight-bold fs-16 text-dark"  title="" href="#" target="" > Dun & Bradstreet    </a>
+                                            </div>
                       <div className="fs-12"><h6>Phone</h6>(206) 266-1000</div>
                       <div className="fs-12"><h6>Location</h6> Okhla Industrial Estate Phase 3 Rd, New Delhi, Delhi 110020</div>
                       <div className="fs-12"><h6>Employees Ranges</h6>1.0K to 5.0K</div>
@@ -314,9 +352,9 @@ const ExecutiveContent1 = () => {
                   Similar Executive
                 </div>
                 <div className="card-body">
-                  <div className="row brdr-b pb-3">
-                    <div className=" btn-circle btn-lg btn-info">
-                    BW
+                  <div className="row brdr-b pl-2 pb-3">
+                    <div className=" btn-circle btn-info">
+                    JM
                     </div>
                     <div className="col">
                       <div>
@@ -326,16 +364,16 @@ const ExecutiveContent1 = () => {
                           href="#"
                           target=""
                         >
-                          Bob Whelen
+                          John Mathew
                         </a>
                       </div>
                       <div className="fs-12">Global Head of Real Estate, Facilities & Security</div>
                       
                     </div>
                   </div>
-                  <div className="row mt-3 brdr-b pb-3">
-                  <div className=" btn-circle btn-lg btn-info">
-                    BW
+                  <div className="row mt-3 pl-2 brdr-b pb-3">
+                  <div className=" btn-circle  btn-info">
+                    JM
                     </div>
                     <div className="col ">
                       <div>
@@ -345,15 +383,15 @@ const ExecutiveContent1 = () => {
                           href="#"
                           target=""
                         >
-                          Bob Whelen
+                         John Mathew
                         </a>
                       </div>
                       <div className="fs-12">Global Head of Real Estate, Facilities & Security</div>
                       
                     </div>
                   </div>
-                  <div className="row brdr-b pt-3 pb-3">
-                  <div className=" btn-circle btn-lg btn-info">
+                  <div className="row pl-2 brdr-b pt-3 pb-3">
+                  <div className=" btn-circle  btn-info">
                     BW
                     </div>
                     <div className="col executive">
@@ -370,8 +408,8 @@ const ExecutiveContent1 = () => {
                       <div className="fs-12">Global Head of Real Estate, Facilities & Security</div>
                     </div>
                   </div>
-                  <div className="row brdr-b pt-3 pb-3">
-                  <div className=" btn-circle btn-lg btn-info">
+                  <div className="row pl-2 brdr-b pt-3 pb-3">
+                  <div className=" btn-circle btn-info">
                     BW
                     </div>
                     <div className="col">
@@ -388,8 +426,8 @@ const ExecutiveContent1 = () => {
                       <div className="fs-12">Global Head of Real Estate, Facilities & Security</div>
                     </div>
                   </div>
-                  <div className="row  pt-3 ">
-                  <div className=" btn-circle btn-lg btn-info">
+                  <div className="row pl-2 pt-3 ">
+                  <div className=" btn-circle btn-info">
                     BW
                     </div>
                     <div className="col">
@@ -413,7 +451,32 @@ const ExecutiveContent1 = () => {
                   </div>
                 </div>
               </div>
-            
+              <div className="card shadow descbox1 mb-3">
+                <div>
+                  Is this company data relevant to you?{" "}
+                  <a
+                    href="#"
+                    id=""
+                    role="button"
+                    data-toggle=""
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <i
+                      class="right-icons small fa fa-thumbs-up"
+                      aria-hidden="true"
+                    ></i>
+                  </a>
+                </div>
+                <div font-weight-bold>
+                  <button class="btn btn-outline-dark font-weight-bold mr-2 p-1">
+                    Really Not
+                  </button>
+                  <button class="btn btn-outline-dark font-weight-bold mr-2 p-1">
+                    Yes!
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>

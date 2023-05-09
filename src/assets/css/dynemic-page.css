@@ -6183,12 +6183,8 @@ padding:5px
 }
 .executiveheader{
   display:flex;
-  padding: 0 35px;
-  height: 250px;
-  margin-top: 15px;
-  align-items: self-start;
+   align-items: self-start;}
 
-}
 .headername{ 
   padding: 0 35px;
    margin-top: 25px;
@@ -6207,12 +6203,16 @@ padding:5px
     align-items: center;
 }
 .executivelogobox{
-  min-width: 120px;
-  min-height: 110px;
-  width: 100px;
-  background-color: #18181c; border-radius: 5px;
-  padding-top: 35px; color:#ccc;
-    align-items: center; font-size: x-large; text-align: center;
+  min-width: 80px;
+    min-height: 80px;
+    width: 80px;
+    background-color: #18181c;
+    border-radius: 5px;
+    padding-top: 25px;
+    color: #ccc;
+    align-items: center;
+    font-size: x-large;
+    text-align: center;
 }
 
 .logobox img{
@@ -6263,7 +6263,7 @@ padding:5px
   font-size: 13px; font-weight:550;
 }
 .executivedescbox h5{
-  font-size: 15px; color: #2c2b2b73; font-weight:550;
+  font-size: 15px; color: #060606; font-weight:550;
 }
 .navigation{
   /* position: relative;
@@ -6968,9 +6968,17 @@ color: orange;
   }
 
 .gap-l{margin-left:30px;}
-
+.executive .buttons-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  flex: 1 1; margin: 0 0 15px 0;
+  white-space: nowrap;
+   line-height: 12px;}
+   .executive .buttons-c {
+   margin-left: 610px;} 
  .executive h6{
-  margin-top: 0.5rem; color:#747272; font-size: 14px ;} 
+  margin-top: 0.5rem; color:#5a5c69; font-size: 14px ;} 
   .orgchart .org li a:hover+ul li::after, 
   .orgchart .org li a:hover+ul li::before, 
   .orgchart .org li a:hover+ul::before, 

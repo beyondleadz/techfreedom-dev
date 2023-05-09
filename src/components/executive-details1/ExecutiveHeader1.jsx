@@ -20,7 +20,7 @@ const ExecutiveDetails1 = () => {
     <div className=" navbar-light" id="onScroll">
       {/* <h3 className="card-body font-weight-bold">Company Summary</h3> */}
       <div className="breadcrum ml-4 mt-3 fs-14">Home/ Search Executive/ Executive Details</div>
-      <div className="headername">
+      {/* <div className="headername">
                 <div className="font-weight-bold mb-2 "><h3>Bob Whelen</h3></div>
           </div>
           <div className="row">
@@ -52,7 +52,7 @@ const ExecutiveDetails1 = () => {
           
         </div>
         
-        <div className="buttons-container">
+        {/* <div className="buttons-container">
                  <ul className="d-flex  m-mt">
                  <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
                     aria-expanded="false"><i class="right-icons la la-file-pdf" aria-hidden="true"></i>
@@ -75,10 +75,10 @@ const ExecutiveDetails1 = () => {
 
 
               </ul>
-            </div>
+            </div> */}
+      {/* </div>
       </div>
-      </div>
-          </div>
+          </div> */} 
     </div>
   );
 };
