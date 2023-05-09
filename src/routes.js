@@ -20,6 +20,7 @@ import ForgetPassword from './pages/ForgetPassword';
 import CompanySearch from './pages/CompanySearch';
 import ExecutiveSearch from './pages/ExecutiveSearch';
 import ExecutiveDetails from './pages/ExecutiveDetails';
+import ExecutiveDetails1 from './pages/ExecutiveDetails1';
 import CompanySummary from './pages/CompanySummary';
 //import Summary from './pages/Summary';
 import OurData from './pages/OurData';
@@ -51,6 +52,7 @@ const AppRoutes = (props) => {
                 <Route path='/terms-and-conditions' element={<TermsAndConditions/>}/>
                 <Route path='/executive-search' element={<ExecutiveSearch/>}/>
                 <Route path='/executive-details' element={<ExecutiveDetails/>}/>
+                <Route path='/executive-details1' element={<ExecutiveDetails1/>}/>
                 <Route path='/search-company' element={<CompanySearch tab='1'/>}/>
                 <Route path='/search-executive' element={<ExecutiveSearch tab='2'/>}/>
                 {/* <Route path='/company-summary' element={<CompanySummary/>}/> */}

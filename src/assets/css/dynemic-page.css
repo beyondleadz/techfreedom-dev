@@ -6177,10 +6177,22 @@ padding:5px
 .headercontainer{
   display:flex;
   padding: 0 35px;
-  height: 160px;
+  /* height: 160px; */
   margin-top: 25px;
   align-items: self-start;
+}
+.executiveheader{
+  display:flex;
+  padding: 0 35px;
+  height: 250px;
+  margin-top: 15px;
+  align-items: self-start;
 
+}
+.headername{ 
+  padding: 0 35px;
+   margin-top: 25px;
+  align-items: self-start;
 }
 
 .headercontainer.setauto{height: auto;}
@@ -6189,10 +6201,18 @@ padding:5px
   min-width: 160px;
   min-height: 150px;
   width: 160px;
-  background: #eaeaea;;
+  background: #eaeaea;
     padding: 5px;
     display: flex;
     align-items: center;
+}
+.executivelogobox{
+  min-width: 120px;
+  min-height: 110px;
+  width: 100px;
+  background-color: #18181c; border-radius: 5px;
+  padding-top: 35px; color:#ccc;
+    align-items: center; font-size: x-large; text-align: center;
 }
 
 .logobox img{
@@ -6230,6 +6250,20 @@ padding:5px
   position: relative;
   padding-bottom: 15px;
   margin-left: 20px;
+}
+.executivedescbox{
+  position: relative;
+  padding-bottom: 15px;
+  margin-left: 20px;
+}
+.executivedescbox .col{
+  width:300px; font-size: 13px; font-weight: 550; color:#101010b0;
+}
+.executivedescbox span{
+  font-size: 13px; font-weight:550;
+}
+.executivedescbox h5{
+  font-size: 15px; color: #2c2b2b73; font-weight:550;
 }
 .navigation{
   /* position: relative;
@@ -6665,7 +6699,10 @@ cursor: pointer;
       border-bottom: 1px solid #eaeaea;}
       .similarblk div:last-of-type{border-bottom: 0;}
     .similarblk .similarinnerblk .similar-desc{margin-left: 10px; position: relative; top: -6px;}
-    
+    .executive-company{max-block-size: fit-content;
+      max-width: 30px;
+      height: auto;
+      width: 100%;}
     .similarblk .similarinnerblk .s-company{max-block-size: fit-content;
   max-width: 30px;
   height: auto;
@@ -6932,7 +6969,8 @@ color: orange;
 
 .gap-l{margin-left:30px;}
 
-  
+ .executive h6{
+  margin-top: 0.5rem; color:#747272; font-size: 14px ;} 
   .orgchart .org li a:hover+ul li::after, 
   .orgchart .org li a:hover+ul li::before, 
   .orgchart .org li a:hover+ul::before, 
