@@ -52,7 +52,6 @@ const CompanyNavigation = () => {
     if (isLoggedIn) {
       // dispatch(downloadCompanyList(companySelectedFilterList, "exl"));
       dispatch(downloadCompanyList(selectedRecords, "exl"));
-      
     }
   };
   const downloadPDF = () => {
@@ -217,8 +216,8 @@ const CompanyNavigation = () => {
 
         {showModal ? (
           <TrialModal
-            openInfoBeforeLogin={showModal}
-            closeInfoBeforeLogin={closeModal}
+            showModal={showModal}
+            closeModal={closeModal}
             redirectToSignup={redirectToSignup}
             buttonText="Start Free Trial"
             modalBody={

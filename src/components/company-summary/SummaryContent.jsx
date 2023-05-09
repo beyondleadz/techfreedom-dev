@@ -67,6 +67,8 @@ const SummaryContent = () => {
   ];
 
   useEffect(() => {
+    console.log(similarCompanyList,'similarCompanyListsimilarCompanyList')
+    if(!similarCompanyList.length) return;
     const list = similarCompanyList?.filter(
       (item) => !item?.id === companyDetails?.id
     );

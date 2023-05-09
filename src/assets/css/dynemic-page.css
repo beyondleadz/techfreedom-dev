@@ -188,6 +188,7 @@ input[type="checkbox" i] {
 }
 
 .buttons-container.textsearch{margin-right: 0;}
+.cname{cursor: pointer;}
 @media (max-width: 768px) {
   .table-container {
     width: 100%;

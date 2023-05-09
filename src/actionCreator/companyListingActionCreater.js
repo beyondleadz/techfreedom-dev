@@ -12,83 +12,147 @@ import {
   SELECTED_RECORDS,
   SAVE_SEARCH,
   DOWNLOAD_COMPANYLIST_ERROR,
-  SAVE_SEARCH_ERROR
+  SAVE_SEARCH_ERROR,
+  INDUSTRY_LIST_ERROR,
+  COMPANY_TYPE_ERROR,
+  EMPLOYEE_COUNT_ERROR,
+  REVENUE_RANGE_ERROR,
+  COMPANYLIST_ERROR,
+  EMPTY_ERROR_OBJ_LISTING
 } from "../actionType/companyListingType";
-import { getAuthMethod, getMethod, postAuthMethod } from "../services/HttpServices";
-import {errEnum} from '../config'
+import {
+  getAuthMethod,
+  getMethod,
+  postAuthMethod,
+} from "../services/HttpServices";
+import { errEnum, ErrKey } from "../config";
 import {
   industryApiUrl,
   employeeCountApiUrl,
   companyTypeApiUrl,
   revenueRangeApiUrl,
   companyListingApiUrl,
-  saveSearch
+  saveSearch,
 } from "../constant/Constant";
 import { dispatchStatus } from "./commonActionCreator";
 import { Geolocation } from "../constant/Geolocation";
 import { createPayload } from "../utils/utils";
 
 export const getIndustryList = (payload) => (dispatch) => {
-  return getAuthMethod(industryApiUrl).then((res) => {
-    dispatch({
-      type: INDUSTRY_LIST,
-      payload: res.data,
+  return getAuthMethod(industryApiUrl)
+    .then((res) => {
+      dispatch({
+        type: INDUSTRY_LIST,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: INDUSTRY_LIST_ERROR,
+        payload:
+          { [errEnum.INDUSTRY_LIST_ERROR]: err.response.data[ErrKey] } ||
+          "Error Occured",
+      });
     });
-  });
 };
 
 export const getCompanyTypeList = (payload) => (dispatch) => {
-  return getAuthMethod(companyTypeApiUrl).then((res) => {
-    dispatch({
-      type: COMPANY_TYPE,
-      payload: res.data,
+  return getAuthMethod(companyTypeApiUrl)
+    .then((res) => {
+      dispatch({
+        type: COMPANY_TYPE,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: COMPANY_TYPE_ERROR,
+        payload:
+          { [errEnum.COMPANY_TYPE_ERROR]: err.response.data[ErrKey] } ||
+          "Error Occured",
+      });
     });
-  });
 };
 
 export const getEmployeeCountList = (payload) => (dispatch) => {
-  return getAuthMethod(employeeCountApiUrl).then((res) => {
-    dispatch({
-      type: EMPLOYEE_COUNT,
-      payload: res.data,
+  return getAuthMethod(employeeCountApiUrl)
+    .then((res) => {
+      dispatch({
+        type: EMPLOYEE_COUNT,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: EMPLOYEE_COUNT_ERROR,
+        payload:
+          { [errEnum.EMPLOYEE_COUNT_ERROR]: err.response.data[ErrKey] } ||
+          "Error Occured",
+      });
     });
-  });
 };
 
 export const getRevenuerangeList = (payload) => (dispatch) => {
-  return getAuthMethod(revenueRangeApiUrl).then((res) => {
-    dispatch({
-      type: REVENUE_RANGE,
-      payload: res.data,
+  return getAuthMethod(revenueRangeApiUrl)
+    .then((res) => {
+      dispatch({
+        type: REVENUE_RANGE,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: REVENUE_RANGE_ERROR,
+        payload:
+          { [errEnum.REVENUE_RANGE_ERROR]: err.response.data[ErrKey] } ||
+          "Error Occured",
+      });
     });
-  });
 };
 
 export const getCompanyList = (payload, paginationValues) => (dispatch) => {
   dispatch(dispatchStatus(true));
   const url = createPayload(payload, paginationValues, companyListingApiUrl);
   // console.log(url,'urlurlurl')
-  return getMethod(url).then((res) => {
-    dispatch({
-      type: COMPANYLIST,
-      payload: res.data,
-      count: res?.headers["x-total-count"],
+  return getMethod(url)
+    .then((res) => {
+      dispatch({
+        type: COMPANYLIST,
+        payload: res.data,
+        count: res?.headers["x-total-count"],
+      });
+      dispatch(dispatchStatus(false));
+    })
+    .catch((err) => {
+      dispatch({
+        type: COMPANYLIST_ERROR,
+        payload:
+          { [errEnum.COMPANYLIST_ERROR]: err.response.data[ErrKey] } ||
+          "Error Occured",
+      });
     });
-    dispatch(dispatchStatus(false));
-  });
 };
 
 export const getCompanyListWithStartAndEnd = (paginationValues) => (
   dispatch
 ) => {
   let url = `${companyListingApiUrl}?page=${paginationValues?.start}&size=${paginationValues?.end}`;
-  return getMethod(url).then((res) => {
-    dispatch({
-      type: COMPANYLIST,
-      payload: res.data,
-      count: res?.headers["x-total-count"],
+  return getMethod(url)
+    .then((res) => {
+      dispatch({
+        type: COMPANYLIST,
+        payload: res.data,
+        count: res?.headers["x-total-count"],
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: COMPANYLIST_ERROR,
+        payload:
+          { [errEnum.COMPANYLIST_ERROR]: err.response.data[ErrKey] } ||
+          "Error Occured",
+      });
     });
-  });
 };
 
 export const downloadCompanyList = (payload, urlSubstring) => (dispatch) => {
@@ -115,7 +179,9 @@ export const downloadCompanyList = (payload, urlSubstring) => (dispatch) => {
     .catch((err) => {
       dispatch({
         type: DOWNLOAD_COMPANYLIST_ERROR,
-        payload: {[errEnum.DOWNLOAD_ERROR]:err.response.data.title} || 'Error Occured',
+        payload:
+          { [errEnum.DOWNLOAD_ERROR]: err.response.data.error } ||
+          "Error Occured",
       });
     });
 };
@@ -154,17 +220,24 @@ export const selectedRow = (payload) => {
 };
 
 export const saveSearchAction = (payload) => (dispatch) => {
-  return postAuthMethod(saveSearch,payload)
-  .then((res) => {
-    dispatch({
-      type: SAVE_SEARCH,
-      payload: res.data,
+  return postAuthMethod(saveSearch, payload)
+    .then((res) => {
+      dispatch({
+        type: SAVE_SEARCH,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: SAVE_SEARCH_ERROR,
+        payload:
+          { [errEnum.SAVE_SEARCH_ERROR]: err.response.data[ErrKey] } ||
+          "Error Occured",
+      });
     });
-  })
-  .catch((err) => {
-    dispatch({
-      type: SAVE_SEARCH_ERROR,
-      payload: {[errEnum.SAVE_SEARCH_ERROR]:err.response.data.title} || 'Error Occured',
-    });
-  });
-}
+};
+
+export const emptyErrorObj = () => ({
+  type: EMPTY_ERROR_OBJ_LISTING,
+  payload: {},
+});

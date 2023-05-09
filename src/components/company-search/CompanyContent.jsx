@@ -2,7 +2,7 @@ import React, { useEffect, useState, useMemo } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import _ from "lodash";
-import { Table, Input, Button } from "antd";
+import { Table, Input, Button, Modal } from "antd";
 import { PAGE_LENGTH } from "../../config";
 import defaultLogo from "../../assets/images/default_company_logo.jpg";
 
@@ -14,9 +14,10 @@ import {
   saveSearchAction,
 } from "../../actionCreator/companyListingActionCreater";
 import Loader from "../loader";
+import { getToken } from "../../utils/utils";
 
 const CompanyContent = () => {
-  const { Search } = Input;
+  const { Search, TextArea } = Input;
   const columns = [
     {
       title: <div className="companyname">Company Name</div>,
@@ -27,7 +28,9 @@ const CompanyContent = () => {
             <div className="logo">
               <img src={record?.companyLogoUrl || defaultLogo} />
             </div>
-            <span onClick={() => getDetails(row.key)}>{record?.name}</span>
+            <span className="cname" onClick={() => getDetails(row.key)}>
+              {record?.name}
+            </span>
           </div>
         );
       },
@@ -55,6 +58,12 @@ const CompanyContent = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [companyList, setCompanyList] = useState();
+  const [showModal, setShowModal] = useState(false);
+  const [tagValues, setTagValues] = useState({
+    tagname: "",
+    description: "",
+    tagError:""
+  });
   const companyFilterList = useSelector((state) => state.companyListingReducer);
   const companySelectedFilterList = useSelector(
     (state) => state.companyListingReducer.selectedFilters
@@ -128,6 +137,18 @@ const CompanyContent = () => {
     }),
   };
 
+  const checkLoginStatus = () => {
+    let isLoggedIn = false;
+    if (getToken()) {
+      setShowModal(false);
+      isLoggedIn = true;
+    } else {
+      setShowModal(true);
+      isLoggedIn = false;
+    }
+    return isLoggedIn;
+  };
+
   const onSearch = (val) => {
     const payload = {
       ...companySelectedFilterList,
@@ -151,29 +172,59 @@ const CompanyContent = () => {
   };
 
   const onHandleSaveSearch = () => {
-    const payload = {
-      accountId: "string",
-      dataDump: JSON.stringify(companySelectedFilterList),
-      emailId: "string",
-      fullName: "string",
-      id: 0,
-      phoneNo: "string",
-      source: "string",
-      userId: "string",
-    };
-    dispatch(saveSearchAction(payload));
+    const isLoggedIn = checkLoginStatus();
+    if (isLoggedIn) {
+      setShowModal(true);
+    }
   };
 
   const checkFilters = () => {
-    let hasFilters = true
-  
+    let hasFilters = true;
+
     Object.keys(companySelectedFilterList).forEach((item) => {
-      if(companySelectedFilterList[item]?.length){
-        hasFilters =  false
+      if (companySelectedFilterList[item]?.length) {
+        hasFilters = false;
       }
-    })
-return hasFilters
-  }
+    });
+    return hasFilters;
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
+  const onConfrim = () => {
+
+    if(!tagValues.tagname){
+      setTagValues({
+        ...tagValues,
+        tagError:"error"
+      })
+    }else{
+
+      const payload = {
+        accountId: "string",
+        dataDump: JSON.stringify(companySelectedFilterList),
+        emailId: "string",
+        fullName: tagValues.tagname,
+        id: 0,
+        phoneNo: "string",
+        source: tagValues.description,
+        userId: "string",
+      };
+      dispatch(saveSearchAction(payload));
+      setShowModal(false);
+    }
+
+    
+  };
+
+  const onInputChange = (e) => {
+    setTagValues({
+      ...tagValues,
+      [e.target.name]: e.target.value,
+    });
+  };
 
   return !loading ? (
     <>
@@ -207,7 +258,7 @@ return hasFilters
                         className="d-none d-sm-inline-block ml-2"
                         onClick={onHandleSaveSearch}
                         disabled={checkFilters()}
-                        title={checkFilters() ? 'Filters are not selected': ''}
+                        title={checkFilters() ? "Filters are not selected" : ""}
                       >
                         <i className="fas fa-save pr-1"></i> SAVE SEARCH
                       </Button>
@@ -243,6 +294,51 @@ return hasFilters
           </div>
         </div>
       </div>
+
+      {showModal ? (
+        <Modal
+          title="Save Search"
+          width={"400px"}
+          closable={true}
+          open={showModal}
+          onCancel={closeModal}
+          onOk={onConfrim}
+        >
+          <div class="pop-up errorformcontainer ">
+            <div className="form">
+              <div className="formcol1">
+                <label>Search Name</label>
+              </div>
+              <div className="formcol2">
+                <Input
+                  name="tagname"
+                  status={tagValues?.tagError}
+                  value={tagValues.tagname}
+                  placeholder="Tag Name"
+                  onChange={onInputChange}
+                />
+              </div>
+            </div>
+            <div className="form">
+              <div className="formcol1">
+                <label>Description</label>
+              </div>
+              <div className="formcol2">
+                <TextArea
+                  name="description"
+                  placeholder="Description"
+                  value={tagValues.description}
+                  rows={2}
+                  maxLength={100}
+                  onChange={onInputChange}
+                />
+              </div>
+            </div>
+          </div>
+        </Modal>
+      ) : (
+        ""
+      )}
     </>
   ) : (
     <Loader />

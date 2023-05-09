@@ -12,7 +12,18 @@ import {
   SELECTED_RECORDS,
   SAVE_SEARCH,
   DOWNLOAD_COMPANYLIST_ERROR,
-  SAVE_SEARCH_ERROR
+  SAVE_SEARCH_ERROR,
+  INDUSTRY_LIST_ERROR,
+  GEOLOCATION_ERROR,
+  COMPANY_TYPE_ERROR,
+  EMPLOYEE_COUNT_ERROR,
+  REVENUE_RANGE_ERROR,
+  COMPANYLIST_ERROR,
+  COMPANY_SEARCH_PAYLOAD_ERROR,
+  PAGINATION_VALUE_ERROR,
+  ADVANCED_SELECTED_FILTERS_ERROR,
+  SELECTED_RECORDS_ERROR,
+  EMPTY_ERROR_OBJ_LISTING,
 } from "../actionType/companyListingType";
 import { PAGE_LENGTH } from "../config";
 
@@ -47,7 +58,7 @@ const initialState = {
     end: PAGE_LENGTH,
   },
   selectedRecords: [],
-  excelDownload: "",
+  download: "",
   saveSearch: "",
   errObj: {},
 };
@@ -77,16 +88,39 @@ const CompanyListingReducer = (state = initialState, action) => {
         selectedFilters: payload,
       };
     case DOWNLOAD_COMPANYLIST:
-      return { ...state, excelDownload: payload };
+      return { ...state, download: payload };
     case SELECTED_RECORDS:
       return { ...state, selectedRecords: payload };
     case SAVE_SEARCH:
       return { ...state, saveSearch: payload };
+
+    case INDUSTRY_LIST_ERROR:
+      return { ...state, errObj: { ...state.errObj, ...payload } };
+    case GEOLOCATION_ERROR:
+      return { ...state, errObj: { ...state.errObj, ...payload } };
+    case COMPANY_TYPE_ERROR:
+      return { ...state, errObj: { ...state.errObj, ...payload } };
+    case EMPLOYEE_COUNT_ERROR:
+      return { ...state, errObj: { ...state.errObj, ...payload } };
+    case REVENUE_RANGE_ERROR:
+      return { ...state, errObj: { ...state.errObj, ...payload } };
+    case COMPANYLIST_ERROR:
+      return { ...state, errObj: { ...state.errObj, ...payload } };
+    case COMPANY_SEARCH_PAYLOAD_ERROR:
+      return { ...state, errObj: { ...state.errObj, ...payload } };
+    case PAGINATION_VALUE_ERROR:
+      return { ...state, errObj: { ...state.errObj, ...payload } };
+    case ADVANCED_SELECTED_FILTERS_ERROR:
+      return { ...state, errObj: { ...state.errObj, ...payload } };
     case DOWNLOAD_COMPANYLIST_ERROR:
+      return { ...state, errObj: { ...state.errObj, ...payload } };
+    case SELECTED_RECORDS_ERROR:
       return { ...state, errObj: { ...state.errObj, ...payload } };
     case SAVE_SEARCH_ERROR:
       return { ...state, errObj: { ...state.errObj, ...payload } };
 
+      case EMPTY_ERROR_OBJ_LISTING:
+        return { ...state, errObj: payload };
     default:
       return state;
   }

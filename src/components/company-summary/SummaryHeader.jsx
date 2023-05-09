@@ -4,8 +4,12 @@ import _ from "lodash";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { submitErrorForm } from "../../actionCreator/companyDetailsActionCreator";
-import { downloadCompanyList } from "../../actionCreator/companyListingActionCreater";
+import {
+  submitErrorForm,
+  createCompanyTag,
+  emptyErrorObj,
+  downloadCompany,
+} from "../../actionCreator/companyDetailsActionCreator";
 import { emailRegex } from "../../config";
 import { getToken } from "../../utils/utils";
 import TrialModal from "../../common/TrialModal";
@@ -30,11 +34,29 @@ const SummaryHeader = () => {
   const dispatch = useDispatch();
   const { TextArea } = Input;
   const [openErrorForm, setOpenErrorForm] = useState(false);
+  const [isApiFailed, setIsApiFailed] = useState(false);
+  const [openTagModal, setOpenTagModal] = useState(false);
+  const [tagValues, setTagValues] = useState({
+    tagname: "",
+    description: "",
+    tagError: "",
+  });
   const [errorForm, setErrorForm] = useState(formIntialValue);
   const [isCompanyBoxHeightFixed, setIsCompanyBoxHeightFixed] = useState(false);
   const companyDetails = useSelector(
     (state) => state.companyDetailsReducer.companyDetails
   );
+
+  const errObj = useSelector((state) => state.companyDetailsReducer.errObj);
+
+  useEffect(() => {
+    if (Object.keys(errObj).length) {
+      setIsApiFailed(true);
+    }
+    if (!Object.keys(errObj).length) {
+      setIsApiFailed(false);
+    }
+  }, [Object.keys(errObj).length]);
 
   const handleErrorForm = () => {
     setOpenErrorForm(true);
@@ -151,33 +173,112 @@ const SummaryHeader = () => {
     //alert("g"+id)
     const isLoggedIn = checkLoginStatus();
     if (isLoggedIn) {
-      // dispatch(downloadCompanyList(companySelectedFilterList, "exl"));
-      dispatch(downloadCompanyList([id], "exl"));
+      // dispatch(downloadCompany(companySelectedFilterList, "exl"));
+      dispatch(downloadCompany([id], "exl"));
     }
   };
   const downloadPDF = (id) => {
     const isLoggedIn = checkLoginStatus();
     if (isLoggedIn) {
-      // dispatch(downloadCompanyList(companySelectedFilterList, "pdf"));
-      dispatch(downloadCompanyList([id], "pdf"));
+      // dispatch(downloadCompany(companySelectedFilterList, "pdf"));
+      dispatch(downloadCompany([id], "pdf"));
     }
   };
 
+  const onConfrim = () => {
+    if (!tagValues.tagname) {
+      setTagValues({
+        ...tagValues,
+        tagError: "error",
+      });
+    } else {
+      console.log(companyDetails, "companyDetailscompanyDetails");
+      const payload = {
+        company: {
+          address: "string",
+          category: {
+            description: "string",
+            id: 0,
+            name: "string",
+          },
+          city: "string",
+          companyLogoUrl: "string",
+          companyRevenue: "string",
+          country: "string",
+          extn: "string",
+          geographyName: "string",
+          id: 0,
+          industry: {
+            description: "string",
+            id: 0,
+            name: "string",
+          },
+          introduction: "string",
+          listingName: "string",
+          name: tagValues.tagname,
+          phoneNo: "string",
+          pincode: "string",
+          range: {
+            description: "string",
+            id: 0,
+            name: "string",
+          },
+          revenue: {
+            description: "string",
+            id: 0,
+            name: "string",
+          },
+          shortIntro: "string",
+          socialLinks: [
+            {
+              id: 0,
+              name: "string",
+              profileId: "string",
+              proifileUrl: "string",
+              socialType: "string",
+            },
+          ],
+          state: "string",
+          symbol: "string",
+          totalEmployees: 0,
+          wedsite: "string",
+        },
+        datetime: "2023-05-01T13:26:37.718Z",
+        id: 0,
+        text: "string",
+        userId: "string",
+      };
+      dispatch(createCompanyTag(payload));
+      setOpenTagModal(false);
+    }
+  };
+
+  const onTagInputChange = (e) => {
+    setTagValues({
+      ...tagValues,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   const tagCompany = () => {
-    console.log(companyDetails,'companyDetailscompanyDetails');
     const isLoggedIn = checkLoginStatus();
     if (isLoggedIn) {
-      //dispatch(downloadCompanyList([id], "pdf"));
+      setOpenTagModal(true);
     }
   };
 
   const closeModal = () => {
     setShowModal(false);
+    dispatch(emptyErrorObj());
   };
 
   const redirectToSignup = () => {
     setShowModal(false);
     //navigate("/signup");
+  };
+
+  const closeTagModal = () => {
+    setOpenTagModal(false);
   };
 
   return (
@@ -473,9 +574,10 @@ const SummaryHeader = () => {
 
       {showModal ? (
         <TrialModal
-          openInfoBeforeLogin={showModal}
-          closeInfoBeforeLogin={closeModal}
+          openModal={showModal}
+          closeModal={closeModal}
           redirectToSignup={redirectToSignup}
+          redirect={true}
           buttonText="Start Free Trial"
           modalBody={
             <div id="small-dialog2">
@@ -492,6 +594,68 @@ const SummaryHeader = () => {
           }
           modalWidth="400px"
         />
+      ) : (
+        ""
+      )}
+
+      {isApiFailed ? (
+        <TrialModal
+          openModal={isApiFailed}
+          closeModal={closeModal}
+          redirectToSignup={redirectToSignup}
+          buttonText="OK"
+          modalBody={
+            <div id="small-dialog2">
+              Please call System support. You application having some issue.
+            </div>
+          }
+          modalWidth="400px"
+        />
+      ) : (
+        ""
+      )}
+
+      {openTagModal ? (
+        <Modal
+          title="Save Search"
+          width={"400px"}
+          closable={true}
+          open={openTagModal}
+          onCancel={closeTagModal}
+          onOk={onConfrim}
+        >
+          <div class="pop-up errorformcontainer ">
+            <div className="form">
+              <div className="formcol1">
+                <label>Search Name</label>
+              </div>
+              <div className="formcol2">
+                <Input
+                  name="tagname"
+                  status={tagValues?.tagError}
+                  value={tagValues.tagname}
+                  placeholder="Tag Name"
+                  onChange={onTagInputChange}
+                />
+              </div>
+            </div>
+            <div className="form">
+              <div className="formcol1">
+                <label>Description</label>
+              </div>
+              <div className="formcol2">
+                <TextArea
+                  name="description"
+                  placeholder="Description"
+                  value={tagValues.description}
+                  rows={2}
+                  maxLength={100}
+                  onChange={onTagInputChange}
+                />
+              </div>
+            </div>
+          </div>
+        </Modal>
       ) : (
         ""
       )}

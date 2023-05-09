@@ -1,17 +1,33 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { Tabs } from "antd";
+import { useSelector, useDispatch } from "react-redux";
 import _ from "lodash";
 import Layout from "../layout/Layout";
 import CompanyLeft from "../components/company-search/CompanyLeft";
 import CompanyContent from "../components/company-search/CompanyContent";
 import CompanyNavigation from "../components/company-search/CompanyNavigation";
+import TrialModal from "../common/TrialModal";
+import {emptyErrorObj} from '../actionCreator/companyListingActionCreater'
 import "../assets/css/dynemic-page.css";
 const CompanySearch = ({ tab }) => {
   const [activeTab, setActiveTab] = useState(tab);
+  const [isApiFailed, setIsApiFailed] = useState(false);
+  const errObj = useSelector((state) => state.companyListingReducer.errObj);
+  const dispatch = useDispatch()
 
   useEffect(() => {
     setActiveTab(tab);
   }, [tab]);
+
+  useEffect(() => {
+    console.log("errObj", errObj);
+    if (Object.keys(errObj).length) {
+      setIsApiFailed(true);
+    }
+    if (!Object.keys(errObj).length) {
+      setIsApiFailed(false);
+    }
+  }, [Object.keys(errObj).length]);
 
   const onChange = (key) => {
     setActiveTab(key);
@@ -83,6 +99,11 @@ const CompanySearch = ({ tab }) => {
     },
   ];
 
+  
+  const closeModal = () => {
+    dispatch(emptyErrorObj());
+  };
+
   return (
     <>
       <Layout>
@@ -100,6 +121,22 @@ const CompanySearch = ({ tab }) => {
             onChange={onChange}
             type="card"
           />
+
+          {isApiFailed ? (
+            <TrialModal
+              openModal={isApiFailed}
+              closeModal={closeModal}
+              buttonText="OK"
+              modalBody={
+                <div id="small-dialog2">
+                  Please call System support. You application having some issue.
+                </div>
+              }
+              modalWidth="400px"
+            />
+          ) : (
+            ""
+          )}
         </div>
       </Layout>
     </>
