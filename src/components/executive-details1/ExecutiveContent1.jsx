@@ -110,7 +110,7 @@ const ExecutiveContent1 = () => {
                                 <th>
                                   <input type="checkbox" />
                                 </th>
-                                <th>ID</th>
+                                
                                 <th>Executive Name</th>
                                 <th>Designation</th>
                                 <th>Email</th>
@@ -124,7 +124,7 @@ const ExecutiveContent1 = () => {
                                 <td>
                                   <input type="checkbox" />
                                 </td>
-                                <td>1</td>
+                               
 
                                 <td>John Mathew </td>
                                 <td>Delivery Head</td>
@@ -149,9 +149,7 @@ const ExecutiveContent1 = () => {
                                 <td>
                                   <input type="checkbox" />
                                 </td>
-                                <td>2</td>
-
-                                <td>John Mathew </td>
+                               <td>John Mathew </td>
                                 <td>Delivery Head</td>
                                 <td>
                                   <h4 className=" fs-23 btn la  la-envelope-open-text text-black  "></h4>
@@ -174,9 +172,7 @@ const ExecutiveContent1 = () => {
                                 <td>
                                   <input type="checkbox" />
                                 </td>
-                                <td>3</td>
-
-                                <td>John Mathew </td>
+                                 <td>John Mathew </td>
                                 <td>Delivery Head</td>
                                 <td>
                                   <h4 className=" fs-23 btn la  la-envelope-open-text text-black  "></h4>
@@ -199,9 +195,7 @@ const ExecutiveContent1 = () => {
                                 <td>
                                   <input type="checkbox" />
                                 </td>
-                                <td>4</td>
-
-                                <td>John Mathew </td>
+                                 <td>John Mathew </td>
                                 <td>Delivery Head</td>
                                 <td>
                                   <h4 className=" fs-23 btn la  la-envelope-open-text text-black  "></h4>
@@ -224,9 +218,7 @@ const ExecutiveContent1 = () => {
                                 <td>
                                   <input type="checkbox" />
                                 </td>
-                                <td>5</td>
-
-                                <td>John Mathew </td>
+                                 <td>John Mathew </td>
                                 <td>Delivery Head</td>
                                 <td>
                                   <h4 className=" fs-23 btn la  la-envelope-open-text text-black  "></h4>
@@ -250,8 +242,6 @@ const ExecutiveContent1 = () => {
                                 <td>
                                   <input type="checkbox" />
                                 </td>
-                                <td>6</td>
-
                                 <td>John Mathew </td>
                                 <td>Delivery Head</td>
                                 <td>
@@ -275,8 +265,6 @@ const ExecutiveContent1 = () => {
                                 <td>
                                   <input type="checkbox" />
                                 </td>
-                                <td>7</td>
-
                                 <td>John Mathew </td>
                                 <td>Delivery Head</td>
                                 <td>
