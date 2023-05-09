@@ -46,9 +46,9 @@ const Signup = () => {
   return (
     <>
       <div style={{ margin: 20 }}>
-        <a href="index.html">
+        <NavLink to="/">
           <img src={LogoLogin} alt=" " />
-        </a>
+        </NavLink>
       </div>
       <div className="logincontainer">
         <div className="layer">
@@ -62,7 +62,7 @@ const Signup = () => {
               </div>
               <div className="content-wthree">
                 <h2>Welcome! to Byond Leadz</h2>
-                <p>
+                {/* <p>
                   <strong>You can create your account in 3 simple steps</strong>
                 </p>
                 <br />
@@ -80,7 +80,7 @@ const Signup = () => {
                   <i className="fa fa-dot-circle-o" aria-hidden="true"></i> Step 3{" "}
                   <i className="fa fa-arrow-down" aria-hidden="true"></i>
                 </h6>
-                <p>Great! Tell us something more about your profile</p>
+                <p>Great! Tell us something more about your profile</p> */}
                 <br />
                 <br />
                 <div className="bottom-w3l">

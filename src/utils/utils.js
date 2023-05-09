@@ -57,7 +57,7 @@ export const createPayload = (
     city = `&city.in=${ids}`;
     url = `${url}${city}`;
   }
-
+//console.log(selectedIndustry,'selectedIndustryselectedIndustry')
   if (selectedIndustry?.length) {
     let ids = "";
     for (let i = 0; i < selectedIndustry.length - 1; i++) {

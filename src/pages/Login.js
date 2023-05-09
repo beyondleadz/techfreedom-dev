@@ -11,9 +11,13 @@ import LogoLogin from "../assets/login/logo-round.png";
 import { signInUrl } from "../constant/Constant";
 import { postMethod } from "../services/HttpServices";
 import "../assets/css/style.css";
+import {
+  getAccountInfo,
+  emptyCommonErrorObj,
+} from "../actionCreator/commonActionCreator";
 
 const Login = () => {
-  //const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [form, setForm] = useState({ username: "", password: "" });
   const [errorObj, setError] = useState();
   const navigate = useNavigate();
@@ -60,7 +64,8 @@ const Login = () => {
 
       postMethod(signInUrl,form).then((res)=>{
       sessionStorage.setItem("token",res.data.id_token);
-
+      //dispatch Account api & store data in session
+      dispatch(getAccountInfo());  
       navigate("/");
       }).catch((error)=>{
       	setError({error:"Invalid Credentials"});

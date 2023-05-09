@@ -16,6 +16,8 @@ import {
   SUBMIT_ERROR_FORM_ERROR,
   DOWNLOAD_COMPANY_ERROR,
   DOWNLOAD_COMPANY,
+  FETCH_COMPANY_TAG,
+  FETCH_COMPANY_TAG_ERROR
 } from "../actionType/companyDetailsType";
 
 const initialState = {
@@ -25,7 +27,8 @@ const initialState = {
   executiveLeads: {},
   similarCompanyList: [],
   errorFormSubmit: [],
-  sigleCompanyTag: "",
+  sigleCompanyTag: {},
+  fetchCompanyTag:{},
   errObj: {},
 };
 
@@ -48,7 +51,8 @@ const CompanyDetailsReducer = (state = initialState, action) => {
       return { ...state, sigleCompanyTag: payload };
     case DOWNLOAD_COMPANY:
       return { ...state, download: payload };
-
+    case FETCH_COMPANY_TAG:  
+      return { ...state, fetchCompanyTag: payload };
     case SINGLE_COMPANY_TAG_ERROR:
       return { ...state, errObj: { ...state.errObj, ...payload } };
     case SIMILAR_COMPANYLIST_ERROR:
@@ -65,7 +69,8 @@ const CompanyDetailsReducer = (state = initialState, action) => {
       return { ...state, errObj: { ...state.errObj, ...payload } };
     case DOWNLOAD_COMPANY_ERROR:
       return { ...state, errObj: { ...state.errObj, ...payload } };
-
+    case FETCH_COMPANY_TAG_ERROR:  
+      return { ...state, errObj: { ...state.errObj, ...payload } };
     case EMPTY_ERROR_OBJ:
       return { ...state, errObj: payload };
 

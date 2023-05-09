@@ -35,7 +35,7 @@ const CompanySummary = () => {
       dispatch(
         getSimilarCompanyList(
           {
-            selectedIndustry: [companyDetails?.industry],
+            selectedIndustry: companyDetails?.industry?[companyDetails?.industry]:[{id:0}],
           },
           {
             start: 0,

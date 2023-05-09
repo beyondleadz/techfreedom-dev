@@ -24,11 +24,11 @@ const CompanyContent = () => {
       dataIndex: "name",
       render: (record, row) => {
         return (
-          <div className="namecol">
+          <div className="namecol" onClick={() => getDetails(row.key)}>
             <div className="logo">
               <img src={record?.companyLogoUrl || defaultLogo} />
             </div>
-            <span className="cname" onClick={() => getDetails(row.key)}>
+            <span className="cname">
               {record?.name}
             </span>
           </div>
@@ -44,6 +44,11 @@ const CompanyContent = () => {
       title: "Location",
       dataIndex: "location",
       className: "location",
+    },
+    {
+      title: "No. of Employees",
+      dataIndex: "totalEmployees",
+      className: "totalEmployees",
     },
     {
       title: "Phone Number",
@@ -110,9 +115,10 @@ const CompanyContent = () => {
           key: record.id,
           name: record,
           industry: record?.industry?.name,
-          location: `${record?.address}, ${record?.city}, ${record?.state}, ${record?.country}`,
+          location: `${record?.city ? record?.city + ',' : ""} ${record?.state ? record?.state : ''}`,
+          totalEmployees:record?.totalEmployees,
           phone: record.phoneNo,
-          social: renderSocialLinks(record?.socialLinks),
+          social: renderSocialLinks(record?.socialLinks)       
         },
       ];
     });

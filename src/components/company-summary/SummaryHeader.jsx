@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { Modal, Checkbox, Input, Texta, Divider } from "antd";
+import { Modal, Checkbox, Input, Divider,Button } from "antd";
 import _ from "lodash";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import {
   submitErrorForm,
   createCompanyTag,
   emptyErrorObj,
   downloadCompany,
+  getCompanyTag,
+  resetCompanyTag
 } from "../../actionCreator/companyDetailsActionCreator";
 import { emailRegex } from "../../config";
 import { getToken } from "../../utils/utils";
@@ -46,9 +48,11 @@ const SummaryHeader = () => {
   const companyDetails = useSelector(
     (state) => state.companyDetailsReducer.companyDetails
   );
-
+  const navigate = useNavigate()
   const errObj = useSelector((state) => state.companyDetailsReducer.errObj);
-
+  const fetchCompanyTag = useSelector((state) => state.companyDetailsReducer.fetchCompanyTag);
+  const sigleCompanyTag = useSelector((state) => state.companyDetailsReducer.sigleCompanyTag);
+  const [taggedCompany,setTaggedCompany]=useState(false);
   useEffect(() => {
     if (Object.keys(errObj).length) {
       setIsApiFailed(true);
@@ -58,6 +62,20 @@ const SummaryHeader = () => {
     }
   }, [Object.keys(errObj).length]);
 
+  useEffect(()=>{
+    dispatch(resetCompanyTag());
+    dispatch(getCompanyTag(companyDetails?.id));    
+  },[companyDetails])
+
+  useEffect(()=>{
+    console.log(fetchCompanyTag.length,Object.keys(sigleCompanyTag).length,'chk len')
+    if(fetchCompanyTag.length || Object.keys(sigleCompanyTag).length){
+      setTaggedCompany(true);
+    }else{
+      setTaggedCompany(false);
+    }
+  },[fetchCompanyTag,sigleCompanyTag])
+  
   const handleErrorForm = () => {
     setOpenErrorForm(true);
   };
@@ -192,61 +210,12 @@ const SummaryHeader = () => {
         tagError: "error",
       });
     } else {
-      console.log(companyDetails, "companyDetailscompanyDetails");
+      //console.log(companyDetails, "companyDetailscompanyDetails");
+      const userInfo= JSON.parse(window.sessionStorage.getItem('userInfo'));
       const payload = {
-        company: {
-          address: "string",
-          category: {
-            description: "string",
-            id: 0,
-            name: "string",
-          },
-          city: "string",
-          companyLogoUrl: "string",
-          companyRevenue: "string",
-          country: "string",
-          extn: "string",
-          geographyName: "string",
-          id: 0,
-          industry: {
-            description: "string",
-            id: 0,
-            name: "string",
-          },
-          introduction: "string",
-          listingName: "string",
-          name: tagValues.tagname,
-          phoneNo: "string",
-          pincode: "string",
-          range: {
-            description: "string",
-            id: 0,
-            name: "string",
-          },
-          revenue: {
-            description: "string",
-            id: 0,
-            name: "string",
-          },
-          shortIntro: "string",
-          socialLinks: [
-            {
-              id: 0,
-              name: "string",
-              profileId: "string",
-              proifileUrl: "string",
-              socialType: "string",
-            },
-          ],
-          state: "string",
-          symbol: "string",
-          totalEmployees: 0,
-          wedsite: "string",
-        },
-        datetime: "2023-05-01T13:26:37.718Z",
-        id: 0,
-        text: "string",
-        userId: "string",
+        company: companyDetails,
+        text: tagValues.tagname,
+        userId: userInfo.id,
       };
       dispatch(createCompanyTag(payload));
       setOpenTagModal(false);
@@ -274,13 +243,13 @@ const SummaryHeader = () => {
 
   const redirectToSignup = () => {
     setShowModal(false);
-    //navigate("/signup");
+    navigate("/signup");
   };
 
   const closeTagModal = () => {
     setOpenTagModal(false);
   };
-
+  //console.log(taggedCompany,"setTaggedCompanysetTaggedCompanysetTaggedCompany")
   return (
     <div className=" navbar-light" id="onScroll">
       <div
@@ -321,14 +290,14 @@ const SummaryHeader = () => {
                 aria-hidden="true"
               ></span>
               <strong className="mr-2">Website</strong>
-              <a
+              <Link
                 className=" fs-12 font-weight-normal text-dark"
                 title=""
-                href={companyDetails?.wedsite}
+                to={`http://${companyDetails?.wedsite}`}
                 target="_blank"
               >
                 {companyDetails?.wedsite}
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -616,6 +585,7 @@ const SummaryHeader = () => {
       )}
 
       {openTagModal ? (
+        !taggedCompany?
         <Modal
           title="Save Search"
           width={"400px"}
@@ -639,7 +609,7 @@ const SummaryHeader = () => {
                 />
               </div>
             </div>
-            <div className="form">
+            {/* <div className="form">
               <div className="formcol1">
                 <label>Description</label>
               </div>
@@ -653,9 +623,28 @@ const SummaryHeader = () => {
                   onChange={onTagInputChange}
                 />
               </div>
-            </div>
+            </div> */}
           </div>
-        </Modal>
+        </Modal>:
+        <Modal
+        title=""
+        width={"400px"}
+        closable={true}
+        open={openTagModal}
+        footer={[
+          <Button
+            key="submit"
+            type="primary"
+            onClick={closeTagModal}
+          >
+            OK
+          </Button>,
+        ]}
+      >
+        <div class="pop-up errorformcontainer ">
+          <p>Already Tagged!</p>
+        </div>
+      </Modal>
       ) : (
         ""
       )}

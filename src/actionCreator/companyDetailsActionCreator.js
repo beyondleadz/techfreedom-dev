@@ -16,6 +16,8 @@ import {
   SUBMIT_ERROR_FORM_ERROR,
   DOWNLOAD_COMPANY,
   DOWNLOAD_COMPANY_ERROR,
+  FETCH_COMPANY_TAG,
+  FETCH_COMPANY_TAG_ERROR
 } from "../actionType/companyDetailsType";
 import {
   getAuthMethod,
@@ -29,6 +31,7 @@ import {
   clientLeadsUrl,
   errorReport,
   sigleCompanyTag,
+  fetchCompanyTagApiUrl,
 } from "../constant/Constant";
 import { createPayload } from "../utils/utils";
 import { ErrKey, errEnum } from "../config";
@@ -226,4 +229,30 @@ export const downloadCompany = (payload, urlSubstring) => (dispatch) => {
           "Error Occured",
       });
     });
+};
+
+export const getCompanyTag = (id) => (dispatch) => {
+  let filter = "companyId.equals="+id;
+  const url = `${fetchCompanyTagApiUrl}?${filter}`;
+  console.log(url, id, "lksjdfklsjd");
+  return getAuthMethod(url)
+    .then((res) => {
+      dispatch({
+        type: FETCH_COMPANY_TAG,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err, "sjkflskdjfkl");
+      dispatch({
+        type: FETCH_COMPANY_TAG_ERROR,
+        payload:
+          { [errEnum.FETCH_COMPANY_TAG_ERROR]: err.response.data[ErrKey] } ||
+          "Error Occured",
+      });
+    });
+};
+
+export const resetCompanyTag = (payload) => {
+  return { type: SINGLE_COMPANY_TAG, payload: [] };
 };

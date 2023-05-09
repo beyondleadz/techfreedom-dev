@@ -28,11 +28,11 @@ const KeyExecutives = () => {
   const navigate = useNavigate();
 
   const columns = [
-    {
-      title: "ID",
-      dataIndex: "id",
-      fixed: "left",
-    },
+    // {
+    //   title: "ID",
+    //   dataIndex: "id",
+    //   fixed: "left",
+    // },
     {
       title: "Executive name",
       dataIndex: "fullname",
