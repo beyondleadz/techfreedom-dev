@@ -216,10 +216,11 @@ const CompanyNavigation = () => {
 
         {showModal ? (
           <TrialModal
-            showModal={showModal}
+          openModal={showModal}
             closeModal={closeModal}
             redirectToSignup={redirectToSignup}
             buttonText="Start Free Trial"
+            redirect={true}
             modalBody={
               <div id="small-dialog2">
                 <div align="center">

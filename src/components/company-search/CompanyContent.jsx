@@ -62,7 +62,7 @@ const CompanyContent = () => {
   const [tagValues, setTagValues] = useState({
     tagname: "",
     description: "",
-    tagError:""
+    tagError: "",
   });
   const companyFilterList = useSelector((state) => state.companyListingReducer);
   const companySelectedFilterList = useSelector(
@@ -194,14 +194,12 @@ const CompanyContent = () => {
   };
 
   const onConfrim = () => {
-
-    if(!tagValues.tagname){
+    if (!tagValues.tagname) {
       setTagValues({
         ...tagValues,
-        tagError:"error"
-      })
-    }else{
-
+        tagError: "error",
+      });
+    } else {
       const payload = {
         accountId: "string",
         dataDump: JSON.stringify(companySelectedFilterList),
@@ -215,8 +213,6 @@ const CompanyContent = () => {
       dispatch(saveSearchAction(payload));
       setShowModal(false);
     }
-
-    
   };
 
   const onInputChange = (e) => {
@@ -226,7 +222,7 @@ const CompanyContent = () => {
     });
   };
 
-  return !loading ? (
+  return (
     <>
       <div id="content-wrapper" className="d-flex flex-column ">
         <div id="content" className="shadow">
@@ -270,21 +266,25 @@ const CompanyContent = () => {
                   <div className="card-body">
                     <div className="table-container text-nowrap">
                       <div className="table-wrapper">
-                        <Table
-                          rowSelection={{
-                            type: "checkbox",
-                            ...rowSelection,
-                          }}
-                          columns={columns}
-                          dataSource={companyList}
-                          pagination={{
-                            responsive: true,
-                            total: companyFilterList?.totalCount,
-                            pageSize: PAGE_LENGTH,
-                            position: ["bottomCenter"],
-                            onChange: onPageChange,
-                          }}
-                        />
+                        {!loading ? (
+                          <Table
+                            rowSelection={{
+                              type: "checkbox",
+                              ...rowSelection,
+                            }}
+                            columns={columns}
+                            dataSource={companyList}
+                            pagination={{
+                              responsive: true,
+                              total: companyFilterList?.totalCount,
+                              pageSize: PAGE_LENGTH,
+                              position: ["bottomCenter"],
+                              onChange: onPageChange,
+                            }}
+                          />
+                        ) : (
+                          <Loader />
+                        )}
                       </div>
                     </div>
                   </div>
@@ -340,8 +340,6 @@ const CompanyContent = () => {
         ""
       )}
     </>
-  ) : (
-    <Loader />
   );
 };
 

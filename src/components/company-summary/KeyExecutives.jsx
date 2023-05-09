@@ -20,7 +20,7 @@ const KeyExecutives = () => {
   );
 
   const [employeeData, setEmployeeData] = useState([]);
-  const [openInfoBeforeLogin, setOpenInfoBeforeLogin] = useState({
+  const [openModal, setOpenModal] = useState({
     info: null,
     open: false,
   });
@@ -181,19 +181,19 @@ const KeyExecutives = () => {
   const openInfoModel = () => {
     const token = sessionStorage.getItem("token");
     if (token) {
-      setOpenInfoBeforeLogin({ info: null, open: false });
+      setOpenModal({ info: null, open: false });
     } else {
-      setOpenInfoBeforeLogin({ info: null, open: true });
+      setOpenModal({ info: null, open: true });
     }
   };
 
   const redirectToSignup = () => {
-    setOpenInfoBeforeLogin(false);
+    setOpenModal(false);
     navigate("/signup");
   };
 
   const closeInfoBeforeLogin = () => {
-    setOpenInfoBeforeLogin(false);
+    setOpenModal(false);
   };
 
   const rowSelection = {
@@ -239,11 +239,12 @@ const KeyExecutives = () => {
           onChange: onPageChange,
         }}
       />
-      {openInfoBeforeLogin?.open && (
+      {openModal?.open && (
         <TrialModal
-          openInfoBeforeLogin={openInfoBeforeLogin}
-          closeInfoBeforeLogin={closeInfoBeforeLogin}
+          openModal={openModal}
+          closeModal={closeInfoBeforeLogin}
           redirectToSignup={redirectToSignup}
+          redirect = {true}
           buttonText="Start Free Trial"
           modalBody={
             <div id="small-dialog2">
@@ -260,32 +261,6 @@ const KeyExecutives = () => {
           }
           modalWidth="400px"
         />
-        // <Modal
-        //   // title="Basic Modal"
-        //   width="400px"
-        //   closable={true}
-        //   open={openInfoBeforeLogin}
-        //   onCancel={closeInfoBeforeLogin}
-        //   footer={[
-        //     <Button key="submit" type="primary" onClick={redirectToSignup}>
-        //       Start Free Trial
-        //     </Button>,
-        //   ]}
-        // >
-        //   <div class="pop-up">
-        //     <div id="small-dialog2">
-        //       <div align="center">
-        //         <img src={popupImg} />
-        //       </div>
-        //       <p style={{ color: "#0000FF" }}>
-        //         Get 10 free verified contacts with a BeyondLeadz Pro trial
-        //       </p>
-        //       <p>
-        //         BeyondLeadz Pro customers close deals faster thanks to relevant
-        //       </p>
-        //     </div>
-        //   </div>
-        // </Modal>
       )}
       {Object.keys(submitLeadRes).length ? (
         <Modal
