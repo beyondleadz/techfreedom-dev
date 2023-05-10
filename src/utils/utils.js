@@ -12,6 +12,7 @@ export const createPayload = (
     selectedEmployeecount,
     selectedRevenuerange,
     searchKeyword,
+    selectedCompanyTag,
   } = payload || {};
 
   let url = companyListingApiUrl;
@@ -23,6 +24,7 @@ export const createPayload = (
   let categoryId;
   let rangeId;
   let revenueId;
+  let companyTagId;
   if (paginationValues) {
     withPagination = `&page=${paginationValues?.start}&size=${paginationValues?.end}`;
     url = `${url}${withPagination}`;
@@ -101,6 +103,16 @@ export const createPayload = (
   if (searchKeyword) {
     let searchCondition = `&shortIntro.contains=${searchKeyword}`;
     url = `${url}${searchCondition}`;
+  }
+
+  if (selectedCompanyTag?.length) {
+    let ids = "";
+    for (let i = 0; i < selectedCompanyTag.length - 1; i++) {
+      ids += `${selectedCompanyTag[i].company.id},`;
+    }
+    ids += selectedCompanyTag[selectedCompanyTag.length - 1].company.id;
+    companyTagId = `&id.in=${ids}`;
+    url = `${url}${companyTagId}`;
   }
 
   //   console.log(

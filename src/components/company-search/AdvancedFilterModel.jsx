@@ -27,7 +27,8 @@ const AdvancedFilterModel = ({ setOpenAdvancedModel, openAdvancedModel,showNumbe
         selectedCompanytype: [],
         selectedEmployeecount: [],
         selectedRevenuerange: [],
-        selectedSavedSearch:[]
+        selectedSavedSearch:[],
+        selectedCompanyTag:[],
       })
     );
     setOpenAdvancedModel({ open: false, key: 0 });

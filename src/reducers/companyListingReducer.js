@@ -26,6 +26,8 @@ import {
   EMPTY_ERROR_OBJ_LISTING,
   SAVE_SEARCH_LIST,
   SAVE_SEARCH_LIST_ERROR,
+  COMPANY_TAG_LIST,
+  COMPANY_TAG_LIST_ERROR,
 } from "../actionType/companyListingType";
 import { PAGE_LENGTH } from "../config";
 
@@ -37,6 +39,7 @@ const initialState = {
   revenueRangeList: [],
   companyList: [],
   saveSearchList: [],
+  companyTagList: [],
   selectedFilters: {
     selectedCountry: [],
     selectedState: [],
@@ -47,6 +50,7 @@ const initialState = {
     selectedRevenuerange: [],
     searchKeyword: "",
     selectedSavedSearch: [],
+    selectedCompanyTag: [],
   },
   companySearchPayload: {
     country: [],
@@ -98,7 +102,9 @@ const CompanyListingReducer = (state = initialState, action) => {
     case SAVE_SEARCH:
       return { ...state, saveSearch: payload };
     case SAVE_SEARCH_LIST:
-      return {...state,saveSearchList:payload};  
+      return { ...state, saveSearchList: payload };
+    case COMPANY_TAG_LIST:
+      return { ...state, companyTagList: payload };
 
     case INDUSTRY_LIST_ERROR:
       return { ...state, errObj: { ...state.errObj, ...payload } };
@@ -125,9 +131,11 @@ const CompanyListingReducer = (state = initialState, action) => {
     case SAVE_SEARCH_ERROR:
       return { ...state, errObj: { ...state.errObj, ...payload } };
     case SAVE_SEARCH_LIST_ERROR:
-      return {...state,errObj:{...state.errObj, ...payload}};
-      case EMPTY_ERROR_OBJ_LISTING:
-        return { ...state, errObj: payload };
+      return { ...state, errObj: { ...state.errObj, ...payload } };
+    case COMPANY_TAG_LIST_ERROR:
+      return { ...state, errObj: { ...state.errObj, ...payload } };
+    case EMPTY_ERROR_OBJ_LISTING:
+      return { ...state, errObj: payload };
     default:
       return state;
   }

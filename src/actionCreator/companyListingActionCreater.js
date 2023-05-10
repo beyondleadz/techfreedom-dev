@@ -21,6 +21,8 @@ import {
   EMPTY_ERROR_OBJ_LISTING,
   SAVE_SEARCH_LIST,
   SAVE_SEARCH_LIST_ERROR,
+  COMPANY_TAG_LIST,
+  COMPANY_TAG_LIST_ERROR,
 } from "../actionType/companyListingType";
 import {
   getAuthMethod,
@@ -36,6 +38,7 @@ import {
   companyListingApiUrl,
   saveSearch,
   saveSearchListApiUrl,
+  getCompanyTagApiUrl,
 } from "../constant/Constant";
 import { dispatchStatus } from "./commonActionCreator";
 import { Geolocation } from "../constant/Geolocation";
@@ -264,3 +267,21 @@ export const saveSearchList = (userId) => (dispatch) => {
     });
 };
 
+export const getCompanyTagList = (userId) => (dispatch) => {
+  const url=`${getCompanyTagApiUrl}?userId.equals=${userId}`
+  return getAuthMethod(url)
+    .then((res) => {
+      dispatch({
+        type: COMPANY_TAG_LIST,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: COMPANY_TAG_LIST_ERROR,
+        payload:
+          { [errEnum.COMPANY_TAG_LIST_ERROR]: err.response.data[ErrKey] } ||
+          "Error Occured",
+      });
+    });
+};

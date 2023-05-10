@@ -16,4 +16,5 @@ export const sigleCompanyTag = '/api/company-tags';
 export const accountInfoApiUrl = '/api/account';
 export const fetchCompanyTagApiUrl = '/api/company-tags';
 export const saveSearchListApiUrl = '/api/externaldatadumps';
+export const getCompanyTagApiUrl = '/api/company-tags';
 

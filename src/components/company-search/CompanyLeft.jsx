@@ -11,6 +11,7 @@ import {
   getCompanyList,
   saveAdvancedSelectedFilters,
   saveSearchList,
+  getCompanyTagList,
 } from "../../actionCreator/companyListingActionCreater";
 import AdvancedFilterModel from "./AdvancedFilterModel";
 import AdvancedFilter from "./AdvancedFilter";
@@ -26,6 +27,7 @@ const CompanyLeft = () => {
   const [citiesList, setCitiesList] = useState();
   const [selectedState, setSelectedState] = useState([]);
   const [searchList, setSearchList] = useState();
+  const [companyTagList, setCompanyTagList] = useState();
   const [open, setopen] = useState({
     country: false,
     state: false,
@@ -44,7 +46,7 @@ const CompanyLeft = () => {
     key: 0,
   });
   const companyFilterList = useSelector((state) => state.companyListingReducer);
-
+  const userAccountInfo=useSelector((state)=>state.CommonReducer.accountInfo);
   useMemo(() => {
     /*?page=0&size=10&sort=id,asc */
     dispatch(getIndustryList());
@@ -52,9 +54,14 @@ const CompanyLeft = () => {
     dispatch(getCompanyTypeList());
     dispatch(getEmployeeCountList());
     dispatch(getRevenuerangeList());    
+  }, []);
+
+  useMemo(() => {   
+    //console.log(Object.keys(userAccountInfo)?.length,'Object.keys(userAccountInfo)?.length') 
     if(getToken()){
       const {id}= getUserInfo();
       dispatch(saveSearchList(id));
+      dispatch(getCompanyTagList(id));
     }
   }, []);
 
@@ -66,6 +73,7 @@ const CompanyLeft = () => {
     setLocation(companyFilterList?.geoLocation);
     setCitiesList(companyFilterList?.geoLocation);
     setSearchList(companyFilterList?.saveSearchList);
+    setCompanyTagList(companyFilterList?.companyTagList)
   }, [companyFilterList]);
 
   useEffect(() => {
@@ -90,52 +98,52 @@ const CompanyLeft = () => {
     );
   }, [selectedState]);
 
-  const filterKeyword = (type, ele) => {
-    if (type === "industry") {
-      const filterdData = companyFilterList?.industryList.filter((item) =>
-        item?.name.toLowerCase().includes(ele.target.value.toLowerCase())
-      );
-      setIndustryList(filterdData);
-    } else if (type === "revenuerange") {
-      const filterdData1 = companyFilterList?.revenueRangeList.filter((item) =>
-        item?.name.toLowerCase().includes(ele.target.value.toLowerCase())
-      );
-      setRevenuerangeList(filterdData1);
-    } else if (type === "employeecount") {
-      const filterdData2 = companyFilterList?.employeeCountList.filter((item) =>
-        item?.name.toLowerCase().includes(ele.target.value.toLowerCase())
-      );
-      setEmployeeCountList(filterdData2);
-    } else if (type === "companytype") {
-      const filterdData3 = companyFilterList?.companyTypeList.filter((item) =>
-        item?.name.toLowerCase().includes(ele.target.value.toLowerCase())
-      );
-      setCompanyTypeList(filterdData3);
-    } else if (type === "city") {
-      let filteredObj = _.cloneDeep(location);
-      const filteredCities = citiesList?.cities?.filter((item) => {
-        return item?.name
-          .toLowerCase()
-          .includes(ele.target.value.toLowerCase());
-      });
-      filteredObj = {
-        ...filteredObj,
-        cities: filteredCities,
-      };
-      setLocation(filteredObj);
-    } else if (type === "state") {
-      let filteredObj = _.cloneDeep(location);
-      const filteredStates = companyFilterList?.geoLocation?.states?.filter(
-        (item) =>
-          item?.name.toLowerCase().includes(ele.target.value.toLowerCase())
-      );
-      filteredObj = {
-        ...filteredObj,
-        states: filteredStates,
-      };
-      setLocation(filteredObj);
-    }
-  };
+  // const filterKeyword = (type, ele) => {
+  //   if (type === "industry") {
+  //     const filterdData = companyFilterList?.industryList.filter((item) =>
+  //       item?.name.toLowerCase().includes(ele.target.value.toLowerCase())
+  //     );
+  //     setIndustryList(filterdData);
+  //   } else if (type === "revenuerange") {
+  //     const filterdData1 = companyFilterList?.revenueRangeList.filter((item) =>
+  //       item?.name.toLowerCase().includes(ele.target.value.toLowerCase())
+  //     );
+  //     setRevenuerangeList(filterdData1);
+  //   } else if (type === "employeecount") {
+  //     const filterdData2 = companyFilterList?.employeeCountList.filter((item) =>
+  //       item?.name.toLowerCase().includes(ele.target.value.toLowerCase())
+  //     );
+  //     setEmployeeCountList(filterdData2);
+  //   } else if (type === "companytype") {
+  //     const filterdData3 = companyFilterList?.companyTypeList.filter((item) =>
+  //       item?.name.toLowerCase().includes(ele.target.value.toLowerCase())
+  //     );
+  //     setCompanyTypeList(filterdData3);
+  //   } else if (type === "city") {
+  //     let filteredObj = _.cloneDeep(location);
+  //     const filteredCities = citiesList?.cities?.filter((item) => {
+  //       return item?.name
+  //         .toLowerCase()
+  //         .includes(ele.target.value.toLowerCase());
+  //     });
+  //     filteredObj = {
+  //       ...filteredObj,
+  //       cities: filteredCities,
+  //     };
+  //     setLocation(filteredObj);
+  //   } else if (type === "state") {
+  //     let filteredObj = _.cloneDeep(location);
+  //     const filteredStates = companyFilterList?.geoLocation?.states?.filter(
+  //       (item) =>
+  //         item?.name.toLowerCase().includes(ele.target.value.toLowerCase())
+  //     );
+  //     filteredObj = {
+  //       ...filteredObj,
+  //       states: filteredStates,
+  //     };
+  //     setLocation(filteredObj);
+  //   }
+  // };
 
   const openMenu = (menu) => {
     setopen({
