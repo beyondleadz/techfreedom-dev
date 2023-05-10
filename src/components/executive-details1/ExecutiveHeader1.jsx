@@ -19,7 +19,7 @@ const ExecutiveDetails1 = () => {
   return (
     <div className=" navbar-light" id="onScroll">
       {/* <h3 className="card-body font-weight-bold">Company Summary</h3> */}
-      <div className="breadcrum ml-4 mt-3 fs-14">Home/ Search Executive/ Executive Details</div>
+      <div className="breadcrum ml-4 mt-3 fs-14">Home / Search Executive / Executive Details</div>
       {/* <div className="headername">
                 <div className="font-weight-bold mb-2 "><h3>Bob Whelen</h3></div>
           </div>

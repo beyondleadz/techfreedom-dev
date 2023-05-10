@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import logo from "../../assets/images/icici.jpg";
+import logo from "../../assets/images/Dun&Bradstreet.png";
 import OrgChartImg from "../../assets/images/org-chart-employee-icon.png";
 
 const ExecutiveContent1 = () => {
@@ -31,11 +31,11 @@ const ExecutiveContent1 = () => {
 
       <div className="executivedescbox ">
         <div className="row mb-3">
-          <div className="col"><h5>Designation</h5>Global Head of Real Estate, Facilities & Security</div>
-          <div className="col"><h5>Company</h5><span className="text-info font-weight-bold">Dun & Bradstreet</span></div>
+          <div className="col1 pl-4"><h5>Designation</h5>Global Head of Real Estate, Facilities & Security</div>
+                    <div className="col"><h5>Company</h5><span className="text-info font-weight-bold">Dun & Bradstreet</span></div>
         </div>
         <div className="row pt-3 mb-3">
-        <div className="col"><h5>Email</h5> <i className=" fs-23 mr-2 align-middle la la-envelope text-black"></i><span>View Email</span></div>
+        <div className="col"><h5>Email</h5> <i className=" fs-23 mr-2 align-bottom la la-envelope text-black"></i><span>View Email</span></div>
         <div className="col"><h5>Phone</h5>(206) 266-1000</div>
         <div className="col"><h5>Social</h5>
           <i class="lab fs-20 facebook lab la-facebook"></i>
@@ -70,13 +70,16 @@ const ExecutiveContent1 = () => {
                               aria-selected="true"
                             >
                               <i
-                                className="text-black fa fa-city pr-2" ></i>
+                                className="text-black fa fa-user-friends pr-2" ></i>
                              Colleagues
                             </button>
                           </li>
                           <li className="executive">
                           <div className="buttons-c">
                           <ul className="d-flex  m-mt">
+                            <li><div className="btn btn-outline-secondary pr-1 mr-2"><i className="fs-16 mr-1  la la-plus"></i>Create List</div></li>
+                        
+                            <li><div className="btn btn-outline-secondary pr-1 mr-4"><i className="fs-14 mr-1 fas fa-paper-plane"></i>Send Campaign</div></li>
                  <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
                     aria-expanded="false"><i class="right-icons la la-file-pdf" aria-hidden="true"></i>
                   </a></li>
@@ -87,7 +90,7 @@ const ExecutiveContent1 = () => {
                 
               <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
                     aria-expanded="false">
-                    <i className="right-icons la la-star" aria-hidden="true"></i>
+                    <i className="right-icons las la-tag" aria-hidden="true"></i>
                   </a>
                 </li>
                  </ul>
@@ -98,10 +101,10 @@ const ExecutiveContent1 = () => {
                       </div>
                     </div>
                     <div className="card shadow card-body executive">
-                      <div className="buttons-container">
+                      {/* <div className="buttons-container">
                         <div className="btn btn-outline-secondary pr-1 mr-2"><i className="fs-16 mr-1 text-light la la-envelope"></i>Create List</div>
                         <div className="btn btn-outline-secondary pr-1 mr-2"><i className="fs-16 mr-1 la la-envelope"></i>Send Campaign</div>
-                      </div>
+                      </div> */}
                     <div className="table-container text-nowrap">
                         <div className="table-wrapper">
                           <table className="data-table">
@@ -129,7 +132,7 @@ const ExecutiveContent1 = () => {
                                 <td>John Mathew </td>
                                 <td>Delivery Head</td>
                                 <td>
-                                  <h4 className="  fs-23 btn  la  la-envelope-open-text text-black   "></h4>
+                                  <h4 className="  fs-23 btn  la la-envelope text-black   "></h4>
                                 </td>
                                 <td>(206) 266-1000</td>
                                 <td>
@@ -152,7 +155,7 @@ const ExecutiveContent1 = () => {
                                <td>John Mathew </td>
                                 <td>Delivery Head</td>
                                 <td>
-                                  <h4 className=" fs-23 btn la  la-envelope-open-text text-black  "></h4>
+                                  <h4 className=" fs-23 btn la la-envelope text-black  "></h4>
                                 </td>
                                 <td>(206) 266-1000</td>
                                 <td>
@@ -175,7 +178,7 @@ const ExecutiveContent1 = () => {
                                  <td>John Mathew </td>
                                 <td>Delivery Head</td>
                                 <td>
-                                  <h4 className=" fs-23 btn la  la-envelope-open-text text-black  "></h4>
+                                  <h4 className=" fs-23 btn la la-envelope text-black  "></h4>
                                 </td>
                                 <td>(206) 266-1000</td>
                                 <td>
@@ -198,7 +201,7 @@ const ExecutiveContent1 = () => {
                                  <td>John Mathew </td>
                                 <td>Delivery Head</td>
                                 <td>
-                                  <h4 className=" fs-23 btn la  la-envelope-open-text text-black  "></h4>
+                                  <h4 className=" fs-23 btn la la-envelope text-black  "></h4>
                                 </td>
                                 <td>(206) 266-1000</td>
                                 <td>
@@ -221,7 +224,7 @@ const ExecutiveContent1 = () => {
                                  <td>John Mathew </td>
                                 <td>Delivery Head</td>
                                 <td>
-                                  <h4 className=" fs-23 btn la  la-envelope-open-text text-black  "></h4>
+                                  <h4 className=" fs-23 btn la la-envelope text-black  "></h4>
                                 </td>
                                 <td>(206) 266-1000</td>
                                 <td>
@@ -245,7 +248,7 @@ const ExecutiveContent1 = () => {
                                 <td>John Mathew </td>
                                 <td>Delivery Head</td>
                                 <td>
-                                  <h4 className="fs-23  btn la  la-envelope-open-text text-black  "></h4>
+                                  <h4 className="fs-23  btn la la-envelope text-black  "></h4>
                                 </td>
                                 <td>(206) 266-1000</td>
                                 <td>
@@ -268,7 +271,7 @@ const ExecutiveContent1 = () => {
                                 <td>John Mathew </td>
                                 <td>Delivery Head</td>
                                 <td>
-                                  <h4 className=" fs-23 btn la  la-envelope-open-text text-black "></h4>
+                                  <h4 className=" fs-23 btn la la-envelope text-black "></h4>
                                 </td>
                                 <td>(206) 266-1000</td>
                                 <td>
@@ -305,34 +308,37 @@ const ExecutiveContent1 = () => {
             
             <div className="col-md-3 col-custom-2 executive">
             <div className="buttons-container">
-            <div className="btn btn-info mt-3 pr-2 "><i className="right-icons las la-flag" aria-hidden="true"></i>Report An Error</div>
+            <div className="btn btn-outline-secondary mt-3 pr-2 "><i className="right-icons las la-flag" aria-hidden="true"></i>Report An Error</div>
             </div>
             <div className="card shadow  mb-4">
                 <div className="card-header font-weight-bold">
                   Company Info
                 </div>
-                <div className="card-body executive">
-                  <div className="row pb-3">
-                  <div className=" btn-circle btn-lg btn-info">
-                    &
+                <div className="card-body c-info ">
+                  <div className="c-info-detail">
+                <div className=" executive-company mr-2 img-responsive">
+                      <img src={logo} />
                     </div>
+                    <div className="c-info-desc">
+                      <div><a className="font-weight-bold fs-16 text-dark"  title="" href="#" target="" > Dun & Bradstreet    </a>
+                      </div>
+                      
+                    </div>                 
+                  </div>
+                 <div className="d-flex">
+                 <div className="row pb-3">
                     <div className=" pl-3">
-                      <div className="row pl-2"><a className="font-weight-bold fs-16 text-dark"  title="" href="#" target="" > Dun & Bradstreet    </a>
-                                            </div>
-                      <div className="fs-12"><h6>Phone</h6>(206) 266-1000</div>
-                      <div className="fs-12"><h6>Location</h6> Okhla Industrial Estate Phase 3 Rd, New Delhi, Delhi 110020</div>
-                      <div className="fs-12"><h6>Employees Ranges</h6>1.0K to 5.0K</div>
-                      <div className="fs-12"><h6>Industry</h6>Commercial & professional services</div>
-                      <div className="fs-12"><h6>Website</h6>https://www.dnb.co.in/</div>
-                      <div className="fs-12"><h6>Company Type</h6>Business information Credit & risk Sales & marketing Data analytics Supply & compliance</div>
-                      <div className="fs-12"><h6>Revenue Range</h6> $2,270 million to $2,315 million</div>
+                    
+                      <div className="fs-12"><h6><i class=" fs-16 mr-2  la la-phone text-black"></i>Phone</h6><div className="pl-4 ">(206) 266-1000</div></div>
+                      <div className="fs-12"><h6><i class=" fs-16 mr-2  la la-map-marker text-black"></i>Location</h6><div className="pl-4 ml-1"> Okhla Industrial Estate Phase 3 Rd, New Delhi, Delhi 110020</div></div>
+                      <div className="fs-12"><h6><i class=" fs-16 mr-2  la la-users text-black"></i>Employees Ranges</h6><div className="pl-4 ml-1">1.0K to 5.0K</div></div>
+                      <div className="fs-12"><h6><i class=" fs-16 mr-2  las la-industry text-black"></i>Industry</h6><div className="pl-4 ml-1">Commercial & professional services</div></div>
+                      <div className="fs-12"><h6><i class=" fs-16 mr-2  la la-globe text-black"></i>Website</h6><div className="pl-4 ml-1">https://www.dnb.co.in/</div></div>
+                      <div className="fs-12"><h6><i class=" fs-16 mr-2  la la-city text-black"></i>Company Type</h6><div className="pl-4 ml-1">Business information Credit & risk Sales & marketing Data analytics Supply & compliance</div></div>
+                      <div className="fs-12"><h6><i class=" fs-16 mr-2  la la-money-check text-black"></i>Revenue Range</h6><div className="pl-4 ml-1"> $2,270 million to $2,315 million</div></div>
                     </div>
                   </div>
-                 
-                 
-                  
-                 
-                 
+                 </div>
                 </div>
               </div>
               <div className="card shadow mt-2 mb-4">
@@ -440,30 +446,9 @@ const ExecutiveContent1 = () => {
                 </div>
               </div>
               <div className="card shadow descbox1 mb-3">
-                <div>
-                  Is this company data relevant to you?{" "}
-                  <a
-                    href="#"
-                    id=""
-                    role="button"
-                    data-toggle=""
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    <i
-                      class="right-icons small fa fa-thumbs-up"
-                      aria-hidden="true"
-                    ></i>
-                  </a>
-                </div>
-                <div font-weight-bold>
-                  <button class="btn btn-outline-dark font-weight-bold mr-2 p-1">
-                    Really Not
-                  </button>
-                  <button class="btn btn-outline-dark font-weight-bold mr-2 p-1">
-                    Yes!
-                  </button>
-                </div>
+              <div class="card shadow descbox1">
+                <div>Is this company data relevant to you? <a href="#" id="" role="button" data-toggle="" aria-haspopup="true" aria-expanded="false"><i class="right-icons small fa fa-thumbs-up" aria-hidden="true"></i></a><a href="#" id="" role="button" data-toggle="" aria-haspopup="true" aria-expanded="false"><i class="right-icons small fa fa-thumbs-down" aria-hidden="true"></i></a></div></div> 
+               
               </div>
             </div>
           </div>
