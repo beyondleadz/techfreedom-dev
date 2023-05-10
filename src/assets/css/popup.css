@@ -86,7 +86,8 @@ border: #d5d9d9 thin solid; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 	-o-border-top-right-radius:0.7em;
 	-moz-border-top-left-radius: 0.7em;
 	position: relative;
-	height: 125px; margin-bottom: 20px;
+	height: 135px; 
+	/* margin-bottom: 20px; */
 }
 .price-value.one{
 	background:#FF5F65;
@@ -185,8 +186,8 @@ li.whyt.lost {
 .cart2{
 	background:#F4F4F4;
 }
-.cart3{;
-background:#F4F4F4;
+.cart3{
+     background:#F4F4F4;
 }
 .cart a,.cart1 a,.cart2 a,.cart3 a{
 	color: #fdc401;
@@ -206,7 +207,7 @@ background:#F4F4F4;
   width: 0;
   height: 0;
   position: absolute;
-  right: 42%;
+  right: 44%;
   top: -17%;
   border-width: 0px 20px 19px 21px;
   border-style: solid;
@@ -217,7 +218,7 @@ background:#F4F4F4;
   width: 0;
   height: 0;
   position: absolute;
-  right: 42%;
+  right: 44%;
   top: -17%;
   border-width: 0px 20px 19px 21px;
   border-style: solid;
