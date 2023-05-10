@@ -10,10 +10,12 @@ import {
   createCompanySearchPayload,
   getCompanyList,
   saveAdvancedSelectedFilters,
+  saveSearchList,
 } from "../../actionCreator/companyListingActionCreater";
 import AdvancedFilterModel from "./AdvancedFilterModel";
 import AdvancedFilter from "./AdvancedFilter";
 import { LEFT_FILETERS_SIZE } from "../../config";
+import { getToken,getUserInfo } from "../../utils/utils";
 const CompanyLeft = () => {
   const dispatch = useDispatch();
   const [industryList, setIndustryList] = useState();
@@ -23,6 +25,7 @@ const CompanyLeft = () => {
   const [location, setLocation] = useState();
   const [citiesList, setCitiesList] = useState();
   const [selectedState, setSelectedState] = useState([]);
+  const [searchList, setSearchList] = useState();
   const [open, setopen] = useState({
     country: false,
     state: false,
@@ -48,7 +51,11 @@ const CompanyLeft = () => {
     dispatch(getLocation());
     dispatch(getCompanyTypeList());
     dispatch(getEmployeeCountList());
-    dispatch(getRevenuerangeList());
+    dispatch(getRevenuerangeList());    
+    if(getToken()){
+      const {id}= getUserInfo();
+      dispatch(saveSearchList(id));
+    }
   }, []);
 
   useEffect(() => {
@@ -58,6 +65,7 @@ const CompanyLeft = () => {
     setRevenuerangeList(companyFilterList?.revenueRangeList);
     setLocation(companyFilterList?.geoLocation);
     setCitiesList(companyFilterList?.geoLocation);
+    setSearchList(companyFilterList?.saveSearchList);
   }, [companyFilterList]);
 
   useEffect(() => {

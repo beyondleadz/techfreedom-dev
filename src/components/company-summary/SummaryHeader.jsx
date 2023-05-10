@@ -13,11 +13,10 @@ import {
   resetCompanyTag
 } from "../../actionCreator/companyDetailsActionCreator";
 import { emailRegex } from "../../config";
-import { getToken } from "../../utils/utils";
+import { getToken,getUserInfo } from "../../utils/utils";
 import TrialModal from "../../common/TrialModal";
 import popupImg from "../../assets/images/free-user-login-prompt.jpg.jpeg";
 import { useNavigate } from "react-router";
-
 const SummaryHeader = () => {
   const [showModal, setShowModal] = useState(false);
 
@@ -211,11 +210,11 @@ const SummaryHeader = () => {
       });
     } else {
       //console.log(companyDetails, "companyDetailscompanyDetails");
-      const userInfo= JSON.parse(window.sessionStorage.getItem('userInfo'));
+      const {id}= getUserInfo();
       const payload = {
         company: companyDetails,
         text: tagValues.tagname,
-        userId: userInfo.id,
+        userId: id,
       };
       dispatch(createCompanyTag(payload));
       setOpenTagModal(false);

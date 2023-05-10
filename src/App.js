@@ -9,8 +9,6 @@ import './assets/css/popup.css'
 
 import Routes from './routes'
 function App() {
-  // const token = sessionStorage.getItem('token');
-
   return (
     <Routes  /> 
   );

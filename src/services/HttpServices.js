@@ -1,8 +1,7 @@
 import axios from "axios";
 import { getBaseUrl } from "../config";
 
-const token = window.sessionStorage.getItem('token')
-console.log("token",token)
+
 const restService = axios.create({
     baseURL: getBaseUrl(),
     headers: {
@@ -14,7 +13,7 @@ const restService = axios.create({
 const restAuthService = axios.create({
    baseURL: getBaseUrl(),
    headers: {
-       'Authorization':`Bearer ${token}`,
+       'Authorization':`Bearer ${window.sessionStorage.getItem('token')}`,
        'Content-Type': 'application/json',
        'Access-Control-Allow-Origin': '*'
    }

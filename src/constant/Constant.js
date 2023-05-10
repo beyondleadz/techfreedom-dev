@@ -11,7 +11,9 @@ export const employeeListUrl = "api/employees";
 export const executiveDepartmentList = "api/executive-functions";
 export const clientLeadsUrl = "/api/client-leads";
 export const errorReport = "/api/incorrect-data-reporteds";
-export const saveSearch = '/api/externaldatadumps'
-export const sigleCompanyTag = '/api/company-tags'
-export const accountInfoApiUrl = '/api/account'
-export const fetchCompanyTagApiUrl = '/api/company-tags'
+export const saveSearch = '/api/externaldatadumps';
+export const sigleCompanyTag = '/api/company-tags';
+export const accountInfoApiUrl = '/api/account';
+export const fetchCompanyTagApiUrl = '/api/company-tags';
+export const saveSearchListApiUrl = '/api/externaldatadumps';
+

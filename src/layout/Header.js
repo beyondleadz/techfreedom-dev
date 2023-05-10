@@ -36,6 +36,7 @@ const Header = () => {
 
   const doLogout = () => {
     sessionStorage.removeItem("token");
+    sessionStorage.removeItem("userInfo");
     navigate("/");
   };
 

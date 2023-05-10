@@ -256,3 +256,4 @@ export const getCompanyTag = (id) => (dispatch) => {
 export const resetCompanyTag = (payload) => {
   return { type: SINGLE_COMPANY_TAG, payload: [] };
 };
+

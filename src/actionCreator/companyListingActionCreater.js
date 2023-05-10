@@ -18,7 +18,9 @@ import {
   EMPLOYEE_COUNT_ERROR,
   REVENUE_RANGE_ERROR,
   COMPANYLIST_ERROR,
-  EMPTY_ERROR_OBJ_LISTING
+  EMPTY_ERROR_OBJ_LISTING,
+  SAVE_SEARCH_LIST,
+  SAVE_SEARCH_LIST_ERROR,
 } from "../actionType/companyListingType";
 import {
   getAuthMethod,
@@ -33,6 +35,7 @@ import {
   revenueRangeApiUrl,
   companyListingApiUrl,
   saveSearch,
+  saveSearchListApiUrl,
 } from "../constant/Constant";
 import { dispatchStatus } from "./commonActionCreator";
 import { Geolocation } from "../constant/Geolocation";
@@ -241,3 +244,23 @@ export const emptyErrorObj = () => ({
   type: EMPTY_ERROR_OBJ_LISTING,
   payload: {},
 });
+
+export const saveSearchList = (userId) => (dispatch) => {
+  const url=`${saveSearchListApiUrl}?userId.equals=${userId}`
+  return getAuthMethod(url)
+    .then((res) => {
+      dispatch({
+        type: SAVE_SEARCH_LIST,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: SAVE_SEARCH_LIST_ERROR,
+        payload:
+          { [errEnum.SAVE_SEARCH_LIST_ERROR]: err.response.data[ErrKey] } ||
+          "Error Occured",
+      });
+    });
+};
+

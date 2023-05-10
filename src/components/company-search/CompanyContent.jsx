@@ -5,6 +5,8 @@ import _ from "lodash";
 import { Table, Input, Button, Modal } from "antd";
 import { PAGE_LENGTH } from "../../config";
 import defaultLogo from "../../assets/images/default_company_logo.jpg";
+import popupImg from "../../assets/images/free-user-login-prompt.jpg.jpeg";
+import TrialModal from "../../common/TrialModal";
 
 import {
   getCompanyList,
@@ -12,9 +14,10 @@ import {
   saveAdvancedSelectedFilters,
   selectedRow,
   saveSearchAction,
+  saveSearchList,
 } from "../../actionCreator/companyListingActionCreater";
 import Loader from "../loader";
-import { getToken } from "../../utils/utils";
+import { getToken,getUserInfo } from "../../utils/utils";
 
 const CompanyContent = () => {
   const { Search, TextArea } = Input;
@@ -181,6 +184,8 @@ const CompanyContent = () => {
     const isLoggedIn = checkLoginStatus();
     if (isLoggedIn) {
       setShowModal(true);
+    }else{
+      //setShowModal(false);
     }
   };
 
@@ -206,17 +211,17 @@ const CompanyContent = () => {
         tagError: "error",
       });
     } else {
+      const {id,email,login}= getUserInfo();
       const payload = {
-        accountId: "string",
+        accountId: login,
         dataDump: JSON.stringify(companySelectedFilterList),
-        emailId: "string",
         fullName: tagValues.tagname,
-        id: 0,
-        phoneNo: "string",
+        emailId: email,
         source: tagValues.description,
-        userId: "string",
+        userId: id,
       };
       dispatch(saveSearchAction(payload));
+      dispatch(saveSearchList(id));
       setShowModal(false);
     }
   };
@@ -227,6 +232,12 @@ const CompanyContent = () => {
       [e.target.name]: e.target.value,
     });
   };
+
+  const redirectToSignup = () => {
+    setShowModal(false);
+    navigate("/signup");
+  };
+
 
   return (
     <>
@@ -302,6 +313,7 @@ const CompanyContent = () => {
       </div>
 
       {showModal ? (
+        getToken()?
         <Modal
           title="Save Search"
           width={"400px"}
@@ -320,12 +332,12 @@ const CompanyContent = () => {
                   name="tagname"
                   status={tagValues?.tagError}
                   value={tagValues.tagname}
-                  placeholder="Tag Name"
+                  placeholder="Name"
                   onChange={onInputChange}
                 />
               </div>
             </div>
-            <div className="form">
+            {/* <div className="form">
               <div className="formcol1">
                 <label>Description</label>
               </div>
@@ -339,9 +351,32 @@ const CompanyContent = () => {
                   onChange={onInputChange}
                 />
               </div>
-            </div>
+            </div> */}
           </div>
         </Modal>
+        :
+        <TrialModal
+          openModal={showModal}
+            closeModal={closeModal}
+            redirectToSignup={redirectToSignup}
+            buttonText="Start Free Trial"
+            redirect={true}
+            modalBody={
+              <div id="small-dialog2">
+                <div align="center">
+                  <img src={popupImg} />
+                </div>
+                <p style={{ color: "#0000FF" }}>
+                  Get 10 free verified contacts with a BeyondLeadz Pro trial
+                </p>
+                <p>
+                  BeyondLeadz Pro customers close deals faster thanks to
+                  relevant
+                </p>
+              </div>
+            }
+            modalWidth="400px"
+          />
       ) : (
         ""
       )}

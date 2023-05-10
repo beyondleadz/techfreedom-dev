@@ -3,6 +3,7 @@ import { Table, Modal, Button, Tooltip } from "antd";
 import { PAGE_LENGTH } from "../../config";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
+import {getToken} from "../../utils/utils";
 import {
   submitLead,
   resetLead,
@@ -46,8 +47,7 @@ const KeyExecutives = () => {
       title: "Email",
       dataIndex: "emailId",
       render: (text) => {
-        const token = sessionStorage.getItem("token");
-        return token ? (
+        return getToken() ? (
           <Tooltip title={text}>
             <h4 className="  fs-23 btn  la  la-envelope-open-text text-black"></h4>
           </Tooltip>
@@ -67,8 +67,7 @@ const KeyExecutives = () => {
       title: "Direct Dial/Mobile    ",
       dataIndex: "directDial",
       render: (record) => {
-        const token = sessionStorage.getItem("token");
-        return token ? (
+        return getToken() ? (
           <Tooltip title={record?.phoneNo}>
             <Button
               style={{ height: "auto" }}
@@ -105,8 +104,7 @@ const KeyExecutives = () => {
       title: "",
       dataIndex: "leads",
       render: (record) => {
-        const token = sessionStorage.getItem("token");
-        return token ? (
+        return getToken() ? (
           <Button
             style={{ height: "auto" }}
             className="keyexebtn d-none d-sm-inline-block small btn btn-primary text-black"
@@ -179,8 +177,7 @@ const KeyExecutives = () => {
   }, [employeeList]);
 
   const openInfoModel = () => {
-    const token = sessionStorage.getItem("token");
-    if (token) {
+    if (getToken()) {
       setOpenModal({ info: null, open: false });
     } else {
       setOpenModal({ info: null, open: true });

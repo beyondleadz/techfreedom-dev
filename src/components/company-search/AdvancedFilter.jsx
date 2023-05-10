@@ -52,6 +52,10 @@ const AdvancedFilter = ({
     (state) => state.companyListingReducer.geoLocation?.states
   );
 
+  const companyFilterListSavedSearch = useSelector(
+    (state) => state.companyListingReducer.saveSearchList
+  );
+
   const [visibleFilter, setVisibleFilter] = useState({
     country: false,
     state: false,
@@ -60,6 +64,7 @@ const AdvancedFilter = ({
     companyType: false,
     employeeCount: false,
     revenue: false,
+    savedSearch: false,
   });
 
   const [countriesList, setCountriesList] = useState([]);
@@ -92,6 +97,11 @@ const AdvancedFilter = ({
   const [selectedrevenueRangeList, setSelectedRevenueRangeList] = useState([]);
   const [revenueRangeList, setRevenueRangeList] = useState([]);
   const [checkAllRevenueRange, setCheckAllRevenueRange] = useState(false);
+
+  const [selectedSavedSearchList, setSelectedSavedSearchList] = useState([]);
+  const [savedSearchList, setSavedSearchList] = useState([]);
+  const [checkAllSavedSearch, setCheckAllSavedSearch] = useState(false);
+
   const [viewMore, setViewMore] = useState(true);
   const CheckboxGroup = Checkbox.Group;
 
@@ -110,6 +120,7 @@ const AdvancedFilter = ({
     setCompanyTypeList(companyFilterListCompanyType);
     setEmployeeCountList(companyFilterListEmployeeCountList);
     setRevenueRangeList(companyFilterListRevenueRangeList);
+    setSavedSearchList(companyFilterListSavedSearch);
   }, [
     companyFilterListCountries,
     companyFilterListIndustry,
@@ -118,6 +129,7 @@ const AdvancedFilter = ({
     companyFilterListCompanyType,
     companyFilterListEmployeeCountList,
     companyFilterListRevenueRangeList,
+    companyFilterListSavedSearch,
   ]);
 
   useEffect(() => {
@@ -158,6 +170,15 @@ const AdvancedFilter = ({
       companySelectedFilterList.selectedEmployeecount.length ===
         companyFilterListEmployeeCountList.length
     );
+
+    //console.log(companySelectedFilterList.selectedSavedSearch,'companySelectedFilterList.selectedSavedSearch',companySelectedFilterList)
+
+    setSelectedSavedSearchList(companySelectedFilterList.selectedSavedSearch);
+    setCheckAllSavedSearch(
+      companySelectedFilterList.selectedSavedSearch?.length ===
+      companyFilterListSavedSearch?.length
+    );
+
   }, [companySelectedFilterList]);
   const setShowHideData = () => {
     setViewMore(!viewMore);
@@ -174,6 +195,7 @@ const AdvancedFilter = ({
         revenue: false,
         utility: false,
         pages: false,
+        savedSearch:false,
       },
       [menu]: !visibleFilter[menu],
     });
@@ -868,7 +890,7 @@ const AdvancedFilter = ({
                           <Checkbox
                             key={item.id}
                             value={item}
-                            onChange={($event) => updateCompanyType($event)}
+                            onChange={($event) => updateEmployeeCount($event)}
                           >
                             {item.name}
                           </Checkbox>
@@ -995,7 +1017,7 @@ const AdvancedFilter = ({
                           <Checkbox
                             key={item.id}
                             value={item}
-                            onChange={($event) => updateCompanyType($event)}
+                            onChange={($event) => updateRevenueRange($event)}
                           >
                             {item.name}
                           </Checkbox>
@@ -1080,6 +1102,142 @@ const AdvancedFilter = ({
   };
   /*End revenue range */
 
+/*Start Search List */
+
+const showSaveSearchList = () => {
+  return (
+    <>
+      <div
+        className={`filterheader la ${visibleFilter.savedSearch && "show"}`}
+        onClick={() => openVisibleFilter("savedSearch")}
+      >
+        <h2>
+          <i className="left-company-menu-icons las la-money-bill"></i>
+          <span>Saved Search</span>
+        </h2>
+        {/* {showCheckAll && (
+          <Checkbox
+            onChange={onSavedSearchCheckAllChange}
+            checked={checkAllSavedSearch}
+          >
+            Check all
+          </Checkbox>
+        )} */}
+      </div>
+      <div className="filteroptions">
+        <div className="searchbox">
+          <Input
+            placeholder="Search"
+            prefix={<SearchOutlined />}
+            onChange={filterSavedSearch}
+          />
+        </div>
+        <CheckboxGroup
+          onChange={onSavedSearchChange}
+          value={selectedSavedSearchList}
+        >
+          <>
+            <ul>
+              {savedSearchList?.map((item, index) => {
+                if (showNumberofRecords) {
+                  return (
+                    index < showNumberofRecords && (
+                      <li>
+                        <Checkbox
+                          key={item.id}
+                          value={item}
+                          onChange={($event) => updateSavedSearch($event)}
+                        >
+                          {item.fullName}
+                        </Checkbox>
+                      </li>
+                    )
+                  );
+                } else {
+                  return (
+                    <li>
+                      <Checkbox
+                        key={item.id}
+                        value={item}
+                        onChange={($event) => updateSavedSearch($event)}
+                      >
+                        {item.fullName}
+                      </Checkbox>
+                    </li>
+                  );
+                }
+              })}
+            </ul>
+          </>
+        </CheckboxGroup>
+
+        {!showCheckAll &&
+          savedSearchList.length > LEFT_FILETERS_SIZE.length && (
+            <div className="viewmore">
+              <span
+                onClick={() => setOpenAdvancedModel({ open: true, key: 8 })}
+              >
+                View More
+              </span>
+            </div>
+          )}
+      </div>
+    </>
+  );
+};
+
+const filterSavedSearch = (ele) => {
+  const filterdData = companyFilterList?.saveSearchList.filter((item) =>
+    item?.fullName.toLowerCase().includes(ele.target.value.toLowerCase())
+  );
+  setSavedSearchList(filterdData);
+  setSelectedSavedSearchList([]);
+  setCheckAllSavedSearch(false);
+};
+
+const updateSavedSearch = (el) => {
+  let newList = [];
+  if (el.target.checked) {
+    //newList = [...selectedSavedSearchList, el.target.value];    
+    newList = [selectedSavedSearchList, el.target.value];    
+  } else {
+    newList = selectedSavedSearchList.filter(
+      (listItem) => listItem.id !== el.target.value.id
+    );
+  }
+  setSelectedSavedSearchList(newList);
+  let searchData = companyFilterListSavedSearch.filter(
+    (listItem) => listItem.id === el.target.value.id
+  );
+ // console.log(JSON.parse(searchData[0].dataDump),'selectedSavedSearchList')
+  const searchPayload =JSON.parse(searchData[0].dataDump);
+  const payload = {
+    ...companySelectedFilterList,
+    selectedSavedSearch: newList,
+  };
+  dispatch(saveAdvancedSelectedFilters(payload));
+  dispatch(getCompanyList(searchPayload, companyPaginationValue));
+};
+
+const onSavedSearchChange = (list) => {
+  setCheckAllSavedSearch(list.length === savedSearchList.length);
+};
+
+const onSavedSearchCheckAllChange = (e) => {
+  setSelectedSavedSearchList(e.target.checked ? savedSearchList : []);
+  setCheckAllSavedSearch(e.target.checked);
+
+  const payload = {
+    ...companySelectedFilterList,
+    selectedSavedSearch: e.target.checked ? savedSearchList : [],
+  };
+  dispatch(saveAdvancedSelectedFilters(payload));
+  dispatch(getCompanyList(payload, companyPaginationValue));
+};
+/*End Search List */
+
+
+
   //   useEffect(() => {
   //     console.log(companySelectedFilterList,'companySelectedFilterList')
   //     dispatch(
@@ -1136,14 +1294,20 @@ const AdvancedFilter = ({
       );
     } else if (openAdvancedModel.key === 6) {
       return (
-        <div className="filterblk" id="companyType">
+        <div className="filterblk" id="emplyeeCount">
           {showEmployeeCountList()}
         </div>
       );
     } else if (openAdvancedModel.key === 7) {
       return (
-        <div className="filterblk" id="companyType">
+        <div className="filterblk" id="revenueRange">
           {showRevenueRangeList()}
+        </div>
+      );
+    }else if (openAdvancedModel.key === 8) {
+      return (
+        <div className="filterblk" id="savedsearch">
+          {showSaveSearchList()}
         </div>
       );
     } else {
@@ -1164,12 +1328,15 @@ const AdvancedFilter = ({
           <div className="filterblk" id="companyType">
             {showCompanyTypeList()}
           </div>
-          <div className="filterblk" id="companyType">
+          <div className="filterblk" id="emplyeeCount">
             {showEmployeeCountList()}
           </div>
-          <div className="filterblk" id="companyType">
+          <div className="filterblk" id="revenueRange">
             {showRevenueRangeList()}
           </div>
+          <div className="filterblk" id="savedsearch">
+          {showSaveSearchList()}
+        </div>
         </>
       );
     }

@@ -21,18 +21,6 @@ const Login = () => {
   const [form, setForm] = useState({ username: "", password: "" });
   const [errorObj, setError] = useState();
   const navigate = useNavigate();
-  
-
-//   useEffect(() => {
-// 	const token = sessionStorage.getItem('token');
-// 	console.log(token,'slkjdflk')
-// 	if(token){
-// 		navigate("/");
-// 	}else{
-// 		console.log('not login')
-// 	}
-
-//   }, []);
 
   const OnInputChange = (ele) => {
     setForm({
