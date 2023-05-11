@@ -586,7 +586,7 @@ const SummaryHeader = () => {
       {openTagModal ? (
         !taggedCompany?
         <Modal
-          title="Save Search"
+          title="Tag Company"
           width={"400px"}
           closable={true}
           open={openTagModal}
@@ -596,7 +596,7 @@ const SummaryHeader = () => {
           <div class="pop-up errorformcontainer ">
             <div className="form">
               <div className="formcol1">
-                <label>Search Name</label>
+                <label>Tag Name</label>
               </div>
               <div className="formcol2">
                 <Input
