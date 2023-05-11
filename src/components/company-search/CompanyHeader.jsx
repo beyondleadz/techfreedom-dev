@@ -31,7 +31,7 @@ const CompanySearch = () => {
             aria-controls="profile"
             aria-selected="false"
           >
-            <i className="fa tab-img la la-user-tie"></i>Executive
+            <i className="fa tab-img text-info la la-user-tie"></i>Executive
           </button>
         </li>
         <li className="nav-item" role="presentation">
