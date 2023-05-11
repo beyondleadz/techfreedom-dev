@@ -1128,7 +1128,7 @@ const AdvancedFilter = ({
           onClick={() => openVisibleFilter("savedSearch")}
         >
           <h2>
-            <i className="left-company-menu-icons las la-money-bill"></i>
+            <i className="left-company-menu-icons las la-save"></i>
             <span>Saved Search</span>
           </h2>
           {/* {showCheckAll && (
@@ -1260,7 +1260,7 @@ const AdvancedFilter = ({
           onClick={() => openVisibleFilter("companyTag")}
         >
           <h2>
-            <i className="left-company-menu-icons las la-money-bill"></i>
+            <i className="left-company-menu-icons las la-tag"></i>
             <span>Tags</span>
           </h2>
           {showCheckAll && (

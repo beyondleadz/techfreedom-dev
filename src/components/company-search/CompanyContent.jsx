@@ -260,6 +260,7 @@ const CompanyContent = () => {
                     </h6>
 
                     <div className="buttons-container textsearch">
+                      
                       <Search
                         placeholder="Product & Services"
                         allowClear
