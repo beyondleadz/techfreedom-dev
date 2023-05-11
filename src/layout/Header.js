@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useRoutes, NavLink, useNavigate } from "react-router-dom";
 // import { useRoutes, NavLink, redirect, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { getToken } from "../utils/utils";
 import Logo from "../assets/images/logo.jpg";
 import MoreArrowImg from "../assets/images/arrow.png";
 import "../assets/css/dropdown1.css";
@@ -27,9 +28,9 @@ const Header = () => {
   const setValue = (val) => {
     setSelectedValue(val);
     setDropdownToggle(!dropDownToggle);
-    if(val==="Company"){
+    if (val === "Company") {
       navigate("/search-company");
-    }else{
+    } else {
       navigate("/search-executive");
     }
   };
@@ -252,40 +253,53 @@ const Header = () => {
                   Executive Search
                 </NavLink>
               </li>
-              <li className="nav-item">
-                <NavLink to="/features" className="hvr-underline-from-center">
-                  Features
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink to="/pricing" className="hvr-underline-from-center">
-                  Pricing
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                {sessionStorage?.getItem("token") ? (
+
+              {getToken() ? (
+                <li className="nav-item">
                   <div
                     className="nav-item btn btn-login d-flex align-items-center"
                     onClick={doLogout}
                   >
-                    <i className="fas fa-desktop orng-clr-bg"></i>Logout
+                    <i className="fas fa-desktop orng-clr-bg ml-1"></i>Logout
                   </div>
-                ) : (
-                  <div className="nav-item btn btn-login d-flex align-items-center">
-                    <NavLink to={"/signin"}>
-                      <i className="fas fa-desktop orng-clr-bg ml-1"></i>Login
+                </li>
+              ) : (
+                <>
+                  <li className="nav-item">
+                    <NavLink
+                      to="/features"
+                      className="hvr-underline-from-center"
+                    >
+                      Features
                     </NavLink>
-                  </div>
-                )}
-              </li>
-
-              <li className="nav-item">
+                  </li>
+                  <li className="nav-item">
+                    <NavLink
+                      to="/pricing"
+                      className="hvr-underline-from-center"
+                    >
+                      Pricing
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <div className="nav-item btn btn-login d-flex align-items-center">
+                      <NavLink to={"/signin"}>
+                        <i className="fas fa-desktop orng-clr-bg ml-1"></i>Login
+                      </NavLink>
+                    </div>
+                  </li>
+                  <li className="nav-item">
                 <div className="nav-item btn btn-login d-flex align-items-center">
                   <NavLink to={"/signup"}>
-                    <i className="fas fa-bolt orng-clr-bg ml-1"></i>start free trial
+                    <i className="fas fa-bolt orng-clr-bg ml-1"></i>start free
+                    trial
                   </NavLink>
                 </div>
               </li>
+                </>
+              )}
+
+              
             </ul>
           </div>
         </nav>

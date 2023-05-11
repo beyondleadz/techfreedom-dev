@@ -220,8 +220,7 @@ const CompanyContent = () => {
         source: tagValues.description,
         userId: id,
       };
-      dispatch(saveSearchAction(payload));
-      dispatch(saveSearchList(id));
+      dispatch(saveSearchAction(payload));      
       setShowModal(false);
     }
   };
