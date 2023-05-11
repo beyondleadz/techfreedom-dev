@@ -17,7 +17,11 @@ import {
   DOWNLOAD_COMPANY,
   DOWNLOAD_COMPANY_ERROR,
   FETCH_COMPANY_TAG,
-  FETCH_COMPANY_TAG_ERROR
+  FETCH_COMPANY_TAG_ERROR,
+  POST_RELAVANT_COMPANY_TAG,
+  POST_RELAVANT_COMPANY_TAG_ERROR,
+  GET_RELAVANT_COMPANY_TAG,
+  GET_RELAVANT_COMPANY_TAG_ERROR,
 } from "../actionType/companyDetailsType";
 import {
   getAuthMethod,
@@ -32,6 +36,8 @@ import {
   errorReport,
   sigleCompanyTag,
   fetchCompanyTagApiUrl,
+  postRelavantCompanyApiUrl,
+  getRelavantCompanyApiUrl,
 } from "../constant/Constant";
 import { createPayload } from "../utils/utils";
 import { ErrKey, errEnum } from "../config";
@@ -257,3 +263,48 @@ export const resetCompanyTag = (payload) => {
   return { type: SINGLE_COMPANY_TAG, payload: [] };
 };
 
+export const postRelavantCompany = (payload) => (dispatch) => {
+  //console.log(payload, "payloadpayload");
+  return postAuthMethod(postRelavantCompanyApiUrl, payload)
+    .then((res) => {
+      dispatch({
+        type: POST_RELAVANT_COMPANY_TAG,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: POST_RELAVANT_COMPANY_TAG_ERROR,
+        payload:
+          { [errEnum.POST_RELAVANT_COMPANY_TAG_ERROR]: err.response.data[ErrKey] } ||
+          "Error Occured",
+      });
+    });
+};
+
+
+export const getRelavantCompany = (id,cid) => (dispatch) => {
+  let filter = "userId.equals="+id+"&companyId.equals="+cid;
+  const url = `${getRelavantCompanyApiUrl}?${filter}`;
+  //console.log(url, id, "lksjdfklsjd");
+  return getAuthMethod(url)
+    .then((res) => {
+      dispatch({
+        type: GET_RELAVANT_COMPANY_TAG,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err, "sjkflskdjfkl");
+      dispatch({
+        type: GET_RELAVANT_COMPANY_TAG_ERROR,
+        payload:
+          { [errEnum.GET_RELAVANT_COMPANY_TAG_ERROR]: err.response.data[ErrKey] } ||
+          "Error Occured",
+      });
+    });
+};
+
+export const resetPostRelavantCompany = (payload) => {
+  return { type: POST_RELAVANT_COMPANY_TAG, payload: [] };
+};

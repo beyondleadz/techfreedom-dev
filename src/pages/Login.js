@@ -53,8 +53,8 @@ const Login = () => {
       postMethod(signInUrl,form).then((res)=>{
       sessionStorage.setItem("token",res.data.id_token);
       //dispatch Account api & store data in session
-      dispatch(getAccountInfo());  
-      navigate("/");
+      dispatch(getAccountInfo(res.data.id_token));  
+      navigate("/search-company");
       }).catch((error)=>{
       	setError({error:"Invalid Credentials"});
           setForm({username:"",password:""});

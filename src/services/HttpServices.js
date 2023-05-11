@@ -1,7 +1,6 @@
 import axios from "axios";
 import { getBaseUrl } from "../config";
 
-
 const restService = axios.create({
     baseURL: getBaseUrl(),
     headers: {
@@ -10,29 +9,31 @@ const restService = axios.create({
     }
 });
 
-const restAuthService = axios.create({
-   baseURL: getBaseUrl(),
-   headers: {
-       'Authorization':`Bearer ${window.sessionStorage.getItem('token')}`,
-       'Content-Type': 'application/json',
-       'Access-Control-Allow-Origin': '*'
-   }
-});
+const restAuthService = (token = sessionStorage.getItem('token')) => {
+   return axios.create({
+      baseURL: getBaseUrl(),
+      headers: {
+          'Authorization':`Bearer ${token}`,
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+      }
+   });
+} 
 
-export const getAuthMethod=(apiUrl) =>{
-   return restAuthService.get(apiUrl);
+export const getAuthMethod=(apiUrl,token) =>{
+   return restAuthService(token).get(apiUrl);
 }
 
  export const postAuthMethod=(apiUrl, data)=> {
-    return restAuthService.post(apiUrl, data);
+   return restAuthService().post(apiUrl, data);
  }
 
  export const  putAuthMethod=(apiUrl, id, data,params)=> {
-    return restAuthService.put(`${apiUrl}/${id}`, data,params);
+   return restAuthService().put(`${apiUrl}/${id}`, data,params);
  }
 
  export const  deleteAuthMethod=(apiUrl)=> {
-    return restAuthService.delete(`${apiUrl}`);
+   return restAuthService().delete(`${apiUrl}`);
  }
 
  export const getMethod=(apiUrl) =>{

@@ -58,12 +58,12 @@ const CompanyLeft = () => {
 
   useMemo(() => {   
     //console.log(Object.keys(userAccountInfo)?.length,'Object.keys(userAccountInfo)?.length') 
-    if(getToken()){
+    if(Object.keys(getUserInfo()).length){
       const {id}= getUserInfo();
       dispatch(saveSearchList(id));
       dispatch(getCompanyTagList(id));
     }
-  }, []);
+  }, [userAccountInfo]);
 
   useEffect(() => {
     setIndustryList(companyFilterList?.industryList);

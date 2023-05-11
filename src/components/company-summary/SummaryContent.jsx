@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { Tabs } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -7,14 +7,23 @@ import defaultLogo from "../../assets/images/default_company_logo.jpg";
 import AboutCompany from "./AboutCompany";
 import KeyExecutives from "./KeyExecutives";
 import OrgChart from "./OrgChart";
+import { getToken,getUserInfo } from "../../utils/utils";
+import TrialModal from "../../common/TrialModal";
+import popupImg from "../../assets/images/free-user-login-prompt.jpg.jpeg";
+import { useNavigate } from "react-router";
 import {
   getEmployeeList,
   resetEmployeeList,
+  postRelavantCompany,
+  getRelavantCompany,
+  resetPostRelavantCompany,
 } from "../../actionCreator/companyDetailsActionCreator";
 
 const SummaryContent = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate()
   const { id } = useParams();
+  const [showModal, setShowModal] = useState(false);
   const [dropDownToggle, setDropdownToggle] = useState(false);
   const [tabActiveKey, setTabActiveKey] = useState("1");
   const [similarList, setSimilarList] = useState();
@@ -29,6 +38,16 @@ const SummaryContent = () => {
   const similarCompanyList = useSelector(
     (state) => state.companyDetailsReducer.similarCompanyList
   );
+
+  const userAccountInfo=useSelector((state)=>state.CommonReducer.accountInfo);
+
+  useMemo(() => {  
+    dispatch(resetPostRelavantCompany); 
+    if(Object.keys(getUserInfo()).length){
+      const {id}= getUserInfo();
+      dispatch(getRelavantCompany(id,companyDetails?.id));
+    }
+  }, [userAccountInfo]);
 
   useEffect(() => {
     setSimilarCount(
@@ -67,7 +86,6 @@ const SummaryContent = () => {
   ];
 
   useEffect(() => {
-    console.log(similarCompanyList,'similarCompanyListsimilarCompanyList')
     if(!similarCompanyList.length) return;
     const list = similarCompanyList?.filter(
       (item) => !item?.id === companyDetails?.id
@@ -144,6 +162,41 @@ const SummaryContent = () => {
     }
   };
 
+  const checkRelavantCompany=(flag)=>{
+    const isLoggedIn = checkLoginStatus();
+    if (isLoggedIn) {
+      const {login,id}= getUserInfo();
+      const payload = {
+        accountId: login,
+        companyId: companyDetails?.id,
+        iscompany: true,
+        prescribedby:flag?"True":"False",
+        userId:id
+      };
+      dispatch(postRelavantCompany(payload));
+    }
+  }
+  const checkLoginStatus = () => {
+    let isLoggedIn = false;
+    if (getToken()) {
+      setShowModal(false);
+      isLoggedIn = true;
+    } else {
+      setShowModal(true);
+      isLoggedIn = false;
+    }
+    return isLoggedIn;
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
+  const redirectToSignup = () => {
+    setShowModal(false);
+    navigate("/signup");
+  };
+
   return (
     <>
       <div id="content-wrapper" className="d-flex flex-column">
@@ -218,12 +271,12 @@ const SummaryContent = () => {
                 <div>
                   Is this company data relevant to you?{" "}
                   <a
-                    href="#"
                     id=""
                     role="button"
                     data-toggle=""
                     aria-haspopup="true"
                     aria-expanded="false"
+                    onClick={()=>checkRelavantCompany(1)}
                   >
                     <i
                       class="right-icons small fa fa-thumbs-up"
@@ -231,12 +284,12 @@ const SummaryContent = () => {
                     ></i>
                   </a>
                   <a
-                    href="#"
                     id=""
                     role="button"
                     data-toggle=""
                     aria-haspopup="true"
                     aria-expanded="false"
+                    onClick={()=>checkRelavantCompany(0)}
                   >
                     <i
                       class="right-icons small fa fa-thumbs-down"
@@ -257,6 +310,32 @@ const SummaryContent = () => {
           </div>
         </div>
       </div>
+      {showModal ? (
+        <TrialModal
+          openModal={showModal}
+          closeModal={closeModal}
+          redirectToSignup={redirectToSignup}
+          redirect={true}
+          buttonText="Start Free Trial"
+          modalBody={
+            <div id="small-dialog2">
+              <div align="center">
+                <img src={popupImg} />
+              </div>
+              <p style={{ color: "#0000FF" }}>
+                Get 10 free verified contacts with a BeyondLeadz Pro trial
+              </p>
+              <p>
+                BeyondLeadz Pro customers close deals faster thanks to relevant
+              </p>
+            </div>
+          }
+          modalWidth="400px"
+        />
+      ) : (
+        ""
+      )}
+
     </>
   );
 };

@@ -14,8 +14,8 @@ export const dispatchStatus = (payload) => {
     };
   };
 
-  export const getAccountInfo = (payload) =>(dispatch)=> {  
-  return getAuthMethod(accountInfoApiUrl)
+  export const getAccountInfo = (token) =>(dispatch)=> {  
+  return getAuthMethod(accountInfoApiUrl,token)
     .then((res) => {
       dispatch({
         type: ACCOUNTINFO,

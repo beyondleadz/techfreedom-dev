@@ -17,4 +17,5 @@ export const accountInfoApiUrl = '/api/account';
 export const fetchCompanyTagApiUrl = '/api/company-tags';
 export const saveSearchListApiUrl = '/api/externaldatadumps';
 export const getCompanyTagApiUrl = '/api/company-tags';
-
+export const postRelavantCompanyApiUrl = '/api/user-prefered-records';
+export const getRelavantCompanyApiUrl = '/api/user-prefered-records';
