@@ -2386,7 +2386,7 @@ input[type="button"].btn-block {
 .card-body {
   flex: 1 1 auto;
   min-height: 1px;
-  padding: 1.25rem;
+  padding: 1.25rem; 
 }
 .pagetitle{
   font-size: 1.75rem;
@@ -6178,10 +6178,18 @@ padding:5px
 .headercontainer{
   display:flex;
   padding: 0 35px;
-  height: 160px;
+  /* height: 160px; */
   margin-top: 25px;
   align-items: self-start;
+}
+.executiveheader{
+  display:flex;
+   align-items: self-start;}
 
+.headername{ 
+  padding: 0 35px;
+   margin-top: 25px;
+  align-items: self-start;
 }
 
 .headercontainer.setauto{height: auto;}
@@ -6190,10 +6198,22 @@ padding:5px
   min-width: 160px;
   min-height: 150px;
   width: 160px;
-  background: #eaeaea;;
+  background: #eaeaea;
     padding: 5px;
     display: flex;
     align-items: center;
+}
+.executivelogobox{
+  min-width: 80px;
+    min-height: 80px;
+    width: 80px;
+    background-color: #18181c;
+    border-radius: 5px;
+    padding-top: 25px;
+    color: #ccc;
+    align-items: center;
+    font-size: x-large;
+    text-align: center;
 }
 
 .logobox img{
@@ -6231,6 +6251,23 @@ padding:5px
   position: relative;
   padding-bottom: 15px;
   margin-left: 20px;
+}
+.executivedescbox{
+  position: relative;
+  padding-bottom: 15px;
+  margin-left: 20px; 
+}
+.executivedescbox .col{
+  width:300px; font-size: 13px;  color:#363636;
+}
+.executivedescbox .col1{
+  width:550px; font-size: 13px;  color:#363636;
+}
+.executivedescbox span{
+  font-size: 13px; 
+}
+.executivedescbox h5{
+  font-size: 14px; color: #363636; font-weight:550;
 }
 .navigation{
   /* position: relative;
@@ -6666,7 +6703,10 @@ cursor: pointer;
       border-bottom: 1px solid #eaeaea;}
       .similarblk div:last-of-type{border-bottom: 0;}
     .similarblk .similarinnerblk .similar-desc{margin-left: 10px; position: relative; top: -6px;}
-    
+    .executive-company{max-block-size: fit-content;
+      max-width: 20px;
+      height: 20px;
+      width: 100%;}
     .similarblk .similarinnerblk .s-company{max-block-size: fit-content;
   max-width: 30px;
   height: auto;
@@ -6930,10 +6970,32 @@ color: orange;
     background: #fdc401;   
     border: 1px solid #94a0b4;
   }
-
+  .c-info .c-info-detail {
+    display: flex; line-height: 35px;
+    /* padding: 10px 0;     */
+}
+.c-info .c-info-detail .c-info-desc {
+  margin-left: 10px;
+  position: relative;
+  top: -6px;
+}
 .gap-l{margin-left:30px;}
 
-  
+.executive .buttons-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  flex: 1 1; margin: 0 0 15px 0;
+  white-space: nowrap;
+   line-height: 12px;}
+
+   .executive .buttons-c {
+   position:absolute; right: 0; 
+   margin-right: 10px; margin-top:10px;} 
+
+ .executive h6{
+  margin-top: 0.5rem; color:#363636; 
+} 
   .orgchart .org li a:hover+ul li::after, 
   .orgchart .org li a:hover+ul li::before, 
   .orgchart .org li a:hover+ul::before, 

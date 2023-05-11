@@ -65,7 +65,7 @@ input[type="submit"],input[type="reset"],a,.w3ls_team_grid1_pos ul li{
   -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
           box-sizing: border-box;
-          margin-left: 4px;
+          /* margin-left: 4px; */
 }
 
 
@@ -484,12 +484,12 @@ h4,
 
 h5,
 .h5 {
-  font-size: 1.25rem;
+  font-size: 1.25rem; 
 }
 
 h6,
 .h6 {
-  font-size: 1rem;
+  font-size: 14px;font-weight: 600;
 }
 
 .lead {
@@ -8656,7 +8656,7 @@ button.bg-dark:focus {
 
 .ml-4,
 .mx-4 {
-  margin-left: 1.5rem ;
+  margin-left: 2.2rem ;
 }
 
 .m-5 {

@@ -12,7 +12,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const [showNav, setShowNav] = useState();
   const [dropDownToggle, setDropdownToggle] = useState(false);
-  const [selectedValue, setSelectedValue] = useState("Advance");
+  const [selectedValue, setSelectedValue] = useState("Advanced");
   const navigate = useNavigate();
   const token = useSelector((state) => state?.SignUpReducer?.signInData);
 
@@ -116,7 +116,7 @@ const Header = () => {
                 <div className="dropdown-menu1">
                   <button className="dropbtn">
                     More
-                    <i className="fa fa-caret-down"></i>
+                    <i className="fa fa-caret-down ml-1"></i>
                   </button>
                   <div className="dropdown-menu-content">
                     <div className="row">
@@ -273,7 +273,7 @@ const Header = () => {
                 ) : (
                   <div className="nav-item btn btn-login d-flex align-items-center">
                     <NavLink to={"/signin"}>
-                      <i className="fas fa-desktop orng-clr-bg"></i>Login
+                      <i className="fas fa-desktop orng-clr-bg ml-1"></i>Login
                     </NavLink>
                   </div>
                 )}
@@ -282,7 +282,7 @@ const Header = () => {
               <li className="nav-item">
                 <div className="nav-item btn btn-login d-flex align-items-center">
                   <NavLink to={"/signup"}>
-                    <i className="fas fa-bolt orng-clr-bg"></i>start free trial
+                    <i className="fas fa-bolt orng-clr-bg ml-1"></i>start free trial
                   </NavLink>
                 </div>
               </li>
