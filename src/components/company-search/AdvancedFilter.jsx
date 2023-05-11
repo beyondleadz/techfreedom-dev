@@ -1260,7 +1260,7 @@ const AdvancedFilter = ({
           onClick={() => openVisibleFilter("companyTag")}
         >
           <h2>
-            <i className="left-company-menu-icons las la-tag"></i>
+            <i className="left-company-menu-icons las la-tags"></i>
             <span>Tags</span>
           </h2>
           {showCheckAll && (

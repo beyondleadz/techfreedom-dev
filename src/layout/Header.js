@@ -253,8 +253,10 @@ const Header = () => {
                   Executive Search
                 </NavLink>
               </li>
-
+              <li className="nav-item"><NavLink><i className="las la-bell orng-clr-bg ml-1"></i>Hello User</NavLink></li>
+              <li className="nav-item"><NavLink><i className="la la-user-tie text-white ml-1"></i>Account</NavLink></li>
               {getToken() ? (
+                
                 <li className="nav-item">
                   <div
                     className="nav-item btn btn-login d-flex align-items-center"
