@@ -6979,6 +6979,7 @@ color: orange;
   top: -6px;
 }
 .gap-l{margin-left:30px;}
+
 .executive .buttons-container {
   display: flex;
   align-items: flex-start;
@@ -6986,9 +6987,11 @@ color: orange;
   flex: 1 1; margin: 0 0 15px 0;
   white-space: nowrap;
    line-height: 12px;}
+
    .executive .buttons-c {
    position:absolute; right: 0; 
-   margin-right: 10px;} 
+   margin-right: 10px; margin-top:10px;} 
+
  .executive h6{
   margin-top: 0.5rem; color:#363636; 
 } 
