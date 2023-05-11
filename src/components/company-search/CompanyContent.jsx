@@ -259,7 +259,28 @@ const CompanyContent = () => {
                     </h6>
 
                     <div className="buttons-container textsearch">
-                      
+                    <ul className="d-flex  m-mt">
+                 <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
+                    aria-expanded="false"><i class="right-icons la la-file-pdf" aria-hidden="true"></i>
+                  </a></li>
+                         
+                  <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
+                    aria-expanded="false"><i class="right-icons la la-file-excel" aria-hidden="true"></i>
+                  </a></li>
+                
+              <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
+                    aria-expanded="false">
+                    <i className="right-icons la la-print" aria-hidden="true"></i>
+                  </a>
+                </li>
+                <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
+                    aria-expanded="false">
+                    <i className="right-icons las la-tag" aria-hidden="true"></i>
+                  </a>
+                </li>
+
+
+              </ul>
                       <Search
                         placeholder="Product & Services"
                         allowClear
