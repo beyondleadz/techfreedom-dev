@@ -189,6 +189,7 @@ export const createCompanyTag = (payload) => (dispatch) => {
         type: SINGLE_COMPANY_TAG,
         payload: res.data,
       });
+      dispatch(getCompanyTag(payload?.company?.id,payload?.userId));
     })
     .catch((err) => {
       dispatch({
@@ -237,10 +238,10 @@ export const downloadCompany = (payload, urlSubstring) => (dispatch) => {
     });
 };
 
-export const getCompanyTag = (id) => (dispatch) => {
-  let filter = "companyId.equals="+id;
+export const getCompanyTag = (cid,userId) => (dispatch) => {
+  let filter = "userId.equals="+userId+"&companyId.equals="+cid;
   const url = `${fetchCompanyTagApiUrl}?${filter}`;
-  console.log(url, id, "lksjdfklsjd");
+  //console.log(url, id, "lksjdfklsjd");
   return getAuthMethod(url)
     .then((res) => {
       dispatch({

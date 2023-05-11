@@ -3,7 +3,7 @@ import { Table, Modal, Button, Tooltip } from "antd";
 import { PAGE_LENGTH } from "../../config";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-import {getToken} from "../../utils/utils";
+import { getToken } from "../../utils/utils";
 import {
   submitLead,
   resetLead,
@@ -26,6 +26,8 @@ const KeyExecutives = () => {
     open: false,
   });
   const [addToLeads, setAddToLeads] = useState(0);
+  const [showEmail, setShowEmail] = useState({});
+  const [showPhone, setShowPhone]=useState({});
   const navigate = useNavigate();
 
   const columns = [
@@ -46,12 +48,29 @@ const KeyExecutives = () => {
     {
       title: "Email",
       dataIndex: "emailId",
-      render: (text) => {
+      render: (text,row) => {
         return getToken() ? (
-          <Tooltip title={text}>
-            <h4 className="  fs-23 btn  la  la-envelope-open-text text-black"></h4>
-          </Tooltip>
+          //  <Tooltip title={text}>
+          <>
+            <h4
+              className="  fs-23 btn  la  la-envelope-open-text text-black"
+              onClick={() => setShowEmail({...showEmail,[row.id]:true})}
+            ></h4>
+            {showEmail[row.id] && (
+              <>
+                <p className="emailvalue">{text}</p>
+                <span
+                  title="copy email"
+                  className="  fs-23 btn  la  la-copy text-black"
+                  onClick={() => navigator.clipboard.writeText(text)}
+                >
+                </span>
+              </>
+            )}
+          </>
         ) : (
+          //  </Tooltip>
+          //
           <h4
             className="  fs-23 btn  la  la-envelope text-black"
             onClick={() => openInfoModel()}
@@ -66,17 +85,29 @@ const KeyExecutives = () => {
     {
       title: "Direct Dial/Mobile    ",
       dataIndex: "directDial",
-      render: (record) => {
+      render: (record,row) => {
         return getToken() ? (
-          <Tooltip title={record?.phoneNo}>
+          <>
             <Button
               style={{ height: "auto" }}
               className="keyexebtn d-none d-sm-inline-block small btn btn-primary text-black"
+              onClick={() => setShowPhone({...showPhone,[row.id]:true})}
             >
               <i class="las la-mobile fs-12  pr-1"></i>
               VIEW
             </Button>
-          </Tooltip>
+            {showPhone[row.id] && record?.phoneNo && (
+              <>
+                <p className="phoneValue">{record?.phoneNo}</p>
+                <span
+                  title="copy phone"
+                  className="  fs-23 btn  la  la-copy text-black"
+                  onClick={() => navigator.clipboard.writeText(record?.phoneNo)}
+                >
+                </span>
+              </>
+            )}
+            </>
         ) : (
           <Button
             style={{ height: "auto" }}
@@ -241,7 +272,7 @@ const KeyExecutives = () => {
           openModal={openModal}
           closeModal={closeInfoBeforeLogin}
           redirectToSignup={redirectToSignup}
-          redirect = {true}
+          redirect={true}
           buttonText="Start Free Trial"
           modalBody={
             <div id="small-dialog2">

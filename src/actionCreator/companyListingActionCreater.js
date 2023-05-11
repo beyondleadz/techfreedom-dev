@@ -232,6 +232,7 @@ export const saveSearchAction = (payload) => (dispatch) => {
         type: SAVE_SEARCH,
         payload: res.data,
       });
+      dispatch(saveSearchList(payload?.userId));
     })
     .catch((err) => {
       dispatch({

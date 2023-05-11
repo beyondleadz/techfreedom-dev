@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useMemo} from "react";
 import { Modal, Checkbox, Input, Divider,Button } from "antd";
 import _ from "lodash";
 import { useDispatch } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { deleteAuthMethod } from "../../services/HttpServices";
+
 import {
   submitErrorForm,
   createCompanyTag,
@@ -51,6 +53,9 @@ const SummaryHeader = () => {
   const errObj = useSelector((state) => state.companyDetailsReducer.errObj);
   const fetchCompanyTag = useSelector((state) => state.companyDetailsReducer.fetchCompanyTag);
   const sigleCompanyTag = useSelector((state) => state.companyDetailsReducer.sigleCompanyTag);
+
+  const userAccountInfo=useSelector((state)=>state.CommonReducer.accountInfo);
+
   const [taggedCompany,setTaggedCompany]=useState(false);
   useEffect(() => {
     if (Object.keys(errObj).length) {
@@ -61,10 +66,13 @@ const SummaryHeader = () => {
     }
   }, [Object.keys(errObj).length]);
 
-  useEffect(()=>{
-    dispatch(resetCompanyTag());
-    dispatch(getCompanyTag(companyDetails?.id));    
-  },[companyDetails])
+  useMemo(() => {   
+    if(Object.keys(getUserInfo()).length){
+      const {id}= getUserInfo();
+      dispatch(resetCompanyTag());
+      dispatch(getCompanyTag(companyDetails?.id,id));  
+    }
+  }, [companyDetails,userAccountInfo]);
 
   useEffect(()=>{
     console.log(fetchCompanyTag.length,Object.keys(sigleCompanyTag).length,'chk len')
@@ -190,8 +198,13 @@ const SummaryHeader = () => {
     //alert("g"+id)
     const isLoggedIn = checkLoginStatus();
     if (isLoggedIn) {
-      // dispatch(downloadCompany(companySelectedFilterList, "exl"));
-      dispatch(downloadCompany([id], "exl"));
+       //dispatch(downloadCompany(companySelectedFilterList, "exl"));
+      // deleteAuthMethod("http://3.215.187.36:9002/api/company-tags/17").then((res)=>{
+      //   alert(res);
+      //   }).catch((error)=>{
+          
+      //   })
+     dispatch(downloadCompany([id], "exl"));
     }
   };
   const downloadPDF = (id) => {
