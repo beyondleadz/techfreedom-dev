@@ -6257,13 +6257,13 @@ padding:5px
   margin-left: 20px; 
 }
 .executivedescbox .col{
-  width:300px; font-size: 13px; font-weight: 550; color:#101010b0;
+  width:300px; font-size: 13px;  color:#363636;
 }
 .executivedescbox .col1{
-  width:550px; font-size: 13px; font-weight: 550; color:#101010b0;
+  width:550px; font-size: 13px;  color:#363636;
 }
 .executivedescbox span{
-  font-size: 13px; font-weight:550;
+  font-size: 13px; 
 }
 .executivedescbox h5{
   font-size: 15px; color: #060606; font-weight:550;
@@ -6987,9 +6987,10 @@ color: orange;
   white-space: nowrap;
    line-height: 12px;}
    .executive .buttons-c {
-   position:absolute; right: 0;} 
+   position:absolute; right: 0; 
+   margin-right: 10px;} 
  .executive h6{
-  margin-top: 0.5rem; color:#5a5c69; 
+  margin-top: 0.5rem; color:#363636; 
 } 
   .orgchart .org li a:hover+ul li::after, 
   .orgchart .org li a:hover+ul li::before, 

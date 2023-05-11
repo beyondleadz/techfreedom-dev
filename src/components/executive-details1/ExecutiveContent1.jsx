@@ -32,7 +32,7 @@ const ExecutiveContent1 = () => {
       <div className="executivedescbox ">
         <div className="row mb-3">
           <div className="col1 pl-4"><h5>Designation</h5>Global Head of Real Estate, Facilities & Security</div>
-                    <div className="col"><h5>Company</h5><span className="text-info font-weight-bold">Dun & Bradstreet</span></div>
+                    <div className="col"><h5>Company</h5><span>Dun & Bradstreet</span></div>
         </div>
         <div className="row pt-3 mb-3">
         <div className="col"><h5>Email</h5> <i className=" fs-23 mr-2 align-bottom la la-envelope text-black"></i><span>View Email</span></div>
