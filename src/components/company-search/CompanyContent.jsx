@@ -259,7 +259,7 @@ const CompanyContent = () => {
                     </h6>
 
                     <div className="buttons-container textsearch">
-                    <ul className="d-flex  m-mt">
+                    <ul className="d-flex mt-1  m-mt">
                 
                          
                   <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
