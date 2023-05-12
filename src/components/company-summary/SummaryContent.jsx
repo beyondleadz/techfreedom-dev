@@ -224,7 +224,7 @@ const SummaryContent = () => {
                       >
                         <i className="text-black fa fa-suitcase pr-2"></i>
                         <span>{selectedValue}</span>
-                      </div>
+                      </div>        
                       <ul
                         className={`departmentOptions ${
                           dropDownToggle ? "show" : ""
@@ -239,6 +239,20 @@ const SummaryContent = () => {
                         })}
                       </ul>
                     </div>
+                    <div className="excelcontainer ">
+                    <li><a class=" btn btn-outline-success"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
+                    aria-expanded="false"><i class="right-icons la la-file-excel" aria-hidden="true"></i>
+                  </a></li>
+                    </div>
+
+                   
+                 
+            
+
+
+
+
+
                   </div>
                 </div>
               </div>
@@ -269,7 +283,7 @@ const SummaryContent = () => {
                 </div>
               ) : ""}
 
-              <div className="card shadow descbox1">
+              <div className="card shadow mb-4 descbox1">
                 <div>
                   Is this company data relevant to you?{" "}
                   <a

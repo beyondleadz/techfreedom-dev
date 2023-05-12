@@ -6283,11 +6283,18 @@ padding:5px
  .summarycontainer{
   position: relative;
  }
-
+ .excelcontainer {
+  position: absolute;
+    top: 5px;
+    right: 20px;
+    /* right: 5px; */
+    width: 45%;
+    max-width: 200px;
+}
  .departmentcontainer {
   position: absolute;
   top: 1px;
-  right: 215px;
+  right: 230px;
   /* right: 5px; */
   width: 45%;
   max-width: 200px;
