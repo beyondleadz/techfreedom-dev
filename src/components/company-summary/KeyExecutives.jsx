@@ -69,7 +69,7 @@ const KeyExecutives = () => {
             ></h4>
             {showEmail[row.id] && (
               <>
-                <p className="emailvalue fs-13">{text}</p>
+                <span className="emailvalue pl-1 fs-13">{text}</span>
                 <span
                   title="copy email"
                   className="  fs-17 btn  la  la-copy text-black"
@@ -108,7 +108,7 @@ const KeyExecutives = () => {
             </Button>
             {showPhone[row.id] && record?.phoneNo && (
               <>
-                <p className="phoneValue">{record?.phoneNo}</p>
+                <span className="phoneValue pl-1">{record?.phoneNo}</span>
                 <span
                   title="copy phone"
                   className="  fs-17 btn  la  la-copy text-black"
