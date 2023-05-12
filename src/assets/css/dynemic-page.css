@@ -7101,3 +7101,205 @@ color: orange;
 .errorformcontainer .form .formcol2{width:70%}
 .errorformcontainer .formfull{width:100%; padding: 5px 0;}
 .showemail{display: inline-block;}
+
+@media (min-width: 768px) {
+  .product-comparison .compare-navigation_item {
+      position: relative;
+      margin-right: 16px;
+      padding: 10px;
+  }
+  .compare-navigation_item1,
+  .compare-navigation_item {
+      padding: 7px 0;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      border: 2px solid #f6f6f60a;
+      border-radius: 5px;
+      color: #ccc;
+  }
+  
+  .compare-navigation_item:hover {
+     border: 2px solid #5d44ff; color:#8b8b8b;
+  }
+  .compare-navigation_item:focus-visible{
+    border: 2px solid #5d44ff; color:#8b8b8b;
+  }
+  
+  
+  .compare-navigation_item, .compare-navigation_item1 {
+    position: relative;
+    margin-right: 16px;
+    padding-right: 0;
+  }
+  
+  .product-comparison .vs{font-size: 2rem;
+    border-right: 1px solid #000;
+    padding: 0 20px; display: flex;}
+   .compare-navigation_list{    
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    /* max-width: 924px; */
+    margin: auto;
+    padding-bottom: 46px;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;}
+  
+    .compare-navigation_item img {
+      cursor: auto;
+  }
+  
+  
+   .compare-navigation_item img {
+      cursor: pointer;
+    
+  }
+   .compare-table__table {
+    display: table;
+    width: 100%;
+    max-width: 864px;
+    margin: auto;
+    border-radius: 5px;
+    position: relative;
+  }
+  
+   .compare-table__table {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+  }
+   .compare-table--active {
+    display: block;
+  }
+  }
+  
+  @media (min-width: 992px){
+   .compare-table__table {
+      display: table;
+      width: 100%;
+      max-width: 864px;
+      margin: 30px auto;
+      border-radius: 5px;
+      position: relative;
+  }
+   .compare-table__head {
+    display: table-header-group;
+    text-align:left; font-weight: bold; padding-left: 10px;
+  }
+  
+  .compare-table .compare-table__col.competitor-logo,  .compare-table .compare-table__col.lusha-logo, .template-alternatives-v2 .compare .compare-table .compare-table__col.placeholder {
+      background-color: transparent;
+      border-top: none;
+      border-right: none!important;
+      border-left: none!important;
+  }
+  
+   .compare-table .compare-table__col {
+      position: relative;
+  }
+  
+   .compare-table .placeholder {
+      border-top-left-radius: 8px; 
+  }
+  
+   .compare-table .compare-table__col {
+      background-color: #fff;
+      border: 1px solid #ececec; 
+  }
+  
+   .compare-table__col {
+      display: table-cell;
+      padding: 1.5rem;
+      border: 1px solid #ccc;
+      vertical-align: middle; width: 30%;
+  }
+  .compare-table .compare-table__col:nth-child(n+2) {
+    width: 285px;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  
+   .compare-table .compare-table__col:nth-child(2n) {
+    border-left: 2px solid #8b8b8b;
+    border-right: 2px solid #8b8b8b;
+  }
+  
+  .compare-table .compare-table__col.competitor-logo,  .compare-table .compare-table__col.-logo, .template-alternatives-v2 .compare .compare-table .compare-table__col.placeholder {
+    background-color: transparent;
+    border-top: none;
+    border-right: none!important;
+    border-left: none!important;
+  }
+  
+   .compare-table .compare-table__col {
+    position: relative;
+  }
+  
+   .compare-table .compare-table__col {
+    background-color: #fff;
+    border: 1px solid #ececec;
+  }
+  
+  .compare-table__row:last-child .compare-table__col:nth-child(2), .compare-table .lusha-logo {
+    position: relative;
+  }
+  
+   .compare-table__col {
+    display: table-cell;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    vertical-align: middle;
+  }
+  
+   .compare-table__row {
+    display: table-row;
+  }
+  
+   .compare-table__row {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    /* display: flex; */
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    padding-inline: 1.5rem;
+    border-bottom: 2px solid #ececec;
+  }
+   .compare-table__row {
+    padding: 30px 5px;
+    border-bottom: 1px solid #ececec;
+  }
+  .compare-table__property {
+    font-size: 14px;
+    line-height: 1.25rem;
+  }
+  
+  }
+  .compare-table .compare-table__row:nth-child(2) .compare-table__col:nth-child(2n) {
+    border-top: 2px solid #8b8b8b;
+    border-radius: 5px 5px 0 0;
+  }
+  @media (min-width: 992px){
+   .compare-table .compare-table__col:nth-child(n+2) {
+    width: 285px;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }}
