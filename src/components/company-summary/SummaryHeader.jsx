@@ -1,5 +1,5 @@
-import React, { useEffect, useState,useMemo} from "react";
-import { Modal, Checkbox, Input, Divider,Button } from "antd";
+import React, { useEffect, useState, useMemo } from "react";
+import { Modal, Checkbox, Input, Divider, Button } from "antd";
 import _ from "lodash";
 import { useDispatch } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
@@ -12,10 +12,11 @@ import {
   emptyErrorObj,
   downloadCompany,
   getCompanyTag,
-  resetCompanyTag
+  resetCompanyTag,
+  downloadExecutiveExl,
 } from "../../actionCreator/companyDetailsActionCreator";
 import { emailRegex } from "../../config";
-import { getToken,getUserInfo } from "../../utils/utils";
+import { getToken, getUserInfo } from "../../utils/utils";
 import TrialModal from "../../common/TrialModal";
 import popupImg from "../../assets/images/free-user-login-prompt.jpg.jpeg";
 import { useNavigate } from "react-router";
@@ -49,14 +50,28 @@ const SummaryHeader = () => {
   const companyDetails = useSelector(
     (state) => state.companyDetailsReducer.companyDetails
   );
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const errObj = useSelector((state) => state.companyDetailsReducer.errObj);
-  const fetchCompanyTag = useSelector((state) => state.companyDetailsReducer.fetchCompanyTag);
-  const sigleCompanyTag = useSelector((state) => state.companyDetailsReducer.sigleCompanyTag);
+  const fetchCompanyTag = useSelector(
+    (state) => state.companyDetailsReducer.fetchCompanyTag
+  );
+  const sigleCompanyTag = useSelector(
+    (state) => state.companyDetailsReducer.sigleCompanyTag
+  );
 
-  const userAccountInfo=useSelector((state)=>state.CommonReducer.accountInfo);
+  const userAccountInfo = useSelector(
+    (state) => state.CommonReducer.accountInfo
+  );
 
-  const [taggedCompany,setTaggedCompany]=useState(false);
+  const selectedEmployeeList = useSelector(
+    (state) => state.companyDetailsReducer.selectedExecutive
+  );
+
+  const selectedDepartment = useSelector(
+    (state) => state.companyDetailsReducer.selectedDepartment
+  );
+
+  const [taggedCompany, setTaggedCompany] = useState(false);
   useEffect(() => {
     if (Object.keys(errObj).length) {
       setIsApiFailed(true);
@@ -66,23 +81,27 @@ const SummaryHeader = () => {
     }
   }, [Object.keys(errObj).length]);
 
-  useMemo(() => {   
-    if(Object.keys(getUserInfo()).length){
-      const {id}= getUserInfo();
+  useMemo(() => {
+    if (Object.keys(getUserInfo()).length) {
+      const { id } = getUserInfo();
       dispatch(resetCompanyTag());
-      dispatch(getCompanyTag(companyDetails?.id,id));  
+      dispatch(getCompanyTag(companyDetails?.id, id));
     }
-  }, [companyDetails,userAccountInfo]);
+  }, [companyDetails, userAccountInfo]);
 
-  useEffect(()=>{
-    console.log(fetchCompanyTag.length,Object.keys(sigleCompanyTag).length,'chk len')
-    if(fetchCompanyTag.length || Object.keys(sigleCompanyTag).length){
+  useEffect(() => {
+    console.log(
+      fetchCompanyTag.length,
+      Object.keys(sigleCompanyTag).length,
+      "chk len"
+    );
+    if (fetchCompanyTag.length || Object.keys(sigleCompanyTag).length) {
       setTaggedCompany(true);
-    }else{
+    } else {
       setTaggedCompany(false);
     }
-  },[fetchCompanyTag,sigleCompanyTag])
-  
+  }, [fetchCompanyTag, sigleCompanyTag]);
+
   const handleErrorForm = () => {
     setOpenErrorForm(true);
   };
@@ -136,17 +155,15 @@ const SummaryHeader = () => {
         [key]: errorForm[key].value,
       };
     });
-
+    const { id,login } = getUserInfo();
     const payload = {
-      accountId: "string",
-      companyId: 0,
+      accountId: login,
+      companyId: companyDetails?.id,
       description: newPayload,
-      emplaoyeeId: 0,
-      id: 0,
+      //emplaoyeeId: 0,
       iscompany: true,
       iscorrected: true,
-      reportedDate: "2023-05-02T18:09:08.156Z",
-      userId: "string",
+      userId: id,
     };
     // errorForm
     dispatch(submitErrorForm(payload));
@@ -194,23 +211,28 @@ const SummaryHeader = () => {
     return isLoggedIn;
   };
 
-  const downloadExcel = (id) => {
-    //alert("g"+id)
+  const downloadExcel = () => {
     const isLoggedIn = checkLoginStatus();
     if (isLoggedIn) {
-       //dispatch(downloadCompany(companySelectedFilterList, "exl"));
-      // deleteAuthMethod("http://3.215.187.36:9002/api/company-tags/17").then((res)=>{
-      //   alert(res);
-      //   }).catch((error)=>{
-          
-      //   })
-     dispatch(downloadCompany([id], "exl"));
+      let selectedEmpIds = "";
+      selectedEmployeeList?.forEach((exe) => {
+        selectedEmpIds += `${exe?.id},`;
+      });
+      selectedEmpIds = selectedEmpIds.substring(
+        selectedEmpIds.lastIndexOf(","),
+        0
+      );
+      const payload={
+        empIds:selectedEmpIds,
+        department:selectedDepartment,
+        companyId:companyDetails?.id
+      }
+      dispatch(downloadExecutiveExl(payload));
     }
   };
   const downloadPDF = (id) => {
     const isLoggedIn = checkLoginStatus();
     if (isLoggedIn) {
-      // dispatch(downloadCompany(companySelectedFilterList, "pdf"));
       dispatch(downloadCompany([id], "pdf"));
     }
   };
@@ -223,7 +245,7 @@ const SummaryHeader = () => {
       });
     } else {
       //console.log(companyDetails, "companyDetailscompanyDetails");
-      const {id}= getUserInfo();
+      const { id } = getUserInfo();
       const payload = {
         company: companyDetails,
         text: tagValues.tagname,
@@ -361,7 +383,7 @@ const SummaryHeader = () => {
                 data-toggle=""
                 aria-haspopup="true"
                 aria-expanded="false"
-                onClick={() => downloadExcel(companyDetails?.id)}
+                onClick={() => downloadExcel()}
               >
                 <i
                   className="right-icons la la-file-excel"
@@ -597,31 +619,31 @@ const SummaryHeader = () => {
       )}
 
       {openTagModal ? (
-        !taggedCompany?
-        <Modal
-          title="Tag Company"
-          width={"400px"}
-          closable={true}
-          open={openTagModal}
-          onCancel={closeTagModal}
-          onOk={onConfrim}
-        >
-          <div class="pop-up errorformcontainer ">
-            <div className="form">
-              <div className="formcol1">
-                <label>Tag Name</label>
+        !taggedCompany ? (
+          <Modal
+            title="Tag Company"
+            width={"400px"}
+            closable={true}
+            open={openTagModal}
+            onCancel={closeTagModal}
+            onOk={onConfrim}
+          >
+            <div class="pop-up errorformcontainer ">
+              <div className="form">
+                <div className="formcol1">
+                  <label>Tag Name</label>
+                </div>
+                <div className="formcol2">
+                  <Input
+                    name="tagname"
+                    status={tagValues?.tagError}
+                    value={tagValues.tagname}
+                    placeholder="Tag Name"
+                    onChange={onTagInputChange}
+                  />
+                </div>
               </div>
-              <div className="formcol2">
-                <Input
-                  name="tagname"
-                  status={tagValues?.tagError}
-                  value={tagValues.tagname}
-                  placeholder="Tag Name"
-                  onChange={onTagInputChange}
-                />
-              </div>
-            </div>
-            {/* <div className="form">
+              {/* <div className="form">
               <div className="formcol1">
                 <label>Description</label>
               </div>
@@ -636,27 +658,25 @@ const SummaryHeader = () => {
                 />
               </div>
             </div> */}
-          </div>
-        </Modal>:
-        <Modal
-        title=""
-        width={"400px"}
-        closable={true}
-        open={openTagModal}
-        footer={[
-          <Button
-            key="submit"
-            type="primary"
-            onClick={closeTagModal}
+            </div>
+          </Modal>
+        ) : (
+          <Modal
+            title=""
+            width={"400px"}
+            closable={true}
+            open={openTagModal}
+            footer={[
+              <Button key="submit" type="primary" onClick={closeTagModal}>
+                OK
+              </Button>,
+            ]}
           >
-            OK
-          </Button>,
-        ]}
-      >
-        <div class="pop-up errorformcontainer ">
-          <p>Already Tagged!</p>
-        </div>
-      </Modal>
+            <div class="pop-up errorformcontainer ">
+              <p>Already Tagged!</p>
+            </div>
+          </Modal>
+        )
       ) : (
         ""
       )}

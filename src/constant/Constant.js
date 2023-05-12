@@ -5,7 +5,7 @@ export const employeeCountApiUrl = "api/employee-ranges";
 export const companyTypeApiUrl = "api/companycategories";
 export const revenueRangeApiUrl = "api/company-revenue-ranges";
 export const companyListingApiUrl = "api/companies";
-export const companyExlDownloadUrl = "api/companies/exl";
+export const companyExlDownloadUrl = "api/employees/exl";
 export const companyPdfDownloadUrl = "api/companies/pdf";
 export const employeeListUrl = "api/employees";
 export const executiveDepartmentList = "api/executive-functions";
@@ -19,3 +19,5 @@ export const saveSearchListApiUrl = '/api/externaldatadumps';
 export const getCompanyTagApiUrl = '/api/company-tags';
 export const postRelavantCompanyApiUrl = '/api/user-prefered-records';
 export const getRelavantCompanyApiUrl = '/api/user-prefered-records';
+export const getClientLeadsUrl = "/api/client-leads";
+

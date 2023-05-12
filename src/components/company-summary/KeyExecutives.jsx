@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useMemo } from "react";
 import { Table, Modal, Button, Tooltip } from "antd";
 import { PAGE_LENGTH } from "../../config";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-import { getToken } from "../../utils/utils";
+import { getToken, getUserInfo } from "../../utils/utils";
 import {
   submitLead,
   resetLead,
+  storeSelectedExecutive,
+  getExecutiveLead
 } from "../../actionCreator/companyDetailsActionCreator";
 import popupImg from "../../assets/images/free-user-login-prompt.jpg.jpeg";
 import Loader from "../loader";
@@ -19,7 +21,9 @@ const KeyExecutives = () => {
   const submitLeadRes = useSelector(
     (state) => state.companyDetailsReducer?.executiveLeads
   );
-
+  const userAccountInfo = useSelector(
+    (state) => state.CommonReducer.accountInfo
+  );
   const [employeeData, setEmployeeData] = useState([]);
   const [openModal, setOpenModal] = useState({
     info: null,
@@ -29,6 +33,13 @@ const KeyExecutives = () => {
   const [showEmail, setShowEmail] = useState({});
   const [showPhone, setShowPhone] = useState({});
   const navigate = useNavigate();
+
+  useMemo(() => {
+    if (Object.keys(getUserInfo()).length) {
+      const { id } = getUserInfo();
+      dispatch(getExecutiveLead(id));
+    }
+  }, [userAccountInfo]);
 
   const columns = [
     // {
@@ -191,6 +202,7 @@ const KeyExecutives = () => {
   };
 
   const postLeads = (record) => {
+    const { id,login } = getUserInfo();
     let leadPayload = {
       firstname: record.firstname,
       lastname: record.lastname,
@@ -201,6 +213,7 @@ const KeyExecutives = () => {
       phoneNo: record.phoneNo,
       bio: record.bio,
       description: record.description,
+      userId:id
     };
     dispatch(submitLead(leadPayload));
     setAddToLeads(record.id);
@@ -255,6 +268,9 @@ const KeyExecutives = () => {
         "selectedRows: ",
         selectedRows
       );
+
+      dispatch(storeSelectedExecutive(selectedRows))
+
     },
     getCheckboxProps: (record) => ({
       disabled: record.name === "Disabled User", // Column configuration not to be checked

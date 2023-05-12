@@ -22,6 +22,12 @@ import {
   POST_RELAVANT_COMPANY_TAG_ERROR,
   GET_RELAVANT_COMPANY_TAG,
   GET_RELAVANT_COMPANY_TAG_ERROR,
+  SELECTED_EXECUTIVE,
+  DOWNLOAD_EXECUTIVE,
+  DOWNLOAD_EXECUTIVE_ERROR,
+  SELECTED_DEPARTMENT,
+  GET_EXECUTIVE_LEAD,
+  GET_EXECUTIVE_LEAD_ERROR
 } from "../actionType/companyDetailsType";
 import {
   getAuthMethod,
@@ -38,6 +44,9 @@ import {
   fetchCompanyTagApiUrl,
   postRelavantCompanyApiUrl,
   getRelavantCompanyApiUrl,
+  companyExlDownloadUrl,
+  getClientLeadsUrl,
+  companyPdfDownloadUrl,
 } from "../constant/Constant";
 import { createPayload } from "../utils/utils";
 import { ErrKey, errEnum } from "../config";
@@ -121,9 +130,9 @@ export const submitLead = (payload) => (dispatch) => {
         type: SUBMIT_EXECUTIVE_LEAD,
         payload: res.data,
       });
+      dispatch(getExecutiveLead(payload?.userId));
     })
     .catch((err) => {
-      console.log(err, "sjkflskdjfkl");
       dispatch({
         type: SUBMIT_EXECUTIVE_LEAD_ERROR,
         payload:
@@ -142,7 +151,7 @@ export const getSimilarCompanyList = (payload, paginationValues) => (
   dispatch
 ) => {
   const url = createPayload(payload, paginationValues, companyListingApiUrl);
-  console.log(payload,'payloadpayload')
+  console.log(payload, "payloadpayload");
   return getMethod(url)
     .then((res) => {
       dispatch({
@@ -189,7 +198,7 @@ export const createCompanyTag = (payload) => (dispatch) => {
         type: SINGLE_COMPANY_TAG,
         payload: res.data,
       });
-      dispatch(getCompanyTag(payload?.company?.id,payload?.userId));
+      dispatch(getCompanyTag(payload?.company?.id, payload?.userId));
     })
     .catch((err) => {
       dispatch({
@@ -210,15 +219,15 @@ export const downloadCompany = (payload, urlSubstring) => (dispatch) => {
   // const url =  createPayload(payload,null,`${companyListingApiUrl}/${urlSubstring}`);
   let url = "";
   if (payload?.length) {
-    let selectedRecords = "id.in=";
+    let selectedRecords = "?id.in=";
     payload?.forEach((id) => (selectedRecords += `${id},`));
     const removedLastComma = selectedRecords.substring(
       selectedRecords.lastIndexOf(","),
       0
     );
-    url = `${companyListingApiUrl}/${urlSubstring}/${removedLastComma}`;
+    url = `${companyPdfDownloadUrl}${removedLastComma}`;
   } else {
-    url = `${companyListingApiUrl}/${urlSubstring}`;
+    url = `${companyPdfDownloadUrl}`;
   }
   return getAuthMethod(url)
     .then((res) => {
@@ -238,8 +247,35 @@ export const downloadCompany = (payload, urlSubstring) => (dispatch) => {
     });
 };
 
-export const getCompanyTag = (cid,userId) => (dispatch) => {
-  let filter = "userId.equals="+userId+"&companyId.equals="+cid;
+export const downloadExecutiveExl = (payload) => (dispatch) => {
+  let url = "";
+  let filter = `?companyId.equals=${payload.companyId}`;
+  if (payload?.empIds) {
+    filter += `&employeeTagId.in=${payload.empIds}`;
+  }
+  if (payload?.department) {
+    filter += `&exfunction.equals=${payload?.department}`;
+  }
+  url = `${companyExlDownloadUrl}${filter}`;
+  return getAuthMethod(url)
+    .then((res) => {
+      dispatch({
+        type: DOWNLOAD_EXECUTIVE,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: DOWNLOAD_EXECUTIVE_ERROR,
+        payload:
+          { [errEnum.DOWNLOAD_ERROR]: err.response.data.error } ||
+          "Error Occured",
+      });
+    });
+};
+
+export const getCompanyTag = (cid, userId) => (dispatch) => {
+  let filter = "userId.equals=" + userId + "&companyId.equals=" + cid;
   const url = `${fetchCompanyTagApiUrl}?${filter}`;
   //console.log(url, id, "lksjdfklsjd");
   return getAuthMethod(url)
@@ -277,15 +313,16 @@ export const postRelavantCompany = (payload) => (dispatch) => {
       dispatch({
         type: POST_RELAVANT_COMPANY_TAG_ERROR,
         payload:
-          { [errEnum.POST_RELAVANT_COMPANY_TAG_ERROR]: err.response.data[ErrKey] } ||
-          "Error Occured",
+          {
+            [errEnum.POST_RELAVANT_COMPANY_TAG_ERROR]:
+              err.response.data[ErrKey],
+          } || "Error Occured",
       });
     });
 };
 
-
-export const getRelavantCompany = (id,cid) => (dispatch) => {
-  let filter = "userId.equals="+id+"&companyId.equals="+cid;
+export const getRelavantCompany = (id, cid) => (dispatch) => {
+  let filter = "userId.equals=" + id + "&companyId.equals=" + cid;
   const url = `${getRelavantCompanyApiUrl}?${filter}`;
   //console.log(url, id, "lksjdfklsjd");
   return getAuthMethod(url)
@@ -300,12 +337,46 @@ export const getRelavantCompany = (id,cid) => (dispatch) => {
       dispatch({
         type: GET_RELAVANT_COMPANY_TAG_ERROR,
         payload:
-          { [errEnum.GET_RELAVANT_COMPANY_TAG_ERROR]: err.response.data[ErrKey] } ||
-          "Error Occured",
+          {
+            [errEnum.GET_RELAVANT_COMPANY_TAG_ERROR]: err.response.data[ErrKey],
+          } || "Error Occured",
       });
     });
 };
 
 export const resetPostRelavantCompany = (payload) => {
   return { type: POST_RELAVANT_COMPANY_TAG, payload: [] };
+};
+
+export const storeSelectedExecutive = (selectedExecutive) => ({
+  type: SELECTED_EXECUTIVE,
+  payload: selectedExecutive,
+});
+
+export const storeSelectedDepartment = (selectedDepartment) => ({
+  type: SELECTED_DEPARTMENT,
+  payload: selectedDepartment,
+});
+
+export const getExecutiveLead = (id) => (dispatch) => {
+  let filter = "userId.equals=" + id;
+  const url = `${getClientLeadsUrl}?${filter}`;
+  //console.log(url, id, "lksjdfklsjd");
+  return getAuthMethod(url)
+    .then((res) => {
+      dispatch({
+        type: GET_EXECUTIVE_LEAD,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err, "sjkflskdjfkl");
+      dispatch({
+        type: GET_EXECUTIVE_LEAD_ERROR,
+        payload:
+          {
+            [errEnum.GET_EXECUTIVE_LEAD_ERROR]: err.response.data[ErrKey],
+          } || "Error Occured",
+      });
+    });
 };

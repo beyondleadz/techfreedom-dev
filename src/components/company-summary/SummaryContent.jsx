@@ -17,6 +17,7 @@ import {
   postRelavantCompany,
   getRelavantCompany,
   resetPostRelavantCompany,
+  storeSelectedDepartment,
 } from "../../actionCreator/companyDetailsActionCreator";
 
 const SummaryContent = () => {
@@ -108,6 +109,7 @@ const SummaryContent = () => {
   const setValue = (selectedItem) => {
     dispatch(resetEmployeeList());
     dispatch(getEmployeeList(id, selectedItem?.id));
+    dispatch(storeSelectedDepartment(selectedItem?.id));
     setSelectedValue(selectedItem?.name);
     setDropdownToggle(!dropDownToggle);
     setTabActiveKey("2");

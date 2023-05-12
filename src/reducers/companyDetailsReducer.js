@@ -22,6 +22,12 @@ import {
   POST_RELAVANT_COMPANY_TAG_ERROR,
   GET_RELAVANT_COMPANY_TAG,
   GET_RELAVANT_COMPANY_TAG_ERROR,
+  SELECTED_EXECUTIVE,
+  DOWNLOAD_EXECUTIVE,
+  DOWNLOAD_EXECUTIVE_ERROR,
+  SELECTED_DEPARTMENT,
+  GET_EXECUTIVE_LEAD,
+  GET_EXECUTIVE_LEAD_ERROR,
 } from "../actionType/companyDetailsType";
 
 const initialState = {
@@ -36,6 +42,11 @@ const initialState = {
   postRelavantCompany: {},
   getRelavantCompany: {},
   errObj: {},
+  selectedExecutive: [],
+  downloadCompany: "",
+  downloadExecutive: "",
+  selectedDepartment: "",
+  getExecutiveLead: [],
 };
 
 const CompanyDetailsReducer = (state = initialState, action) => {
@@ -56,13 +67,21 @@ const CompanyDetailsReducer = (state = initialState, action) => {
     case SINGLE_COMPANY_TAG:
       return { ...state, sigleCompanyTag: payload };
     case DOWNLOAD_COMPANY:
-      return { ...state, download: payload };
+      return { ...state, downloadCompany: payload };
+    case DOWNLOAD_EXECUTIVE:
+      return { ...state, downloadExecutive: payload };
     case FETCH_COMPANY_TAG:
       return { ...state, fetchCompanyTag: payload };
     case POST_RELAVANT_COMPANY_TAG:
       return { ...state, postRelavantCompany: payload };
     case GET_RELAVANT_COMPANY_TAG:
       return { ...state, getRelavantCompany: payload };
+    case SELECTED_EXECUTIVE:
+      return { ...state, selectedExecutive: payload };
+    case SELECTED_DEPARTMENT:
+      return { ...state, selectedDepartment: payload };
+    case GET_EXECUTIVE_LEAD:
+      return { ...state, getExecutiveLead: payload };
 
     case SINGLE_COMPANY_TAG_ERROR:
       return { ...state, errObj: { ...state.errObj, ...payload } };
@@ -85,6 +104,10 @@ const CompanyDetailsReducer = (state = initialState, action) => {
     case POST_RELAVANT_COMPANY_TAG_ERROR:
       return { ...state, errObj: { ...state.errObj, ...payload } };
     case GET_RELAVANT_COMPANY_TAG:
+      return { ...state, errObj: { ...state.errObj, ...payload } };
+    case DOWNLOAD_EXECUTIVE_ERROR:
+      return { ...state, errObj: { ...state.errObj, ...payload } };
+    case GET_EXECUTIVE_LEAD_ERROR:
       return { ...state, errObj: { ...state.errObj, ...payload } };
     case EMPTY_ERROR_OBJ:
       return { ...state, errObj: payload };
