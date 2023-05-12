@@ -4927,6 +4927,8 @@ a.text-dark:hover, a.text-dark:focus {
 .fs-16{font-size:16px;}
 .fs-18{font-size:18px;}
 .fs-23{font-size:23px;}
+.fs-13{font-size:13px;}
+.fs-17{font-size:17px;}
 html {
   position: relative;
   min-height: 100%;
@@ -6222,7 +6224,7 @@ padding:5px
 }
 .descbox1{
    border-radius: 0.5rem; border: 1px solid #eee;
-  padding: 10px 10px 20px 10px;
+  padding: 10px;
     /* margin-top: 50px;
     right: 180px; */
     /* position: absolute; */
@@ -6704,7 +6706,9 @@ cursor: pointer;
       position: relative;}
     .headerblk2 > div{display: flex; align-items: center;  margin-right: 150px;}
     .headerblk2 div span::before{margin-left: 0;}
-     .keyexebtn{padding: 7px 10px; } 
+     .keyexebtn{
+      /* padding: 7px 10px; */
+     } 
     .summarycontainer .keyexebtn:hover{background: #fdc401; border: #fdc401; color: #000;}
     .similarblk .similarinnerblk{ display: flex; padding: 10px 0; 
       border-bottom: 1px solid #eaeaea;}
@@ -7066,10 +7070,10 @@ color: orange;
 .b-emails-open {
 	background: url(../images/b-email-open.png) no-repeat 0px 0px;}
 .emails {
-	background: url(../images/email.png) no-repeat 0px 0px;
+	background: url(../images/email-icon.jpg) no-repeat 0px 0px; 
 }
 .emails-open {
-	background: url(../images/email-open.png) no-repeat 0px 0px;
+	background: url(../images/email-icon-open.jpg) no-repeat 0px 0px; 
 }
 .companyintro h3{font-size: 16px; font-weight: 500;}
 
