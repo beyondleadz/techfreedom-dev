@@ -6286,7 +6286,7 @@ padding:5px
  .excelcontainer {
   position: absolute;
     top: 5px;
-    right: 20px;
+    right: 30px;
     /* right: 5px; */
     width: 45%;
     max-width: 200px;
@@ -6294,7 +6294,7 @@ padding:5px
  .departmentcontainer {
   position: absolute;
   top: 1px;
-  right: 230px;
+  right: 260px;
   /* right: 5px; */
   width: 45%;
   max-width: 200px;
