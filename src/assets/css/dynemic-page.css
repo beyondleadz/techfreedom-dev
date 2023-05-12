@@ -7070,10 +7070,10 @@ color: orange;
 .b-emails-open {
 	background: url(../images/b-email-open.png) no-repeat 0px 0px;}
 .emails {
-	background: url(../images/email-icon.svg) no-repeat 0px 0px; 
+	background: url(../images/email-icon.svg) no-repeat 0px 0px; width:30px; height: 16px;
 }
 .emails-open {
-	background: url(../images/email-icon-open.svg) no-repeat 0px 0px; 
+	background: url(../images/email-icon-open.svg) no-repeat 0px 0px; width:30px; height: 16px;
 }
 .companyintro h3{font-size: 16px; font-weight: 500;}
 
