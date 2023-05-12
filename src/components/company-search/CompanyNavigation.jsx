@@ -172,7 +172,7 @@ const CompanyNavigation = () => {
               <i className="right-icons la la-file-pdf" aria-hidden="true"></i>
             </a>
           </li>
-          <li>
+          {/* <li>
             <a
               className=" mr-2"
               role="button"
@@ -186,7 +186,7 @@ const CompanyNavigation = () => {
                 aria-hidden="true"
               ></i>
             </a>
-          </li>
+          </li> */}
           <li>
             <a
               className=" mr-2"
@@ -199,7 +199,7 @@ const CompanyNavigation = () => {
               <i className="right-icons la la-print" aria-hidden="true"></i>
             </a>
           </li>
-          <li>
+          {/* <li>
             <a
               className=" mr-2"
               id=""
@@ -211,7 +211,7 @@ const CompanyNavigation = () => {
             >
               <i className="right-icons las la-tag" aria-hidden="true"></i>
             </a>
-          </li>
+          </li> */}
         </ul>
 
         {showModal ? (
