@@ -3,7 +3,7 @@ import { useRoutes, NavLink, useNavigate } from "react-router-dom";
 // import { useRoutes, NavLink, redirect, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getToken } from "../utils/utils";
-import Logo from "../assets/images/logo.jpg";
+import Logo from "../assets/images/logo.svg";
 import MoreArrowImg from "../assets/images/arrow.png";
 import "../assets/css/dropdown1.css";
 import "../assets/css/line-awesome.css";
@@ -253,9 +253,9 @@ const Header = () => {
                   Executive Search
                 </NavLink>
               </li>
-              <li className="nav-item mt-3"><NavLink><i className="las la-bell text-white fs-23 mr-1 ml-1"></i></NavLink></li>
+              {/* <li className="nav-item mt-3"><NavLink><i className="las la-bell text-white fs-23 mr-1 ml-1"></i></NavLink></li>
               
-              <li className="nav-item mt-3"><NavLink><i className="la la-user-tie text-white fs-23 mr-1 ml-1"></i>User Name</NavLink></li>
+              <li className="nav-item mt-3"><NavLink><i className="la la-user-tie text-white fs-23 mr-1 ml-1"></i>User Name</NavLink></li> */}
               {getToken() ? (
                 
                 <li className="nav-item">
