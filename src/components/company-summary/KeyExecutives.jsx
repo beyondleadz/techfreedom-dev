@@ -108,7 +108,7 @@ const KeyExecutives = () => {
             </Button>
             {showPhone[row.id] && record?.phoneNo && (
               <>
-                <span className="phoneValue pl-1">{record?.phoneNo}</span>
+                <span className="phoneValue fs-13 pl-1">{record?.phoneNo}</span>
                 <span
                   title="copy phone"
                   className="  fs-17 btn  la  la-copy text-black"
