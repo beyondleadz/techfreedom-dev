@@ -64,7 +64,7 @@ const KeyExecutives = () => {
           //  <Tooltip title={text}>
           <>
             <h4
-              className="  fs-23 btn  la  la-envelope-open-text text-black"
+              className=" btn iconemail emails-open"
               onClick={() => setShowEmail({ ...showEmail, [row.id]: true })}
             ></h4>
             {showEmail[row.id] && (
@@ -82,7 +82,7 @@ const KeyExecutives = () => {
           //  </Tooltip>
           //
           <h4
-            className="  fs-23 btn  la  la-envelope text-black"
+            className="  btn iconemail emails"
             onClick={() => openInfoModel()}
           ></h4>
         );

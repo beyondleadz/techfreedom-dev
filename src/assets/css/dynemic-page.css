@@ -7053,7 +7053,24 @@ color: orange;
     font-size: 12px;
     
 }
-
+.iconemail {
+   width: 30px;
+  height: 16px;
+  display: inline-block;
+   margin-top: 0em;
+  /* margin-top: 0.8em; */
+}
+.b-emails {
+	background: url(../images/b-email.png) no-repeat 0px 0px;
+}
+.b-emails-open {
+	background: url(../images/b-email-open.png) no-repeat 0px 0px;}
+.emails {
+	background: url(../images/email.png) no-repeat 0px 0px;
+}
+.emails-open {
+	background: url(../images/email-open.png) no-repeat 0px 0px;
+}
 .companyintro h3{font-size: 16px; font-weight: 500;}
 
 #small-dialog,#small-dialog1,#small-dialog2,#small-dialog3,#small-dialog4,#small-dialog5{

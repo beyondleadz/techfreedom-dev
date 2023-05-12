@@ -133,7 +133,7 @@ const ExecutiveContent1 = () => {
                                 <td>John Mathew </td>
                                 <td>Delivery Head</td>
                                 <td>
-                                  <h4 className="  fs-23 btn  la la-envelope text-black   "></h4>
+                                  <h4 className=" ml-1 btn iconemail emails  "></h4>
                                 </td>
                                 <td>(206) 266-1000</td>
                                 <td>
@@ -156,7 +156,7 @@ const ExecutiveContent1 = () => {
                                <td>John Mathew </td>
                                 <td>Delivery Head</td>
                                 <td>
-                                  <h4 className=" fs-23 btn la la-envelope text-black  "></h4>
+                                  <h4 className="ml-1 btn iconemail emails  "></h4>
                                 </td>
                                 <td>(206) 266-1000</td>
                                 <td>
@@ -179,7 +179,7 @@ const ExecutiveContent1 = () => {
                                  <td>John Mathew </td>
                                 <td>Delivery Head</td>
                                 <td>
-                                  <h4 className=" fs-23 btn la la-envelope text-black  "></h4>
+                                  <h4 className=" ml-1 btn iconemail emails  "></h4>
                                 </td>
                                 <td>(206) 266-1000</td>
                                 <td>
@@ -202,7 +202,7 @@ const ExecutiveContent1 = () => {
                                  <td>John Mathew </td>
                                 <td>Delivery Head</td>
                                 <td>
-                                  <h4 className=" fs-23 btn la la-envelope text-black  "></h4>
+                                  <h4 className=" ml-1 btn iconemail emails "></h4>
                                 </td>
                                 <td>(206) 266-1000</td>
                                 <td>
@@ -225,7 +225,7 @@ const ExecutiveContent1 = () => {
                                  <td>John Mathew </td>
                                 <td>Delivery Head</td>
                                 <td>
-                                  <h4 className=" fs-23 btn la la-envelope text-black  "></h4>
+                                  <h4 className=" ml-1 btn iconemail emails  "></h4>
                                 </td>
                                 <td>(206) 266-1000</td>
                                 <td>
@@ -249,7 +249,7 @@ const ExecutiveContent1 = () => {
                                 <td>John Mathew </td>
                                 <td>Delivery Head</td>
                                 <td>
-                                  <h4 className="fs-23  btn la la-envelope text-black  "></h4>
+                                  <h4 className="ml-1 btn iconemail emails  "></h4>
                                 </td>
                                 <td>(206) 266-1000</td>
                                 <td>
@@ -272,7 +272,7 @@ const ExecutiveContent1 = () => {
                                 <td>John Mathew </td>
                                 <td>Delivery Head</td>
                                 <td>
-                                  <h4 className=" fs-23 btn la la-envelope text-black "></h4>
+                                  <h4 className=" ml-1 btn iconemail emails "></h4>
                                 </td>
                                 <td>(206) 266-1000</td>
                                 <td>
