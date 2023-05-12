@@ -320,7 +320,7 @@ const SummaryHeader = () => {
           >
             {/* <h3>Overview</h3> */}
             <div>
-              <strong className="mr-2">Description of business</strong>{" "}
+              <strong className="mr-2 fs-12">Description of business</strong>{" "}
               {companyDetails?.introduction}
             </div>
           </div>
