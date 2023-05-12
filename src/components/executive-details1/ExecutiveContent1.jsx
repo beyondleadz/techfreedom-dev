@@ -91,7 +91,7 @@ const ExecutiveContent1 = () => {
                 
               <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
                     aria-expanded="false">
-                    <i className="right-icons las la-tag" aria-hidden="true"></i>
+                    <i className="right-icons las  la-user-tag" aria-hidden="true"></i>
                   </a>
                 </li>
                  </ul>

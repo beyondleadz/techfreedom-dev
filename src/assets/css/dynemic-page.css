@@ -6433,7 +6433,7 @@ cursor: pointer;
 .tab-img{    display: inline;
   padding: 0.2rem 0.5rem;
   font-size: 22px;
-  background-size: 75%;}
+  background-size: 75%; color: #5d44ff}
 /* background: url(../images/companies-icon.png) no-repeat 0px 0px;*/
 /* background: url(../images/executive-icon.png) no-repeat 0px 0px; */
 /* background: url(../images/leads-icon.png) no-repeat 0px 0px; */
@@ -6441,9 +6441,9 @@ cursor: pointer;
 .la-building:before {  
   color: #5000FF;
 }
-.la-user-tie:before {
+/* .la-user-tie:before {
     color: #5000FF;
-  }
+  } */
 .la-user-friends:before {
       color: #5000FF;
   }
@@ -6991,7 +6991,7 @@ color: orange;
 
    .executive .buttons-c {
    position:absolute; right: 0; 
-   margin-right: 10px; margin-top:10px;} 
+   margin-right: 18px; margin-top:10px;} 
 
  .executive h6{
   margin-top: 0.5rem; color:#363636; 
