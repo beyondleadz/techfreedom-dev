@@ -164,9 +164,7 @@ const Footer = () => {
               </p>
             </div>
             <p style={{ textAlign: "center" }} className="copy-footer-29 mt-4">
-              © 2023 Beyond Leadz. All rights reserved. Design by
-              <a href="http://techfreedomonline.com/" target="_blank">
-                Tech Freedom Online
+              © 2023 Beyond Leadz. All rights reserved. Design by <a href="http://techfreedomonline.com/" target="_blank"> Tech Freedom Online
               </a>
             </p>
           </div>

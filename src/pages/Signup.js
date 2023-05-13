@@ -5,7 +5,7 @@ import Img from "../assets/login/bg-left-sign-up.jpg";
 import Gmail from "../assets/login/gmail.png";
 import LinkedIn from "../assets/login/linkedin.png";
 import Outlook from "../assets/login/outlook.png";
-import LogoLogin from "../assets/login/logo-round.png";
+import LogoLogin from "../assets/login/logo-round.svg";
 import "../assets/css/style.css";
 import Signup1 from "../components/signup/Signup1";
 // import Signup2 from "../components/signup/Signup2";

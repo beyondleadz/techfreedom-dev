@@ -1,5 +1,5 @@
 import React,{useState} from "react";
-import logo from "../../assets/images/logo.jpg";
+import logo from "../../assets/images/logo-round.svg";
 import ProspectSearchImage from "../../assets/images/prospect-search.jpg";
 import leadsImage from "../../assets/images/leads.jpg";
 
