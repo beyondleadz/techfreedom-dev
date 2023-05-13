@@ -7,7 +7,7 @@ import LoginLeft from "../assets/login/login-left.jpg";
 import Gmail from "../assets/login/gmail.png";
 import LinkedIn from "../assets/login/linkedin.png";
 import Outlook from "../assets/login/outlook.png";
-import LogoLogin from "../assets/login/logo-round.png";
+import LogoLogin from "../assets/login/logo-round.svg";
 import { signInUrl } from "../constant/Constant";
 import { postMethod } from "../services/HttpServices";
 import "../assets/css/style.css";
