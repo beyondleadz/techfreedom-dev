@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useRoutes, NavLink, useNavigate } from "react-router-dom";
+import { Popover, Button } from 'antd';
 // import { useRoutes, NavLink, redirect, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getToken } from "../utils/utils";
@@ -16,11 +17,14 @@ const Header = () => {
   const [selectedValue, setSelectedValue] = useState("Advanced");
   const navigate = useNavigate();
   const token = useSelector((state) => state?.SignUpReducer?.signInData);
-
+  const provinceData = ['Zhejiang', 'Jiangsu'];
   const toggleNav = (ele) => {
     setShowNav(!showNav);
   };
-
+  const handleProvinceChange = (value) => {
+    // setCities(cityData[value]);
+    // setSecondCity(cityData[value][0]);
+  };
   const toggleDropdown = () => {
     setDropdownToggle(!dropDownToggle);
   };
@@ -41,6 +45,14 @@ const Header = () => {
     navigate("/");
   };
 
+ 
+  const content = (
+    <div>
+      <p>Setting</p>
+      <p>Password</p>
+      <p>signout</p>
+    </div>
+  );
   return (
     <header id="site-header" className="fixed-top">
       <div className="container">
@@ -253,9 +265,11 @@ const Header = () => {
                   Executive Search
                 </NavLink>
               </li>
-              {/* <li className="nav-item mt-3"><NavLink><i className="las la-bell text-white fs-23 mr-1 ml-1"></i></NavLink></li>
+               <li className="nav-item mt-3"><NavLink> </NavLink></li>
               
-              <li className="nav-item mt-3"><NavLink><i className="la la-user-tie text-white fs-23 mr-1 ml-1"></i>User Name</NavLink></li> */}
+              <li className="nav-item mt-2 account"> <Popover content={content}  trigger="hover">
+              <div><i class="fa tab-img la la-user-tie"></i></div>
+    </Popover></li> 
               {getToken() ? (
                 
                 <li className="nav-item">

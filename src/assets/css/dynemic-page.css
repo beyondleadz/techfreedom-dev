@@ -6579,9 +6579,13 @@ cursor: pointer;
 .quickselectioninput{
   width: 50px;
   border:1px solid #ddd;
-  text-align: center;
-}
+  text-align: center;     width: 40px;
+  padding: 0;
 
+}
+.quick-btn{padding: 0 10px;
+  height: 24px;}
+  
 .buttons-container-top{
   display: flex;
   align-items: center;
