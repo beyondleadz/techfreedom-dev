@@ -5,6 +5,11 @@ import Layout from "../layout/Layout";
 import CompanyLeft from "../components/company-search/CompanyLeft";
 import CompanyContent from "../components/company-search/CompanyContent";
 import CompanyNavigation from "../components/company-search/CompanyNavigation";
+
+import ExecutiveLeft from "../components/executive-search/ExecutiveLeft";
+import ExecutiveContent from "../components/executive-search/ExecutiveContent";
+import ExecutiveNavigation from "../components/executive-search/ExecutiveNavigation";
+
 import "../assets/css/dynemic-page.css";
 const ExecutiveSearch = ({ tab }) => {
   const [activeTab, setActiveTab] = useState(tab);
@@ -14,7 +19,7 @@ const ExecutiveSearch = ({ tab }) => {
   }, [tab]);
 
   const onChange = (key) => {
-    //console.log(key);
+    console.log(key);
     setActiveTab(key);
   };
 
@@ -50,13 +55,13 @@ const ExecutiveSearch = ({ tab }) => {
       ),
       children: (
         <div>
-          <CompanyNavigation />
+          <ExecutiveNavigation />
           <div id="wrapper">
             <div className="leftmenu">
-              <CompanyLeft />
+              <ExecutiveLeft />
             </div>
             <div className="contentbody shadow">
-              <CompanyContent />
+              <ExecutiveContent />
             </div>
           </div>
         </div>
@@ -90,9 +95,9 @@ const ExecutiveSearch = ({ tab }) => {
       <Layout>
         <div>
           <h3 className="pagetitle">
-            {activeTab === 1
+            {activeTab == 1
               ? "Search Companies"
-              : activeTab === 2
+              : activeTab == 2
               ? "Search Executive"
               : "Search Leads"}
           </h3>

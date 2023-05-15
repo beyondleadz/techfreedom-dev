@@ -9,6 +9,9 @@ import CompanyNavigation from "../components/company-search/CompanyNavigation";
 import TrialModal from "../common/TrialModal";
 import {emptyErrorObj} from '../actionCreator/companyListingActionCreater'
 import "../assets/css/dynemic-page.css";
+import ExecutiveNavigation from "../components/executive-search/ExecutiveNavigation";
+import ExecutiveLeft from "../components/executive-search/ExecutiveLeft";
+import ExecutiveContent from "../components/executive-search/ExecutiveContent";
 const CompanySearch = ({ tab }) => {
   const [activeTab, setActiveTab] = useState(tab);
   const [isApiFailed, setIsApiFailed] = useState(false);
@@ -64,13 +67,13 @@ const CompanySearch = ({ tab }) => {
       ),
       children: (
         <div>
-          <CompanyNavigation />
+          <ExecutiveNavigation />
           <div id="wrapper">
             <div className="leftmenu">
-              <CompanyLeft />
+              <ExecutiveLeft />
             </div>
             <div className="contentbody shadow">
-              <CompanyContent />
+              <ExecutiveContent />
             </div>
           </div>
         </div>
@@ -109,9 +112,9 @@ const CompanySearch = ({ tab }) => {
       <Layout>
         <div>
           <h3 className="pagetitle">
-            {parseInt(activeTab) === 1
+            {parseInt(activeTab) == 1
               ? "Search Companies"
-              : parseInt(activeTab) === 2
+              : parseInt(activeTab) == 2
               ? "Search Executive"
               : "Search Leads"}
           </h3>

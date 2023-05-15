@@ -10,11 +10,16 @@ import {
   createCompanySearchPayload,
   getCompanyList,
   saveAdvancedSelectedFilters,
-} from "../../actionCreator/companyListingActionCreater";
+  saveExecutiveSearchList,
+  getExecutiveTagList,
+  getExecutiveFunctionList,
+  getExecutiveLevelList
+} from "../../actionCreator/executiveListingActionCreater";
 import AdvancedFilterModel from "./AdvancedFilterModel";
 import AdvancedFilter from "./AdvancedFilter";
 import { LEFT_FILETERS_SIZE } from "../../config";
-const CompanyLeft = () => {
+import { getToken,getUserInfo } from "../../utils/utils";
+const ExecutiveLeft = () => {
   const dispatch = useDispatch();
   const [industryList, setIndustryList] = useState();
   const [companyTypeList, setCompanyTypeList] = useState();
@@ -23,6 +28,10 @@ const CompanyLeft = () => {
   const [location, setLocation] = useState();
   const [citiesList, setCitiesList] = useState();
   const [selectedState, setSelectedState] = useState([]);
+  const [searchList, setSearchList] = useState();
+  const [companyTagList, setCompanyTagList] = useState();
+  const [executiveFunctionList, setExecutiveFunctionList] = useState();
+  const [executiveLevelList, setExecutiveLevelList] = useState();
   const [open, setopen] = useState({
     country: false,
     state: false,
@@ -40,16 +49,27 @@ const CompanyLeft = () => {
     open: false,
     key: 0,
   });
-  const companyFilterList = useSelector((state) => state.companyListingReducer);
-
+  const companyFilterList = useSelector((state) => state.executiveListingReducer);
+  const userAccountInfo=useSelector((state)=>state.CommonReducer.accountInfo);
   useMemo(() => {
     /*?page=0&size=10&sort=id,asc */
     dispatch(getIndustryList());
     dispatch(getLocation());
     dispatch(getCompanyTypeList());
     dispatch(getEmployeeCountList());
-    dispatch(getRevenuerangeList());
+    dispatch(getRevenuerangeList());   
+    dispatch(getExecutiveFunctionList());
+    dispatch(getExecutiveLevelList());
   }, []);
+
+  useMemo(() => {   
+    //console.log(Object.keys(userAccountInfo)?.length,'Object.keys(userAccountInfo)?.length') 
+    if(Object.keys(getUserInfo()).length){
+      const {id}= getUserInfo();
+      dispatch(saveExecutiveSearchList(id));
+      dispatch(getExecutiveTagList(id));
+    }
+  }, [userAccountInfo]);
 
   useEffect(() => {
     setIndustryList(companyFilterList?.industryList);
@@ -58,6 +78,10 @@ const CompanyLeft = () => {
     setRevenuerangeList(companyFilterList?.revenueRangeList);
     setLocation(companyFilterList?.geoLocation);
     setCitiesList(companyFilterList?.geoLocation);
+    setSearchList(companyFilterList?.saveExecutiveSearchList);
+    setCompanyTagList(companyFilterList?.companyTagList);
+    setExecutiveFunctionList(companyFilterList?.executiveFunctionList);
+    setExecutiveLevelList(companyFilterList?.executiveLevelList);
   }, [companyFilterList]);
 
   useEffect(() => {
@@ -81,53 +105,6 @@ const CompanyLeft = () => {
       selectedState.length ? filteredObj : companyFilterList?.geoLocation
     );
   }, [selectedState]);
-
-  const filterKeyword = (type, ele) => {
-    if (type === "industry") {
-      const filterdData = companyFilterList?.industryList.filter((item) =>
-        item?.name.toLowerCase().includes(ele.target.value.toLowerCase())
-      );
-      setIndustryList(filterdData);
-    } else if (type === "revenuerange") {
-      const filterdData1 = companyFilterList?.revenueRangeList.filter((item) =>
-        item?.name.toLowerCase().includes(ele.target.value.toLowerCase())
-      );
-      setRevenuerangeList(filterdData1);
-    } else if (type === "employeecount") {
-      const filterdData2 = companyFilterList?.employeeCountList.filter((item) =>
-        item?.name.toLowerCase().includes(ele.target.value.toLowerCase())
-      );
-      setEmployeeCountList(filterdData2);
-    } else if (type === "companytype") {
-      const filterdData3 = companyFilterList?.companyTypeList.filter((item) =>
-        item?.name.toLowerCase().includes(ele.target.value.toLowerCase())
-      );
-      setCompanyTypeList(filterdData3);
-    } else if (type === "city") {
-      let filteredObj = _.cloneDeep(location);
-      const filteredCities = citiesList?.cities?.filter((item) => {
-        return item?.name
-          .toLowerCase()
-          .includes(ele.target.value.toLowerCase());
-      });
-      filteredObj = {
-        ...filteredObj,
-        cities: filteredCities,
-      };
-      setLocation(filteredObj);
-    } else if (type === "state") {
-      let filteredObj = _.cloneDeep(location);
-      const filteredStates = companyFilterList?.geoLocation?.states?.filter(
-        (item) =>
-          item?.name.toLowerCase().includes(ele.target.value.toLowerCase())
-      );
-      filteredObj = {
-        ...filteredObj,
-        states: filteredStates,
-      };
-      setLocation(filteredObj);
-    }
-  };
 
   const openMenu = (menu) => {
     setopen({
@@ -255,4 +232,4 @@ const CompanyLeft = () => {
     </>
   );
 };
-export default CompanyLeft;
+export default ExecutiveLeft;

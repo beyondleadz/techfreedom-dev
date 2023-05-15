@@ -9,6 +9,7 @@ import popupImg from "../../assets/images/free-user-login-prompt.jpg.jpeg";
 import TrialModal from "../../common/TrialModal";
 
 import {
+  getExecutiveEmployeeList,
   getCompanyList,
   savePaginationValues,
   saveAdvancedSelectedFilters,
@@ -17,47 +18,39 @@ import {
   saveSearchList,
   downloadCompanyList,
   createGroupCompanyTag,
-} from "../../actionCreator/companyListingActionCreater";
+} from "../../actionCreator/executiveListingActionCreater";
 import Loader from "../loader";
 import { getToken,getUserInfo } from "../../utils/utils";
 
-const CompanyContent = () => {
+const ExecutiveContent = () => {
   const { Search, TextArea } = Input;
   const columns = [
     {
-      title: <div className="companyname">Company Name</div>,
+      title: <div className="companyname">Executive Name</div>,
       dataIndex: "name",
-      render: (record, row) => {
-        return (
-          <div className="namecol" onClick={() => getDetails(row.key)}>
-            <div className="logo">
-              <img src={record?.companyLogoUrl || defaultLogo} />
-            </div>
-            <span className="cname">
-              {record?.name}
-            </span>
-          </div>
-        );
-      },
       fixed: "left",
     },
     {
-      title: "Industry",
-      dataIndex: "industry",
+      title: "Company",
+      dataIndex: "company",
     },
     {
-      title: "Location",
-      dataIndex: "location",
-      className: "location",
+      title: "Designation",
+      dataIndex: "designation",
     },
     {
-      title: "No. of Employees",
-      dataIndex: "totalEmployees",
-      className: "totalEmployees",
+      title: "Email",
+      dataIndex: "email",
+      className: "email",
     },
     {
-      title: "Phone Number",
+      title: "Phone",
       dataIndex: "phone",
+      className: "phone",
+    },
+    {
+      title: "Mobile",
+      dataIndex: "mobile",
     },
     {
       title: "Social",
@@ -68,6 +61,8 @@ const CompanyContent = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [companyList, setCompanyList] = useState();
+  const [executiveEmployeeList, setExecutiveEmployeeList] = useState();
+
   const [showModal, setShowModal] = useState(false);
   const [showTagModal, setShowTagModal] = useState(false);
   
@@ -81,21 +76,21 @@ const CompanyContent = () => {
     description: "",
     tagError: "",
   });
-  const companyFilterList = useSelector((state) => state.companyListingReducer);
+  const companyFilterList = useSelector((state) => state.executiveListingReducer);
   const companySelectedFilterList = useSelector(
-    (state) => state.companyListingReducer.selectedFilters
+    (state) => state.executiveListingReducer.selectedFilters
   );
   const loading = useSelector((state) => state.CommonReducer.loading);
   const paginationValue = useSelector(
-    (state) => state.companyListingReducer.paginationValue
+    (state) => state.executiveListingReducer.paginationValue
   );
   const selectedRecords = useSelector(
-    (state) => state.companyListingReducer.selectedRecords
+    (state) => state.executiveListingReducer.selectedRecords
   );
   
 
   useMemo(() => {
-    dispatch(getCompanyList({}, paginationValue));
+    dispatch(getExecutiveEmployeeList({}, paginationValue));
   }, []);
 
   const renderSocialLinks = (socialLinks) => {
@@ -124,16 +119,18 @@ const CompanyContent = () => {
 
   useEffect(() => {
     let data = [];
-    companyFilterList?.companyList?.forEach((record) => {
+    companyFilterList?.executiveEmployeeList?.forEach((record) => {
       data = [
         ...data,
         {
           key: record.id,
-          name: record,
-          industry: record?.industry?.name,
+          name: record.fullname,
+          company: record?.company?.name,
           location: `${record?.city ? record?.city + ',' : ""} ${record?.state ? record?.state : ''}`,
-          totalEmployees:record?.totalEmployees,
-          phone: record.phoneNo,
+          email:record?.emailId,
+          phone: record?.company?.phoneNo,
+          mobile:record.phoneNo,
+          designation:record?.title,
           social: renderSocialLinks(record?.socialLinks)       
         },
       ];
@@ -141,7 +138,7 @@ const CompanyContent = () => {
 
     // const data =
 
-    setCompanyList(data);
+    setExecutiveEmployeeList(data);
   }, [companyFilterList]);
 
   const rowSelection = {
@@ -177,7 +174,7 @@ const CompanyContent = () => {
       searchKeyword: val,
     };
     dispatch(saveAdvancedSelectedFilters(payload));
-    dispatch(getCompanyList(payload, paginationValue));
+    dispatch(getExecutiveEmployeeList(payload, paginationValue));
   };
 
   const onPageChange = (page, pageSize) => {
@@ -186,7 +183,7 @@ const CompanyContent = () => {
       end: pageSize,
     };
     dispatch(savePaginationValues(pageValues));
-    dispatch(getCompanyList(companySelectedFilterList, pageValues));
+    dispatch(getExecutiveEmployeeList(companySelectedFilterList, pageValues));
   };
 
   const getDetails = (id) => {
@@ -337,7 +334,7 @@ const CompanyContent = () => {
 
               </ul>
                       <Search
-                        placeholder="Product & Services"
+                        placeholder="Search By Designation"
                         allowClear
                         onSearch={onSearch}
                         style={{ width: 200 }}
@@ -366,7 +363,7 @@ const CompanyContent = () => {
                               ...rowSelection,
                             }}
                             columns={columns}
-                            dataSource={companyList}
+                            dataSource={executiveEmployeeList}
                             pagination={{
                               responsive: true,
                               total: companyFilterList?.totalCount,
@@ -473,4 +470,4 @@ const CompanyContent = () => {
   );
 };
 
-export default CompanyContent;
+export default ExecutiveContent;

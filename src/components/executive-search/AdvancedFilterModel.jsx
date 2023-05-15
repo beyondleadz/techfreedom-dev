@@ -5,17 +5,17 @@ import { Modal } from "antd";
 import {
   saveAdvancedSelectedFilters,
   getCompanyList,
-} from "../../actionCreator/companyListingActionCreater";
+} from "../../actionCreator/executiveListingActionCreater";
 import { useSelector, useDispatch } from "react-redux";
 
 const AdvancedFilterModel = ({ setOpenAdvancedModel, openAdvancedModel,showNumberofRecords }) => {
   const dispatch = useDispatch();
-  const companyFilterList = useSelector((state) => state.companyListingReducer);
+  const companyFilterList = useSelector((state) => state.executiveListingReducer);
 
   const handleOk = () => {
     setOpenAdvancedModel({ open: false, key: 0 });
   };
-  //const companyPaginationValue = useSelector((state) => state.companyListingReducer.paginationValue);
+  //const companyPaginationValue = useSelector((state) => state.executiveListingReducer.paginationValue);
 
   const handleCancel = () => {
     dispatch(
@@ -27,6 +27,8 @@ const AdvancedFilterModel = ({ setOpenAdvancedModel, openAdvancedModel,showNumbe
         selectedCompanytype: [],
         selectedEmployeecount: [],
         selectedRevenuerange: [],
+        selectedSavedSearch:[],
+        selectedCompanyTag:[],
       })
     );
     setOpenAdvancedModel({ open: false, key: 0 });
@@ -35,7 +37,7 @@ const AdvancedFilterModel = ({ setOpenAdvancedModel, openAdvancedModel,showNumbe
   return (
     <>
       <Modal
-        width={"80%"}
+        width={"55%"}
         // bodyStyle={{ overflowY: 'auto', maxHeight: 'calc(100vh - 230px)' }}
         wrapClassName="advancedfilter"
         title="Advanced Filter"

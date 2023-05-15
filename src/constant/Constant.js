@@ -20,4 +20,10 @@ export const getCompanyTagApiUrl = '/api/company-tags';
 export const postRelavantCompanyApiUrl = '/api/user-prefered-records';
 export const getRelavantCompanyApiUrl = '/api/user-prefered-records';
 export const getClientLeadsUrl = "/api/client-leads";
+export const groupCompanyTagUrl = '/api/company-tags';
+export const executiveEmployeeListingApiUrl="/api/employees";
+export const getExecutiveTagApiUrl = '/api/employee-tags';
+export const getExecutiveFunctionApiUrl = '/api/executive-functions';
+export const getExecutiveLevelApiUrl = '/api/executive-levels';
+
 

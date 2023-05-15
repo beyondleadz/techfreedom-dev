@@ -28,6 +28,8 @@ import {
   SAVE_SEARCH_LIST_ERROR,
   COMPANY_TAG_LIST,
   COMPANY_TAG_LIST_ERROR,
+  GROUP_COMPANY_TAG,
+  GROUP_COMPANY_TAG_ERROR,
 } from "../actionType/companyListingType";
 import { PAGE_LENGTH } from "../config";
 
@@ -68,6 +70,7 @@ const initialState = {
   selectedRecords: [],
   download: "",
   saveSearch: "",
+  groupCompanyTag: "",
   errObj: {},
 };
 
@@ -105,6 +108,8 @@ const CompanyListingReducer = (state = initialState, action) => {
       return { ...state, saveSearchList: payload };
     case COMPANY_TAG_LIST:
       return { ...state, companyTagList: payload };
+    case GROUP_COMPANY_TAG:
+      return { ...state, groupCompanyTag: payload };
 
     case INDUSTRY_LIST_ERROR:
       return { ...state, errObj: { ...state.errObj, ...payload } };
@@ -134,6 +139,9 @@ const CompanyListingReducer = (state = initialState, action) => {
       return { ...state, errObj: { ...state.errObj, ...payload } };
     case COMPANY_TAG_LIST_ERROR:
       return { ...state, errObj: { ...state.errObj, ...payload } };
+    case GROUP_COMPANY_TAG_ERROR:
+      return { ...state, errObj: { ...state.errObj, ...payload } };
+
     case EMPTY_ERROR_OBJ_LISTING:
       return { ...state, errObj: payload };
     default:

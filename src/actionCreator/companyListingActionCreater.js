@@ -23,6 +23,8 @@ import {
   SAVE_SEARCH_LIST_ERROR,
   COMPANY_TAG_LIST,
   COMPANY_TAG_LIST_ERROR,
+  GROUP_COMPANY_TAG,
+  GROUP_COMPANY_TAG_ERROR,
 } from "../actionType/companyListingType";
 import {
   getAuthMethod,
@@ -39,6 +41,7 @@ import {
   saveSearch,
   saveSearchListApiUrl,
   getCompanyTagApiUrl,
+  groupCompanyTagUrl,
 } from "../constant/Constant";
 import { dispatchStatus } from "./commonActionCreator";
 import { Geolocation } from "../constant/Geolocation";
@@ -165,8 +168,9 @@ export const downloadCompanyList = (payload, urlSubstring) => (dispatch) => {
   // const url =  createPayload(payload,null,`${companyListingApiUrl}/${urlSubstring}`);
   let url = "";
   if (payload?.length) {
+    //console.log(payload,'payloadpayload')
     let selectedRecords = "id.in=";
-    payload?.forEach((id) => (selectedRecords += `${id},`));
+    payload?.forEach((obj) => (selectedRecords += `${obj.key},`));
     const removedLastComma = selectedRecords.substring(
       selectedRecords.lastIndexOf(","),
       0
@@ -225,6 +229,7 @@ export const selectedRow = (payload) => {
   };
 };
 
+
 export const saveSearchAction = (payload) => (dispatch) => {
   return postAuthMethod(saveSearch, payload)
     .then((res) => {
@@ -282,6 +287,27 @@ export const getCompanyTagList = (userId) => (dispatch) => {
         type: COMPANY_TAG_LIST_ERROR,
         payload:
           { [errEnum.COMPANY_TAG_LIST_ERROR]: err.response.data[ErrKey] } ||
+          "Error Occured",
+      });
+    });
+};
+
+
+export const createGroupCompanyTag = (payload) => (dispatch) => {
+  console.log(payload, "payloadpayload");
+  return postAuthMethod(groupCompanyTagUrl, payload)
+    .then((res) => {
+      dispatch({
+        type: GROUP_COMPANY_TAG,
+        payload: res.data,
+      });
+      dispatch(getCompanyTagList(payload?.userId));
+    })
+    .catch((err) => {
+      dispatch({
+        type: GROUP_COMPANY_TAG_ERROR,
+        payload:
+          { [errEnum.GROUP_COMPANY_TAG_ERROR]: err.response.data[ErrKey] } ||
           "Error Occured",
       });
     });
