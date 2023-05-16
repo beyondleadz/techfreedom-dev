@@ -119,7 +119,7 @@ const KeyExecutives = () => {
             )}
           </>
         ) : (
-          <Button
+          <span
             // style={{ height: "auto" }}
             className=" btn mobile"
             // className="keyexebtn d-none d-sm-inline-block small btn btn-primary text-black"
@@ -127,7 +127,7 @@ const KeyExecutives = () => {
           >
             {/* <i class="las la-mobile fs-12  pr-1"></i>
             VIEW */}
-          </Button>
+          </span>
         );
 
         // return (

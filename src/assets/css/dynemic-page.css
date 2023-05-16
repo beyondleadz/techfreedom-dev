@@ -7105,7 +7105,7 @@ color: orange;
       border-color: #fff;
        box-shadow: 0 0px 0 ;}   */
   .mobile {
-    background: url(../images/mobile1-icon.svg) no-repeat 0px 0px; width:20px; background-size: 100%;
+    background: url(../images/mobile1-icon.svg) no-repeat 0px 0px; width:20px;  height:28px; background-size: 100%;
   }
   .mobile-open {
     background: url(../images/mobile-viewed-icon.svg) no-repeat 0px 0px; width:18px; background-size: 100%;
