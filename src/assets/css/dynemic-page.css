@@ -7104,6 +7104,9 @@ color: orange;
       background-color: #ffffff;
       border-color: #fff;
        box-shadow: 0 0px 0 ;}   */
+       .ant-table-wrapper .ant-table {font-size: 12px;}
+      
+       .ant-table-wrapper .ant-table-thead >tr>th{font-size: 12px; font-weight: 700;}
   .mobile {
     background: url(../images/mobile1-icon.svg) no-repeat 0px 0px; width:20px;  height:28px; background-size: 100%;
   }

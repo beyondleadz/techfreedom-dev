@@ -48,7 +48,7 @@ const KeyExecutives = () => {
     //   fixed: "left",
     // },
     {
-      title: "Executive name",
+      title: "Executive Name",
       dataIndex: "fullname",
       fixed: "left",
     },
@@ -69,7 +69,7 @@ const KeyExecutives = () => {
             ></h4>
             {showEmail[row.id] && (
               <>
-                <span className="emailvalue pl-1 fs-13">{text}</span>
+                <span className="emailvalue pl-1 fs-12">{text}</span>
                 <span
                   title="copy email"
                   className="  fs-17 btn  la  la-copy text-black"
@@ -109,7 +109,7 @@ const KeyExecutives = () => {
             </span>
             {showPhone[row.id] && record?.phoneNo && (
               <>
-                <span className="phoneValue fs-13 pl-1">{record?.phoneNo}</span>
+                <span className="phoneValue fs-12 pl-1">{record?.phoneNo}</span>
                 <span
                   title="copy phone"
                   className="  fs-17 btn  la  la-copy text-black"
