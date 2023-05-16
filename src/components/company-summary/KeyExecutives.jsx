@@ -99,12 +99,13 @@ const KeyExecutives = () => {
         return getToken() ? (
           <>
             <Button
-              style={{ height: "auto" }}
-              className="keyexebtn d-none d-sm-inline-block small btn btn-primary text-black"
+              // style={{ height: "auto" }}
+              // className="keyexebtn d-none d-sm-inline-block small btn btn-primary text-black"
+              className=" btn mobile-open"
               onClick={() => setShowPhone({ ...showPhone, [row.id]: true })}
             >
-              <i class="las la-mobile fs-12  pr-1"></i>
-              VIEW
+              {/* <i class="las la-mobile fs-12  pr-1"></i> */}
+              {/* VIEW */}
             </Button>
             {showPhone[row.id] && record?.phoneNo && (
               <>
@@ -119,12 +120,13 @@ const KeyExecutives = () => {
           </>
         ) : (
           <Button
-            style={{ height: "auto" }}
-            className="keyexebtn d-none d-sm-inline-block small btn btn-primary text-black"
+            // style={{ height: "auto" }}
+            className=" btn mobile"
+            // className="keyexebtn d-none d-sm-inline-block small btn btn-primary text-black"
             onClick={() => openInfoModel()}
           >
-            <i class="las la-mobile fs-12  pr-1"></i>
-            VIEW
+            {/* <i class="las la-mobile fs-12  pr-1"></i>
+            VIEW */}
           </Button>
         );
 
