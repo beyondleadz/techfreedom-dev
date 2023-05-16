@@ -146,7 +146,7 @@ const CompanyNavigation = () => {
           </div>
           <Button
             type="primary"
-            className=" fs-12 d-sm-inline-block mr-1"
+            className=" fs-12 d-sm-inline-block mr-1 quick-btn"
             onClick={onClickQuickSelection}
           >
             <i className="fas fs-12 fa-arrow-right"></i>
