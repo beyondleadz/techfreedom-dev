@@ -6585,9 +6585,10 @@ cursor: pointer;
   padding: 0;
 
 }
-.quick-btn{padding: 0 10px;
+.buttons-container-top .quick-btn{padding: 0 10px;
   height: 24px; background-color:#5d44ff;}
-
+ .buttons-container-top .quick-btn:hover{padding: 0 10px;
+  height: 24px; background-color:#fdc401;}
 .buttons-container-top{
   display: flex;
   align-items: center;

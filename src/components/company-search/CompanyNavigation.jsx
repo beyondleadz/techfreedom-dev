@@ -130,7 +130,7 @@ const CompanyNavigation = () => {
           <div className=" fs-12 d-sm-inline-block mr-1">
             <Input
               name="start"
-              className="quickselectioninput"
+              className="quickselectioninput btn-outline-grey"
               maxLength={2}
               onChange={onChangeQuickSelection}
             />
@@ -140,7 +140,7 @@ const CompanyNavigation = () => {
             <Input
               name="end"
               maxLength={2}
-              className="quickselectioninput"
+              className="quickselectioninput btn-outline-grey"
               onChange={onChangeQuickSelection}
             />
           </div>
