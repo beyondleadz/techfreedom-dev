@@ -6318,6 +6318,16 @@ padding:5px
  .ant-tabs-nav{
  width: 60%;
  }
+ .ant-tabs-card >.ant-tabs-nav> .ant-tabs-tab-active{color: #5d44ff;}
+ .ant-tabs> .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {color: #5d44ff;}
+ .ant-tabs-card >.ant-tabs-nav >.ant-tabs-tab-active{color: #5d44ff;}
+ .ant-tabs-card >.ant-tabs .ant-tabs-tab-btn:active{color: #5d44ff;}
+ .ant-tabs-card >.ant-tabs-nav .ant-tabs-tab .ant-tabs-tab-btn:active{
+  color: #5d44ff;
+  }
+ .ant-tabs-nav .ant-tabs-tab .ant-tabs-tab-btn:hover{
+  color: #5d44ff;
+  }
 
  .selectedlabel::after{
   font-size: 14px;
@@ -6791,7 +6801,7 @@ cursor: pointer;
   #myTabjustified li{
     white-space:nowrap;
   }
-
+ 
   #myTabjustified::-webkit-scrollbar {
     display: none;
 }
