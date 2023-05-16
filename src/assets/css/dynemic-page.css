@@ -6445,7 +6445,7 @@ cursor: pointer;
 .tab-img{    display: inline;
   padding: 0.2rem 0.5rem;
   font-size: 22px;
-  background-size: 75%; color: #fff; font-weight: bolder;}
+  background-size: 75%; color: #000; font-weight: bolder;}
 /* background: url(../images/companies-icon.png) no-repeat 0px 0px;*/
 /* background: url(../images/executive-icon.png) no-repeat 0px 0px; */
 /* background: url(../images/leads-icon.png) no-repeat 0px 0px; */
