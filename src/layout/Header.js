@@ -47,10 +47,10 @@ const Header = () => {
 
  
   const content = (
-    <div>
-      <p>Setting</p>
-      <p>Password</p>
-      <p>signout</p>
+    <div className="fontf">
+      <p className="fs-12"><i class=" pop-img fa fa-wrench"></i>Setting</p>
+      <p className="fs-12"><i class=" pop-img fa fa-lock"></i>Password</p>
+      <p className="fs-12"><i class=" pop-img fa fa-sign-out-alt"></i>Sign out</p>
     </div>
   );
   return (

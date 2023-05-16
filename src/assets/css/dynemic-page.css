@@ -6436,13 +6436,16 @@ cursor: pointer;
   background-color: #eee;
   border:1px solid #40d6ee;
 }
-
-
+.fontf{font-family: sans-serif;}
+.pop-img{    display: inline;
+  padding: 0.2rem 0.5rem;
+  font-size: 14px;
+  color: #5d44ff;}
 
 .tab-img{    display: inline;
   padding: 0.2rem 0.5rem;
   font-size: 22px;
-  background-size: 75%; color: #5d44ff}
+  background-size: 75%; color: #fff; font-weight: bolder;}
 /* background: url(../images/companies-icon.png) no-repeat 0px 0px;*/
 /* background: url(../images/executive-icon.png) no-repeat 0px 0px; */
 /* background: url(../images/leads-icon.png) no-repeat 0px 0px; */
@@ -6585,7 +6588,7 @@ cursor: pointer;
 }
 .quick-btn{padding: 0 10px;
   height: 24px;}
-  
+
 .buttons-container-top{
   display: flex;
   align-items: center;
