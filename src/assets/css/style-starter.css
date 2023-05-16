@@ -2979,10 +2979,12 @@ fieldset:disabled a.btn {
   color: #fff;
 }
 .account > div {
-  color: #fff;
-  background-color: #ffc107;
-  border-color: #ffc107;
-  padding-left: 10px;
+  /* color: #fff;
+  background-color: #ffc107; */
+  background: url(../images/user-icon.svg) no-repeat 0px 0px;
+  background-size: 100%;
+  /* border-color: #ffc107; */
+  padding-left: 10px; 
   border-radius: 100%;
     height: 2.5rem;
     width: 2.5rem;
@@ -2994,7 +2996,7 @@ fieldset:disabled a.btn {
     line-height: 1.5;
 }
 
-.account > div:hover {
+/* .account > div:hover {
   color: #fff;
   background-color: #ffc107;
   border-color: #ffc107;
@@ -3008,7 +3010,7 @@ fieldset:disabled a.btn {
     justify-content: center;
     padding: 0.25rem 0.5rem;
     line-height: 1.5;
-}
+} */
 
 .btn-orange:focus,
 .btn-orange.focus {
@@ -8681,7 +8683,7 @@ button.bg-dark:focus {
 
 .mt-3,
 .my-3 {
-  margin-top: 1rem ;
+  margin-top: 1.1rem ;
 }
 
 .mr-3,

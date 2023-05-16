@@ -6594,7 +6594,7 @@ cursor: pointer;
   justify-content: flex-end;
   flex: 1;
   white-space: nowrap;
-  margin: 0 20px; line-height: 12px;
+  margin: 0 35px; line-height: 12px;
 }
 .advancedfilter .ant-modal-title{
   font-size: 18px;
@@ -7074,11 +7074,16 @@ color: orange;
    margin-top: 0em;
   /* margin-top: 0.8em; */
 }
-.b-emails {
-	background: url(../images/b-email.png) no-repeat 0px 0px;
+.tabs-tab:hover {
+  color: #5d44ff;
 }
-.b-emails-open {
-	background: url(../images/b-email-open.png) no-repeat 0px 0px;}
+.bell {
+	background: url(../images/bell-icon.svg) no-repeat 0px 0px; 
+  background-size: 100%;
+    padding: 10px 12px;
+}
+.user-icon {
+	background: url(../images/user-icon.svg) no-repeat 0px 0px;}
 .emails {
 	background: url(../images/email-icon.svg) no-repeat 0px 0px; width:30px; height: 19px; background-size: 100%;
 }

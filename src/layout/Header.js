@@ -273,10 +273,10 @@ const Header = () => {
                   Leads
                 </NavLink>
               </li>
-               <li className="nav-item mt-3"><NavLink> </NavLink></li>
+               <li className="nav-item mt-3"><NavLink><i className="bell ml-1"></i> </NavLink></li>
               
               <li className="nav-item mt-2 account"> <Popover content={content}  trigger="hover">
-              <div><i class="fa fs-23 pop-img la la-user-tie"></i></div>
+              <div></div>
     </Popover></li> 
               {getToken() ? (
                 
