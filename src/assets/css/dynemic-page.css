@@ -6436,7 +6436,7 @@ cursor: pointer;
   background-color: #eee;
   border:1px solid #40d6ee;
 }
-.fontf{font-family: sans-serif;}
+.fontf > p{font-family: sans-serif;  vertical-align:middle;}
 .pop-img{    display: inline;
   padding: 0.2rem 0.5rem;
   color: #000;}
@@ -6586,7 +6586,7 @@ cursor: pointer;
 
 }
 .quick-btn{padding: 0 10px;
-  height: 24px;}
+  height: 24px; background-color:#5d44ff;}
 
 .buttons-container-top{
   display: flex;
