@@ -7096,14 +7096,14 @@ color: orange;
 .user-icon {
 	background: url(../images/user-icon.svg) no-repeat 0px 0px;}
 
-  .ant-table-cell .ant-btn-default {
+  /* .ant-table-cell .ant-btn-default {
     background-color: #ffffff;
     border-color: #fff;
      box-shadow: 0 0px 0 ;}  
      .ant-table-cell .ant-btn-default:hover {
       background-color: #ffffff;
       border-color: #fff;
-       box-shadow: 0 0px 0 ;}  
+       box-shadow: 0 0px 0 ;}   */
   .mobile {
     background: url(../images/mobile1-icon.svg) no-repeat 0px 0px; width:20px; background-size: 100%;
   }
