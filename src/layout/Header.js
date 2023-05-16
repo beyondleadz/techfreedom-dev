@@ -119,7 +119,7 @@ const Header = () => {
                     className="selected-field"
                     onClick={() => setValue("Executive")}
                   >
-                    <i class="fa fs-14 pop-img la la-user-tie"></i>Executive
+                    <i class="fa fs-16 pop-img la la-user-tie"></i>Executive
                   </li>
                 </ul>
               </div>
