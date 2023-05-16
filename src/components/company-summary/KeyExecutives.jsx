@@ -98,7 +98,7 @@ const KeyExecutives = () => {
       render: (record, row) => {
         return getToken() ? (
           <>
-            <Button
+            <span
               // style={{ height: "auto" }}
               // className="keyexebtn d-none d-sm-inline-block small btn btn-primary text-black"
               className=" btn mobile-open"
@@ -106,7 +106,7 @@ const KeyExecutives = () => {
             >
               {/* <i class="las la-mobile fs-12  pr-1"></i> */}
               {/* VIEW */}
-            </Button>
+            </span>
             {showPhone[row.id] && record?.phoneNo && (
               <>
                 <span className="phoneValue fs-13 pl-1">{record?.phoneNo}</span>
