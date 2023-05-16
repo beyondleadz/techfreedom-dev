@@ -48,8 +48,8 @@ const Header = () => {
  
   const content = (
     <div className="fontf">
-      <p className="fs-12"><i class=" pop-img las la-cog"></i>Setting</p>
-      <p className="fs-12"><i class=" pop-img las la-user-lock"></i>Password</p>
+      <p className="fs-12"><i class=" fs-14 pop-img las la-cog"></i>Setting</p>
+      <p className="fs-12"><i class="fs-14 pop-img las la-user-lock"></i>Password</p>
       <p className="fs-12"><i class=" pop-img las la-sign-out-alt"></i>Sign out</p>
     </div>
   );
@@ -276,7 +276,7 @@ const Header = () => {
                <li className="nav-item mt-3"><NavLink> </NavLink></li>
               
               <li className="nav-item mt-2 account"> <Popover content={content}  trigger="hover">
-              <div><i class="fa tab-img la la-user-tie"></i></div>
+              <div><i class="fa fs-23 pop-img la la-user-tie"></i></div>
     </Popover></li> 
               {getToken() ? (
                 

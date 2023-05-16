@@ -6439,13 +6439,12 @@ cursor: pointer;
 .fontf{font-family: sans-serif;}
 .pop-img{    display: inline;
   padding: 0.2rem 0.5rem;
-  font-size: 14px;
   color: #000;}
 
 .tab-img{    display: inline;
   padding: 0.2rem 0.5rem;
   font-size: 22px;
-  background-size: 75%; color: #000; font-weight: bolder;}
+  background-size: 75%; color: #5d44ff; font-weight: bolder;}
 /* background: url(../images/companies-icon.png) no-repeat 0px 0px;*/
 /* background: url(../images/executive-icon.png) no-repeat 0px 0px; */
 /* background: url(../images/leads-icon.png) no-repeat 0px 0px; */
@@ -6863,7 +6862,11 @@ cursor: pointer;
     background: #fff;
 }
 
-.selected-area ul.show{display: flex;}
+.selected-area ul.show{display: flex; background-color: #ffffff;
+  background-clip: padding-box;
+  border-radius: 8px;
+  box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+  padding: 12px}
 
 .selected-area ul li{
   padding: 5px 0;
