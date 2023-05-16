@@ -6436,10 +6436,10 @@ cursor: pointer;
   background-color: #eee;
   border:1px solid #40d6ee;
 }
-.fontf > p{font-family: sans-serif;  vertical-align:middle;}
+.fontf p{font-family: sans-serif;}
 .pop-img{    display: inline;
   padding: 0.2rem 0.5rem;
-  color: #000;}
+  color: #000; vertical-align: text-top;}
 
 .tab-img{    display: inline;
   padding: 0.2rem 0.5rem;
@@ -7074,13 +7074,13 @@ color: orange;
    margin-top: 0em;
   /* margin-top: 0.8em; */
 }
-.tabs-tab:hover {
+.ant-tab:hover {
   color: #5d44ff;
 }
 .bell {
 	background: url(../images/bell-icon.svg) no-repeat 0px 0px; 
   background-size: 100%;
-    padding: 10px 12px;
+    padding: 10px 14px;
 }
 .user-icon {
 	background: url(../images/user-icon.svg) no-repeat 0px 0px;}
