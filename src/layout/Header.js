@@ -50,7 +50,7 @@ const Header = () => {
     <div className="fontf">
       <p className="fs-12"><i class=" fs-14 pop-img las la-cog"></i>Setting</p>
       <p className="fs-12"><i class="fs-14 pop-img las la-user-lock"></i>Password</p>
-      <p className="fs-12"><i class=" fs-13 pop-img las la-sign-out-alt"></i>Sign out</p>
+      <p className="fs-12"><i class=" fs-14 pop-img las la-sign-out-alt"></i>Sign out</p>
     </div>
   );
   return (
