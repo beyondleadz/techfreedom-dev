@@ -265,6 +265,14 @@ const Header = () => {
                   Executive Search
                 </NavLink>
               </li>
+              <li className="nav-item">
+                <NavLink
+                  to="/leads"
+                  className="hvr-underline-from-center"
+                >
+                  Leads
+                </NavLink>
+              </li>
                <li className="nav-item mt-3"><NavLink> </NavLink></li>
               
               <li className="nav-item mt-2 account"> <Popover content={content}  trigger="hover">
