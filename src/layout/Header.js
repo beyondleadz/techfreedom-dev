@@ -113,13 +113,13 @@ const Header = () => {
                     className="selected-field"
                     onClick={() => setValue("Company")}
                   >
-                    Company
+                    <i class="fa fs-14 pop-img la la-building"></i>Company
                   </li>
                   <li
                     className="selected-field"
                     onClick={() => setValue("Executive")}
                   >
-                    Executive
+                    <i class="fa fs-14 pop-img la la-user-tie"></i>Executive
                   </li>
                 </ul>
               </div>

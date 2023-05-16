@@ -6449,7 +6449,7 @@ cursor: pointer;
 .fontf p{font-family: sans-serif;}
 .pop-img{    display: inline;
   padding: 0.2rem 0.5rem;
-  color: #000; vertical-align: text-top;}
+  color: #000; vertical-align: text-bottom;}
 
 .tab-img{    display: inline;
   padding: 0.2rem 0.5rem;
@@ -6459,9 +6459,9 @@ cursor: pointer;
 /* background: url(../images/executive-icon.png) no-repeat 0px 0px; */
 /* background: url(../images/leads-icon.png) no-repeat 0px 0px; */
 .la-share-square:before{color:#5c43fd;}
-.la-building:before {  
+/* .la-building:before {  
   color: #5000FF;
-}
+} */
 /* .la-user-tie:before {
     color: #5000FF;
   } */
