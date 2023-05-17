@@ -180,6 +180,12 @@ input[type="checkbox" i] {
   line-height: 12px;
 }
 
+.socialgroup{
+  position: absolute;
+  top: 0;
+  right: 0
+}
+
 .buttons-container1 {
   display: flex;
   align-items: center;
@@ -6758,10 +6764,10 @@ cursor: pointer;
     }
     .companyintro.setauto{height: auto;}
     .readmoreoverview{    position: absolute; color: orange; cursor: pointer;
-      right: 110px;
+      right: 0;
       /* right: 8px; */
       font-size: 12px;
-      bottom: -14px; z-index: 99;}
+  bottom: -20px; z-index: 99;}
         .orgnode {
           padding: 10px;
           border-radius: 5px;
@@ -7078,9 +7084,9 @@ color: orange;
 .namecol .logo img{width:100%; display: block;}
 .companyintro{
   /* padding-left: 45px; */
-    padding-right: 45px;
+    padding-right: 0;
     font-size: 12px;
-    
+    position: relative;
 }
 .iconemail {
    width: 30px;

@@ -335,30 +335,24 @@ const SummaryHeader = () => {
             </div>
           </div>
 
-          <div
+          <div style={{position:'relative'}}>
+            {/* <h3>Overview</h3> */}
+            <div 
             className={`companyintro ${
               isCompanyBoxHeightFixed ? "setauto" : ""
-            }`}
-          >
-            {/* <h3>Overview</h3> */}
-            <div>
-              <strong className="mr-2 fs-12">Description of business</strong>{" "}
+            }`}>
+              <strong className="mr-2 fs-12">Description of business</strong>
               {companyDetails?.introduction}
             </div>
-          </div>
-          {companyDetails?.introduction && (
+            {companyDetails?.introduction && (
             <span className="readmoreoverview" onClick={toggleCompanyHeight}>
               {isCompanyBoxHeightFixed ? "Hide..." : "Read more..."}
             </span>
           )}
-        </div>
+          </div>
+     
 
-        {/* <div className=" d-flex social-icons fs-12 ml-3 pl-2">
-          <span className="  mr-2">
-            {renderSocialLinks(companyDetails?.socialLinks)}
-          </span>
-        </div> */}
-        <div className="buttons-container" style={{"display":"block"}}>
+<div className="buttons-container socialgroup" style={{"display":"block"}}>
           <ul className="d-flex  m-mt">
             <li>
               <a
@@ -412,6 +406,14 @@ const SummaryHeader = () => {
             </li>
           </ul>
         </div>
+        </div>
+
+        {/* <div className=" d-flex social-icons fs-12 ml-3 pl-2">
+          <span className="  mr-2">
+            {renderSocialLinks(companyDetails?.socialLinks)}
+          </span>
+        </div> */}
+      
       </div>
 
       {openErrorForm && (
