@@ -15,6 +15,7 @@ import { useParams } from "react-router-dom";
 import NoDataFound from "../components/NoData";
 import "../assets/css/dynemic-page.css";
 import Loader from "../components/loader";
+import SimilarCompany from "../components/company-summary/similarCompany";
 const CompanySummary = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -70,10 +71,17 @@ const CompanySummary = () => {
               ]}
             />
             </div>
+            <div className="row col-md-12">
+            <div className="col-md-9">
             <SummaryHeader />
 
-            <div id="wrapper">
+            {/* <div id="wrapper"> */}
               <SummaryContent />
+            {/* </div> */}
+            </div>
+            <div className="col-md-3">
+              <SimilarCompany/>
+            </div>
             </div>
           </div>
         ) : (

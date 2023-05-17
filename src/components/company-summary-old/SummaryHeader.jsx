@@ -285,7 +285,7 @@ const SummaryHeader = () => {
   };
   //console.log(taggedCompany,"setTaggedCompanysetTaggedCompanysetTaggedCompany")
   return (
-    <div className=" navbar-light  mt-4" id="onScroll">
+    <div className=" navbar-light" id="onScroll">
       <div
         className={`headercontainer ${
           isCompanyBoxHeightFixed ? "setauto" : ""
@@ -358,7 +358,7 @@ const SummaryHeader = () => {
             {renderSocialLinks(companyDetails?.socialLinks)}
           </span>
         </div> */}
-        <div className="buttons-container" style={{"display":"block"}}>
+        <div className="buttons-container">
           <ul className="d-flex  m-mt">
             <li>
               <a

@@ -155,7 +155,7 @@ const SummaryHeader = () => {
         [key]: errorForm[key].value,
       };
     });
-    const { id,login } = getUserInfo();
+    const { id, login } = getUserInfo();
     const payload = {
       accountId: login,
       companyId: companyDetails?.id,
@@ -222,11 +222,11 @@ const SummaryHeader = () => {
         selectedEmpIds.lastIndexOf(","),
         0
       );
-      const payload={
-        empIds:selectedEmpIds,
-        department:selectedDepartment,
-        companyId:companyDetails?.id
-      }
+      const payload = {
+        empIds: selectedEmpIds,
+        department: selectedDepartment,
+        companyId: companyDetails?.id,
+      };
       dispatch(downloadExecutiveExl(payload));
     }
   };
@@ -285,80 +285,22 @@ const SummaryHeader = () => {
   };
   //console.log(taggedCompany,"setTaggedCompanysetTaggedCompanysetTaggedCompany")
   return (
-    <div className=" navbar-light  mt-4" id="onScroll">
-      <div
+
+        <div className="row">
+          <div className="headername col-md-12">
+            <div className="font-weight-bold mb-2 ">
+              <h3>{companyDetails?.name}</h3>
+            </div>
+
+
+            <div
         className={`headercontainer ${
           isCompanyBoxHeightFixed ? "setauto" : ""
         }`}
       >
-        <div className="logobox">
-          <img src={companyDetails?.companyLogoUrl} />
-        </div>
+      
 
-        <div className="descbox">
-          {/* <div className="fs-12">{companyDetails?.industry?.name}</div> */}
-          <div className="font-weight-bold mb-2 companyname">
-            <h3>{companyDetails?.name}</h3>
-            <div className="">
-              <span className="">
-                {renderSocialLinks(companyDetails?.socialLinks)}
-              </span>
-            </div>
-          </div>
-          <div className="headerblk2">
-            <div className="fs-12">
-              <span className=" text-black la la-map-marker mr-2"></span>
-              <strong className="mr-2">Address</strong>
-              {companyDetails?.address}
-            </div>
-          </div>
-          <div className="headerblk2">
-            <div>
-              <span className=" la text-black  la-mobile fs-20 mr-2"></span>
-              <strong className="mr-2 fs-12">Phone</strong>
-              <span className="fs-12"> {companyDetails?.phoneNo} </span>
-            </div>
-            <div className="fs-12">
-              <span
-                className="text-black la  la-globe mr-2"
-                aria-hidden="true"
-              ></span>
-              <strong className="mr-2">Website</strong>
-              <Link
-                className=" fs-12 font-weight-normal text-dark"
-                title=""
-                to={`http://${companyDetails?.wedsite}`}
-                target="_blank"
-              >
-                {companyDetails?.wedsite}
-              </Link>
-            </div>
-          </div>
-
-          <div
-            className={`companyintro ${
-              isCompanyBoxHeightFixed ? "setauto" : ""
-            }`}
-          >
-            {/* <h3>Overview</h3> */}
-            <div>
-              <strong className="mr-2 fs-12">Description of business</strong>{" "}
-              {companyDetails?.introduction}
-            </div>
-          </div>
-          {companyDetails?.introduction && (
-            <span className="readmoreoverview" onClick={toggleCompanyHeight}>
-              {isCompanyBoxHeightFixed ? "Hide..." : "Read more..."}
-            </span>
-          )}
-        </div>
-
-        {/* <div className=" d-flex social-icons fs-12 ml-3 pl-2">
-          <span className="  mr-2">
-            {renderSocialLinks(companyDetails?.socialLinks)}
-          </span>
-        </div> */}
-        <div className="buttons-container" style={{"display":"block"}}>
+        <div className="buttons-container">
           <ul className="d-flex  m-mt">
             <li>
               <a
@@ -413,6 +355,111 @@ const SummaryHeader = () => {
           </ul>
         </div>
       </div>
+
+
+
+          </div>
+          <div className="col-md-12">
+            <div className="card shadow card-body">
+              <div className="executiveheader">
+                <div className="executivelogobox">
+                  <img src={companyDetails?.companyLogoUrl} />
+                </div>
+
+                <div className="executivedescbox ">
+                  <div className="row mb-3">
+                    <div className="col pl-4">
+                      <h5>Address</h5>
+                      {companyDetails?.address}
+                    </div>
+                    {/* <div className="col"></div>
+                    <div className="col">
+                      <h5>Company</h5>
+                      <span>Dun & Bradstreet</span>
+                    </div> */}
+                  </div>
+                  <div className="row pt-3 mb-3">
+                    <div className="col">
+                      <h5>Website</h5>
+                      <i className=" fs-20 mr-2 align-bottom la  la-globe text-black"></i>
+                      <span>
+                        <Link
+                          className=" fs-12 font-weight-normal text-dark"
+                          title=""
+                          to={`http://${companyDetails?.wedsite}`}
+                          target="_blank"
+                        >
+                          {companyDetails?.wedsite}
+                        </Link>
+                      </span>
+                    </div>
+                    <div className="col">
+                      <h5>Phone</h5>
+                      {companyDetails?.phoneNo}
+                    </div>
+                    <div className="col">
+                      <h5>Social</h5>
+                      {/* <i class="lab fs-20 facebook lab la-facebook"></i>
+                      <i class="lab fs-20  twitter la la-twitter-square"></i>
+                      <i class="lab fs-20 linkedin lab la-linkedin"></i> */}
+                      {renderSocialLinks(companyDetails?.socialLinks)}
+                    </div>
+                  </div>
+                  <div className="row pt-3">
+                    <div className="col">
+                      <h5>Description of business</h5>
+                      <div
+                        className={`companyintro ${
+                          isCompanyBoxHeightFixed ? "setauto" : ""
+                        }`}
+                      >
+                        <span>
+                          {companyDetails?.introduction}
+                          Amdocs Development Centre India Private Limited acts
+                          as a subsidiary of Amdocs Inc., USA. The company is
+                          engaged into the business of IT Industry. Some of its
+                          products which include Customer Management, Revenue
+                          Management, Digital Services, Network Control,
+                          Operations Support Systems (OSS), etc. It has offices
+                          across the globe. Amdocs Development Centre India
+                          Private Limited acts as a subsidiary of Amdocs Inc.,
+                          USA. The company is engaged into the business of IT
+                          Industry. Some of its products which include Customer
+                          Management, Revenue Management, Digital Services,
+                          Network Control, Operations Support Systems (OSS),
+                          etc. It has offices across the globe. Amdocs
+                          Development Centre India Private Limited acts as a
+                          subsidiary of Amdocs Inc., USA. The company is engaged
+                          into the business of IT Industry. Some of its products
+                          which include Customer Management, Revenue Management,
+                          Digital Services, Network Control, Operations Support
+                          Systems (OSS), etc. It has offices across the globe.
+                          Amdocs Development Centre India Private Limited acts
+                          as a subsidiary of Amdocs Inc., USA. The company is
+                          engaged into the business of IT Industry. Some of its
+                          products which include Customer Management, Revenue
+                          Management, Digital Services, Network Control,
+                          Operations Support Systems (OSS), etc. It has offices
+                          across the globe.
+                        </span>
+                      </div>
+                      {companyDetails?.introduction && (
+                        <span
+                          className="btn text-info font-weight-bold"
+                          onClick={toggleCompanyHeight}
+                        >
+                          {isCompanyBoxHeightFixed ? "Hide..." : "Read more..."}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+    
 
       {openErrorForm && (
         <Modal
@@ -643,21 +690,6 @@ const SummaryHeader = () => {
                   />
                 </div>
               </div>
-              {/* <div className="form">
-              <div className="formcol1">
-                <label>Description</label>
-              </div>
-              <div className="formcol2">
-                <TextArea
-                  name="description"
-                  placeholder="Description"
-                  value={tagValues.description}
-                  rows={2}
-                  maxLength={100}
-                  onChange={onTagInputChange}
-                />
-              </div>
-            </div> */}
             </div>
           </Modal>
         ) : (

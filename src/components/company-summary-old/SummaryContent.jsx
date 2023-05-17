@@ -7,7 +7,7 @@ import defaultLogo from "../../assets/images/default_company_logo.jpg";
 import AboutCompany from "./AboutCompany";
 import KeyExecutives from "./KeyExecutives";
 import OrgChart from "./OrgChart";
-import { getToken, getUserInfo } from "../../utils/utils";
+import { getToken,getUserInfo } from "../../utils/utils";
 import TrialModal from "../../common/TrialModal";
 import popupImg from "../../assets/images/free-user-login-prompt.jpg.jpeg";
 import { useNavigate } from "react-router";
@@ -22,7 +22,7 @@ import {
 
 const SummaryContent = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   const { id } = useParams();
   const [showModal, setShowModal] = useState(false);
   const [dropDownToggle, setDropdownToggle] = useState(false);
@@ -40,15 +40,13 @@ const SummaryContent = () => {
     (state) => state.companyDetailsReducer.similarCompanyList
   );
 
-  const userAccountInfo = useSelector(
-    (state) => state.CommonReducer.accountInfo
-  );
+  const userAccountInfo=useSelector((state)=>state.CommonReducer.accountInfo);
 
-  useMemo(() => {
-    dispatch(resetPostRelavantCompany);
-    if (Object.keys(getUserInfo()).length) {
-      const { id } = getUserInfo();
-      dispatch(getRelavantCompany(id, companyDetails?.id));
+  useMemo(() => {  
+    dispatch(resetPostRelavantCompany); 
+    if(Object.keys(getUserInfo()).length){
+      const {id}= getUserInfo();
+      dispatch(getRelavantCompany(id,companyDetails?.id));
     }
   }, [userAccountInfo]);
 
@@ -89,7 +87,7 @@ const SummaryContent = () => {
   ];
 
   useEffect(() => {
-    if (!similarCompanyList.length) return;
+    if(!similarCompanyList.length) return;
     const list = similarCompanyList?.filter(
       (item) => !item?.id === companyDetails?.id
     );
@@ -137,7 +135,7 @@ const SummaryContent = () => {
         </div>
       );
     }
-    if (!similarList.length) {
+    if(!similarList.length){
       similarList.push(
         <div className="similarinnerblk">
           <div className="s-company img-responsive">
@@ -145,7 +143,9 @@ const SummaryContent = () => {
           </div>
           <div className="similar-desc">
             <div className="font-weight-bold fs-14">
+              
               No similar company found.
+              
             </div>
             {/* <div className="fs-12"></div>
             <div className="fs-12"></div> */}
@@ -164,20 +164,20 @@ const SummaryContent = () => {
     }
   };
 
-  const checkRelavantCompany = (flag) => {
+  const checkRelavantCompany=(flag)=>{
     const isLoggedIn = checkLoginStatus();
     if (isLoggedIn) {
-      const { login, id } = getUserInfo();
+      const {login,id}= getUserInfo();
       const payload = {
         accountId: login,
         companyId: companyDetails?.id,
         iscompany: true,
-        prescribedby: flag ? "True" : "False",
-        userId: id,
+        prescribedby:flag?"True":"False",
+        userId:id
       };
       dispatch(postRelavantCompany(payload));
     }
-  };
+  }
   const checkLoginStatus = () => {
     let isLoggedIn = false;
     if (getToken()) {
@@ -201,39 +201,117 @@ const SummaryContent = () => {
 
   return (
     <>
-      <div className="row">
-        <div className="col-md-12">
-          <div className="mt-4 mb-4 summarycontainer">
-            <div>
-              <Tabs
-                // defaultActiveKey="1"
-                activeKey={tabActiveKey}
-                items={items}
-                onChange={onChange}
-                type="card"
-              />
-            </div>
-            <div className="departmentcontainer ">
-              <div className="selectedlabel fa" onClick={toggleDropdown}>
-                <i className="text-black fa fa-suitcase pr-2"></i>
-                <span>{selectedValue}</span>
+      <div id="content-wrapper" className="d-flex flex-column">
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-md-9 col-custom">
+              <div className="row">
+                <div className="col-md-12">
+                  <div className="mt-4 mb-4 summarycontainer">
+                    <div>
+                      <Tabs
+                        // defaultActiveKey="1"
+                        activeKey={tabActiveKey}
+                        items={items}
+                        onChange={onChange}
+                        type="card"
+                      />
+                    </div>
+                    <div className="departmentcontainer ">
+                      <div
+                        className="selectedlabel fa"
+                        onClick={toggleDropdown}
+                      >
+                        <i className="text-black fa fa-suitcase pr-2"></i>
+                        <span>{selectedValue}</span>
+                      </div>
+                      <ul
+                        className={`departmentOptions ${
+                          dropDownToggle ? "show" : ""
+                        }`}
+                      >
+                        {departmentList?.map((item) => {
+                          return (
+                            <li key={item?.id} onClick={() => setValue(item)}>
+                              {item?.name}
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <ul
-                className={`departmentOptions ${dropDownToggle ? "show" : ""}`}
-              >
-                {departmentList?.map((item) => {
-                  return (
-                    <li key={item?.id} onClick={() => setValue(item)}>
-                      {item?.name}
-                    </li>
-                  );
-                })}
-              </ul>
+            </div>
+            <div className="col-md-3 col-custom-2">
+              {renderSimilarCompanyList()?.length ? (
+                <div className="card shadow mt-5 mb-4">
+                  <div className="card-header font-weight-bold">
+                    Similar Companies
+                  </div>
+                  <div className="card-body similarblk">
+                    {renderSimilarCompanyList()}
+                  </div>
+                  <div>
+                    {similarCompanyList?.length > 5 ? (
+                      <div className="fs-12 text-right">
+                        <button
+                          className="btn btn-light mr-2 small"
+                          onClick={getMoreSimilarCount}
+                        >
+                          {similarCount === 10 ? "Show Less" : "5 More..."}
+                        </button>
+                      </div>
+                    ) : (
+                      ""
+                    )}
+                  </div>
+                </div>
+              ) : ""}
+
+              <div className="card shadow descbox1">
+                <div>
+                  Is this company data relevant to you?{" "}
+                  <a
+                    id=""
+                    role="button"
+                    data-toggle=""
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    onClick={()=>checkRelavantCompany(1)}
+                  >
+                    <i
+                      class="right-icons small fa fa-thumbs-up"
+                      aria-hidden="true"
+                    ></i>
+                  </a>
+                  <a
+                    id=""
+                    role="button"
+                    data-toggle=""
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    onClick={()=>checkRelavantCompany(0)}
+                  >
+                    <i
+                      class="right-icons small fa fa-thumbs-down"
+                      aria-hidden="true"
+                    ></i>
+                  </a>
+                </div>
+                {/* <div font-weight-bold>
+                  <button class="btn btn-outline-dark font-weight-bold mr-2 p-1">
+                    Really Not
+                  </button>
+                  <button class="btn btn-outline-dark font-weight-bold mr-2 p-1">
+                    Yes!
+                  </button>
+                </div> */}
+              </div>
             </div>
           </div>
         </div>
       </div>
-
       {showModal ? (
         <TrialModal
           openModal={showModal}
@@ -259,6 +337,7 @@ const SummaryContent = () => {
       ) : (
         ""
       )}
+
     </>
   );
 };
