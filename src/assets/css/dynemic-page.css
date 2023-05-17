@@ -6456,7 +6456,7 @@ cursor: pointer;
   background-color: #eee;
   border:1px solid #40d6ee;
 }
-.fontf p{font-family: sans-serif;}
+.fontf p{font-family: sans-serif; cursor: pointer;}
 .pop-img{    display: inline;
   padding: 0.2rem 0.5rem;
   color: #000; vertical-align: text-bottom;}

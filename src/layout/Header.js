@@ -50,7 +50,7 @@ const Header = () => {
     <div className="fontf">
       <p className="fs-12"><i class=" text-center fs-16 pop-img las la-cog"></i>Setting</p>
       <p className="fs-12"><i class=" text-center fs-16 pop-img las la-user-lock"></i>Password</p>
-      <p className="fs-12"><i class=" text-center fs-16 pop-img las la-sign-out-alt"></i>Sign out</p>
+      <p className="fs-12" onClick={doLogout}><i class=" text-center fs-16 pop-img las la-sign-out-alt"></i>Sign out</p>
     </div>
   );
   return (
@@ -265,7 +265,10 @@ const Header = () => {
                   Executive Search
                 </NavLink>
               </li>
-              <li className="nav-item">
+              
+              {getToken() ? (
+                <>
+                <li className="nav-item">
                 <NavLink
                   to="/leads"
                   className="hvr-underline-from-center"
@@ -273,21 +276,21 @@ const Header = () => {
                   Leads
                 </NavLink>
               </li>
-               <li className="nav-item mt-3"><NavLink><i className="bell ml-1"></i> </NavLink></li>
+              
+              <li className="nav-item mt-3"><NavLink><i className="bell ml-1"></i> </NavLink></li>
               
               <li className="nav-item mt-2 account"> <Popover content={content}  trigger="hover">
               <div></div>
     </Popover></li> 
-              {getToken() ? (
-                
-                <li className="nav-item">
+                {/* <li className="nav-item">
                   <div
                     className="nav-item btn btn-login d-flex align-items-center"
                     onClick={doLogout}
                   >
                     <i className="fas fa-desktop orng-clr-bg ml-1"></i>Logout
                   </div>
-                </li>
+                </li> */}
+                </>
               ) : (
                 <>
                   <li className="nav-item">
