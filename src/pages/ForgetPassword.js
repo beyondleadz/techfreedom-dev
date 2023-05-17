@@ -2,7 +2,7 @@ import React,{} from "react";
 import { useRoutes,NavLink } from "react-router-dom";
 
 import ForgetPassLeft from '../assets/login/bg-left-forgot-password.jpg'
-import LogoLogin from '../assets/login/logo-round.png'
+import LogoLogin from '../assets/login/logo-round.svg'
 
 const ForgetPassword=()=>{
     return (

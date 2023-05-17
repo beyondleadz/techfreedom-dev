@@ -36,7 +36,7 @@ const ExecutiveContent1 = () => {
                     <div className="col"><h5>Company</h5><span>Dun & Bradstreet</span></div>
         </div>
         <div className="row pt-3 mb-3">
-        <div className="col"><h5>Email</h5> <i className=" fs-20 mr-2 align-bottom la la-envelope text-black"></i><span>View Email</span></div>
+        <div className="col"><h5>Email</h5> <i className=" align-top btn iconemail emails"></i><span>View Email</span></div>
         <div className="col"><h5>Phone</h5>(206) 266-1000</div>
         <div className="col"><h5>Social</h5>
           <i class="lab fs-20 facebook lab la-facebook"></i>
@@ -133,7 +133,7 @@ const ExecutiveContent1 = () => {
                                 <td>John Mathew </td>
                                 <td>Delivery Head</td>
                                 <td>
-                                  <h4 className="  fs-23 btn  la la-envelope text-black   "></h4>
+                                  <h4 className=" ml-1 btn iconemail emails  "></h4>
                                 </td>
                                 <td>(206) 266-1000</td>
                                 <td>
@@ -156,7 +156,7 @@ const ExecutiveContent1 = () => {
                                <td>John Mathew </td>
                                 <td>Delivery Head</td>
                                 <td>
-                                  <h4 className=" fs-23 btn la la-envelope text-black  "></h4>
+                                  <h4 className="ml-1 btn iconemail emails  "></h4>
                                 </td>
                                 <td>(206) 266-1000</td>
                                 <td>
@@ -179,7 +179,7 @@ const ExecutiveContent1 = () => {
                                  <td>John Mathew </td>
                                 <td>Delivery Head</td>
                                 <td>
-                                  <h4 className=" fs-23 btn la la-envelope text-black  "></h4>
+                                  <h4 className=" ml-1 btn iconemail emails  "></h4>
                                 </td>
                                 <td>(206) 266-1000</td>
                                 <td>
@@ -202,7 +202,7 @@ const ExecutiveContent1 = () => {
                                  <td>John Mathew </td>
                                 <td>Delivery Head</td>
                                 <td>
-                                  <h4 className=" fs-23 btn la la-envelope text-black  "></h4>
+                                  <h4 className=" ml-1 btn iconemail emails "></h4>
                                 </td>
                                 <td>(206) 266-1000</td>
                                 <td>
@@ -225,7 +225,7 @@ const ExecutiveContent1 = () => {
                                  <td>John Mathew </td>
                                 <td>Delivery Head</td>
                                 <td>
-                                  <h4 className=" fs-23 btn la la-envelope text-black  "></h4>
+                                  <h4 className=" ml-1 btn iconemail emails  "></h4>
                                 </td>
                                 <td>(206) 266-1000</td>
                                 <td>
@@ -249,7 +249,7 @@ const ExecutiveContent1 = () => {
                                 <td>John Mathew </td>
                                 <td>Delivery Head</td>
                                 <td>
-                                  <h4 className="fs-23  btn la la-envelope text-black  "></h4>
+                                  <h4 className="ml-1 btn iconemail emails  "></h4>
                                 </td>
                                 <td>(206) 266-1000</td>
                                 <td>
@@ -272,7 +272,7 @@ const ExecutiveContent1 = () => {
                                 <td>John Mathew </td>
                                 <td>Delivery Head</td>
                                 <td>
-                                  <h4 className=" fs-23 btn la la-envelope text-black "></h4>
+                                  <h4 className=" ml-1 btn iconemail emails "></h4>
                                 </td>
                                 <td>(206) 266-1000</td>
                                 <td>

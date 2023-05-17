@@ -48,7 +48,7 @@ const KeyExecutives = () => {
     //   fixed: "left",
     // },
     {
-      title: "Executive name",
+      title: "Executive Name",
       dataIndex: "fullname",
       fixed: "left",
     },
@@ -64,15 +64,15 @@ const KeyExecutives = () => {
           //  <Tooltip title={text}>
           <>
             <h4
-              className="  fs-23 btn  la  la-envelope-open-text text-black"
+              className=" btn iconemail emails-open"
               onClick={() => setShowEmail({ ...showEmail, [row.id]: true })}
             ></h4>
             {showEmail[row.id] && (
               <>
-                <p className="emailvalue">{text}</p>
+                <span className="emailvalue pl-1 fs-12">{text}</span>
                 <span
                   title="copy email"
-                  className="  fs-23 btn  la  la-copy text-black"
+                  className="  fs-17 btn  la  la-copy text-black"
                   onClick={() => copyToClipboard(text)}
                 ></span>
               </>
@@ -82,7 +82,7 @@ const KeyExecutives = () => {
           //  </Tooltip>
           //
           <h4
-            className="  fs-23 btn  la  la-envelope text-black"
+            className="  btn iconemail emails"
             onClick={() => openInfoModel()}
           ></h4>
         );
@@ -98,34 +98,36 @@ const KeyExecutives = () => {
       render: (record, row) => {
         return getToken() ? (
           <>
-            <Button
-              style={{ height: "auto" }}
-              className="keyexebtn d-none d-sm-inline-block small btn btn-primary text-black"
+            <span
+              // style={{ height: "auto" }}
+              // className="keyexebtn d-none d-sm-inline-block small btn btn-primary text-black"
+              className=" btn mobile-open"
               onClick={() => setShowPhone({ ...showPhone, [row.id]: true })}
             >
-              <i class="las la-mobile fs-12  pr-1"></i>
-              VIEW
-            </Button>
+              {/* <i class="las la-mobile fs-12  pr-1"></i> */}
+              {/* VIEW */}
+            </span>
             {showPhone[row.id] && record?.phoneNo && (
               <>
-                <p className="phoneValue">{record?.phoneNo}</p>
+                <span className="phoneValue fs-12 pl-1">{record?.phoneNo}</span>
                 <span
                   title="copy phone"
-                  className="  fs-23 btn  la  la-copy text-black"
+                  className="  fs-17 btn  la  la-copy text-black"
                   onClick={() => copyToClipboard(record?.phoneNo)}
                 ></span>
               </>
             )}
           </>
         ) : (
-          <Button
-            style={{ height: "auto" }}
-            className="keyexebtn d-none d-sm-inline-block small btn btn-primary text-black"
+          <span
+            // style={{ height: "auto" }}
+            className=" btn mobile"
+            // className="keyexebtn d-none d-sm-inline-block small btn btn-primary text-black"
             onClick={() => openInfoModel()}
           >
-            <i class="las la-mobile fs-12  pr-1"></i>
-            VIEW
-          </Button>
+            {/* <i class="las la-mobile fs-12  pr-1"></i>
+            VIEW */}
+          </span>
         );
 
         // return (

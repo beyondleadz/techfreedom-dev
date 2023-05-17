@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useRoutes, NavLink } from "react-router-dom";
-import FooterPrivacyImg from "../assets/images/privacy-small.png";
-import FooterSpamImg from "../assets/images/spam-small.png";
-import FooterRatingImg from "../assets/images/rating-small.png";
-import FooterSslSecuredImg from "../assets/images/ssl-secured-small.png";
+import FooterPrivacyImg from "../assets/images/privacy-small.svg";
+import FooterSpamImg from "../assets/images/spam-small.svg";
+import FooterRatingImg from "../assets/images/rating-small.svg";
+import FooterSslSecuredImg from "../assets/images/ssl-secured-small.svg";
 
 const Footer = () => {
   window.onscroll = function () {
@@ -156,17 +156,15 @@ const Footer = () => {
               </div>
               <p style={{ marginTop: 15 }}>
                 <li>
-                  <img src={FooterPrivacyImg} alt="" title="" />
-                  <img src={FooterSpamImg} alt="" title="" />
-                  <img src={FooterRatingImg} alt="" title="" />
-                  <img src={FooterSslSecuredImg} alt="" title="" />
+                  <img style={{width:140}} src={FooterPrivacyImg} alt="" title="" />
+                  <img style={{width:140}} src={FooterSpamImg} alt="" title="" />
+                  <img style={{width:140}} src={FooterRatingImg} alt="" title="" />
+                  <img style={{width:140}} src={FooterSslSecuredImg} alt="" title="" />
                 </li>
               </p>
             </div>
             <p style={{ textAlign: "center" }} className="copy-footer-29 mt-4">
-              © 2023 Beyond Leadz. All rights reserved. Design by
-              <a href="http://techfreedomonline.com/" target="_blank">
-                Tech Freedom Online
+              © 2023 Beyond Leadz. All rights reserved. Design by <a href="http://techfreedomonline.com/" target="_blank"> Tech Freedom Online
               </a>
             </p>
           </div>

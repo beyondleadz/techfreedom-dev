@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useRoutes, NavLink, useNavigate } from "react-router-dom";
+import { Popover, Button } from 'antd';
 // import { useRoutes, NavLink, redirect, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getToken } from "../utils/utils";
-import Logo from "../assets/images/logo.jpg";
+import Logo from "../assets/images/logo.svg";
 import MoreArrowImg from "../assets/images/arrow.png";
 import "../assets/css/dropdown1.css";
 import "../assets/css/line-awesome.css";
@@ -16,11 +17,14 @@ const Header = () => {
   const [selectedValue, setSelectedValue] = useState("Advanced");
   const navigate = useNavigate();
   const token = useSelector((state) => state?.SignUpReducer?.signInData);
-
+  const provinceData = ['Zhejiang', 'Jiangsu'];
   const toggleNav = (ele) => {
     setShowNav(!showNav);
   };
-
+  const handleProvinceChange = (value) => {
+    // setCities(cityData[value]);
+    // setSecondCity(cityData[value][0]);
+  };
   const toggleDropdown = () => {
     setDropdownToggle(!dropDownToggle);
   };
@@ -41,6 +45,14 @@ const Header = () => {
     navigate("/");
   };
 
+ 
+  const content = (
+    <div className="fontf">
+      <p className="fs-12"><i class=" text-center fs-16 pop-img las la-cog"></i>Setting</p>
+      <p className="fs-12"><i class=" text-center fs-16 pop-img las la-user-lock"></i>Password</p>
+      <p className="fs-12"><i class=" text-center fs-16 pop-img las la-sign-out-alt"></i>Sign out</p>
+    </div>
+  );
   return (
     <header id="site-header" className="fixed-top">
       <div className="container">
@@ -101,13 +113,13 @@ const Header = () => {
                     className="selected-field"
                     onClick={() => setValue("Company")}
                   >
-                    Company
+                    <i class="fa fs-14 pop-img la la-building"></i>Company
                   </li>
                   <li
                     className="selected-field"
                     onClick={() => setValue("Executive")}
                   >
-                    Executive
+                    <i class="fa fs-16 pop-img la la-user-tie"></i>Executive
                   </li>
                 </ul>
               </div>
@@ -253,9 +265,19 @@ const Header = () => {
                   Executive Search
                 </NavLink>
               </li>
-              <li className="nav-item mt-3"><NavLink><i className="las la-bell text-white fs-23 mr-1 ml-1"></i></NavLink></li>
+              <li className="nav-item">
+                <NavLink
+                  to="/leads"
+                  className="hvr-underline-from-center"
+                >
+                  Leads
+                </NavLink>
+              </li>
+               <li className="nav-item mt-3"><NavLink><i className="bell ml-1"></i> </NavLink></li>
               
-              <li className="nav-item mt-3"><NavLink><i className="la la-user-tie text-white fs-23 mr-1 ml-1"></i>User Name</NavLink></li>
+              <li className="nav-item mt-2 account"> <Popover content={content}  trigger="hover">
+              <div></div>
+    </Popover></li> 
               {getToken() ? (
                 
                 <li className="nav-item">

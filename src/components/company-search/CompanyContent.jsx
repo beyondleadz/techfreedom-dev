@@ -341,17 +341,18 @@ const CompanyContent = () => {
                         allowClear
                         onSearch={onSearch}
                         style={{ width: 200 }}
+                        
                       />
 
                       <Button
-                        className="d-none d-sm-inline-block ml-2"
+                        className="d-none d-sm-inline-block ml-2 btn-outline-grey"
                         onClick={onHandleSaveSearch}
                         disabled={checkFilters()}
                         title={checkFilters() ? "Filters are not selected" : ""}
                       >
                         <i className="fas fa-save pr-1"></i> SAVE SEARCH
                       </Button>
-                      <Button className="d-none d-sm-inline-block ml-2">
+                      <Button className="d-none d-sm-inline-block ml-2 btn-outline-grey">
                         <i className="fas fa-bolt pr-1"></i> CONNECT TO CRM
                       </Button>
                     </div>
