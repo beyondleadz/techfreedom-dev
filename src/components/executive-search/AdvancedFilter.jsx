@@ -1431,7 +1431,7 @@ const AdvancedFilter = ({
           onClick={() => openVisibleFilter("executiveFunction")}
         >
           <h2>
-            <i className="left-company-menu-icons las la-industry"></i>
+            <i className="left-company-menu-icons las la-suitcase"></i>
             <span>Executive Function</span>
           </h2>
           {showCheckAll && (
@@ -1558,7 +1558,7 @@ const AdvancedFilter = ({
           onClick={() => openVisibleFilter("executiveLevel")}
         >
           <h2>
-            <i className="left-company-menu-icons las la-industry"></i>
+            <i className="left-company-menu-icons las la-sitemap"></i>
             <span>Executive Level</span>
           </h2>
           {showCheckAll && (
