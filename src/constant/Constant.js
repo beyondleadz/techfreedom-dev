@@ -16,14 +16,14 @@ export const sigleCompanyTag = '/api/company-tags';
 export const accountInfoApiUrl = '/api/account';
 export const fetchCompanyTagApiUrl = '/api/company-tags';
 export const saveSearchListApiUrl = '/api/externaldatadumps';
-export const getCompanyTagApiUrl = '/api/company-tags';
+export const getCompanyTagApiUrl = '/api/company-tags/';
 export const postRelavantCompanyApiUrl = '/api/user-prefered-records';
 export const getRelavantCompanyApiUrl = '/api/user-prefered-records';
 export const getClientLeadsUrl = "/api/client-leads";
-export const groupCompanyTagUrl = '/api/company-tags';
+export const groupCompanyTagUrl = '/api/company-tags/multi';
 export const executiveEmployeeListingApiUrl="/api/employees";
 export const getExecutiveTagApiUrl = '/api/employee-tags';
 export const getExecutiveFunctionApiUrl = '/api/executive-functions';
 export const getExecutiveLevelApiUrl = '/api/executive-levels';
-
+export const groupExecutiveTagUrl = '/api/employee-tags/multi';
 

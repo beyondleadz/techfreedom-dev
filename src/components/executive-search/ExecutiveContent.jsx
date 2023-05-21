@@ -29,6 +29,18 @@ const ExecutiveContent = () => {
       title: <div className="companyname">Executive Name</div>,
       dataIndex: "name",
       fixed: "left",
+      render: (record, row) => {
+        return (
+          <div className="namecol" onClick={() => getDetails(row.key)}>
+            <div className="logo">
+            {record?.firstname[0].toUpperCase()+record?.lastname[0].toUpperCase()}
+            </div>
+            <span className="cname">
+              {record?.fullname}
+            </span>
+          </div>
+        );
+      }
     },
     {
       title: "Company",
@@ -124,7 +136,8 @@ const ExecutiveContent = () => {
         ...data,
         {
           key: record.id,
-          name: record.fullname,
+          executiveData: record,
+          name: record,
           company: record?.company?.name,
           location: `${record?.city ? record?.city + ',' : ""} ${record?.state ? record?.state : ''}`,
           email:record?.emailId,
@@ -187,7 +200,7 @@ const ExecutiveContent = () => {
   };
 
   const getDetails = (id) => {
-    navigate(`/company-summary/${id}`);
+    navigate(`/executive-details/${id}`);
   };
 
   const onHandleSaveSearch = () => {
@@ -227,7 +240,7 @@ const ExecutiveContent = () => {
         dataDump: JSON.stringify(companySelectedFilterList),
         fullName: searchValues.tagname,
         emailId: email,
-        source: searchValues.description,
+        source: 'Executive',
         userId: id,
       };
       dispatch(saveSearchAction(payload));      
@@ -280,11 +293,17 @@ const ExecutiveContent = () => {
     } else {
       const {id}= getUserInfo();
       //selectedRecords
-      const payload = {
-        company: selectedRecords[0],
+      const payload = [{
+        employee: selectedRecords[0]?.executiveData,
         text: tagValues.tagname,
-        userId: id,
-      };
+        userId: id
+      }
+      // ,{
+      //   employee: selectedRecords[1]?.executiveData,
+      //   text: tagValues.tagname,
+      //   userId: id,
+      // }
+    ];
       //console.log(payload);
       dispatch(createGroupCompanyTag(payload));      
       setShowTagModal(false);
@@ -387,7 +406,7 @@ const ExecutiveContent = () => {
       {
       showTagModal && getToken()?
       <Modal
-        title="Tag Company"
+        title="Tag Executive"
         width={"400px"}
         closable={true}
         open={showTagModal}

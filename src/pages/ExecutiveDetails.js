@@ -5,12 +5,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { Breadcrumb } from "antd";
 import ExecutiveContent from "../components/executive-details/ExecutiveContent";
 import ExecutiveHeader from "../components/executive-details/ExecutiveHeader";
+import RightPanel from "../components/executive-details/RightPanel";
 import {
-  getCompanyDetails,
+  getExecutiveDetails,
   getEmployeeList,
   getDepartmentList,
   getSimilarCompanyList,
-} from "../actionCreator/companyDetailsActionCreator";
+} from "../actionCreator/executiveDetailsActionCreator";
 import { useParams } from "react-router-dom";
 import NoDataFound from "../components/NoData";
 import "../assets/css/dynemic-page.css";
@@ -18,24 +19,24 @@ import Loader from "../components/loader";
 const ExecutiveDetails = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const companyDetails = useSelector(
-    (state) => state.companyDetailsReducer.companyDetails
+  const executiveDetails = useSelector(
+    (state) => state.executiveDetailsReducer.executiveDetails
   );
   const [loading, setLoading] = useState(true);
 
   useMemo(() => {
-    dispatch(getDepartmentList());
-    dispatch(getCompanyDetails(id));
-    dispatch(getEmployeeList(id));
+   // dispatch(getDepartmentList());
+    dispatch(getExecutiveDetails(id));
+   // dispatch(getEmployeeList(id));
   }, []);
 
   useMemo(() => {
-    console.log(companyDetails, "companyDetailscompanyDetails");
-    if (Object.keys(companyDetails).length) {
+    console.log(executiveDetails, "executiveDetails");
+    if (Object.keys(executiveDetails).length) {
       dispatch(
         getSimilarCompanyList(
           {
-            selectedIndustry: [companyDetails?.industry],
+            selectedIndustry: [executiveDetails?.industry],
           },
           {
             start: 0,
@@ -44,17 +45,17 @@ const ExecutiveDetails = () => {
         )
       );
     }
-  }, [companyDetails]);
+  }, [executiveDetails]);
 
   useEffect(() => {
-    Object.keys(companyDetails).length ? setLoading(false) : setLoading(true);
-  }, [Object.keys(companyDetails).length]);
+    Object.keys(executiveDetails).length ? setLoading(false) : setLoading(true);
+  }, [Object.keys(executiveDetails).length]);
 
   return (
     <>
       <Layout>
-        {!loading ? (
-          <div className="wrapper executivedetails">
+      {!loading ? (
+          <div className="wrapper companysummary">
             <div className="breadcrumcontainer">
             <Breadcrumb
               items={[
@@ -62,18 +63,27 @@ const ExecutiveDetails = () => {
                   title: <Link to="/">Home</Link>,
                 },
                 {
-                  title: <Link to="/executive-search">Search Executive</Link>,
+                  title: <Link to="/search-executive">Search Executive</Link>,
                 },
                 {
-                  title: "Executive Details",
+                  title: "Executive Summary",
                 },
               ]}
             />
             </div>
+            <div className="container-fluid">
+            <div className="row">
+            <div className="col-md-9">
             <ExecutiveHeader />
 
-            <div id="wrapper">
+            {/* <div id="wrapper"> */}
               <ExecutiveContent />
+            {/* </div> */}
+            </div>
+            <div className="col-md-3">
+              <RightPanel/>
+            </div>
+            </div>
             </div>
           </div>
         ) : (

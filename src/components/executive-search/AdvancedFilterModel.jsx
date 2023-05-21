@@ -5,12 +5,12 @@ import { Modal } from "antd";
 import {
   saveAdvancedSelectedFilters,
   getCompanyList,
+  getExecutiveEmployeeList,
 } from "../../actionCreator/executiveListingActionCreater";
 import { useSelector, useDispatch } from "react-redux";
 
 const AdvancedFilterModel = ({ setOpenAdvancedModel, openAdvancedModel,showNumberofRecords }) => {
   const dispatch = useDispatch();
-  const companyFilterList = useSelector((state) => state.executiveListingReducer);
 
   const handleOk = () => {
     setOpenAdvancedModel({ open: false, key: 0 });
@@ -29,10 +29,12 @@ const AdvancedFilterModel = ({ setOpenAdvancedModel, openAdvancedModel,showNumbe
         selectedRevenuerange: [],
         selectedSavedSearch:[],
         selectedCompanyTag:[],
+        selectedExecutiveFunction:[],
+        selectedExecutiveLevel:[],
       })
     );
     setOpenAdvancedModel({ open: false, key: 0 });
-    dispatch(getCompanyList());
+    dispatch(getExecutiveEmployeeList());
   };
   return (
     <>

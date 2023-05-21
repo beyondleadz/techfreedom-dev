@@ -147,6 +147,8 @@ export const createExecutivePayload = (
     selectedRevenuerange,
     searchKeyword,
     selectedCompanyTag,
+    selectedExecutiveFunction,
+    selectedExecutiveLevel
   } = payload || {};
 
   let url = companyListingApiUrl;
@@ -159,6 +161,8 @@ export const createExecutivePayload = (
   let rangeId;
   let revenueId;
   let companyTagId;
+  let executiveFuntion;
+  let executiveLevel;
   if (paginationValues) {
     withPagination = `&page=${paginationValues?.start}&size=${paginationValues?.end}`;
     url = `${url}${withPagination}`;
@@ -242,12 +246,33 @@ export const createExecutivePayload = (
   if (selectedCompanyTag?.length) {
     let ids = "";
     for (let i = 0; i < selectedCompanyTag.length - 1; i++) {
-      ids += `${selectedCompanyTag[i].company.id},`;
+      ids += `${selectedCompanyTag[i].id},`;
     }
-    ids += selectedCompanyTag[selectedCompanyTag.length - 1].company.id;
+    ids += selectedCompanyTag[selectedCompanyTag.length - 1].id;
     companyTagId = `&id.in=${ids}`;
     url = `${url}${companyTagId}`;
   }
+
+  if (selectedExecutiveFunction?.length) {
+    let ids = "";
+    for (let i = 0; i < selectedExecutiveFunction.length - 1; i++) {
+      ids += `${selectedExecutiveFunction[i].id},`;
+    }
+    ids += selectedExecutiveFunction[selectedExecutiveFunction.length - 1].id;
+    executiveFuntion = `&exfunction.in=${ids}`;
+    url = `${url}${executiveFuntion}`;
+  }
+
+  if (selectedExecutiveLevel?.length) {
+    let ids = "";
+    for (let i = 0; i < selectedExecutiveLevel.length - 1; i++) {
+      ids += `${selectedExecutiveLevel[i].id},`;
+    }
+    ids += selectedExecutiveLevel[selectedExecutiveLevel.length - 1].id;
+    executiveLevel = `&exlevel.in=${ids}`;
+    url = `${url}${executiveLevel}`;
+  }
+
   if (url.indexOf("&") !== -1) {
     url = url.replace(/&/, "?");
   }

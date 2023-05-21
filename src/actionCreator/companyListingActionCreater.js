@@ -255,7 +255,7 @@ export const emptyErrorObj = () => ({
 });
 
 export const saveSearchList = (userId) => (dispatch) => {
-  const url=`${saveSearchListApiUrl}?userId.equals=${userId}`
+  const url=`${saveSearchListApiUrl}?source.equals=Company&userId.equals=${userId}`
   return getAuthMethod(url)
     .then((res) => {
       dispatch({
@@ -301,7 +301,7 @@ export const createGroupCompanyTag = (payload) => (dispatch) => {
         type: GROUP_COMPANY_TAG,
         payload: res.data,
       });
-      dispatch(getCompanyTagList(payload?.userId));
+      dispatch(getCompanyTagList(payload?.[0].userId));
     })
     .catch((err) => {
       dispatch({

@@ -30,6 +30,7 @@ const SummaryContent = () => {
   const [similarList, setSimilarList] = useState();
   const [similarCount, setSimilarCount] = useState(5);
   const [selectedValue, setSelectedValue] = useState("Filter by Department");
+  const [departmentAllList, setDepartmentAllList] = useState();
   const departmentList = useSelector(
     (state) => state.companyDetailsReducer.departmentList
   );
@@ -57,6 +58,11 @@ const SummaryContent = () => {
       similarCompanyList.length < 5 ? similarCompanyList.length : 5
     );
   }, [similarCompanyList]);
+
+  useEffect(()=>{
+    const dpt=[{id:0,name:'All'},...departmentList];
+    setDepartmentAllList(dpt);
+  })
 
   const items = [
     {
@@ -221,7 +227,7 @@ const SummaryContent = () => {
               <ul
                 className={`departmentOptions ${dropDownToggle ? "show" : ""}`}
               >
-                {departmentList?.map((item) => {
+                {departmentAllList?.map((item) => {
                   return (
                     <li key={item?.id} onClick={() => setValue(item)}>
                       {item?.name}
@@ -231,12 +237,23 @@ const SummaryContent = () => {
               </ul>
             </div>
             <div className="excelcontainer ">
-                    <li><a class=" btn btn-outline-success fs-18"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
-                    aria-expanded="false"><i class="right-icons la la-file-excel" aria-hidden="true"></i>
-                  </a></li>
-                    </div>
-
-
+              <li>
+                <a
+                  class=" btn btn-outline-success fs-18"
+                  href="#"
+                  id=""
+                  role="button"
+                  data-toggle=""
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <i
+                    class="right-icons la la-file-excel"
+                    aria-hidden="true"
+                  ></i>
+                </a>
+              </li>
+            </div>
           </div>
         </div>
       </div>

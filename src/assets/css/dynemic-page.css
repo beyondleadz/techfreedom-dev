@@ -195,7 +195,7 @@ input[type="checkbox" i] {
 }
 
 .buttons-container.textsearch{margin-right: 0;}
-.cname{cursor: pointer;}
+.cname{cursor: pointer;font-weight: bold;}
 @media (max-width: 768px) {
   .table-container {
     width: 100%;
@@ -7031,9 +7031,10 @@ color: orange;
   white-space: nowrap;
    line-height: 12px;}
 
-   .executive .buttons-c {
+  .buttons-c {
    position:absolute; right: 0; 
-   margin-right: 18px; margin-top:10px;} 
+   top: 33px;
+   } 
 
  .executive h6{
   margin-top: 0.5rem; color:#363636; 

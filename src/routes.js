@@ -54,7 +54,7 @@ const AppRoutes = (props) => {
                 <Route path='/terms-and-conditions' element={<TermsAndConditions/>}/>
                 <Route path='/prospecting-search' element={<ProspectingSearch/>}/>
                 <Route path='/executive-search' element={<ExecutiveSearch/>}/>
-                <Route path='/executive-details' element={<ExecutiveDetails/>}/>
+                <Route path='/executive-details/:id' element={<ExecutiveDetails/>}/>
                 <Route path='/executive-details1' element={<ExecutiveDetails1/>}/>
                 <Route path='/product-comparison' element={<ProductComparison/>}/>
                 <Route path='/search-company' element={<CompanySearch tab='1'/>}/>

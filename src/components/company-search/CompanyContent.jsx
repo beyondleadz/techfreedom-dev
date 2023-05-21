@@ -230,7 +230,7 @@ const CompanyContent = () => {
         dataDump: JSON.stringify(companySelectedFilterList),
         fullName: searchValues.tagname,
         emailId: email,
-        source: searchValues.description,
+        source: 'Company',
         userId: id,
       };
       dispatch(saveSearchAction(payload));      
@@ -255,6 +255,14 @@ const CompanyContent = () => {
     if (isLoggedIn) {
       // dispatch(downloadCompanyList(companySelectedFilterList, "exl"));
       dispatch(downloadCompanyList(selectedRecords, "exl"));
+    }
+  };
+
+  const downloadPDF = () => {
+    const isLoggedIn = checkLoginStatus();
+    if (isLoggedIn) {
+      // dispatch(downloadCompanyList(companySelectedFilterList, "pdf"));
+      dispatch(downloadCompanyList(selectedRecords, "pdf"));
     }
   };
 
@@ -283,11 +291,11 @@ const CompanyContent = () => {
     } else {
       const {id}= getUserInfo();
       //selectedRecords
-      const payload = {
-        company: selectedRecords[0],
+      const payload = [{
+        company: selectedRecords[0].name,
         text: tagValues.tagname,
         userId: id,
-      };
+      }];
       //console.log(payload);
       dispatch(createGroupCompanyTag(payload));      
       setShowTagModal(false);
@@ -299,6 +307,13 @@ const CompanyContent = () => {
       ...tagValues,
       [e.target.name]: e.target.value,
     });
+  };
+
+  const printPage = () => {
+    const isLoggedIn = checkLoginStatus();
+    if (isLoggedIn) {
+      window.print();
+    }
   };
 
   return (
@@ -323,7 +338,30 @@ const CompanyContent = () => {
 
                     <div className="buttons-container textsearch">
                     <ul className="d-flex mt-1  m-mt">
-                                         
+                    <li>
+            <a
+              className=" mr-2"
+              role="button"
+              data-toggle=""
+              aria-haspopup="true"
+              aria-expanded="false"
+              onClick={downloadPDF}
+            >
+              <i className="right-icons la la-file-pdf" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li>
+            <a
+              className=" mr-2"
+              role="button"
+              data-toggle=""
+              aria-haspopup="true"
+              aria-expanded="false"
+              onClick={printPage}
+            >
+              <i className="right-icons la la-print" aria-hidden="true"></i>
+            </a>
+          </li>                   
                   <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
                     aria-expanded="false"><i class="right-icons la la-file-excel" aria-hidden="true" onClick={downloadExcel}></i>
                   </a></li>

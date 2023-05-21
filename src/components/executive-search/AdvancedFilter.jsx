@@ -17,7 +17,9 @@ const AdvancedFilter = ({
   showNumberofRecords = null,
 }) => {
   const dispatch = useDispatch();
-  const companyFilterList = useSelector((state) => state.executiveListingReducer);
+  const companyFilterList = useSelector(
+    (state) => state.executiveListingReducer
+  );
 
   const companyPaginationValue = useSelector(
     (state) => state.executiveListingReducer.paginationValue
@@ -122,14 +124,20 @@ const AdvancedFilter = ({
   const [companyTagList, setCompanyTagList] = useState([]);
   const [checkAllCompanyTag, setCheckAllCompanyTag] = useState(false);
 
-  const [selectedExecutiveFunctionList, setSelectedExecutiveFunctionList] = useState([]);
+  const [
+    selectedExecutiveFunctionList,
+    setSelectedExecutiveFunctionList,
+  ] = useState([]);
   const [executiveFunctionList, setExecutiveFunctionList] = useState([]);
-  const [checkAllExecutiveFunction, setCheckAllExecutiveFunction] = useState(false);
+  const [checkAllExecutiveFunction, setCheckAllExecutiveFunction] = useState(
+    false
+  );
 
-  const [selectedExecutiveLevelList, setSelectedExecutiveLevelList] = useState([]);
+  const [selectedExecutiveLevelList, setSelectedExecutiveLevelList] = useState(
+    []
+  );
   const [executiveLevelList, setExecutiveLevelList] = useState([]);
   const [checkAllExecutiveLevel, setCheckAllExecutiveLevel] = useState(false);
-
 
   const [viewMore, setViewMore] = useState(true);
   const CheckboxGroup = Checkbox.Group;
@@ -164,7 +172,7 @@ const AdvancedFilter = ({
     companyFilterListSavedSearch,
     companyFilterListTags,
     executiveFilterFunctionList,
-    executiveFilterLevelList
+    executiveFilterLevelList,
   ]);
 
   useEffect(() => {
@@ -220,18 +228,21 @@ const AdvancedFilter = ({
         companyFilterListTags?.length
     );
 
-    setSelectedExecutiveFunctionList(companySelectedFilterList.selectedExecutiveFunction);
+    setSelectedExecutiveFunctionList(
+      companySelectedFilterList.selectedExecutiveFunction
+    );
     setCheckAllExecutiveFunction(
-      companySelectedFilterList.selectedExecutiveFunction.length ===
-      executiveFilterFunctionList.length
+      companySelectedFilterList?.selectedExecutiveFunction?.length ===
+        executiveFilterFunctionList.length
     );
 
-    setSelectedExecutiveLevelList(companySelectedFilterList.selectedExecutiveLevel);
+    setSelectedExecutiveLevelList(
+      companySelectedFilterList.selectedExecutiveLevel
+    );
     setCheckAllExecutiveLevel(
       companySelectedFilterList.selectedExecutiveLevel.length ===
-      executiveFilterLevelList.length
+        executiveFilterLevelList.length
     );
-
   }, [companySelectedFilterList]);
   const setShowHideData = () => {
     setViewMore(!viewMore);
@@ -1303,13 +1314,13 @@ const AdvancedFilter = ({
             <span>Tags</span>
           </h2>
           {showCheckAll && (
-          <Checkbox
-            onChange={onCompanyTagsCheckAllChange}
-            checked={checkAllCompanyTag}
-          >
-            Check all
-          </Checkbox>
-        )}
+            <Checkbox
+              onChange={onCompanyTagsCheckAllChange}
+              checked={checkAllCompanyTag}
+            >
+              Check all
+            </Checkbox>
+          )}
         </div>
         <div className="filteroptions">
           <div className="searchbox">
@@ -1427,7 +1438,9 @@ const AdvancedFilter = ({
     return (
       <>
         <div
-          className={`filterheader la ${visibleFilter.executiveFunction && "show"}`}
+          className={`filterheader la ${
+            visibleFilter.executiveFunction && "show"
+          }`}
           onClick={() => openVisibleFilter("executiveFunction")}
         >
           <h2>
@@ -1466,7 +1479,9 @@ const AdvancedFilter = ({
                           <Checkbox
                             key={item.id}
                             value={item}
-                            onChange={($event) => updateExecutiveFunction($event)}
+                            onChange={($event) =>
+                              updateExecutiveFunction($event)
+                            }
                           >
                             {item.name}
                           </Checkbox>
@@ -1491,23 +1506,25 @@ const AdvancedFilter = ({
             </>
           </CheckboxGroup>
 
-          {!showCheckAll && executiveFunctionList.length > LEFT_FILETERS_SIZE.length && (
-            <div className="viewmore">
-              <span
-                onClick={() => setOpenAdvancedModel({ open: true, key: 10 })}
-              >
-                View More
-              </span>
-            </div>
-          )}
+          {!showCheckAll &&
+            executiveFunctionList.length > LEFT_FILETERS_SIZE.length && (
+              <div className="viewmore">
+                <span
+                  onClick={() => setOpenAdvancedModel({ open: true, key: 10 })}
+                >
+                  View More
+                </span>
+              </div>
+            )}
         </div>
       </>
     );
   };
 
   const filterExecutiveFunctionList = (ele) => {
-    const filterdData = companyFilterList?.executiveFunctionList.filter((item) =>
-      item?.name.toLowerCase().includes(ele.target.value.toLowerCase())
+    const filterdData = companyFilterList?.executiveFunctionList.filter(
+      (item) =>
+        item?.name.toLowerCase().includes(ele.target.value.toLowerCase())
     );
     setExecutiveFunctionList(filterdData);
     setSelectedExecutiveFunctionList([]);
@@ -1538,7 +1555,9 @@ const AdvancedFilter = ({
   };
 
   const onExecutiveFunctionCheckAllChange = (e) => {
-    setSelectedExecutiveFunctionList(e.target.checked ? executiveFunctionList : []);
+    setSelectedExecutiveFunctionList(
+      e.target.checked ? executiveFunctionList : []
+    );
     setCheckAllExecutiveFunction(e.target.checked);
     const payload = {
       ...companySelectedFilterList,
@@ -1554,7 +1573,9 @@ const AdvancedFilter = ({
     return (
       <>
         <div
-          className={`filterheader la ${visibleFilter.executiveLevel && "show"}`}
+          className={`filterheader la ${
+            visibleFilter.executiveLevel && "show"
+          }`}
           onClick={() => openVisibleFilter("executiveLevel")}
         >
           <h2>
@@ -1618,15 +1639,16 @@ const AdvancedFilter = ({
             </>
           </CheckboxGroup>
 
-          {!showCheckAll && executiveLevelList.length > LEFT_FILETERS_SIZE.length && (
-            <div className="viewmore">
-              <span
-                onClick={() => setOpenAdvancedModel({ open: true, key: 11 })}
-              >
-                View More
-              </span>
-            </div>
-          )}
+          {!showCheckAll &&
+            executiveLevelList.length > LEFT_FILETERS_SIZE.length && (
+              <div className="viewmore">
+                <span
+                  onClick={() => setOpenAdvancedModel({ open: true, key: 11 })}
+                >
+                  View More
+                </span>
+              </div>
+            )}
         </div>
       </>
     );
@@ -1675,7 +1697,6 @@ const AdvancedFilter = ({
     dispatch(getExecutiveEmployeeList(payload, companyPaginationValue));
   };
   /*Executive Level End */
-
 
   //   useEffect(() => {
   //     console.log(companySelectedFilterList,'companySelectedFilterList')
@@ -1761,14 +1782,13 @@ const AdvancedFilter = ({
           {showExecutiveFunctionList()}
         </div>
       );
-      
-      }else if (openAdvancedModel.key === 11) {
-        return (
-          <div className="filterblk" id="execLevel">
-            {showExecutiveLevelList()}
-          </div>
-        );
-      }else {
+    } else if (openAdvancedModel.key === 11) {
+      return (
+        <div className="filterblk" id="execLevel">
+          {showExecutiveLevelList()}
+        </div>
+      );
+    } else {
       return (
         <>
           <div className="filterblk" id="county">
@@ -1782,6 +1802,13 @@ const AdvancedFilter = ({
           </div>
           <div className="filterblk" id="industry">
             {showIndustryList()}
+          </div>
+
+          <div className="filterblk" id="execFunction">
+            {showExecutiveFunctionList()}
+          </div>
+          <div className="filterblk" id="execLevel">
+            {showExecutiveLevelList()}
           </div>
           <div className="filterblk" id="companyType">
             {showCompanyTypeList()}
@@ -1798,14 +1825,6 @@ const AdvancedFilter = ({
           <div className="filterblk" id="companyTag">
             {showCompanyTagList()}
           </div>
-          
-        <div className="filterblk" id="execFunction">
-          {showExecutiveFunctionList()}
-        </div>
-        <div className="filterblk" id="execLevel">
-          {showExecutiveLevelList()}
-        </div>
-        
         </>
       );
     }

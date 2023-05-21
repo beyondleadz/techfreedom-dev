@@ -53,7 +53,8 @@ import {
   executiveEmployeeListingApiUrl,
   getExecutiveTagApiUrl,
   getExecutiveFunctionApiUrl,
-  getExecutiveLevelApiUrl
+  getExecutiveLevelApiUrl,
+  groupExecutiveTagUrl
 } from "../constant/Constant";
 import { dispatchStatus } from "./commonActionCreator";
 import { Geolocation } from "../constant/Geolocation";
@@ -266,7 +267,7 @@ export const emptyErrorObj = () => ({
 });
 
 export const saveExecutiveSearchList = (userId) => (dispatch) => {
-  const url=`${saveSearchListApiUrl}?userId.equals=${userId}`
+  const url=`${saveSearchListApiUrl}?source.equals=Executive&userId.equals=${userId}`
   return getAuthMethod(url)
     .then((res) => {
       dispatch({
@@ -306,13 +307,13 @@ export const getExecutiveTagList = (userId) => (dispatch) => {
 
 export const createGroupCompanyTag = (payload) => (dispatch) => {
   console.log(payload, "payloadpayload");
-  return postAuthMethod(groupCompanyTagUrl, payload)
+  return postAuthMethod(groupExecutiveTagUrl, payload)
     .then((res) => {
       dispatch({
         type: EXECUTIVE_GROUP_COMPANY_TAG,
         payload: res.data,
       });
-      dispatch(getExecutiveTagList(payload?.userId));
+      dispatch(getExecutiveTagList(payload?.[0].userId));
     })
     .catch((err) => {
       dispatch({

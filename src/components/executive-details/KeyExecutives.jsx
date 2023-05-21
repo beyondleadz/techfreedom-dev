@@ -3,13 +3,12 @@ import { Table, Modal, Button, Tooltip } from "antd";
 import { PAGE_LENGTH } from "../../config";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-import {getToken} from "../../utils/utils"
+import { getToken } from "../../utils/utils";
 import {
   submitLead,
   resetLead,
-} from "../../actionCreator/companyDetailsActionCreator";
+} from "../../actionCreator/executiveDetailsActionCreator";
 import popupImg from "../../assets/images/free-user-login-prompt.jpg.jpeg";
-import Loader from "../loader";
 const KeyExecutives = () => {
   const dispatch = useDispatch();
   const employeeList = useSelector(
@@ -28,11 +27,6 @@ const KeyExecutives = () => {
   const navigate = useNavigate();
 
   const columns = [
-    {
-      title: "ID",
-      dataIndex: "id",
-      fixed: "left",
-    },
     {
       title: "Executive name",
       dataIndex: "fullname",
@@ -69,12 +63,12 @@ const KeyExecutives = () => {
         return getToken() ? (
           <Tooltip title={record?.phoneNo}>
             <Button
-            style={{ height: "auto" }}
-            className="keyexebtn d-none d-sm-inline-block small btn btn-primary text-black"
-          >
-            <i class="las la-mobile fs-12  pr-1"></i>
-            VIEW
-          </Button>
+              style={{ height: "auto" }}
+              className="keyexebtn d-none d-sm-inline-block small btn btn-primary text-black"
+            >
+              <i class="las la-mobile fs-12  pr-1"></i>
+              VIEW
+            </Button>
           </Tooltip>
         ) : (
           <Button
@@ -86,17 +80,6 @@ const KeyExecutives = () => {
             VIEW
           </Button>
         );
-
-        // return (
-        //   <Button
-        //     style={{ height: "auto" }}
-        //     className="keyexebtn d-none d-sm-inline-block small btn btn-primary text-black"
-        //     onClick={() => openInfoModel(text)}
-        //   >
-        //     <i class="las la-mobile fs-12 pt-1 pr-1"></i>
-        //     VIEW
-        //   </Button>
-        // );
       },
     },
     {
@@ -107,20 +90,28 @@ const KeyExecutives = () => {
           <Button
             style={{ height: "auto" }}
             className="keyexebtn d-none d-sm-inline-block small btn btn-primary text-black"
-            loading={!Object.keys(submitLeadRes).length && addToLeads === record.id ? true : false}
+            loading={
+              !Object.keys(submitLeadRes).length && addToLeads === record.id
+                ? true
+                : false
+            }
             onClick={() => postLeads(record)}
           >
-           <i class="las la-user-plus fs-12 pr-1"></i> ADD TO LEADS
+            <i class="las la-user-plus fs-12 pr-1"></i> ADD TO LEADS
           </Button>
         ) : (
           <Button
             style={{ height: "auto" }}
             className="keyexebtn d-none d-sm-inline-block small btn btn-primary text-black"
-            loading={!Object.keys(submitLeadRes).length && addToLeads === record.id ? true : false}
+            loading={
+              !Object.keys(submitLeadRes).length && addToLeads === record.id
+                ? true
+                : false
+            }
             onClick={() => openInfoModel()}
           >
             <i class="las la-user-plus  fs-12  pr-1"></i>ADD TO LEADS
-          </Button>          
+          </Button>
         );
       },
     },
@@ -219,17 +210,13 @@ const KeyExecutives = () => {
         pagination={{
           responsive: true,
           total: employeeList?.length,
-          // pageSizeOptions: ["5", "10", "15", "15"],
           pageSize: PAGE_LENGTH,
-          // showSizeChanger: true,
-          // defaultPageSize: 10,
           position: ["bottomCenter"],
           onChange: onPageChange,
         }}
       />
       {openInfoBeforeLogin?.open && (
         <Modal
-          // title="Basic Modal"
           width="400px"
           closable={true}
           open={openInfoBeforeLogin}
@@ -251,11 +238,6 @@ const KeyExecutives = () => {
               <p>
                 BeyondLeadz Pro customers close deals faster thanks to relevant
               </p>
-              {/* <div class="mt-md-5 mt-4 mb-lg-0 mb-4" align="right">
-                <a href="login.html" class="btn btn-style mt-4">
-                  Start Free Trial
-                </a>
-              </div> */}
             </div>
           </div>
         </Modal>

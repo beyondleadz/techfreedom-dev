@@ -1,34 +1,36 @@
 import {
-  COMPANY_DETAILS,
-  EMPLOYEE_LIST,
-  DEPARTMENT_LIST,
-  SUBMIT_EXECUTIVE_LEAD,
-  SIMILAR_COMPANYLIST,
-  SUBMIT_ERROR_FORM,
-  SINGLE_COMPANY_TAG,
-  SINGLE_COMPANY_TAG_ERROR,
-  EMPTY_ERROR_OBJ,
-  COMPANY_DETAILS_ERROR,
-  EMPLOYEE_LIST_ERROR,
-  DEPARTMENT_LIST_ERROR,
-  SUBMIT_EXECUTIVE_LEAD_ERROR,
-  SIMILAR_COMPANYLIST_ERROR,
-  SUBMIT_ERROR_FORM_ERROR,
-  DOWNLOAD_COMPANY,
-  DOWNLOAD_COMPANY_ERROR,
-  FETCH_COMPANY_TAG,
-  FETCH_COMPANY_TAG_ERROR,
-  POST_RELAVANT_COMPANY_TAG,
-  POST_RELAVANT_COMPANY_TAG_ERROR,
-  GET_RELAVANT_COMPANY_TAG,
-  GET_RELAVANT_COMPANY_TAG_ERROR,
-  SELECTED_EXECUTIVE,
-  DOWNLOAD_EXECUTIVE,
-  DOWNLOAD_EXECUTIVE_ERROR,
-  SELECTED_DEPARTMENT,
-  GET_EXECUTIVE_LEAD,
-  GET_EXECUTIVE_LEAD_ERROR  
-} from "../actionType/companyDetailsType";
+  EXECUTIVE_DETAILS,
+  EXECUTIVE_DETAILS_ERROR,
+  EXECUTIVE_COMPANY_DETAILS,
+  EXECUTIVE_EMPLOYEE_LIST,
+  EXECUTIVE_DEPARTMENT_LIST,
+  EXECUTIVE_SUBMIT_EXECUTIVE_LEAD,
+  EXECUTIVE_SIMILAR_COMPANYLIST,
+  EXECUTIVE_SUBMIT_ERROR_FORM,
+  EXECUTIVE_SINGLE_COMPANY_TAG,
+  EXECUTIVE_SINGLE_COMPANY_TAG_ERROR,
+  EXECUTIVE_EMPTY_ERROR_OBJ,
+  EXECUTIVE_COMPANY_DETAILS_ERROR,
+  EXECUTIVE_EMPLOYEE_LIST_ERROR,
+  EXECUTIVE_DEPARTMENT_LIST_ERROR,
+  EXECUTIVE_SUBMIT_EXECUTIVE_LEAD_ERROR,
+  EXECUTIVE_SIMILAR_COMPANYLIST_ERROR,
+  EXECUTIVE_SUBMIT_ERROR_FORM_ERROR,
+  EXECUTIVE_DOWNLOAD_COMPANY,
+  EXECUTIVE_DOWNLOAD_COMPANY_ERROR,
+  EXECUTIVE_FETCH_COMPANY_TAG,
+  EXECUTIVE_FETCH_COMPANY_TAG_ERROR,
+  EXECUTIVE_POST_RELAVANT_COMPANY_TAG,
+  EXECUTIVE_POST_RELAVANT_COMPANY_TAG_ERROR,
+  EXECUTIVE_GET_RELAVANT_COMPANY_TAG,
+  EXECUTIVE_GET_RELAVANT_COMPANY_TAG_ERROR,
+  EXECUTIVE_SELECTED_EXECUTIVE,
+  EXECUTIVE_DOWNLOAD_EXECUTIVE,
+  EXECUTIVE_DOWNLOAD_EXECUTIVE_ERROR,
+  EXECUTIVE_SELECTED_DEPARTMENT,
+  EXECUTIVE_GET_EXECUTIVE_LEAD,
+  EXECUTIVE_GET_EXECUTIVE_LEAD_ERROR
+} from "../actionType/executiveDetailsType";
 import {
   getAuthMethod,
   getMethod,
@@ -47,6 +49,7 @@ import {
   companyExlDownloadUrl,
   getClientLeadsUrl,
   companyPdfDownloadUrl,
+  executiveEmployeeListingApiUrl,
 } from "../constant/Constant";
 import { createPayload } from "../utils/utils";
 import { ErrKey, errEnum } from "../config";
@@ -55,29 +58,27 @@ import {
   DOWNLOAD_COMPANYLIST_ERROR,
 } from "../actionType/companyListingType";
 
-export const getCompanyDetails = (id) => (dispatch) => {
-  const url = `${companyListingApiUrl}/${id}`;
-  console.log(url, id, "lksjdfklsjd");
+export const getExecutiveDetails = (id) => (dispatch) => {
+  const url = `${executiveEmployeeListingApiUrl}/${id}`;
   return getMethod(url)
     .then((res) => {
       dispatch({
-        type: COMPANY_DETAILS,
+        type: EXECUTIVE_DETAILS,
         payload: res.data,
       });
     })
     .catch((err) => {
-      console.log(err, "sjkflskdjfkl");
       dispatch({
-        type: COMPANY_DETAILS_ERROR,
+        type: EXECUTIVE_DETAILS_ERROR,
         payload:
-          { [errEnum.COMPANY_DETAILS_ERROR]: err.response.data[ErrKey] } ||
+          { [errEnum.EXECUTIVE_DETAILS_ERROR]: err.response.data[ErrKey] } ||
           "Error Occured",
       });
     });
 };
 
 export const resetEmployeeList = () => ({
-  type: EMPLOYEE_LIST,
+  type: EXECUTIVE_EMPLOYEE_LIST,
   payload: [],
 });
 
@@ -89,14 +90,14 @@ export const getEmployeeList = (id, department) => (dispatch) => {
   return getMethod(url)
     .then((res) => {
       dispatch({
-        type: EMPLOYEE_LIST,
+        type: EXECUTIVE_EMPLOYEE_LIST,
         payload: res.data,
       });
     })
     .catch((err) => {
       console.log(err, "sjkflskdjfkl");
       dispatch({
-        type: EMPLOYEE_LIST_ERROR,
+        type: EXECUTIVE_EMPLOYEE_LIST_ERROR,
         payload:
           { [errEnum.EMPLOYEE_LIST_ERROR]: err.response.data[ErrKey] } ||
           "Error Occured",
@@ -108,14 +109,14 @@ export const getDepartmentList = () => (dispatch) => {
   return getMethod(executiveDepartmentList)
     .then((res) => {
       dispatch({
-        type: DEPARTMENT_LIST,
+        type: EXECUTIVE_DEPARTMENT_LIST,
         payload: res.data,
       });
     })
     .catch((err) => {
       console.log(err, "sjkflskdjfkl");
       dispatch({
-        type: DEPARTMENT_LIST_ERROR,
+        type: EXECUTIVE_DEPARTMENT_LIST_ERROR,
         payload:
           { [errEnum.DEPARTMENT_LIST_ERROR]: err.response.data[ErrKey] } ||
           "Error Occured",
@@ -127,14 +128,14 @@ export const submitLead = (payload) => (dispatch) => {
   return postAuthMethod(clientLeadsUrl, payload)
     .then((res) => {
       dispatch({
-        type: SUBMIT_EXECUTIVE_LEAD,
+        type: EXECUTIVE_SUBMIT_EXECUTIVE_LEAD,
         payload: res.data,
       });
       dispatch(getExecutiveLead(payload?.userId));
     })
     .catch((err) => {
       dispatch({
-        type: SUBMIT_EXECUTIVE_LEAD_ERROR,
+        type: EXECUTIVE_SUBMIT_EXECUTIVE_LEAD_ERROR,
         payload:
           {
             [errEnum.SUBMIT_EXECUTIVE_LEAD_ERROR]: err.response.data[ErrKey],
@@ -144,7 +145,7 @@ export const submitLead = (payload) => (dispatch) => {
 };
 
 export const resetLead = (payload) => {
-  return { type: SUBMIT_EXECUTIVE_LEAD, payload: payload };
+  return { type: EXECUTIVE_SUBMIT_EXECUTIVE_LEAD, payload: payload };
 };
 
 export const getSimilarCompanyList = (payload, paginationValues) => (
@@ -155,14 +156,14 @@ export const getSimilarCompanyList = (payload, paginationValues) => (
   return getMethod(url)
     .then((res) => {
       dispatch({
-        type: SIMILAR_COMPANYLIST,
+        type: EXECUTIVE_SIMILAR_COMPANYLIST,
         payload: res.data,
       });
     })
     .catch((err) => {
       console.log(err, "sjkflskdjfkl");
       dispatch({
-        type: SIMILAR_COMPANYLIST_ERROR,
+        type: EXECUTIVE_SIMILAR_COMPANYLIST_ERROR,
         payload:
           { [errEnum.SIMILAR_COMPANYLIST_ERROR]: err.response.data[ErrKey] } ||
           "Error Occured",
@@ -175,14 +176,14 @@ export const submitErrorForm = (payload) => (dispatch) => {
   return postAuthMethod(errorReport, payload)
     .then((res) => {
       dispatch({
-        type: SUBMIT_ERROR_FORM,
+        type: EXECUTIVE_SUBMIT_ERROR_FORM,
         payload: res.data,
       });
     })
     .catch((err) => {
       console.log(err, "sjkflskdjfkl");
       dispatch({
-        type: SUBMIT_ERROR_FORM_ERROR,
+        type: EXECUTIVE_SUBMIT_ERROR_FORM_ERROR,
         payload:
           { [errEnum.SUBMIT_ERROR_FORM_ERROR]: err.response.data[ErrKey] } ||
           "Error Occured",
@@ -195,14 +196,14 @@ export const createCompanyTag = (payload) => (dispatch) => {
   return postAuthMethod(sigleCompanyTag, payload)
     .then((res) => {
       dispatch({
-        type: SINGLE_COMPANY_TAG,
+        type: EXECUTIVE_SINGLE_COMPANY_TAG,
         payload: res.data,
       });
       dispatch(getCompanyTag(payload?.company?.id, payload?.userId));
     })
     .catch((err) => {
       dispatch({
-        type: SINGLE_COMPANY_TAG_ERROR,
+        type: EXECUTIVE_SINGLE_COMPANY_TAG_ERROR,
         payload:
           { [errEnum.SINGLE_COMPANY_TAG_ERROR]: err.response.data[ErrKey] } ||
           "Error Occured",
@@ -211,7 +212,7 @@ export const createCompanyTag = (payload) => (dispatch) => {
 };
 
 export const emptyErrorObj = () => ({
-  type: EMPTY_ERROR_OBJ,
+  type: EXECUTIVE_EMPTY_ERROR_OBJ,
   payload: {},
 });
 
@@ -232,14 +233,14 @@ export const downloadCompany = (payload, urlSubstring) => (dispatch) => {
   return getAuthMethod(url)
     .then((res) => {
       dispatch({
-        type: DOWNLOAD_COMPANY,
+        type: EXECUTIVE_DOWNLOAD_COMPANY,
         payload: res.data,
       });
     })
     .catch((err) => {
       console.log(err, "skjfslkjdf", err.response.data.error);
       dispatch({
-        type: DOWNLOAD_COMPANY_ERROR,
+        type: EXECUTIVE_DOWNLOAD_COMPANY_ERROR,
         payload:
           { [errEnum.DOWNLOAD_ERROR]: err.response.data.error } ||
           "Error Occured",
@@ -260,13 +261,13 @@ export const downloadExecutiveExl = (payload) => (dispatch) => {
   return getAuthMethod(url)
     .then((res) => {
       dispatch({
-        type: DOWNLOAD_EXECUTIVE,
+        type: EXECUTIVE_DOWNLOAD_EXECUTIVE,
         payload: res.data,
       });
     })
     .catch((err) => {
       dispatch({
-        type: DOWNLOAD_EXECUTIVE_ERROR,
+        type: EXECUTIVE_DOWNLOAD_EXECUTIVE_ERROR,
         payload:
           { [errEnum.DOWNLOAD_ERROR]: err.response.data.error } ||
           "Error Occured",
@@ -281,14 +282,14 @@ export const getCompanyTag = (cid, userId) => (dispatch) => {
   return getAuthMethod(url)
     .then((res) => {
       dispatch({
-        type: FETCH_COMPANY_TAG,
+        type: EXECUTIVE_FETCH_COMPANY_TAG,
         payload: res.data,
       });
     })
     .catch((err) => {
       console.log(err, "sjkflskdjfkl");
       dispatch({
-        type: FETCH_COMPANY_TAG_ERROR,
+        type: EXECUTIVE_FETCH_COMPANY_TAG_ERROR,
         payload:
           { [errEnum.FETCH_COMPANY_TAG_ERROR]: err.response.data[ErrKey] } ||
           "Error Occured",
@@ -297,7 +298,7 @@ export const getCompanyTag = (cid, userId) => (dispatch) => {
 };
 
 export const resetCompanyTag = (payload) => {
-  return { type: SINGLE_COMPANY_TAG, payload: [] };
+  return { type: EXECUTIVE_SINGLE_COMPANY_TAG, payload: [] };
 };
 
 export const postRelavantCompany = (payload) => (dispatch) => {
@@ -305,13 +306,13 @@ export const postRelavantCompany = (payload) => (dispatch) => {
   return postAuthMethod(postRelavantCompanyApiUrl, payload)
     .then((res) => {
       dispatch({
-        type: POST_RELAVANT_COMPANY_TAG,
+        type: EXECUTIVE_POST_RELAVANT_COMPANY_TAG,
         payload: res.data,
       });
     })
     .catch((err) => {
       dispatch({
-        type: POST_RELAVANT_COMPANY_TAG_ERROR,
+        type: EXECUTIVE_POST_RELAVANT_COMPANY_TAG_ERROR,
         payload:
           {
             [errEnum.POST_RELAVANT_COMPANY_TAG_ERROR]:
@@ -328,14 +329,14 @@ export const getRelavantCompany = (id, cid) => (dispatch) => {
   return getAuthMethod(url)
     .then((res) => {
       dispatch({
-        type: GET_RELAVANT_COMPANY_TAG,
+        type: EXECUTIVE_GET_RELAVANT_COMPANY_TAG,
         payload: res.data,
       });
     })
     .catch((err) => {
       console.log(err, "sjkflskdjfkl");
       dispatch({
-        type: GET_RELAVANT_COMPANY_TAG_ERROR,
+        type: EXECUTIVE_GET_RELAVANT_COMPANY_TAG_ERROR,
         payload:
           {
             [errEnum.GET_RELAVANT_COMPANY_TAG_ERROR]: err.response.data[ErrKey],
@@ -345,16 +346,16 @@ export const getRelavantCompany = (id, cid) => (dispatch) => {
 };
 
 export const resetPostRelavantCompany = (payload) => {
-  return { type: POST_RELAVANT_COMPANY_TAG, payload: [] };
+  return { type: EXECUTIVE_POST_RELAVANT_COMPANY_TAG, payload: [] };
 };
 
 export const storeSelectedExecutive = (selectedExecutive) => ({
-  type: SELECTED_EXECUTIVE,
+  type: EXECUTIVE_SELECTED_EXECUTIVE,
   payload: selectedExecutive,
 });
 
 export const storeSelectedDepartment = (selectedDepartment) => ({
-  type: SELECTED_DEPARTMENT,
+  type: EXECUTIVE_SELECTED_DEPARTMENT,
   payload: selectedDepartment,
 });
 
@@ -365,14 +366,14 @@ export const getExecutiveLead = (id) => (dispatch) => {
   return getAuthMethod(url)
     .then((res) => {
       dispatch({
-        type: GET_EXECUTIVE_LEAD,
+        type: EXECUTIVE_GET_EXECUTIVE_LEAD,
         payload: res.data,
       });
     })
     .catch((err) => {
       console.log(err, "sjkflskdjfkl");
       dispatch({
-        type: GET_EXECUTIVE_LEAD_ERROR,
+        type: EXECUTIVE_GET_EXECUTIVE_LEAD_ERROR,
         payload:
           {
             [errEnum.GET_EXECUTIVE_LEAD_ERROR]: err.response.data[ErrKey],
