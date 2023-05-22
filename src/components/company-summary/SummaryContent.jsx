@@ -266,7 +266,7 @@ const SummaryContent = () => {
                 
               <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
                     aria-expanded="false">
-                    <i className="right-icons la la-star" aria-hidden="true"></i>
+                    <i className="right-icons la la-tag" aria-hidden="true"></i>
                   </a>
                 </li>
                 
