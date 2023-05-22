@@ -6732,7 +6732,7 @@ cursor: pointer;
     .headerblk2{display: flex; align-items: center;     margin-top: 15px;
       left: -4px;
       position: relative;}
-    .headerblk2 > div{display: flex; align-items: center;  margin-right: 150px;}
+    .headerblk2 > div{display: flex;   margin-right: 150px;}
     .headerblk2 div span::before{margin-left: 0;}
      .keyexebtn{
       /* padding: 7px 10px; */
