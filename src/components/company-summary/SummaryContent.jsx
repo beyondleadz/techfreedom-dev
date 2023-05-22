@@ -236,7 +236,7 @@ const SummaryContent = () => {
                 })}
               </ul>
             </div>
-            <div className="excelcontainer ">
+            {/* <div className="excelcontainer ">
               <li>
                 <a
                   class=" btn btn-outline-success fs-18"
@@ -253,6 +253,24 @@ const SummaryContent = () => {
                   ></i>
                 </a>
               </li>
+            </div> */}
+            <div className="excelcontainer">
+                 <ul className="d-flex  m-mt">
+                 <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
+                    aria-expanded="false"><i class="right-icons la la-file-pdf" aria-hidden="true"></i>
+                  </a></li>
+                         
+                  <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
+                    aria-expanded="false"><i class="right-icons la la-file-excel" aria-hidden="true"></i>
+                  </a></li>
+                
+              <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
+                    aria-expanded="false">
+                    <i className="right-icons la la-star" aria-hidden="true"></i>
+                  </a>
+                </li>
+                
+              </ul>
             </div>
           </div>
         </div>

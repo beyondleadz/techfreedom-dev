@@ -267,6 +267,9 @@ const SimilarCompany = () => {
                   </button>
                 </div> */}
         </div>
+        <div className="buttons-container">
+            <div className="btn btn-outline-secondary mt-3 pr-2 "><i className="right-icons las la-flag" aria-hidden="true"></i>Report An Error</div>
+            </div>
       </>
     )
 }
