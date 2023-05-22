@@ -10,7 +10,7 @@ import {
   storeSelectedExecutive,
   getExecutiveLead
 } from "../../actionCreator/companyDetailsActionCreator";
-import popupImg from "../../assets/images/free-user-login-prompt.jpg.jpeg";
+import popupImg from "../../assets/images/subscribe-now-prompt-img.jpg";
 import Loader from "../loader";
 import TrialModal from "../../common/TrialModal";
 const KeyExecutives = () => {
