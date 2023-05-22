@@ -315,18 +315,22 @@ const KeyExecutives = () => {
           closeModal={closeInfoBeforeLogin}
           redirectToSignup={redirectToSignup}
           redirect={true}
-          buttonText="Start Free Trial"
+          // buttonText="Start Free Trial"
+          buttonText="SUBSCRIBE NOW!"
           modalBody={
             <div id="small-dialog2">
               <div align="center">
                 <img src={popupImg} />
               </div>
               <p style={{ color: "#0000FF" }}>
+                PLEASE SUBSCRIBE TO VIEW ALL DETAILS
+              </p>
+              {/* <p style={{ color: "#0000FF" }}>
                 Get 10 free verified contacts with a BeyondLeadz Pro trial
               </p>
               <p>
                 BeyondLeadz Pro customers close deals faster thanks to relevant
-              </p>
+              </p> */}
             </div>
           }
           modalWidth="400px"

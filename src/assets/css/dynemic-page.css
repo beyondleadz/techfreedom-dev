@@ -7079,8 +7079,9 @@ color: orange;
   height:38px;
   margin-right: 5px;
   align-items: center;
-   display: flex;
+   /* display: flex; */
   padding: 1px;
+  text-align: center;
   border: 1px solid #ddd;
 }
 .namecol .logo img{width:100%; display: block;}
