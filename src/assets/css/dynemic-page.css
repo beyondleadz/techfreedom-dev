@@ -6725,14 +6725,14 @@ cursor: pointer;
     .companysummary .ant-tabs-nav{
        margin-bottom: 0;
     }
-
+    
     .companyname{    display: flex;
       align-items: center;
       justify-content: space-between; padding-right: 120px;}
     .headerblk2{display: flex; align-items: center;     margin-top: 15px;
       left: -4px;
       position: relative;}
-    .headerblk2 > div{display: flex;   margin-right: 150px;}
+    .headerblk2 > div{display: flex;  margin-right: 150px;}
     .headerblk2 div span::before{margin-left: 0;}
      .keyexebtn{
       /* padding: 7px 10px; */
@@ -7075,13 +7075,13 @@ color: orange;
 }
 
 .namecol .logo{
-  width:40px;
+  width:36px;
+  height: 36px;
   margin-right: 5px;
-  height: 22px;
   align-items: center;
-  background: #ddd;
-  display: flex;
+   display: flex;
   padding: 1px;
+  border: 1px solid #ddd;
 }
 .namecol .logo img{width:100%; display: block;}
 .companyintro{
