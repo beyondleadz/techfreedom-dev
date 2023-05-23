@@ -350,7 +350,18 @@ const CompanyContent = () => {
               <i className="right-icons la la-file-pdf" aria-hidden="true"></i>
             </a>
           </li>
-          <li>
+                         
+                  <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
+                    aria-expanded="false"><i class="right-icons la la-file-excel" aria-hidden="true" onClick={downloadExcel}></i>
+                  </a></li>
+                             
+                <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
+                    aria-expanded="false">
+                    <i className="right-icons las la-tags" aria-hidden="true" onClick={tagPage}></i>
+                  </a>
+                </li>
+
+                <li>
             <a
               className=" mr-2"
               role="button"
@@ -361,16 +372,8 @@ const CompanyContent = () => {
             >
               <i className="right-icons la la-print" aria-hidden="true"></i>
             </a>
-          </li>                   
-                  <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
-                    aria-expanded="false"><i class="right-icons la la-file-excel" aria-hidden="true" onClick={downloadExcel}></i>
-                  </a></li>
-                             
-                <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
-                    aria-expanded="false">
-                    <i className="right-icons las la-tags" aria-hidden="true" onClick={tagPage}></i>
-                  </a>
-                </li>
+          </li>  
+
 
 
               </ul>
