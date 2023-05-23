@@ -4,7 +4,7 @@ import CRMIntegrationImage from '../../assets/images/crm-integration.jpg'
 
 const CRMIntegration=()=>{
     return <> 
-    (
+    
          
         <div className="container">
 		<div className="privacy-security-term">
@@ -33,7 +33,7 @@ const CRMIntegration=()=>{
     </section>
 	</div>	
    
-    )
+    
     </>
 }
 export default CRMIntegration;

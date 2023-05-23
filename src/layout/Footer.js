@@ -110,7 +110,7 @@ const Footer = () => {
                         <a href="#blog">BLOG</a>
                       </li>
                       <li>
-                        <NavLink to="/about-us">Faq's</NavLink>
+                        <NavLink to="/faq">Faq's</NavLink>
                       </li>
                       <li>
                         <a href="#resource-library">Resource Library</a>
