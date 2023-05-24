@@ -166,7 +166,7 @@ const ComparisonContent = () => {
               </div>
               <div className="compare-table__col">
                 <p className="compare-table__property">
-                  - Prospecting is connections dependant
+				- Limited data set & limited prospecting
                 </p>
               </div>
             </div>
@@ -178,7 +178,7 @@ const ComparisonContent = () => {
                 </p>
               </div>
               <div className="compare-table__col">
-                <p className="compare-table__property">- User Generated data</p>
+                <p className="compare-table__property">- Mixed email data including private & generic corporate emails</p>
               </div>
             </div>
             <div className="compare-table__row">
@@ -190,7 +190,7 @@ const ComparisonContent = () => {
               </div>
               <div className="compare-table__col">
                 <p className="compare-table__property">
-                  - Accuracy and Completeness doubtful
+				- User has to buy such tools separately
                 </p>
               </div>
             </div>
@@ -203,7 +203,7 @@ const ComparisonContent = () => {
               </div>
               <div className="compare-table__col">
                 <p className="compare-table__property">
-                  - Single Source (Users)
+				- Validation, if any, done manually since data is mostly out-dated
                 </p>
               </div>
             </div>
@@ -211,60 +211,12 @@ const ComparisonContent = () => {
               <div className="compare-table__col"></div>
               <div className="compare-table__col">
                 <p className="compare-table__property">
-                  - Tailored dataset with multiple download options
+				- Advance filters for getting the right dataset
                 </p>
               </div>
               <div className="compare-table__col">
                 <p className="compare-table__property">
-                  - Limitations in customisng and downloding
-                </p>
-              </div>
-            </div>
-            <div className="compare-table__row">
-              <div className="compare-table__col"></div>
-              <div className="compare-table__col">
-                <p className="compare-table__property">
-                  - Budget Freindly and unlimited searches
-                </p>
-              </div>
-              <div className="compare-table__col">
-                <p className="compare-table__property">
-                  -Limited free searches and Expensive per user billing
-                </p>
-              </div>
-            </div>
-            <div className="compare-table__row">
-              <div className="compare-table__col"></div>
-              <div className="compare-table__col">
-                <p className="compare-table__property">- Business emails</p>
-              </div>
-              <div className="compare-table__col">
-                <p className="compare-table__property">
-                  - Personal emails and costly reachout through Inmails
-                </p>
-              </div>
-            </div>
-            <div className="compare-table__row">
-              <div className="compare-table__col"></div>
-              <div className="compare-table__col">
-                <p className="compare-table__property">
-                  - Direct Dials & Mobile Numbers
-                </p>
-              </div>
-              <div className="compare-table__col">
-                <p className="compare-table__property">- X</p>
-              </div>
-            </div>
-            <div className="compare-table__row">
-              <div className="compare-table__col"></div>
-              <div className="compare-table__col">
-                <p className="compare-table__property">
-                  - No commercial advertisements and sponsored ads like LinkedIn
-                </p>
-              </div>
-              <div className="compare-table__col">
-                <p className="compare-table__property">
-                  - Commercial and Sposorod ads take away attention
+				- Very few filters for data search
                 </p>
               </div>
             </div>
@@ -291,12 +243,12 @@ const ComparisonContent = () => {
               <div className="compare-table__col"></div>
               <div className="compare-table__col">
                 <p className="compare-table__property">
-                  - Unlimited Prospecting and list builidng
+				- Provides ready data and data automation tools for unlimited prospecting
                 </p>
               </div>
               <div className="compare-table__col">
                 <p className="compare-table__property">
-                  - Prospecting is connections dependant
+				- Own data needed for doing campaigns and user has to buy data separately
                 </p>
               </div>
             </div>
@@ -304,36 +256,23 @@ const ComparisonContent = () => {
               <div className="compare-table__col"></div>
               <div className="compare-table__col">
                 <p className="compare-table__property">
-                  - Independent human verified data
+				- Complete solution which allows data discovery, reach-out and leads in your account.
                 </p>
               </div>
               <div className="compare-table__col">
-                <p className="compare-table__property">- User Generated data</p>
+                <p className="compare-table__property">- Limited contacts and not up-to-date always</p>
               </div>
             </div>
             <div className="compare-table__row">
               <div className="compare-table__col"></div>
               <div className="compare-table__col">
                 <p className="compare-table__property">
-                  - Accurate and doubly verified data
+				- Sales Automation package also available at BeyondLedz for Lead conversion.
                 </p>
               </div>
               <div className="compare-table__col">
                 <p className="compare-table__property">
-                  - Accuracy and Completeness doubtful
-                </p>
-              </div>
-            </div>
-            <div className="compare-table__row">
-              <div className="compare-table__col"></div>
-              <div className="compare-table__col">
-                <p className="compare-table__property">
-                  - Multiple data soources with rigrouos quality contol
-                </p>
-              </div>
-              <div className="compare-table__col">
-                <p className="compare-table__property">
-                  - Single Source (Users)
+				- Generally not supported with automated marketing and sales tools
                 </p>
               </div>
             </div>
@@ -341,36 +280,12 @@ const ComparisonContent = () => {
               <div className="compare-table__col"></div>
               <div className="compare-table__col">
                 <p className="compare-table__property">
-                  - Tailored dataset with multiple download options
+				- Create unlimited Leads, put all your leads at one place & keep them updated
                 </p>
               </div>
               <div className="compare-table__col">
-                <p className="compare-table__property">
-                  - Limitations in customisng and downloding
-                </p>
-              </div>
-            </div>
-            <div className="compare-table__row">
-              <div className="compare-table__col"></div>
-              <div className="compare-table__col">
-                <p className="compare-table__property">
-                  - Budget Freindly and unlimited searches
-                </p>
-              </div>
-              <div className="compare-table__col">
-                <p className="compare-table__property">
-                  -Limited free searches and Expensive per user billing
-                </p>
-              </div>
-            </div>
-            <div className="compare-table__row">
-              <div className="compare-table__col"></div>
-              <div className="compare-table__col">
-                <p className="compare-table__property">- Business emails</p>
-              </div>
-              <div className="compare-table__col">
-                <p className="compare-table__property">
-                  - Personal emails and costly reachout through Inmails
+                <p className="compare-table__property text-danger">
+                  X
                 </p>
               </div>
             </div>
@@ -378,27 +293,16 @@ const ComparisonContent = () => {
               <div className="compare-table__col"></div>
               <div className="compare-table__col">
                 <p className="compare-table__property">
-                  - Direct Dials & Mobile Numbers
+				- User & automation based content flagging
                 </p>
               </div>
               <div className="compare-table__col">
-                <p className="compare-table__property">- X</p>
-              </div>
-            </div>
-            <div className="compare-table__row">
-              <div className="compare-table__col"></div>
-              <div className="compare-table__col">
-                <p className="compare-table__property">
-                  - No commercial advertisements and sponsored ads like LinkedIn
-                </p>
-              </div>
-              <div className="compare-table__col">
-                <p className="compare-table__property">
-                  - Commercial and Sposorod ads take away attention
+                <p className="compare-table__property text-danger">
+                  X
                 </p>
               </div>
             </div>
-          </div>
+ </div>
 			</div>
 		  ),
 		},
@@ -421,12 +325,12 @@ const ComparisonContent = () => {
               <div className="compare-table__col"></div>
               <div className="compare-table__col">
                 <p className="compare-table__property">
-				- Unlimited data set and prospecting
+				- Creates and provide only corporate emails
                 </p>
               </div>
               <div className="compare-table__col">
                 <p className="compare-table__property">
-                  - Prospecting is connections dependant
+				- Only fetch private contact details from Linkedin including Gmail, Yahoo etc
                 </p>
               </div>
             </div>
@@ -434,36 +338,23 @@ const ComparisonContent = () => {
               <div className="compare-table__col"></div>
               <div className="compare-table__col">
                 <p className="compare-table__property">
-				- Unlimited data set and prospecting
+				- Direct Dials and Mobile numbers for faster reach
                 </p>
               </div>
               <div className="compare-table__col">
-                <p className="compare-table__property">- User Generated data</p>
+                <p className="compare-table__property">- Only internet scrappe data</p>
               </div>
             </div>
             <div className="compare-table__row">
               <div className="compare-table__col"></div>
               <div className="compare-table__col">
                 <p className="compare-table__property">
-                  - Accurate and doubly verified data
+				- Experts in data with top companies as customers
                 </p>
               </div>
               <div className="compare-table__col">
                 <p className="compare-table__property">
-                  - Accuracy and Completeness doubtful
-                </p>
-              </div>
-            </div>
-            <div className="compare-table__row">
-              <div className="compare-table__col"></div>
-              <div className="compare-table__col">
-                <p className="compare-table__property">
-                  - Multiple data soources with rigrouos quality contol
-                </p>
-              </div>
-              <div className="compare-table__col">
-                <p className="compare-table__property">
-                  - Single Source (Users)
+				- Partially solving a few business problems
                 </p>
               </div>
             </div>
@@ -471,12 +362,12 @@ const ComparisonContent = () => {
               <div className="compare-table__col"></div>
               <div className="compare-table__col">
                 <p className="compare-table__property">
-                  - Tailored dataset with multiple download options
+				- A complete marketing & sales automation platform
                 </p>
               </div>
               <div className="compare-table__col">
                 <p className="compare-table__property">
-                  - Limitations in customisng and downloding
+				- Only Data Platform
                 </p>
               </div>
             </div>
@@ -484,51 +375,16 @@ const ComparisonContent = () => {
               <div className="compare-table__col"></div>
               <div className="compare-table__col">
                 <p className="compare-table__property">
-                  - Budget Freindly and unlimited searches
+				- Better data at better cost when compared to our competition
                 </p>
               </div>
               <div className="compare-table__col">
                 <p className="compare-table__property">
-                  -Limited free searches and Expensive per user billing
+				- Higher cost with varied data
                 </p>
               </div>
             </div>
-            <div className="compare-table__row">
-              <div className="compare-table__col"></div>
-              <div className="compare-table__col">
-                <p className="compare-table__property">- Business emails</p>
-              </div>
-              <div className="compare-table__col">
-                <p className="compare-table__property">
-                  - Personal emails and costly reachout through Inmails
-                </p>
-              </div>
-            </div>
-            <div className="compare-table__row">
-              <div className="compare-table__col"></div>
-              <div className="compare-table__col">
-                <p className="compare-table__property">
-                  - Direct Dials & Mobile Numbers
-                </p>
-              </div>
-              <div className="compare-table__col">
-                <p className="compare-table__property">- X</p>
-              </div>
-            </div>
-            <div className="compare-table__row">
-              <div className="compare-table__col"></div>
-              <div className="compare-table__col">
-                <p className="compare-table__property">
-                  - No commercial advertisements and sponsored ads like LinkedIn
-                </p>
-              </div>
-              <div className="compare-table__col">
-                <p className="compare-table__property">
-                  - Commercial and Sposorod ads take away attention
-                </p>
-              </div>
-            </div>
-          </div>
+ </div>
 			  </div>
 			),
 		  }
@@ -576,243 +432,7 @@ const ComparisonContent = () => {
             <div className="clearfix"> </div>
           </div>
 
-          <div className="compare-table__table" aria-labelledby="tab_item-1">
-            <div className="compare-table__head">
-              <div className="compare-table__col"></div>
-              <div className="compare-table__col">Beyond Leads</div>
-              <div className="compare-table__col">LinkedIn</div>
-            </div>
-            <div className="compare-table__row">
-              <div className="compare-table__col"></div>
-              <div className="compare-table__col">
-                <p className="compare-table__property">
-                  - Unlimited Prospecting and list builidng
-                </p>
-              </div>
-              <div className="compare-table__col">
-                <p className="compare-table__property">
-                  - Prospecting is connections dependant
-                </p>
-              </div>
-            </div>
-            <div className="compare-table__row">
-              <div className="compare-table__col"></div>
-              <div className="compare-table__col">
-                <p className="compare-table__property">
-                  - Independent human verified data
-                </p>
-              </div>
-              <div className="compare-table__col">
-                <p className="compare-table__property">- User Generated data</p>
-              </div>
-            </div>
-            <div className="compare-table__row">
-              <div className="compare-table__col"></div>
-              <div className="compare-table__col">
-                <p className="compare-table__property">
-                  - Accurate and doubly verified data
-                </p>
-              </div>
-              <div className="compare-table__col">
-                <p className="compare-table__property">
-                  - Accuracy and Completeness doubtful
-                </p>
-              </div>
-            </div>
-            <div className="compare-table__row">
-              <div className="compare-table__col"></div>
-              <div className="compare-table__col">
-                <p className="compare-table__property">
-                  - Multiple data soources with rigrouos quality contol
-                </p>
-              </div>
-              <div className="compare-table__col">
-                <p className="compare-table__property">
-                  - Single Source (Users)
-                </p>
-              </div>
-            </div>
-            <div className="compare-table__row">
-              <div className="compare-table__col"></div>
-              <div className="compare-table__col">
-                <p className="compare-table__property">
-                  - Tailored dataset with multiple download options
-                </p>
-              </div>
-              <div className="compare-table__col">
-                <p className="compare-table__property">
-                  - Limitations in customisng and downloding
-                </p>
-              </div>
-            </div>
-            <div className="compare-table__row">
-              <div className="compare-table__col"></div>
-              <div className="compare-table__col">
-                <p className="compare-table__property">
-                  - Budget Freindly and unlimited searches
-                </p>
-              </div>
-              <div className="compare-table__col">
-                <p className="compare-table__property">
-                  -Limited free searches and Expensive per user billing
-                </p>
-              </div>
-            </div>
-            <div className="compare-table__row">
-              <div className="compare-table__col"></div>
-              <div className="compare-table__col">
-                <p className="compare-table__property">- Business emails</p>
-              </div>
-              <div className="compare-table__col">
-                <p className="compare-table__property">
-                  - Personal emails and costly reachout through Inmails
-                </p>
-              </div>
-            </div>
-            <div className="compare-table__row">
-              <div className="compare-table__col"></div>
-              <div className="compare-table__col">
-                <p className="compare-table__property">
-                  - Direct Dials & Mobile Numbers
-                </p>
-              </div>
-              <div className="compare-table__col">
-                <p className="compare-table__property">- X</p>
-              </div>
-            </div>
-            <div className="compare-table__row">
-              <div className="compare-table__col"></div>
-              <div className="compare-table__col">
-                <p className="compare-table__property">
-                  - No commercial advertisements and sponsored ads like LinkedIn
-                </p>
-              </div>
-              <div className="compare-table__col">
-                <p className="compare-table__property">
-                  - Commercial and Sposorod ads take away attention
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="compare-table__table" aria-labelledby="tab_item-2">
-            <div className="compare-table__head">
-              <div className="compare-table__col"></div>
-              <div className="compare-table__col">Beyond Leads</div>
-              <div className="compare-table__col">Test 2</div>
-            </div>
-            <div className="compare-table__row">
-              <div className="compare-table__col"></div>
-              <div className="compare-table__col">
-                <p className="compare-table__property">
-                  - Unlimited Prospecting and list builidng
-                </p>
-              </div>
-              <div className="compare-table__col">
-                <p className="compare-table__property">
-                  - Prospecting is connections dependant
-                </p>
-              </div>
-            </div>
-            <div className="compare-table__row">
-              <div className="compare-table__col"></div>
-              <div className="compare-table__col">
-                <p className="compare-table__property">
-                  - Independent human verified data
-                </p>
-              </div>
-              <div className="compare-table__col">
-                <p className="compare-table__property">- User Generated data</p>
-              </div>
-            </div>
-            <div className="compare-table__row">
-              <div className="compare-table__col"></div>
-              <div className="compare-table__col">
-                <p className="compare-table__property">
-                  - Accurate and doubly verified data
-                </p>
-              </div>
-              <div className="compare-table__col">
-                <p className="compare-table__property">
-                  - Accuracy and Completeness doubtful
-                </p>
-              </div>
-            </div>
-            <div className="compare-table__row">
-              <div className="compare-table__col"></div>
-              <div className="compare-table__col">
-                <p className="compare-table__property">
-                  - Multiple data soources with rigrouos quality contol
-                </p>
-              </div>
-              <div className="compare-table__col">
-                <p className="compare-table__property">
-                  - Single Source (Users)
-                </p>
-              </div>
-            </div>
-            <div className="compare-table__row">
-              <div className="compare-table__col"></div>
-              <div className="compare-table__col">
-                <p className="compare-table__property">
-                  - Tailored dataset with multiple download options
-                </p>
-              </div>
-              <div className="compare-table__col">
-                <p className="compare-table__property">
-                  - Limitations in customisng and downloding
-                </p>
-              </div>
-            </div>
-            <div className="compare-table__row">
-              <div className="compare-table__col"></div>
-              <div className="compare-table__col">
-                <p className="compare-table__property">
-                  - Budget Freindly and unlimited searches
-                </p>
-              </div>
-              <div className="compare-table__col">
-                <p className="compare-table__property">
-                  -Limited free searches and Expensive per user billing
-                </p>
-              </div>
-            </div>
-            <div className="compare-table__row">
-              <div className="compare-table__col"></div>
-              <div className="compare-table__col">
-                <p className="compare-table__property">- Business emails</p>
-              </div>
-              <div className="compare-table__col">
-                <p className="compare-table__property">
-                  - Personal emails and costly reachout through Inmails
-                </p>
-              </div>
-            </div>
-            <div className="compare-table__row">
-              <div className="compare-table__col"></div>
-              <div className="compare-table__col">
-                <p className="compare-table__property">
-                  - Direct Dials & Mobile Numbers
-                </p>
-              </div>
-              <div className="compare-table__col">
-                <p className="compare-table__property">- X</p>
-              </div>
-            </div>
-            <div className="compare-table__row">
-              <div className="compare-table__col"></div>
-              <div className="compare-table__col">
-                <p className="compare-table__property">
-                  - No commercial advertisements and sponsored ads like LinkedIn
-                </p>
-              </div>
-              <div className="compare-table__col">
-                <p className="compare-table__property">
-                  - Commercial and Sposorod ads take away attention
-                </p>
-              </div>
-            </div>
-          </div>
+         
         </div>
       </div>
     </>
