@@ -30,7 +30,7 @@ const ComparisonContent = () => {
               <div className="compare-table__col">LinkedIn</div>
             </div>
             <div className="compare-table__row">
-              <div className="compare-table__col"><img src={BeyondLogo} /></div>
+              <div className="compare-table__col"><img src={LinkedinLogo} /></div>
               <div className="compare-table__col">
                 <p className="compare-table__property">
                   - Unlimited Prospecting and list builidng
@@ -43,7 +43,7 @@ const ComparisonContent = () => {
               </div>
             </div>
             <div className="compare-table__row">
-              <div className="compare-table__col"><img src={LinkedinLogo} /></div>
+              <div className="compare-table__col"></div>
               <div className="compare-table__col">
                 <p className="compare-table__property">
                   - Independent human verified data
