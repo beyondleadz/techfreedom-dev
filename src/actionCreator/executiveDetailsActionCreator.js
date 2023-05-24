@@ -51,7 +51,7 @@ import {
   companyPdfDownloadUrl,
   executiveEmployeeListingApiUrl,
 } from "../constant/Constant";
-import { createPayload } from "../utils/utils";
+import { createExecutivePayload, createPayload } from "../utils/utils";
 import { ErrKey, errEnum } from "../config";
 import {
   DOWNLOAD_COMPANYLIST,
@@ -148,11 +148,12 @@ export const resetLead = (payload) => {
   return { type: EXECUTIVE_SUBMIT_EXECUTIVE_LEAD, payload: payload };
 };
 
-export const getSimilarCompanyList = (payload, paginationValues) => (
+export const getSimilarExecutiveList = (payload, paginationValues) => (
   dispatch
 ) => {
-  const url = createPayload(payload, paginationValues, companyListingApiUrl);
+  let url = createExecutivePayload(payload, paginationValues, employeeListUrl);
   console.log(payload, "payloadpayload");
+  url+="&id.notEquals="+payload.id;
   return getMethod(url)
     .then((res) => {
       dispatch({
@@ -161,11 +162,10 @@ export const getSimilarCompanyList = (payload, paginationValues) => (
       });
     })
     .catch((err) => {
-      console.log(err, "sjkflskdjfkl");
       dispatch({
         type: EXECUTIVE_SIMILAR_COMPANYLIST_ERROR,
         payload:
-          { [errEnum.SIMILAR_COMPANYLIST_ERROR]: err.response.data[ErrKey] } ||
+          { [errEnum.EXECUTIVE_SIMILAR_COMPANYLIST_ERROR]: err.response.data[ErrKey] } ||
           "Error Occured",
       });
     });

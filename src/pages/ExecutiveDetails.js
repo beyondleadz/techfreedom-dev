@@ -10,7 +10,7 @@ import {
   getExecutiveDetails,
   getEmployeeList,
   getDepartmentList,
-  getSimilarCompanyList,
+  getSimilarExecutiveList,
 } from "../actionCreator/executiveDetailsActionCreator";
 import { useParams } from "react-router-dom";
 import NoDataFound from "../components/NoData";
@@ -34,9 +34,10 @@ const ExecutiveDetails = () => {
     console.log(executiveDetails, "executiveDetails");
     if (Object.keys(executiveDetails).length) {
       dispatch(
-        getSimilarCompanyList(
+        getSimilarExecutiveList(
           {
-            selectedIndustry: [executiveDetails?.industry],
+            id:executiveDetails?.id,
+            selectedCompany: [executiveDetails?.company],
           },
           {
             start: 0,

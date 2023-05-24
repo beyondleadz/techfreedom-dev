@@ -38,7 +38,7 @@ const initialState = {
   employeeList: [],
   departmentList: [],
   executiveLeads: {},
-  similarCompanyList: [],
+  similarExecutiveList: [],
   errorFormSubmit: [],
   sigleCompanyTag: {},
   fetchCompanyTag: {},
@@ -66,7 +66,7 @@ const ExecutiveDetailsReducer = (state = initialState, action) => {
     case EXECUTIVE_SUBMIT_EXECUTIVE_LEAD:
       return { ...state, executiveLeads: payload };
     case EXECUTIVE_SIMILAR_COMPANYLIST:
-      return { ...state, similarCompanyList: payload };
+      return { ...state, similarExecutiveList: payload };
     case EXECUTIVE_SUBMIT_ERROR_FORM:
       return { ...state, errorFormSubmit: payload };
     case EXECUTIVE_SINGLE_COMPANY_TAG:

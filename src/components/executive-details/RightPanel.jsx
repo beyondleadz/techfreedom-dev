@@ -16,7 +16,7 @@ import {
   getRelavantCompany,
   resetPostRelavantCompany,
   storeSelectedDepartment,
-} from "../../actionCreator/companyDetailsActionCreator";
+} from "../../actionCreator/executiveDetailsActionCreator";
 
 const RightPanel = () => {
     const dispatch = useDispatch();
@@ -34,12 +34,16 @@ const RightPanel = () => {
     const companyDetails = useSelector(
       (state) => state.companyDetailsReducer.companyDetails
     );
-    const similarCompanyList = useSelector(
-      (state) => state.companyDetailsReducer.similarCompanyList
+    const similarExecutiveList = useSelector(
+      (state) => state.executiveDetailsReducer.similarExecutiveList
     );
   
     const userAccountInfo = useSelector(
       (state) => state.CommonReducer.accountInfo
+    );
+
+    const executiveDetails = useSelector(
+      (state) => state.executiveDetailsReducer.executiveDetails
     );
   
     useMemo(() => {
@@ -52,17 +56,17 @@ const RightPanel = () => {
   
     useEffect(() => {
       setSimilarCount(
-        similarCompanyList.length < 5 ? similarCompanyList.length : 5
+        similarExecutiveList.length < 5 ? similarExecutiveList.length : 5
       );
-    }, [similarCompanyList]);
+    }, [similarExecutiveList]);
   
     useEffect(() => {
-      if (!similarCompanyList.length) return;
-      const list = similarCompanyList?.filter(
+      if (!similarExecutiveList.length) return;
+      const list = similarExecutiveList?.filter(
         (item) => !item?.id === companyDetails?.id
       );
       setSimilarList(list);
-    }, [similarCompanyList]);
+    }, [similarExecutiveList]);
   
     const onChange = (key) => {
       setTabActiveKey(key);
@@ -85,24 +89,28 @@ const RightPanel = () => {
       setTabActiveKey("2");
     };
   
-    const renderSimilarCompanyList = () => {
+    const renderSimilarExecutiveList = () => {
       let similarList = [];
       for (let i = 0; i < similarCount; i++) {
         similarList.push(
-          <div className="similarinnerblk">
-            <div className="s-company img-responsive">
-              <img src={similarCompanyList[i]?.companyLogoUrl || defaultLogo} />
-            </div>
-            <div className="similar-desc">
-              <div>
-                <a className="font-weight-bold fs-14 text-dark" title="">
-                  {similarCompanyList[i]?.name}
-                </a>
+          <div className="row brdr-b pl-2 pb-3">
+              <div className=" btn-circle btn-info">
+              {similarExecutiveList[i]?.firstname[0].toUpperCase()+similarExecutiveList[i]?.lastname[0].toUpperCase()}
               </div>
-              <div className="fs-12">{similarCompanyList[i]?.industry?.name}</div>
-              <div className="fs-12">{similarCompanyList[i]?.address}</div>
+              <div className="col">
+                <div>
+                  <a
+                    className="font-weight-bold fs-14 text-dark"
+                    title=""
+                    href="#"
+                    target=""
+                  >
+                  {similarExecutiveList[i]?.fullname}
+                  </a>
+                </div>
+                <div className="fs-12">{similarExecutiveList[i]?.title}</div>                
+              </div>
             </div>
-          </div>
         );
       }
       if (!similarList.length) {
@@ -113,7 +121,7 @@ const RightPanel = () => {
             </div>
             <div className="similar-desc">
               <div className="font-weight-bold fs-14">
-                No similar company found.
+                No similar executive found.
               </div>
               {/* <div className="fs-12"></div>
               <div className="fs-12"></div> */}
@@ -182,7 +190,7 @@ const RightPanel = () => {
                 <img src={logo} />
               </div>
               <div className="c-info-desc">
-                <div><a className="font-weight-bold fs-16 text-dark"  title="" href="#" target="" > Dun & Bradstreet    </a>
+                <div><a className="font-weight-bold fs-16 text-dark"  title="" href="#" target="" >{executiveDetails?.company?.name}</a>
                 </div>
                 
               </div>                 
@@ -191,13 +199,13 @@ const RightPanel = () => {
            <div className="row pb-3">
               <div className=" pl-3">
               
-                <div className="fs-12"><h6><i class=" fs-16 mr-2  la la-phone text-black"></i>Phone</h6><div className="pl-4 ">(206) 266-1000</div></div>
-                <div className="fs-12"><h6><i class=" fs-16 mr-2  la la-map-marker text-black"></i>Location</h6><div className="pl-4 ml-1"> Okhla Industrial Estate Phase 3 Rd, New Delhi, Delhi 110020</div></div>
-                <div className="fs-12"><h6><i class=" fs-16 mr-2  la la-users text-black"></i>Employees Ranges</h6><div className="pl-4 ml-1">1.0K to 5.0K</div></div>
-                <div className="fs-12"><h6><i class=" fs-16 mr-2  las la-industry text-black"></i>Industry</h6><div className="pl-4 ml-1">Commercial & professional services</div></div>
-                <div className="fs-12"><h6><i class=" fs-16 mr-2  la la-globe text-black"></i>Website</h6><div className="pl-4 ml-1">https://www.dnb.co.in/</div></div>
-                <div className="fs-12"><h6><i class=" fs-16 mr-2  la la-city text-black"></i>Company Type</h6><div className="pl-4 ml-1">Business information Credit & risk Sales & marketing Data analytics Supply & compliance</div></div>
-                <div className="fs-12"><h6><i class=" fs-16 mr-2  la la-money-check text-black"></i>Revenue Range</h6><div className="pl-4 ml-1"> $2,270 million to $2,315 million</div></div>
+                <div className="fs-12"><h6><i class=" fs-16 mr-2  la la-phone text-black"></i>Phone</h6><div className="pl-4 ">{executiveDetails?.company?.phoneNo}</div></div>
+                <div className="fs-12"><h6><i class=" fs-16 mr-2  la la-map-marker text-black"></i>Location</h6><div className="pl-4 ml-1">{executiveDetails?.company?.address}</div></div>
+                <div className="fs-12"><h6><i class=" fs-16 mr-2  la la-users text-black"></i>Employees Ranges</h6><div className="pl-4 ml-1">{executiveDetails?.company?.range?.name}</div></div>
+                <div className="fs-12"><h6><i class=" fs-16 mr-2  las la-industry text-black"></i>Industry</h6><div className="pl-4 ml-1">{executiveDetails?.company?.industry?.name}</div></div>
+                <div className="fs-12"><h6><i class=" fs-16 mr-2  la la-globe text-black"></i>Website</h6><div className="pl-4 ml-1">{executiveDetails?.company?.wedsite}</div></div>
+                <div className="fs-12"><h6><i class=" fs-16 mr-2  la la-city text-black"></i>Company Type</h6><div className="pl-4 ml-1">{executiveDetails?.company?.category?.name}</div></div>
+                <div className="fs-12"><h6><i class=" fs-16 mr-2  la la-money-check text-black"></i>Revenue Range</h6><div className="pl-4 ml-1"> {executiveDetails?.company?.ravenue?.name}</div></div>
               </div>
             </div>
            </div>
@@ -207,6 +215,9 @@ const RightPanel = () => {
           <div className="card-header font-weight-bold">
             Similar Executive
           </div>
+          <div className="card-body similarblk">
+              {renderSimilarExecutiveList()}
+            </div>
           <div className="card-body">
             <div className="row brdr-b pl-2 pb-3">
               <div className=" btn-circle btn-info">

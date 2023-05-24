@@ -138,6 +138,7 @@ export const createExecutivePayload = (
   companyListingApiUrl
 ) => {
   const {
+    selectedCompany,
     selectedCountry,
     selectedState,
     selectedCity,
@@ -163,9 +164,20 @@ export const createExecutivePayload = (
   let companyTagId;
   let executiveFuntion;
   let executiveLevel;
+  let company;
   if (paginationValues) {
     withPagination = `&page=${paginationValues?.start}&size=${paginationValues?.end}`;
     url = `${url}${withPagination}`;
+  }
+
+  if (selectedCompany?.length) {
+    let ids = "";
+    for (let i = 0; i < selectedCompany.length - 1; i++) {
+      ids += `${selectedCompany[i].id},`;
+    }
+    ids += selectedCompany[selectedCompany.length - 1].id;
+    company = `&companyId.in=${ids}`;
+    url = `${url}${company}`;
   }
 
   if (selectedCountry?.length) {
