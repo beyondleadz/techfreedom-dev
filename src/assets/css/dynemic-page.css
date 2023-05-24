@@ -6409,6 +6409,12 @@ cursor: pointer;
   border: none;
  }
 
+ #tabscompany .ant-tabs-tab:hover, #tabscompany .ant-tabs-tab *:hover {
+  color: #5d44ff;}
+  #tabscompany .ant-tabs-tab-active, #tabscompany .ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: #5d44ff;
+    }
+
 @media only screen and (max-width: 768px) {
   .mob-t {
     font-size: 80%;
@@ -6803,7 +6809,7 @@ cursor: pointer;
     min-height: 0;     margin: 0;
     padding: 0;
   }
-
+ 
   #myTabjustified{
     flex-wrap: nowrap;
     overflow-x: scroll;

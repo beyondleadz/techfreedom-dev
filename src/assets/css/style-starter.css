@@ -18736,7 +18736,23 @@ left: 100%;    padding: 8px 12px 8px 2px;
 
 /*navigation styling */
 /*header  */
-
+#home .btn-style {
+  padding: 12px 36px;
+  font-size: 14px;
+  color: #fff;
+  margin-right: 20px;
+  border-radius: 30px;
+  font-weight: 600;
+  box-shadow: 0 0.5rem 1rem rgb(16 16 16 / 14%);
+  outline: none;
+  border: none;
+  background: var(--primary-color);
+  transition: all 1.8s ease-in-out;
+}
+#home .btn-style:hover {
+  color: #fff;
+  opacity: .75;
+}
 /* button style */
 .btn-style {
   /*padding: 12px 36px;*/
