@@ -123,7 +123,7 @@ const CompanyNavigation = () => {
   };
 
   return (
-    <nav className="navbar navbar-light bg-white topbar mb-4 static-top">
+    <nav className="navbar navbar-light bg-white topbar mr-2 mb-4 static-top">
       <div className="buttons-container-top m-mt quickselection">
         <div>
           <span className="fs-12 mr-2">Quick Selection</span>

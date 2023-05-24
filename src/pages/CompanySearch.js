@@ -110,7 +110,7 @@ const CompanySearch = ({ tab }) => {
   return (
     <>
       <Layout>
-        <div>
+        <div id="tabscompany">
           <h3 className="pagetitle">
             {parseInt(activeTab) == 1
               ? "Search Companies"

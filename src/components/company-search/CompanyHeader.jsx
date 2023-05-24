@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 const CompanySearch = () => {
   return (
-    <div className="navbar-light">
+    <div className="navbar-light" id="tabscompany">
       <h3 className="card-body font-weight-bold">Search Companies</h3>
       <ul className="nav nav-tabs" id="myTabjustified" role="tablist">
         <li className="nav-item" role="presentation">

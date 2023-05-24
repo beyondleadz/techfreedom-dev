@@ -127,26 +127,26 @@ const ExecutiveNavigation = () => {
       <div className="buttons-container-top m-mt quickselection">
         <div>
           <span className="fs-12 mr-2">Quick Selection</span>
-          <div className=" fs-12 d-sm-inline-block mr-1">
+          <div className=" fs-12 d-sm-inline-block  mr-1">
             <Input
               name="start"
-              className="quickselectioninput"
+              className="quickselectioninput btn-outline-grey"
               maxLength={2}
               onChange={onChangeQuickSelection}
             />
           </div>
           <span className=" fs-12 mr-1">to</span>
-          <div className="  fs-12 d-sm-inline-block mr-1">
+          <div className="  fs-12 d-sm-inline-block  mr-1">
             <Input
               name="end"
               maxLength={2}
-              className="quickselectioninput"
+              className="quickselectioninput btn-outline-grey"
               onChange={onChangeQuickSelection}
             />
           </div>
           <Button
             type="primary"
-            className=" fs-12 d-sm-inline-block mr-1"
+            className=" fs-12 d-sm-inline-block quick-btn mr-1"
             onClick={onClickQuickSelection}
           >
             <i className="fas fs-12 fa-arrow-right"></i>

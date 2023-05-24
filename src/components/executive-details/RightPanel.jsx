@@ -177,9 +177,9 @@ const RightPanel = () => {
   
     return (
       <div className="col-custom-2 executive">
-      <div className="buttons-container">
+      {/* <div className="buttons-container">
       <div className="btn btn-outline-secondary mt-3 pr-2 "><i className="right-icons las la-flag" aria-hidden="true"></i>Report An Error</div>
-      </div>
+      </div> */}
       <div className="card shadow  mb-4">
           <div className="card-header font-weight-bold">
             Company Info
@@ -323,6 +323,9 @@ const RightPanel = () => {
           <div>Is this company data relevant to you? <a href="#" id="" role="button" data-toggle="" aria-haspopup="true" aria-expanded="false"><i class="right-icons small fa fa-thumbs-up" aria-hidden="true"></i></a><a href="#" id="" role="button" data-toggle="" aria-haspopup="true" aria-expanded="false"><i class="right-icons small fa fa-thumbs-down" aria-hidden="true"></i></a></div>
          
         </div>
+        <div className="buttons-container">
+            <div className="btn btn-outline-secondary pr-2 "><i className="right-icons las la-flag" aria-hidden="true"></i>Report An Error</div>
+            </div>
       </div>
     )
 }
