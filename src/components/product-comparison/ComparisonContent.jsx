@@ -174,7 +174,7 @@ const ComparisonContent = () => {
               <div className="compare-table__col"></div>
               <div className="compare-table__col">
                 <p className="compare-table__property">
-                  - Independent human verified data
+				- Quality email data having corporate emails
                 </p>
               </div>
               <div className="compare-table__col">
@@ -185,7 +185,7 @@ const ComparisonContent = () => {
               <div className="compare-table__col"></div>
               <div className="compare-table__col">
                 <p className="compare-table__property">
-                  - Accurate and doubly verified data
+				- Built-in Lead management for automated reach-out
                 </p>
               </div>
               <div className="compare-table__col">
@@ -198,7 +198,7 @@ const ComparisonContent = () => {
               <div className="compare-table__col"></div>
               <div className="compare-table__col">
                 <p className="compare-table__property">
-                  - Multiple data soources with rigrouos quality contol
+				- Up-to-data, no manual validation needed
                 </p>
               </div>
               <div className="compare-table__col">
