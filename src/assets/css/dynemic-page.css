@@ -7183,7 +7183,7 @@ color: orange;
       align-items: center;
       border: 2px solid #f6f6f60a;
       border-radius: 5px;
-      color: #ccc; font-size: 16px;
+      color: #000; font-size: 20px;
   }
   
   .compare-navigation_item:hover {
