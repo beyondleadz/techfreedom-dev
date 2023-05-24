@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Tabs } from "antd";
 import logo from "../../assets/images/logo-round.svg";
+import linkedin from "../../assets/images/linkedin-logo.svg";
+import Dlogo from "../../assets/images/Dun&Bradstreet.png";
 import ProspectSearchImage from "../../assets/images/prospect-search.jpg";
 import leadsImage from "../../assets/images/leads.jpg";
 
@@ -15,20 +17,20 @@ const ComparisonContent = () => {
 		{
 		  key: "1",
 		  label: (
-			<span>
+			<span className="compare-navigation_item ">
 			 LinkedIn
 			</span>
 		  ),
 		  children: (
 			<div>
-			   <div className="compare-table__table" aria-labelledby="tab_item-1">
+			   <div className="compare-table__table active" aria-labelledby="tab_item-1">
             <div className="compare-table__head">
               <div className="compare-table__col"></div>
               <div className="compare-table__col">Beyond Leads</div>
               <div className="compare-table__col">LinkedIn</div>
             </div>
             <div className="compare-table__row">
-              <div className="compare-table__col"></div>
+              <div className="compare-table__col"><img src={logo} /></div>
               <div className="compare-table__col">
                 <p className="compare-table__property">
                   - Unlimited Prospecting and list builidng
@@ -41,7 +43,7 @@ const ComparisonContent = () => {
               </div>
             </div>
             <div className="compare-table__row">
-              <div className="compare-table__col"></div>
+              <div className="compare-table__col"><img src={linkedin} /></div>
               <div className="compare-table__col">
                 <p className="compare-table__property">
                   - Independent human verified data
@@ -145,7 +147,7 @@ const ComparisonContent = () => {
 		{
 		  key: "2",
 		  label: (
-			<span>
+			<span className="compare-navigation_item">
 			 Traditional Data Companies
 			</span>
 		  ),
@@ -158,7 +160,7 @@ const ComparisonContent = () => {
               <div className="compare-table__col">D&B, List Vendors, Zoominfo</div>
             </div>
             <div className="compare-table__row">
-              <div className="compare-table__col"></div>
+              <div className="compare-table__col"><img src={logo} /></div>
               <div className="compare-table__col">
                 <p className="compare-table__property">
                   - Unlimited Prospecting and list builidng
@@ -171,7 +173,7 @@ const ComparisonContent = () => {
               </div>
             </div>
             <div className="compare-table__row">
-              <div className="compare-table__col"></div>
+              <div className="compare-table__col"><img src={ProspectSearchImage} /></div>
               <div className="compare-table__col">
                 <p className="compare-table__property">
 				- Quality email data having corporate emails
@@ -227,7 +229,7 @@ const ComparisonContent = () => {
 		{
 		  key: "3",
 		  label: (
-			<span>
+			<span className="compare-navigation_item">
 			  Popular Prospecting Tools
 			</span>
 		  ),
@@ -309,7 +311,7 @@ const ComparisonContent = () => {
 		{
 			key: "4",
 			label: (
-			  <span>
+				<span className="compare-navigation_item">
 				New Age Marketing Tools
 			  </span>
 			),
@@ -412,9 +414,9 @@ const ComparisonContent = () => {
 	  
       <div id="wrapper">
         <div className="container  ">
-          <div class="product-comparison compare">
+          <div class="product-comparison compare d-flex">
           
-			<div>
+			<div className="compare-navigation_item1">
 			<img src={logo} />
                 <div className="vs"> vs </div>
 			</div>
