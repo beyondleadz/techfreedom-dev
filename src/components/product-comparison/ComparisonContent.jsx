@@ -1,15 +1,24 @@
 import React, { useState } from "react";
+<<<<<<< HEAD
 import { div, Tabs } from "antd";
 import logo from "../../assets/images/logo-round.svg";
 import linkedin from "../../assets/images/linkedin-logo.svg";
 import Dlogo from "../../assets/images/Dun&Bradstreet.png";
 import ProspectSearchImage from "../../assets/images/prospect-search.jpg";
 import leadsImage from "../../assets/images/leads.jpg";
+=======
+import { Tabs } from "antd";
+import BeyondLogo from "../../assets/images/logo-round.svg";
+import LinkedinLogo from "../../assets/images/linkedin-logo.svg";
+import DnBLogo from "../../assets/images/dun-logo.svg";
+import ZoomLogo from "../../assets/images/zoom-logo.svg";
+import ApoloLogo from "../../assets/images/apollo-logo.svg";
+import LushaLogo from "../../assets/images/lusha-full-logo-blk.svg";
+import ZohoLogo from "../../assets/images/zoho-logo.svg";
+>>>>>>> 3fc8efb815815f65a04e1bc60da710bf208beed1
 
-import FeatureOrgImage from "../../assets/images/features-org-icon.png";
-
-import FeaturesImageIntelligence from "../../assets/images/features-social-intelligenc-icon.png";
-import FeaturesRadiusImage from "../../assets/images/features-radius-icon.png";
+import UpleadLogo from "../../assets/images/uplead-logo.svg";
+import RocketLogo from "../../assets/images/rocket-logo.svg";
 
 const ComparisonContent = () => {
 	const [activeTab, setActiveTab] = useState(1);
@@ -30,7 +39,7 @@ const ComparisonContent = () => {
               <div className="compare-table__col">LinkedIn</div>
             </div>
             <div className="compare-table__row">
-              <div className="compare-table__col"><img src={logo} /></div>
+              <div className="compare-table__col"><img src={LinkedinLogo} /></div>
               <div className="compare-table__col">
                 <p className="compare-table__property">
                   - Unlimited Prospecting and list builidng
@@ -43,7 +52,7 @@ const ComparisonContent = () => {
               </div>
             </div>
             <div className="compare-table__row">
-              <div className="compare-table__col"><img src={linkedin} /></div>
+              <div className="compare-table__col"></div>
               <div className="compare-table__col">
                 <p className="compare-table__property">
                   - Independent human verified data
@@ -160,7 +169,7 @@ const ComparisonContent = () => {
               <div className="compare-table__col">D&B, List Vendors, Zoominfo</div>
             </div>
             <div className="compare-table__row">
-              <div className="compare-table__col"><img src={logo} /></div>
+              <div className="compare-table__col"><img src={DnBLogo} /></div>
               <div className="compare-table__col">
                 <p className="compare-table__property">
                   - Unlimited Prospecting and list builidng
@@ -173,7 +182,7 @@ const ComparisonContent = () => {
               </div>
             </div>
             <div className="compare-table__row">
-              <div className="compare-table__col"><img src={ProspectSearchImage} /></div>
+              <div className="compare-table__col"><img src={ZoomLogo} /></div>
               <div className="compare-table__col">
                 <p className="compare-table__property">
 				- Quality email data having corporate emails
@@ -239,10 +248,10 @@ const ComparisonContent = () => {
             <div className="compare-table__head">
               <div className="compare-table__col"></div>
               <div className="compare-table__col">Beyond Leads</div>
-              <div className="compare-table__col">Appollo,Lusha, Zoominfo,Zoho</div>
+              <div className="compare-table__col">Appollo, Lusha, Zoominfo, Zoho</div>
             </div>
             <div className="compare-table__row">
-              <div className="compare-table__col"></div>
+              <div className="compare-table__col"><img src={ApoloLogo} /></div>
               <div className="compare-table__col">
                 <p className="compare-table__property">
 				- Provides ready data and data automation tools for unlimited prospecting
@@ -255,7 +264,7 @@ const ComparisonContent = () => {
               </div>
             </div>
             <div className="compare-table__row">
-              <div className="compare-table__col"></div>
+              <div className="compare-table__col"><img src={LushaLogo} /></div>
               <div className="compare-table__col">
                 <p className="compare-table__property">
 				- Complete solution which allows data discovery, reach-out and leads in your account.
@@ -266,7 +275,7 @@ const ComparisonContent = () => {
               </div>
             </div>
             <div className="compare-table__row">
-              <div className="compare-table__col"></div>
+              <div className="compare-table__col"><img src={ZoomLogo} /></div>
               <div className="compare-table__col">
                 <p className="compare-table__property">
 				- Sales Automation package also available at BeyondLedz for Lead conversion.
@@ -279,7 +288,7 @@ const ComparisonContent = () => {
               </div>
             </div>
             <div className="compare-table__row">
-              <div className="compare-table__col"></div>
+              <div className="compare-table__col"><img src={ZohoLogo} /></div>
               <div className="compare-table__col">
                 <p className="compare-table__property">
 				- Create unlimited Leads, put all your leads at one place & keep them updated
@@ -324,7 +333,7 @@ const ComparisonContent = () => {
               <div className="compare-table__col">RocketReach, Uplead, Lusha</div>
             </div>
             <div className="compare-table__row">
-              <div className="compare-table__col"></div>
+              <div className="compare-table__col"><img src={RocketLogo} /></div>
               <div className="compare-table__col">
                 <p className="compare-table__property">
 				- Creates and provide only corporate emails
@@ -337,7 +346,7 @@ const ComparisonContent = () => {
               </div>
             </div>
             <div className="compare-table__row">
-              <div className="compare-table__col"></div>
+              <div className="compare-table__col"><img src={UpleadLogo} /></div>
               <div className="compare-table__col">
                 <p className="compare-table__property">
 				- Direct Dials and Mobile numbers for faster reach
@@ -348,7 +357,7 @@ const ComparisonContent = () => {
               </div>
             </div>
             <div className="compare-table__row">
-              <div className="compare-table__col"></div>
+              <div className="compare-table__col"><img src={LushaLogo} /></div>
               <div className="compare-table__col">
                 <p className="compare-table__property">
 				- Experts in data with top companies as customers
@@ -417,7 +426,7 @@ const ComparisonContent = () => {
           <div class="product-comparison compare d-flex">
           
 			<div className="compare-navigation_item1">
-			<img src={logo} />
+			<img src={BeyondLogo} />
                 <div className="vs"> vs </div>
 			</div>
 			<div className="compare-navigation_list d-flex">
