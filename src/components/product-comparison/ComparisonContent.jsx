@@ -1,13 +1,5 @@
 import React, { useState } from "react";
-<<<<<<< HEAD
 import { div, Tabs } from "antd";
-import logo from "../../assets/images/logo-round.svg";
-import linkedin from "../../assets/images/linkedin-logo.svg";
-import Dlogo from "../../assets/images/Dun&Bradstreet.png";
-import ProspectSearchImage from "../../assets/images/prospect-search.jpg";
-import leadsImage from "../../assets/images/leads.jpg";
-=======
-import { Tabs } from "antd";
 import BeyondLogo from "../../assets/images/logo-round.svg";
 import LinkedinLogo from "../../assets/images/linkedin-logo.svg";
 import DnBLogo from "../../assets/images/dun-logo.svg";
@@ -15,7 +7,6 @@ import ZoomLogo from "../../assets/images/zoom-logo.svg";
 import ApoloLogo from "../../assets/images/apollo-logo.svg";
 import LushaLogo from "../../assets/images/lusha-full-logo-blk.svg";
 import ZohoLogo from "../../assets/images/zoho-logo.svg";
->>>>>>> 3fc8efb815815f65a04e1bc60da710bf208beed1
 
 import UpleadLogo from "../../assets/images/uplead-logo.svg";
 import RocketLogo from "../../assets/images/rocket-logo.svg";
