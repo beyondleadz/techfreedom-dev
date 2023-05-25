@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Tabs } from "antd";
+import { div, Tabs } from "antd";
 import logo from "../../assets/images/logo-round.svg";
 import linkedin from "../../assets/images/linkedin-logo.svg";
 import Dlogo from "../../assets/images/Dun&Bradstreet.png";
@@ -421,11 +421,7 @@ const ComparisonContent = () => {
                 <div className="vs"> vs </div>
 			</div>
 			<div className="compare-navigation_list d-flex">
-			<Tabs
-            activeKey={activeTab}
-            items={items}
-            onChange={onChange}
-          />
+			<Tabs defaultActiveKey="1" items={items} onChange={onChange} />;
 
 			</div>
 
