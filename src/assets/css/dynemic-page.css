@@ -7086,12 +7086,21 @@ color: orange;
   height:38px;
   margin-right: 5px;
   align-items: center;
-   /* display: flex; */
+  display: flex;
+  justify-content: center;
   padding: 1px;
-  text-align: center;
+  /* text-align: center; */
   border: 1px solid #ddd;
+  /* background-color: #5D44FF; */
+  background-color: #ddd;
+  font-weight: 700;
+  font-size: 1rem;
 }
-.namecol .logo img{width:100%; display: block;}
+.namecol .logo img{
+  width:100%; 
+  /* display: block; */
+  vertical-align: bottom;
+}
 .companyintro{
   /* padding-left: 45px; */
     padding-right: 0;

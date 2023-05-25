@@ -26,7 +26,7 @@ const BannerSection=()=>{
                 </div>
                 <ul className="breadcrumbs-custom-path">
                 <li><a href="index.html">Home</a></li>
-                <li className="active"><i className="fas fa-angle-right mx-2"></i>Producr Comparison</li>
+                <li className="active"><i className="fas fa-angle-right mx-2"></i>Product Comparison</li>
             </ul>
             </div>
         </div>
