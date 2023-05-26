@@ -42,7 +42,7 @@ const ExecutiveHeader = () => {
   };
 
   return (
-    <div className="row ">
+    <div className="row col-md-12">
      <div className="headername">
         <div className="font-weight-bold mb-1 ">
           <h3>{executiveDetails?.fullname}</h3>
