@@ -42,7 +42,7 @@ const ExecutiveHeader = () => {
   };
 
   return (
-    <div className="row">
+    <div className="row ">
       <div className="headername">
         <div className="font-weight-bold mb-1 ">
           <h3>{executiveDetails?.fullname}</h3>
@@ -56,11 +56,11 @@ const ExecutiveHeader = () => {
             <div className="executivedescbox ">
               <div className="row mb-2">
                 <div className="col pl-4">
-                <div className="fs-12 font-weight-bold"><i class="text-black fs-16 la la-suitcase mr-2"></i>Designation  <span className="font-weight-normal ml-2">{executiveDetails?.title}</span></div>
+                <div className="fs-12 font-weight-bold"><i class="text-black fs-16 la la-suitcase mr-2"></i>Designation  <div className="font-weight-normal ml-2">{executiveDetails?.title}</div></div>
                 </div>
                 <div className="col"></div>
                 <div className="col">
-                <div className="fs-12 font-weight-bold"><i class=" text-black fs-16 la la-building mr-2"></i>Company <span className="font-weight-normal ml-2">{executiveDetails?.company?.name}</span></div>
+                <div className="fs-12 font-weight-bold"><i class=" text-black fs-16 la la-building mr-2"></i>Company <div className="font-weight-normal ml-2">{executiveDetails?.company?.name}</div></div>
                   
                 </div>
               </div>

@@ -73,7 +73,7 @@ const ExecutiveDetails = () => {
             />
             </div>
             <div className="container-fluid">
-            <div className="row">
+            <div className="row col-md-12">
             <div className="col-md-9">
             <ExecutiveHeader />
 
