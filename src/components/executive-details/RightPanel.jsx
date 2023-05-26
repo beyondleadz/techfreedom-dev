@@ -324,7 +324,7 @@ const RightPanel = () => {
          
         </div>
         <div className="buttons-container">
-            <div className="btn btn-outline-secondary pr-2 "><i className="right-icons las la-flag" aria-hidden="true"></i>Report An Error</div>
+            <div className="btn btn-outline-secondary  w-99 pr-2 "><i className="right-icons las la-flag" aria-hidden="true"></i>Report An Error</div>
             </div>
       </div>
     )

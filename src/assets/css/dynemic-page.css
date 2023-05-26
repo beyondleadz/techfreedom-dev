@@ -6759,6 +6759,17 @@ cursor: pointer;
   width: 100%;}
   .breadcrumcontainer{padding:25px 35px 0;}
   .similarblk .similarinnerblk .s-company-content { max-width:50%;}
+  .companyintro1{
+    font-weight: 400;
+    box-sizing: border-box;
+    width: 100%;
+    height: 23px;
+    overflow: hidden;
+    font-size: 12px;
+    line-height: 22px;
+    padding-right: 110px; text-align: justify;
+  }
+  .companyintro1.setauto{height: auto;}
     .companyintro{
       font-weight: 400;
       box-sizing: border-box;
@@ -7218,7 +7229,7 @@ color: orange;
     }
 
   .product-comparison .vs{font-size: 2rem;
-    border-right: 2px solid #000;
+    border-right: 1px solid #000;
     padding: 0 20px; display: flex;}
    .compare-navigation_list{    
     display: -webkit-box;

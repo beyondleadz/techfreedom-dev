@@ -54,7 +54,7 @@ const ExecutiveHeader = () => {
             <div className="executivelogobox">{executiveDetails?.firstname[0].toUpperCase()+executiveDetails?.lastname[0].toUpperCase()}</div>
 
             <div className="executivedescbox ">
-              <div className="row mb-3">
+              <div className="row mb-2">
                 <div className="col pl-4">
                   <h5>Designation</h5>{executiveDetails?.title}
                 </div>
@@ -64,7 +64,7 @@ const ExecutiveHeader = () => {
                   <span>{executiveDetails?.company?.name}</span>
                 </div>
               </div>
-              <div className="row pt-3 mb-3">
+              <div className="row pt-2 mb-3">
                 <div className="col">
                   <h5>Email</h5>{" "}
                   <i className=" align-top btn iconemail emails"></i>
@@ -81,18 +81,18 @@ const ExecutiveHeader = () => {
                   {renderSocialLinks(executiveDetails?.socialLinks)}
                 </div>
               </div>
-              <div className="row pt-3">
+              <div className="row pt-2">
                 <div className="col">
                   <h5>Overview</h5>
                   <div 
-            className={`companyintro ${
+            className={`companyintro1 ${
               isCompanyBoxHeightFixed ? "setauto" : ""
             }`}>
                {executiveDetails?.bio}               
             </div>
                 
       
-              <span className="btn text-info font-weight-bold readmoreoverview" onClick={toggleCompanyHeight}>
+              <span className="btn  readmoreoverview" onClick={toggleCompanyHeight}>
               {isCompanyBoxHeightFixed ? "Hide..." : "Read more..."}
             </span>
                 </div>

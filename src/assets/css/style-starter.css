@@ -22613,19 +22613,19 @@ li.whyt.lost {
 
 
 .compare-table__head > div:nth-child(2), .compare-table__row > div:nth-child(2)  {
-  border-right: 1px solid;
-  border-left: 1px solid;
+  border-right: 2px solid;
+  border-left: 2px solid;
   /* border-bottom: 1px solid; */
 }
 
 .compare-table__head > div:nth-child(2)  {
-  border-top: 1px solid;
+  border-top: 2px solid;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }
 
 .compare-table__table > div:last-child div:nth-child(2)  {
-  border-bottom: 1px solid;
+  border-bottom: 2px solid;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
 

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Tabs } from "antd";
+import {Tooltip } from 'antd';
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 
@@ -8,6 +9,7 @@ import {
   getEmployeeList,
   resetEmployeeList,
 } from "../../actionCreator/executiveDetailsActionCreator";
+
 
 const SummaryContent = () => {
   const dispatch = useDispatch();
@@ -18,7 +20,7 @@ const SummaryContent = () => {
   const items = [
     {
       key: "1",
-      label: <span>Colleagues</span>,
+      label: <span><i class=" pr-1 fs-18 la la-user-friends"></i>Colleagues</span>,
       children: <KeyExecutives />,
     },
   ];
@@ -62,7 +64,7 @@ const SummaryContent = () => {
               type="card"
             />
 
-            <div className="buttons-c">
+            <div className="buttons-c mr-3">
               <ul className="d-flex  m-mt">
                 <li>
                   <div className="btn btn-outline-secondary pr-1 mr-2">
@@ -95,11 +97,19 @@ const SummaryContent = () => {
                 </li>
 
                 <li>
+               
                   <a class=" mr-2" aria-haspopup="true" aria-expanded="false">
+                  <Tooltip title="Tag Executive">
                     <i
                       className="right-icons las  la-user-tag"
                       aria-hidden="true"
-                    ></i>
+                    ></i></Tooltip>
+                  </a>
+                </li>
+                <li>
+               
+                  <a class=" mr-2" aria-haspopup="true" aria-expanded="false">
+                  <i class="right-icons la la-print" aria-hidden="true"></i>
                   </a>
                 </li>
               </ul>
