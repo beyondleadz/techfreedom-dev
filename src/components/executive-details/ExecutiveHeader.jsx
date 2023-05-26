@@ -44,7 +44,7 @@ const ExecutiveHeader = () => {
   return (
     <div className="row">
       <div className="headername">
-        <div className="font-weight-bold mb-2 ">
+        <div className="font-weight-bold mb-1 ">
           <h3>{executiveDetails?.fullname}</h3>
         </div>
       </div>
@@ -64,7 +64,7 @@ const ExecutiveHeader = () => {
                   <span>{executiveDetails?.company?.name}</span>
                 </div>
               </div>
-              <div className="row pt-2 mb-3">
+              <div className="row pt-2 mb-2">
                 <div className="col">
                   <h5>Email</h5>{" "}
                   <i className=" align-top btn iconemail emails"></i>
