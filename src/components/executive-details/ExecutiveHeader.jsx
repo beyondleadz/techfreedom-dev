@@ -43,12 +43,13 @@ const ExecutiveHeader = () => {
 
   return (
     <div className="row ">
+     
+      <div>
       <div className="headername">
         <div className="font-weight-bold mb-1 ">
           <h3>{executiveDetails?.fullname}</h3>
         </div>
       </div>
-      <div className="col-md-12">
         <div className="card shadow card-body">
           <div className="executiveheader">
             <div className="executivelogobox">{executiveDetails?.firstname[0].toUpperCase()+executiveDetails?.lastname[0].toUpperCase()}</div>
