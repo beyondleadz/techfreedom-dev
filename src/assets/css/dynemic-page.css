@@ -6748,7 +6748,7 @@ cursor: pointer;
     .similarblk .similarinnerblk{ display: flex; padding: 10px 0; 
       border-bottom: 1px solid #eaeaea;}
       .similarblk div:last-of-type{border-bottom: 0;}
-    .similarblk .similarinnerblk .similar-desc{margin-left: 10px; position: relative; top: -6px;}
+    .similarblk .similarinnerblk .similar-desc{margin-left: 10px; position: relative; top: 2px;}
     .executive-company{max-block-size: fit-content;
       max-width: 20px;
       height: 20px;

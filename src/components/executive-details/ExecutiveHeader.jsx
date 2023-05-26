@@ -56,25 +56,25 @@ const ExecutiveHeader = () => {
             <div className="executivedescbox ">
               <div className="row mb-2">
                 <div className="col pl-4">
-                  <h5>Designation</h5>{executiveDetails?.title}
+                <div className="fs-12 font-weight-bold"><i class="text-black fs-16 la la-suitcase mr-2"></i>Designation  <span className="font-weight-normal ml-2">{executiveDetails?.title}</span></div>
                 </div>
                 <div className="col"></div>
                 <div className="col">
-                  <h5>Company</h5>
-                  <span>{executiveDetails?.company?.name}</span>
+                <div className="fs-12 font-weight-bold"><i class=" text-black fs-16 la la-building mr-2"></i>Company <span className="font-weight-normal ml-2">{executiveDetails?.company?.name}</span></div>
+                  
                 </div>
               </div>
               <div className="row pt-2 mb-2">
                 <div className="col">
-                  <h5>Email</h5>{" "}
+                <div className="fs-12 font-weight-bold"><i class=" text-black fs-16 la la-envelope mr-2"></i>Email</div>{" "}
                   <i className=" align-top btn iconemail emails"></i>
                   <span>View Email</span>
                 </div>
                 <div className="col">
-                  <h5>Phone</h5>{executiveDetails?.phoneNo}
+                <div className="fs-12 font-weight-bold"><i class=" text-black la la-phone fs-16 mr-2"></i>Phone</div>{executiveDetails?.phoneNo}
                 </div>
                 <div className="col">
-                  <h5>Social</h5>
+                <div className="fs-12 font-weight-bold"><i class=" text-black fs-16 la la-laptop mr-2"></i>Social</div>
                   {/* <i class="lab fs-20 facebook lab la-facebook"></i>
                   <i class="lab fs-20  twitter la la-twitter-square"></i>
                   <i class="lab fs-20 linkedin lab la-linkedin"></i> */}
@@ -83,7 +83,7 @@ const ExecutiveHeader = () => {
               </div>
               <div className="row pt-2">
                 <div className="col">
-                  <h5>Overview</h5>
+                <div className="fs-12 font-weight-bold">Overview</div>
                   <div 
             className={`companyintro1 ${
               isCompanyBoxHeightFixed ? "setauto" : ""
@@ -92,7 +92,7 @@ const ExecutiveHeader = () => {
             </div>
                 
       
-              <span className="btn  readmoreoverview" onClick={toggleCompanyHeight}>
+              <span className="readmoreoverview" onClick={toggleCompanyHeight}>
               {isCompanyBoxHeightFixed ? "Hide..." : "Read more..."}
             </span>
                 </div>
