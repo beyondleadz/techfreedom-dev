@@ -106,12 +106,7 @@ const SummaryContent = () => {
                     ></i></Tooltip>
                   </a>
                 </li>
-                <li>
-               
-                  <a class=" mr-2" aria-haspopup="true" aria-expanded="false">
-                  <i class="right-icons la la-print" aria-hidden="true"></i>
-                  </a>
-                </li>
+                
               </ul>
             </div>
           </div>
