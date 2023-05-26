@@ -7086,21 +7086,12 @@ color: orange;
   height:38px;
   margin-right: 5px;
   align-items: center;
-  display: flex;
-  justify-content: center;
+   /* display: flex; */
   padding: 1px;
-  /* text-align: center; */
+  text-align: center;
   border: 1px solid #ddd;
-  /* background-color: #5D44FF; */
-  background-color: #ddd;
-  font-weight: 700;
-  font-size: 1rem;
 }
-.namecol .logo img{
-  width:100%; 
-  /* display: block; */
-  vertical-align: bottom;
-}
+.namecol .logo img{width:100%; display: block;}
 .companyintro{
   /* padding-left: 45px; */
     padding-right: 0;
@@ -7192,16 +7183,14 @@ color: orange;
       align-items: center;
       border: 2px solid #f6f6f60a;
       border-radius: 5px;
-      color: #000; 
-      font-size: 18px;
-      font-weight: 600;
+      color: #ccc; font-size: 16px;
   }
   
   .compare-navigation_item:hover {
-     border: 2px solid #5d44ff; color:#8b8b8b;
+     border: 4px solid #5d44ff; color:#8b8b8b;
   }
   .compare-navigation_item:focus-visible{
-    border: 2px solid #5d44ff; color:#8b8b8b;
+    border: 4px solid #5d44ff; color:#8b8b8b;
   }
   
   
@@ -7292,7 +7281,7 @@ color: orange;
     text-align:left; font-weight: bold; padding-left: 10px;
   }
   
-  .compare-table .compare-table__col.competitor-logo,  .compare-table .compare-table__col.lusha-logo, .template-alternatives-v2 .compare .compare-table .compare-table__col.placeholder {
+  .compare-table .compare-table__col.competitor-logo,  .compare-table  .template-alternatives-v2 .compare .compare-table .compare-table__col.placeholder {
       background-color: transparent;
       border-top: none;
       border-right: none!important;
@@ -7345,7 +7334,7 @@ color: orange;
     border: 1px solid #ececec;
   }
   
-  .compare-table__row:last-child .compare-table__col:nth-child(2), .compare-table .lusha-logo {
+  .compare-table__row:last-child .compare-table__col:nth-child(2) {
     position: relative;
   }
   
