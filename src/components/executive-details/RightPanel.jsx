@@ -3,7 +3,7 @@ import { Tabs } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import logo from "../../assets/images/icici.jpg";
-import defaultLogo from "../../assets/images/no-similar-executive.jpg";
+import defaultLogo from "../../assets/images/default_company_logo.jpg";
 import KeyExecutives from "./KeyExecutives";
 import { getToken, getUserInfo } from "../../utils/utils";
 import TrialModal from "../../common/TrialModal";
