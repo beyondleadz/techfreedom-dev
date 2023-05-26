@@ -413,7 +413,13 @@ const ComparisonContent = () => {
     <>
 	  
       <div id="wrapper">
+	  
         <div className="container  ">
+		<div class="product-comparison compare d-flex">
+			<div className="compare-navigation_item1">
+			<img src={BeyondLogo} />
+                <div className="vs"> vs <i className="fa fa-arrow"></i></div>
+			</div></div>
           <div class="product-comparison compare d-flex">
           
 			<div className="compare-navigation_item1">
