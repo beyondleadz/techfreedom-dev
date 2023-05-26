@@ -7093,14 +7093,18 @@ color: orange;
 }
 
 .namecol .logo{
-  width:38px;
-  height:38px;
+  width: 38px;
+  height: 38px;
   margin-right: 5px;
   align-items: center;
-   /* display: flex; */
+  display: flex;
   padding: 1px;
-  text-align: center;
+  /* text-align: center; */
   border: 1px solid #ddd;
+  justify-content: center;
+  background-color: #ddd;
+  font-size: 1rem;
+  font-weight: 700;
 }
 .namecol .logo img{width:100%; display: block;}
 .companyintro{
