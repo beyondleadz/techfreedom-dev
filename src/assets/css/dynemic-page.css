@@ -7204,6 +7204,11 @@ color: orange;
   .compare-navigation_item:hover {
      border: 2px solid #5d44ff; color:#8b8b8b;
   }
+
+  .ant-tabs-tab-active .compare-navigation_item {
+    border: 2px solid #5d44ff; color:#8b8b8b;
+ }
+
   .compare-navigation_item:focus-visible{
     border: 2px solid #5d44ff; color:#8b8b8b;
   }
@@ -7221,8 +7226,9 @@ color: orange;
   justify-content: center;
   }
 
-  .product-comparison > div{    display: flex;
-    align-items: center;}
+  .product-comparison > div{ 
+      display: flex;
+    align-items: flex-start;}
 
     .product-comparison > div  .ant-tabs-nav{
       margin:0
@@ -7280,6 +7286,11 @@ color: orange;
    .compare-table--active {
     display: block;
   }
+
+  #wrapper .ant-tabs-ink-bar-animated{
+    height: 0;
+  }
+
   }
   
   @media (min-width: 992px){
