@@ -26,4 +26,4 @@ export const getExecutiveTagApiUrl = '/api/employee-tags';
 export const getExecutiveFunctionApiUrl = '/api/executive-functions';
 export const getExecutiveLevelApiUrl = '/api/executive-levels';
 export const groupExecutiveTagUrl = '/api/employee-tags/multi';
-
+export const subscriptionaccountInfoApiUrl='/api/subscriptions/';

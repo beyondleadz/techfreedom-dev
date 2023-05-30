@@ -16,7 +16,7 @@ import {
   downloadExecutiveExl,
 } from "../../actionCreator/companyDetailsActionCreator";
 import { emailRegex } from "../../config";
-import { getToken, getUserInfo } from "../../utils/utils";
+import { getSubscriptionUserInfo, getToken, getUserInfo } from "../../utils/utils";
 import TrialModal from "../../common/TrialModal";
 import popupImg from "../../assets/images/free-user-login-prompt.jpg.jpeg";
 import { useNavigate } from "react-router";
@@ -156,8 +156,9 @@ const SummaryHeader = () => {
       };
     });
     const { id,login } = getUserInfo();
+    const { id:accountId } = getSubscriptionUserInfo();
     const payload = {
-      accountId: login,
+      accountId: accountId,
       companyId: companyDetails?.id,
       description: newPayload,
       //emplaoyeeId: 0,

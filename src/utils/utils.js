@@ -301,3 +301,9 @@ export const getUserInfo = () => {
     ? JSON.parse(sessionStorage.getItem("userInfo"))
     : {};
 };
+
+export const getSubscriptionUserInfo = () => {
+  return sessionStorage.getItem("subscriptionuserInfo")
+    ? JSON.parse(sessionStorage.getItem("subscriptionuserInfo"))
+    : {};
+};
