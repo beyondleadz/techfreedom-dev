@@ -42,6 +42,7 @@ export const getAccountInfo = (token) => (dispatch) => {
 };
 
 export const getSubscriptionInfo = (token,account) => (dispatch) => {
+  if(account?.subscriberId){
   return getAuthMethod(subscriptionaccountInfoApiUrl+account.subscriberId, token)
     .then((res) => {
       dispatch({
@@ -59,6 +60,7 @@ export const getSubscriptionInfo = (token,account) => (dispatch) => {
           "Error Occured",
       });
     });
+  }
 };
 
 export const emptyCommonErrorObj = () => ({
