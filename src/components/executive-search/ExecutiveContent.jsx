@@ -260,14 +260,6 @@ const ExecutiveContent = () => {
     navigate("/signup");
   };
 
-  const downloadExcel = () => {
-    const isLoggedIn = checkLoginStatus();
-    if (isLoggedIn) {
-      // dispatch(downloadCompanyList(companySelectedFilterList, "exl"));
-      dispatch(downloadCompanyList(selectedRecords, "exl"));
-    }
-  };
-
   const tagPage = () => {
     const isLoggedIn = checkLoginStatus();
     if (isLoggedIn) {
@@ -279,6 +271,16 @@ const ExecutiveContent = () => {
       }
     }
   };
+
+  const downloadExcel = () => {
+    const isLoggedIn = checkLoginStatus();
+    if (isLoggedIn) {
+      // dispatch(downloadCompanyList(companySelectedFilterList, "exl"));
+      dispatch(downloadCompanyList(selectedRecords, "exl"));
+    }
+  };
+
+ 
 
   const closeTagModal = () => {
     setShowTagModal(false);
@@ -339,16 +341,18 @@ const ExecutiveContent = () => {
 
                     <div className="buttons-container textsearch">
                     <ul className="d-flex mt-1  m-mt">
+
+                    <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
+                    aria-expanded="false">
+                    <i className="right-icons las la-tags" aria-hidden="true" onClick={tagPage}></i>
+                  </a>
+                </li>
                                          
                   <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
                     aria-expanded="false"><i class="right-icons la la-file-excel" aria-hidden="true" onClick={downloadExcel}></i>
                   </a></li>
                              
-                <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
-                    aria-expanded="false">
-                    <i className="right-icons las la-tags" aria-hidden="true" onClick={tagPage}></i>
-                  </a>
-                </li>
+                
 
 
               </ul>

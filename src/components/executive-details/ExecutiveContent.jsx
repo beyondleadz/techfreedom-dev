@@ -78,12 +78,14 @@ const SummaryContent = () => {
                     Campaign
                   </div>
                 </li>
+
                 <li>
                   <a class=" mr-2" aria-haspopup="true" aria-expanded="false">
+                  <Tooltip title="Tag Executive">
                     <i
-                      class="right-icons la la-file-pdf"
+                      className="right-icons las  la-tag"
                       aria-hidden="true"
-                    ></i>
+                    ></i></Tooltip>
                   </a>
                 </li>
 
@@ -97,16 +99,14 @@ const SummaryContent = () => {
                 </li>
 
                 <li>
-               
                   <a class=" mr-2" aria-haspopup="true" aria-expanded="false">
-                  <Tooltip title="Tag Executive">
                     <i
-                      className="right-icons las  la-user-tag"
+                      class="right-icons la la-file-pdf"
                       aria-hidden="true"
-                    ></i></Tooltip>
+                    ></i>
                   </a>
                 </li>
-                
+
               </ul>
             </div>
           </div>

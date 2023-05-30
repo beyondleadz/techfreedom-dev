@@ -256,18 +256,21 @@ const SummaryContent = () => {
             </div> */}
             <div className="excelcontainer">
                  <ul className="d-flex  m-mt">
-                 <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
-                    aria-expanded="false"><i class="right-icons la la-file-pdf" aria-hidden="true"></i>
-                  </a></li>
-                         
-                  <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
-                    aria-expanded="false"><i class="right-icons la la-file-excel" aria-hidden="true"></i>
-                  </a></li>
-                
-              <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
+                 
+                <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
                     aria-expanded="false">
                     <i className="right-icons la la-tag" aria-hidden="true"></i>
-                  </a>
+                    </a>
+                </li>
+                         
+                <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
+                    aria-expanded="false"><i class="right-icons la la-file-excel" aria-hidden="true"></i>
+                    </a>
+                </li> 
+
+                <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
+                    aria-expanded="false"><i class="right-icons la la-file-pdf" aria-hidden="true"></i>
+                    </a>
                 </li>
                 
               </ul>
