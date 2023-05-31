@@ -30,7 +30,7 @@ import LeadsManagement from './pages/LeadsManagement';
 import Integrations from './pages/Integrations';
 import B2BData from './pages/B2BData';
 import Faq from './pages/Faq';
-
+import Leads from './pages/Leads';
 
 // import Test from './pages/Test';
 import Demo from './pages/Demo';
@@ -69,7 +69,7 @@ const AppRoutes = (props) => {
                 <Route path='/integrations' element={<Integrations/>}/>
                 <Route path='/b2b-data' element={<B2BData/>}/>
                 <Route path='/faq' element={<Faq/>}/>
-
+                <Route path='/leads' element={<Leads/>}/>
                 {/* <Route path='/test' element={<Test/>}/> */}
                 <Route path='/demo' element={<Demo/>}/>
                 
