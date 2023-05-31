@@ -13,7 +13,7 @@ const Leads = () => {
     return(
         <>
     <Layout>
-    <div className="wrapper">
+    <div id="leads" className="wrapper">
 	
 	 
   {/* <!-- Page Wrapper --> */}
@@ -23,8 +23,26 @@ const Leads = () => {
 {/* <!-- Page Heading --> */}
 <h3 className="headername">Leads</h3>
 
-<div className="row col-md-12 ">
-<div className="card shadow ">
+<div  className="row  col-md-12 ">
+<div className="card shadow col-md-12">
+<div className="row col-md-6">
+    <div className="profilePic"><i class="btn btn-primary btn-circle btn-lg"> JC</i>
+    <h3>John collines</h3>
+    <div className="name mt-1">October14th, 2018 at 2:30 P.M.</div></div>
+    
+    <div className="name">
+    <a href="#" class="btn btn-info btn-circle"><i class="la la-Phone"></i></a>
+    <a href="#" class="btn btn-primary btn-circle ml-2"><i class="la la-envelope"></i></a>
+    <a href="#" class="btn btn-primary btn-circle ml-2"><i class="fab fa-facebook-f"></i></a>
+    <a href="#" class="btn btn-primary btn-circle ml-2"><i class="fab fa-facebook-f"></i></a></div>
+    <div className="named mt-3">  <span>Title Full Name:</span>  John collines</div>
+    <div className="named mt-2"> <span> Designation:</span>  General Manager</div>
+    <div className="named mt-2">   <span>Phone:</span>      9743899246</div>
+        <div className="named mt-2"> <span> Email:</span>  J.collines@company.info</div>
+        <div className="named mt-2"> <span>Address:</span>   abc smith street, India</div>
+    
+</div>
+<div className="row col-md-6"></div>
 
 </div>
 </div>
