@@ -35,11 +35,11 @@ const Leads = () => {
     <a href="#" class="btn btn-primary btn-circle ml-2"><i class="la la-envelope"></i></a>
     <a href="#" class="btn btn-primary btn-circle ml-2"><i class="fab fa-facebook-f"></i></a>
     <a href="#" class="btn btn-primary btn-circle ml-2"><i class="fab fa-facebook-f"></i></a></div>
-    <div className="named mt-3">  <span>Title Full Name:</span>  John collines</div>
-    <div className="named mt-2"> <span> Designation:</span>  General Manager</div>
-    <div className="named mt-2">   <span>Phone:</span>      9743899246</div>
-        <div className="named mt-2"> <span> Email:</span>  J.collines@company.info</div>
-        <div className="named mt-2"> <span>Address:</span>   abc smith street, India</div>
+    <div className="named mt-3"> <span className="namedt">Title Full Name: </span> <span className="namedc">John collines</span> </div>
+    <div className="named mt-2"> <span className="namedt">Designation:</span>  <span className="namedc"> General Manager</span> </div>
+    <div className="named mt-2">  <span className="namedt">Phone: </span>   <span className="namedc"> 9743899246</span>  </div>
+        <div className="named mt-2"> <span className="namedt"> Email: </span><span className="namedc"> J.collines@company.info</span> </div>
+        <div className="named mt-2"> <span className="namedt">Address:</span> <span className="namedc">abc smith street, India</span>  </div>
     
 </div>
 <div className="row col-md-6"></div>

@@ -7425,8 +7425,11 @@ color: orange;
     color: darkgray;
     width: 100%;
     font-weight: bold;
-    margin: 2% 0 0 33%;}
-
+    margin: 2% 0 0 30%;}
+    #leads .namedc{font-size: 14px;
+      color: black;
+      }
+      #leads .namedt{margin-right: 20px;}
 #leads .btn-circle.btn-lg, .btn-group-lg > .btn-circle.btn {
   height: 4.5rem;
   width: 4.5rem;
