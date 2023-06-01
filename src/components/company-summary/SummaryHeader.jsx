@@ -353,7 +353,7 @@ const SummaryHeader = () => {
           </div>
      
 
-<div className="buttons-container socialgroup" style={{"display":"block"}}>
+{/* <div className="buttons-container socialgroup" style={{"display":"block"}}>
           <ul className="d-flex  m-mt">
             <li>
               <a
@@ -406,7 +406,7 @@ const SummaryHeader = () => {
               </a>
             </li>
           </ul>
-        </div>
+        </div> */}
         </div>
 
         {/* <div className=" d-flex social-icons fs-12 ml-3 pl-2">

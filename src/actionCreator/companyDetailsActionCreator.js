@@ -33,6 +33,7 @@ import {
   getAuthMethod,
   getMethod,
   postAuthMethod,
+  putAuthMethod
 } from "../services/HttpServices";
 import {
   companyListingApiUrl,
@@ -300,14 +301,15 @@ export const resetCompanyTag = (payload) => {
   return { type: SINGLE_COMPANY_TAG, payload: [] };
 };
 
-export const postRelavantCompany = (payload) => (dispatch) => {
+export const updateRelavantCompany = (payload) => (dispatch) => {
   //console.log(payload, "payloadpayload");
-  return postAuthMethod(postRelavantCompanyApiUrl, payload)
+  return putAuthMethod(postRelavantCompanyApiUrl,payload.id, payload)
     .then((res) => {
       dispatch({
         type: POST_RELAVANT_COMPANY_TAG,
         payload: res.data,
       });
+      dispatch(getRelavantCompany(payload.userId,payload.companyId));
     })
     .catch((err) => {
       dispatch({
@@ -317,8 +319,32 @@ export const postRelavantCompany = (payload) => (dispatch) => {
             [errEnum.POST_RELAVANT_COMPANY_TAG_ERROR]:
               err.response.data[ErrKey],
           } || "Error Occured",
-      });
+      });     
     });
+    
+};
+
+export const postRelavantCompany = (payload) => (dispatch) => {
+  //console.log(payload, "payloadpayload");
+  return postAuthMethod(postRelavantCompanyApiUrl, payload)
+    .then((res) => {
+      dispatch({
+        type: POST_RELAVANT_COMPANY_TAG,
+        payload: res.data,
+      });
+      dispatch(getRelavantCompany(payload.userId,payload.companyId));
+    })
+    .catch((err) => {
+      dispatch({
+        type: POST_RELAVANT_COMPANY_TAG_ERROR,
+        payload:
+          {
+            [errEnum.POST_RELAVANT_COMPANY_TAG_ERROR]:
+              err.response.data[ErrKey],
+          } || "Error Occured",
+      });     
+    });
+    
 };
 
 export const getRelavantCompany = (id, cid) => (dispatch) => {

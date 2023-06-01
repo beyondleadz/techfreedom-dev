@@ -40,7 +40,7 @@ const initialState = {
   sigleCompanyTag: {},
   fetchCompanyTag: {},
   postRelavantCompany: {},
-  getRelavantCompany: {},
+  getRelavantCompany: [],
   errObj: {},
   selectedExecutive: [],
   downloadCompany: "",

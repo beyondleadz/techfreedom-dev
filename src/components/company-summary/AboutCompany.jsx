@@ -62,14 +62,14 @@ const AboutCompany = () => {
                 <i className=" mr-2 text-black fs-18 las la-cog"></i>
                 <span className="font-weight-bold">Technographics</span>
               </div>
-              <div className="gap-l">JavaScript, HTML, PHP</div>
+              <div className="gap-l">{companyDetails?.technographics}</div>
             </div>
             <div className="col mt-3 w-col-3">
               <div>
                 <i className=" mr-2 text-black fs-18 las la-calendar"></i>
                 <span className="font-weight-bold">Updated on</span>
               </div>
-              <div className="gap-l">Wednesday, April 262023</div>
+              <div className="gap-l">{companyDetails?.lastUpdated}</div>
             </div>
           </div>
 

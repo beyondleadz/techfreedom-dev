@@ -41,9 +41,9 @@ export const getAccountInfo = (token) => (dispatch) => {
     });
 };
 
-export const getSubscriptionInfo = (token,account) => (dispatch) => {
-  if(account?.subscriberId){
-  return getAuthMethod(subscriptionaccountInfoApiUrl+account.subscriberId, token)
+export const getSubscriptionInfo = (token,data) => (dispatch) => {
+  if(data?.account?.id){
+  return getAuthMethod(subscriptionaccountInfoApiUrl+data?.account?.id, token)
     .then((res) => {
       dispatch({
         type: SUBSCRIPTIONACCOUNTINFO,

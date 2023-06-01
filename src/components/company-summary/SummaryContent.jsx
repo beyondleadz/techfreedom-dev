@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useMemo } from "react";
-import { Tabs } from "antd";
+import { Modal, Checkbox, Input, Divider, Button,Tabs } from "antd";
+import _ from "lodash";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import logo from "../../assets/images/icici.jpg";
@@ -11,6 +12,7 @@ import { getToken, getUserInfo } from "../../utils/utils";
 import TrialModal from "../../common/TrialModal";
 import popupImg from "../../assets/images/free-user-login-prompt.jpg.jpeg";
 import { useNavigate } from "react-router";
+
 import {
   getEmployeeList,
   resetEmployeeList,
@@ -18,6 +20,13 @@ import {
   getRelavantCompany,
   resetPostRelavantCompany,
   storeSelectedDepartment,
+  submitErrorForm,
+  createCompanyTag,
+  emptyErrorObj,
+  downloadCompany,
+  getCompanyTag,
+  resetCompanyTag,
+  downloadExecutiveExl,
 } from "../../actionCreator/companyDetailsActionCreator";
 
 const SummaryContent = () => {
@@ -31,6 +40,13 @@ const SummaryContent = () => {
   const [similarCount, setSimilarCount] = useState(5);
   const [selectedValue, setSelectedValue] = useState("Filter by Department");
   const [departmentAllList, setDepartmentAllList] = useState();
+  const [openTagModal, setOpenTagModal] = useState(false);
+  const [tagValues, setTagValues] = useState({
+    tagname: "",
+    description: "",
+    tagError: "",
+  });
+  const [isApiFailed, setIsApiFailed] = useState(false);
   const departmentList = useSelector(
     (state) => state.companyDetailsReducer.departmentList
   );
@@ -44,6 +60,54 @@ const SummaryContent = () => {
   const userAccountInfo = useSelector(
     (state) => state.CommonReducer.accountInfo
   );
+
+  const selectedEmployeeList = useSelector(
+    (state) => state.companyDetailsReducer.selectedExecutive
+  );
+
+  const selectedDepartment = useSelector(
+    (state) => state.companyDetailsReducer.selectedDepartment
+  );
+
+  const fetchCompanyTag = useSelector(
+    (state) => state.companyDetailsReducer.fetchCompanyTag
+  );
+  const sigleCompanyTag = useSelector(
+    (state) => state.companyDetailsReducer.sigleCompanyTag
+  );
+  const errObj = useSelector((state) => state.companyDetailsReducer.errObj);
+
+
+  const [taggedCompany, setTaggedCompany] = useState(false);
+  useEffect(() => {
+    if (Object.keys(errObj).length) {
+      setIsApiFailed(true);
+    }
+    if (!Object.keys(errObj).length) {
+      setIsApiFailed(false);
+    }
+  }, [Object.keys(errObj).length]);
+
+  useMemo(() => {
+    if (Object.keys(getUserInfo()).length) {
+      const { id } = getUserInfo();
+      dispatch(resetCompanyTag());
+      dispatch(getCompanyTag(companyDetails?.id, id));
+    }
+  }, [companyDetails, userAccountInfo]);
+
+  useEffect(() => {
+    console.log(
+      fetchCompanyTag.length,
+      Object.keys(sigleCompanyTag).length,
+      "chk len"
+    );
+    if (fetchCompanyTag.length || Object.keys(sigleCompanyTag).length) {
+      setTaggedCompany(true);
+    } else {
+      setTaggedCompany(false);
+    }
+  }, [fetchCompanyTag, sigleCompanyTag]);
 
   useMemo(() => {
     dispatch(resetPostRelavantCompany);
@@ -62,7 +126,7 @@ const SummaryContent = () => {
   useEffect(()=>{
     const dpt=[{id:0,name:'All'},...departmentList];
     setDepartmentAllList(dpt);
-  })
+  },[])
 
   const items = [
     {
@@ -198,11 +262,76 @@ const SummaryContent = () => {
 
   const closeModal = () => {
     setShowModal(false);
+    dispatch(emptyErrorObj());
   };
 
   const redirectToSignup = () => {
     setShowModal(false);
     navigate("/signup");
+  };
+
+  const tagCompany = () => {
+    const isLoggedIn = checkLoginStatus();
+    if (isLoggedIn) {
+      setOpenTagModal(true);
+    }
+  };
+
+  const downloadExcel = () => {
+    const isLoggedIn = checkLoginStatus();
+    if (isLoggedIn) {
+      let selectedEmpIds = "";
+      selectedEmployeeList?.forEach((exe) => {
+        selectedEmpIds += `${exe?.id},`;
+      });
+      selectedEmpIds = selectedEmpIds.substring(
+        selectedEmpIds.lastIndexOf(","),
+        0
+      );
+      const payload={
+        empIds:selectedEmpIds,
+        department:selectedDepartment,
+        companyId:companyDetails?.id
+      }
+      dispatch(downloadExecutiveExl(payload));
+    }
+  };
+  const downloadPDF = (id) => {
+    const isLoggedIn = checkLoginStatus();
+    if (isLoggedIn) {
+      dispatch(downloadCompany([id], "pdf"));
+    }
+  };
+
+  const closeTagModal = () => {
+    setOpenTagModal(false);
+  };
+
+
+  const onConfrim = () => {
+    if (!tagValues.tagname) {
+      setTagValues({
+        ...tagValues,
+        tagError: "error",
+      });
+    } else {
+      //console.log(companyDetails, "companyDetailscompanyDetails");
+      const { id } = getUserInfo();
+      const payload = {
+        company: companyDetails,
+        text: tagValues.tagname,
+        userId: id,
+      };
+      dispatch(createCompanyTag(payload));
+      setOpenTagModal(false);
+    }
+  };
+
+  const onTagInputChange = (e) => {
+    setTagValues({
+      ...tagValues,
+      [e.target.name]: e.target.value,
+    });
   };
 
   return (
@@ -259,17 +388,17 @@ const SummaryContent = () => {
                  
                 <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
                     aria-expanded="false">
-                    <i className="right-icons la la-tag" aria-hidden="true"></i>
+                    <i className="right-icons la la-tag" aria-hidden="true" onClick={tagCompany}></i>
                     </a>
                 </li>
                          
                 <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
-                    aria-expanded="false"><i class="right-icons la la-file-excel" aria-hidden="true"></i>
+                    aria-expanded="false"><i class="right-icons la la-file-excel" aria-hidden="true" onClick={() => downloadExcel()}></i>
                     </a>
                 </li> 
 
                 <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
-                    aria-expanded="false"><i class="right-icons la la-file-pdf" aria-hidden="true"></i>
+                    aria-expanded="false"><i class="right-icons la la-file-pdf" aria-hidden="true" onClick={() => downloadPDF(companyDetails?.id)}></i>
                     </a>
                 </li>
                 
@@ -304,6 +433,87 @@ const SummaryContent = () => {
       ) : (
         ""
       )}
+
+{isApiFailed ? (
+        <TrialModal
+          openModal={isApiFailed}
+          closeModal={closeModal}
+          redirectToSignup={redirectToSignup}
+          buttonText="OK"
+          modalBody={
+            <div id="small-dialog2">
+              Please call System support. You application having some issue.
+            </div>
+          }
+          modalWidth="400px"
+        />
+      ) : (
+        ""
+      )}
+
+      {openTagModal ? (
+        !taggedCompany ? (
+          <Modal
+            title="Tag Company"
+            width={"400px"}
+            closable={true}
+            open={openTagModal}
+            onCancel={closeTagModal}
+            onOk={onConfrim}
+          >
+            <div class="pop-up errorformcontainer ">
+              <div className="form">
+                <div className="formcol1">
+                  <label>Tag Name</label>
+                </div>
+                <div className="formcol2">
+                  <Input
+                    name="tagname"
+                    status={tagValues?.tagError}
+                    value={tagValues.tagname}
+                    placeholder="Tag Name"
+                    onChange={onTagInputChange}
+                  />
+                </div>
+              </div>
+              {/* <div className="form">
+              <div className="formcol1">
+                <label>Description</label>
+              </div>
+              <div className="formcol2">
+                <TextArea
+                  name="description"
+                  placeholder="Description"
+                  value={tagValues.description}
+                  rows={2}
+                  maxLength={100}
+                  onChange={onTagInputChange}
+                />
+              </div>
+            </div> */}
+            </div>
+          </Modal>
+        ) : (
+          <Modal
+            title=""
+            width={"400px"}
+            closable={true}
+            open={openTagModal}
+            footer={[
+              <Button key="submit" type="primary" onClick={closeTagModal}>
+                OK
+              </Button>,
+            ]}
+          >
+            <div class="pop-up errorformcontainer ">
+              <p>Already Tagged!</p>
+            </div>
+          </Modal>
+        )
+      ) : (
+        ""
+      )}
+
     </>
   );
 };

@@ -19,7 +19,7 @@ import {
   createGroupCompanyTag,
 } from "../../actionCreator/companyListingActionCreater";
 import Loader from "../loader";
-import { getToken,getUserInfo } from "../../utils/utils";
+import { getToken, getUserInfo } from "../../utils/utils";
 
 const CompanyContent = () => {
   const { Search, TextArea } = Input;
@@ -33,9 +33,7 @@ const CompanyContent = () => {
             <div className="logo">
               <img src={record?.companyLogoUrl || defaultLogo} />
             </div>
-            <span className="cname">
-              {record?.name}
-            </span>
+            <span className="cname">{record?.name}</span>
           </div>
         );
       },
@@ -70,7 +68,7 @@ const CompanyContent = () => {
   const [companyList, setCompanyList] = useState();
   const [showModal, setShowModal] = useState(false);
   const [showTagModal, setShowTagModal] = useState(false);
-  
+
   const [tagValues, setTagValues] = useState({
     tagname: "",
     description: "",
@@ -92,7 +90,6 @@ const CompanyContent = () => {
   const selectedRecords = useSelector(
     (state) => state.companyListingReducer.selectedRecords
   );
-  
 
   useMemo(() => {
     dispatch(getCompanyList({}, paginationValue));
@@ -131,10 +128,12 @@ const CompanyContent = () => {
           key: record.id,
           name: record,
           industry: record?.industry?.name,
-          location: `${record?.city ? record?.city + ',' : ""} ${record?.state ? record?.state : ''}`,
-          totalEmployees:record?.totalEmployees,
+          location: `${record?.city ? record?.city + "," : ""} ${
+            record?.state ? record?.state : ""
+          }`,
+          totalEmployees: record?.totalEmployees,
           phone: record.phoneNo,
-          social: renderSocialLinks(record?.socialLinks)       
+          social: renderSocialLinks(record?.socialLinks),
         },
       ];
     });
@@ -197,7 +196,7 @@ const CompanyContent = () => {
     const isLoggedIn = checkLoginStatus();
     if (isLoggedIn) {
       setShowModal(true);
-    }else{
+    } else {
       //setShowModal(false);
     }
   };
@@ -224,16 +223,16 @@ const CompanyContent = () => {
         tagError: "error",
       });
     } else {
-      const {id,email,login}= getUserInfo();
+      const { id, email, login } = getUserInfo();
       const payload = {
         accountId: login,
         dataDump: JSON.stringify(companySelectedFilterList),
         fullName: searchValues.tagname,
         emailId: email,
-        source: 'Company',
+        source: "Company",
         userId: id,
       };
-      dispatch(saveSearchAction(payload));      
+      dispatch(saveSearchAction(payload));
       setShowModal(false);
     }
   };
@@ -270,9 +269,9 @@ const CompanyContent = () => {
     const isLoggedIn = checkLoginStatus();
     if (isLoggedIn) {
       console.log("call tag api");
-      if(selectedRecords.length){
-      setShowTagModal(true);
-      }else{
+      if (selectedRecords.length) {
+        setShowTagModal(true);
+      } else {
         alert("please select record.");
       }
     }
@@ -289,15 +288,22 @@ const CompanyContent = () => {
         tagError: "error",
       });
     } else {
-      const {id}= getUserInfo();
+      const { id } = getUserInfo();
       //selectedRecords
-      const payload = [{
-        company: selectedRecords[0].name,
-        text: tagValues.tagname,
-        userId: id,
-      }];
-      //console.log(payload);
-      dispatch(createGroupCompanyTag(payload));      
+      let payload = []
+      for (let i = 0; i < selectedRecords.length; i++) {
+        payload = [
+           ...payload,
+          {
+            company: selectedRecords[i].name,
+            text: tagValues.tagname,
+            userId: id,
+          }
+        ]
+        
+      }
+      dispatch(createGroupCompanyTag(payload));
+
       setShowTagModal(false);
     }
   };
@@ -337,58 +343,80 @@ const CompanyContent = () => {
                     </h6>
 
                     <div className="buttons-container textsearch">
-                    <ul className="d-flex mt-1  m-mt">
+                      <ul className="d-flex mt-1  m-mt">
+                        <li>
+                          <a
+                            class=" mr-2"
+                            href="#"
+                            id=""
+                            role="button"
+                            data-toggle=""
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                          >
+                            <i
+                              className="right-icons las la-tags"
+                              aria-hidden="true"
+                              onClick={tagPage}
+                            ></i>
+                          </a>
+                        </li>
 
-                <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
-                    aria-expanded="false">
-                    <i className="right-icons las la-tags" aria-hidden="true" onClick={tagPage}></i>
-                    </a>
-                </li>  
+                        <li>
+                          <a
+                            class=" mr-2"
+                            href="#"
+                            id=""
+                            role="button"
+                            data-toggle=""
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                          >
+                            <i
+                              class="right-icons la la-file-excel"
+                              aria-hidden="true"
+                              onClick={downloadExcel}
+                            ></i>
+                          </a>
+                        </li>
 
-                <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
-                    aria-expanded="false"><i class="right-icons la la-file-excel" aria-hidden="true" onClick={downloadExcel}></i>
-                    </a>
-                </li>
+                        <li>
+                          <a
+                            className=" mr-2"
+                            role="button"
+                            data-toggle=""
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                            onClick={downloadPDF}
+                          >
+                            <i
+                              className="right-icons la la-file-pdf"
+                              aria-hidden="true"
+                            ></i>
+                          </a>
+                        </li>
 
-          <li>
-            <a
-              className=" mr-2"
-              role="button"
-              data-toggle=""
-              aria-haspopup="true"
-              aria-expanded="false"
-              onClick={downloadPDF}
-            >
-              <i className="right-icons la la-file-pdf" aria-hidden="true"></i>
-            </a>
-          </li>
-
-               
-                             
-                
-
-                <li>
-            <a
-              className=" mr-2"
-              role="button"
-              data-toggle=""
-              aria-haspopup="true"
-              aria-expanded="false"
-              onClick={printPage}
-            >
-              <i className="right-icons la la-print" aria-hidden="true"></i>
-            </a>
-          </li>  
-
-
-
-              </ul>
+                        <li>
+                          <a
+                            className=" mr-2"
+                            role="button"
+                            data-toggle=""
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                            onClick={printPage}
+                          >
+                            <i
+                              className="right-icons la la-print"
+                              aria-hidden="true"
+                            ></i>
+                          </a>
+                        </li>
+                      </ul>
                       <Search
                         placeholder="Product & Services"
                         allowClear
                         onSearch={onSearch}
                         style={{ width: 200 }}
-                        
                       />
 
                       <Button
@@ -435,65 +463,66 @@ const CompanyContent = () => {
           </div>
         </div>
       </div>
-      {
-      showTagModal && getToken()?
-      <Modal
-        title="Tag Company"
-        width={"400px"}
-        closable={true}
-        open={showTagModal}
-        onCancel={closeTagModal}
-        onOk={onTagConfrim}
-      >
-        <div class="pop-up errorformcontainer ">
-          <div className="form">
-            <div className="formcol1">
-              <label>Tag Name</label>
-            </div>
-            <div className="formcol2">
-              <Input
-                name="tagname"
-                status={tagValues?.tagError}
-                value={tagValues.tagname}
-                placeholder="Name"
-                onChange={onTagInputChange}
-              />
-            </div>
-          </div>
-        </div>
-      </Modal>
-      :""}
-
-      {showModal ? (
-        getToken()?
+      {showTagModal && getToken() ? (
         <Modal
-          title="Save Search"
+          title="Tag Company"
           width={"400px"}
           closable={true}
-          open={showModal}
-          onCancel={closeModal}
-          onOk={onConfrim}
+          open={showTagModal}
+          onCancel={closeTagModal}
+          onOk={onTagConfrim}
         >
           <div class="pop-up errorformcontainer ">
             <div className="form">
               <div className="formcol1">
-                <label>Search Name</label>
+                <label>Tag Name</label>
               </div>
               <div className="formcol2">
                 <Input
                   name="tagname"
-                  status={searchValues?.tagError}
-                  value={searchValues.tagname}
+                  status={tagValues?.tagError}
+                  value={tagValues.tagname}
                   placeholder="Name"
-                  onChange={onInputChange}
+                  onChange={onTagInputChange}
                 />
               </div>
-            </div>            
+            </div>
           </div>
         </Modal>
-        :
-        <TrialModal
-          openModal={showModal}
+      ) : (
+        ""
+      )}
+
+      {showModal ? (
+        getToken() ? (
+          <Modal
+            title="Save Search"
+            width={"400px"}
+            closable={true}
+            open={showModal}
+            onCancel={closeModal}
+            onOk={onConfrim}
+          >
+            <div class="pop-up errorformcontainer ">
+              <div className="form">
+                <div className="formcol1">
+                  <label>Search Name</label>
+                </div>
+                <div className="formcol2">
+                  <Input
+                    name="tagname"
+                    status={searchValues?.tagError}
+                    value={searchValues.tagname}
+                    placeholder="Name"
+                    onChange={onInputChange}
+                  />
+                </div>
+              </div>
+            </div>
+          </Modal>
+        ) : (
+          <TrialModal
+            openModal={showModal}
             closeModal={closeModal}
             redirectToSignup={redirectToSignup}
             buttonText="Start Free Trial"
@@ -514,6 +543,7 @@ const CompanyContent = () => {
             }
             modalWidth="400px"
           />
+        )
       ) : (
         ""
       )}

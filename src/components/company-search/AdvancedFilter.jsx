@@ -1292,11 +1292,11 @@ const AdvancedFilter = ({
                       index < showNumberofRecords && (
                         <li>
                           <Checkbox
-                            key={item.id}
+                            key={item}
                             value={item}
                             onChange={($event) => updateCompanyTag($event)}
                           >
-                            {item.text}
+                            {item}
                           </Checkbox>
                         </li>
                       )
@@ -1349,7 +1349,7 @@ const AdvancedFilter = ({
       //newList = [selectedCompanyTagList, el.target.value];
     } else {
       newList = selectedCompanyTagList.filter(
-        (listItem) => listItem.id !== el.target.value.id
+        (listItem) => listItem !== el.target.value
       );
     }
     setSelectedCompanyTagList(newList);

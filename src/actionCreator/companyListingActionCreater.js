@@ -274,7 +274,7 @@ export const saveSearchList = (userId) => (dispatch) => {
 };
 
 export const getCompanyTagList = (userId) => (dispatch) => {
-  const url=`${getCompanyTagApiUrl}?userId.equals=${userId}`
+  const url=`${getCompanyTagApiUrl}${userId}`
   return getAuthMethod(url)
     .then((res) => {
       dispatch({

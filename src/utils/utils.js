@@ -101,17 +101,17 @@ export const createPayload = (
   }
 
   if (searchKeyword) {
-    let searchCondition = `&shortIntro.contains=${searchKeyword}`;
+    let searchCondition = `&productServices.contains=${searchKeyword}`;
     url = `${url}${searchCondition}`;
   }
 
   if (selectedCompanyTag?.length) {
     let ids = "";
     for (let i = 0; i < selectedCompanyTag.length - 1; i++) {
-      ids += `${selectedCompanyTag[i].company.id},`;
+      ids += `${selectedCompanyTag[i]},`;
     }
-    ids += selectedCompanyTag[selectedCompanyTag.length - 1].company.id;
-    companyTagId = `&id.in=${ids}`;
+    ids += selectedCompanyTag[selectedCompanyTag.length - 1];
+    companyTagId = `&tags=${ids}`;
     url = `${url}${companyTagId}`;
   }
 
