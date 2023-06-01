@@ -7182,6 +7182,17 @@ color: orange;
 .showemail{display: inline-block;}
 
 @media (min-width: 768px) {
+  .compareContent {
+    border-bottom: 1px solid #ddd;
+    /* border-radius: 5px; */
+    display: flex;
+    font-size: 12px;
+    /* margin: 5px; */
+    padding: 5px;
+}
+.compareHead{font-size:12px; font-weight: 700;}
+}
+@media (min-width: 768px) {
   .product-comparison .compare-navigation_item {
       position: relative;
       margin-right: 16px;
@@ -7410,3 +7421,45 @@ color: orange;
     padding-top: 2rem;
     padding-bottom: 2rem;
   }}
+  #leads .card{margin: 15px; padding: 15px;}
+#leads .headername{margin: 30px 0 0 25px;}
+#leads .profilePic
+{text-align: center;
+  width: 100%;
+  margin: 10px;}
+  #leads .name {
+    font-size: 14px;
+    text-align: center;
+    color: #5d44ff;
+    width: 100%;
+    /* font-weight: bold; */
+    margin: 5px;
+}
+  #leads .named {
+    font-size: 14px;
+    width: 100%;
+    font-weight: bold;
+    text-align: left;
+    margin: 10px 0 0 30px;
+}
+#leads .namedt {
+  text-align: left;
+  margin: 0 0 0 80px;
+  width: 140px;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 14px;
+}
+    #leads .namedc{font-size: 14px;
+      color: black; width: 100px;
+      }
+      #leads    .col-md-3 {
+        flex: 0 0 25%;
+        max-width: 25%;
+        padding-top: 0;
+        /* padding-right: 35px; */
+    }
+#leads .btn-circle.btn-lg, .btn-group-lg > .btn-circle.btn {
+  height: 4.5rem;
+  width: 4.5rem;
+  font-size: 1.35rem; margin: 5px;}

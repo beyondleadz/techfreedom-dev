@@ -437,7 +437,20 @@ const ComparisonContent = () => {
   </div>,
     // right: <Button>Right Extra Action</Button>,
   };
+  
+
  
+  // const options = ['left', 'right'];
+
+
+  // const slot = useMemo(() => {
+  //   if (position.length === 0) return null;
+
+  //   return position.reduce(
+  //     (acc, direction) => ({ ...acc, [direction]: OperationsSlot[direction] }),
+  //     {},
+  //   );
+  // }, [position]);
 
   return (
     <>

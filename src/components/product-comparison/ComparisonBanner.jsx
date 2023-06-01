@@ -13,7 +13,55 @@ const BannerSection=()=>{
                     <span>Product </span>Comparison!</h3>
                  <p className="mr-5">Welcome to BeyondLeadz, a B2B data and lead management solutions provider. Our company specializes in providing businesses with accurate, up-to-date and actionable data that helps them identify potential leads and grow their customer base.</p>
                         
+                 <div className="container">
+              <div className="row">
             
+            <div className="compareHead">Beyond Leads VS Linkedin</div>
+            <div className="compareContent ">
+            <div className="row row-cols-1">
+            <div>- Unlimited Prospecting and list builidng</div>
+            <div>- Prospecting is connections dependant</div>
+            </div></div>
+            <div className="compareContent ">
+            <div className="row row-cols-1">
+            <div>- Independent human verified data</div>
+            <div>- User Generated data</div>
+            </div></div>
+            <div className="compareContent ">
+            <div className="row row-cols-1">
+            <div>- Multiple data soources with rigrouos quality contol</div>
+            <div>- Single Source (Users)</div>
+            </div></div>
+            <div className="compareContent ">
+            <div className="row row-cols-1 ">
+            <div>- Tailored dataset with multiple download options</div>
+            <div>- Limitations in customisng and downloding</div>
+            </div></div>
+            <div className="compareContent ">
+            <div className="row row-cols-1">
+            <div>- Budget Freindly and unlimited searches</div>
+            <div>-Limited free searches and Expensive per user billing</div>
+            </div></div>
+            <div className="compareContent ">
+            <div className="row row-cols-1">
+            <div>- Business emails</div>
+            <div>- Personal emails and costly reachout through Inmails</div>
+            </div></div>
+            <div className="compareContent ">
+            <div className="row row-cols-1">
+            <div>- Direct Dials & Mobile Numbers</div>
+            <div>- X</div>
+            </div></div>
+            <div className="compareContent ">
+            <div className="row row-cols-1">
+            <div>- No commercial advertisements and sponsored ads like LinkedIn</div>
+            <div>- Commercial and Sposorod ads take away attention</div>
+            </div></div>
+            
+        
+            
+            </div>
+            </div>
             
                     <div className="mt-md-5 mt-4 mb-lg-0 mb-4">
                         <a className="btn btn-style" href="about.html">Start Free Trial</a>  <a className="btn btn-style" href="about.html">See Plans</a>                        </div>
@@ -24,6 +72,15 @@ const BannerSection=()=>{
                             className="img-fluid radius-image-full position-relative" alt=" "/>                        
                     </div>
                 </div>
+
+                
+
+
+
+
+
+
+
                 <ul className="breadcrumbs-custom-path">
                 <li><a href="index.html">Home</a></li>
                 <li className="active"><i className="fas fa-angle-right mx-2"></i>Product Comparison</li>
