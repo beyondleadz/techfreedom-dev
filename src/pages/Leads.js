@@ -4,11 +4,13 @@ import Banner from "../components/about/Banner";
 import Services from "../components/about/Services";
 import Aim from "../components/about/Aim";
 import Stats from "../components/about/Stats";
+import { Tooltip } from 'antd';
 import { Tabs } from 'antd';
 import ActivityTime from "../components/leads-details/ActivityTime";
 import Info from "../components/leads-details/Info";
 import Notes from "../components/leads-details/Notes";
 import Tasks from "../components/leads-details/Tasks";
+
 const onChange = (key) => {
   console.log(key);
 };
@@ -54,10 +56,11 @@ const Leads = () => {
     <div className="name mt-1">October14th, 2018 at 2:30 P.M.</div>
     
     <div>
-    <a href="#" class="btn btn-info btn-circle"><i class="la la-Phone"></i></a>
-    <a href="#" class="btn btn-primary btn-circle ml-3"><i class="la la-envelope"></i></a>
-    <a href="#" class="btn btn-primary btn-circle ml-3"><i class="fab fa-facebook-f"></i></a>
-    <a href="#" class="btn btn-primary btn-circle ml-3"><i class="fab fa-facebook-f"></i></a></div></div>
+    
+    <Tooltip overlayClassName="fs-12 "  title="Phone">  <a href="#" class="btn btn-info btn-circle"> <i class="la la-Phone"></i></a></Tooltip>
+    <Tooltip overlayClassName="fs-12 "   title="Email"> <a href="#" class="btn btn-primary btn-circle ml-3"><i class="la la-envelope"></i></a></Tooltip>
+    <Tooltip overlayClassName="fs-12"   title="Activity"> <a href="#" class="btn btn-primary btn-circle ml-3"><i class="fab fa-facebook-f"></i></a></Tooltip>
+    <Tooltip overlayClassName="fs-12 "   title="Document"> <a href="#" class="btn btn-primary btn-circle ml-3"><i class="fab fa-facebook-f"></i></a></Tooltip></div></div>
     <div className=" mt-3"> <span className="namedt">Designation</span>  <span className="namedc"> General Manager</span> </div>
     <div className=" mt-2">  <span className="namedt">Phone </span>   <span className="namedc"> 9743899246</span>  </div>
         <div className=" mt-2"> <span className="namedt"> Email </span><span className="namedc"> J.collines@company.info</span> </div>

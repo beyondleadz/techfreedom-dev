@@ -6742,7 +6742,7 @@ cursor: pointer;
     .headerblk2 > div{display: flex;  margin-right: 150px;}
     .headerblk2 div span::before{margin-left: 0;}
      .keyexebtn{
-      /* padding: 7px 10px; */
+      padding: 0;
      } 
     .summarycontainer .keyexebtn:hover{background: #fdc401; border: #fdc401; color: #000;}
     .similarblk .similarinnerblk{ display: flex; padding: 10px 0; 
