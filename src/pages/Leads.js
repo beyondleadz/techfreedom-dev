@@ -58,11 +58,10 @@ const Leads = () => {
     <a href="#" class="btn btn-primary btn-circle ml-3"><i class="la la-envelope"></i></a>
     <a href="#" class="btn btn-primary btn-circle ml-3"><i class="fab fa-facebook-f"></i></a>
     <a href="#" class="btn btn-primary btn-circle ml-3"><i class="fab fa-facebook-f"></i></a></div></div>
-    <div className=" mt-3"> <span className="namedt">Title Full Name: </span> <span className="namedc">John collines</span> </div>
-    <div className=" mt-2"> <span className="namedt">Designation:</span>  <span className="namedc"> General Manager</span> </div>
-    <div className=" mt-2">  <span className="namedt">Phone: </span>   <span className="namedc"> 9743899246</span>  </div>
-        <div className=" mt-2"> <span className="namedt"> Email: </span><span className="namedc"> J.collines@company.info</span> </div>
-        <div className=" mt-2"> <span className="namedt">Address:</span> <span className="namedc">abc smith street, India</span>  </div>
+    <div className=" mt-3"> <span className="namedt">Designation</span>  <span className="namedc"> General Manager</span> </div>
+    <div className=" mt-2">  <span className="namedt">Phone </span>   <span className="namedc"> 9743899246</span>  </div>
+        <div className=" mt-2"> <span className="namedt"> Email </span><span className="namedc"> J.collines@company.info</span> </div>
+        <div className=" mt-2"> <span className="namedt">Address</span> <span className="namedc">abc smith street, India</span>  </div>
         
               <div className="row">
                 <div className="col-md-12"></div>

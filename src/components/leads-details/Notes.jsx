@@ -20,120 +20,14 @@ const Notes = ()=>{
       const onInputChange = () => {};
     return(
         <div><p>Create or Edit a Client Note</p>
-         <div className="errorformcontainer">
+      
+      
       <div className="form">
-        {console.log(errorForm, "skljfsljfklsd")}
-        <div className="formcol1">Title Full Name</div>
+        <div className="formcol1">Select</div>
         <div className="formcol2">
-          <Input
-            name="telephone"
-            value={errorForm?.telephone?.value}
-            placeholder="Telephone"
-            onChange={onInputChange}
-          />
-        </div>
-      </div>
-      <div className="form">
-        {console.log(errorForm, "skljfsljfklsd")}
-        <div className="formcol1">Designation</div>
-        <div className="formcol2">
-          <Input
-            name="telephone"
-            value={errorForm?.telephone?.value}
-            placeholder="Telephone"
-            onChange={onInputChange}
-          />
-        </div>
-      </div>
-
-      <div className="form">
-        <div className="formcol1">Phone</div>
-        <div className="formcol2">
-          <Input
-            name="city"
-            value={errorForm?.city?.value}
-            placeholder="City"
-            onChange={onInputChange}
-          />
-        </div>
-      </div>
-
-      <div className="form">
-        <div className="formcol1">Mobile</div>
-        <div className="formcol2">
-          <Input
-            name="zip"
-            value={errorForm?.zip?.value}
-            placeholder="Zip/Pin code"
-            onChange={onInputChange}
-          />
-        </div>
-      </div>
-
-      <div className="form">
-        <div className="formcol1">Email</div>
-        <div className="formcol2">
-          <Input
-            name="employee"
-            value={errorForm?.employee?.value}
-            placeholder="No. of Employees"
-            onChange={onInputChange}
-          />
-        </div>
-      </div>
-
-      <div className="form">
-        <div className="formcol1">Company Name</div>
-        <div className="formcol2">
-          <Input
-            name="website"
-            value={errorForm?.website?.value}
-            placeholder="Website"
-            onChange={onInputChange}
-          />
-        </div>
-      </div>
-
-      <div className="form">
-        <div className="formcol1">Address</div>
-        <div className="formcol2">
-          <TextArea
-            name="address"
-            value={errorForm?.address?.value}
-            rows={2}
-            maxLength={100}
-            onChange={onInputChange}
-          />
-        </div>
-      </div>
-      <div className="form">
-        <div className="formcol1">Website</div>
-        <div className="formcol2">
-          <Input
-            name="website"
-            value={errorForm?.website?.value}
-            placeholder="Website"
-            onChange={onInputChange}
-          />
-        </div>
-      </div>
-      <div className="form">
-        <div className="formcol1">Industry</div>
-        <div className="formcol2">
-          <Input
-            name="website"
-            value={errorForm?.website?.value}
-            placeholder="Website"
-            onChange={onInputChange}
-          />
-        </div>
-      </div>
-      <div className="form">
-        <div className="formcol1">Lead Status</div>
-        <div className="formcol2">
-          <Select
+          <Select 
             showSearch
-            placeholder="Select"
+            placeholder="-- Dropdown --"
             optionFilterProp="children"
             // onChange={onChange}
             // onSearch={onSearch}
@@ -142,50 +36,37 @@ const Notes = ()=>{
             }
             options={[
               {
-                value: "active",
-                label: "Active",
+                value: "call",
+                label: "Call",
               },
               {
-                value: "inactive",
-                label: "Inactive",
-              },
-              
-            ]}
-          />
-        </div>
-      </div>
-      <div className="form">
-        <div className="formcol1">Lead Rating</div>
-        <div className="formcol2">
-          <Select
-            showSearch
-            placeholder="Select"
-            optionFilterProp="children"
-            // onChange={onChange}
-            // onSearch={onSearch}
-            filterOption={(input, option) =>
-              (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
-            }
-            options={[
-              {
-                value: "one",
-                label: "One",
+                value: "email",
+                label: "Email",
               },
               {
-                value: "two",
-                label: "Two",
+                value: "meeting",
+                label: "Meeting",
               },
               {
-                value: "three",
-                label: "Three",
+                value: "followup",
+                label: "Follow up ",
+              },
+              {
+                value: "chat",
+                label: "Chat",
+              },
+              {
+                value: "whatsapp",
+                label: "Whatsapp",
               },
             ]}
           />
         </div>
+
       </div>
-     
+      <Divider dashed={true} />
       <div className="form">
-        <div className="formcol1">Lead Source</div>
+        <div className="formcol1">Type Note</div>
         <div className="formcol2">
           <TextArea
             name="address"
@@ -196,20 +77,12 @@ const Notes = ()=>{
           />
         </div>
       </div>
-      <div className="form">
-        <div className="formcol1">Lead Description</div>
-        <div className="formcol2">
-          <TextArea
-            name="address"
-            value={errorForm?.address?.value}
-            rows={2}
-            maxLength={100}
-            onChange={onInputChange}
-          />
+      <div className="mt-3">
+              <span className="mt-3 mr-3"> <Button type="primary">Cancel</Button></span>
+              <span className="mt-3 mr-3"><Button type="primary">Save</Button></span>
+              </div>
         </div>
-      </div>
-        </div>
-        </div>
+      
     )
 }
 export default Notes

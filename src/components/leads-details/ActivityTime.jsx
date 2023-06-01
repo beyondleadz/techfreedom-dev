@@ -9,38 +9,35 @@ const ActivityTime = () => (
     items={[
       {
         color: 'green',
-        children: 'Create a services site 2015-09-01',
+        children: <div><div>Website visit</div>
+        <p>http://beyondleads/leads</p>
+        <p>http://beyondleads/companyDetails</p>
+        </div>
+        ,
       },
       {
         color: 'green',
-        children: 'Create a services site 2015-09-01',
+        dot: <SmileOutlined />,
+        children: <div><div>Phone Call</div>
+        <p>called Main Office (open call)</p>
+                </div>,
       },
       {
         color: 'red',
         children: (
-          <>
-            <p>Solve initial network problems 1</p>
-            <p>Solve initial network problems 2</p>
-            <p>Solve initial network problems 3 2015-09-01</p>
-          </>
+         
+            <div><div>Phone Call</div>
+        <p>called Mike Office (open call)</p>
+                </div>
+         
         ),
       },
       {
         children: (
           <>
-            <p>Technical testing 1</p>
-            <p>Technical testing 2</p>
-            <p>Technical testing 3 2015-09-01</p>
-          </>
-        ),
-      },
-      {
-        color: 'gray',
-        children: (
-          <>
-            <p>Technical testing 1</p>
-            <p>Technical testing 2</p>
-            <p>Technical testing 3 2015-09-01</p>
+           <div><div>Completed Web Form</div>
+        <p>Small engine repair near me</p>
+                </div>
           </>
         ),
       },
@@ -48,16 +45,28 @@ const ActivityTime = () => (
         color: 'gray',
         children: (
           <>
-            <p>Technical testing 1</p>
-            <p>Technical testing 2</p>
-            <p>Technical testing 3 2015-09-01</p>
+            <div><div>Phone Call</div>
+        <p>called Jeff Mobile (open call)</p>
+                </div>
+          </>
+        ),
+      },
+      {
+        color: 'gray',
+        children: (
+          <>
+            <div><div>Sent Email</div>
+        <p>Request Feedback</p>
+                </div>
           </>
         ),
       },
       {
         color: '#00CCFF',
         dot: <SmileOutlined />,
-        children: <p>Custom color testing</p>,
+        children: <div><div>Review received</div>
+        <p>Feedback received (Open Review)</p>
+                </div>,
       },
     ]}
   />

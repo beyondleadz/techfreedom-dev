@@ -31,12 +31,12 @@ const Tasks = ()=>{
          <div className="errorformcontainer">
       <div className="form">
         {console.log(errorForm, "skljfsljfklsd")}
-        <div className="formcol1">Title Full Name</div>
+        <div className="formcol1">Full Name</div>
         <div className="formcol2">
           <Input
             name="telephone"
             value={errorForm?.telephone?.value}
-            placeholder="Telephone"
+            placeholder="Name"
             onChange={onInputChange}
           />
         </div>
@@ -48,7 +48,7 @@ const Tasks = ()=>{
           <Input
             name="telephone"
             value={errorForm?.telephone?.value}
-            placeholder="Telephone"
+            placeholder="Designation"
             onChange={onInputChange}
           />
         </div>
@@ -70,8 +70,10 @@ const Tasks = ()=>{
                   Is to display
                 </Checkbox>
               </div>
+              <div className="mt-3">
               <span className="mt-3 mr-3"> <Button type="primary">Cancel</Button></span>
               <span className="mt-3 mr-3"><Button type="primary">Save</Button></span>
+              </div>
         </div>
         </div>
     )

@@ -1,36 +1,26 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { Modal, Checkbox, Input, Divider, Button, Select } from "antd";
-import _ from "lodash";
-import { useDispatch } from "react-redux";
 
-
-const Info = () => {
-  const formIntialValue = {
-    telephone: { disabled: true, value: "", status: null },
-    address: { disabled: true, value: "", status: null },
-    city: { disabled: true, value: "", status: null },
-    zip: { disabled: true, value: "", status: null },
-    employee: { disabled: true, value: "", status: null },
-    website: { disabled: true, value: "", status: null },
-    name: { disabled: true, value: "", status: null },
-    email: { disabled: true, value: "", status: null },
-    comment: { disabled: true, value: "", status: null },
-  };
-
-  const dispatch = useDispatch();
-  const { TextArea } = Input;
-  const [openErrorForm, setOpenErrorForm] = useState(false);
-  const [isApiFailed, setIsApiFailed] = useState(false);
-  const [openTagModal, setOpenTagModal] = useState(false);
-  const [tagValues, setTagValues] = useState({
-    tagname: "",
-    description: "",
-    tagError: "",
-  });
-  const [errorForm, setErrorForm] = useState(formIntialValue);
-  const onInputChange = () => {};
-  return (
-    <div className="errorformcontainer">
+const Notes = ()=>{
+    
+    const formIntialValue = {
+        telephone: { disabled: true, value: "", status: null },
+        address: { disabled: true, value: "", status: null },
+        city: { disabled: true, value: "", status: null },
+        zip: { disabled: true, value: "", status: null },
+        employee: { disabled: true, value: "", status: null },
+        website: { disabled: true, value: "", status: null },
+        name: { disabled: true, value: "", status: null },
+        email: { disabled: true, value: "", status: null },
+        comment: { disabled: true, value: "", status: null },
+      };
+    
+      const [errorForm, setErrorForm] = useState(formIntialValue);
+      const { TextArea } = Input;
+      const onInputChange = () => {};
+    return(
+        <div><p>Create or Edit a Client Note</p>
+         <div className="errorformcontainer">
       <div className="form">
         {console.log(errorForm, "skljfsljfklsd")}
         <div className="formcol1">Title Full Name</div>
@@ -38,7 +28,7 @@ const Info = () => {
           <Input
             name="telephone"
             value={errorForm?.telephone?.value}
-            placeholder="Title Full Name"
+            placeholder="Telephone"
             onChange={onInputChange}
           />
         </div>
@@ -50,7 +40,7 @@ const Info = () => {
           <Input
             name="telephone"
             value={errorForm?.telephone?.value}
-            placeholder="Designation"
+            placeholder="Telephone"
             onChange={onInputChange}
           />
         </div>
@@ -62,7 +52,7 @@ const Info = () => {
           <Input
             name="city"
             value={errorForm?.city?.value}
-            placeholder="Phone"
+            placeholder="City"
             onChange={onInputChange}
           />
         </div>
@@ -74,7 +64,7 @@ const Info = () => {
           <Input
             name="zip"
             value={errorForm?.zip?.value}
-            placeholder="Mobile"
+            placeholder="Zip/Pin code"
             onChange={onInputChange}
           />
         </div>
@@ -86,7 +76,7 @@ const Info = () => {
           <Input
             name="employee"
             value={errorForm?.employee?.value}
-            placeholder="Email"
+            placeholder="No. of Employees"
             onChange={onInputChange}
           />
         </div>
@@ -98,7 +88,7 @@ const Info = () => {
           <Input
             name="website"
             value={errorForm?.website?.value}
-            placeholder="Company Name"
+            placeholder="Website"
             onChange={onInputChange}
           />
         </div>
@@ -133,7 +123,7 @@ const Info = () => {
           <Input
             name="website"
             value={errorForm?.website?.value}
-            placeholder="Industry"
+            placeholder="Website"
             onChange={onInputChange}
           />
         </div>
@@ -218,11 +208,8 @@ const Info = () => {
           />
         </div>
       </div>
-      <div className="mt-3">
-              <span className="mt-3 mr-3"> <Button type="primary">Cancel</Button></span>
-              <span className="mt-3 mr-3"><Button type="primary">Save</Button></span>
-              </div>
-    </div>
-  );
-};
-export default Info;
+        </div>
+        </div>
+    )
+}
+export default Notes
