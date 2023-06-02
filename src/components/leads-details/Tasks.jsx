@@ -27,54 +27,102 @@ const Tasks = ()=>{
       const { TextArea } = Input;
       const onInputChange = () => {};
     return(
-        <div className="mt-3"><p>Create or Edit a Client Remarks</p>
+        <div className="mt-3"><p>Create or Edit a Task</p>
          <div className="errorformcontainer">
-      <div className="form">
-        {console.log(errorForm, "skljfsljfklsd")}
-        <div className="formcol1">Full Name</div>
+         <div className="form">
+        <div className="formcol1">Lead Status</div>
         <div className="formcol2">
-          <Input
-            name="telephone"
-            value={errorForm?.telephone?.value}
-            placeholder="Name"
-            onChange={onInputChange}
-          />
-        </div>
-      </div>
-      <div className="form">
-        {console.log(errorForm, "skljfsljfklsd")}
-        <div className="formcol1">Designation</div>
-        <div className="formcol2">
-          <Input
-            name="telephone"
-            value={errorForm?.telephone?.value}
-            placeholder="Designation"
-            onChange={onInputChange}
-          />
-        </div>
-      </div>
+          <Select
+            showSearch
+            placeholder="Task Status   "
+            optionFilterProp="children"
+            // onChange={onChange}
+            // onSearch={onSearch}
+            filterOption={(input, option) =>
+              (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
+            }
+            options={[
+              {
+                value: "open",
+                label: "Open",
+              },
+              {
+                value: "re-scheduled ",
+                label: "Re-scheduled ",
+              },
 
-      <div className="formcol1">
+              {
+                value: "cancelled ",
+                label: "Cancelled ",
+              },
+
+              {
+                value: "completed ",
+                label: "Completed ",
+              },
+              
+            ]}
+          />
+        </div>
+      </div>
+      <div className="form">
+        {console.log(errorForm, "skljfsljfklsd")}
+        <div className="formcol1">Date and time to add tasks</div>
+        <div className="formcol2">
+          <Input
+            name="telephone"
+            value={errorForm?.telephone?.value}
+            placeholder="Date and Time"
+            onChange={onInputChange}
+          />
+        </div>
+      </div>
+      <div className="form">
+        {console.log(errorForm, "skljfsljfklsd")}
+        <div className="formcol1">Related to which lead </div>
+        <div className="formcol2">
+          <Input
+            name="telephone"
+            value={errorForm?.telephone?.value}
+            placeholder="Related to which lead"
+            onChange={onInputChange}
+          />
+        </div>
+      </div>
+      <div className="form">
+        {console.log(errorForm, "skljfsljfklsd")}
+        <div className="formcol1">Reminder </div>
+        <div className="formcol2">
+          <Input
+            name="telephone"
+            value={errorForm?.telephone?.value}
+            placeholder="Reminder"
+            onChange={onInputChange}
+          />
+        </div>
+      </div>
+      {/* <div className="formcol1">
                 <Checkbox name="telephone" onChange={enableField}>
                   Is contact back required
                 </Checkbox>
-              </div>
-              <div className="formcol1">
+              </div> */}
+              {/* <div className="formcol1">
                 <Checkbox name="telephone" onChange={enableField}>
                 Is contacted
                 </Checkbox>
-              </div>
+              </div> */}
 
-              <div className="formcol1">
+              {/* <div className="formcol1">
                 <Checkbox name="telephone" onChange={enableField}>
                   Is to display
                 </Checkbox>
-              </div>
+              </div> */}
               <div className="mt-3">
               <span className="mt-3 mr-3"> <Button type="primary">Cancel</Button></span>
               <span className="mt-3 mr-3"><Button type="primary">Save</Button></span>
               </div>
         </div>
+        
         </div>
     )
 }
