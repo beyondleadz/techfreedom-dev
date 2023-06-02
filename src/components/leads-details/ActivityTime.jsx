@@ -9,7 +9,7 @@ const ActivityTime = () => (
     items={[
       {
         color: 'green',
-        children: <div><div>Website visit</div>
+        children: <div className="mt-3"><div>Website visit</div>
         <p>http://beyondleads/leads</p>
         <p>http://beyondleads/companyDetails</p>
         </div>

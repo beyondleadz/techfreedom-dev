@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import Layout from "../layout/Layout";
+import { Steps } from 'antd';
 import Banner from "../components/about/Banner";
 import Services from "../components/about/Services";
 import Aim from "../components/about/Aim";
@@ -46,7 +47,7 @@ const Leads = () => {
     <div id="leads" className="wrapper">
 	<div id="content-wrapper" className="d-flex flex-column">
         <div className="container-fluid">
-            
+         <div></div>   
         <h3 className="headername">Leads</h3>
         <div  className="row  col-md-12 ">
 <div className="card shadow col-md-12">

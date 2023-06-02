@@ -30,7 +30,7 @@ const Info = () => {
   const [errorForm, setErrorForm] = useState(formIntialValue);
   const onInputChange = () => {};
   return (
-    <div className="errorformcontainer">
+    <div className="errorformcontainer mt-3">
       <div className="form">
         {console.log(errorForm, "skljfsljfklsd")}
         <div className="formcol1">Title Full Name</div>
