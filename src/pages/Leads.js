@@ -7,6 +7,7 @@ import Aim from "../components/about/Aim";
 import Stats from "../components/about/Stats";
 import { Tooltip } from 'antd';
 import { Tabs } from 'antd';
+import { Breadcrumb } from 'antd';
 import ActivityTime from "../components/leads-details/ActivityTime";
 import Info from "../components/leads-details/Info";
 import Notes from "../components/leads-details/Notes";
@@ -47,7 +48,32 @@ const Leads = () => {
     <div id="leads" className="wrapper">
 	<div id="content-wrapper" className="d-flex flex-column">
         <div className="container-fluid">
-         <div></div>   
+         <div className="mt-3 ml-3"> <Breadcrumb
+    separator=""
+    items={[
+      
+    
+      {
+        href: '',
+        title: 'Home',
+      },
+      {
+        type: 'separator',
+      },
+      {
+        href: '',
+        title: 'Leads',
+      },
+      {
+        type: 'separator',
+      },
+      {
+        title: 'Leads details',
+      },
+    ]}
+  />
+
+</div>   
         <h3 className="headername">Leads</h3>
         <div  className="row  col-md-12 ">
 <div className="card shadow col-md-12">
