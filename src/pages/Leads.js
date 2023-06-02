@@ -12,6 +12,7 @@ import ActivityTime from "../components/leads-details/ActivityTime";
 import Info from "../components/leads-details/Info";
 import Notes from "../components/leads-details/Notes";
 import Tasks from "../components/leads-details/Tasks";
+import Stepsbar from "../components/leads-details/Stepsbar";
 
 const onChange = (key) => {
   console.log(key);
@@ -73,7 +74,8 @@ const Leads = () => {
     ]}
   />
 
-</div>   
+</div>  
+<div className="mt-3"><Stepsbar/></div> 
         <h3 className="headername">Leads</h3>
         <div  className="row  col-md-12 ">
 <div className="card shadow col-md-12">

@@ -9,6 +9,7 @@ const ActivityTime = () => (
     items={[
       {
         color: 'green',
+        dot: <div><a href="#" class="btn btn-success btn-sm btn-circle"> <i class="las la-globe"></i></a></div>,
         children: <div className="mt-3"><div>Website visit</div>
         <p>http://beyondleads/leads</p>
         <p>http://beyondleads/companyDetails</p>
@@ -17,13 +18,14 @@ const ActivityTime = () => (
       },
       {
         color: 'green',
-        dot: <SmileOutlined />,
+        dot: <div><a href="#" class="btn btn-info btn-sm btn-circle"> <i class="las la-phone"></i></a></div>,
         children: <div><div>Phone Call</div>
         <p>called Main Office (open call)</p>
                 </div>,
       },
       {
         color: 'red',
+        dot: <div><a href="#" class="btn btn-info btn-sm btn-circle"> <i class="las la-phone"></i></a></div>,
         children: (
          
             <div><div>Phone Call</div>

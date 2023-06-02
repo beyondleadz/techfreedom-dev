@@ -7178,6 +7178,11 @@ color: orange;
 .errorformcontainer .form{display: flex; align-items: center; justify-content: space-between; padding: 5px 0;}
 .errorformcontainer .form .formcol1{width:30%}
 .errorformcontainer .form .formcol2{width:70%}
+.errorformcontainer .form.leadbox .formcol2{display: flex;}
+.errorformcontainer .form.leadbox .formcol2 > div:first-of-type{width: 25%;}
+.errorformcontainer .form.leadbox .formcol2 > div:first-of-type > div{width: 100%;}
+.errorformcontainer .form.leadbox .formcol2 > div:last-of-type{width: 75%;}
+.errorformcontainer .form.leadbox .formcol2 > .ant-picker{width:100%}
 .errorformcontainer .formfull{width:100%; padding: 5px 0;}
 .showemail{display: inline-block;}
 
@@ -7433,7 +7438,7 @@ color: orange;
     color: #5d44ff;
     width: 100%;
     /* font-weight: bold; */
-    margin: 5px;
+    margin: 5px 5px 10px 5px;
 }
   #leads .named {
     font-size: 14px;
@@ -7451,7 +7456,7 @@ color: orange;
   font-size: 14px;
 }
     #leads .namedc{font-size: 14px; font-weight: 600; 
-      color: black; 
+      color: rgba(0, 0, 0, 0.88);
       }
       #leads    .col-md-3 {
         flex: 0 0 25%;
@@ -7463,5 +7468,9 @@ color: orange;
   height: 4.5rem;
   width: 4.5rem;
   font-size: 1.35rem; margin: 5px;}
+
+  #content-wrapper .ant-table-cell{
+    padding: 10px 16px;
+    vertical-align: middle;}
 
   
