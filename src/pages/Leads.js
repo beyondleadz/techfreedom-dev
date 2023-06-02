@@ -68,7 +68,7 @@ const Leads = () => {
         type: 'separator',
       },
       {
-        title: 'Leads details',
+        title: 'Lead details',
       },
     ]}
   />
