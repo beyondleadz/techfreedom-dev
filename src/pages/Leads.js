@@ -26,7 +26,7 @@ const items = [
   },
   {
     key: '2',
-    label: `Info`,
+    label: `Lead Details`,
     children: <Info/>,
   },
   {

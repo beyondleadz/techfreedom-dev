@@ -18,19 +18,32 @@ const Stepsbar=()=>{
         current={current}
         onChange={onChange}
         responsive={false}
+        id="step"
         className="site-navigation-steps"
         items={[
           {
             status: 'finish',
-            title: 'finish 1',
+            title: 'Lead',
           },
           {
             status: 'finish',
-            title: 'finish 2',
+            title: 'Lead Info',
           },
           {
             status: 'process',
-            title: 'current process',
+            title: 'Activity time',
+          },
+          {
+            status: 'process',
+            title: 'Lead Details',
+          },
+          {
+            status: 'process',
+            title: 'Add Notes',
+          },
+          {
+            status: 'process',
+            title: 'Add Tasks',
           },
           {
             status: 'wait',
