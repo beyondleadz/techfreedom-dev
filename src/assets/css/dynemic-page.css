@@ -6476,7 +6476,7 @@ cursor: pointer;
 /* background: url(../images/companies-icon.png) no-repeat 0px 0px;*/
 /* background: url(../images/executive-icon.png) no-repeat 0px 0px; */
 /* background: url(../images/leads-icon.png) no-repeat 0px 0px; */
-.la-share-square:before{color:#5c43fd;}
+/* .la-share-square:before{color:#5c43fd;} */
 /* .la-building:before {  
   color: #5000FF;
 } */
@@ -6533,9 +6533,9 @@ cursor: pointer;
 .la-star:before {
       color: #EBB601;
     }
-    .la-envelope:before {
+    /* .la-envelope:before {
       color: #5d44ff;
-    }
+    } */
     .la-flag:before {
       color: #F3060F;
     }
@@ -7463,3 +7463,5 @@ color: orange;
   height: 4.5rem;
   width: 4.5rem;
   font-size: 1.35rem; margin: 5px;}
+
+  

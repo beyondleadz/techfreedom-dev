@@ -46,6 +46,7 @@ const Leads = () => {
     <div id="leads" className="wrapper">
 	<div id="content-wrapper" className="d-flex flex-column">
         <div className="container-fluid">
+            
         <h3 className="headername">Leads</h3>
         <div  className="row  col-md-12 ">
 <div className="card shadow col-md-12">
@@ -57,10 +58,10 @@ const Leads = () => {
     
     <div>
     
-    <Tooltip overlayClassName="fs-12 "  title="Phone">  <a href="#" class="btn btn-info btn-circle"> <i class="la la-Phone"></i></a></Tooltip>
-    <Tooltip overlayClassName="fs-12 "   title="Email"> <a href="#" class="btn btn-primary btn-circle ml-3"><i class="la la-envelope"></i></a></Tooltip>
-    <Tooltip overlayClassName="fs-12"   title="Activity"> <a href="#" class="btn btn-primary btn-circle ml-3"><i class="fab fa-facebook-f"></i></a></Tooltip>
-    <Tooltip overlayClassName="fs-12 "   title="Document"> <a href="#" class="btn btn-primary btn-circle ml-3"><i class="fab fa-facebook-f"></i></a></Tooltip></div></div>
+    <Tooltip overlayClassName="fs-12 "  title="Phone">  <a href="#" class="btn btn-info btn-circle"> <i class="las la-phone"></i></a></Tooltip>
+    <Tooltip overlayClassName="fs-12 "   title="Email"> <a href="#" class="btn btn-info btn-circle ml-3"><i class="las la-envelope text-white"></i></a></Tooltip>
+    <Tooltip overlayClassName="fs-12"   title="Activity"> <a href="#" class="btn btn-info btn-circle ml-3"><i class="las la-directions"></i></a></Tooltip>
+    <Tooltip overlayClassName="fs-12 "   title="Document"> <a href="#" class="btn btn-info btn-circle ml-3"><i class="las la-share-square text-white"></i></a></Tooltip></div></div>
     <div className=" mt-3"> <span className="namedt">Designation</span>  <span className="namedc"> General Manager</span> </div>
     <div className=" mt-2">  <span className="namedt">Phone </span>   <span className="namedc"> 9743899246</span>  </div>
         <div className=" mt-2"> <span className="namedt"> Email </span><span className="namedc"> J.collines@company.info</span> </div>
