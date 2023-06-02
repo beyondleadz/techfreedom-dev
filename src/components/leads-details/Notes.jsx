@@ -23,11 +23,11 @@ const Notes = ()=>{
       
       
       <div className="form">
-        <div className="formcol1">Select</div>
-        <div className="formcol2">
+        <div className="formcol1"></div>
+        <div className="formcol2 mt-2">
           <Select 
             showSearch
-            placeholder="-- Dropdown --"
+            placeholder="disposition"
             optionFilterProp="children"
             // onChange={onChange}
             // onSearch={onSearch}
