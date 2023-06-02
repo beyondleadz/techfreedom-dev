@@ -7,6 +7,7 @@ import {
   Button,
   Select,
   DatePicker,
+  
 } from "antd";
 
 const Tasks = () => {
@@ -26,7 +27,14 @@ const Tasks = () => {
   const { RangePicker } = DatePicker;
   const [errorForm, setErrorForm] = useState(formIntialValue);
   const { TextArea } = Input;
-
+  const enableField = (ele) => {
+    setErrorForm({
+      ...errorForm,
+      [ele.target.name]: ele.target.checked
+        ? { ...errorForm[ele.target.name], disabled: !ele.target.checked }
+        : { value: "", disabled: !ele.target.checked },
+    });
+  };
  
   const onInputChange = () => {};
   const onDateChange = (value, dateString) => {
@@ -143,24 +151,28 @@ const Tasks = () => {
           {console.log(errorForm, "skljfsljfklsd")}
           <div className="formcol1">Reminder </div>
           <div className="formcol2">
-            <Input
-              name="telephone"
-              value={errorForm?.telephone?.value}
-              placeholder="Reminder"
-              onChange={onInputChange}
-            />
+          <span className="mr-2"><button className="btn btn-light">15 min</button></span>
+        <span className="mr-2"><button className="btn btn-light">30 min</button></span>
+        <span className="mr-2"><button className="btn btn-light">1 Hr</button></span>
+        <span className="mr-2"><button className="btn btn-light">2 Hr</button></span>
           </div>
         </div>
-        {/* <div className="formcol1">
+        <div className="form">
+          {console.log(errorForm, "skljfsljfklsd")}
+        <div className="formcol1"> </div>
+        <div className="formcol2">
+        <span> <Checkbox name="telephone" onChange={enableField}>
+                  Email
+                </Checkbox></span>
+                <span>
                 <Checkbox name="telephone" onChange={enableField}>
-                  Is contact back required
+                SMS
                 </Checkbox>
-              </div> */}
-        {/* <div className="formcol1">
-                <Checkbox name="telephone" onChange={enableField}>
-                Is contacted
-                </Checkbox>
-              </div> */}
+              </span> 
+               </div>
+              </div>
+              
+        
 
         {/* <div className="formcol1">
                 <Checkbox name="telephone" onChange={enableField}>
