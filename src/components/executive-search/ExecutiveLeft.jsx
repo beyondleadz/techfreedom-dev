@@ -7,7 +7,7 @@ import {
   getCompanyTypeList,
   getEmployeeCountList,
   getRevenuerangeList,
-  createCompanySearchPayload,
+  createExecutiveSearchPayload,
   getCompanyList,
   saveAdvancedSelectedFilters,
   saveExecutiveSearchList,

@@ -58,6 +58,28 @@ import {
   DOWNLOAD_COMPANYLIST_ERROR,
 } from "../actionType/companyListingType";
 
+export const getExecutiveCompanyDetails = (id) => (dispatch) => {
+  const url = `${companyListingApiUrl}?employeeId.equals=${id}`;
+  console.log(url, id, "lksjdfklsjd");
+  return getMethod(url)
+    .then((res) => {
+      dispatch({
+        type: EXECUTIVE_COMPANY_DETAILS,
+        payload: res?.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err, "sjkflskdjfkl");
+      dispatch({
+        type: EXECUTIVE_COMPANY_DETAILS_ERROR,
+        payload:
+          { [errEnum.EXECUTIVE_COMPANY_DETAILS_ERROR]: err.response.data[ErrKey] } ||
+          "Error Occured",
+      });
+    });
+};
+
+
 export const getExecutiveDetails = (id) => (dispatch) => {
   const url = `${executiveEmployeeListingApiUrl}/${id}`;
   return getMethod(url)

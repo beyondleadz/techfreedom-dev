@@ -1,15 +1,18 @@
 import React, { useEffect, useState, useMemo } from "react";
-import { Tabs } from "antd";
+import { Modal, Checkbox, Input, Divider, Button,Tabs } from "antd";
+import _ from "lodash";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import logo from "../../assets/images/icici.jpg";
 import defaultLogo from "../../assets/images/no-similar-executive.jpg";
 import KeyExecutives from "./KeyExecutives";
-import { getToken, getUserInfo } from "../../utils/utils";
+import { getSubscriptionUserInfo, getToken, getUserInfo } from "../../utils/utils";
 import TrialModal from "../../common/TrialModal";
 import popupImg from "../../assets/images/free-user-login-prompt.jpg.jpeg";
 import { useNavigate } from "react-router";
+import { emailRegex } from "../../config";
 import {
+  submitErrorForm,
   getEmployeeList,
   resetEmployeeList,
   postRelavantCompany,
@@ -28,11 +31,26 @@ const RightPanel = () => {
     const [similarList, setSimilarList] = useState();
     const [similarCount, setSimilarCount] = useState(5);
     const [selectedValue, setSelectedValue] = useState("Filter by Department");
-    const departmentList = useSelector(
-      (state) => state.companyDetailsReducer.departmentList
-    );
-    const companyDetails = useSelector(
-      (state) => state.companyDetailsReducer.companyDetails
+    const [openErrorForm, setOpenErrorForm] = useState(false);
+    const formIntialValue = {
+      telephone: { disabled: true, value: "", status: null },
+      address: { disabled: true, value: "", status: null },
+      city: { disabled: true, value: "", status: null },
+      zip: { disabled: true, value: "", status: null },
+      employee: { disabled: true, value: "", status: null },
+      website: { disabled: true, value: "", status: null },
+      name: { disabled: true, value: "", status: null },
+      email: { disabled: true, value: "", status: null },
+      comment: { disabled: true, value: "", status: null },
+    };
+    const { TextArea } = Input;
+    const [errorForm, setErrorForm] = useState(formIntialValue);
+    
+    // const departmentList = useSelector(
+    //   (state) => state.companyDetailsReducer.departmentList
+    // );
+    const [companyDetails] = useSelector(
+      (state) => state.executiveDetailsReducer.executiveCompanyDetails
     );
     const similarExecutiveList = useSelector(
       (state) => state.executiveDetailsReducer.similarExecutiveList
@@ -94,8 +112,8 @@ const RightPanel = () => {
       for (let i = 0; i < similarCount; i++) {
         similarList.push(
           <div className="row brdr-b pl-2 pb-3">
-              <div className=" btn-circle btn-info">
-              {similarExecutiveList[i]?.firstname[0].toUpperCase()+similarExecutiveList[i]?.lastname[0].toUpperCase()}
+              <div className=" btn-circle btn-info"  style={{'text-transform': 'uppercase'}}>
+              {similarExecutiveList[i]?.firstname?.[0]}{similarExecutiveList[i]?.lastname?.[0]}
               </div>
               <div className="col">
                 <div>
@@ -111,6 +129,7 @@ const RightPanel = () => {
                 <div className="fs-12">{similarExecutiveList[i]?.title}</div>                
               </div>
             </div>
+            
         );
       }
       if (!similarList.length) {
@@ -174,8 +193,79 @@ const RightPanel = () => {
       setShowModal(false);
       navigate("/signup");
     };
+
+    const handleErrorForm = () => { //console.log("click report an error")
+      setOpenErrorForm(true);
+    };
+  
+    const closeErrorForm = () => {
+      setOpenErrorForm(false);
+      setErrorForm(formIntialValue);
+    };
+
+    const enableField = (ele) => {
+      setErrorForm({
+        ...errorForm,
+        [ele.target.name]: ele.target.checked
+          ? { ...errorForm[ele.target.name], disabled: !ele.target.checked }
+          : { value: "", disabled: !ele.target.checked },
+      });
+    };
+  
+    const onSubmitForm = () => {
+      const regEx = new RegExp(emailRegex);
+      const clone = _.cloneDeep(errorForm);
+      if (!errorForm?.name?.value) {
+        clone.name.status = "error";
+        setErrorForm(clone);
+        return false;
+      }
+  
+      if (!errorForm?.email?.value || !regEx.test(errorForm?.email?.value)) {
+        clone.email.status = "error";
+        setErrorForm(clone);
+        return false;
+      }
+  
+      console.log(errorForm, "errorFormerrorForm");
+      let newPayload = {};
+      Object.keys(errorForm).forEach((key) => {
+        newPayload = {
+          ...newPayload,
+          [key]: errorForm[key].value,
+        };
+      });
+      const { id, login } = getUserInfo();
+      const { id: accountId } = getSubscriptionUserInfo();
+      const payload = {
+        accountId: accountId,
+        companyId: companyDetails?.id,
+        description: JSON.stringify(newPayload),
+        //emplaoyeeId: 0,
+        iscompany: true,
+        iscorrected: true,
+        userId: id,
+      };
+      // errorForm
+      dispatch(submitErrorForm(payload));
+      setOpenErrorForm(false);
+      setErrorForm(formIntialValue);
+    };
+
+    const onInputChange = (ele) => {
+      console.log(ele.target.value, "skljfslkd");
+      setErrorForm({
+        ...errorForm,
+        [ele.target.name]: {
+          ...errorForm[ele.target.name],
+          value: ele.target.value,
+          status: null,
+        },
+      });
+    };
   
     return (
+      <>
       <div className="col-custom-2 executive">
       {/* <div className="buttons-container">
       <div className="btn btn-outline-secondary mt-3 pr-2 "><i className="right-icons las la-flag" aria-hidden="true"></i>Report An Error</div>
@@ -199,13 +289,13 @@ const RightPanel = () => {
            <div className="row pb-3">
               <div className=" pl-3">
               
-                <div className="fs-12"><h6><i class=" fs-16 mr-2  la la-phone text-black"></i>Phone</h6><div className="pl-4 ">{executiveDetails?.company?.phoneNo}</div></div>
-                <div className="fs-12"><h6><i class=" fs-16 mr-2  la la-map-marker text-black"></i>Location</h6><div className="pl-4 ml-1">{executiveDetails?.company?.address}</div></div>
-                <div className="fs-12"><h6><i class=" fs-16 mr-2  la la-users text-black"></i>Employees Ranges</h6><div className="pl-4 ml-1">{executiveDetails?.company?.range?.name}</div></div>
-                <div className="fs-12"><h6><i class=" fs-16 mr-2  las la-industry text-black"></i>Industry</h6><div className="pl-4 ml-1">{executiveDetails?.company?.industry?.name}</div></div>
-                <div className="fs-12"><h6><i class=" fs-16 mr-2  la la-globe text-black"></i>Website</h6><div className="pl-4 ml-1">{executiveDetails?.company?.wedsite}</div></div>
-                <div className="fs-12"><h6><i class=" fs-16 mr-2  la la-city text-black"></i>Company Type</h6><div className="pl-4 ml-1">{executiveDetails?.company?.category?.name}</div></div>
-                <div className="fs-12"><h6><i class=" fs-16 mr-2  la la-money-check text-black"></i>Revenue Range</h6><div className="pl-4 ml-1"> {executiveDetails?.company?.ravenue?.name}</div></div>
+                <div className="fs-12"><h6><i class=" fs-16 mr-2  la la-phone text-black"></i>Phone</h6><div className="pl-4 ">{companyDetails?.phoneNo}</div></div>
+                <div className="fs-12"><h6><i class=" fs-16 mr-2  la la-map-marker text-black"></i>Location</h6><div className="pl-4 ml-1">{companyDetails?.address}</div></div>
+                <div className="fs-12"><h6><i class=" fs-16 mr-2  la la-users text-black"></i>Employees Ranges</h6><div className="pl-4 ml-1">{companyDetails?.range?.name}</div></div>
+                <div className="fs-12"><h6><i class=" fs-16 mr-2  las la-industry text-black"></i>Industry</h6><div className="pl-4 ml-1">{companyDetails?.industry?.name}</div></div>
+                <div className="fs-12"><h6><i class=" fs-16 mr-2  la la-globe text-black"></i>Website</h6><div className="pl-4 ml-1">{companyDetails?.wedsite}</div></div>
+                <div className="fs-12"><h6><i class=" fs-16 mr-2  la la-city text-black"></i>Company Type</h6><div className="pl-4 ml-1">{companyDetails?.category?.name}</div></div>
+                <div className="fs-12"><h6><i class=" fs-16 mr-2  la la-money-check text-black"></i>Revenue Range</h6><div className="pl-4 ml-1"> {companyDetails?.ravenue?.name}</div></div>
               </div>
             </div>
            </div>
@@ -218,7 +308,7 @@ const RightPanel = () => {
           <div className="card-body similarblk">
               {renderSimilarExecutiveList()}
             </div>
-          <div className="card-body">
+          {/* <div className="card-body">
             <div className="row brdr-b pl-2 pb-3">
               <div className=" btn-circle btn-info">
               JM
@@ -316,7 +406,7 @@ const RightPanel = () => {
                 5 More..
               </button>
             </div>
-          </div>
+          </div> */}
         </div>
         <div className="card shadow descbox1 mb-3">
         
@@ -324,10 +414,173 @@ const RightPanel = () => {
          
         </div>
         <div className="buttons-container">
-            <div className="btn btn-outline-secondary  w-99 pr-2 "><i className="right-icons las la-flag" aria-hidden="true"></i>Report An Error</div>
+            <div className="btn btn-outline-secondary  w-99 pr-2 " onClick={handleErrorForm}><i className="right-icons las la-flag" aria-hidden="true"></i>Report An Error</div>
             </div>
       </div>
+      {openErrorForm && (
+      <Modal
+        title={
+          <div className="errorformcontainertitle">
+            <h4>Report an Error</h4>
+            <h2>Report Incorrect Information</h2>
+          </div>
+        }
+        okText="Submit"
+        cancelText="Cancel"
+        width="450px"
+        open={openErrorForm}
+        onOk={onSubmitForm}
+        onCancel={closeErrorForm}
+      >
+        <div className="errorformcontainer">
+          <p>
+            Please select the appropriate checkbox that you have found
+            Incorrect and if you know the correct data please provide us in
+            appropriate text box.
+          </p>
+          <div className="form">
+            {console.log(errorForm, "skljfsljfklsd")}
+            <div className="formcol1">
+              <Checkbox name="telephone" onChange={enableField}>
+                Telephone
+              </Checkbox>
+            </div>
+            <div className="formcol2">
+              <Input
+                name="telephone"
+                value={errorForm?.telephone?.value}
+                placeholder="Telephone"
+                disabled={errorForm?.telephone?.disabled}
+                onChange={onInputChange}
+              />
+            </div>
+          </div>
+
+          <div className="form">
+            <div className="formcol1">
+              <Checkbox name="address" onChange={enableField}>
+                Address
+              </Checkbox>
+            </div>
+            <div className="formcol2">
+              <TextArea
+                name="address"
+                value={errorForm?.address?.value}
+                rows={2}
+                maxLength={100}
+                disabled={errorForm?.address?.disabled}
+                onChange={onInputChange}
+              />
+            </div>
+          </div>
+
+          <div className="form">
+            <div className="formcol1">
+              <Checkbox name="city" onChange={enableField}>
+                City
+              </Checkbox>
+            </div>
+            <div className="formcol2">
+              <Input
+                name="city"
+                value={errorForm?.city?.value}
+                placeholder="City"
+                disabled={errorForm?.city?.disabled}
+                onChange={onInputChange}
+              />
+            </div>
+          </div>
+
+          <div className="form">
+            <div className="formcol1">
+              <Checkbox name="zip" onChange={enableField}>
+                Zip/Pin code
+              </Checkbox>
+            </div>
+            <div className="formcol2">
+              <Input
+                name="zip"
+                value={errorForm?.zip?.value}
+                placeholder="Zip/Pin code"
+                disabled={errorForm?.zip?.disabled}
+                onChange={onInputChange}
+              />
+            </div>
+          </div>
+
+          <div className="form">
+            <div className="formcol1">
+              <Checkbox name="employee" onChange={enableField}>
+                No. of Employees
+              </Checkbox>
+            </div>
+            <div className="formcol2">
+              <Input
+                name="employee"
+                value={errorForm?.employee?.value}
+                placeholder="No. of Employees"
+                disabled={errorForm?.employee?.disabled}
+                onChange={onInputChange}
+              />
+            </div>
+          </div>
+
+          <div className="form">
+            <div className="formcol1">
+              <Checkbox name="website" onChange={enableField}>
+                Website
+              </Checkbox>
+            </div>
+            <div className="formcol2">
+              <Input
+                name="website"
+                value={errorForm?.website?.value}
+                placeholder="Website"
+                disabled={errorForm?.website?.disabled}
+                onChange={onInputChange}
+              />
+            </div>
+          </div>
+
+          <Divider dashed={true} />
+
+          <div className="formfull">
+            <Input
+              name="name"
+              status={errorForm?.name?.status}
+              value={errorForm?.name?.value}
+              placeholder="Your Name*"
+              onChange={onInputChange}
+            />
+          </div>
+
+          <div className="formfull">
+            <Input
+              name="email"
+              status={errorForm?.email?.status}
+              value={errorForm?.email?.value}
+              placeholder="Your Email ID*"
+              onChange={onInputChange}
+            />
+          </div>
+
+          <div className="formfull">
+            <TextArea
+              name="comment"
+              value={errorForm?.comment?.value}
+              rows={3}
+              maxLength={100}
+              placeholder="Comment if any"
+              onChange={onInputChange}
+            />
+          </div>
+        </div>
+      </Modal>
+    )}
+
+      </>
     )
+    
 }
 
 export default RightPanel

@@ -7,7 +7,7 @@ import TrialModal from "../../common/TrialModal";
 import { getToken } from "../../utils/utils";
 import { PAGE_LENGTH } from "../../config";
 import {
-  downloadCompanyList,
+  downloadExecutiveList,
   saveAdvancedSelectedFilters,
   getCompanyListWithStartAndEnd,
   getCompanyList,
@@ -50,15 +50,15 @@ const ExecutiveNavigation = () => {
   const downloadExcel = () => {
     const isLoggedIn = checkLoginStatus();
     if (isLoggedIn) {
-      // dispatch(downloadCompanyList(companySelectedFilterList, "exl"));
-      dispatch(downloadCompanyList(selectedRecords, "exl"));
+      // dispatch(downloadExecutiveList(companySelectedFilterList, "exl"));
+      dispatch(downloadExecutiveList(selectedRecords, "exl"));
     }
   };
   const downloadPDF = () => {
     const isLoggedIn = checkLoginStatus();
     if (isLoggedIn) {
-      // dispatch(downloadCompanyList(companySelectedFilterList, "pdf"));
-      dispatch(downloadCompanyList(selectedRecords, "pdf"));
+      // dispatch(downloadExecutiveList(companySelectedFilterList, "pdf"));
+      dispatch(downloadExecutiveList(selectedRecords, "pdf"));
     }
   };
 
@@ -160,7 +160,7 @@ const ExecutiveNavigation = () => {
           </Button> */}
         </div>
         <ul className="flex  m-mt">
-          <li>
+           {/*<li>
             <a
               className=" mr-2"
               role="button"
@@ -172,7 +172,7 @@ const ExecutiveNavigation = () => {
               <i className="right-icons la la-file-pdf" aria-hidden="true"></i>
             </a>
           </li>
-          {/* <li>
+          <li>
             <a
               className=" mr-2"
               role="button"
@@ -187,7 +187,7 @@ const ExecutiveNavigation = () => {
               ></i>
             </a>
           </li> */}
-          <li>
+          {/* <li>
             <a
               className=" mr-2"
               role="button"
@@ -198,7 +198,7 @@ const ExecutiveNavigation = () => {
             >
               <i className="right-icons la la-print" aria-hidden="true"></i>
             </a>
-          </li>
+          </li> */}
           {/* <li>
             <a
               className=" mr-2"

@@ -1302,7 +1302,7 @@ const AdvancedFilter = ({
   /*End Search List */
 
   /*Start Company Tag List */
-  const showCompanyTagList = () => {
+  const showExecutiveTagList = () => {
     return (
       <>
         <div
@@ -1342,11 +1342,11 @@ const AdvancedFilter = ({
                       index < showNumberofRecords && (
                         <li>
                           <Checkbox
-                            key={item.id}
+                            key={item}
                             value={item}
-                            onChange={($event) => updateCompanyTag($event)}
+                            onChange={($event) => updateExecutiveTag($event)}
                           >
-                            {item.text}
+                            {item}
                           </Checkbox>
                         </li>
                       )
@@ -1355,11 +1355,11 @@ const AdvancedFilter = ({
                     return (
                       <li>
                         <Checkbox
-                          key={item.id}
+                          key={item}
                           value={item}
-                          onChange={($event) => updateCompanyTag($event)}
+                          onChange={($event) => updateExecutiveTag($event)}
                         >
-                          {item.text}
+                          {item}
                         </Checkbox>
                       </li>
                     );
@@ -1392,14 +1392,14 @@ const AdvancedFilter = ({
     setCheckAllCompanyTag(false);
   };
 
-  const updateCompanyTag = (el) => {
+  const updateExecutiveTag = (el) => {
     let newList = [];
     if (el.target.checked) {
       newList = [...selectedCompanyTagList, el.target.value];
       //newList = [selectedCompanyTagList, el.target.value];
     } else {
       newList = selectedCompanyTagList.filter(
-        (listItem) => listItem.id !== el.target.value.id
+        (listItem) => listItem !== el.target.value
       );
     }
     setSelectedCompanyTagList(newList);
@@ -1773,7 +1773,7 @@ const AdvancedFilter = ({
     } else if (openAdvancedModel.key === 9) {
       return (
         <div className="filterblk" id="companyTag">
-          {showCompanyTagList()}
+          {showExecutiveTagList()}
         </div>
       );
     } else if (openAdvancedModel.key === 10) {
@@ -1823,7 +1823,7 @@ const AdvancedFilter = ({
             {showSaveSearchList()}
           </div>
           <div className="filterblk" id="companyTag">
-            {showCompanyTagList()}
+            {showExecutiveTagList()}
           </div>
         </>
       );

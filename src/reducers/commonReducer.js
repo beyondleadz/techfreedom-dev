@@ -16,7 +16,6 @@ const initialState = {
 
 const CommonReducer = (state = initialState, action) => {
   const { type, payload } = action;
-  console.log(payload, "rajlsjflfjksd");
   switch (type) {
     case LOADING:
       return { ...state, loading: payload };

@@ -258,10 +258,10 @@ export const createExecutivePayload = (
   if (selectedCompanyTag?.length) {
     let ids = "";
     for (let i = 0; i < selectedCompanyTag.length - 1; i++) {
-      ids += `${selectedCompanyTag[i].id},`;
+      ids += `${selectedCompanyTag[i]},`;
     }
-    ids += selectedCompanyTag[selectedCompanyTag.length - 1].id;
-    companyTagId = `&id.in=${ids}`;
+    ids += selectedCompanyTag[selectedCompanyTag.length - 1];
+    companyTagId = `&tags=${ids}`;
     url = `${url}${companyTagId}`;
   }
 

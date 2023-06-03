@@ -34,7 +34,7 @@ import {
 
 const initialState = {
   executiveDetails:{},
-  companyDetails: {},
+  executiveCompanyDetails: {},
   employeeList: [],
   departmentList: [],
   executiveLeads: {},
@@ -58,7 +58,7 @@ const ExecutiveDetailsReducer = (state = initialState, action) => {
     case EXECUTIVE_DETAILS:
       return { ...state, executiveDetails: payload };    
     case EXECUTIVE_COMPANY_DETAILS:
-      return { ...state, companyDetails: payload };
+      return { ...state, executiveCompanyDetails: payload };
     case EXECUTIVE_EMPLOYEE_LIST:
       return { ...state, employeeList: payload };
     case EXECUTIVE_DEPARTMENT_LIST:

@@ -52,7 +52,7 @@ const ExecutiveHeader = () => {
       
         <div className=" card shadow card-body">
           <div className="executiveheader">
-            <div className="executivelogobox">{executiveDetails?.firstname[0].toUpperCase()+executiveDetails?.lastname[0].toUpperCase()}</div>
+            <div className="executivelogobox"  style={{'text-transform': 'uppercase'}}>{executiveDetails?.firstname?.[0]}{executiveDetails?.lastname?.[0]}</div>
 
             <div className="executivedescbox ">
               <div className="row mb-2">

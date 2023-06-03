@@ -88,6 +88,7 @@ const initialState = {
 
 const ExecutiveListingReducer = (state = initialState, action) => {
   const { type, payload, count } = action || {};
+  console.log(payload,type,'rajsdljfks')
   switch (type) {
     case EXECUTIVE_INDUSTRY_LIST:
       return { ...state, industryList: payload };
@@ -100,7 +101,7 @@ const ExecutiveListingReducer = (state = initialState, action) => {
     case EXECUTIVE_REVENUE_RANGE:
       return { ...state, revenueRangeList: payload };
     case EXECUTIVE_COMPANYLIST:
-      return { ...state, companyList: payload, totalCount: count };
+      return { ...state, companyList: payload, totalExecutiveCount: count };
     case EXECUTIVE_COMPANY_SEARCH_PAYLOAD:
       return { ...state, companySearchPayload: payload };
     case EXECUTIVE_PAGINATION_VALUE:
@@ -123,7 +124,7 @@ const ExecutiveListingReducer = (state = initialState, action) => {
     case EXECUTIVE_GROUP_COMPANY_TAG:
       return { ...state, groupCompanyTag: payload };
     case EXECUTIVE_EMPLOYEELIST:
-      return { ...state, executiveEmployeeList: payload };
+      return { ...state, executiveEmployeeList: payload, totalExecutiveCount: count };
     case EXECUTIVE_FUNCTION_LIST:
       return { ...state, executiveFunctionList: payload };
     case EXECUTIVE_LEVEL_LIST:

@@ -48,7 +48,6 @@ import {
   companyListingApiUrl,
   saveSearch,
   saveSearchListApiUrl,
-  getCompanyTagApiUrl,
   groupCompanyTagUrl,
   executiveEmployeeListingApiUrl,
   getExecutiveTagApiUrl,
@@ -141,7 +140,7 @@ export const getCompanyList = (payload, paginationValues) => (dispatch) => {
       dispatch({
         type: EXECUTIVE_COMPANYLIST,
         payload: res.data,
-        count: res?.headers["x-total-count"],
+        count: res?.headers["X-Total-Count"],
       });
       dispatch(dispatchStatus(false));
     })
@@ -164,7 +163,7 @@ export const getCompanyListWithStartAndEnd = (paginationValues) => (
       dispatch({
         type: EXECUTIVE_COMPANYLIST,
         payload: res.data,
-        count: res?.headers["x-total-count"],
+        count: res?.headers["X-Total-Count"],
       });
     })
     .catch((err) => {
@@ -177,7 +176,7 @@ export const getCompanyListWithStartAndEnd = (paginationValues) => (
     });
 };
 
-export const downloadCompanyList = (payload, urlSubstring) => (dispatch) => {
+export const downloadExecutiveList = (payload, urlSubstring) => (dispatch) => {
   let url = "";
   if (payload?.length) {
     //console.log(payload,'payloadpayload')
@@ -187,9 +186,9 @@ export const downloadCompanyList = (payload, urlSubstring) => (dispatch) => {
       selectedRecords.lastIndexOf(","),
       0
     );
-    url = `${companyListingApiUrl}/${urlSubstring}/${removedLastComma}`;
+    url = `${executiveEmployeeListingApiUrl}/${urlSubstring}/${removedLastComma}`;
   } else {
-    url = `${companyListingApiUrl}/${urlSubstring}`;
+    url = `${executiveEmployeeListingApiUrl}/${urlSubstring}`;
   }
   return getAuthMethod(url)
     .then((res) => {
@@ -213,7 +212,7 @@ export const getLocation = (payload) => ({
   payload: Geolocation,
 });
 
-export const createCompanySearchPayload = (payload) => {
+export const createExecutiveSearchPayload = (payload) => {
   return {
     type: EXECUTIVE_COMPANY_SEARCH_PAYLOAD,
     payload: payload,
@@ -286,7 +285,7 @@ export const saveExecutiveSearchList = (userId) => (dispatch) => {
 };
 
 export const getExecutiveTagList = (userId) => (dispatch) => {
-  const url=`${getExecutiveTagApiUrl}?userId.equals=${userId}`
+  const url=`${getExecutiveTagApiUrl}${userId}`
   return getAuthMethod(url)
     .then((res) => {
       dispatch({
@@ -305,7 +304,7 @@ export const getExecutiveTagList = (userId) => (dispatch) => {
 };
 
 
-export const createGroupCompanyTag = (payload) => (dispatch) => {
+export const createGroupExecutiveTag = (payload) => (dispatch) => {
   console.log(payload, "payloadpayload");
   return postAuthMethod(groupExecutiveTagUrl, payload)
     .then((res) => {
@@ -336,6 +335,7 @@ export const getExecutiveEmployeeList = (payload, paginationValues) => (dispatch
         payload: res.data,
         count: res?.headers["x-total-count"],
       });
+      //console.log(res?.headers["X-Total-Count"],res?.headers["x-total-count"],'dffdffdfd')
       dispatch(dispatchStatus(false));
     })
     .catch((err) => {

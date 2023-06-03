@@ -16,8 +16,8 @@ import {
   selectedRow,
   saveSearchAction,
   saveSearchList,
-  downloadCompanyList,
-  createGroupCompanyTag,
+  downloadExecutiveList,
+  createGroupExecutiveTag,
 } from "../../actionCreator/executiveListingActionCreater";
 import Loader from "../loader";
 import { getToken,getUserInfo } from "../../utils/utils";
@@ -32,8 +32,8 @@ const ExecutiveContent = () => {
       render: (record, row) => {
         return (
           <div className="namecol" onClick={() => getDetails(row.key)}>
-            <div className="logo">
-            {record?.firstname[0].toUpperCase()+record?.lastname[0].toUpperCase()}
+            <div className="logo" style={{'text-transform': 'uppercase'}}>
+            {record?.firstname?.[0]}{record?.lastname?.[0]}
             </div>
             <span className="cname">
               {record?.fullname}
@@ -275,8 +275,22 @@ const ExecutiveContent = () => {
   const downloadExcel = () => {
     const isLoggedIn = checkLoginStatus();
     if (isLoggedIn) {
-      // dispatch(downloadCompanyList(companySelectedFilterList, "exl"));
-      dispatch(downloadCompanyList(selectedRecords, "exl"));
+      // dispatch(downloadExecutiveList(companySelectedFilterList, "exl"));
+      dispatch(downloadExecutiveList(selectedRecords, "exl"));
+    }
+  };
+  const downloadPDF = () => {
+    const isLoggedIn = checkLoginStatus();
+    if (isLoggedIn) {
+      // dispatch(downloadExecutiveList(companySelectedFilterList, "pdf"));
+      dispatch(downloadExecutiveList(selectedRecords, "pdf"));
+    }
+  };
+
+  const printPage = () => {
+    const isLoggedIn = checkLoginStatus();
+    if (isLoggedIn) {
+      window.print();
     }
   };
 
@@ -295,19 +309,26 @@ const ExecutiveContent = () => {
     } else {
       const {id}= getUserInfo();
       //selectedRecords
-      const payload = [{
-        employee: selectedRecords[0]?.executiveData,
-        text: tagValues.tagname,
-        userId: id
+    //   const payload = [{
+    //     employee: selectedRecords[0]?.executiveData,
+    //     text: tagValues.tagname,
+    //     userId: id
+    //   }
+    // ];
+    let payload = []
+      for (let i = 0; i < selectedRecords.length; i++) {
+        payload = [
+           ...payload,
+          {
+            employee: selectedRecords[i]?.name,
+            text: tagValues.tagname,
+            userId: id,
+          }
+        ]
+        
       }
-      // ,{
-      //   employee: selectedRecords[1]?.executiveData,
-      //   text: tagValues.tagname,
-      //   userId: id,
-      // }
-    ];
-      //console.log(payload);
-      dispatch(createGroupCompanyTag(payload));      
+      //console.log(payload,'payloadpayload');
+      dispatch(createGroupExecutiveTag(payload));      
       setShowTagModal(false);
     }
   };
@@ -331,11 +352,11 @@ const ExecutiveContent = () => {
                     <h6 className="m-0 ml-2 font-weight-bold text-primary mob-t">
                       Showing 1-
                       {parseInt(PAGE_LENGTH) >
-                      parseInt(companyFilterList?.totalCount)
-                        ? companyFilterList?.totalCount
+                      parseInt(companyFilterList?.totalExecutiveCount)
+                        ? companyFilterList?.totalExecutiveCount
                         : PAGE_LENGTH}
                       <span className="m-1">of</span>{" "}
-                      {companyFilterList?.totalCount}
+                      {companyFilterList?.totalExecutiveCount}
                       <span className="m-1">results</span>
                     </h6>
 
@@ -351,6 +372,30 @@ const ExecutiveContent = () => {
                   <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
                     aria-expanded="false"><i class="right-icons la la-file-excel" aria-hidden="true" onClick={downloadExcel}></i>
                   </a></li>
+                  <li>
+            <a
+              className=" mr-2"
+              role="button"
+              data-toggle=""
+              aria-haspopup="true"
+              aria-expanded="false"
+              onClick={downloadPDF}
+            >
+              <i className="right-icons la la-file-pdf" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li>
+            <a
+              className=" mr-2"
+              role="button"
+              data-toggle=""
+              aria-haspopup="true"
+              aria-expanded="false"
+              onClick={printPage}
+            >
+              <i className="right-icons la la-print" aria-hidden="true"></i>
+            </a>
+          </li>
                              
                 
 
@@ -389,7 +434,7 @@ const ExecutiveContent = () => {
                             dataSource={executiveEmployeeList}
                             pagination={{
                               responsive: true,
-                              total: companyFilterList?.totalCount,
+                              total: companyFilterList?.totalExecutiveCount,
                               pageSize: PAGE_LENGTH,
                               position: ["bottomCenter"],
                               onChange: onPageChange,

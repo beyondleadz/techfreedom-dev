@@ -8,6 +8,7 @@ import ExecutiveHeader from "../components/executive-details/ExecutiveHeader";
 import RightPanel from "../components/executive-details/RightPanel";
 import {
   getExecutiveDetails,
+  getExecutiveCompanyDetails,
   getEmployeeList,
   getDepartmentList,
   getSimilarExecutiveList,
@@ -27,6 +28,7 @@ const ExecutiveDetails = () => {
   useMemo(() => {
    // dispatch(getDepartmentList());
     dispatch(getExecutiveDetails(id));
+    dispatch(getExecutiveCompanyDetails(id));
    // dispatch(getEmployeeList(id));
   }, []);
 
