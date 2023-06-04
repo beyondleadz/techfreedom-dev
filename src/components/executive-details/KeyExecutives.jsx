@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useMemo } from "react";
 import { Table, Modal, Button, Tooltip } from "antd";
 import { PAGE_LENGTH } from "../../config";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-import { getToken } from "../../utils/utils";
+import { getToken, getUserInfo } from "../../utils/utils";
 import {
   submitLead,
   resetLead,
+  getExecutiveLead
 } from "../../actionCreator/executiveDetailsActionCreator";
 import popupImg from "../../assets/images/free-user-login-prompt.jpg.jpeg";
 import TrialModal from "../../common/TrialModal";
@@ -29,6 +30,15 @@ const KeyExecutives = () => {
   const [showPhone, setShowPhone] = useState({});
   
   const navigate = useNavigate();
+  const userAccountInfo = useSelector(
+    (state) => state.CommonReducer.accountInfo
+  );
+  useMemo(() => {
+    if (Object.keys(getUserInfo()).length) {
+      const { id } = getUserInfo();
+      dispatch(getExecutiveLead(id));
+    }
+  }, [userAccountInfo]);
 
   const columns = [
     {
@@ -162,6 +172,7 @@ const KeyExecutives = () => {
   ];
 
   const postLeads = (record) => {
+    const { id,login } = getUserInfo();
     let leadPayload = {
       firstname: record.firstname,
       lastname: record.lastname,
@@ -172,6 +183,7 @@ const KeyExecutives = () => {
       phoneNo: record.phoneNo,
       bio: record.bio,
       description: record.description,
+      userId:id
     };
     dispatch(submitLead(leadPayload));
     setAddToLeads(record.id);
