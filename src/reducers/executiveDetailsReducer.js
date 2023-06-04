@@ -20,16 +20,16 @@ import {
   EXECUTIVE_DOWNLOAD_COMPANY_ERROR,
   EXECUTIVE_FETCH_COMPANY_TAG,
   EXECUTIVE_FETCH_COMPANY_TAG_ERROR,
-  EXECUTIVE_POST_RELAVANT_COMPANY_TAG,
-  EXECUTIVE_POST_RELAVANT_COMPANY_TAG_ERROR,
-  EXECUTIVE_GET_RELAVANT_COMPANY_TAG,
-  EXECUTIVE_GET_RELAVANT_COMPANY_TAG_ERROR,
   EXECUTIVE_SELECTED_EXECUTIVE,
   EXECUTIVE_DOWNLOAD_EXECUTIVE,
   EXECUTIVE_DOWNLOAD_EXECUTIVE_ERROR,
   EXECUTIVE_SELECTED_DEPARTMENT,
   EXECUTIVE_GET_EXECUTIVE_LEAD,
-  EXECUTIVE_GET_EXECUTIVE_LEAD_ERROR
+  EXECUTIVE_GET_EXECUTIVE_LEAD_ERROR,
+  GET_RELAVANT_EXECUTIVE_TAG,
+  GET_RELAVANT_EXECUTIVE_TAG_ERROR,
+  POST_RELAVANT_EXECUTIVE_TAG,
+  POST_RELAVANT_EXECUTIVE_TAG_ERROR,
 } from "../actionType/executiveDetailsType";
 
 const initialState = {
@@ -42,8 +42,8 @@ const initialState = {
   errorFormSubmit: [],
   sigleCompanyTag: {},
   fetchCompanyTag: {},
-  postRelavantCompany: {},
-  getRelavantCompany: {},
+  postRelavantExecutive: {},
+  getRelavantExecutive: [],
   errObj: {},
   selectedExecutive: [],
   downloadCompany: "",
@@ -77,10 +77,10 @@ const ExecutiveDetailsReducer = (state = initialState, action) => {
       return { ...state, downloadExecutive: payload };
     case EXECUTIVE_FETCH_COMPANY_TAG:
       return { ...state, fetchCompanyTag: payload };
-    case EXECUTIVE_POST_RELAVANT_COMPANY_TAG:
-      return { ...state, postRelavantCompany: payload };
-    case EXECUTIVE_GET_RELAVANT_COMPANY_TAG:
-      return { ...state, getRelavantCompany: payload };
+    case POST_RELAVANT_EXECUTIVE_TAG:
+      return { ...state, postRelavantExecutive: payload };
+    case GET_RELAVANT_EXECUTIVE_TAG:
+      return { ...state, getRelavantExecutive: payload };
     case EXECUTIVE_SELECTED_EXECUTIVE:
       return { ...state, selectedExecutive: payload };
     case EXECUTIVE_SELECTED_DEPARTMENT:
@@ -108,9 +108,9 @@ const ExecutiveDetailsReducer = (state = initialState, action) => {
       return { ...state, errObj: { ...state.errObj, ...payload } };
     case EXECUTIVE_FETCH_COMPANY_TAG_ERROR:
       return { ...state, errObj: { ...state.errObj, ...payload } };
-    case EXECUTIVE_POST_RELAVANT_COMPANY_TAG_ERROR:
+    case POST_RELAVANT_EXECUTIVE_TAG_ERROR:
       return { ...state, errObj: { ...state.errObj, ...payload } };
-    case EXECUTIVE_GET_RELAVANT_COMPANY_TAG:
+    case GET_RELAVANT_EXECUTIVE_TAG_ERROR:
       return { ...state, errObj: { ...state.errObj, ...payload } };
     case EXECUTIVE_DOWNLOAD_EXECUTIVE_ERROR:
       return { ...state, errObj: { ...state.errObj, ...payload } };

@@ -29,12 +29,17 @@ import {
   EXECUTIVE_DOWNLOAD_EXECUTIVE_ERROR,
   EXECUTIVE_SELECTED_DEPARTMENT,
   EXECUTIVE_GET_EXECUTIVE_LEAD,
-  EXECUTIVE_GET_EXECUTIVE_LEAD_ERROR
+  EXECUTIVE_GET_EXECUTIVE_LEAD_ERROR,
+  GET_RELAVANT_EXECUTIVE_TAG,
+  GET_RELAVANT_EXECUTIVE_TAG_ERROR,
+  POST_RELAVANT_EXECUTIVE_TAG,
+  POST_RELAVANT_EXECUTIVE_TAG_ERROR,
 } from "../actionType/executiveDetailsType";
 import {
   getAuthMethod,
   getMethod,
   postAuthMethod,
+  putAuthMethod
 } from "../services/HttpServices";
 import {
   companyListingApiUrl,
@@ -104,11 +109,9 @@ export const resetEmployeeList = () => ({
   payload: [],
 });
 
-export const getEmployeeList = (id, department) => (dispatch) => {
-  let url = `${employeeListUrl}?companyId.in=${id}`;
-  if (department) {
-    url += `&exfunction.in=${department}`;
-  }
+export const getEmployeeList = (id, cid) => (dispatch) => {
+  let url = `${employeeListUrl}?companyId.in=${cid}`;
+  url+="&id.notEquals="+id;
   return getMethod(url)
     .then((res) => {
       dispatch({
@@ -323,54 +326,6 @@ export const resetCompanyTag = (payload) => {
   return { type: EXECUTIVE_SINGLE_COMPANY_TAG, payload: [] };
 };
 
-export const postRelavantCompany = (payload) => (dispatch) => {
-  //console.log(payload, "payloadpayload");
-  return postAuthMethod(postRelavantCompanyApiUrl, payload)
-    .then((res) => {
-      dispatch({
-        type: EXECUTIVE_POST_RELAVANT_COMPANY_TAG,
-        payload: res.data,
-      });
-    })
-    .catch((err) => {
-      dispatch({
-        type: EXECUTIVE_POST_RELAVANT_COMPANY_TAG_ERROR,
-        payload:
-          {
-            [errEnum.POST_RELAVANT_COMPANY_TAG_ERROR]:
-              err.response.data[ErrKey],
-          } || "Error Occured",
-      });
-    });
-};
-
-export const getRelavantCompany = (id, cid) => (dispatch) => {
-  let filter = "userId.equals=" + id + "&companyId.equals=" + cid;
-  const url = `${getRelavantCompanyApiUrl}?${filter}`;
-  //console.log(url, id, "lksjdfklsjd");
-  return getAuthMethod(url)
-    .then((res) => {
-      dispatch({
-        type: EXECUTIVE_GET_RELAVANT_COMPANY_TAG,
-        payload: res.data,
-      });
-    })
-    .catch((err) => {
-      console.log(err, "sjkflskdjfkl");
-      dispatch({
-        type: EXECUTIVE_GET_RELAVANT_COMPANY_TAG_ERROR,
-        payload:
-          {
-            [errEnum.GET_RELAVANT_COMPANY_TAG_ERROR]: err.response.data[ErrKey],
-          } || "Error Occured",
-      });
-    });
-};
-
-export const resetPostRelavantCompany = (payload) => {
-  return { type: EXECUTIVE_POST_RELAVANT_COMPANY_TAG, payload: [] };
-};
-
 export const storeSelectedExecutive = (selectedExecutive) => ({
   type: EXECUTIVE_SELECTED_EXECUTIVE,
   payload: selectedExecutive,
@@ -402,4 +357,78 @@ export const getExecutiveLead = (id) => (dispatch) => {
           } || "Error Occured",
       });
     });
+};
+
+
+export const getRelavantExecutive = (id, cid) => (dispatch) => {
+  let filter = "userId.equals=" + id + "&emplaoyeeId.equals=" + cid;
+  const url = `${getRelavantCompanyApiUrl}?${filter}`;
+  //console.log(url, id, "lksjdfklsjd");
+  return getAuthMethod(url)
+    .then((res) => {
+      dispatch({
+        type: GET_RELAVANT_EXECUTIVE_TAG,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err, "sjkflskdjfkl");
+      dispatch({
+        type: GET_RELAVANT_EXECUTIVE_TAG_ERROR,
+        payload:
+          {
+            [errEnum.GET_RELAVANT_EXECUTIVE_TAG_ERROR]: err.response.data[ErrKey],
+          } || "Error Occured",
+      });
+    });
+};
+
+export const updateRelavantExecutive = (payload) => (dispatch) => {
+  //console.log(payload, "payloadpayload");
+  return putAuthMethod(postRelavantCompanyApiUrl,payload.id, payload)
+    .then((res) => {
+      dispatch({
+        type: POST_RELAVANT_EXECUTIVE_TAG,
+        payload: res.data,
+      });
+      dispatch(getRelavantExecutive(payload.userId,payload.emplaoyeeId));
+    })
+    .catch((err) => {
+      dispatch({
+        type: POST_RELAVANT_EXECUTIVE_TAG_ERROR,
+        payload:
+          {
+            [errEnum.POST_RELAVANT_EXECUTIVE_TAG_ERROR]:
+              err.response.data[ErrKey],
+          } || "Error Occured",
+      });     
+    });
+    
+};
+
+export const postRelavantExecutive = (payload) => (dispatch) => {
+  //console.log(payload, "payloadpayload");
+  return postAuthMethod(postRelavantCompanyApiUrl, payload)
+    .then((res) => {
+      dispatch({
+        type: POST_RELAVANT_EXECUTIVE_TAG,
+        payload: res.data,
+      });
+      dispatch(getRelavantExecutive(payload.userId,payload.emplaoyeeId));
+    })
+    .catch((err) => {
+      dispatch({
+        type: POST_RELAVANT_EXECUTIVE_TAG_ERROR,
+        payload:
+          {
+            [errEnum.POST_RELAVANT_EXECUTIVE_TAG_ERROR]:
+              err.response.data[ErrKey],
+          } || "Error Occured",
+      });     
+    });
+    
+};
+
+export const resetPostRelavantExecutive = (payload) => {
+  return { type: POST_RELAVANT_EXECUTIVE_TAG, payload: [] };
 };

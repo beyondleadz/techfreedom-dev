@@ -10,7 +10,7 @@ import {
   getExecutiveDetails,
   getExecutiveCompanyDetails,
   getEmployeeList,
-  getDepartmentList,
+ // getDepartmentList,
   getSimilarExecutiveList,
 } from "../actionCreator/executiveDetailsActionCreator";
 import { useParams } from "react-router-dom";
@@ -28,13 +28,14 @@ const ExecutiveDetails = () => {
   useMemo(() => {
    // dispatch(getDepartmentList());
     dispatch(getExecutiveDetails(id));
-    dispatch(getExecutiveCompanyDetails(id));
-   // dispatch(getEmployeeList(id));
+    dispatch(getExecutiveCompanyDetails(id));    
   }, []);
 
   useMemo(() => {
     console.log(executiveDetails, "executiveDetails");
     if (Object.keys(executiveDetails).length) {
+      dispatch(getEmployeeList(id,executiveDetails?.company?.id));
+      
       dispatch(
         getSimilarExecutiveList(
           {

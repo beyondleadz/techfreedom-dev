@@ -32,12 +32,12 @@ import {
   EXECUTIVE_FUNCTION_LIST,
   EXECUTIVE_FUNCTION_LIST_ERROR,
   EXECUTIVE_LEVEL_LIST,
-  EXECUTIVE_LEVEL_LIST_ERROR
+  EXECUTIVE_LEVEL_LIST_ERROR,
 } from "../actionType/executiveListingType";
 import {
   getAuthMethod,
   getMethod,
-  postAuthMethod,
+  postAuthMethod  
 } from "../services/HttpServices";
 import { errEnum, ErrKey } from "../config";
 import {
@@ -53,7 +53,8 @@ import {
   getExecutiveTagApiUrl,
   getExecutiveFunctionApiUrl,
   getExecutiveLevelApiUrl,
-  groupExecutiveTagUrl
+  groupExecutiveTagUrl,
+  getRelavantCompanyApiUrl
 } from "../constant/Constant";
 import { dispatchStatus } from "./commonActionCreator";
 import { Geolocation } from "../constant/Geolocation";

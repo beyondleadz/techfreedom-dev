@@ -3,22 +3,24 @@ import { Modal, Checkbox, Input, Divider, Button,Tabs } from "antd";
 import _ from "lodash";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import logo from "../../assets/images/icici.jpg";
 import defaultLogo from "../../assets/images/no-similar-executive.jpg";
+import defaultCompanyLogo from "../../assets/images/default_company_logo.jpg";
 import KeyExecutives from "./KeyExecutives";
 import { getSubscriptionUserInfo, getToken, getUserInfo } from "../../utils/utils";
 import TrialModal from "../../common/TrialModal";
 import popupImg from "../../assets/images/free-user-login-prompt.jpg.jpeg";
 import { useNavigate } from "react-router";
 import { emailRegex } from "../../config";
+
 import {
   submitErrorForm,
   getEmployeeList,
   resetEmployeeList,
-  postRelavantCompany,
-  getRelavantCompany,
-  resetPostRelavantCompany,
+  postRelavantExecutive,
+  getRelavantExecutive,
+  resetPostRelavantExecutive,
   storeSelectedDepartment,
+  updateRelavantExecutive
 } from "../../actionCreator/executiveDetailsActionCreator";
 
 const RightPanel = () => {
@@ -31,6 +33,7 @@ const RightPanel = () => {
     const [similarList, setSimilarList] = useState();
     const [similarCount, setSimilarCount] = useState(5);
     const [selectedValue, setSelectedValue] = useState("Filter by Department");
+    const [checkExecutiveStatus, setCheckExecutiveStatus] = useState(0);
     const [openErrorForm, setOpenErrorForm] = useState(false);
     const formIntialValue = {
       telephone: { disabled: true, value: "", status: null },
@@ -45,11 +48,11 @@ const RightPanel = () => {
     };
     const { TextArea } = Input;
     const [errorForm, setErrorForm] = useState(formIntialValue);
-    
+    const [companyDetails,setCompanyDetails]=useState({});
     // const departmentList = useSelector(
     //   (state) => state.companyDetailsReducer.departmentList
     // );
-    const [companyDetails] = useSelector(
+    const executiveCompanyDetails = useSelector(
       (state) => state.executiveDetailsReducer.executiveCompanyDetails
     );
     const similarExecutiveList = useSelector(
@@ -64,13 +67,31 @@ const RightPanel = () => {
       (state) => state.executiveDetailsReducer.executiveDetails
     );
   
+    const getRelavantExecutiveDetails = useSelector(
+      (state) => state.executiveDetailsReducer.getRelavantExecutive 
+    );
+
+    useEffect(()=>{
+      if(!executiveCompanyDetails.length) return;
+      const [data]=executiveCompanyDetails;
+    setCompanyDetails(data);
+    },[executiveCompanyDetails]);
+
     useMemo(() => {
-      dispatch(resetPostRelavantCompany);
+      dispatch(resetPostRelavantExecutive);
       if (Object.keys(getUserInfo()).length) {
         const { id } = getUserInfo();
-        dispatch(getRelavantCompany(id, companyDetails?.id));
+        dispatch(getRelavantExecutive(id, executiveDetails?.id));
       }
     }, [userAccountInfo]);
+
+    useEffect(() => {
+      console.log(getRelavantExecutiveDetails,'getRelavantExecutiveDetails')
+      const [data] = getRelavantExecutiveDetails || [];
+      if(data){
+      setCheckExecutiveStatus(data?.prescribedby==="True"?1:2);
+      }
+    }, [getRelavantExecutiveDetails]);
   
     useEffect(() => {
       setSimilarCount(
@@ -110,8 +131,8 @@ const RightPanel = () => {
     const renderSimilarExecutiveList = () => {
       let similarList = [];
       for (let i = 0; i < similarCount; i++) {
-        similarList.push(
-          <div className="row brdr-b pl-2 pb-3">
+        similarList.push(  
+          <div className={i > 0?"row mt-3 pl-2 brdr-b pb-3":"row brdr-b pl-2 pb-3"}>
               <div className=" btn-circle btn-info"  style={{'text-transform': 'uppercase'}}>
               {similarExecutiveList[i]?.firstname?.[0]}{similarExecutiveList[i]?.lastname?.[0]}
               </div>
@@ -158,21 +179,40 @@ const RightPanel = () => {
         setSimilarCount(5);
       }
     };
-  
-    const checkRelavantCompany = (flag) => {
+
+    const checkRelavantExecutive = (flag,thumbStatus) => { //checkRelavantExecutive
       const isLoggedIn = checkLoginStatus();
       if (isLoggedIn) {
-        const { login, id } = getUserInfo();
-        const payload = {
-          accountId: login,
-          companyId: companyDetails?.id,
-          iscompany: true,
-          prescribedby: flag ? "True" : "False",
-          userId: id,
-        };
-        dispatch(postRelavantCompany(payload));
+        console.log(getRelavantExecutiveDetails,'getRelavantExecutiveDetails vfhgfhf');
+        const [data] = getRelavantExecutiveDetails || [];
+        
+        const { id } = getUserInfo();
+        const { id: accountId } = getSubscriptionUserInfo();
+        if(data?.id){
+          //update case
+          let payload = {
+            id:data?.id,
+            accountId: accountId,
+            emplaoyeeId: executiveDetails?.id,
+            iscompany: false,
+            prescribedby: flag ? "True" : "False",
+            userId: id,
+          };
+          dispatch(updateRelavantExecutive(payload));
+        }else{
+          let payload = {
+            accountId: accountId,
+            emplaoyeeId: executiveDetails?.id,
+            iscompany: false,
+            prescribedby: flag ? "True" : "False",
+            userId: id,
+          };
+          dispatch(postRelavantExecutive(payload));
+        }    
+        
       }
     };
+
     const checkLoginStatus = () => {
       let isLoggedIn = false;
       if (getToken()) {
@@ -239,10 +279,10 @@ const RightPanel = () => {
       const { id: accountId } = getSubscriptionUserInfo();
       const payload = {
         accountId: accountId,
-        companyId: companyDetails?.id,
+        emplaoyeeId: executiveDetails?.id,
         description: JSON.stringify(newPayload),
         //emplaoyeeId: 0,
-        iscompany: true,
+        iscompany: false,
         iscorrected: true,
         userId: id,
       };
@@ -263,7 +303,6 @@ const RightPanel = () => {
         },
       });
     };
-  
     return (
       <>
       <div className="col-custom-2 executive">
@@ -277,7 +316,7 @@ const RightPanel = () => {
           <div className="card-body c-info ">
             <div className="c-info-detail">
           <div className=" executive-company mr-2 img-responsive">
-                <img src={logo} />
+                <img src={companyDetails?.companyLogoUrl || defaultCompanyLogo} />
               </div>
               <div className="c-info-desc">
                 <div><a className="font-weight-bold fs-16 text-dark"  title="" href="#" target="" >{executiveDetails?.company?.name}</a>
@@ -410,7 +449,49 @@ const RightPanel = () => {
         </div>
         <div className="card shadow descbox1 mb-3">
         
-          <div>Is this company data relevant to you? <a href="#" id="" role="button" data-toggle="" aria-haspopup="true" aria-expanded="false"><i class="right-icons small fa fa-thumbs-up" aria-hidden="true"></i></a><a href="#" id="" role="button" data-toggle="" aria-haspopup="true" aria-expanded="false"><i class="right-icons small fa fa-thumbs-down" aria-hidden="true"></i></a></div>
+          <div>Is this executive data relevant to you?
+          {checkExecutiveStatus===1?<a
+            id=""
+            role="button"
+            data-toggle=""
+            aria-haspopup="true"
+            aria-expanded="false"
+            
+          ><i class="right-icons fa fa-thumbs-up" aria-hidden="true"></i></a>:<a
+            id=""
+            role="button"
+            data-toggle=""
+            aria-haspopup="true"
+            aria-expanded="false"
+            onClick={() => checkRelavantExecutive(1,checkExecutiveStatus)}
+          ><i class="right-icons small fa fa-thumbs-up" aria-hidden="true"></i></a>}
+            
+            {checkExecutiveStatus===2?
+          <a
+            id=""
+            role="button"
+            data-toggle=""
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <i
+              class="right-icons fa fa-thumbs-down"
+              aria-hidden="true"
+            ></i>
+          </a>:<a
+            id=""
+            role="button"
+            data-toggle=""
+            aria-haspopup="true"
+            aria-expanded="false"
+            onClick={() => checkRelavantExecutive(0,checkExecutiveStatus)}
+          >
+            <i
+              class="right-icons small fa fa-thumbs-down"
+              aria-hidden="true"
+            ></i>
+          </a>}
+          </div>
          
         </div>
         <div className="buttons-container">

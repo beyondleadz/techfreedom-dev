@@ -9,21 +9,25 @@ import {
   resetLead,
 } from "../../actionCreator/executiveDetailsActionCreator";
 import popupImg from "../../assets/images/free-user-login-prompt.jpg.jpeg";
+import TrialModal from "../../common/TrialModal";
 const KeyExecutives = () => {
   const dispatch = useDispatch();
   const employeeList = useSelector(
-    (state) => state.companyDetailsReducer.employeeList
+    (state) => state.executiveDetailsReducer.employeeList
   );
   const submitLeadRes = useSelector(
     (state) => state.companyDetailsReducer?.executiveLeads
   );
 
   const [employeeData, setEmployeeData] = useState([]);
-  const [openInfoBeforeLogin, setOpenInfoBeforeLogin] = useState({
+  const [openModal, setOpenModal] = useState({
     info: null,
     open: false,
   });
   const [addToLeads, setAddToLeads] = useState(0);
+  const [showEmail, setShowEmail] = useState({});
+  const [showPhone, setShowPhone] = useState({});
+  
   const navigate = useNavigate();
 
   const columns = [
@@ -39,14 +43,30 @@ const KeyExecutives = () => {
     {
       title: "Email",
       dataIndex: "emailId",
-      render: (text) => {
+      render: (text, row) => {
         return getToken() ? (
-          <Tooltip title={text}>
-            <h4 className="  fs-23 btn  la  la-envelope-open-text text-black"></h4>
-          </Tooltip>
+          //  <Tooltip title={text}>
+          <>
+            <h4
+              className=" btn iconemail emails-open"
+              onClick={() => setShowEmail({ ...showEmail, [row.id]: true })}
+            ></h4>
+            {showEmail[row.id] && (
+              <>
+                <span className="emailvalue pl-1 fs-12">{text}</span>
+                <span
+                  title="copy email"
+                  className="  fs-17 btn  la  la-copy text-black"
+                  onClick={() => copyToClipboard(text)}
+                ></span>
+              </>
+            )}
+          </>
         ) : (
+          //  </Tooltip>
+          //
           <h4
-            className="  fs-23 btn  la  la-envelope text-black"
+            className="  btn iconemail emails"
             onClick={() => openInfoModel()}
           ></h4>
         );
@@ -59,28 +79,52 @@ const KeyExecutives = () => {
     {
       title: "Direct Dial/Mobile    ",
       dataIndex: "directDial",
-      render: (record) => {
+      render: (record, row) => {
         return getToken() ? (
-          <Tooltip title={record?.phoneNo}>
-            <Button
-              style={{ height: "auto" }}
-              className="keyexebtn d-none d-sm-inline-block small btn btn-primary text-black"
+          <>
+            <span
+              // style={{ height: "auto" }}
+              // className="keyexebtn d-none d-sm-inline-block small btn btn-primary text-black"
+              className=" btn mobile-open"
+              onClick={() => setShowPhone({ ...showPhone, [row.id]: true })}
             >
-              <i class="las la-mobile fs-12  pr-1"></i>
-              VIEW
-            </Button>
-          </Tooltip>
+              {/* <i class="las la-mobile fs-12  pr-1"></i> */}
+              {/* VIEW */}
+            </span>
+            {showPhone[row.id] && record?.phoneNo && (
+              <>
+                <span className="phoneValue fs-12 pl-1">{record?.phoneNo}</span>
+                <span
+                  title="copy phone"
+                  className="  fs-17 btn  la  la-copy text-black"
+                  onClick={() => copyToClipboard(record?.phoneNo)}
+                ></span>
+              </>
+            )}
+          </>
         ) : (
-          <Button
-            style={{ height: "auto" }}
-            className="keyexebtn d-none d-sm-inline-block small btn btn-primary text-black"
+          <span
+            // style={{ height: "auto" }}
+            className=" btn mobile"
+            // className="keyexebtn d-none d-sm-inline-block small btn btn-primary text-black"
             onClick={() => openInfoModel()}
           >
-            <i class="las la-mobile fs-12  pr-1"></i>
-            VIEW
-          </Button>
+            {/* <i class="las la-mobile fs-12  pr-1"></i>
+            VIEW */}
+          </span>
         );
-      },
+
+        // return (
+        //   <Button
+        //     style={{ height: "auto" }}
+        //     className="keyexebtn d-none d-sm-inline-block small btn btn-primary text-black"
+        //     onClick={() => openInfoModel(text)}
+        //   >
+        //     <i class="las la-mobile fs-12 pt-1 pr-1"></i>
+        //     VIEW
+        //   </Button>
+        // );
+      }
     },
     {
       title: "",
@@ -160,19 +204,19 @@ const KeyExecutives = () => {
 
   const openInfoModel = () => {
     if (getToken()) {
-      setOpenInfoBeforeLogin({ info: null, open: false });
+      setOpenModal({ info: null, open: false });
     } else {
-      setOpenInfoBeforeLogin({ info: null, open: true });
+      setOpenModal({ info: null, open: true });
     }
   };
 
   const redirectToSignup = () => {
-    setOpenInfoBeforeLogin(false);
+    setOpenModal(false);
     navigate("/signup");
   };
 
   const closeInfoBeforeLogin = () => {
-    setOpenInfoBeforeLogin(false);
+    setOpenModal(false);
   };
 
   const rowSelection = {
@@ -198,6 +242,33 @@ const KeyExecutives = () => {
     // dispatch(getCompanyList(pageValues, companySelectedFilterList));
   };
 
+  const copyToClipboard = (text) => {
+    if (window.clipboardData && window.clipboardData.setData) {
+      // IE: prevent textarea being shown while dialog is visible
+      return window.clipboardData.setData("Text", text);
+    } else if (
+      document.queryCommandSupported &&
+      document.queryCommandSupported("copy")
+    ) {
+      var textarea = document.createElement("textarea");
+      textarea.textContent = text;
+      // Prevent scrolling to bottom of page in MS Edge
+      textarea.style.position = "fixed";
+      document.body.appendChild(textarea);
+      textarea.select();
+      try {
+        // Security exception may be thrown by some browsers
+        return document.execCommand("copy");
+      } catch (ex) {
+        console.warn("Copy to clipboard failed.", ex);
+        return false;
+      } finally {
+        document.body.removeChild(textarea);
+      }
+    }
+  };
+
+
   return (
     <div className="card shadow card-body">
       <Table
@@ -215,32 +286,32 @@ const KeyExecutives = () => {
           onChange: onPageChange,
         }}
       />
-      {openInfoBeforeLogin?.open && (
-        <Modal
-          width="400px"
-          closable={true}
-          open={openInfoBeforeLogin}
-          onCancel={closeInfoBeforeLogin}
-          footer={[
-            <Button key="submit" type="primary" onClick={redirectToSignup}>
-              Start Free Trial
-            </Button>,
-          ]}
-        >
-          <div class="pop-up">
+      {openModal?.open && (
+        <TrialModal
+          openModal={openModal}
+          closeModal={closeInfoBeforeLogin}
+          redirectToSignup={redirectToSignup}
+          redirect={true}
+          // buttonText="Start Free Trial"
+          buttonText="SUBSCRIBE NOW!"
+          modalBody={
             <div id="small-dialog2">
               <div align="center">
                 <img src={popupImg} />
               </div>
               <p style={{ color: "#0000FF" }}>
+                PLEASE SUBSCRIBE TO VIEW ALL DETAILS
+              </p>
+              {/* <p style={{ color: "#0000FF" }}>
                 Get 10 free verified contacts with a BeyondLeadz Pro trial
               </p>
               <p>
                 BeyondLeadz Pro customers close deals faster thanks to relevant
-              </p>
+              </p> */}
             </div>
-          </div>
-        </Modal>
+          }
+          modalWidth="400px"
+        />
       )}
       {Object.keys(submitLeadRes).length ? (
         <Modal
