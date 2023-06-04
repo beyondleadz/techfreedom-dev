@@ -9,55 +9,69 @@ const ActivityTime = () => (
     items={[
       {
         color: 'green',
-        children: 'Create a services site 2015-09-01',
+        dot: <div><a href="#" class="btn btn-dark btn-sm btn-circle"> <i class="las la-globe"></i></a></div>,
+        children: <div className="mt-3"><div>Website visit</div>
+        <p>http://beyondleads/leads</p>
+        <p>http://beyondleads/companyDetails</p>
+        </div>
+        ,
       },
       {
         color: 'green',
-        children: 'Create a services site 2015-09-01',
+        dot: <div><a href="#" class="btn btn-success btn-sm btn-circle"> <i class="las la-phone"></i></a></div>,
+        children: <div><div>Phone Call</div>
+        <p>called Main Office (open call)</p>
+                </div>,
       },
       {
         color: 'red',
+        dot: <div><a href="#" class="btn btn-danger btn-sm btn-circle"> <i class="las la-phone"></i></a></div>,
         children: (
-          <>
-            <p>Solve initial network problems 1</p>
-            <p>Solve initial network problems 2</p>
-            <p>Solve initial network problems 3 2015-09-01</p>
-          </>
+         
+            <div><div>Phone Call</div>
+        <p>called Mike Office (open call)</p>
+                </div>
+         
         ),
       },
       {
+        dot: <div><a href="#" class="btn btn-primary btn-sm btn-circle"> <i class="las la-phone"></i></a></div>,
         children: (
           <>
-            <p>Technical testing 1</p>
-            <p>Technical testing 2</p>
-            <p>Technical testing 3 2015-09-01</p>
-          </>
-        ),
-      },
-      {
-        color: 'gray',
-        children: (
-          <>
-            <p>Technical testing 1</p>
-            <p>Technical testing 2</p>
-            <p>Technical testing 3 2015-09-01</p>
+           <div><div>Completed Web Form</div>
+        <p>Small engine repair near me</p>
+                </div>
           </>
         ),
       },
       {
         color: 'gray',
+        dot: <div><a href="#" class="btn btn-info btn-sm btn-circle"> <i class="las la-phone"></i></a></div>,
         children: (
           <>
-            <p>Technical testing 1</p>
-            <p>Technical testing 2</p>
-            <p>Technical testing 3 2015-09-01</p>
+            <div><div>Phone Call</div>
+        <p>called Jeff Mobile (open call)</p>
+                </div>
+          </>
+        ),
+      },
+      {
+        color: 'gray',
+        dot: <div><a href="#" class="btn btn-dark btn-sm btn-circle"> <i class="las la-phone"></i></a></div>,
+        children: (
+          <>
+            <div><div>Sent Email</div>
+        <p>Request Feedback</p>
+                </div>
           </>
         ),
       },
       {
         color: '#00CCFF',
-        dot: <SmileOutlined />,
-        children: <p>Custom color testing</p>,
+        dot: <div><a href="#" class="btn btn-success btn-sm btn-circle"> <i class="las la-phone"></i></a></div>,
+        children: <div><div>Review received</div>
+        <p>Feedback received (Open Review)</p>
+                </div>,
       },
     ]}
   />
