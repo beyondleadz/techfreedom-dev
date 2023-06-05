@@ -48,8 +48,8 @@ const Leads = () => {
     <Layout>
     <div id="leads" className="wrapper">
 	<div id="content-wrapper" className="d-flex flex-column">
-        <div className="container-fluid">
-         <div className="mt-3 ml-3"> <Breadcrumb
+        <div className="row col-md-12">
+         <div className="row col-md-12 mt-3 "> <Breadcrumb
     separator=""
     items={[
       
@@ -73,11 +73,14 @@ const Leads = () => {
       },
     ]}
   />
-
+<div className="row col-md-12">
+<div className="row headername"><h3>Leads</h3></div>
+<div className="row col-md-12 mt-3"><Stepsbar/></div> 
+</div>
 </div>  
-<h3 className="headername">Leads</h3>
 
-<div className="mt-3"><Stepsbar/></div> 
+
+
         
         <div  className="row  col-md-12 ">
 <div className="card shadow col-md-12">

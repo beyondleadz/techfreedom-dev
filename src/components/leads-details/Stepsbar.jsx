@@ -17,7 +17,7 @@ const Stepsbar=()=>{
         // size="small"
         current={current}
         onChange={onChange}
-        responsive={false}
+        responsive={true}
         id="step"
         className="site-navigation-steps"
         items={[
