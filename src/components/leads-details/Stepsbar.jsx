@@ -23,33 +23,38 @@ const Stepsbar=()=>{
         items={[
           {
             status: 'finish',
-            title: 'Lead',
+            title: 'Subscriber',
+                  
           },
           {
             status: 'finish',
-            title: 'Lead Info',
+            title: 'Lead',
           },
           {
             status: 'process',
-            title: 'Activity time',
+            title: 'Martting qualified lead',
           },
           {
             status: 'process',
-            title: 'Lead Details',
+            title: 'Sales qualified lead',
           },
           {
             status: 'process',
-            title: 'Add Notes',
+            title: 'Opportunity',
           },
           {
             status: 'process',
-            title: 'Add Tasks',
+            title: 'Customer',
           },
           {
             status: 'wait',
-            title: 'wait',
+            title: 'Other',
             // disabled: true,
           },
+          {
+            status: 'wait',
+            title: ' Mark stage as Done',
+                    },
         ]}
       />
     )

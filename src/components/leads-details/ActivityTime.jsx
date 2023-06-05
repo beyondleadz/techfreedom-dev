@@ -1,10 +1,70 @@
 import React from "react";
 
 
-
-import { Timeline } from 'antd';
+import { Timeline, Button, Select, DatePicker, Space} from "antd";
+// import { Timeline, Button, Select } from 'antd';
 import { SmileOutlined } from '@ant-design/icons';
-const ActivityTime = () => (
+
+
+const { RangePicker } = DatePicker;
+const ActivityTime = () => {
+    return(
+<>
+
+<div className="row mb-4 pb-4 pt-4">
+    <div className="col-md-3 "><div className="form">
+        {/* <div className="formcol1"></div> */}
+        <div className="formcol2 ">
+          <Select 
+            showSearch
+            placeholder="Activities"
+            optionFilterProp="children"
+            // onChange={onChange}
+            // onSearch={onSearch}
+            filterOption={(input, option) =>
+              (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
+            }
+            options={[
+                {
+                    value: "all activities",
+                    label: "All Activities",
+                  },
+                  {
+                value: "call",
+                label: "Call",
+              },
+              {
+                value: "email",
+                label: "Email",
+              },
+              {
+                value: "meeting",
+                label: "Meeting",
+              },
+              {
+                value: "followup",
+                label: "Follow up ",
+              },
+              {
+                value: "chat",
+                label: "Chat",
+              },
+              {
+                value: "whatsapp",
+                label: "Whatsapp",
+              },
+            ]}
+          />
+        </div>
+        </div></div>
+    <div className="col-md-5"><RangePicker /></div>
+    <div className="col"><button className="btn btn-info btn-sm ">Submit</button></div>
+    <div className="col"><button className="btn btn-info btn-sm "><i class="las la-plus"></i>Add New Task</button></div>
+</div>
+
+
+       
+
   <Timeline
     items={[
       {
@@ -75,6 +135,7 @@ const ActivityTime = () => (
       },
     ]}
   />
-);
+  </>
+)}
 
 export default ActivityTime;

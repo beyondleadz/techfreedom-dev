@@ -7493,10 +7493,16 @@ color: orange;
   display: inline-block;
   width: 22px;
   height: 22px;
-  border-top: 5px solid rgba(0, 0, 0, 0.25);
+  border-top: 5px solid #fff;
   border-bottom: none;
   border-inline-start: none;
-  border-inline-end: 5px solid rgba(0, 0, 0, 0.25);
+  border-inline-end: 5px solid #fff;
   transform: translateY(-50%) translateX(-50%) rotate(45deg);
+  z-index: 1;
   content: "";
+}
+.ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
+  width: 140px;
+  height: 32px;
+  padding: 0 11px;
 }

@@ -76,6 +76,7 @@ const Leads = () => {
 
 </div>  
 <h3 className="headername">Leads</h3>
+
 <div className="mt-3"><Stepsbar/></div> 
         
         <div  className="row  col-md-12 ">
@@ -102,7 +103,7 @@ const Leads = () => {
                 </div></div>
                 <div className="col-md-8 col-custom-2">
                 <div className="row">
-                <Tabs className="ml-4 w-80" defaultActiveKey="1" items={items} onChange={onChange} />
+                <Tabs className="ml-4 w-90" defaultActiveKey="1" items={items} onChange={onChange} />
                 </div>
                 </div></div></div></div></div></div>
 	 
