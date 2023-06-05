@@ -103,7 +103,7 @@ const Leads = () => {
                 </div></div>
                 <div className="col-md-8 col-custom-2">
                 <div className="row">
-                <Tabs className="ml-4 w-90" defaultActiveKey="1" items={items} onChange={onChange} />
+                <Tabs className="ml-4 " defaultActiveKey="1" items={items} onChange={onChange} />
                 </div>
                 </div></div></div></div></div></div>
 	 
