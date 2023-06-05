@@ -2901,9 +2901,9 @@ fieldset:disabled a.btn {
   color: #fff;  background-color: #27b989;  border-color: #27b989;  box-shadow: 0 0 0 0.2rem rgba(72, 180, 97, 0.5);
 }
 
-.btn-email {  color: #fff;  background-color: #c0faa8;  border-color: #c0faa8;}
-.btn-email:hover {  color: #fff;  background-color: #a1fd79;  border-color: #a1fd79;}
-.btn-email:focus,.btn-email.focus {
+.btn-whatsapp {  color: #fff;  background-color: #c0faa8;  border-color: #c0faa8;}
+.btn-whatsapp:hover {  color: #fff;  background-color: #a1fd79;  border-color: #a1fd79;}
+.btn-whatsapp:focus,.btn-whatsapp.focus {
   color: #fff;  background-color: #8ffb60;  border-color: #8ffb60;  box-shadow: 0 0 0 0.2rem rgba(72, 180, 97, 0.5);
 }
 
@@ -2913,15 +2913,21 @@ fieldset:disabled a.btn {
   color: #fff;  background-color: #b67dfa;  border-color: #b67dfa;  box-shadow: 0 0 0 0.2rem rgba(72, 180, 97, 0.5);
 }
 
-.btn-doc {  color: #fff;  background-color: #b0bafb;  border-color: #b0bafb;}
-.btn-doc:hover {  color: #fff;  background-color: #92a0fb;  border-color: #92a0fb;}
-.btn-doc:focus,.btn-doc.focus {
+.btn-email {  color: #fff;  background-color: #b0bafb;  border-color: #b0bafb;}
+.btn-email:hover {  color: #fff;  background-color: #92a0fb;  border-color: #92a0fb;}
+.btn-email:focus,.btn-email.focus {
   color: #fff;  background-color: #7486fa;  border-color: #7486fa;  box-shadow: 0 0 0 0.2rem rgba(72, 180, 97, 0.5);
 }
 
-.btn-web {  color: #fff;  background-color: #fac6e7;  border-color: #fac6e7;}
-.btn-web:hover {  color: #fff;  background-color: #fbacde;  border-color: #fbacde;}
-.btn-web:focus,.btn-web.focus {
+.btn-document {  color: #fff;  background-color: #fef270;  border-color: #fef270;}
+.btn-document:hover {  color: #fff;  background-color: #fef162;  border-color: #fef162;}
+.btn-document:focus,.btn-document.focus {
+  color: #fff;  background-color: #fbec4b;  border-color: #fbec4b;  box-shadow: 0 0 0 0.2rem rgba(72, 180, 97, 0.5);
+}
+
+.btn-meet {  color: #fff;  background-color: #fac6e7;  border-color: #fac6e7;}
+.btn-meet:hover {  color: #fff;  background-color: #fbacde;  border-color: #fbacde;}
+.btn-meet:focus,.btn-meet.focus {
   color: #fff;  background-color: #fa8cd1;  border-color: #fa8cd1;  box-shadow: 0 0 0 0.2rem rgba(72, 180, 97, 0.5);
 }
 
@@ -14172,9 +14178,9 @@ p.white {
   content: "\e05e";
 }
 
-.fa-handshake:before {
+/* .fa-handshake:before {
   content: "\f2b5";
-}
+} */
 
 .fa-handshake-alt-slash:before {
   content: "\e05f";
