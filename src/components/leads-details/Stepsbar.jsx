@@ -7,22 +7,22 @@ const Stepsbar=()=>{
 
     const [current, setCurrent] = useState(0);
 
-    const onChange = (value) => {
-      console.log('onChange:', value);
-      setCurrent(value);
+    const onChange = () => {
+    //   console.log('onChange:', value);
+    //   setCurrent(value);
     };
   
     return(<Steps
         type="navigation"
         // size="small"
-        current={current}
+        // current={current}
         onChange={onChange}
         responsive={true}
         id="step"
         className="site-navigation-steps"
         items={[
           {
-            status: 'finish',
+            status: 'subscriber',
             title: 'Subscriber',
                   
           },
