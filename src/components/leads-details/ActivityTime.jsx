@@ -58,7 +58,7 @@ const ActivityTime = () => {
         </div>
         </div></div>
     <div className="col-md-5"><RangePicker /></div>
-    <div className="col-md-1 mr-3"><button className="btn btn-info btn-sm ">Submit</button></div>
+    <div className="col-md-1 "><button className="btn btn-info btn-sm ">Submit</button></div>
     <div className="col-md-3  float-right "><button className="btn btn-info btn-sm "><i class="las la-plus"></i>Add New Task</button></div>
 </div>
 
