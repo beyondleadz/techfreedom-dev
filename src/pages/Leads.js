@@ -87,10 +87,10 @@ const Leads = () => {
     
     <div>
     
-    <Tooltip overlayClassName="fs-12 "  title="Phone">  <a href="#" class="btn btn-success btn-circle"> <i class="las la-phone"></i></a></Tooltip>
-    <Tooltip overlayClassName="fs-12 "   title="Email"> <a href="#" class="btn btn-danger btn-circle ml-3"><i class="las la-envelope text-white"></i></a></Tooltip>
-    <Tooltip overlayClassName="fs-12"   title="Activity"> <a href="#" class="btn btn-primary btn-circle ml-3"><i class="las la-directions"></i></a></Tooltip>
-    <Tooltip overlayClassName="fs-12 "   title="Document"> <a href="#" class="btn btn-info btn-circle ml-3"><i class="las la-share-square text-white"></i></a></Tooltip></div></div>
+    <Tooltip overlayClassName="fs-12 "  title="Phone">  <a href="#" class="btn btn-phone btn-circle"> <i class="las la-phone"></i></a></Tooltip>
+    <Tooltip overlayClassName="fs-12 "   title="Email"> <a href="#" class="btn btn-email btn-circle ml-3"><i class="las la-envelope text-white"></i></a></Tooltip>
+    <Tooltip overlayClassName="fs-12"   title="Activity"> <a href="#" class="btn btn-act btn-circle ml-3"><i class="las la-directions"></i></a></Tooltip>
+    <Tooltip overlayClassName="fs-12 "   title="Document"> <a href="#" class="btn btn-doc btn-circle ml-3"><i class="las la-share-square text-white"></i></a></Tooltip></div></div>
     <div className=" mt-3"> <span className="namedt">Designation</span>  <span className="namedc"> General Manager</span> </div>
     <div className=" mt-2">  <span className="namedt">Phone </span>   <span className="namedc"> 9743899246</span>  </div>
         <div className=" mt-2"> <span className="namedt"> Email </span><span className="namedc"> J.collines@company.info</span> </div>
