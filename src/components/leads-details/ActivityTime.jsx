@@ -12,7 +12,7 @@ const ActivityTime = () => {
 <>
 
 <div className="row mb-4 pb-4 pt-4">
-    <div className="col-md-3 "><div className="form">
+    <div className="col-md-2 mr-4 "><div className="form">
         {/* <div className="formcol1"></div> */}
         <div className="formcol2 ">
           <Select 
