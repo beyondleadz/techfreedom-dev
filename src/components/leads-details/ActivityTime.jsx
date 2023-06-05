@@ -35,7 +35,7 @@ const ActivityTime = () => (
         ),
       },
       {
-        dot: <div><a href="#" class="btn btn-email btn-sm btn-circle"> <i class="las la-globe"></i></a></div>,
+        dot: <div><a href="#" class="btn btn-email btn-sm btn-circle"> <i class="las la-envelope"></i></a></div>,
         children: (
           <>
            <div><div>Completed Web Form</div>

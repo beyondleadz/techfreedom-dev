@@ -75,8 +75,9 @@ const Leads = () => {
   />
 
 </div>  
+<h3 className="headername">Leads</h3>
 <div className="mt-3"><Stepsbar/></div> 
-        <h3 className="headername">Leads</h3>
+        
         <div  className="row  col-md-12 ">
 <div className="card shadow col-md-12">
           <div className="row">
