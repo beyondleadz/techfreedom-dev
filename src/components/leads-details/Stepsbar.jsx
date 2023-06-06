@@ -5,7 +5,7 @@ import { Steps } from 'antd';
 
 const Stepsbar=()=>{
 
-    const [current, setCurrent] = useState(0);
+    const [current,] = useState(0);
 
     const onChange = () => {
     //   console.log('onChange:', value);

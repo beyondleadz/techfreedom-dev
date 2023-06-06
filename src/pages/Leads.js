@@ -98,7 +98,7 @@ const Leads = () => {
     <Tooltip overlayClassName="fs-12 "   title="Document"> <a href="#" class="btn btn-document btn-circle ml-3"><i class="las la-share-square text-white"></i></a></Tooltip></div>
     
     </div>
-    <div className="col-md-4">
+    <div className="col-md-12">
          <div className=" row mt-3"> <span className="col-md-2 ">Designation</span>  <span className="col namedc"> General Manager</span> </div>
     <div className=" row mt-2">  <span className="col-md-2 ">Phone </span>   <span className="col namedc"> 9743899246</span>  </div>
         <div className="row  mt-2"> <span className="col-md-2 "> Email </span><span className="col namedc"> J.collines@company.info</span> </div>
