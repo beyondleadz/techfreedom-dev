@@ -7430,7 +7430,7 @@ color: orange;
 #leads .headername{margin: 30px 0 0 0;}
 #leads .profilePic
 {text-align: center;
-  width: 100%;
+  width: 80%;
   margin: 10px;}
   #leads .name {
     font-size: 14px;
@@ -7459,11 +7459,16 @@ color: orange;
       color: rgba(0, 0, 0, 0.88);
       }
       #leads    .col-md-3 {
-        flex: 0 0 25%;
-        max-width: 25%;
-        padding-top: 0;
-        /* padding-right: 35px; */
-    }
+        flex: 0 0 30%;
+        max-width: 30%;
+        padding-top: 0;    }
+
+        #leads    .col-md-2 {
+          flex: 0 0 35%;
+          max-width: 35%;
+          padding-top: 0;    }
+
+
 #leads .btn-circle.btn-lg, .btn-group-lg > .btn-circle.btn {
   height: 4.5rem;
   width: 4.5rem;
@@ -7483,7 +7488,7 @@ color: orange;
     list-style: none;
     font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji';
     display: flex;
-    width: 80%;
+    width: 90%;
     text-align: initial;
 }
 .ant-steps.ant-steps-navigation .ant-steps-item::after {
@@ -7493,10 +7498,10 @@ color: orange;
   display: inline-block;
   width: 22px;
   height: 22px;
-  border-top: 5px solid #fff;
+  border-top: 5px solid #fdc401;
   border-bottom: none;
   border-inline-start: none;
-  border-inline-end: 5px solid #fff;
+  border-inline-end: 5px solid #fdc401;
   transform: translateY(-50%) translateX(-50%) rotate(45deg);
   z-index: 1;
   content: "";

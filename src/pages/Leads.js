@@ -95,11 +95,16 @@ const Leads = () => {
     <Tooltip overlayClassName="fs-12 "  title="Phone">  <a href="#" class="btn btn-phone btn-circle"> <i class="las la-phone"></i></a></Tooltip>
     <Tooltip overlayClassName="fs-12 "   title="Email"> <a href="#" class="btn btn-email btn-circle ml-3"><i class="las la-envelope text-white"></i></a></Tooltip>
     <Tooltip overlayClassName="fs-12"   title="Activity"> <a href="#" class="btn btn-act btn-circle ml-3"><i class="las la-directions"></i></a></Tooltip>
-    <Tooltip overlayClassName="fs-12 "   title="Document"> <a href="#" class="btn btn-document btn-circle ml-3"><i class="las la-share-square text-white"></i></a></Tooltip></div></div>
-    <div className=" mt-3"> <span className="namedt">Designation</span>  <span className="namedc"> General Manager</span> </div>
-    <div className=" mt-2">  <span className="namedt">Phone </span>   <span className="namedc"> 9743899246</span>  </div>
-        <div className=" mt-2"> <span className="namedt"> Email </span><span className="namedc"> J.collines@company.info</span> </div>
-        <div className=" mt-2"> <span className="namedt">Address</span> <span className="namedc">abc smith street, India</span>  </div>
+    <Tooltip overlayClassName="fs-12 "   title="Document"> <a href="#" class="btn btn-document btn-circle ml-3"><i class="las la-share-square text-white"></i></a></Tooltip></div>
+    
+    </div>
+    <div className="col-md-4">
+         <div className=" row mt-3"> <span className="col-md-2 ">Designation</span>  <span className="col namedc"> General Manager</span> </div>
+    <div className=" row mt-2">  <span className="col-md-2 ">Phone </span>   <span className="col namedc"> 9743899246</span>  </div>
+        <div className="row  mt-2"> <span className="col-md-2 "> Email </span><span className="col namedc"> J.collines@company.info</span> </div>
+        <div className="row mt-2"> <span className="col-md-2">Address</span> <span className="col namedc">abc smith street, India</span>  </div>
+    </div>
+   
         
               <div className="row">
                 <div className="col-md-12"></div>
