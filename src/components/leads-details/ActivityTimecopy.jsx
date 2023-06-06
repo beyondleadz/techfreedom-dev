@@ -17,17 +17,26 @@ const ActivityTimecopy = () => {
       {
         color: 'green',
         dot: <div><a href="#" class="btn btn-phone btn-sm btn-circle"> <i class="las la-phone fs-14"></i></a></div>,
-        children: <div className="mt-3"><div> Phone Call</div>
-        <p>Called Main Office (open call)</p>
-        <p>called Jeff Mobile (open call)</p>
+        children: <div className="mt-3"><div className="col-md-12">
+        <div id="steps" className=" row mt-3"> <div className="col-md-8 text-align-left fs-14 font-weight-normal ">Phone Call<h6>Called Main Office (open call)</h6></div>
+          <div className="col-sm-4 text-align-right"><a href="#" class="btn fs-20 "> <i class="las la-edit "></i></a> <a href="#" class="btn fs-20 "> <i class="las la-trash"></i></a>
+          <div className="fs-12 mt-1">2023-06-26 18:43</div>
+           </div>            
+          </div>        
+   </div>
         </div>
         ,
       },
       {
         color: 'green',
         dot: <div><a href="#" class="btn btn-email btn-sm btn-circle"> <i class="las la-envelope fs-14"></i></a></div>,
-        children: <div><div>Email</div>
-        <p>called Main Office</p>
+        children: <div><div className="col-md-12">
+        <div id="steps" className=" row mt-3"> <div className="col-md-8 text-align-left fs-14 font-weight-normal ">Email<h6>called Main Office</h6></div>
+          <div className="col-sm-4 text-align-right"><a href="#" class="btn fs-20 "> <i class="las la-edit "></i></a> <a href="#" class="btn fs-20 "> <i class="las la-trash"></i></a>
+          <div className="fs-12 mt-1">2023-06-26 18:43</div>
+           </div>            
+          </div>        
+   </div>
                 </div>,
       },
       {
@@ -35,8 +44,13 @@ const ActivityTimecopy = () => {
         dot: <div><a href="#" class="btn btn-whatsapp btn-sm btn-circle"> <i class="las la-mobile fs-14"></i></a></div>,
         children: (
          
-            <div><div>Whatsapp</div>
-        <p> Mike Office</p>
+            <div><div className="col-md-12">
+            <div id="steps" className=" row mt-3"> <div className="col-md-8 text-align-left fs-14 font-weight-normal ">Whatsapp<h6>Mike Office</h6></div>
+              <div className="col-sm-4 text-align-right"><a href="#" class="btn fs-20 "> <i class="las la-edit "></i></a> <a href="#" class="btn fs-20 "> <i class="las la-trash"></i></a>
+              <div className="fs-12 mt-1">2023-06-26 18:43</div>
+               </div>            
+              </div>        
+       </div>
                 </div>
          
         ),
@@ -46,8 +60,13 @@ const ActivityTimecopy = () => {
         dot: <div><a href="#" class="btn btn-meet btn-sm btn-circle"> <i class="las la-handshake fs-14"></i></a></div>,
         children: (
           <>
-           <div><div>Meeting</div>
-        <p>Small engine repair near me</p>
+           <div><div className="col-md-12">
+            <div id="steps" className=" row mt-3"> <div className="col-md-8 text-align-left fs-14 font-weight-normal ">Meeting<h6>Small engine repair near me</h6></div>
+              <div className="col-sm-4 text-align-right"><a href="#" class="btn fs-20 "> <i class="las la-edit "></i></a> <a href="#" class="btn fs-20 "> <i class="las la-trash"></i></a>
+              <div className="fs-12 mt-1">2023-06-26 18:43</div>
+               </div>            
+              </div>        
+       </div>
                 </div>
           </>
         ),

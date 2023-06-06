@@ -54,7 +54,7 @@ const ActivityTime = () => {
 </div>
 
 <div><ActivityTimecopy /></div>
-<div className="mb-4 fs-14 font-weight-bold">Past Activity</div>   
+<div className="mb-4 pb-2 fs-14 font-weight-bold">Past Activity</div>   
 
   <Timeline
     items={[
@@ -103,8 +103,14 @@ const ActivityTime = () => {
         dot: <div><a href="#" class="btn btn-act btn-sm btn-circle"> <i class="las la-phone fs-14"></i></a></div>,
         children: (
           <>
-            <div><div>Follow up</div>
-        <p>called Jeff Mobile (open call)</p>
+            <div> <div className="col-md-12">
+         <div id="steps" className=" row mt-3"> <div className="col-md-8 text-align-left fs-14 font-weight-normal ">Follow up<h6 className="">Called Jeff Mobile (open call) </h6></div>
+           <div className="col-sm-4 text-align-right"><a href="#" class="btn fs-20 "> <i class="las la-edit "></i></a> <a href="#" class="btn fs-20 "> <i class="las la-trash"></i></a>
+           <div className="fs-12 mt-1">2023-06-26 18:43</div>
+            </div> 
+           
+           </div>        
+    </div>
                 </div>
           </>
         ),
@@ -114,8 +120,13 @@ const ActivityTime = () => {
         dot: <div><a href="#" class="btn btn-app btn-sm btn-circle"> <i class="las la-mobile fs-14"></i></a></div>,
         children: (
           <>
-            <div><div>Chat</div>
-        <p>Request Feedback</p>
+            <div><div className="col-md-12">
+         <div id="steps" className=" row mt-3"> <div className="col-md-8 text-align-left fs-14 font-weight-normal ">Chat<h6>Request Feedback </h6></div>
+           <div className="col-sm-4 text-align-right"><a href="#" class="btn fs-20 "> <i class="las la-edit "></i></a> <a href="#" class="btn fs-20 "> <i class="las la-trash"></i></a>
+           <div className="fs-12 mt-1">2023-06-26 18:43</div>
+            </div>            
+           </div>        
+    </div>
                 </div>
           </>
         ),
@@ -123,8 +134,13 @@ const ActivityTime = () => {
       {
         color: '#00CCFF',
         dot: <div><a href="#" class="btn btn-document btn-sm btn-circle"> <i class="las la-phone fs-14"></i></a></div>,
-        children: <div><div>Review received</div>
-        <p>Feedback received (Open Review)</p>
+        children: <div><div className="col-md-12">
+        <div id="steps" className=" row mt-3"> <div className="col-md-8 text-align-left fs-14 font-weight-normal ">Review received<h6>Feedback received (Open Review)</h6></div>
+          <div className="col-sm-4 text-align-right"><a href="#" class="btn fs-20 "> <i class="las la-edit "></i></a> <a href="#" class="btn fs-20 "> <i class="las la-trash"></i></a>
+          <div className="fs-12 mt-1">2023-06-26 18:43</div>
+           </div>            
+          </div>        
+   </div>
                 </div>,
       },
     ]}

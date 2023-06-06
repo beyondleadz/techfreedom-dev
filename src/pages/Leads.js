@@ -95,9 +95,9 @@ const Leads = () => {
     <div>
     
     <Tooltip overlayClassName="fs-12 "  title="Phone">  <a href="#" class="btn btn-phone btn-circle"> <i class="las la-phone"></i></a></Tooltip>
-    <Tooltip overlayClassName="fs-12 "   title="Email"> <a href="#" class="btn btn-email btn-circle ml-3"><i class="las la-envelope text-white"></i></a></Tooltip>
+    <Tooltip overlayClassName="fs-12 "   title="Email"> <a href="#" class="btn btn-email btn-circle ml-3"><i class="las la-envelope "></i></a></Tooltip>
     <Tooltip overlayClassName="fs-12"   title="Activity"> <a href="#" class="btn btn-act btn-circle ml-3"><i class="las la-directions"></i></a></Tooltip>
-    <Tooltip overlayClassName="fs-12 "   title="Document"> <a href="#" class="btn btn-document btn-circle ml-3"><i class="las la-share-square text-white"></i></a></Tooltip></div>
+    <Tooltip overlayClassName="fs-12 "   title="Document"> <a href="#" class="btn btn-document btn-circle ml-3"><i class="las la-share-square "></i></a></Tooltip></div>
     
     </div>
     <div className="col-md-12">
