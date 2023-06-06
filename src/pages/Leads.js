@@ -8,11 +8,13 @@ import Stats from "../components/about/Stats";
 import { Tooltip } from 'antd';
 import { Tabs } from 'antd';
 import { Breadcrumb } from 'antd';
+import ActivityTimecopy from "../components/leads-details/ActivityTimecopy";
 import ActivityTime from "../components/leads-details/ActivityTime";
 import Info from "../components/leads-details/Info";
 import Notes from "../components/leads-details/Notes";
 import Tasks from "../components/leads-details/Tasks";
 import Stepsbar from "../components/leads-details/Stepsbar";
+
 
 const onChange = (key) => {
   console.log(key);

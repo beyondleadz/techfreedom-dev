@@ -33,12 +33,12 @@ const Info = () => {
     <div className="errorformcontainer mt-3">
       <div className="form">
         {console.log(errorForm, "skljfsljfklsd")}
-        <div className="formcol1">Title Full Name</div>
+        <div className="formcol1">Full Name</div>
         <div className="formcol2">
           <Input
             name="telephone"
             value={errorForm?.telephone?.value}
-            placeholder="Title Full Name"
+            placeholder="Full Name"
             onChange={onInputChange}
           />
         </div>

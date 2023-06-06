@@ -4,6 +4,7 @@ import React from "react";
 import { Timeline, Button, Select, DatePicker, Space} from "antd";
 // import { Timeline, Button, Select } from 'antd';
 import { SmileOutlined } from '@ant-design/icons';
+import ActivityTimecopy from "./ActivityTimecopy";
 
 
 const { RangePicker } = DatePicker;
@@ -52,56 +53,51 @@ const ActivityTime = () => {
     <div className="col-md-3  float-right "><button className="btn btn-info btn-sm "><i class="las la-plus"></i>Add New Task</button></div>
 </div>
 
-
-<div className="mb-4 fs-14 font-weight-bold">Overdue Activity</div>   
+<div><ActivityTimecopy /></div>
+<div className="mb-4 fs-14 font-weight-bold">Past Activity</div>   
 
   <Timeline
     items={[
-      {
-        color: 'green',
-        dot: <div><a href="#" class="btn btn-phone btn-sm btn-circle"> <i class="las la-phone fs-14"></i></a></div>,
-        children: <div className="mt-3"><div> Phone Call</div>
-        <p>Called Main Office (open call)</p>
-        <p>called Jeff Mobile (open call)</p>
-        </div>
-        ,
-      },
-      {
-        color: 'green',
-        dot: <div><a href="#" class="btn btn-email btn-sm btn-circle"> <i class="las la-envelope fs-14"></i></a></div>,
-        children: <div><div>Email</div>
-        <p>called Main Office</p>
-                </div>,
-      },
-      {
-        color: 'red',
-        dot: <div><a href="#" class="btn btn-whatsapp btn-sm btn-circle"> <i class="las la-mobile fs-14"></i></a></div>,
-        children: (
+    //   {
+    //     color: 'green',
+    //     dot: <div><a href="#" class="btn btn-phone btn-sm btn-circle"> <i class="las la-phone fs-14"></i></a></div>,
+    //     children: <div className="mt-3"><div> Phone Call</div>
+    //     <p>Called Main Office (open call)</p>
+    //     <p>called Jeff Mobile (open call)</p>
+    //     </div>
+    //     ,
+    //   },
+    //   {
+    //     color: 'green',
+    //     dot: <div><a href="#" class="btn btn-email btn-sm btn-circle"> <i class="las la-envelope fs-14"></i></a></div>,
+    //     children: <div><div>Email</div>
+    //     <p>called Main Office</p>
+    //             </div>,
+    //   },
+    //   {
+    //     color: 'red',
+    //     dot: <div><a href="#" class="btn btn-whatsapp btn-sm btn-circle"> <i class="las la-mobile fs-14"></i></a></div>,
+    //     children: (
          
-            <div><div>Whatsapp</div>
-        <p> Mike Office</p>
-                </div>
+    //         <div><div>Whatsapp</div>
+    //     <p> Mike Office</p>
+    //             </div>
          
-        ),
-      },
+    //     ),
+    //   },
      
 
-      {
-        dot: <div className="mb-4 pl-4 ml-4 mt-4 fs-14 font-weight-bold">Overdue Activity</div>   ,
-       
-      },
 
-
-      {
-        dot: <div><a href="#" class="btn btn-meet btn-sm btn-circle"> <i class="las la-handshake fs-14"></i></a></div>,
-        children: (
-          <>
-           <div><div>Meeting</div>
-        <p>Small engine repair near me</p>
-                </div>
-          </>
-        ),
-      },
+    //   {
+    //     dot: <div><a href="#" class="btn btn-meet btn-sm btn-circle"> <i class="las la-handshake fs-14"></i></a></div>,
+    //     children: (
+    //       <>
+    //        <div><div>Meeting</div>
+    //     <p>Small engine repair near me</p>
+    //             </div>
+    //       </>
+    //     ),
+    //   },
       {
         color: 'gray',
         dot: <div><a href="#" class="btn btn-act btn-sm btn-circle"> <i class="las la-phone fs-14"></i></a></div>,
