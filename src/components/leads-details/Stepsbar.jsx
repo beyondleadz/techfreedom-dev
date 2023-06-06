@@ -19,7 +19,7 @@ const Stepsbar=()=>{
         onChange={onChange}
         responsive={true}
         id="step"
-        className="site-navigation-steps"
+        className="site-navigation-steps small"
         items={[
           {
             status: 'subscriber',

@@ -69,7 +69,7 @@ const ActivityTime = () => {
     items={[
       {
         color: 'green',
-        dot: <div><a href="#" class="btn btn-phone btn-sm btn-circle"> <i class="las la-phone"></i></a></div>,
+        dot: <div><a href="#" class="btn btn-phone btn-sm btn-circle"> <i class="las la-phone fs-14"></i></a></div>,
         children: <div className="mt-3"><div> Phone Call</div>
         <p>Called Main Office (open call)</p>
         <p>called Jeff Mobile (open call)</p>
@@ -78,14 +78,14 @@ const ActivityTime = () => {
       },
       {
         color: 'green',
-        dot: <div><a href="#" class="btn btn-email btn-sm btn-circle"> <i class="las la-envelope"></i></a></div>,
+        dot: <div><a href="#" class="btn btn-email btn-sm btn-circle"> <i class="las la-envelope fs-14"></i></a></div>,
         children: <div><div>Email</div>
         <p>called Main Office</p>
                 </div>,
       },
       {
         color: 'red',
-        dot: <div><a href="#" class="btn btn-whatsapp btn-sm btn-circle"> <i class="las la-mobile"></i></a></div>,
+        dot: <div><a href="#" class="btn btn-whatsapp btn-sm btn-circle"> <i class="las la-mobile fs-14"></i></a></div>,
         children: (
          
             <div><div>Whatsapp</div>
@@ -95,7 +95,7 @@ const ActivityTime = () => {
         ),
       },
       {
-        dot: <div><a href="#" class="btn btn-meet btn-sm btn-circle"> <i class="las la-handshake"></i></a></div>,
+        dot: <div><a href="#" class="btn btn-meet btn-sm btn-circle"> <i class="las la-handshake fs-14"></i></a></div>,
         children: (
           <>
            <div><div>Meeting</div>
@@ -106,7 +106,7 @@ const ActivityTime = () => {
       },
       {
         color: 'gray',
-        dot: <div><a href="#" class="btn btn-act btn-sm btn-circle"> <i class="las la-phone"></i></a></div>,
+        dot: <div><a href="#" class="btn btn-act btn-sm btn-circle"> <i class="las la-phone fs-14"></i></a></div>,
         children: (
           <>
             <div><div>Follow up</div>
@@ -117,7 +117,7 @@ const ActivityTime = () => {
       },
       {
         color: 'gray',
-        dot: <div><a href="#" class="btn btn-app btn-sm btn-circle"> <i class="las la-mobile"></i></a></div>,
+        dot: <div><a href="#" class="btn btn-app btn-sm btn-circle"> <i class="las la-mobile fs-14"></i></a></div>,
         children: (
           <>
             <div><div>Chat</div>
@@ -128,7 +128,7 @@ const ActivityTime = () => {
       },
       {
         color: '#00CCFF',
-        dot: <div><a href="#" class="btn btn-document btn-sm btn-circle"> <i class="las la-phone"></i></a></div>,
+        dot: <div><a href="#" class="btn btn-document btn-sm btn-circle"> <i class="las la-phone fs-14"></i></a></div>,
         children: <div><div>Review received</div>
         <p>Feedback received (Open Review)</p>
                 </div>,

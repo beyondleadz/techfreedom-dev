@@ -7508,3 +7508,35 @@ color: orange;
   height: 32px;
   padding: 0 11px;
 }
+.ant-steps .ant-steps-item-icon {display: none;}
+.ant-steps.ant-steps-navigation {
+  padding-top: 0;}
+  .ant-steps-item-title{transition: color 0.3s;
+    font-size: 12px;
+    color: #000;}
+    .ant-steps .ant-steps-item-title {
+      position: relative;
+      display: inline-block;
+      padding-inline-end: 16px;
+      color: rgba(0, 0, 0, 0.88);
+      font-size: 12px;
+      line-height: 22px;
+      padding: 0 30px;  }
+  
+      .ant-steps.ant-steps-navigation .ant-steps-item::before {
+              /* height: 2px; */
+        background-color:#f9f7fb;}     
+        .ant-steps {
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+          color: rgba(0, 0, 0, 0.88);
+          font-size: 0;
+          height: 30px;
+          /* line-height: 10px; */
+          list-style: none;
+          background-color:#f9f7fb;
+                    display: flex;
+          width: 90%;
+          text-align: initial;
+      }
