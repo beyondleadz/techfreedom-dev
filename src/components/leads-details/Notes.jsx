@@ -19,7 +19,7 @@ const Notes = ()=>{
       const { TextArea } = Input;
       const onInputChange = () => {};
     return(
-        <div className="mt-3"><p>Create or Edit a Client Note</p>
+        <div className="mt-3"><p>Add/Edit Note</p>
       
       
       <div className="form">

@@ -47,7 +47,7 @@ const Tasks = () => {
   };
   return (
     <div className="mt-3">
-      <p>Create or Edit a Task</p>
+      <p>Add/Edit Task</p>
       <div className="errorformcontainer">
         <div className="form">
           <div className="formcol1">Lead Status</div>
