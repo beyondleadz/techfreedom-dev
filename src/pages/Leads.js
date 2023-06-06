@@ -99,10 +99,10 @@ const Leads = () => {
     
     </div>
     <div className="col-md-12">
-         <div className=" row mt-3"> <span className="col-md-2 ">Designation</span>  <span className="col namedc"> General Manager</span> </div>
-    <div className=" row mt-2">  <span className="col-md-2 ">Phone </span>   <span className="col namedc"> 9743899246</span>  </div>
-        <div className="row  mt-2"> <span className="col-md-2 "> Email </span><span className="col namedc"> J.collines@company.info</span> </div>
-        <div className="row mt-2"> <span className="col-md-2">Address</span> <span className="col namedc">abc smith street, India</span>  </div>
+         <div className=" row mt-3"> <span className="col-md-2 fs-14 ">Designation</span>  <span className="col namedc"> General Manager</span> </div>
+    <div className=" row mt-2">  <span className="col-md-2 fs-14">Phone </span>   <span className="col namedc"> 9743899246</span>  </div>
+        <div className="row  mt-2"> <span className="col-md-2 fs-14"> Email </span><span className="col namedc"> J.collines@company.info</span> </div>
+        <div className="row mt-2"> <span className="col-md-2 fs-14">Address</span> <span className="col namedc">abc smith street, India</span>  </div>
     </div>
    
         

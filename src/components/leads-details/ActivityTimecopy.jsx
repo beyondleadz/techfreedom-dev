@@ -7,7 +7,7 @@ import { SmileOutlined } from '@ant-design/icons';
 
 
 const { RangePicker } = DatePicker;
-const ActivityTime = () => {
+const ActivityTimecopy = () => {
     return(
 <>
 
@@ -41,12 +41,22 @@ const ActivityTime = () => {
                 value: "meeting",
                 label: "Meeting",
               },
-             
+              {
+                value: "followup",
+                label: "Follow up ",
+              },
+              {
+                value: "chat",
+                label: "Chat",
+              },
+              {
+                value: "whatsapp",
+                label: "Whatsapp",
+              },
             ]}
           />
         </div>
         </div></div>
-        
     <div className="col-md-5"><RangePicker /></div>
     <div className="col-md-1 "><button className="btn btn-info btn-sm ">Submit</button></div>
     <div className="col-md-3  float-right "><button className="btn btn-info btn-sm "><i class="las la-plus"></i>Add New Task</button></div>
@@ -85,13 +95,6 @@ const ActivityTime = () => {
         ),
       },
      
-
-      {
-        dot: <div className="mb-4 pl-4 ml-4 mt-4 fs-14 font-weight-bold">Overdue Activity</div>   ,
-       
-      },
-
-
       {
         dot: <div><a href="#" class="btn btn-meet btn-sm btn-circle"> <i class="las la-handshake fs-14"></i></a></div>,
         children: (
@@ -136,4 +139,4 @@ const ActivityTime = () => {
   </>
 )}
 
-export default ActivityTime;
+export default ActivityTimecopy;
