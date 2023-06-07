@@ -88,7 +88,7 @@ const Tasks = () => {
         </div>
         <div className="form">
           {console.log(errorForm, "skljfsljfklsd")}
-          <div className="formcol1">Date and time to add tasks</div>
+          <div className="formcol1">Date and Time</div>
           <div className="formcol2">
           <RangePicker
       showTime={{ format: 'HH:mm' }}

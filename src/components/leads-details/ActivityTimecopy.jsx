@@ -41,7 +41,7 @@ const ActivityTimecopy = () => {
       },
       {
         color: 'red',
-        dot: <div><a href="#" class="btn btn-whatsapp btn-sm btn-circle"> <i class="las la-mobile fs-14"></i></a></div>,
+        dot: <div><a href="#" class="btn btn-whatsapp btn-sm btn-circle"> <i class="lab la-whatsapp fs-14"></i></a></div>,
         children: (
          
             <div><div className="col-md-12">

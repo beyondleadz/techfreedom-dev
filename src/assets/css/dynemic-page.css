@@ -7481,7 +7481,7 @@ color: orange;
     padding: 10px 16px;
     vertical-align: middle;}
 
- .ant-steps {
+    #leads .ant-steps {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -7492,35 +7492,60 @@ color: orange;
     font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji';
     display: flex;
     width: 90%;
-    text-align: initial;
+    text-align: initial; height: 28px;
+    margin-bottom: 15px;
 }
-.ant-steps.ant-steps-navigation .ant-steps-item::after {
+#leads .ant-steps.ant-steps-navigation .ant-steps-item::after {
   position: absolute;
   top: calc(50% - 5px);
   inset-inline-start: 100%;
   display: inline-block;
-  width: 22px;
-  height: 22px;
+  width: 25px; margin-top: 5px;
+  height: 25px;
   border-top: 5px solid #fdc401;
   border-bottom: none;
   border-inline-start: none;
   border-inline-end: 5px solid #fdc401;
   transform: translateY(-50%) translateX(-50%) rotate(45deg);
-  z-index: 1;
+  z-index: 1; background-color: #f9f7fb;
   content: "";
 }
-.ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
+#leads .ant-steps.ant-steps-navigation .ant-steps-item::before {
+    position: absolute;
+    bottom: 0;
+    inset-inline-start: 50%;
+    display: inline-block;
+    width: 0;
+    height: 2px;
+    background-color: transparent;
+    transition: width 0.3s,inset-inline-start 0.3s;
+    transition-timing-function: ease-out;
+    content: "";
+}
+#leads .ant-steps-item {
+  /* padding-inline-start: 16px;
+  padding-inline-end: 16px; */
+  white-space: nowrap; 
+  background-color: #f9f7fb; border-top: 1px solid #fdc401; border-bottom: 1px solid #fdc401;
+}
+#leads .ant-steps.ant-steps-navigation .ant-steps-item-container .ant-steps-item-content {
+  max-width: auto; width: auto;
+}
+#leads .ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
   width: 140px;
   height: 32px;
   padding: 0 11px;
 }
-.ant-steps .ant-steps-item-icon {display: none;}
-.ant-steps.ant-steps-navigation {
-  padding-top: 0;}
-  .ant-steps-item-title{transition: color 0.3s;
+#leads .ant-steps .ant-steps-item-icon {display: none;}
+#leads .ant-steps.ant-steps-navigation {
+  padding-top: 0; height: 30px;
+  margin-bottom: 15px; 
+  border-radius: 10px;
+}
+#leads  .ant-steps-item-title{transition: color 0.3s;
     font-size: 12px;
     color: #000;}
-    .ant-steps .ant-steps-item-title {
+    #leads   .ant-steps .ant-steps-item-title {
       position: relative;
       display: inline-block;
       padding-inline-end: 16px;
@@ -7529,10 +7554,10 @@ color: orange;
       line-height: 22px;
       padding: 0 30px;  }
   
-      .ant-steps.ant-steps-navigation .ant-steps-item::before {
+      #leads .ant-steps.ant-steps-navigation .ant-steps-item::before {
               /* height: 2px; */
         background-color:#f9f7fb;}     
-        .ant-steps {
+        #leads  .ant-steps {
           box-sizing: border-box;
           margin: 0;
           padding: 0;
