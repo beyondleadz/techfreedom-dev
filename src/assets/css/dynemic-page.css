@@ -7548,7 +7548,7 @@ color: orange;
     #leads   .ant-steps .ant-steps-item-title {
       position: relative;
       display: inline-block;
-      padding-inline-end: 16px;
+      /* padding-inline-end: 16px; */
       color: rgba(0, 0, 0, 0.88);
       font-size: 12px;
       line-height: 22px;
