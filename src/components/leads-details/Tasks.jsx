@@ -182,10 +182,10 @@ const Tasks = () => {
         <div className="mt-3">
           <span className="mt-3 mr-3">
             {" "}
-            <Button type="primary">Cancel</Button>
+            <Button className="btn-info" type="primary">Cancel</Button>
           </span>
           <span className="mt-3 mr-3">
-            <Button type="primary">Save</Button>
+            <Button className="btn-info" type="primary">Save</Button>
           </span>
         </div>
       </div>

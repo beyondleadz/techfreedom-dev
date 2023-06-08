@@ -219,8 +219,8 @@ const Info = () => {
         </div>
       </div>
       <div className="mt-3">
-              <span className="mt-3 mr-3"> <Button type="primary">Cancel</Button></span>
-              <span className="mt-3 mr-3"><Button type="primary">Save</Button></span>
+              <span className="mt-3 mr-3"> <Button className="btn-info" type="primary">Cancel</Button></span>
+              <span className="mt-3 mr-3"><Button className="btn-info" type="primary">Save</Button></span>
               </div>
     </div>
   );
