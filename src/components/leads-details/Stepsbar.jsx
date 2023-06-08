@@ -5,51 +5,56 @@ import { Steps } from 'antd';
 
 const Stepsbar=()=>{
 
-    const [current, setCurrent] = useState(0);
+    const [current,] = useState(0);
 
-    const onChange = (value) => {
-      console.log('onChange:', value);
-      setCurrent(value);
+    const onChange = () => {
+    //   console.log('onChange:', value);
+    //   setCurrent(value);
     };
   
     return(<Steps
         type="navigation"
         // size="small"
-        current={current}
+        // current={current}
         onChange={onChange}
         responsive={false}
         id="step"
-        className="site-navigation-steps"
+        className="site-navigation-steps small"
         items={[
           {
-            status: 'finish',
-            title: 'Lead',
+            status: 'subscriber',
+            title: <span className="text-white"><i class=" btn text-white las la-check fs-23"></i></span>,
+                  
           },
           {
             status: 'finish',
-            title: 'Lead Info',
+            title: <span className="text-white">Lead</span>,
           },
           {
             status: 'process',
-            title: 'Activity time',
+            title: <span className="text-white">Martting qualified lead</span>,
           },
           {
             status: 'process',
-            title: 'Lead Details',
+            title: <span className="">Sales qualified lead</span>,
           },
           {
             status: 'process',
-            title: 'Add Notes',
+            title: <span className="">Opportunity</span>,
           },
           {
             status: 'process',
-            title: 'Add Tasks',
+            title: <span className="">Customer</span>,
           },
           {
             status: 'wait',
-            title: 'wait',
+            title: <span className="">Other</span>,
             // disabled: true,
           },
+          // {
+          //   status: 'wait',
+          //   title: ' Mark stage as Done',
+          //           },
         ]}
       />
     )

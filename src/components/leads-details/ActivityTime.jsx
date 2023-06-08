@@ -1,80 +1,151 @@
 import React from "react";
 
 
-
-import { Timeline } from 'antd';
+import { Timeline, Button, Select, DatePicker, Space} from "antd";
+// import { Timeline, Button, Select } from 'antd';
 import { SmileOutlined } from '@ant-design/icons';
-const ActivityTime = () => (
+import ActivityTimecopy from "./ActivityTimecopy";
+
+
+const { RangePicker } = DatePicker;
+const ActivityTime = () => {
+    return(
+<>
+
+<div className="row mb-4 pb-4 pt-4">
+    <div className="col-sm-2 mr-4 "><div className="form">
+        {/* <div className="formcol1"></div> */}
+        <div className="formcol2 ">
+          <Select 
+            showSearch
+            placeholder="Activities"
+            optionFilterProp="children"
+            // onChange={onChange}
+            // onSearch={onSearch}
+            filterOption={(input, option) =>
+              (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
+            }
+            options={[
+                {
+                    value: "all activities",
+                    label: "All Activities",
+                  },
+                  {
+                value: "call",
+                label: "Call",
+              },
+              {
+                value: "email",
+                label: "Email",
+              },
+              {
+                value: "meeting",
+                label: "Meeting",
+              },
+             
+            ]}
+          />
+        </div>
+        </div></div>
+        
+    <div className="col-md-5"><RangePicker /></div>
+    <div className="col-md-1 "><button className="btn btn-info btn-sm ">Submit</button></div>
+    <div className="col-md-3  float-right "><button className="btn btn-info btn-sm "><i class="las la-plus"></i>Add New Task</button></div>
+</div>
+
+<div><ActivityTimecopy /></div>
+<div className="mb-4 pb-2 fs-14 font-weight-bold">Past Activity</div>   
+
   <Timeline
     items={[
-      {
-        color: 'green',
-        dot: <div><a href="#" class="btn btn-dark btn-sm btn-circle"> <i class="las la-globe"></i></a></div>,
-        children: <div className="mt-3"><div>Website visit</div>
-        <p>http://beyondleads/leads</p>
-        <p>http://beyondleads/companyDetails</p>
-        </div>
-        ,
-      },
-      {
-        color: 'green',
-        dot: <div><a href="#" class="btn btn-success btn-sm btn-circle"> <i class="las la-phone"></i></a></div>,
-        children: <div><div>Phone Call</div>
-        <p>called Main Office (open call)</p>
-                </div>,
-      },
-      {
-        color: 'red',
-        dot: <div><a href="#" class="btn btn-danger btn-sm btn-circle"> <i class="las la-phone"></i></a></div>,
-        children: (
+    //   {
+    //     color: 'green',
+    //     dot: <div><a href="#" class="btn btn-phone btn-sm btn-circle"> <i class="las la-phone fs-14"></i></a></div>,
+    //     children: <div className="mt-3"><div> Phone Call</div>
+    //     <p>Called Main Office (open call)</p>
+    //     <p>called Jeff Mobile (open call)</p>
+    //     </div>
+    //     ,
+    //   },
+    //   {
+    //     color: 'green',
+    //     dot: <div><a href="#" class="btn btn-email btn-sm btn-circle"> <i class="las la-envelope fs-14"></i></a></div>,
+    //     children: <div><div>Email</div>
+    //     <p>called Main Office</p>
+    //             </div>,
+    //   },
+    //   {
+    //     color: 'red',
+    //     dot: <div><a href="#" class="btn btn-whatsapp btn-sm btn-circle"> <i class="las la-mobile fs-14"></i></a></div>,
+    //     children: (
          
-            <div><div>Phone Call</div>
-        <p>called Mike Office (open call)</p>
-                </div>
+    //         <div><div>Whatsapp</div>
+    //     <p> Mike Office</p>
+    //             </div>
          
-        ),
-      },
+    //     ),
+    //   },
+     
+
+
+    //   {
+    //     dot: <div><a href="#" class="btn btn-meet btn-sm btn-circle"> <i class="las la-handshake fs-14"></i></a></div>,
+    //     children: (
+    //       <>
+    //        <div><div>Meeting</div>
+    //     <p>Small engine repair near me</p>
+    //             </div>
+    //       </>
+    //     ),
+    //   },
       {
-        dot: <div><a href="#" class="btn btn-primary btn-sm btn-circle"> <i class="las la-phone"></i></a></div>,
+        color: 'gray',
+        dot: <div><a href="#" class="btn btn-act btn-sm btn-circle"> <i class="las la-phone fs-14"></i></a></div>,
         children: (
           <>
-           <div><div>Completed Web Form</div>
-        <p>Small engine repair near me</p>
+            <div> <div className="col-md-12">
+         <div id="steps" className=" row mt-3"> <div className="col-md-8 text-align-left fs-14 font-weight-normal ">Follow up<h6 className="">Called Jeff Mobile (open call) </h6></div>
+           <div className="col-sm-4 text-align-right"><a href="#" class="btn fs-20 "> <i class="las la-edit "></i></a> <a href="#" class="btn fs-20 "> <i class="las la-trash"></i></a>
+           <div className="fs-12 mt-1">2023-06-26 18:43</div>
+            </div> 
+           
+           </div>        
+    </div>
                 </div>
           </>
         ),
       },
       {
         color: 'gray',
-        dot: <div><a href="#" class="btn btn-info btn-sm btn-circle"> <i class="las la-phone"></i></a></div>,
+        dot: <div><a href="#" class="btn btn-app btn-sm btn-circle"> <i class="las la-mobile fs-14"></i></a></div>,
         children: (
           <>
-            <div><div>Phone Call</div>
-        <p>called Jeff Mobile (open call)</p>
-                </div>
-          </>
-        ),
-      },
-      {
-        color: 'gray',
-        dot: <div><a href="#" class="btn btn-dark btn-sm btn-circle"> <i class="las la-phone"></i></a></div>,
-        children: (
-          <>
-            <div><div>Sent Email</div>
-        <p>Request Feedback</p>
+            <div><div className="col-md-12">
+         <div id="steps" className=" row mt-3"> <div className="col-md-8 text-align-left fs-14 font-weight-normal ">Chat<h6>Request Feedback </h6></div>
+           <div className="col-sm-4 text-align-right"><a href="#" class="btn fs-20 "> <i class="las la-edit "></i></a> <a href="#" class="btn fs-20 "> <i class="las la-trash"></i></a>
+           <div className="fs-12 mt-1">2023-06-26 18:43</div>
+            </div>            
+           </div>        
+    </div>
                 </div>
           </>
         ),
       },
       {
         color: '#00CCFF',
-        dot: <div><a href="#" class="btn btn-success btn-sm btn-circle"> <i class="las la-phone"></i></a></div>,
-        children: <div><div>Review received</div>
-        <p>Feedback received (Open Review)</p>
+        dot: <div><a href="#" class="btn btn-document btn-sm btn-circle"> <i class="las la-phone fs-14"></i></a></div>,
+        children: <div><div className="col-md-12">
+        <div id="steps" className=" row mt-3"> <div className="col-md-8 text-align-left fs-14 font-weight-normal ">Review received<h6>Feedback received (Open Review)</h6></div>
+          <div className="col-sm-4 text-align-right"><a href="#" class="btn fs-20 "> <i class="las la-edit "></i></a> <a href="#" class="btn fs-20 "> <i class="las la-trash"></i></a>
+          <div className="fs-12 mt-1">2023-06-26 18:43</div>
+           </div>            
+          </div>        
+   </div>
                 </div>,
       },
     ]}
   />
-);
+  </>
+)}
 
 export default ActivityTime;

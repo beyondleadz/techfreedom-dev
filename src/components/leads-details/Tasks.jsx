@@ -47,7 +47,7 @@ const Tasks = () => {
   };
   return (
     <div className="mt-3">
-      <p>Create or Edit a Task</p>
+      <p>Add/Edit Task</p>
       <div className="errorformcontainer">
         <div className="form">
           <div className="formcol1">Lead Status</div>
@@ -88,7 +88,7 @@ const Tasks = () => {
         </div>
         <div className="form">
           {console.log(errorForm, "skljfsljfklsd")}
-          <div className="formcol1">Date and time to add tasks</div>
+          <div className="formcol1">Date and Time</div>
           <div className="formcol2">
           <RangePicker
       showTime={{ format: 'HH:mm' }}
@@ -182,10 +182,10 @@ const Tasks = () => {
         <div className="mt-3">
           <span className="mt-3 mr-3">
             {" "}
-            <Button type="primary">Cancel</Button>
+            <Button className="btn-info" type="primary">Cancel</Button>
           </span>
           <span className="mt-3 mr-3">
-            <Button type="primary">Save</Button>
+            <Button className="btn-info" type="primary">Save</Button>
           </span>
         </div>
       </div>

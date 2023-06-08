@@ -29,7 +29,7 @@ const Footer = () => {
   }
   return (
     <>
-      <footer className="w3l-footer-29-main">
+      <footer className="w3l-footer-29-main mt-4">
         <div className="footer-29 py-5">
           <div className="container py-lg-4">
             <div className="row footer-top-29">

@@ -19,7 +19,7 @@ const Notes = ()=>{
       const { TextArea } = Input;
       const onInputChange = () => {};
     return(
-        <div className="mt-3"><p>Create or Edit a Client Note</p>
+        <div className="mt-3"><p>Add/Edit Note</p>
       
       
       <div className="form">
@@ -78,8 +78,8 @@ const Notes = ()=>{
         </div>
       </div>
       <div className="mt-3">
-              <span className="mt-3 mr-3"> <Button type="primary">Cancel</Button></span>
-              <span className="mt-3 mr-3"><Button type="primary">Save</Button></span>
+              <span className="mt-3 mr-3"> <Button className="btn-info" type="primary">Cancel</Button></span>
+              <span className="mt-3 mr-3"><Button className="btn-info" type="primary">Save</Button></span>
               </div>
         </div>
       

@@ -33,12 +33,12 @@ const Info = () => {
     <div className="errorformcontainer mt-3">
       <div className="form">
         {console.log(errorForm, "skljfsljfklsd")}
-        <div className="formcol1">Title Full Name</div>
+        <div className="formcol1">Full Name</div>
         <div className="formcol2">
           <Input
             name="telephone"
             value={errorForm?.telephone?.value}
-            placeholder="Title Full Name"
+            placeholder="Full Name"
             onChange={onInputChange}
           />
         </div>
@@ -219,8 +219,8 @@ const Info = () => {
         </div>
       </div>
       <div className="mt-3">
-              <span className="mt-3 mr-3"> <Button type="primary">Cancel</Button></span>
-              <span className="mt-3 mr-3"><Button type="primary">Save</Button></span>
+              <span className="mt-3 mr-3"> <Button className="btn-info" type="primary">Cancel</Button></span>
+              <span className="mt-3 mr-3"><Button className="btn-info" type="primary">Save</Button></span>
               </div>
     </div>
   );
