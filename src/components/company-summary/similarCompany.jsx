@@ -168,7 +168,7 @@ const SimilarCompany = () => {
           </div>
           <div className="similar-desc">
             <div>
-            <a onClick={() => getDetails(`/company-summary/${similarCompanyList[i]?.id}`)} className="font-weight-bold fs-14 text-dark" title="">
+            <a onClick={() => getDetails(`${similarCompanyList[i]?.id}`)} className="font-weight-bold fs-14 text-dark" title="">
                 {similarCompanyList[i]?.name}
               </a>
             </div>

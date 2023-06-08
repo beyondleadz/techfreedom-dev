@@ -45,7 +45,7 @@ const initialState = {
   postRelavantExecutive: {},
   getRelavantExecutive: [],
   errObj: {},
-  selectedExecutive: [],
+  selectedColleague: [],
   downloadCompany: "",
   downloadExecutive: "",
   selectedDepartment: "",
@@ -82,7 +82,7 @@ const ExecutiveDetailsReducer = (state = initialState, action) => {
     case GET_RELAVANT_EXECUTIVE_TAG:
       return { ...state, getRelavantExecutive: payload };
     case EXECUTIVE_SELECTED_EXECUTIVE:
-      return { ...state, selectedExecutive: payload };
+      return { ...state, selectedColleague: payload };
     case EXECUTIVE_SELECTED_DEPARTMENT:
       return { ...state, selectedDepartment: payload };
     case EXECUTIVE_GET_EXECUTIVE_LEAD:

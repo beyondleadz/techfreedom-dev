@@ -8,7 +8,9 @@ import {
   submitLead,
   resetLead,
   storeSelectedExecutive,
-  getExecutiveLead
+  getExecutiveLead,  
+  getEmployeeViewableStatusUpdate,
+  getEmployeeList
 } from "../../actionCreator/companyDetailsActionCreator";
 import popupImg from "../../assets/images/subscribe-now-prompt-img.jpg";
 import Loader from "../loader";
@@ -24,6 +26,15 @@ const KeyExecutives = () => {
   const userAccountInfo = useSelector(
     (state) => state.CommonReducer.accountInfo
   );
+
+  const selectedDepartment = useSelector(
+    (state) => state.companyDetailsReducer.selectedDepartment
+  );
+
+  const getLeadsData=useSelector(
+    (state) => state.companyDetailsReducer.getExecutiveLead
+  );
+
   const [employeeData, setEmployeeData] = useState([]);
   const [openModal, setOpenModal] = useState({
     info: null,
@@ -41,6 +52,29 @@ const KeyExecutives = () => {
     }
   }, [userAccountInfo]);
 
+  const updateEmailStatus = (showEmail,row) => {
+    setShowEmail({ ...showEmail, [row.id]: true });
+    //call api to update status
+    if(!row?.isdownloadedEmail){
+    dispatch(getEmployeeViewableStatusUpdate('Email',row,selectedDepartment));    
+    }
+    
+  };
+  const updatePhoneStatus = (showPhone,row) => {
+    setShowPhone({ ...showPhone, [row.id]: true });
+    if(!row?.isdownloadedMobile){
+    dispatch(getEmployeeViewableStatusUpdate('Mobile',row,selectedDepartment));
+    }
+  }
+
+  const isLeadsSubmitted=(selEmployeeId)=>{
+    const filteredData = getLeadsData.filter( item => item.employeeId == selEmployeeId.id );
+    if(filteredData?.length > 0){
+      return true;
+    }else{
+      return false;
+    }
+  }
   const columns = [
     // {
     //   title: "ID",
@@ -64,8 +98,8 @@ const KeyExecutives = () => {
           //  <Tooltip title={text}>
           <>
             <h4
-              className=" btn iconemail emails-open"
-              onClick={() => setShowEmail({ ...showEmail, [row.id]: true })}
+              className={row?.isdownloadedEmail?" btn iconemail emails-open":" btn iconemail emails"}
+              onClick={()=>updateEmailStatus(showEmail,row)}
             ></h4>
             {showEmail[row.id] && (
               <>
@@ -101,8 +135,8 @@ const KeyExecutives = () => {
             <span
               // style={{ height: "auto" }}
               // className="keyexebtn d-none d-sm-inline-block small btn btn-primary text-black"
-              className=" btn mobile-open"
-              onClick={() => setShowPhone({ ...showPhone, [row.id]: true })}
+              className={row?.isdownloadedMobile?" btn mobile-open":" btn mobile"}
+              onClick={()=>updatePhoneStatus(showPhone,row)}
             >
               {/* <i class="las la-mobile fs-12  pr-1"></i> */}
               {/* VIEW */}
@@ -215,10 +249,16 @@ const KeyExecutives = () => {
       phoneNo: record.phoneNo,
       bio: record.bio,
       description: record.description,
-      userId:id
+      userId:id,
+      employeeId:record.id
     };
+    let isLeadSubmit=isLeadsSubmitted(record);
+   // console.log(isLeadSubmit,'isLeadSubmit')
+    if(!isLeadSubmit){
     dispatch(submitLead(leadPayload));
     setAddToLeads(record.id);
+    }
+
   };
 
   const resetLeadsData = () => {

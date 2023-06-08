@@ -7,7 +7,8 @@ import { getToken, getUserInfo } from "../../utils/utils";
 import {
   submitLead,
   resetLead,
-  getExecutiveLead
+  getExecutiveLead,
+  storeSelectedColleagues
 } from "../../actionCreator/executiveDetailsActionCreator";
 import popupImg from "../../assets/images/free-user-login-prompt.jpg.jpeg";
 import TrialModal from "../../common/TrialModal";
@@ -238,11 +239,15 @@ const KeyExecutives = () => {
         "selectedRows: ",
         selectedRows
       );
+
+      dispatch(storeSelectedColleagues(selectedRows))
+
     },
     getCheckboxProps: (record) => ({
       disabled: record.name === "Disabled User", // Column configuration not to be checked
       name: record.name,
-    }),
+    })
+
   };
 
   const onPageChange = (page, pageSize) => {

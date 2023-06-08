@@ -28,7 +28,7 @@ const CompanySummary = () => {
     dispatch(getDepartmentList());
     dispatch(getCompanyDetails(id));
     dispatch(getEmployeeList(id));
-  }, []);
+  }, [id]);
 
   useMemo(() => {
     console.log(companyDetails, "companyDetailscompanyDetails");

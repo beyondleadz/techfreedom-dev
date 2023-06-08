@@ -27,7 +27,9 @@ import {
   DOWNLOAD_EXECUTIVE_ERROR,
   SELECTED_DEPARTMENT,
   GET_EXECUTIVE_LEAD,
-  GET_EXECUTIVE_LEAD_ERROR  
+  GET_EXECUTIVE_LEAD_ERROR,
+  EMPLOYEE_VIEWABLE_STATUS,
+  EMPLOYEE_VIEWABLE_STATUS_ERROR  
 } from "../actionType/companyDetailsType";
 import {
   getAuthMethod,
@@ -404,6 +406,32 @@ export const getExecutiveLead = (id) => (dispatch) => {
           {
             [errEnum.GET_EXECUTIVE_LEAD_ERROR]: err.response.data[ErrKey],
           } || "Error Occured",
+      });
+    });
+};
+
+
+export const getEmployeeViewableStatusUpdate = (type, payload,department) => (dispatch) => {
+  let url = `${employeeListUrl}/${type}/${payload.id}`;
+  return getAuthMethod(url)
+    .then((res) => {
+      dispatch({
+        type: EMPLOYEE_VIEWABLE_STATUS,
+        payload: res.data,
+      });
+      if(department){
+        dispatch(getEmployeeList(payload.company.id,department));
+      }else{
+        dispatch(getEmployeeList(payload.company.id));
+      }
+      
+    })
+    .catch((err) => {
+      dispatch({
+        type: EMPLOYEE_VIEWABLE_STATUS_ERROR,
+        payload:
+          { [errEnum.EMPLOYEE_VIEWABLE_STATUS_ERROR]: err.response.data[ErrKey] } ||
+          "Error Occured",
       });
     });
 };

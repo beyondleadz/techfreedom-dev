@@ -326,7 +326,7 @@ export const resetExecutiveTag = (payload) => {
   return { type: EXECUTIVE_SINGLE_COMPANY_TAG, payload: [] };
 };
 
-export const storeSelectedExecutive = (selectedExecutive) => ({
+export const storeSelectedColleagues = (selectedExecutive) => ({
   type: EXECUTIVE_SELECTED_EXECUTIVE,
   payload: selectedExecutive,
 });
@@ -432,3 +432,5 @@ export const postRelavantExecutive = (payload) => (dispatch) => {
 export const resetPostRelavantExecutive = (payload) => {
   return { type: POST_RELAVANT_EXECUTIVE_TAG, payload: [] };
 };
+
+
