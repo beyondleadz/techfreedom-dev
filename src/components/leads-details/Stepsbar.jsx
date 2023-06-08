@@ -23,7 +23,7 @@ const Stepsbar=()=>{
         items={[
           {
             status: 'subscriber',
-            title: <span className='text-white '><i class=" font-weight-bold btn text-white fa fa-check"></i></span>,
+            title: <span className='text-white '><i class=" font-weight-bold btn text-white las la-check fs-23"></i></span>,
                   
           },
           {
