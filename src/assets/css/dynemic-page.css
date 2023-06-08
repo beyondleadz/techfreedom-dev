@@ -7507,7 +7507,7 @@ color: orange;
   border-inline-start: none;
   border-inline-end: 5px solid #fff;
   transform: translateY(-50%) translateX(-50%) rotate(45deg);
-  z-index: 1; background-color: #f9f7fb;
+  z-index: 1; background-color: #ebe9ed;
   content: "";
 }
 #leads .ant-steps.ant-steps-navigation .ant-steps-item::before {
@@ -7526,8 +7526,8 @@ color: orange;
   /* padding-inline-start: 16px;
   padding-inline-end: 16px; */
   white-space: nowrap; 
-  background-color: #f9f7fb; 
-  /* border-top: 1px solid #fdc401; border-bottom: 1px solid #fdc401; */
+  background-color: #ebe9ed; 
+  /* border-top: 1px solid #000; border-bottom: 1px solid #000;  */
 }
 #leads .ant-steps.ant-steps-navigation .ant-steps-item-container .ant-steps-item-content {
   max-width: auto; width: auto;
@@ -7552,7 +7552,7 @@ color: orange;
       /* padding-inline-end: 16px; */
       color: rgba(0, 0, 0, 0.88);
       font-size: 12px;
-      line-height: 22px;
+      line-height: 27px;
       padding: 0 30px;  }
   
       #leads .ant-steps.ant-steps-navigation .ant-steps-item::before {
