@@ -79,7 +79,7 @@ const Leads = () => {
 <div className="row headername"><h3>Leads</h3></div>
 <div className="row col-md-12 mt-3">
 <div className="col-md-10"><Stepsbar/></div>
-<div className="col"><button class="btn btn-outline-info fs-12 btn-sm ">Mark Step as Done</button></div>
+<div className="col"><button class="btn btn-outline-primary fs-12 btn-sm ">Mark Step as Done</button></div>
 </div> 
 </div>
 </div>  
@@ -91,7 +91,7 @@ const Leads = () => {
 <div className="card shadow col-md-12">
           <div className="row">
             <div className="col-md-4 col-custom">
-            <div className="profilePic"><i class="btn btn-primary btn-circle btn-lg"> JC</i>
+            <div className="profilePic"><i class="btn btn-dark btn-circle btn-lg"> JC</i>
     <h3>John collines</h3>
     <div className="name mt-1">October14th, 2018 at 2:30 P.M.</div>
     
