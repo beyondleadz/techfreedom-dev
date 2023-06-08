@@ -21,13 +21,17 @@ import {
   resetPostRelavantCompany,
   storeSelectedDepartment,
   submitErrorForm,
-  createCompanyTag,
   emptyErrorObj,
   downloadCompany,
   getCompanyTag,
   resetCompanyTag,
   downloadExecutiveExl,
 } from "../../actionCreator/companyDetailsActionCreator";
+
+import {
+  // downloadExecutiveList,
+  createGroupExecutiveTag,
+} from "../../actionCreator/executiveListingActionCreater";
 
 const SummaryContent = () => {
   const dispatch = useDispatch();
@@ -78,7 +82,7 @@ const SummaryContent = () => {
   const errObj = useSelector((state) => state.companyDetailsReducer.errObj);
 
 
-  const [taggedCompany, setTaggedCompany] = useState(false);
+  const [taggedExecutive, setTaggedExecutive] = useState(false);
   useEffect(() => {
     if (Object.keys(errObj).length) {
       setIsApiFailed(true);
@@ -96,18 +100,27 @@ const SummaryContent = () => {
     }
   }, [companyDetails, userAccountInfo]);
 
+  // useEffect(() => {
+  //   console.log(
+  //     fetchCompanyTag.length,
+  //     Object.keys(sigleCompanyTag).length,
+  //     "chk len"
+  //   );
+  //   if (fetchCompanyTag.length || Object.keys(sigleCompanyTag).length) {
+  //     setTaggedExecutive(true);
+  //   } else {
+  //     setTaggedExecutive(false);
+  //   }
+  // }, [fetchCompanyTag, sigleCompanyTag]);
+
   useEffect(() => {
-    console.log(
-      fetchCompanyTag.length,
-      Object.keys(sigleCompanyTag).length,
-      "chk len"
-    );
-    if (fetchCompanyTag.length || Object.keys(sigleCompanyTag).length) {
-      setTaggedCompany(true);
-    } else {
-      setTaggedCompany(false);
-    }
-  }, [fetchCompanyTag, sigleCompanyTag]);
+    if (selectedEmployeeList?.length > 0) {
+          setTaggedExecutive(false);
+        } else {
+          setTaggedExecutive(true);
+        }
+       
+  },[selectedEmployeeList]);
 
   useMemo(() => {
     dispatch(resetPostRelavantCompany);
@@ -270,7 +283,7 @@ const SummaryContent = () => {
     navigate("/signup");
   };
 
-  const tagCompany = () => {
+  const tagExecutive = () => {
     const isLoggedIn = checkLoginStatus();
     if (isLoggedIn) {
       setOpenTagModal(true);
@@ -308,7 +321,7 @@ const SummaryContent = () => {
   };
 
 
-  const onConfrim = () => {
+  const onConfrim = () => { //selectedEmployeeList
     if (!tagValues.tagname) {
       setTagValues({
         ...tagValues,
@@ -317,12 +330,18 @@ const SummaryContent = () => {
     } else {
       //console.log(companyDetails, "companyDetailscompanyDetails");
       const { id } = getUserInfo();
-      const payload = {
-        company: companyDetails,
-        text: tagValues.tagname,
-        userId: id,
-      };
-      dispatch(createCompanyTag(payload));
+      let payload = [];
+      for (let i = 0; i < selectedEmployeeList.length; i++) {
+        payload = [
+          ...payload,
+          {
+            employee: selectedEmployeeList[i],
+            text: tagValues.tagname,
+            userId: id,
+          },
+        ];
+      }      
+      dispatch(createGroupExecutiveTag(payload));
       setOpenTagModal(false);
     }
   };
@@ -388,7 +407,7 @@ const SummaryContent = () => {
                  
                 <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
                     aria-expanded="false">
-                    <i className="right-icons la la-tag" aria-hidden="true" onClick={tagCompany}></i>
+                    <i className="right-icons la la-tag" aria-hidden="true" onClick={tagExecutive}></i>
                     </a>
                 </li>
                          
@@ -397,10 +416,10 @@ const SummaryContent = () => {
                     </a>
                 </li> 
 
-                <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
+                {/* <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
                     aria-expanded="false"><i class="right-icons la la-file-pdf" aria-hidden="true" onClick={() => downloadPDF(companyDetails?.id)}></i>
                     </a>
-                </li>
+                </li> */}
                 
               </ul>
             </div>
@@ -452,9 +471,9 @@ const SummaryContent = () => {
       )}
 
       {openTagModal ? (
-        !taggedCompany ? (
+        !taggedExecutive ? (
           <Modal
-            title="Tag Company"
+            title="Tag Executive"
             width={"400px"}
             closable={true}
             open={openTagModal}
@@ -506,7 +525,7 @@ const SummaryContent = () => {
             ]}
           >
             <div class="pop-up errorformcontainer ">
-              <p>Already Tagged!</p>
+              <p>Please select executive!</p>
             </div>
           </Modal>
         )

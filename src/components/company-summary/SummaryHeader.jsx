@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { deleteAuthMethod } from "../../services/HttpServices";
+import defaultLogo from "../../assets/images/default_company_logo.jpg";
 
 import {
   submitErrorForm,
@@ -16,7 +17,11 @@ import {
   downloadExecutiveExl,
 } from "../../actionCreator/companyDetailsActionCreator";
 import { emailRegex } from "../../config";
-import { getSubscriptionUserInfo, getToken, getUserInfo } from "../../utils/utils";
+import {
+  getSubscriptionUserInfo,
+  getToken,
+  getUserInfo,
+} from "../../utils/utils";
 import TrialModal from "../../common/TrialModal";
 import popupImg from "../../assets/images/free-user-login-prompt.jpg.jpeg";
 import { useNavigate } from "react-router";
@@ -155,8 +160,8 @@ const SummaryHeader = () => {
         [key]: errorForm[key].value,
       };
     });
-    const { id,login } = getUserInfo();
-    const { id:accountId } = getSubscriptionUserInfo();
+    const { id, login } = getUserInfo();
+    const { id: accountId } = getSubscriptionUserInfo();
     const payload = {
       accountId: accountId,
       companyId: companyDetails?.id,
@@ -223,11 +228,11 @@ const SummaryHeader = () => {
         selectedEmpIds.lastIndexOf(","),
         0
       );
-      const payload={
-        empIds:selectedEmpIds,
-        department:selectedDepartment,
-        companyId:companyDetails?.id
-      }
+      const payload = {
+        empIds: selectedEmpIds,
+        department: selectedDepartment,
+        companyId: companyDetails?.id,
+      };
       dispatch(downloadExecutiveExl(payload));
     }
   };
@@ -293,7 +298,12 @@ const SummaryHeader = () => {
         }`}
       >
         <div className="logobox">
-          <img src={companyDetails?.companyLogoUrl} />
+          <img
+            src={companyDetails?.companyLogoUrl || defaultLogo}
+            onError={(e) => {
+              e.currentTarget.src = defaultLogo;
+            }}
+          />
         </div>
 
         <div className="descbox">
@@ -336,42 +346,58 @@ const SummaryHeader = () => {
             </div>
           </div>
 
-          <div style={{position:'relative'}}>
+          <div style={{ position: "relative" }}>
             {/* <h3>Overview</h3> */}
-            <div 
-            className={`companyintro ${
-              isCompanyBoxHeightFixed ? "setauto" : ""
-            }`}>
+            <div
+              className={`companyintro ${
+                isCompanyBoxHeightFixed ? "setauto" : ""
+              }`}
+            >
               <strong className="mr-2 fs-12">Description of business</strong>
               {companyDetails?.introduction}
             </div>
             {companyDetails?.introduction && (
-            <span className="readmoreoverview" onClick={toggleCompanyHeight}>
-              {isCompanyBoxHeightFixed ? "Hide..." : "Read more..."}
-            </span>
-          )}
+              <span className="readmoreoverview" onClick={toggleCompanyHeight}>
+                {isCompanyBoxHeightFixed ? "Hide..." : "Read more..."}
+              </span>
+            )}
           </div>
-     
 
-{/* <div className="buttons-container socialgroup" style={{"display":"block"}}>
-          <ul className="d-flex  m-mt">
-            <li>
-              <a
-                className=" mr-2"
-                role="button"
-                data-toggle=""
-                aria-haspopup="true"
-                aria-expanded="false"
-                onClick={() => downloadPDF(companyDetails?.id)}
-              >
-                <i
-                  className="right-icons la la-file-pdf"
-                  aria-hidden="true"
-                ></i>
-              </a>
-            </li>
+          <div
+            className="buttons-container socialgroup"
+            style={{ display: "block" }}
+          >
+            <ul className="d-flex  m-mt">
+              <li>
+                <a
+                  className=" mr-2"
+                  id=""
+                  role="button"
+                  data-toggle=""
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  onClick={tagCompany}
+                >
+                  <i className="right-icons las la-tag" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li>
+                <a
+                  className=" mr-2"
+                  role="button"
+                  data-toggle=""
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  onClick={() => downloadPDF(companyDetails?.id)}
+                >
+                  <i
+                    className="right-icons la la-file-pdf"
+                    aria-hidden="true"
+                  ></i>
+                </a>
+              </li>
 
-            <li>
+              {/* <li>
               <a
                 className=" mr-2"
                 role="button"
@@ -385,28 +411,14 @@ const SummaryHeader = () => {
                   aria-hidden="true"
                 ></i>
               </a>
-            </li>
-
-            <li>
-              <a
-                className=" mr-2"
-                id=""
-                role="button"
-                data-toggle=""
-                aria-haspopup="true"
-                aria-expanded="false"
-                onClick={tagCompany}
-              >
-                <i className="right-icons las la-tag" aria-hidden="true"></i>
-              </a>
-            </li>
-            <li>
+            </li> 
+             <li>
               <a className=" mr-2" onClick={handleErrorForm}>
                 <i className="right-icons las la-flag" aria-hidden="true"></i>
               </a>
-            </li>
-          </ul>
-        </div> */}
+            </li> */}
+            </ul>
+          </div>
         </div>
 
         {/* <div className=" d-flex social-icons fs-12 ml-3 pl-2">
@@ -414,7 +426,6 @@ const SummaryHeader = () => {
             {renderSocialLinks(companyDetails?.socialLinks)}
           </span>
         </div> */}
-      
       </div>
 
       {openErrorForm && (

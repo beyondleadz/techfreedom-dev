@@ -151,7 +151,8 @@ export const resetLead = (payload) => {
 export const getSimilarCompanyList = (payload, paginationValues) => (
   dispatch
 ) => {
-  const url = createPayload(payload, paginationValues, companyListingApiUrl);
+  let url = createPayload(payload, paginationValues, companyListingApiUrl);
+  url+="&id.notEquals="+payload.cid;
   console.log(payload, "payloadpayload");
   return getMethod(url)
     .then((res) => {

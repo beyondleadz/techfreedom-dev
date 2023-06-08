@@ -2,12 +2,13 @@ import React, { useEffect, useState, useMemo } from "react";
 import { Modal, Checkbox, Input, Divider, Button } from "antd";
 import _ from "lodash";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
-import logo from "../../assets/images/icici.jpg";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import defaultLogo from "../../assets/images/default_company_logo.jpg";
 import AboutCompany from "./AboutCompany";
 import KeyExecutives from "./KeyExecutives";
 import OrgChart from "./OrgChart";
+import { getBaseUrl } from "../../config";
+
 import {
   getSubscriptionUserInfo,
   getToken,
@@ -15,7 +16,6 @@ import {
 } from "../../utils/utils";
 import TrialModal from "../../common/TrialModal";
 import popupImg from "../../assets/images/free-user-login-prompt.jpg.jpeg";
-import { useNavigate } from "react-router";
 import {
   submitErrorForm,
   getEmployeeList,
@@ -152,17 +152,23 @@ const SimilarCompany = () => {
     setTabActiveKey("2");
   };
 
+  const getDetails = (id) => { 
+    navigate(`/company-summary/${id}`);
+  };
+
   const renderSimilarCompanyList = () => {
     let similarList = [];
     for (let i = 0; i < similarCount; i++) {
       similarList.push(
         <div className="similarinnerblk">
           <div className="s-company img-responsive">
-            <img src={similarCompanyList[i]?.companyLogoUrl || defaultLogo} />
+            <img src={similarCompanyList[i]?.companyLogoUrl || defaultLogo} onError={(e) => {
+                  e.currentTarget.src = defaultLogo;
+                }} />
           </div>
           <div className="similar-desc">
             <div>
-              <a className="font-weight-bold fs-14 text-dark" title="">
+            <a onClick={() => getDetails(`/company-summary/${similarCompanyList[i]?.id}`)} className="font-weight-bold fs-14 text-dark" title="">
                 {similarCompanyList[i]?.name}
               </a>
             </div>

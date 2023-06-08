@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { Tabs } from "antd";
 import {Tooltip } from 'antd';
 import { useSelector, useDispatch } from "react-redux";
@@ -8,7 +8,10 @@ import KeyExecutives from "./KeyExecutives";
 import {
   getEmployeeList,
   resetEmployeeList,
+  getExecutiveTag,
+  resetExecutiveTag,
 } from "../../actionCreator/executiveDetailsActionCreator";
+import { getToken, getUserInfo } from "../../utils/utils";
 
 
 const SummaryContent = () => {
@@ -16,6 +19,22 @@ const SummaryContent = () => {
   const { id } = useParams();
   const [dropDownToggle, setDropdownToggle] = useState(false);
   const [tabActiveKey, setTabActiveKey] = useState("1");
+
+  const executiveCompanyDetails = useSelector(
+    (state) => state.executiveDetailsReducer.executiveCompanyDetails
+  );
+
+  const userAccountInfo = useSelector(
+    (state) => state.CommonReducer.accountInfo
+  );
+
+  useMemo(() => {
+    if (Object.keys(getUserInfo()).length) {
+      const { id } = getUserInfo();
+      dispatch(resetExecutiveTag());
+      dispatch(getExecutiveTag(executiveCompanyDetails?.id, id));
+    }
+  }, [executiveCompanyDetails, userAccountInfo]);
 
   const items = [
     {

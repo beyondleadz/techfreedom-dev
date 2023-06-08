@@ -37,6 +37,7 @@ const CompanySummary = () => {
         getSimilarCompanyList(
           {
             selectedIndustry: companyDetails?.industry?[companyDetails?.industry]:[{id:0}],
+            cid:companyDetails?.id
           },
           {
             start: 0,

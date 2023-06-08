@@ -47,14 +47,14 @@ import {
   executiveDepartmentList,
   clientLeadsUrl,
   errorReport,
-  sigleCompanyTag,
-  fetchCompanyTagApiUrl,
   postRelavantCompanyApiUrl,
   getRelavantCompanyApiUrl,
   companyExlDownloadUrl,
   getClientLeadsUrl,
   companyPdfDownloadUrl,
   executiveEmployeeListingApiUrl,
+  fetchExecutiveTagApiUrl,
+  groupExecutiveTagUrl,
 } from "../constant/Constant";
 import { createExecutivePayload, createPayload } from "../utils/utils";
 import { ErrKey, errEnum } from "../config";
@@ -216,15 +216,15 @@ export const submitErrorForm = (payload) => (dispatch) => {
     });
 };
 
-export const createCompanyTag = (payload) => (dispatch) => {
+export const createExecutiveTag = (payload) => (dispatch) => {
   console.log(payload, "payloadpayload");
-  return postAuthMethod(sigleCompanyTag, payload)
+  return postAuthMethod(groupExecutiveTagUrl, payload)
     .then((res) => {
       dispatch({
         type: EXECUTIVE_SINGLE_COMPANY_TAG,
         payload: res.data,
       });
-      dispatch(getCompanyTag(payload?.company?.id, payload?.userId));
+      dispatch(getExecutiveTag(payload?.company?.id, payload?.userId));
     })
     .catch((err) => {
       dispatch({
@@ -300,9 +300,9 @@ export const downloadExecutiveExl = (payload) => (dispatch) => {
     });
 };
 
-export const getCompanyTag = (cid, userId) => (dispatch) => {
-  let filter = "userId.equals=" + userId + "&companyId.equals=" + cid;
-  const url = `${fetchCompanyTagApiUrl}?${filter}`;
+export const getExecutiveTag = (cid, userId) => (dispatch) => {
+  let filter = "employeeId.equals=" + userId + "&companyId.equals=" + cid;
+  const url = `${fetchExecutiveTagApiUrl}?${filter}`;
   //console.log(url, id, "lksjdfklsjd");
   return getAuthMethod(url)
     .then((res) => {
@@ -322,7 +322,7 @@ export const getCompanyTag = (cid, userId) => (dispatch) => {
     });
 };
 
-export const resetCompanyTag = (payload) => {
+export const resetExecutiveTag = (payload) => {
   return { type: EXECUTIVE_SINGLE_COMPANY_TAG, payload: [] };
 };
 

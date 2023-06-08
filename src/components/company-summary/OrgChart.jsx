@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
+
 import OrgChartImg from "../../assets/images/org-chart-employee-icon.png";
 import { Tree, TreeNode } from "react-organizational-chart";
+import { useSelector, useDispatch } from "react-redux";
+
 
 export const emp_data = [
   {
@@ -118,6 +121,10 @@ const StyledTreeExample = () => (
 );
 
 const OrgChart = () => {
+  // const departmentList = useSelector(
+  //   (state) => state.companyDetailsReducer.departmentList
+  // );
+  // console.log(departmentList,'departmentList')
   return (
     <div className="card shadow card-body">
       <div className="row">

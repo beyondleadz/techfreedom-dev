@@ -7,7 +7,7 @@ import { PAGE_LENGTH } from "../../config";
 import defaultLogo from "../../assets/images/default_company_logo.jpg";
 import popupImg from "../../assets/images/free-user-login-prompt.jpg.jpeg";
 import TrialModal from "../../common/TrialModal";
-
+import { testImage } from "../../utils/utils";
 import {
   getCompanyList,
   savePaginationValues,
@@ -31,7 +31,12 @@ const CompanyContent = () => {
         return (
           <div className="namecol" onClick={() => getDetails(row.key)}>
             <div className="logo">
-              <img src={record?.companyLogoUrl || defaultLogo} />
+              <img
+                src={record?.companyLogoUrl || defaultLogo}
+                onError={(e) => {
+                  e.currentTarget.src = defaultLogo;
+                }}
+              />
             </div>
             <span className="cname">{record?.name}</span>
           </div>
@@ -290,17 +295,16 @@ const CompanyContent = () => {
     } else {
       const { id } = getUserInfo();
       //selectedRecords
-      let payload = []
+      let payload = [];
       for (let i = 0; i < selectedRecords.length; i++) {
         payload = [
-           ...payload,
+          ...payload,
           {
             company: selectedRecords[i].name,
             text: tagValues.tagname,
             userId: id,
-          }
-        ]
-        
+          },
+        ];
       }
       dispatch(createGroupCompanyTag(payload));
 
