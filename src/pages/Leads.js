@@ -77,7 +77,10 @@ const Leads = () => {
   />
 <div className="row col-md-12">
 <div className="row headername"><h3>Leads</h3></div>
-<div className="row col-md-12 mt-3"><Stepsbar/></div> 
+<div className="row col-md-12 mt-3">
+<div className="col-md-10"><Stepsbar/></div>
+<div className="col"><button class="btn btn-outline-info fs-12 btn-sm ">Mark Step as Done</button></div>
+</div> 
 </div>
 </div>  
 

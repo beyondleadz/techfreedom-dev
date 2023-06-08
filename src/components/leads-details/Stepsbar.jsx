@@ -23,16 +23,16 @@ const Stepsbar=()=>{
         items={[
           {
             status: 'subscriber',
-            title: 'Subscriber',
+            title: <span className='text-white '><i class=" font-weight-bold btn text-white fa fa-check"></i></span>,
                   
           },
           {
             status: 'finish',
-            title: 'Lead',
+            title: <span className='text-white'>Lead</span>,
           },
           {
             status: 'process',
-            title: 'Martting qualified lead',
+            title: <span className='text-white'>Martting qualified lead</span>,
           },
           {
             status: 'process',
@@ -51,10 +51,10 @@ const Stepsbar=()=>{
             title: 'Other',
             // disabled: true,
           },
-          {
-            status: 'wait',
-            title: ' Mark stage as Done',
-                    },
+          // {
+          //   status: 'wait',
+          //   title: ' Mark stage as Done',
+          //           },
         ]}
       />
     )

@@ -7553,11 +7553,9 @@ color: orange;
       color: rgba(0, 0, 0, 0.88);
       font-size: 12px;
       line-height: 27px;
-      padding: 0 30px;  }
+      padding: 0 20px 0 30px; }
   
-      #leads .ant-steps.ant-steps-navigation .ant-steps-item::before {
-              /* height: 2px; */
-        background-color:#f9f7fb;}     
+      #leads .ant-steps.ant-steps-navigation .ant-steps-item::before { background-color:#f9f7fb;}     
         #leads  .ant-steps {
           box-sizing: border-box;
           margin: 0;
@@ -7568,7 +7566,13 @@ color: orange;
           /* line-height: 10px; */
           list-style: none;
           background-color:#f9f7fb;
-                    display: flex;
+          display: flex;
           width: 90%;
           text-align: initial;
       }
+      #leads .ant-steps-item:first-child {background-color: #15df44; color: #fff;}
+      #leads .ant-steps.ant-steps-navigation .ant-steps-item:first-child::after {background-color: #15df44;}
+      #leads .ant-steps-item:nth-child(2){background-color: #5d44ff;}
+      #leads .ant-steps.ant-steps-navigation .ant-steps-item:nth-child(2)::after{background-color: #5d44ff;}
+      #leads .ant-steps-item:nth-child(3){background-color: #fdc401;}
+      #leads .ant-steps.ant-steps-navigation .ant-steps-item:nth-child(3)::after{background-color: #fdc401;}
