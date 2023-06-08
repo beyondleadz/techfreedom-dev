@@ -23,32 +23,32 @@ const Stepsbar=()=>{
         items={[
           {
             status: 'subscriber',
-            title: <span className="text-white font-weight-bold"><i class=" font-weight-bold btn text-white las la-check fs-23"></i></span>,
+            title: <span className="text-white"><i class=" btn text-white las la-check fs-23"></i></span>,
                   
           },
           {
             status: 'finish',
-            title: <span className="text-white font-weight-bold">Lead</span>,
+            title: <span className="text-white">Lead</span>,
           },
           {
             status: 'process',
-            title: <span className="text-white font-weight-bold">Martting qualified lead</span>,
+            title: <span className="text-white">Martting qualified lead</span>,
           },
           {
             status: 'process',
-            title: <span className="font-weight-bold">Sales qualified lead</span>,
+            title: <span className="">Sales qualified lead</span>,
           },
           {
             status: 'process',
-            title: <span className=" font-weight-bold">Opportunity</span>,
+            title: <span className="">Opportunity</span>,
           },
           {
             status: 'process',
-            title: <span className="font-weight-bold">Customer</span>,
+            title: <span className="">Customer</span>,
           },
           {
             status: 'wait',
-            title: <span className=" font-weight-bold">Other</span>,
+            title: <span className="">Other</span>,
             // disabled: true,
           },
           // {
