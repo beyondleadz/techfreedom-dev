@@ -68,11 +68,12 @@ const KeyExecutives = () => {
   }
 
   const isLeadsSubmitted=(selEmployeeId)=>{
+    //console.log("selEmployeeId",selEmployeeId)
     const filteredData = getLeadsData.filter( item => item.employeeId == selEmployeeId.id );
     if(filteredData?.length > 0){
-      return true;
+      return 1;
     }else{
-      return false;
+      return 0;
     }
   }
   const columns = [
@@ -180,6 +181,7 @@ const KeyExecutives = () => {
       title: "",
       dataIndex: "leads",
       render: (record) => {
+        let checkLeadSubmitted=isLeadsSubmitted(record);
         return getToken() ? (
           <Button
             style={{ height: "auto" }}
@@ -189,9 +191,9 @@ const KeyExecutives = () => {
                 ? true
                 : false
             }
-            onClick={() => postLeads(record)}
+            onClick={() => postLeads(record,checkLeadSubmitted)}
           >
-            <i class="las la-user-plus fs-12 pr-1"></i> ADD TO LEADS
+            <i class="las la-user-plus fs-12 pr-1"></i> {checkLeadSubmitted?"LEAD ADDED":"ADD TO LEADS"}
           </Button>
         ) : (
           <Button
@@ -237,7 +239,7 @@ const KeyExecutives = () => {
     }
   };
 
-  const postLeads = (record) => {
+  const postLeads = (record,isLeadSubmit) => {
     const { id,login } = getUserInfo();
     let leadPayload = {
       firstname: record.firstname,
@@ -252,8 +254,6 @@ const KeyExecutives = () => {
       userId:id,
       employeeId:record.id
     };
-    let isLeadSubmit=isLeadsSubmitted(record);
-   // console.log(isLeadSubmit,'isLeadSubmit')
     if(!isLeadSubmit){
     dispatch(submitLead(leadPayload));
     setAddToLeads(record.id);

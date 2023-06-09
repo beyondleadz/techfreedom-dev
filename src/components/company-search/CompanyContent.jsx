@@ -340,7 +340,7 @@ const CompanyContent = () => {
                       {parseInt(PAGE_LENGTH) >
                       parseInt(companyFilterList?.totalCount)
                         ? companyFilterList?.totalCount
-                        : PAGE_LENGTH}
+                        : (paginationValue.end)?paginationValue.end:PAGE_LENGTH}
                       <span className="m-1">of</span>{" "}
                       {companyFilterList?.totalCount}
                       <span className="m-1">results</span>
@@ -449,8 +449,11 @@ const CompanyContent = () => {
                             dataSource={companyList}
                             pagination={{
                               responsive: true,
+                              defaultCurrent:paginationValue?.start + 1,
                               total: companyFilterList?.totalCount,
-                              pageSize: PAGE_LENGTH,
+                              pageSize: parseInt(PAGE_LENGTH) > parseInt(companyFilterList?.totalCount)
+                                  ? companyFilterList?.totalCount
+                                  : (paginationValue.end)?paginationValue.end:PAGE_LENGTH,
                               position: ["bottomCenter"],
                               onChange: onPageChange,
                             }}

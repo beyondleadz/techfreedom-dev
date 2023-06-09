@@ -2,6 +2,9 @@ import React, { useEffect, useState, useMemo } from "react";
 import { Modal, Checkbox, Input, Tooltip, Button,Tabs } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
+import TrialModal from "../../common/TrialModal";
+import popupImg from "../../assets/images/free-user-login-prompt.jpg.jpeg";
+import { useNavigate } from "react-router";
 
 import KeyExecutives from "./KeyExecutives";
 import {
@@ -9,7 +12,7 @@ import {
   resetEmployeeList,
   getExecutiveTag,
   resetExecutiveTag,
-  
+  emptyErrorObj
 } from "../../actionCreator/executiveDetailsActionCreator";
 
 import {
@@ -22,6 +25,7 @@ import { getToken, getUserInfo } from "../../utils/utils";
 
 const SummaryContent = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { id } = useParams();
   const [dropDownToggle, setDropdownToggle] = useState(false);
   const [tabActiveKey, setTabActiveKey] = useState("1");
@@ -105,6 +109,16 @@ const SummaryContent = () => {
       isLoggedIn = false;
     }
     return isLoggedIn;
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+    dispatch(emptyErrorObj());
+  };
+
+  const redirectToSignup = () => {
+    setShowModal(false);
+    navigate("/signup");
   };
 
   const onConfrim = () => { //selectedEmployeeList
@@ -221,6 +235,32 @@ const SummaryContent = () => {
         </div>
       </div>
     </div>
+    {showModal ? (
+        <TrialModal
+          openModal={showModal}
+          closeModal={closeModal}
+          redirectToSignup={redirectToSignup}
+          redirect={true}
+          buttonText="Start Free Trial"
+          modalBody={
+            <div id="small-dialog2">
+              <div align="center">
+                <img src={popupImg} />
+              </div>
+              <p style={{ color: "#0000FF" }}>
+                Get 10 free verified contacts with a BeyondLeadz Pro trial
+              </p>
+              <p>
+                BeyondLeadz Pro customers close deals faster thanks to relevant
+              </p>
+            </div>
+          }
+          modalWidth="400px"
+        />
+      ) : (
+        ""
+      )}
+
     {openTagModal ? (
       !taggedExecutive ? (
         <Modal

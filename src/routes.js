@@ -19,6 +19,7 @@ import Signup from './pages/Signup';
 import ForgetPassword from './pages/ForgetPassword';
 import CompanySearch from './pages/CompanySearch';
 import ExecutiveSearch from './pages/ExecutiveSearch';
+import LeadSearch from './pages/LeadSearch';
 import ExecutiveDetails from './pages/ExecutiveDetails';
 import ExecutiveDetails1 from './pages/ExecutiveDetails1';
 import ProductComparison from './pages/ProductComparison';
@@ -60,6 +61,7 @@ const AppRoutes = (props) => {
                 <Route path='/product-comparison' element={<ProductComparison/>}/>
                 <Route path='/search-company' element={<CompanySearch tab='1'/>}/>
                 <Route path='/search-executive' element={<ExecutiveSearch tab='2'/>}/>
+                <Route path='/search-lead' element={<LeadSearch tab='3'/>}/>
                 {/* <Route path='/company-summary' element={<CompanySummary/>}/> */}
                 <Route path='/company-summary/:id' element={<CompanySummary/>}/>
                 {/* <Route path='/summary' element={<Summary/>}/> */}

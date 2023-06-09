@@ -22,7 +22,7 @@ import {
 import Loader from "../loader";
 import { getToken,getUserInfo } from "../../utils/utils";
 
-const ExecutiveContent = () => {
+const LeadContent = () => {
   const { Search, TextArea } = Input;
   const [showEmail, setShowEmail] = useState({});
   const [showPhone, setShowPhone] = useState({});
@@ -79,7 +79,7 @@ const ExecutiveContent = () => {
   const columns = [
     
     {
-      title: <div className="companyname">Executive Name</div>,
+      title: <div className="companyname">Lead Name</div>,
       dataIndex: "name",
       fixed: "left",
       render: (record, row,index) => {
@@ -98,12 +98,44 @@ const ExecutiveContent = () => {
       }
     },
     {
+      title: "Phone",
+      dataIndex: "phone",
+      className: "phone",
+      render: (record, row) => {
+        return getToken() ? (
+          <>
+            <span
+              className={row?.isdownloadedMobile?" btn mobile-open":" btn mobile"}
+              onClick={()=>updatePhoneStatus(showPhone,row)}
+            >
+            </span>
+            {showPhone[row.key] && row?.mobile && (
+              <>
+                <span className="phoneValue fs-12 pl-1">{row?.mobile}</span>
+                <span
+                  title="copy phone"
+                  className="  fs-17 btn  la  la-copy text-black"
+                  onClick={() => copyToClipboard(row?.mobile)}
+                ></span>
+              </>
+            )}
+          </>
+        ) : (
+          <span
+            className=" btn mobile"
+            onClick={() => openInfoModel()}
+          >
+          </span>
+        );
+      },
+    },    
+    {
       title: "Company",
       dataIndex: "company",
     },
     {
-      title: "Designation",
-      dataIndex: "designation",
+      title: "Status",
+      dataIndex: "notes",
     },
     {
       title: "Email",
@@ -136,44 +168,12 @@ const ExecutiveContent = () => {
       },
     },
     {
-      title: "Phone",
-      dataIndex: "phone",
-      className: "phone",
+      title: "Activity Notes",
+      dataIndex: "notes",      
     },
     {
-      title: "Mobile",
-      dataIndex: "mobile",
-      render: (record, row) => {
-        return getToken() ? (
-          <>
-            <span
-              className={row?.isdownloadedMobile?" btn mobile-open":" btn mobile"}
-              onClick={()=>updatePhoneStatus(showPhone,row)}
-            >
-            </span>
-            {showPhone[row.key] && row?.mobile && (
-              <>
-                <span className="phoneValue fs-12 pl-1">{row?.mobile}</span>
-                <span
-                  title="copy phone"
-                  className="  fs-17 btn  la  la-copy text-black"
-                  onClick={() => copyToClipboard(row?.mobile)}
-                ></span>
-              </>
-            )}
-          </>
-        ) : (
-          <span
-            className=" btn mobile"
-            onClick={() => openInfoModel()}
-          >
-          </span>
-        );
-      },
-    },
-    {
-      title: "Social",
-      dataIndex: "social",
+      title: "Created Dated",
+      dataIndex: "notes",
     },
   ];
 
@@ -252,8 +252,7 @@ const ExecutiveContent = () => {
           mobile:record.phoneNo,
           designation:record?.title,
           social: renderSocialLinks(record?.socialLinks),
-          isdownloadedEmail:record?.isdownloadedEmail,
-          isdownloadedMobile:record?.isdownloadedMobile       
+          notes:"",  
         },
       ];
     });
@@ -694,4 +693,4 @@ const ExecutiveContent = () => {
   );
 };
 
-export default ExecutiveContent;
+export default LeadContent;

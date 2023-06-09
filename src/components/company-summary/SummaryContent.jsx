@@ -494,22 +494,7 @@ const SummaryContent = () => {
                     onChange={onTagInputChange}
                   />
                 </div>
-              </div>
-              {/* <div className="form">
-              <div className="formcol1">
-                <label>Description</label>
-              </div>
-              <div className="formcol2">
-                <TextArea
-                  name="description"
-                  placeholder="Description"
-                  value={tagValues.description}
-                  rows={2}
-                  maxLength={100}
-                  onChange={onTagInputChange}
-                />
-              </div>
-            </div> */}
+              </div>              
             </div>
           </Modal>
         ) : (
