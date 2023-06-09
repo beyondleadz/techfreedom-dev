@@ -7077,9 +7077,7 @@ a.close.disabled {
   }
 }
 
-.carousel-indicators .active {
-  opacity: 1;
-}
+.carousel-indicators .active {  opacity: 1;}
 
 .carousel-caption {
   position: absolute;
