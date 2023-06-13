@@ -9,7 +9,9 @@ import CompanyNavigation from "../components/company-search/CompanyNavigation";
 import ExecutiveLeft from "../components/executive-search/ExecutiveLeft";
 import ExecutiveContent from "../components/executive-search/ExecutiveContent";
 import ExecutiveNavigation from "../components/executive-search/ExecutiveNavigation";
-
+import LeadContent from "../components/lead-search/LeadContent";
+import LeadNavigation from "../components/lead-search/LeadNavigation";
+import LeadLeft from "../components/lead-search/LeadLeft";
 import "../assets/css/dynemic-page.css";
 const LeadSearch = ({ tab }) => {
   const [activeTab, setActiveTab] = useState(tab);
@@ -76,13 +78,13 @@ const LeadSearch = ({ tab }) => {
       ),
       children: (
         <div>
-          <ExecutiveNavigation />
+          <LeadNavigation />
           <div id="wrapper">
             <div className="leftmenu">
-              <ExecutiveLeft />
+              <LeadLeft />
             </div>
             <div className="contentbody shadow">
-              <ExecutiveContent />
+              <LeadContent />
             </div>
           </div>
         </div>

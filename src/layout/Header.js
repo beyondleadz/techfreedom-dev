@@ -322,7 +322,7 @@ const Header = (props) => {
               {getToken() ? (
                 <>
                   <li className="nav-item">
-                    <NavLink to="/leads" className="hvr-underline-from-center">
+                    <NavLink to="/search-lead" className="hvr-underline-from-center">
                       Leads
                     </NavLink>
                   </li>
