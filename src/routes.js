@@ -37,9 +37,9 @@ import Leads from './pages/Leads';
 import Demo from './pages/Demo';
 const AppRoutes = (props) => {
     return (
-        <Router basename={DEVMODE?"":"/beyondleads"}>
+        <Router basename={DEVMODE?"":"/beyondleads"} {...props}>
             {/* <Header setToken={props.setToken} /> */}
-            <Routes path="/">
+            <Routes path="/" {...props}>
                 <Route index element={<Home />} />
                 <Route path="/signin" element={<Login/>} />
                 <Route path='/signup' element={<Signup/>}/>

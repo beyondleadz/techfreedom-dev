@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useRoutes, NavLink, useNavigate } from "react-router-dom";
-import { Popover, Button } from 'antd';
+import { Popover, Button } from "antd";
 // import { useRoutes, NavLink, redirect, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getToken } from "../utils/utils";
@@ -10,14 +10,26 @@ import "../assets/css/dropdown1.css";
 import "../assets/css/line-awesome.css";
 import "../assets/css/line-awesome.min.css";
 import { doLogin } from "../actionCreator/signUpActionCreater";
-const Header = () => {
+import { topSearch, selectItem } from "../actionCreator/headerActionCreater";
+import TrialModal from "../common/TrialModal";
+
+const Header = (props) => {
+  console.log(props, "sdfkllsj");
+  const searchRef = useRef();
   const dispatch = useDispatch();
   const [showNav, setShowNav] = useState();
   const [dropDownToggle, setDropdownToggle] = useState(false);
-  const [selectedValue, setSelectedValue] = useState("Advanced");
+  // const [selectedValue, setSelectedValue] = useState("Advanced");
+  const [showModal, setShowModal] = useState(false);
+
   const navigate = useNavigate();
   const token = useSelector((state) => state?.SignUpReducer?.signInData);
-  const provinceData = ['Zhejiang', 'Jiangsu'];
+  const topSearchValue = useSelector(
+    (state) => state?.HeaderReducer?.topSearchValue
+  );
+  const selectedItem = useSelector(
+    (state) => state?.HeaderReducer?.selectedItem
+  );
   const toggleNav = (ele) => {
     setShowNav(!showNav);
   };
@@ -29,9 +41,19 @@ const Header = () => {
     setDropdownToggle(!dropDownToggle);
   };
 
-  const setValue = (val) => {
-    setSelectedValue(val);
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
+  const setValue = (val) => { console.log("val",val,selectedItem);
+    if (val == "" && selectedItem == "") {
+      setShowModal(true);
+      return;
+    }
+    dispatch(selectItem(val));
+    // setSelectedValue(val);
     setDropdownToggle(!dropDownToggle);
+    dispatch(topSearch(searchRef.current.value));
     if (val === "Company") {
       navigate("/search-company");
     } else {
@@ -45,14 +67,22 @@ const Header = () => {
     navigate("/");
   };
 
- 
   const content = (
     <div className="fontf">
-      <p className="fs-12"><i class=" text-center fs-16 pop-img las la-cog"></i>Setting</p>
-      <p className="fs-12"><i class=" text-center fs-16 pop-img las la-user-lock"></i>Password</p>
-      <p className="fs-12" onClick={doLogout}><i class=" text-center fs-16 pop-img las la-sign-out-alt"></i>Sign out</p>
+      <p className="fs-12">
+        <i class=" text-center fs-16 pop-img las la-cog"></i>Setting
+      </p>
+      <p className="fs-12">
+        <i class=" text-center fs-16 pop-img las la-user-lock"></i>Password
+      </p>
+      <p className="fs-12" onClick={doLogout}>
+        <i class=" text-center fs-16 pop-img las la-sign-out-alt"></i>Sign out
+      </p>
     </div>
   );
+
+  console.log(selectedItem, "sdfd");
+
   return (
     <header id="site-header" className="fixed-top">
       <div className="container">
@@ -86,20 +116,31 @@ const Header = () => {
               <div className="search-box position-relative">
                 <input
                   type="search"
+                  ref={searchRef}
+                  defaultValue={topSearchValue}
+                  // value={topSearchValue}
                   placeholder="Search"
                   name="search"
-                  required="required"
-                  autoFocus=""
                   className="search-popup"
                 />
-                <button type="submit" className="btn search-btn">
+                <button
+                  type="button"
+                  className="btn search-btn"
+                  onClick={() => setValue("")}
+                >
                   <i className="fa fa-search" aria-hidden="true"></i>
                 </button>
               </div>
 
               <div className="selected-area">
                 <div className="selected" onClick={toggleDropdown}>
-                  {selectedValue}
+                  {
+                    console.log( window.location.href,' window.location.href',window.location.href.includes("executive"))
+                  }
+                  {selectedItem ? window.location.href.includes("company")
+                    ? "Company" :
+                    window.location.href.includes("executive") ? "Executive"
+                    : "Advanced" : "Advanced"}
                   <span className="fa"></span>
                 </div>
                 <ul className={dropDownToggle ? "show" : ""}>
@@ -265,24 +306,28 @@ const Header = () => {
                   Executive Search
                 </NavLink>
               </li>
-              
+
               {getToken() ? (
                 <>
-                <li className="nav-item">
-                <NavLink
-                  to="/leads"
-                  className="hvr-underline-from-center"
-                >
-                  Leads
-                </NavLink>
-              </li>
-              
-              <li className="nav-item mt-3"><NavLink><i className="bell ml-1"></i> </NavLink></li>
-              
-              <li className="nav-item mt-2 account"> <Popover content={content}  trigger="hover">
-              <div></div>
-    </Popover></li> 
-                {/* <li className="nav-item">
+                  <li className="nav-item">
+                    <NavLink to="/leads" className="hvr-underline-from-center">
+                      Leads
+                    </NavLink>
+                  </li>
+
+                  <li className="nav-item mt-3">
+                    <NavLink>
+                      <i className="bell ml-1"></i>{" "}
+                    </NavLink>
+                  </li>
+
+                  <li className="nav-item mt-2 account">
+                    {" "}
+                    <Popover content={content} trigger="hover">
+                      <div></div>
+                    </Popover>
+                  </li>
+                  {/* <li className="nav-item">
                   <div
                     className="nav-item btn btn-login d-flex align-items-center"
                     onClick={doLogout}
@@ -317,21 +362,30 @@ const Header = () => {
                     </div>
                   </li>
                   <li className="nav-item">
-                <div className="nav-item btn btn-login d-flex align-items-center">
-                  <NavLink to={"/signup"}>
-                    <i className="fas fa-bolt orng-clr-bg ml-1"></i>start free
-                    trial
-                  </NavLink>
-                </div>
-              </li>
+                    <div className="nav-item btn btn-login d-flex align-items-center">
+                      <NavLink to={"/signup"}>
+                        <i className="fas fa-bolt orng-clr-bg ml-1"></i>start
+                        free trial
+                      </NavLink>
+                    </div>
+                  </li>
                 </>
               )}
-
-              
             </ul>
           </div>
         </nav>
       </div>
+      <TrialModal
+        openModal={showModal}
+        closeModal={closeModal}
+        buttonText="OK"
+        modalBody={
+          <div id="small-dialog2">
+            <p style={{ color: "#0000FF" }}>Please select company/executive.</p>
+          </div>
+        }
+        modalWidth="400px"
+      />
     </header>
   );
 };

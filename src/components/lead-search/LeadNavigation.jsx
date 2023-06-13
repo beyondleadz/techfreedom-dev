@@ -11,7 +11,7 @@ import {
   saveAdvancedSelectedFilters,
   getCompanyListWithStartAndEnd,
   getCompanyList,
-} from "../../actionCreator/executiveListingActionCreater";
+} from "../../actionCreator/leadListingActionCreater";
 import popupImg from "../../assets/images/free-user-login-prompt.jpg.jpeg";
 const LeadNavigation = () => {
   const [quickSelection, setQuickSelection] = useState({
@@ -21,10 +21,10 @@ const LeadNavigation = () => {
   const [showModal, setShowModal] = useState(false);
   const dispatch = useDispatch();
   const companySelectedFilterList = useSelector(
-    (state) => state.executiveListingReducer.selectedFilters
+    (state) => state.leadListingReducer.selectedFilters
   );
   const selectedRecords = useSelector(
-    (state) => state.executiveListingReducer.selectedRecords
+    (state) => state.leadListingReducer.selectedRecords
   );
   const navigate = useNavigate();
 

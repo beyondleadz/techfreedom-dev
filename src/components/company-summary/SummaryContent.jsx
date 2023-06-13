@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useMemo } from "react";
-import { Modal, Checkbox, Input, Divider, Button,Tabs } from "antd";
+import { Modal, Checkbox, Input, Divider, Button,Tabs,Tooltip } from "antd";
 import _ from "lodash";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -407,7 +407,11 @@ const SummaryContent = () => {
                  
                 <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
                     aria-expanded="false">
-                    <i className="right-icons la la-tag" aria-hidden="true" onClick={tagExecutive}></i>
+                      <Tooltip title="Tag Executive">
+                    <i
+                      className="right-icons las  la-tags"
+                      aria-hidden="true"  onClick={tagExecutive}
+                    ></i></Tooltip>
                     </a>
                 </li>
                          

@@ -96,6 +96,10 @@ const CompanyContent = () => {
     (state) => state.companyListingReducer.selectedRecords
   );
 
+  const topSearchValue = useSelector(
+    (state) => state.HeaderReducer.topSearchValue
+  );
+
   useMemo(() => {
     dispatch(getCompanyList({}, paginationValue));
   }, []);
@@ -126,6 +130,8 @@ const CompanyContent = () => {
 
   useEffect(() => {
     let data = [];
+    console.log(companyFilterList, "companyFilterList");
+    if (!companyFilterList?.companyList) return;
     companyFilterList?.companyList?.forEach((record) => {
       data = [
         ...data,
@@ -147,6 +153,17 @@ const CompanyContent = () => {
 
     setCompanyList(data);
   }, [companyFilterList]);
+
+  useEffect(() => {
+    console.log(topSearchValue, "topSearchValue");
+    //if (!topSearchValue) return;
+
+    const payload = {
+      ...companySelectedFilterList,
+      topSearchValue: topSearchValue,
+    };
+    dispatch(getCompanyList(payload, paginationValue, true));
+  }, [topSearchValue]);
 
   const rowSelection = {
     onChange: (selectedRowKeys, selectedRows) => {
@@ -189,8 +206,19 @@ const CompanyContent = () => {
       start: page - 1,
       end: pageSize,
     };
+    let payload = {
+      ...companySelectedFilterList,
+    };
+
+    if (topSearchValue) {
+      payload = {
+        ...payload,
+        topSearchValue: topSearchValue,
+      };
+    }
+
     dispatch(savePaginationValues(pageValues));
-    dispatch(getCompanyList(companySelectedFilterList, pageValues));
+    dispatch(getCompanyList(payload, pageValues));
   };
 
   const getDetails = (id) => {
@@ -340,7 +368,9 @@ const CompanyContent = () => {
                       {parseInt(PAGE_LENGTH) >
                       parseInt(companyFilterList?.totalCount)
                         ? companyFilterList?.totalCount
-                        : (paginationValue.end)?paginationValue.end:PAGE_LENGTH}
+                        : paginationValue.end
+                        ? paginationValue.end
+                        : PAGE_LENGTH}
                       <span className="m-1">of</span>{" "}
                       {companyFilterList?.totalCount}
                       <span className="m-1">results</span>
@@ -449,11 +479,15 @@ const CompanyContent = () => {
                             dataSource={companyList}
                             pagination={{
                               responsive: true,
-                              defaultCurrent:paginationValue?.start + 1,
+                              defaultCurrent: paginationValue?.start + 1,
                               total: companyFilterList?.totalCount,
-                              pageSize: parseInt(PAGE_LENGTH) > parseInt(companyFilterList?.totalCount)
+                              pageSize:
+                                parseInt(PAGE_LENGTH) >
+                                parseInt(companyFilterList?.totalCount)
                                   ? companyFilterList?.totalCount
-                                  : (paginationValue.end)?paginationValue.end:PAGE_LENGTH,
+                                  : paginationValue.end
+                                  ? paginationValue.end
+                                  : PAGE_LENGTH,
                               position: ["bottomCenter"],
                               onChange: onPageChange,
                             }}

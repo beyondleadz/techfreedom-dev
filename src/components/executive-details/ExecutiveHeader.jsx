@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Modal, Checkbox, Input, Texta, Divider } from "antd";
+import { Modal, Checkbox, Input, Texta, Divider,Tooltip } from "antd";
 import _ from "lodash";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
@@ -149,6 +149,7 @@ getToken() ?
                     {getToken() ? (
                       showEmail ? (
                         <>
+                        <i className="align-top btn iconemail emails-open"></i>
                           <span className="emailvalue pl-1 fs-12">
                             {executiveDetails?.emailId}
                           </span>
@@ -159,17 +160,19 @@ getToken() ?
                               copyToClipboard(executiveDetails?.emailId)
                             }
                           ></span>
-                          <i className="align-top btn iconemail emails-open"></i>
+                          
                         </>
                       ) : (
                         <>
+                         <Tooltip title="View Email">
                           <i
                             className="align-top btn iconemail emails-open"
                             onClick={() => setShowEmail(true)}
                           ></i>
-                          <span onClick={() => setShowEmail(true)}>
+                          </Tooltip>
+                          {/* <span onClick={() => setShowEmail(true)}>
                             View Email
-                          </span>
+                          </span> */}
                         </>
                       )
                     ) : (

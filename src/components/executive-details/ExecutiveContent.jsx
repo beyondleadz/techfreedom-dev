@@ -205,7 +205,7 @@ const SummaryContent = () => {
                   <a class=" mr-2" aria-haspopup="true" aria-expanded="false">
                   <Tooltip title="Tag Executive">
                     <i
-                      className="right-icons las  la-tag"
+                      className="right-icons las  la-tags"
                       aria-hidden="true"
                     ></i></Tooltip>
                   </a>

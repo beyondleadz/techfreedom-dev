@@ -43,7 +43,7 @@ const KeyExecutives = () => {
 
   const columns = [
     {
-      title: "Executive name",
+      title: "Executive Name",
       dataIndex: "fullname",
       fixed: "left",
     },

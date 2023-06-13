@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useMemo } from "react";
-import { Modal, Checkbox, Input, Divider, Button } from "antd";
+import { Modal, Checkbox, Input, Divider, Button,Tooltip } from "antd";
 import _ from "lodash";
 import { useDispatch } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
@@ -378,7 +378,9 @@ const SummaryHeader = () => {
                   aria-expanded="false"
                   onClick={tagCompany}
                 >
+                   <Tooltip title="Tag Company">
                   <i className="right-icons las la-tag" aria-hidden="true"></i>
+                  </Tooltip>
                 </a>
               </li>
               <li>

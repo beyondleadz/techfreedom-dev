@@ -17,8 +17,8 @@ import {
   saveSearchAction,
   saveSearchList,
   downloadExecutiveList,
-  createGroupExecutiveTag,
-} from "../../actionCreator/executiveListingActionCreater";
+  createGroupExecutiveTag, //api/client-leads
+} from "../../actionCreator/leadListingActionCreater";
 import Loader from "../loader";
 import { getToken,getUserInfo } from "../../utils/utils";
 
@@ -101,33 +101,33 @@ const LeadContent = () => {
       title: "Phone",
       dataIndex: "phone",
       className: "phone",
-      render: (record, row) => {
-        return getToken() ? (
-          <>
-            <span
-              className={row?.isdownloadedMobile?" btn mobile-open":" btn mobile"}
-              onClick={()=>updatePhoneStatus(showPhone,row)}
-            >
-            </span>
-            {showPhone[row.key] && row?.mobile && (
-              <>
-                <span className="phoneValue fs-12 pl-1">{row?.mobile}</span>
-                <span
-                  title="copy phone"
-                  className="  fs-17 btn  la  la-copy text-black"
-                  onClick={() => copyToClipboard(row?.mobile)}
-                ></span>
-              </>
-            )}
-          </>
-        ) : (
-          <span
-            className=" btn mobile"
-            onClick={() => openInfoModel()}
-          >
-          </span>
-        );
-      },
+      // render: (record, row) => {
+      //   return getToken() ? (
+      //     <>
+      //       <span
+      //         className={row?.isdownloadedMobile?" btn mobile-open":" btn mobile"}
+      //         onClick={()=>updatePhoneStatus(showPhone,row)}
+      //       >
+      //       </span>
+      //       {showPhone[row.key] && row?.mobile && (
+      //         <>
+      //           <span className="phoneValue fs-12 pl-1">{row?.mobile}</span>
+      //           <span
+      //             title="copy phone"
+      //             className="  fs-17 btn  la  la-copy text-black"
+      //             onClick={() => copyToClipboard(row?.mobile)}
+      //           ></span>
+      //         </>
+      //       )}
+      //     </>
+      //   ) : (
+      //     <span
+      //       className=" btn mobile"
+      //       onClick={() => openInfoModel()}
+      //     >
+      //     </span>
+      //   );
+      // },
     },    
     {
       title: "Company",
@@ -135,37 +135,37 @@ const LeadContent = () => {
     },
     {
       title: "Status",
-      dataIndex: "notes",
+      dataIndex: "status",
     },
     {
       title: "Email",
       dataIndex: "email",
       className: "email",
-      render: (text, row) => {
-        return getToken() ? (
-          <>
-            <h4
-             className={row?.isdownloadedEmail?" btn iconemail emails-open":" btn iconemail emails"}
-             onClick={()=>updateEmailStatus(showEmail,row)}
-            ></h4>
-            {showEmail[row.key] && (
-              <>
-                <span className="emailvalue pl-1 fs-12">{text}</span>
-                <span
-                  title="copy email"
-                  className="  fs-17 btn  la  la-copy text-black"
-                  onClick={() => copyToClipboard(text)}
-                ></span>
-              </>
-            )}
-          </>
-        ) : (
-          <h4
-            className="  btn iconemail emails"
-            onClick={() => openInfoModel()}
-          ></h4>
-        );
-      },
+      // render: (text, row) => {
+      //   return getToken() ? (
+      //     <>
+      //       <h4
+      //        className={row?.isdownloadedEmail?" btn iconemail emails-open":" btn iconemail emails"}
+      //        onClick={()=>updateEmailStatus(showEmail,row)}
+      //       ></h4>
+      //       {showEmail[row.key] && (
+      //         <>
+      //           <span className="emailvalue pl-1 fs-12">{text}</span>
+      //           <span
+      //             title="copy email"
+      //             className="  fs-17 btn  la  la-copy text-black"
+      //             onClick={() => copyToClipboard(text)}
+      //           ></span>
+      //         </>
+      //       )}
+      //     </>
+      //   ) : (
+      //     <h4
+      //       className="  btn iconemail emails"
+      //       onClick={() => openInfoModel()}
+      //     ></h4>
+      //   );
+      // },
     },
     {
       title: "Activity Notes",
@@ -195,16 +195,16 @@ const LeadContent = () => {
     description: "",
     tagError: "",
   });
-  const companyFilterList = useSelector((state) => state.executiveListingReducer);
+  const companyFilterList = useSelector((state) => state.leadListingReducer);
   const companySelectedFilterList = useSelector(
-    (state) => state.executiveListingReducer.selectedFilters
+    (state) => state.leadListingReducer.selectedFilters
   );
   const loading = useSelector((state) => state.CommonReducer.loading);
   const paginationValue = useSelector(
-    (state) => state.executiveListingReducer.paginationValue
+    (state) => state.leadListingReducer.paginationValue
   );
   const selectedRecords = useSelector(
-    (state) => state.executiveListingReducer.selectedRecords
+    (state) => state.leadListingReducer.selectedRecords
   );
   
 
@@ -248,9 +248,9 @@ const LeadContent = () => {
           company: record?.company?.name,
           location: `${record?.city ? record?.city + ',' : ""} ${record?.state ? record?.state : ''}`,
           email:record?.emailId,
-          phone: record?.company?.phoneNo,
+          phone: record?.phoneNo,
           mobile:record.phoneNo,
-          designation:record?.title,
+          status:record?.status,
           social: renderSocialLinks(record?.socialLinks),
           notes:"",  
         },

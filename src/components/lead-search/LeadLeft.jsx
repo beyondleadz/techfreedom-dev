@@ -14,7 +14,7 @@ import {
   getExecutiveTagList,
   getExecutiveFunctionList,
   getExecutiveLevelList
-} from "../../actionCreator/executiveListingActionCreater";
+} from "../../actionCreator/leadListingActionCreater";
 import AdvancedFilterModel from "./AdvancedFilterModel";
 import AdvancedFilter from "./AdvancedFilter";
 import { LEFT_FILETERS_SIZE } from "../../config";
@@ -49,7 +49,7 @@ const LeadLeft = () => {
     open: false,
     key: 0,
   });
-  const companyFilterList = useSelector((state) => state.executiveListingReducer);
+  const companyFilterList = useSelector((state) => state.leadListingReducer);
   const userAccountInfo=useSelector((state)=>state.CommonReducer.accountInfo);
   useMemo(() => {
     /*?page=0&size=10&sort=id,asc */

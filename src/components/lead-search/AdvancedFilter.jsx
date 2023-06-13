@@ -5,7 +5,7 @@ import {
   saveAdvancedSelectedFilters,
   getCompanyList,
   getExecutiveEmployeeList,
-} from "../../actionCreator/executiveListingActionCreater";
+} from "../../actionCreator/leadListingActionCreater";
 import { SearchOutlined } from "@ant-design/icons";
 import { useSelector, useDispatch } from "react-redux";
 import { LEFT_FILETERS_SIZE, MORE_FILETERS_SIZE } from "../../config";
@@ -18,57 +18,57 @@ const AdvancedFilter = ({
 }) => {
   const dispatch = useDispatch();
   const companyFilterList = useSelector(
-    (state) => state.executiveListingReducer
+    (state) => state.leadListingReducer
   );
 
   const companyPaginationValue = useSelector(
-    (state) => state.executiveListingReducer.paginationValue
+    (state) => state.leadListingReducer.paginationValue
   );
 
   const companySelectedFilterList = useSelector(
-    (state) => state.executiveListingReducer.selectedFilters
+    (state) => state.leadListingReducer.selectedFilters
   );
 
   const companyFilterListIndustry = useSelector(
-    (state) => state.executiveListingReducer.industryList
+    (state) => state.leadListingReducer.industryList
   );
 
   const companyFilterListCompanyType = useSelector(
-    (state) => state.executiveListingReducer.companyTypeList
+    (state) => state.leadListingReducer.companyTypeList
   );
 
   const companyFilterListEmployeeCountList = useSelector(
-    (state) => state.executiveListingReducer.employeeCountList
+    (state) => state.leadListingReducer.employeeCountList
   );
 
   const companyFilterListRevenueRangeList = useSelector(
-    (state) => state.executiveListingReducer.revenueRangeList
+    (state) => state.leadListingReducer.revenueRangeList
   );
 
   const companyFilterListCities = useSelector(
-    (state) => state.executiveListingReducer.geoLocation?.cities
+    (state) => state.leadListingReducer.geoLocation?.cities
   );
   const companyFilterListCountries = useSelector(
-    (state) => state.executiveListingReducer.geoLocation?.countries
+    (state) => state.leadListingReducer.geoLocation?.countries
   );
   const companyFilterListStates = useSelector(
-    (state) => state.executiveListingReducer.geoLocation?.states
+    (state) => state.leadListingReducer.geoLocation?.states
   );
 
   const companyFilterListSavedSearch = useSelector(
-    (state) => state.executiveListingReducer.saveSearchList
+    (state) => state.leadListingReducer.saveSearchList
   );
 
   const companyFilterListTags = useSelector(
-    (state) => state.executiveListingReducer.companyTagList
+    (state) => state.leadListingReducer.companyTagList
   );
 
   const executiveFilterFunctionList = useSelector(
-    (state) => state.executiveListingReducer.executiveFunctionList
+    (state) => state.leadListingReducer.executiveFunctionList
   );
 
   const executiveFilterLevelList = useSelector(
-    (state) => state.executiveListingReducer.executiveLevelList
+    (state) => state.leadListingReducer.executiveLevelList
   );
 
   const [visibleFilter, setVisibleFilter] = useState({

@@ -4,12 +4,13 @@ import Header from "../layout/Header";
 import Footer from "../layout/Footer";
 import { getToken } from "../utils/utils";
 
-const Layout = ({ children }) => {
+const Layout = (props) => {
+  console.log(props,'propsprops')
   return (
     <>
       <Header />
       <div id="home" className="child-container">
-        {children}
+        {props?.children}
       </div>
       {getToken() ? "" : <Footer />}
     </>

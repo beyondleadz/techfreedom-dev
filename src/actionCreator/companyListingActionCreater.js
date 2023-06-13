@@ -45,7 +45,7 @@ import {
 } from "../constant/Constant";
 import { dispatchStatus } from "./commonActionCreator";
 import { Geolocation } from "../constant/Geolocation";
-import { createPayload } from "../utils/utils";
+import { createPayload, createPayloadWithTopSearch } from "../utils/utils";
 
 export const getIndustryList = (payload) => (dispatch) => {
   return getAuthMethod(industryApiUrl)
@@ -119,10 +119,17 @@ export const getRevenuerangeList = (payload) => (dispatch) => {
     });
 };
 
-export const getCompanyList = (payload, paginationValues) => (dispatch) => {
+export const getCompanyList = (payload, paginationValues,topSearch=false) => (dispatch) => {
   dispatch(dispatchStatus(true));
-  const url = createPayload(payload, paginationValues, companyListingApiUrl);
-  // console.log(url,'urlurlurl')
+  let url = createPayload(payload, paginationValues, companyListingApiUrl);
+
+  // if(topSearch){
+  //   url = createPayloadWithTopSearch(payload,paginationValues,companyListingApiUrl)
+  // }else{
+  //    url = createPayload(payload, paginationValues, companyListingApiUrl);
+  // }
+
+  console.log(url,'urlurlurl')
   return getMethod(url)
     .then((res) => {
       dispatch({
