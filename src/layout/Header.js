@@ -1,5 +1,5 @@
-import React, { useRef, useState } from "react";
-import { useRoutes, NavLink, useNavigate } from "react-router-dom";
+import React, { useEffect, useRef, useState } from "react";
+import { useRoutes, NavLink, useNavigate, useLocation } from "react-router-dom";
 import { Popover, Button } from "antd";
 // import { useRoutes, NavLink, redirect, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -16,6 +16,7 @@ import TrialModal from "../common/TrialModal";
 const Header = (props) => {
   console.log(props, "sdfkllsj");
   const searchRef = useRef();
+  const location = useLocation()
   const dispatch = useDispatch();
   const [showNav, setShowNav] = useState();
   const [dropDownToggle, setDropdownToggle] = useState(false);
@@ -45,14 +46,28 @@ const Header = (props) => {
     setShowModal(false);
   };
 
-  const setValue = (val) => { console.log("val",val,selectedItem);
-    if (val == "" && selectedItem == "") {
+  useEffect(() => {
+    if(location.pathname === "/search-executive"){
+      dispatch(selectItem('Executive'));
+    }else if(location.pathname === "/search-company"){
+      dispatch(selectItem('Company'));
+    }else{
+      dispatch(selectItem('Advanced'));
+    }
+    
+    console.log(location,'locationlocation')
+  },[location.pathname])
+
+  const setValue = (val,btn=false) => { //console.log("986986968",val,selectedItem);
+    if (val == "Advanced") {
       setShowModal(true);
       return;
     }
     dispatch(selectItem(val));
     // setSelectedValue(val);
+    if(!btn){
     setDropdownToggle(!dropDownToggle);
+  }
     dispatch(topSearch(searchRef.current.value));
     if (val === "Company") {
       navigate("/search-company");
@@ -126,7 +141,7 @@ const Header = (props) => {
                 <button
                   type="button"
                   className="btn search-btn"
-                  onClick={() => setValue("")}
+                  onClick={() => setValue(selectedItem,true)}
                 >
                   <i className="fa fa-search" aria-hidden="true"></i>
                 </button>
@@ -137,10 +152,7 @@ const Header = (props) => {
                   {
                     console.log( window.location.href,' window.location.href',window.location.href.includes("executive"))
                   }
-                  {selectedItem ? window.location.href.includes("company")
-                    ? "Company" :
-                    window.location.href.includes("executive") ? "Executive"
-                    : "Advanced" : "Advanced"}
+                  {selectedItem}
                   <span className="fa"></span>
                 </div>
                 <ul className={dropDownToggle ? "show" : ""}>

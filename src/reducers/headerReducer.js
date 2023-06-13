@@ -7,7 +7,6 @@ const initialState = {
 
 const HeaderReducer = (state = initialState, action) => {
   const { type, payload } = action; 
-  console.log(payload,type,'skljfsldf')
   switch (type) {
     case TOP_SEARCH_VALUE:
       return { ...state, topSearchValue: payload };

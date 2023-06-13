@@ -308,7 +308,7 @@ const LeadContent = () => {
   };
 
   const getDetails = (id) => {
-    navigate(`/executive-details/${id}`);
+    navigate(`/lead-details/${id}`);
   };
 
   const onHandleSaveSearch = () => {

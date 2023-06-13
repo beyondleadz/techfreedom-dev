@@ -182,6 +182,7 @@ export const createExecutivePayload = (
     selectedCompanyTag,
     selectedExecutiveFunction,
     selectedExecutiveLevel,
+    topSearchValue
   } = payload || {};
 
   let url = companyListingApiUrl;
@@ -315,6 +316,11 @@ export const createExecutivePayload = (
     ids += selectedExecutiveLevel[selectedExecutiveLevel.length - 1].id;
     executiveLevel = `&exlevel.in=${ids}`;
     url = `${url}${executiveLevel}`;
+  }
+
+  if(topSearchValue){
+    const searchCondition = `&fullname.contains=${topSearchValue}`;
+    url = `${url}${searchCondition}`;
   }
 
   if (url.indexOf("&") !== -1) {

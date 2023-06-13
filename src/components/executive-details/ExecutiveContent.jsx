@@ -61,6 +61,7 @@ const SummaryContent = () => {
       dispatch(getExecutiveTag(executiveCompanyDetails?.id, id));
     }
   }, [executiveCompanyDetails, userAccountInfo]);
+  
 
   const items = [
     {

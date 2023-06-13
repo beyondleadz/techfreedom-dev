@@ -1,48 +1,34 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { Modal, Checkbox, Input, Divider, Button, Select } from "antd";
-import { useSelector, useDispatch } from "react-redux";
 
-import _ from "lodash";
-
-
-const Info = () => {
-  const leadDetail= useSelector(
-    (state) => state.LeadDetailsReducer.leadDetails
-  );
-  const formIntialValue = {
-    phone: { disabled: true, value: leadDetail?.phoneNo, status: null },
-    address: { disabled: true, value: "", status: null },
-    city: { disabled: true, value: "", status: null },
-    zip: { disabled: true, value: "", status: null },
-    employee: { disabled: true, value: "", status: null },
-    title: { disabled: true, value: leadDetail?.title, status: null },
-    fullname: { disabled: true, value: leadDetail?.fullname, status: null },
-    email: { disabled: true, value: leadDetail?.emailId, status: null },
-    comment: { disabled: true, value: "", status: null },
-  };
-
-  const dispatch = useDispatch();
-  const { TextArea } = Input;
-  const [openErrorForm, setOpenErrorForm] = useState(false);
-  const [isApiFailed, setIsApiFailed] = useState(false);
-  const [openTagModal, setOpenTagModal] = useState(false);
-  const [tagValues, setTagValues] = useState({
-    tagname: "",
-    description: "",
-    tagError: "",
-  });
-  const [errorForm, setErrorForm] = useState(formIntialValue);
-  const onInputChange = () => {};
-  return (
-    <div className="errorformcontainer mt-3">
+const Notes = ()=>{
+    
+    const formIntialValue = {
+        telephone: { disabled: true, value: "", status: null },
+        address: { disabled: true, value: "", status: null },
+        city: { disabled: true, value: "", status: null },
+        zip: { disabled: true, value: "", status: null },
+        employee: { disabled: true, value: "", status: null },
+        website: { disabled: true, value: "", status: null },
+        name: { disabled: true, value: "", status: null },
+        email: { disabled: true, value: "", status: null },
+        comment: { disabled: true, value: "", status: null },
+      };
+    
+      const [errorForm, setErrorForm] = useState(formIntialValue);
+      const { TextArea } = Input;
+      const onInputChange = () => {};
+    return(
+        <div><p>Create or Edit a Client Note</p>
+         <div className="errorformcontainer">
       <div className="form">
         {console.log(errorForm, "skljfsljfklsd")}
-        <div className="formcol1">Full Name</div>
+        <div className="formcol1">Title Full Name</div>
         <div className="formcol2">
           <Input
-            name="fullname"
-            value={errorForm?.fullname?.value}
-            placeholder="Full Name"
+            name="telephone"
+            value={errorForm?.telephone?.value}
+            placeholder="Telephone"
             onChange={onInputChange}
           />
         </div>
@@ -52,9 +38,9 @@ const Info = () => {
         <div className="formcol1">Designation</div>
         <div className="formcol2">
           <Input
-            name="designation"
-            value={errorForm?.title?.value}
-            placeholder="Designation"
+            name="telephone"
+            value={errorForm?.telephone?.value}
+            placeholder="Telephone"
             onChange={onInputChange}
           />
         </div>
@@ -64,9 +50,9 @@ const Info = () => {
         <div className="formcol1">Phone</div>
         <div className="formcol2">
           <Input
-            name="phone"
-            value={errorForm?.phone?.value}
-            placeholder="Phone"
+            name="city"
+            value={errorForm?.city?.value}
+            placeholder="City"
             onChange={onInputChange}
           />
         </div>
@@ -78,7 +64,7 @@ const Info = () => {
           <Input
             name="zip"
             value={errorForm?.zip?.value}
-            placeholder="Mobile"
+            placeholder="Zip/Pin code"
             onChange={onInputChange}
           />
         </div>
@@ -88,9 +74,9 @@ const Info = () => {
         <div className="formcol1">Email</div>
         <div className="formcol2">
           <Input
-            name="email"
-            value={errorForm?.email?.value}
-            placeholder="Email"
+            name="employee"
+            value={errorForm?.employee?.value}
+            placeholder="No. of Employees"
             onChange={onInputChange}
           />
         </div>
@@ -102,7 +88,7 @@ const Info = () => {
           <Input
             name="website"
             value={errorForm?.website?.value}
-            placeholder="Company Name"
+            placeholder="Website"
             onChange={onInputChange}
           />
         </div>
@@ -137,7 +123,7 @@ const Info = () => {
           <Input
             name="website"
             value={errorForm?.website?.value}
-            placeholder="Industry"
+            placeholder="Website"
             onChange={onInputChange}
           />
         </div>
@@ -222,11 +208,8 @@ const Info = () => {
           />
         </div>
       </div>
-      <div className="mt-3">
-              <span className="mt-3 mr-3"> <Button className="btn-info" type="primary">Cancel</Button></span>
-              <span className="mt-3 mr-3"><Button className="btn-info" type="primary">Save</Button></span>
-              </div>
-    </div>
-  );
-};
-export default Info;
+        </div>
+        </div>
+    )
+}
+export default Notes

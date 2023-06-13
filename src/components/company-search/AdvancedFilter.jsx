@@ -124,14 +124,14 @@ const AdvancedFilter = ({
       setCitiesList(companyFilterList?.geoLocation?.cities);
     }else{
       //By Nawedita 
-      // const cityList = companyFilterList?.geoLocation?.cities.filter((city) => {
-      //   return selectedStateList.some((ct) => {
-      //     return ct.state_id===city?.state_id;
-      //   });
-      // });
-      // //console.log(selectedStateList,'selectedStateList',cityList)
-      // setCitiesOnSelectedStateList(cityList);
-      // setCitiesList(cityList);
+      const cityList = companyFilterList?.geoLocation?.cities.filter((city) => {
+        return selectedStateList.some((ct) => {
+          return ct.state_id===city?.state_id;
+        });
+      });
+      //console.log(selectedStateList,'selectedStateList',cityList)
+      setCitiesOnSelectedStateList(cityList);
+      setCitiesList(cityList);
     }
   }, [selectedStateList]);
 

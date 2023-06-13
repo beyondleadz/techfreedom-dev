@@ -146,6 +146,14 @@ const AdvancedFilter = ({
     if (!selectedStateList.length) {
       setCitiesOnSelectedStateList(companyFilterList?.geoLocation?.cities);
       setCitiesList(companyFilterList?.geoLocation?.cities);
+    } else {
+      const cityList = companyFilterList?.geoLocation?.cities.filter((city) => {
+        return selectedStateList.some((ct) => {
+          return ct.state_id === city?.state_id;
+        });
+      });
+      setCitiesOnSelectedStateList(cityList);
+      setCitiesList(cityList);
     }
   }, [selectedStateList]);
 

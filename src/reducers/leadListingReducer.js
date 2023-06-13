@@ -88,7 +88,6 @@ const initialState = {
 
 const LeadListingReducer = (state = initialState, action) => {
   const { type, payload, count } = action || {};
-  console.log(payload,type,'rajsdljfks')
   switch (type) {
     case LEAD_EXECUTIVE_INDUSTRY_LIST:
       return { ...state, industryList: payload };

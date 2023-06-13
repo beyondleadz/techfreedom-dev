@@ -101,8 +101,16 @@ const CompanyContent = () => {
   );
 
   useMemo(() => {
-    dispatch(getCompanyList({}, paginationValue));
-  }, []);
+    if (topSearchValue) {
+      const payload = {
+        ...companySelectedFilterList,
+        topSearchValue: topSearchValue,
+      };
+      dispatch(getCompanyList(payload, paginationValue, true));
+    } else {
+      dispatch(getCompanyList({}, paginationValue));
+    }
+  }, [topSearchValue]);
 
   const renderSocialLinks = (socialLinks) => {
     return socialLinks?.map((link) => {
@@ -154,16 +162,16 @@ const CompanyContent = () => {
     setCompanyList(data);
   }, [companyFilterList]);
 
-  useEffect(() => {
-    console.log(topSearchValue, "topSearchValue");
-    //if (!topSearchValue) return;
+  // useEffect(() => {
+  //   console.log(topSearchValue, "topSearchValue");
+  //   //if (!topSearchValue) return;
 
-    const payload = {
-      ...companySelectedFilterList,
-      topSearchValue: topSearchValue,
-    };
-    dispatch(getCompanyList(payload, paginationValue, true));
-  }, [topSearchValue]);
+  //   const payload = {
+  //     ...companySelectedFilterList,
+  //     topSearchValue: topSearchValue,
+  //   };
+  //   dispatch(getCompanyList(payload, paginationValue, true));
+  // }, [topSearchValue]);
 
   const rowSelection = {
     onChange: (selectedRowKeys, selectedRows) => {

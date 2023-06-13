@@ -207,10 +207,25 @@ const ExecutiveContent = () => {
     (state) => state.executiveListingReducer.selectedRecords
   );
   
+  const topSearchValue = useSelector(
+    (state) => state.HeaderReducer.topSearchValue
+  );
+
+  // useMemo(() => {
+  //   dispatch(getExecutiveEmployeeList({}, paginationValue));
+  // }, []);
 
   useMemo(() => {
-    dispatch(getExecutiveEmployeeList({}, paginationValue));
-  }, []);
+    if (topSearchValue) {
+      const payload = {
+        ...companySelectedFilterList,
+        topSearchValue: topSearchValue,
+      };
+      dispatch(getExecutiveEmployeeList(payload, paginationValue, true));
+    } else {
+      dispatch(getExecutiveEmployeeList({}, paginationValue));
+    }
+  }, [topSearchValue]);
 
   const renderSocialLinks = (socialLinks) => {
     return socialLinks?.map((link) => {

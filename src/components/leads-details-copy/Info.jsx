@@ -1,23 +1,19 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { Modal, Checkbox, Input, Divider, Button, Select } from "antd";
-import { useSelector, useDispatch } from "react-redux";
-
 import _ from "lodash";
+import { useDispatch } from "react-redux";
 
 
 const Info = () => {
-  const leadDetail= useSelector(
-    (state) => state.LeadDetailsReducer.leadDetails
-  );
   const formIntialValue = {
-    phone: { disabled: true, value: leadDetail?.phoneNo, status: null },
+    telephone: { disabled: true, value: "", status: null },
     address: { disabled: true, value: "", status: null },
     city: { disabled: true, value: "", status: null },
     zip: { disabled: true, value: "", status: null },
     employee: { disabled: true, value: "", status: null },
-    title: { disabled: true, value: leadDetail?.title, status: null },
-    fullname: { disabled: true, value: leadDetail?.fullname, status: null },
-    email: { disabled: true, value: leadDetail?.emailId, status: null },
+    website: { disabled: true, value: "", status: null },
+    name: { disabled: true, value: "", status: null },
+    email: { disabled: true, value: "", status: null },
     comment: { disabled: true, value: "", status: null },
   };
 
@@ -40,8 +36,8 @@ const Info = () => {
         <div className="formcol1">Full Name</div>
         <div className="formcol2">
           <Input
-            name="fullname"
-            value={errorForm?.fullname?.value}
+            name="telephone"
+            value={errorForm?.telephone?.value}
             placeholder="Full Name"
             onChange={onInputChange}
           />
@@ -52,8 +48,8 @@ const Info = () => {
         <div className="formcol1">Designation</div>
         <div className="formcol2">
           <Input
-            name="designation"
-            value={errorForm?.title?.value}
+            name="telephone"
+            value={errorForm?.telephone?.value}
             placeholder="Designation"
             onChange={onInputChange}
           />
@@ -64,8 +60,8 @@ const Info = () => {
         <div className="formcol1">Phone</div>
         <div className="formcol2">
           <Input
-            name="phone"
-            value={errorForm?.phone?.value}
+            name="city"
+            value={errorForm?.city?.value}
             placeholder="Phone"
             onChange={onInputChange}
           />
@@ -88,8 +84,8 @@ const Info = () => {
         <div className="formcol1">Email</div>
         <div className="formcol2">
           <Input
-            name="email"
-            value={errorForm?.email?.value}
+            name="employee"
+            value={errorForm?.employee?.value}
             placeholder="Email"
             onChange={onInputChange}
           />

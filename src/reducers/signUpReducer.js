@@ -14,7 +14,6 @@ const initialState = {
 };
 
 const SignUpReducer = (state = initialState, action) => {
-  //   console.log(state, action, "skdjfslkdfjkl");
   const { type, payload } = action;
   switch (type) {
     // case SIGNUP_STEP1:
