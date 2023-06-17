@@ -316,7 +316,9 @@ const RightPanel = () => {
           <div className="card-body c-info ">
             <div className="c-info-detail">
           <div className=" executive-company mr-2 img-responsive">
-                <img src={companyDetails?.companyLogoUrl || defaultCompanyLogo} />
+                <img src={companyDetails?.companyLogoUrl || defaultCompanyLogo} onError={(e) => {
+                  e.currentTarget.src = defaultCompanyLogo;
+                }}/>
               </div>
               <div className="c-info-desc">
                 <div><a className="font-weight-bold fs-16 text-dark"  title="" href="#" target="" >{executiveDetails?.company?.name}</a>

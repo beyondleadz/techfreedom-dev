@@ -8,7 +8,8 @@ import {
   submitLead,
   resetLead,
   getExecutiveLead,
-  storeSelectedColleagues
+  storeSelectedColleagues,
+  getEmployeeViewableStatusUpdate
 } from "../../actionCreator/executiveDetailsActionCreator";
 import popupImg from "../../assets/images/free-user-login-prompt.jpg.jpeg";
 import TrialModal from "../../common/TrialModal";
@@ -41,6 +42,22 @@ const KeyExecutives = () => {
     }
   }, [userAccountInfo]);
 
+  const updateEmailStatus = (showEmail,row) => {
+    setShowEmail({ ...showEmail, [row.id]: true });
+    //call api to update status
+    if(!row?.isdownloadedEmail){
+    dispatch(getEmployeeViewableStatusUpdate('Email',row));    
+    }
+    
+  };
+  const updatePhoneStatus = (showPhone,row) => {
+    setShowPhone({ ...showPhone, [row.id]: true });
+    if(!row?.isdownloadedMobile){
+    dispatch(getEmployeeViewableStatusUpdate('Mobile',row));
+    }
+  }
+
+
   const columns = [
     {
       title: "Executive Name",
@@ -59,8 +76,8 @@ const KeyExecutives = () => {
           //  <Tooltip title={text}>
           <>
             <h4
-              className=" btn iconemail emails-open"
-              onClick={() => setShowEmail({ ...showEmail, [row.id]: true })}
+              className={row?.isdownloadedEmail?" btn iconemail emails-open":" btn iconemail emails"}
+              onClick={()=>updateEmailStatus(showEmail,row)}
             ></h4>
             {showEmail[row.id] && (
               <>
@@ -96,8 +113,8 @@ const KeyExecutives = () => {
             <span
               // style={{ height: "auto" }}
               // className="keyexebtn d-none d-sm-inline-block small btn btn-primary text-black"
-              className=" btn mobile-open"
-              onClick={() => setShowPhone({ ...showPhone, [row.id]: true })}
+              className={row?.isdownloadedMobile?" btn mobile-open":" btn mobile"}
+              onClick={()=>updatePhoneStatus(showPhone,row)}
             >
               {/* <i class="las la-mobile fs-12  pr-1"></i> */}
               {/* VIEW */}

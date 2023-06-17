@@ -30,6 +30,8 @@ import {
   GET_RELAVANT_EXECUTIVE_TAG_ERROR,
   POST_RELAVANT_EXECUTIVE_TAG,
   POST_RELAVANT_EXECUTIVE_TAG_ERROR,
+  EXECUTIVE_EMPLOYEE_VIEWABLE_STATUS,
+  EXECUTIVE_EMPLOYEE_VIEWABLE_STATUS_ERROR
 } from "../actionType/executiveDetailsType";
 
 const initialState = {
@@ -50,6 +52,7 @@ const initialState = {
   downloadExecutive: "",
   selectedDepartment: "",
   getExecutiveLead: [],
+  executiveEmployeeViewableStatus:{}
 };
 
 const ExecutiveDetailsReducer = (state = initialState, action) => {
@@ -87,6 +90,9 @@ const ExecutiveDetailsReducer = (state = initialState, action) => {
       return { ...state, selectedDepartment: payload };
     case EXECUTIVE_GET_EXECUTIVE_LEAD:
       return { ...state, getExecutiveLead: payload };
+    case EXECUTIVE_EMPLOYEE_VIEWABLE_STATUS:
+      return { ...state, executiveEmployeeViewableStatus: payload };  
+        
 
     case EXECUTIVE_DETAILS_ERROR:
       return { ...state, errObj: { ...state.errObj, ...payload } };  
@@ -115,6 +121,8 @@ const ExecutiveDetailsReducer = (state = initialState, action) => {
     case EXECUTIVE_DOWNLOAD_EXECUTIVE_ERROR:
       return { ...state, errObj: { ...state.errObj, ...payload } };
     case EXECUTIVE_GET_EXECUTIVE_LEAD_ERROR:
+      return { ...state, errObj: { ...state.errObj, ...payload } };
+    case EXECUTIVE_EMPLOYEE_VIEWABLE_STATUS_ERROR:
       return { ...state, errObj: { ...state.errObj, ...payload } };
     case EXECUTIVE_EMPTY_ERROR_OBJ:
       return { ...state, errObj: payload };

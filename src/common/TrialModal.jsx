@@ -24,7 +24,7 @@ const TrialModal = ({
           onClick={redirect ? redirectToSignup : closeModal}
         >
           {buttonText}
-        </Button>,
+        </Button>
       ]}
     >
       <div class="pop-up">{modalBody}</div>

@@ -34,6 +34,8 @@ import {
   GET_RELAVANT_EXECUTIVE_TAG_ERROR,
   POST_RELAVANT_EXECUTIVE_TAG,
   POST_RELAVANT_EXECUTIVE_TAG_ERROR,
+  EXECUTIVE_EMPLOYEE_VIEWABLE_STATUS,
+  EXECUTIVE_EMPLOYEE_VIEWABLE_STATUS_ERROR
 } from "../actionType/executiveDetailsType";
 import {
   getAuthMethod,
@@ -111,7 +113,7 @@ export const resetEmployeeList = () => ({
 
 export const getEmployeeList = (id, cid) => (dispatch) => {
   let url = `${employeeListUrl}?companyId.in=${cid}`;
-  url+="&id.notEquals="+id;
+  url+="&id.notEquals="+id; 
   return getMethod(url)
     .then((res) => {
       dispatch({
@@ -432,5 +434,27 @@ export const postRelavantExecutive = (payload) => (dispatch) => {
 export const resetPostRelavantExecutive = (payload) => {
   return { type: POST_RELAVANT_EXECUTIVE_TAG, payload: [] };
 };
+
+export const getEmployeeViewableStatusUpdate = (type, payload) => (dispatch) => {
+  let url = `${employeeListUrl}/${type}/${payload.id}`;
+  return getAuthMethod(url)
+    .then((res) => {
+      dispatch({
+        type: EXECUTIVE_EMPLOYEE_VIEWABLE_STATUS,
+        payload: res.data,
+      });
+      dispatch(getEmployeeList(payload.id,payload?.company.id));     
+      
+    })
+    .catch((err) => {
+      dispatch({
+        type: EXECUTIVE_EMPLOYEE_VIEWABLE_STATUS_ERROR,
+        payload:
+          { [errEnum.EXECUTIVE_EMPLOYEE_VIEWABLE_STATUS_ERROR]: err?.response?.data[ErrKey] } ||
+          "Error Occured",
+      });
+    });
+};
+
 
 
