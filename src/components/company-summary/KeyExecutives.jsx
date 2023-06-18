@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useMemo } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { Table, Modal, Button, Tooltip } from "antd";
 import { PAGE_LENGTH } from "../../config";
 import { useSelector, useDispatch } from "react-redux";
@@ -8,10 +8,11 @@ import {
   submitLead,
   resetLead,
   storeSelectedExecutive,
-  getExecutiveLead,  
-  getEmployeeViewableStatusUpdate,
-  getEmployeeList
+  getExecutiveLead,
+  getEmployeeList,
+  getEmployeeViewableStatusUpdate
 } from "../../actionCreator/companyDetailsActionCreator";
+
 import popupImg from "../../assets/images/subscribe-now-prompt-img.jpg";
 import Loader from "../loader";
 import TrialModal from "../../common/TrialModal";
@@ -31,7 +32,7 @@ const KeyExecutives = () => {
     (state) => state.companyDetailsReducer.selectedDepartment
   );
 
-  const getLeadsData=useSelector(
+  const getLeadsData = useSelector(
     (state) => state.companyDetailsReducer.getExecutiveLead
   );
 
@@ -52,30 +53,35 @@ const KeyExecutives = () => {
     }
   }, [userAccountInfo]);
 
-  const updateEmailStatus = (showEmail,row) => {
+  const updateEmailStatus = (showEmail, row) => {
     setShowEmail({ ...showEmail, [row.id]: true });
     //call api to update status
-    if(!row?.isdownloadedEmail){
-    dispatch(getEmployeeViewableStatusUpdate('Email',row,selectedDepartment));    
+    if (!row?.isdownloadedEmail) {
+      dispatch(
+        getEmployeeViewableStatusUpdate("Email", row, selectedDepartment)
+      );
     }
-    
   };
-  const updatePhoneStatus = (showPhone,row) => {
+  const updatePhoneStatus = (showPhone, row) => {
     setShowPhone({ ...showPhone, [row.id]: true });
-    if(!row?.isdownloadedMobile){
-    dispatch(getEmployeeViewableStatusUpdate('Mobile',row,selectedDepartment));
+    if (!row?.isdownloadedMobile) {
+      dispatch(
+        getEmployeeViewableStatusUpdate("Mobile", row, selectedDepartment)
+      );
     }
-  }
+  };
 
-  const isLeadsSubmitted=(selEmployeeId)=>{
+  const isLeadsSubmitted = (selEmployeeId) => {
     //console.log("selEmployeeId",selEmployeeId)
-    const filteredData = getLeadsData.filter( item => item.employeeId == selEmployeeId.id );
-    if(filteredData?.length > 0){
+    const filteredData = getLeadsData.filter(
+      (item) => item.employeeId == selEmployeeId.id
+    );
+    if (filteredData?.length > 0) {
       return 1;
-    }else{
+    } else {
       return 0;
     }
-  }
+  };
   const columns = [
     // {
     //   title: "ID",
@@ -99,8 +105,12 @@ const KeyExecutives = () => {
           //  <Tooltip title={text}>
           <>
             <h4
-              className={row?.isdownloadedEmail?" btn iconemail emails-open":" btn iconemail emails"}
-              onClick={()=>updateEmailStatus(showEmail,row)}
+              className={
+                row?.isdownloadedEmail
+                  ? " btn iconemail emails-open"
+                  : " btn iconemail emails"
+              }
+              onClick={() => updateEmailStatus(showEmail, row)}
             ></h4>
             {showEmail[row.id] && (
               <>
@@ -136,8 +146,10 @@ const KeyExecutives = () => {
             <span
               // style={{ height: "auto" }}
               // className="keyexebtn d-none d-sm-inline-block small btn btn-primary text-black"
-              className={row?.isdownloadedMobile?" btn mobile-open":" btn mobile"}
-              onClick={()=>updatePhoneStatus(showPhone,row)}
+              className={
+                row?.isdownloadedMobile ? " btn mobile-open" : " btn mobile"
+              }
+              onClick={() => updatePhoneStatus(showPhone, row)}
             >
               {/* <i class="las la-mobile fs-12  pr-1"></i> */}
               {/* VIEW */}
@@ -181,7 +193,7 @@ const KeyExecutives = () => {
       title: "",
       dataIndex: "leads",
       render: (record) => {
-        let checkLeadSubmitted=isLeadsSubmitted(record);
+        let checkLeadSubmitted = isLeadsSubmitted(record);
         return getToken() ? (
           <Button
             style={{ height: "auto" }}
@@ -191,9 +203,10 @@ const KeyExecutives = () => {
                 ? true
                 : false
             }
-            onClick={() => postLeads(record,checkLeadSubmitted)}
+            onClick={() => postLeads(record, checkLeadSubmitted)}
           >
-            <i class="las la-user-plus fs-12 pr-1"></i> {checkLeadSubmitted?"LEAD ADDED":"ADD TO LEADS"}
+            <i class="las la-user-plus fs-12 pr-1"></i>{" "}
+            {checkLeadSubmitted ? "LEAD ADDED" : "ADD TO LEADS"}
           </Button>
         ) : (
           <Button
@@ -239,8 +252,8 @@ const KeyExecutives = () => {
     }
   };
 
-  const postLeads = (record,isLeadSubmit) => {
-    const { id,login } = getUserInfo();
+  const postLeads = (record, isLeadSubmit) => {
+    const { id, login } = getUserInfo();
     let leadPayload = {
       firstname: record.firstname,
       lastname: record.lastname,
@@ -251,14 +264,15 @@ const KeyExecutives = () => {
       phoneNo: record.phoneNo,
       bio: record.bio,
       description: record.description,
-      userId:id,
-      employeeId:record.id
+      userId: id,
+      employeeId: record.id,
     };
-    if(!isLeadSubmit){
-    dispatch(submitLead(leadPayload));
-    setAddToLeads(record.id);
+    if (!isLeadSubmit) {
+      dispatch(submitLead(leadPayload));
+      setAddToLeads(record.id);
+    }else{
+      navigate("/lead-details/"+record.id);
     }
-
   };
 
   const resetLeadsData = () => {
@@ -274,7 +288,7 @@ const KeyExecutives = () => {
         {
           key: record.id,
           id: record.id,
-          fullname: record.fullname,
+          fullname: (record?.fullname)?record.fullname:record.firstname+" "+record.lastname,
           title: record?.title,
           emailId: record?.emailId,
           phoneNo: record?.company?.phoneNo,
@@ -311,8 +325,7 @@ const KeyExecutives = () => {
         selectedRows
       );
 
-      dispatch(storeSelectedExecutive(selectedRows))
-
+      dispatch(storeSelectedExecutive(selectedRows));
     },
     getCheckboxProps: (record) => ({
       disabled: record.name === "Disabled User", // Column configuration not to be checked

@@ -113,7 +113,10 @@ export const resetEmployeeList = () => ({
 
 export const getEmployeeList = (id, cid) => (dispatch) => {
   let url = `${employeeListUrl}?companyId.in=${cid}`;
+  if(id > 0){
   url+="&id.notEquals="+id; 
+  }
+  //console.log(url,"urlurl")
   return getMethod(url)
     .then((res) => {
       dispatch({
@@ -443,7 +446,14 @@ export const getEmployeeViewableStatusUpdate = (type, payload) => (dispatch) => 
         type: EXECUTIVE_EMPLOYEE_VIEWABLE_STATUS,
         payload: res.data,
       });
-      dispatch(getEmployeeList(payload.id,payload?.company.id));     
+      //console.log('getEmployeeViewableStatusUpdate',payload)
+      if(payload?.pageFor && payload?.pageFor==1){
+        dispatch(getExecutiveDetails(payload.id));   
+      }
+      if(payload?.pageFor && payload?.pageFor==2){
+      dispatch(getEmployeeList(payload.id,payload?.directDial?.company.id)); 
+      }
+      
       
     })
     .catch((err) => {

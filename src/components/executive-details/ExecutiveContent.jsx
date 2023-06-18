@@ -55,10 +55,11 @@ const SummaryContent = () => {
   );
 
   useMemo(() => {
-    if (Object.keys(getUserInfo()).length) {
+    if (Object.keys(getUserInfo()).length && executiveCompanyDetails.length) {
       const { id } = getUserInfo();
       dispatch(resetExecutiveTag());
-      dispatch(getExecutiveTag(executiveCompanyDetails?.id, id));
+      const [executiveCompanyDetails1]=executiveCompanyDetails;
+      dispatch(getExecutiveTag(executiveCompanyDetails1?.id, id));
     }
   }, [executiveCompanyDetails, userAccountInfo]);
   

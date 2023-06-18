@@ -3,22 +3,26 @@ import { Modal, Checkbox, Input, Divider, Button, Select } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 
 import _ from "lodash";
-
+import {
+  updateLeadDetails
+} from "../../actionCreator/leadDetailsActionCreator";
 
 const Info = () => {
   const leadDetail= useSelector(
     (state) => state.LeadDetailsReducer.leadDetails
   );
   const formIntialValue = {
-    phone: { disabled: true, value: leadDetail?.phoneNo, status: null },
-    address: { disabled: true, value: "", status: null },
-    city: { disabled: true, value: "", status: null },
-    zip: { disabled: true, value: "", status: null },
-    employee: { disabled: true, value: "", status: null },
-    title: { disabled: true, value: leadDetail?.title, status: null },
-    fullname: { disabled: true, value: leadDetail?.fullname, status: null },
-    email: { disabled: true, value: leadDetail?.emailId, status: null },
-    comment: { disabled: true, value: "", status: null },
+    phone: { disabled: false, value: leadDetail?.phoneNo, status: null },
+    address: { disabled: false, value: "", status: null },
+    website: { disabled: false, value: "", status: null },
+    company: { disabled: false, value: "", status: null },
+    industry: { disabled: false, value: "", status: null },
+    title: { disabled: false, value: leadDetail?.title, status: null },
+    fullname: { disabled: false, value: (leadDetail?.fullname)?leadDetail.fullname:leadDetail.firstname+" "+leadDetail.lastname},
+    email: { disabled: false, value: leadDetail?.emailId, status: null },
+    source: { disabled: false, value: "", status: null },
+    mobile:{ disabled: false, value: "", status: null },
+    description:{ disabled: false, value: "", status: null },
   };
 
   const dispatch = useDispatch();
@@ -26,17 +30,36 @@ const Info = () => {
   const [openErrorForm, setOpenErrorForm] = useState(false);
   const [isApiFailed, setIsApiFailed] = useState(false);
   const [openTagModal, setOpenTagModal] = useState(false);
-  const [tagValues, setTagValues] = useState({
-    tagname: "",
-    description: "",
-    tagError: "",
-  });
   const [errorForm, setErrorForm] = useState(formIntialValue);
-  const onInputChange = () => {};
+  const [form, setForm] = useState(formIntialValue);
+
+  const updateLead=()=>{
+    console.log(form,leadDetail,'formform');
+    let payload=leadDetail;
+    payload.fullname=form.fullname.value;
+    payload.title=form.title.value;
+    payload.emailId=form.email.value;
+    payload.phoneNo=form.phone.value;
+    payload.address=form.address.value;
+    payload.website=form.website.value;
+    payload.company=form.company.value;
+    payload.industry=form.industry.value;
+    payload.source=form.source.value;
+    payload.mobile=form.mobile.value;
+    payload.description=form.description.value;
+    console.log(payload,'form on save');
+   // dispatch(updateLeadDetails(payload));
+  }
+
+  const onInputChange = (ele) => {
+    setForm({
+      ...form,
+      [ele.target.name]: ele.target.value,
+    });
+  };
   return (
     <div className="errorformcontainer mt-3">
       <div className="form">
-        {console.log(errorForm, "skljfsljfklsd")}
         <div className="formcol1">Full Name</div>
         <div className="formcol2">
           <Input
@@ -52,7 +75,7 @@ const Info = () => {
         <div className="formcol1">Designation</div>
         <div className="formcol2">
           <Input
-            name="designation"
+            name="title"
             value={errorForm?.title?.value}
             placeholder="Designation"
             onChange={onInputChange}
@@ -67,6 +90,7 @@ const Info = () => {
             name="phone"
             value={errorForm?.phone?.value}
             placeholder="Phone"
+            status=""
             onChange={onInputChange}
           />
         </div>
@@ -76,8 +100,8 @@ const Info = () => {
         <div className="formcol1">Mobile</div>
         <div className="formcol2">
           <Input
-            name="zip"
-            value={errorForm?.zip?.value}
+            name="mobile"
+            value={errorForm?.mobile?.value}
             placeholder="Mobile"
             onChange={onInputChange}
           />
@@ -100,8 +124,8 @@ const Info = () => {
         <div className="formcol1">Company Name</div>
         <div className="formcol2">
           <Input
-            name="website"
-            value={errorForm?.website?.value}
+            name="company"
+            value={errorForm?.company?.value}
             placeholder="Company Name"
             onChange={onInputChange}
           />
@@ -135,8 +159,8 @@ const Info = () => {
         <div className="formcol1">Industry</div>
         <div className="formcol2">
           <Input
-            name="website"
-            value={errorForm?.website?.value}
+            name="industry"
+            value={errorForm?.industry?.value}
             placeholder="Industry"
             onChange={onInputChange}
           />
@@ -202,8 +226,8 @@ const Info = () => {
         <div className="formcol1">Lead Source</div>
         <div className="formcol2">
           <TextArea
-            name="address"
-            value={errorForm?.address?.value}
+            name="source"
+            value={errorForm?.source?.value}
             rows={2}
             maxLength={100}
             onChange={onInputChange}
@@ -214,8 +238,8 @@ const Info = () => {
         <div className="formcol1">Lead Description</div>
         <div className="formcol2">
           <TextArea
-            name="address"
-            value={errorForm?.address?.value}
+            name="description"
+            value={errorForm?.description?.value}
             rows={2}
             maxLength={100}
             onChange={onInputChange}
@@ -224,7 +248,7 @@ const Info = () => {
       </div>
       <div className="mt-3">
               <span className="mt-3 mr-3"> <Button className="btn-info" type="primary">Cancel</Button></span>
-              <span className="mt-3 mr-3"><Button className="btn-info" type="primary">Save</Button></span>
+              <span className="mt-3 mr-3"><Button className="btn-info" type="primary" onClick={updateLead}>Save</Button></span>
               </div>
     </div>
   );

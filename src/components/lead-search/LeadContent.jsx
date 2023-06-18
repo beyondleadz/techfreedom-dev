@@ -90,7 +90,8 @@ const LeadContent = () => {
             {record?.firstname?.[0]}{record?.lastname?.[0]}
             </div>
             <span className="cname">
-              {record?.fullname}
+              {/* {record?.fullname} */}
+              {(record?.fullname)?record.fullname:record.firstname+" "+record.lastname}
             </span>
           </div>
         );
@@ -167,10 +168,10 @@ const LeadContent = () => {
       //   );
       // },
     },
-    {
-      title: "Activity Notes",
-      dataIndex: "notes",      
-    },
+    // {
+    //   title: "Activity Notes",
+    //   dataIndex: "notes",      
+    // },
     {
       title: "Created Dated",
       dataIndex: "notes",

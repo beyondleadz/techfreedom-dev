@@ -1,6 +1,8 @@
 import {
   LEAD_DETAILS,
   LEAD_DETAILS_ERROR,  
+  UPDATE_LEAD_DETAILS,
+  UPDATE_LEAD_DETAILS_ERROR
 } from "../actionType/leadDetailsType";
 import {
   getAuthMethod,
@@ -33,3 +35,27 @@ export const getLeadDetails = (id) => (dispatch) => {
       });
     });
 };
+
+export const updateLeadDetails = (payload) => (dispatch) => {
+  //console.log(payload, "payloadpayload");
+  return putAuthMethod(getClientLeadsUrl,payload.id, payload)
+    .then((res) => {
+      dispatch({
+        type: UPDATE_LEAD_DETAILS,
+        payload: res.data,
+      });
+      dispatch(getLeadDetails(payload.id));
+    })
+    .catch((err) => {
+      dispatch({
+        type: UPDATE_LEAD_DETAILS_ERROR,
+        payload:
+          {
+            [errEnum.UPDATE_LEAD_DETAILS_ERROR]:
+              err.response.data[ErrKey],
+          } || "Error Occured",
+      });     
+    });
+    
+};
+

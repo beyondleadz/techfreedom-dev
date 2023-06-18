@@ -220,12 +220,13 @@ const KeyExecutives = () => {
         {
           key: record.id,
           id: record.id,
-          fullname: record.fullname,
+          fullname: (record?.fullname)?record.fullname:record.firstname+" "+record.lastname,
           title: record?.title,
           emailId: record?.emailId,
           phoneNo: record?.company?.phoneNo,
           directDial: record,
           leads: record,
+          pageFor:2
         },
       ];
     });

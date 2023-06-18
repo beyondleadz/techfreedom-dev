@@ -19,6 +19,9 @@ import {
   downloadExecutiveList,
   createGroupExecutiveTag,
 } from "../../actionCreator/executiveListingActionCreater";
+import {
+  getEmployeeViewableStatusUpdate
+} from "../../actionCreator/executiveDetailsActionCreator";
 import Loader from "../loader";
 import { getToken,getUserInfo } from "../../utils/utils";
 
@@ -58,13 +61,23 @@ const ExecutiveContent = () => {
     setShowEmail({ ...showEmail, [row.key]: true });
     //call api to update status
     if(!row?.isdownloadedEmail){
-    //dispatch(getEmployeeViewableStatusUpdate('Email',row));    
+    dispatch(getEmployeeViewableStatusUpdate('Email',row));    
+    // const payload = {
+    //   ...companySelectedFilterList,
+    //   topSearchValue: topSearchValue,
+    // };
+    // dispatch(getExecutiveEmployeeList(payload, paginationValue, true));
     }    
   };
   const updatePhoneStatus = (showPhone,row) => { console.log("click mob",row)
     setShowPhone({ ...showPhone, [row.key]: true });
     if(!row?.isdownloadedMobile){
-    //dispatch(getEmployeeViewableStatusUpdate('Mobile',row,selectedDepartment));
+    dispatch(getEmployeeViewableStatusUpdate('Mobile',row));
+    // const payload = {
+    //   ...companySelectedFilterList,
+    //   topSearchValue: topSearchValue,
+    // };
+    // dispatch(getExecutiveEmployeeList(payload, paginationValue, true));
     }
   }
 
@@ -90,7 +103,8 @@ const ExecutiveContent = () => {
             {record?.firstname?.[0]}{record?.lastname?.[0]}
             </div>
             <span className="cname">
-              {record?.fullname}
+              {/* {record?.fullname} */}
+              {(record?.fullname)?record.fullname:record.firstname+" "+record.lastname}
             </span>
           </div>
         );
@@ -258,6 +272,7 @@ const ExecutiveContent = () => {
         ...data,
         {
           key: record.id,
+          id: record.id,
           executiveData: record,
           name: record,
           company: record?.company?.name,
@@ -268,7 +283,8 @@ const ExecutiveContent = () => {
           designation:record?.title,
           social: renderSocialLinks(record?.socialLinks),
           isdownloadedEmail:record?.isdownloadedEmail,
-          isdownloadedMobile:record?.isdownloadedMobile       
+          isdownloadedMobile:record?.isdownloadedMobile,
+          directDial: record,       
         },
       ];
     });

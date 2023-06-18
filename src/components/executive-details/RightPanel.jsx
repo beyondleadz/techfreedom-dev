@@ -144,7 +144,8 @@ const RightPanel = () => {
                     href="#"
                     target=""
                   >
-                  {similarExecutiveList[i]?.fullname}
+                    {(similarExecutiveList[i]?.fullname)?similarExecutiveList[i].fullname:similarExecutiveList[i]?.firstname+" "+similarExecutiveList[i]?.lastname}
+                  {/* {similarExecutiveList[i]?.fullname} */}
                   </a>
                 </div>
                 <div className="fs-12">{similarExecutiveList[i]?.title}</div>                

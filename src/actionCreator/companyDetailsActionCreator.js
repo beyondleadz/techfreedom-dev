@@ -419,10 +419,11 @@ export const getEmployeeViewableStatusUpdate = (type, payload,department) => (di
         type: EMPLOYEE_VIEWABLE_STATUS,
         payload: res.data,
       });
+      //console.log('getEmployeeViewableStatusUpdate',payload)
       if(department){
-        dispatch(getEmployeeList(payload.company.id,department));
+        dispatch(getEmployeeList(payload?.directDial?.company.id,department));
       }else{
-        dispatch(getEmployeeList(payload.company.id));
+        dispatch(getEmployeeList(payload?.directDial?.company.id));
       }
       
     })
