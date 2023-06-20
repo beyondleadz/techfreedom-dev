@@ -45,7 +45,7 @@ import {
 } from "../constant/Constant";
 import { dispatchStatus } from "./commonActionCreator";
 import { Geolocation } from "../constant/Geolocation";
-import { createPayload, createPayloadWithTopSearch } from "../utils/utils";
+import { createPayload, createPayloadWithTopSearch,saveExcel } from "../utils/utils";
 
 export const getIndustryList = (payload) => (dispatch) => {
   return getAuthMethod(industryApiUrl)
@@ -176,7 +176,7 @@ export const downloadCompanyList = (payload, urlSubstring) => (dispatch) => {
   let url = "";
   if (payload?.length) {
     //console.log(payload,'payloadpayload')
-    let selectedRecords = "id.in=";
+    let selectedRecords = "?id.in=";
     payload?.forEach((obj) => (selectedRecords += `${obj.key},`));
     const removedLastComma = selectedRecords.substring(
       selectedRecords.lastIndexOf(","),
@@ -184,7 +184,7 @@ export const downloadCompanyList = (payload, urlSubstring) => (dispatch) => {
     );
     url = `${companyListingApiUrl}/${urlSubstring}/${removedLastComma}`;
   } else {
-    url = `${companyListingApiUrl}/${urlSubstring}`;
+    url = `${companyListingApiUrl}/${urlSubstring}?id.in=11,12`;
   }
   return getAuthMethod(url)
     .then((res) => {
@@ -192,6 +192,7 @@ export const downloadCompanyList = (payload, urlSubstring) => (dispatch) => {
         type: DOWNLOAD_COMPANYLIST,
         payload: res.data,
       });
+      //saveExcel();
     })
     .catch((err) => {
       dispatch({
@@ -319,3 +320,8 @@ export const createGroupCompanyTag = (payload) => (dispatch) => {
       });
     });
 };
+
+export const emptyDownload=()=>({
+    type: DOWNLOAD_COMPANYLIST,
+    payload: {},  
+});

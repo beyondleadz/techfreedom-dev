@@ -1,4 +1,6 @@
 import React, { useEffect, useState, useMemo } from "react";
+import Excel from "exceljs";
+import { saveAs } from "file-saver";
 import { useNavigate, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import _ from "lodash";
@@ -7,7 +9,7 @@ import { PAGE_LENGTH } from "../../config";
 import defaultLogo from "../../assets/images/default_company_logo.jpg";
 import popupImg from "../../assets/images/free-user-login-prompt.jpg.jpeg";
 import TrialModal from "../../common/TrialModal";
-import { testImage } from "../../utils/utils";
+import { saveExcel, testImage } from "../../utils/utils";
 import {
   getCompanyList,
   savePaginationValues,
@@ -17,6 +19,7 @@ import {
   saveSearchList,
   downloadCompanyList,
   createGroupCompanyTag,
+  emptyDownload,
 } from "../../actionCreator/companyListingActionCreater";
 import Loader from "../loader";
 import { getToken, getUserInfo } from "../../utils/utils";
@@ -98,6 +101,10 @@ const CompanyContent = () => {
 
   const topSearchValue = useSelector(
     (state) => state.HeaderReducer.topSearchValue
+  );
+
+  const downloadExcelData = useSelector(
+    (state) => state.companyListingReducer.download
   );
 
   useMemo(() => {
@@ -296,7 +303,23 @@ const CompanyContent = () => {
       // dispatch(downloadCompanyList(companySelectedFilterList, "exl"));
       dispatch(downloadCompanyList(selectedRecords, "exl"));
     }
+    // saveExcel();//DOWNLOAD_COMPANYLIST download
   };
+
+  useEffect(() => {
+    //console.log(downloadExcelData,'downloadExcelData')
+    if (downloadExcelData.length) {
+      const columns = [
+        { header: "ID", key: "id" },
+        { header: "Name", key: "name" },
+        { header: "Address", key: "address" },
+        { header: "Country", key: "country" },
+      ];
+      const fileName = "companyData";
+      saveExcel(downloadExcelData, columns, fileName, Excel, saveAs);
+      dispatch(emptyDownload());
+    }
+  }, [downloadExcelData]);
 
   const downloadPDF = () => {
     const isLoggedIn = checkLoginStatus();
