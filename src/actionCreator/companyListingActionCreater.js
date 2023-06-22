@@ -182,7 +182,7 @@ export const downloadCompanyList = (payload, urlSubstring) => (dispatch) => {
       selectedRecords.lastIndexOf(","),
       0
     );
-    url = `${companyListingApiUrl}/${urlSubstring}/${removedLastComma}`;
+    url = `${companyListingApiUrl}/${urlSubstring}${removedLastComma}`;
   } else {
     url = `${companyListingApiUrl}/${urlSubstring}?id.in=11,12`;
   }

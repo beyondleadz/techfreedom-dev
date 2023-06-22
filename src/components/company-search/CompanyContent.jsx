@@ -306,17 +306,58 @@ const CompanyContent = () => {
     // saveExcel();//DOWNLOAD_COMPANYLIST download
   };
 
+  const getSchema = (data) => {
+    var finaldata=[];
+    let cnt=0;
+    data.forEach((obj) => {
+      cnt++;
+      var dataObj={};
+      dataObj.id=obj.id;
+      dataObj.serealNo=cnt;
+      dataObj.name=obj.name;
+      dataObj.revenueName=obj?.revenue?.name;
+      dataObj.employeeRange=obj?.range?.name;
+      dataObj.industryName=obj?.industry?.name;
+      dataObj.country=obj.country;
+      dataObj.state=obj.state;
+      dataObj.city=obj.city;
+      dataObj.wedsite=obj.wedsite;
+      dataObj.address=obj.address;
+      dataObj.pincode=obj.pincode;
+      dataObj.phoneNo=obj.phoneNo;
+      finaldata.push(dataObj)
+    })
+    return finaldata;
+  }
+
+
   useEffect(() => {
-    //console.log(downloadExcelData,'downloadExcelData')
+    
     if (downloadExcelData.length) {
+      const downloadedUpdatedData = getSchema(downloadExcelData)
+
+      //console.log(downloadExcelData, "downloadExcelData",downloadedUpdatedData);
       const columns = [
-        { header: "ID", key: "id" },
-        { header: "Name", key: "name" },
+        { header: "Serial No.", key: "serealNo" },
+        // { header: "FirstName", key: "" },
+        // { header: "LastName", key: "" },
+        // { header: "Designation", key: "" },
+        // { header: "Email Available", key: "" },
+        // 
+        { header: "Company Name", key: "name" },
+        { header: "Phone", key: "phoneNo" },
         { header: "Address", key: "address" },
+        { header: "City", key: "city" },
+        { header: "State", key: "state" },
         { header: "Country", key: "country" },
+        { header: "Pin", key: "pincode" },
+        { header: "Website", key: "wedsite" },
+        { header: "Company Revenue", key: "revenueName" },
+        { header: "Employee Range", key: "rangeName" },
+        { header: "Industry", key: "industryName" },
       ];
       const fileName = "companyData";
-      saveExcel(downloadExcelData, columns, fileName, Excel, saveAs);
+      saveExcel(downloadedUpdatedData, columns, fileName, Excel, saveAs);
       dispatch(emptyDownload());
     }
   }, [downloadExcelData]);

@@ -248,6 +248,7 @@ const AdvancedFilter = ({
     setViewMore(!viewMore);
   };
   const openVisibleFilter = (menu) => {
+    console.log(menu,'sdfsd')
     setVisibleFilter({
       ...{
         country: false,
@@ -263,9 +264,13 @@ const AdvancedFilter = ({
         companyTag: false,
         executiveFunction: false,
         executiveLevel: false,
+        leadOwner:false,
+        firstName:false,
+        lastName:false,
       },
       [menu]: !visibleFilter[menu],
     });
+    console.log(menu,'sdfsd',visibleFilter)
   };
 
   /*Countries Start */
@@ -786,133 +791,163 @@ const AdvancedFilter = ({
     dispatch(getExecutiveEmployeeList(payload, companyPaginationValue));
   };
   /*Industry End */
-
-  /*start companytype */
-  const showCompanyTypeList = () => {
-    return (
-      <>
-        <div
-          className={`filterheader la ${visibleFilter.companyType && "show"}`}
-          onClick={() => openVisibleFilter("companyType")}
-        >
-          <h2>
-            <i className="left-company-menu-icons la la-city"></i>
-            <span>Company Type</span>
-          </h2>
-          {showCheckAll && (
-            <Checkbox
-              onChange={onCompanyTypeCheckAllChange}
-              checked={checkAllCompanyType}
-            >
-              Check all
-            </Checkbox>
-          )}
+ //start lead Owner filter
+ const showInputSearch = (visibleFilter,type,title,iconClass='la-industry') => {
+  return (
+    <>
+      <div
+        className={`filterheader la ${visibleFilter[type] && "show"}`}
+        onClick={() => openVisibleFilter(type)}
+      >
+        <h2>
+          <i className={`left-company-menu-icons las ${iconClass}`}></i>
+          <span>{title}</span>
+        </h2>          
+      </div>
+      <div className="filteroptions">
+        <div className="searchbox">
+          <Input
+            placeholder="Search"
+            prefix={<SearchOutlined />}
+            onChange={(e)=>filterInputSearch(e,type)}
+          />
         </div>
-        <div className="filteroptions">
-          <div className="searchbox">
-            <Input
-              placeholder="Search"
-              prefix={<SearchOutlined />}
-              onChange={filterCompany}
-            />
-          </div>
-          <CheckboxGroup
-            onChange={onCompanyTypeChange}
-            value={selectedCompanyTypeList}
-          >
-            <>
-              <ul>
-                {companyTypeList?.map((item, index) => {
-                  if (showNumberofRecords) {
-                    return (
-                      index < showNumberofRecords && (
-                        <li>
-                          <Checkbox
-                            key={item.id}
-                            value={item}
-                            onChange={($event) => updateCompanyType($event)}
-                          >
-                            {item.name}
-                          </Checkbox>
-                        </li>
-                      )
-                    );
-                  } else {
-                    return (
-                      <li>
-                        <Checkbox
-                          key={item.id}
-                          value={item}
-                          onChange={($event) => updateCompanyType($event)}
-                        >
-                          {item.name}
-                        </Checkbox>
-                      </li>
-                    );
-                  }
-                })}
-              </ul>
-            </>
-          </CheckboxGroup>
+      </div>
+    </>
+  );
+};
 
-          {!showCheckAll && companyTypeList.length > LEFT_FILETERS_SIZE.length && (
-            <div className="viewmore">
-              <span
-                onClick={() => setOpenAdvancedModel({ open: true, key: 5 })}
-              >
-                View More
-              </span>
-            </div>
-          )}
-        </div>
-      </>
-    );
-  };
+const filterInputSearch = (ele,type) => {
+  console.log(ele.target.value.toLowerCase(),type);
+  //setIndustryList(filterdData);  
+};
 
-  const filterCompany = (ele) => {
-    const filterdData = companyFilterList?.companyTypeList.filter((item) =>
-      item?.name.toLowerCase().includes(ele.target.value.toLowerCase())
-    );
-    setCompanyTypeList(filterdData);
-    setSelectedCompanyTypeList([]);
-    setCheckAllCompanyType(false);
-  };
+  // /*start companytype */
+  // const showCompanyTypeList = () => {
+  //   return (
+  //     <>
+  //       <div
+  //         className={`filterheader la ${visibleFilter.companyType && "show"}`}
+  //         onClick={() => openVisibleFilter("companyType")}
+  //       >
+  //         <h2>
+  //           <i className="left-company-menu-icons la la-city"></i>
+  //           <span>Company Type</span>
+  //         </h2>
+  //         {showCheckAll && (
+  //           <Checkbox
+  //             onChange={onCompanyTypeCheckAllChange}
+  //             checked={checkAllCompanyType}
+  //           >
+  //             Check all
+  //           </Checkbox>
+  //         )}
+  //       </div>
+  //       <div className="filteroptions">
+  //         <div className="searchbox">
+  //           <Input
+  //             placeholder="Search"
+  //             prefix={<SearchOutlined />}
+  //             onChange={filterCompany}
+  //           />
+  //         </div>
+  //         <CheckboxGroup
+  //           onChange={onCompanyTypeChange}
+  //           value={selectedCompanyTypeList}
+  //         >
+  //           <>
+  //             <ul>
+  //               {companyTypeList?.map((item, index) => {
+  //                 if (showNumberofRecords) {
+  //                   return (
+  //                     index < showNumberofRecords && (
+  //                       <li>
+  //                         <Checkbox
+  //                           key={item.id}
+  //                           value={item}
+  //                           onChange={($event) => updateCompanyType($event)}
+  //                         >
+  //                           {item.name}
+  //                         </Checkbox>
+  //                       </li>
+  //                     )
+  //                   );
+  //                 } else {
+  //                   return (
+  //                     <li>
+  //                       <Checkbox
+  //                         key={item.id}
+  //                         value={item}
+  //                         onChange={($event) => updateCompanyType($event)}
+  //                       >
+  //                         {item.name}
+  //                       </Checkbox>
+  //                     </li>
+  //                   );
+  //                 }
+  //               })}
+  //             </ul>
+  //           </>
+  //         </CheckboxGroup>
 
-  const updateCompanyType = (el) => {
-    let newList = [];
-    if (el.target.checked) {
-      newList = [...selectedCompanyTypeList, el.target.value];
-    } else {
-      newList = selectedCompanyTypeList.filter(
-        (listItem) => listItem.id !== el.target.value.id
-      );
-    }
-    setSelectedCompanyTypeList(newList);
+  //         {!showCheckAll && companyTypeList.length > LEFT_FILETERS_SIZE.length && (
+  //           <div className="viewmore">
+  //             <span
+  //               onClick={() => setOpenAdvancedModel({ open: true, key: 5 })}
+  //             >
+  //               View More
+  //             </span>
+  //           </div>
+  //         )}
+  //       </div>
+  //     </>
+  //   );
+  // };
 
-    const payload = {
-      ...companySelectedFilterList,
-      selectedCompanytype: newList,
-    };
-    dispatch(saveAdvancedSelectedFilters(payload));
-    dispatch(getExecutiveEmployeeList(payload, companyPaginationValue));
-  };
+  // const filterCompany = (ele) => {
+  //   const filterdData = companyFilterList?.companyTypeList.filter((item) =>
+  //     item?.name.toLowerCase().includes(ele.target.value.toLowerCase())
+  //   );
+  //   setCompanyTypeList(filterdData);
+  //   setSelectedCompanyTypeList([]);
+  //   setCheckAllCompanyType(false);
+  // };
 
-  const onCompanyTypeChange = (list) => {
-    setCheckAllCompanyType(list.length === companyTypeList.length);
-  };
+  // const updateCompanyType = (el) => {
+  //   let newList = [];
+  //   if (el.target.checked) {
+  //     newList = [...selectedCompanyTypeList, el.target.value];
+  //   } else {
+  //     newList = selectedCompanyTypeList.filter(
+  //       (listItem) => listItem.id !== el.target.value.id
+  //     );
+  //   }
+  //   setSelectedCompanyTypeList(newList);
 
-  const onCompanyTypeCheckAllChange = (e) => {
-    setSelectedCompanyTypeList(e.target.checked ? companyTypeList : []);
-    setCheckAllCompanyType(e.target.checked);
+  //   const payload = {
+  //     ...companySelectedFilterList,
+  //     selectedCompanytype: newList,
+  //   };
+  //   dispatch(saveAdvancedSelectedFilters(payload));
+  //   dispatch(getExecutiveEmployeeList(payload, companyPaginationValue));
+  // };
 
-    const payload = {
-      ...companySelectedFilterList,
-      selectedCompanytype: e.target.checked ? companyTypeList : [],
-    };
-    dispatch(saveAdvancedSelectedFilters(payload));
-    dispatch(getExecutiveEmployeeList(payload, companyPaginationValue));
-  };
-  /*End companytype */
+  // const onCompanyTypeChange = (list) => {
+  //   setCheckAllCompanyType(list.length === companyTypeList.length);
+  // };
+
+  // const onCompanyTypeCheckAllChange = (e) => {
+  //   setSelectedCompanyTypeList(e.target.checked ? companyTypeList : []);
+  //   setCheckAllCompanyType(e.target.checked);
+
+  //   const payload = {
+  //     ...companySelectedFilterList,
+  //     selectedCompanytype: e.target.checked ? companyTypeList : [],
+  //   };
+  //   dispatch(saveAdvancedSelectedFilters(payload));
+  //   dispatch(getExecutiveEmployeeList(payload, companyPaginationValue));
+  // };
+  // /*End companytype */
 
   /*start employee count */
   const showEmployeeCountList = () => {
@@ -1041,133 +1076,133 @@ const AdvancedFilter = ({
   };
   /*End employee count */
 
-  /*Start revenue range */
-  const showRevenueRangeList = () => {
-    return (
-      <>
-        <div
-          className={`filterheader la ${visibleFilter.revenue && "show"}`}
-          onClick={() => openVisibleFilter("revenue")}
-        >
-          <h2>
-            <i className="left-company-menu-icons las la-money-bill"></i>
-            <span>Revenue Range</span>
-          </h2>
-          {showCheckAll && (
-            <Checkbox
-              onChange={onRevenueRangeCheckAllChange}
-              checked={checkAllRevenueRange}
-            >
-              Check all
-            </Checkbox>
-          )}
-        </div>
-        <div className="filteroptions">
-          <div className="searchbox">
-            <Input
-              placeholder="Search"
-              prefix={<SearchOutlined />}
-              onChange={filterRevenueRange}
-            />
-          </div>
-          <CheckboxGroup
-            onChange={onRevenueRangeChange}
-            value={selectedrevenueRangeList}
-          >
-            <>
-              <ul>
-                {revenueRangeList?.map((item, index) => {
-                  if (showNumberofRecords) {
-                    return (
-                      index < showNumberofRecords && (
-                        <li>
-                          <Checkbox
-                            key={item.id}
-                            value={item}
-                            onChange={($event) => updateRevenueRange($event)}
-                          >
-                            {item.name}
-                          </Checkbox>
-                        </li>
-                      )
-                    );
-                  } else {
-                    return (
-                      <li>
-                        <Checkbox
-                          key={item.id}
-                          value={item}
-                          onChange={($event) => updateRevenueRange($event)}
-                        >
-                          {item.name}
-                        </Checkbox>
-                      </li>
-                    );
-                  }
-                })}
-              </ul>
-            </>
-          </CheckboxGroup>
+  // /*Start revenue range */
+  // const showRevenueRangeList = () => {
+  //   return (
+  //     <>
+  //       <div
+  //         className={`filterheader la ${visibleFilter.revenue && "show"}`}
+  //         onClick={() => openVisibleFilter("revenue")}
+  //       >
+  //         <h2>
+  //           <i className="left-company-menu-icons las la-money-bill"></i>
+  //           <span>Revenue Range</span>
+  //         </h2>
+  //         {showCheckAll && (
+  //           <Checkbox
+  //             onChange={onRevenueRangeCheckAllChange}
+  //             checked={checkAllRevenueRange}
+  //           >
+  //             Check all
+  //           </Checkbox>
+  //         )}
+  //       </div>
+  //       <div className="filteroptions">
+  //         <div className="searchbox">
+  //           <Input
+  //             placeholder="Search"
+  //             prefix={<SearchOutlined />}
+  //             onChange={filterRevenueRange}
+  //           />
+  //         </div>
+  //         <CheckboxGroup
+  //           onChange={onRevenueRangeChange}
+  //           value={selectedrevenueRangeList}
+  //         >
+  //           <>
+  //             <ul>
+  //               {revenueRangeList?.map((item, index) => {
+  //                 if (showNumberofRecords) {
+  //                   return (
+  //                     index < showNumberofRecords && (
+  //                       <li>
+  //                         <Checkbox
+  //                           key={item.id}
+  //                           value={item}
+  //                           onChange={($event) => updateRevenueRange($event)}
+  //                         >
+  //                           {item.name}
+  //                         </Checkbox>
+  //                       </li>
+  //                     )
+  //                   );
+  //                 } else {
+  //                   return (
+  //                     <li>
+  //                       <Checkbox
+  //                         key={item.id}
+  //                         value={item}
+  //                         onChange={($event) => updateRevenueRange($event)}
+  //                       >
+  //                         {item.name}
+  //                       </Checkbox>
+  //                     </li>
+  //                   );
+  //                 }
+  //               })}
+  //             </ul>
+  //           </>
+  //         </CheckboxGroup>
 
-          {!showCheckAll &&
-            revenueRangeList.length > LEFT_FILETERS_SIZE.length && (
-              <div className="viewmore">
-                <span
-                  onClick={() => setOpenAdvancedModel({ open: true, key: 7 })}
-                >
-                  View More
-                </span>
-              </div>
-            )}
-        </div>
-      </>
-    );
-  };
+  //         {!showCheckAll &&
+  //           revenueRangeList.length > LEFT_FILETERS_SIZE.length && (
+  //             <div className="viewmore">
+  //               <span
+  //                 onClick={() => setOpenAdvancedModel({ open: true, key: 7 })}
+  //               >
+  //                 View More
+  //               </span>
+  //             </div>
+  //           )}
+  //       </div>
+  //     </>
+  //   );
+  // };
 
-  const filterRevenueRange = (ele) => {
-    const filterdData = companyFilterList?.revenueRangeList.filter((item) =>
-      item?.name.toLowerCase().includes(ele.target.value.toLowerCase())
-    );
-    setRevenueRangeList(filterdData);
-    setSelectedRevenueRangeList([]);
-    setCheckAllRevenueRange(false);
-  };
+  // const filterRevenueRange = (ele) => {
+  //   const filterdData = companyFilterList?.revenueRangeList.filter((item) =>
+  //     item?.name.toLowerCase().includes(ele.target.value.toLowerCase())
+  //   );
+  //   setRevenueRangeList(filterdData);
+  //   setSelectedRevenueRangeList([]);
+  //   setCheckAllRevenueRange(false);
+  // };
 
-  const updateRevenueRange = (el) => {
-    let newList = [];
-    if (el.target.checked) {
-      newList = [...selectedrevenueRangeList, el.target.value];
-    } else {
-      newList = selectedrevenueRangeList.filter(
-        (listItem) => listItem.id !== el.target.value.id
-      );
-    }
-    setSelectedRevenueRangeList(newList);
+  // const updateRevenueRange = (el) => {
+  //   let newList = [];
+  //   if (el.target.checked) {
+  //     newList = [...selectedrevenueRangeList, el.target.value];
+  //   } else {
+  //     newList = selectedrevenueRangeList.filter(
+  //       (listItem) => listItem.id !== el.target.value.id
+  //     );
+  //   }
+  //   setSelectedRevenueRangeList(newList);
 
-    const payload = {
-      ...companySelectedFilterList,
-      selectedRevenuerange: newList,
-    };
-    dispatch(saveAdvancedSelectedFilters(payload));
-    dispatch(getExecutiveEmployeeList(payload, companyPaginationValue));
-  };
+  //   const payload = {
+  //     ...companySelectedFilterList,
+  //     selectedRevenuerange: newList,
+  //   };
+  //   dispatch(saveAdvancedSelectedFilters(payload));
+  //   dispatch(getExecutiveEmployeeList(payload, companyPaginationValue));
+  // };
 
-  const onRevenueRangeChange = (list) => {
-    setCheckAllRevenueRange(list.length === revenueRangeList.length);
-  };
+  // const onRevenueRangeChange = (list) => {
+  //   setCheckAllRevenueRange(list.length === revenueRangeList.length);
+  // };
 
-  const onRevenueRangeCheckAllChange = (e) => {
-    setSelectedRevenueRangeList(e.target.checked ? revenueRangeList : []);
-    setCheckAllRevenueRange(e.target.checked);
+  // const onRevenueRangeCheckAllChange = (e) => {
+  //   setSelectedRevenueRangeList(e.target.checked ? revenueRangeList : []);
+  //   setCheckAllRevenueRange(e.target.checked);
 
-    const payload = {
-      ...companySelectedFilterList,
-      selectedRevenuerange: e.target.checked ? revenueRangeList : [],
-    };
-    dispatch(saveAdvancedSelectedFilters(payload));
-    dispatch(getExecutiveEmployeeList(payload, companyPaginationValue));
-  };
-  /*End revenue range */
+  //   const payload = {
+  //     ...companySelectedFilterList,
+  //     selectedRevenuerange: e.target.checked ? revenueRangeList : [],
+  //   };
+  //   dispatch(saveAdvancedSelectedFilters(payload));
+  //   dispatch(getExecutiveEmployeeList(payload, companyPaginationValue));
+  // };
+  // /*End revenue range */
 
   /*Start Search List */
   const showSaveSearchList = () => {
@@ -1301,401 +1336,314 @@ const AdvancedFilter = ({
   };
   /*End Search List */
 
-  /*Start Company Tag List */
-  const showExecutiveTagList = () => {
-    return (
-      <>
-        <div
-          className={`filterheader la ${visibleFilter.companyTag && "show"}`}
-          onClick={() => openVisibleFilter("companyTag")}
-        >
-          <h2>
-            <i className="left-company-menu-icons las la-tags"></i>
-            <span>Tags</span>
-          </h2>
-          {showCheckAll && (
-            <Checkbox
-              onChange={onCompanyTagsCheckAllChange}
-              checked={checkAllCompanyTag}
-            >
-              Check all
-            </Checkbox>
-          )}
-        </div>
-        <div className="filteroptions">
-          <div className="searchbox">
-            <Input
-              placeholder="Search"
-              prefix={<SearchOutlined />}
-              onChange={filterCompanyTags}
-            />
-          </div>
-          <CheckboxGroup
-            onChange={onCompanyTagChange}
-            value={selectedCompanyTagList}
-          >
-            <>
-              <ul>
-                {companyTagList?.map((item, index) => {
-                  if (showNumberofRecords) {
-                    return (
-                      index < showNumberofRecords && (
-                        <li>
-                          <Checkbox
-                            key={item}
-                            value={item}
-                            onChange={($event) => updateExecutiveTag($event)}
-                          >
-                            {item}
-                          </Checkbox>
-                        </li>
-                      )
-                    );
-                  } else {
-                    return (
-                      <li>
-                        <Checkbox
-                          key={item}
-                          value={item}
-                          onChange={($event) => updateExecutiveTag($event)}
-                        >
-                          {item}
-                        </Checkbox>
-                      </li>
-                    );
-                  }
-                })}
-              </ul>
-            </>
-          </CheckboxGroup>
+  // /*Start Company Tag List */
+  // const showExecutiveTagList = () => {
+  //   return (
+  //     <>
+  //       <div
+  //         className={`filterheader la ${visibleFilter.companyTag && "show"}`}
+  //         onClick={() => openVisibleFilter("companyTag")}
+  //       >
+  //         <h2>
+  //           <i className="left-company-menu-icons las la-tags"></i>
+  //           <span>Tags</span>
+  //         </h2>
+  //         {showCheckAll && (
+  //           <Checkbox
+  //             onChange={onCompanyTagsCheckAllChange}
+  //             checked={checkAllCompanyTag}
+  //           >
+  //             Check all
+  //           </Checkbox>
+  //         )}
+  //       </div>
+  //       <div className="filteroptions">
+  //         <div className="searchbox">
+  //           <Input
+  //             placeholder="Search"
+  //             prefix={<SearchOutlined />}
+  //             onChange={filterCompanyTags}
+  //           />
+  //         </div>
+  //         <CheckboxGroup
+  //           onChange={onCompanyTagChange}
+  //           value={selectedCompanyTagList}
+  //         >
+  //           <>
+  //             <ul>
+  //               {companyTagList?.map((item, index) => {
+  //                 if (showNumberofRecords) {
+  //                   return (
+  //                     index < showNumberofRecords && (
+  //                       <li>
+  //                         <Checkbox
+  //                           key={item}
+  //                           value={item}
+  //                           onChange={($event) => updateExecutiveTag($event)}
+  //                         >
+  //                           {item}
+  //                         </Checkbox>
+  //                       </li>
+  //                     )
+  //                   );
+  //                 } else {
+  //                   return (
+  //                     <li>
+  //                       <Checkbox
+  //                         key={item}
+  //                         value={item}
+  //                         onChange={($event) => updateExecutiveTag($event)}
+  //                       >
+  //                         {item}
+  //                       </Checkbox>
+  //                     </li>
+  //                   );
+  //                 }
+  //               })}
+  //             </ul>
+  //           </>
+  //         </CheckboxGroup>
 
-          {!showCheckAll && companyTagList.length > LEFT_FILETERS_SIZE.length && (
-            <div className="viewmore">
-              <span
-                onClick={() => setOpenAdvancedModel({ open: true, key: 9 })}
-              >
-                View More
-              </span>
-            </div>
-          )}
-        </div>
-      </>
-    );
-  };
+  //         {!showCheckAll && companyTagList.length > LEFT_FILETERS_SIZE.length && (
+  //           <div className="viewmore">
+  //             <span
+  //               onClick={() => setOpenAdvancedModel({ open: true, key: 9 })}
+  //             >
+  //               View More
+  //             </span>
+  //           </div>
+  //         )}
+  //       </div>
+  //     </>
+  //   );
+  // };
 
-  const filterCompanyTags = (ele) => {
-    const filterdData = companyFilterList?.companyTagList.filter((item) =>
-      item?.text.toLowerCase().includes(ele.target.value.toLowerCase())
-    );
-    setCompanyTagList(filterdData);
-    setSelectedCompanyTagList([]);
-    setCheckAllCompanyTag(false);
-  };
+  // const filterCompanyTags = (ele) => {
+  //   const filterdData = companyFilterList?.companyTagList.filter((item) =>
+  //     item?.text.toLowerCase().includes(ele.target.value.toLowerCase())
+  //   );
+  //   setCompanyTagList(filterdData);
+  //   setSelectedCompanyTagList([]);
+  //   setCheckAllCompanyTag(false);
+  // };
 
-  const updateExecutiveTag = (el) => {
-    let newList = [];
-    if (el.target.checked) {
-      newList = [...selectedCompanyTagList, el.target.value];
-      //newList = [selectedCompanyTagList, el.target.value];
-    } else {
-      newList = selectedCompanyTagList.filter(
-        (listItem) => listItem !== el.target.value
-      );
-    }
-    setSelectedCompanyTagList(newList);
-    // let searchData = companyFilterListSavedSearch.filter(
-    //   (listItem) => listItem.id === el.target.value.id
-    // );
-    // // console.log(JSON.parse(searchData[0].dataDump),'selectedSavedSearchList')
-    // const searchPayload = JSON.parse(searchData[0].dataDump);
-    const payload = {
-      ...companySelectedFilterList,
-      selectedCompanyTag: newList,
-    };
-    dispatch(saveAdvancedSelectedFilters(payload));
-    dispatch(getExecutiveEmployeeList(payload, companyPaginationValue));
-  };
+  // const updateExecutiveTag = (el) => {
+  //   let newList = [];
+  //   if (el.target.checked) {
+  //     newList = [...selectedCompanyTagList, el.target.value];
+  //     //newList = [selectedCompanyTagList, el.target.value];
+  //   } else {
+  //     newList = selectedCompanyTagList.filter(
+  //       (listItem) => listItem !== el.target.value
+  //     );
+  //   }
+  //   setSelectedCompanyTagList(newList);
+  //   // let searchData = companyFilterListSavedSearch.filter(
+  //   //   (listItem) => listItem.id === el.target.value.id
+  //   // );
+  //   // // console.log(JSON.parse(searchData[0].dataDump),'selectedSavedSearchList')
+  //   // const searchPayload = JSON.parse(searchData[0].dataDump);
+  //   const payload = {
+  //     ...companySelectedFilterList,
+  //     selectedCompanyTag: newList,
+  //   };
+  //   dispatch(saveAdvancedSelectedFilters(payload));
+  //   dispatch(getExecutiveEmployeeList(payload, companyPaginationValue));
+  // };
 
-  const onCompanyTagChange = (list) => {
-    setCheckAllCompanyTag(list.length === companyTagList.length);
-  };
+  // const onCompanyTagChange = (list) => {
+  //   setCheckAllCompanyTag(list.length === companyTagList.length);
+  // };
 
-  const onCompanyTagsCheckAllChange = (e) => {
-    setSelectedCompanyTagList(e.target.checked ? companyTagList : []);
-    setCheckAllCompanyTag(e.target.checked);
+  // const onCompanyTagsCheckAllChange = (e) => {
+  //   setSelectedCompanyTagList(e.target.checked ? companyTagList : []);
+  //   setCheckAllCompanyTag(e.target.checked);
 
-    const payload = {
-      ...companySelectedFilterList,
-      selectedCompanyTag: e.target.checked ? companyTagList : [],
-    };
-    dispatch(saveAdvancedSelectedFilters(payload));
-    dispatch(getExecutiveEmployeeList(payload, companyPaginationValue));
-  };
-  /*End Company Tags List */
+  //   const payload = {
+  //     ...companySelectedFilterList,
+  //     selectedCompanyTag: e.target.checked ? companyTagList : [],
+  //   };
+  //   dispatch(saveAdvancedSelectedFilters(payload));
+  //   dispatch(getExecutiveEmployeeList(payload, companyPaginationValue));
+  // };
+  // /*End Company Tags List */
 
-  /*Executive Function Start */
-  const showExecutiveFunctionList = () => {
-    return (
-      <>
-        <div
-          className={`filterheader la ${
-            visibleFilter.executiveFunction && "show"
-          }`}
-          onClick={() => openVisibleFilter("executiveFunction")}
-        >
-          <h2>
-            <i className="left-company-menu-icons las la-suitcase"></i>
-            <span>Executive Function</span>
-          </h2>
-          {showCheckAll && (
-            <Checkbox
-              onChange={onExecutiveFunctionCheckAllChange}
-              checked={checkAllExecutiveFunction}
-            >
-              Check all
-            </Checkbox>
-          )}
-        </div>
-        <div className="filteroptions">
-          <div className="searchbox">
-            <Input
-              placeholder="Search"
-              prefix={<SearchOutlined />}
-              onChange={filterExecutiveFunctionList}
-            />
-          </div>
+ 
+  // const filterExecutiveFunctionList = (ele) => {
+  //   const filterdData = companyFilterList?.executiveFunctionList.filter(
+  //     (item) =>
+  //       item?.name.toLowerCase().includes(ele.target.value.toLowerCase())
+  //   );
+  //   setExecutiveFunctionList(filterdData);
+  //   setSelectedExecutiveFunctionList([]);
+  //   setCheckAllExecutiveFunction(false);
+  // };
 
-          <CheckboxGroup
-            onChange={onExecutiveFunctionChange}
-            value={selectedExecutiveFunctionList}
-          >
-            <>
-              <ul>
-                {executiveFunctionList?.map((item, index) => {
-                  if (showNumberofRecords) {
-                    return (
-                      index < showNumberofRecords && (
-                        <li>
-                          <Checkbox
-                            key={item.id}
-                            value={item}
-                            onChange={($event) =>
-                              updateExecutiveFunction($event)
-                            }
-                          >
-                            {item.name}
-                          </Checkbox>
-                        </li>
-                      )
-                    );
-                  } else {
-                    return (
-                      <li>
-                        <Checkbox
-                          key={item.id}
-                          value={item}
-                          onChange={($event) => updateExecutiveFunction($event)}
-                        >
-                          {item.name}
-                        </Checkbox>
-                      </li>
-                    );
-                  }
-                })}
-              </ul>
-            </>
-          </CheckboxGroup>
+  // const updateExecutiveFunction = (el) => {
+  //   let newList = [];
+  //   if (el.target.checked) {
+  //     newList = [...selectedExecutiveFunctionList, el.target.value];
+  //   } else {
+  //     newList = selectedExecutiveFunctionList.filter(
+  //       (listItem) => listItem.id !== el.target.value.id
+  //     );
+  //   }
+  //   setSelectedExecutiveFunctionList(newList);
 
-          {!showCheckAll &&
-            executiveFunctionList.length > LEFT_FILETERS_SIZE.length && (
-              <div className="viewmore">
-                <span
-                  onClick={() => setOpenAdvancedModel({ open: true, key: 10 })}
-                >
-                  View More
-                </span>
-              </div>
-            )}
-        </div>
-      </>
-    );
-  };
+  //   const payload = {
+  //     ...companySelectedFilterList,
+  //     selectedExecutiveFunction: newList,
+  //   };
+  //   dispatch(saveAdvancedSelectedFilters(payload));
+  //   dispatch(getExecutiveEmployeeList(payload, companyPaginationValue));
+  // };
 
-  const filterExecutiveFunctionList = (ele) => {
-    const filterdData = companyFilterList?.executiveFunctionList.filter(
-      (item) =>
-        item?.name.toLowerCase().includes(ele.target.value.toLowerCase())
-    );
-    setExecutiveFunctionList(filterdData);
-    setSelectedExecutiveFunctionList([]);
-    setCheckAllExecutiveFunction(false);
-  };
+  // const onExecutiveFunctionChange = (list) => {
+  //   setCheckAllExecutiveFunction(list.length === executiveFunctionList.length);
+  // };
 
-  const updateExecutiveFunction = (el) => {
-    let newList = [];
-    if (el.target.checked) {
-      newList = [...selectedExecutiveFunctionList, el.target.value];
-    } else {
-      newList = selectedExecutiveFunctionList.filter(
-        (listItem) => listItem.id !== el.target.value.id
-      );
-    }
-    setSelectedExecutiveFunctionList(newList);
-
-    const payload = {
-      ...companySelectedFilterList,
-      selectedExecutiveFunction: newList,
-    };
-    dispatch(saveAdvancedSelectedFilters(payload));
-    dispatch(getExecutiveEmployeeList(payload, companyPaginationValue));
-  };
-
-  const onExecutiveFunctionChange = (list) => {
-    setCheckAllExecutiveFunction(list.length === executiveFunctionList.length);
-  };
-
-  const onExecutiveFunctionCheckAllChange = (e) => {
-    setSelectedExecutiveFunctionList(
-      e.target.checked ? executiveFunctionList : []
-    );
-    setCheckAllExecutiveFunction(e.target.checked);
-    const payload = {
-      ...companySelectedFilterList,
-      selectedExecutiveFunction: e.target.checked ? executiveFunctionList : [],
-    };
-    dispatch(saveAdvancedSelectedFilters(payload));
-    dispatch(getExecutiveEmployeeList(payload, companyPaginationValue));
-  };
+  // const onExecutiveFunctionCheckAllChange = (e) => {
+  //   setSelectedExecutiveFunctionList(
+  //     e.target.checked ? executiveFunctionList : []
+  //   );
+  //   setCheckAllExecutiveFunction(e.target.checked);
+  //   const payload = {
+  //     ...companySelectedFilterList,
+  //     selectedExecutiveFunction: e.target.checked ? executiveFunctionList : [],
+  //   };
+  //   dispatch(saveAdvancedSelectedFilters(payload));
+  //   dispatch(getExecutiveEmployeeList(payload, companyPaginationValue));
+  // };
   /*Executive Function End */
 
-  /*Executive Level Start */
-  const showExecutiveLevelList = () => {
-    return (
-      <>
-        <div
-          className={`filterheader la ${
-            visibleFilter.executiveLevel && "show"
-          }`}
-          onClick={() => openVisibleFilter("executiveLevel")}
-        >
-          <h2>
-            <i className="left-company-menu-icons las la-sitemap"></i>
-            <span>Executive Level</span>
-          </h2>
-          {showCheckAll && (
-            <Checkbox
-              onChange={onExecutiveLevelCheckAllChange}
-              checked={checkAllExecutiveLevel}
-            >
-              Check all
-            </Checkbox>
-          )}
-        </div>
-        <div className="filteroptions">
-          <div className="searchbox">
-            <Input
-              placeholder="Search"
-              prefix={<SearchOutlined />}
-              onChange={filterExecutiveLevelList}
-            />
-          </div>
+  // /*Executive Level Start */
+  // const showExecutiveLevelList = () => {
+  //   return (
+  //     <>
+  //       <div
+  //         className={`filterheader la ${
+  //           visibleFilter.executiveLevel && "show"
+  //         }`}
+  //         onClick={() => openVisibleFilter("executiveLevel")}
+  //       >
+  //         <h2>
+  //           <i className="left-company-menu-icons las la-sitemap"></i>
+  //           <span>Executive Level</span>
+  //         </h2>
+  //         {showCheckAll && (
+  //           <Checkbox
+  //             onChange={onExecutiveLevelCheckAllChange}
+  //             checked={checkAllExecutiveLevel}
+  //           >
+  //             Check all
+  //           </Checkbox>
+  //         )}
+  //       </div>
+  //       <div className="filteroptions">
+  //         <div className="searchbox">
+  //           <Input
+  //             placeholder="Search"
+  //             prefix={<SearchOutlined />}
+  //             onChange={filterExecutiveLevelList}
+  //           />
+  //         </div>
 
-          <CheckboxGroup
-            onChange={onExecutiveLevelChange}
-            value={selectedExecutiveLevelList}
-          >
-            <>
-              <ul>
-                {executiveLevelList?.map((item, index) => {
-                  if (showNumberofRecords) {
-                    return (
-                      index < showNumberofRecords && (
-                        <li>
-                          <Checkbox
-                            key={item.id}
-                            value={item}
-                            onChange={($event) => updateExecutiveLevel($event)}
-                          >
-                            {item.name}
-                          </Checkbox>
-                        </li>
-                      )
-                    );
-                  } else {
-                    return (
-                      <li>
-                        <Checkbox
-                          key={item.id}
-                          value={item}
-                          onChange={($event) => updateExecutiveLevel($event)}
-                        >
-                          {item.name}
-                        </Checkbox>
-                      </li>
-                    );
-                  }
-                })}
-              </ul>
-            </>
-          </CheckboxGroup>
+  //         <CheckboxGroup
+  //           onChange={onExecutiveLevelChange}
+  //           value={selectedExecutiveLevelList}
+  //         >
+  //           <>
+  //             <ul>
+  //               {executiveLevelList?.map((item, index) => {
+  //                 if (showNumberofRecords) {
+  //                   return (
+  //                     index < showNumberofRecords && (
+  //                       <li>
+  //                         <Checkbox
+  //                           key={item.id}
+  //                           value={item}
+  //                           onChange={($event) => updateExecutiveLevel($event)}
+  //                         >
+  //                           {item.name}
+  //                         </Checkbox>
+  //                       </li>
+  //                     )
+  //                   );
+  //                 } else {
+  //                   return (
+  //                     <li>
+  //                       <Checkbox
+  //                         key={item.id}
+  //                         value={item}
+  //                         onChange={($event) => updateExecutiveLevel($event)}
+  //                       >
+  //                         {item.name}
+  //                       </Checkbox>
+  //                     </li>
+  //                   );
+  //                 }
+  //               })}
+  //             </ul>
+  //           </>
+  //         </CheckboxGroup>
 
-          {!showCheckAll &&
-            executiveLevelList.length > LEFT_FILETERS_SIZE.length && (
-              <div className="viewmore">
-                <span
-                  onClick={() => setOpenAdvancedModel({ open: true, key: 11 })}
-                >
-                  View More
-                </span>
-              </div>
-            )}
-        </div>
-      </>
-    );
-  };
+  //         {!showCheckAll &&
+  //           executiveLevelList.length > LEFT_FILETERS_SIZE.length && (
+  //             <div className="viewmore">
+  //               <span
+  //                 onClick={() => setOpenAdvancedModel({ open: true, key: 11 })}
+  //               >
+  //                 View More
+  //               </span>
+  //             </div>
+  //           )}
+  //       </div>
+  //     </>
+  //   );
+  // };
 
-  const filterExecutiveLevelList = (ele) => {
-    const filterdData = companyFilterList?.executiveLevelList.filter((item) =>
-      item?.name.toLowerCase().includes(ele.target.value.toLowerCase())
-    );
-    setExecutiveLevelList(filterdData);
-    setSelectedExecutiveLevelList([]);
-    setCheckAllExecutiveLevel(false);
-  };
+  // const filterExecutiveLevelList = (ele) => {
+  //   const filterdData = companyFilterList?.executiveLevelList.filter((item) =>
+  //     item?.name.toLowerCase().includes(ele.target.value.toLowerCase())
+  //   );
+  //   setExecutiveLevelList(filterdData);
+  //   setSelectedExecutiveLevelList([]);
+  //   setCheckAllExecutiveLevel(false);
+  // };
 
-  const updateExecutiveLevel = (el) => {
-    let newList = [];
-    if (el.target.checked) {
-      newList = [...selectedExecutiveLevelList, el.target.value];
-    } else {
-      newList = selectedExecutiveLevelList.filter(
-        (listItem) => listItem.id !== el.target.value.id
-      );
-    }
-    setSelectedExecutiveLevelList(newList);
+  // const updateExecutiveLevel = (el) => {
+  //   let newList = [];
+  //   if (el.target.checked) {
+  //     newList = [...selectedExecutiveLevelList, el.target.value];
+  //   } else {
+  //     newList = selectedExecutiveLevelList.filter(
+  //       (listItem) => listItem.id !== el.target.value.id
+  //     );
+  //   }
+  //   setSelectedExecutiveLevelList(newList);
 
-    const payload = {
-      ...companySelectedFilterList,
-      selectedExecutiveLevel: newList,
-    };
-    dispatch(saveAdvancedSelectedFilters(payload));
-    dispatch(getExecutiveEmployeeList(payload, companyPaginationValue));
-  };
+  //   const payload = {
+  //     ...companySelectedFilterList,
+  //     selectedExecutiveLevel: newList,
+  //   };
+  //   dispatch(saveAdvancedSelectedFilters(payload));
+  //   dispatch(getExecutiveEmployeeList(payload, companyPaginationValue));
+  // };
 
-  const onExecutiveLevelChange = (list) => {
-    setCheckAllExecutiveLevel(list.length === executiveLevelList.length);
-  };
+  // const onExecutiveLevelChange = (list) => {
+  //   setCheckAllExecutiveLevel(list.length === executiveLevelList.length);
+  // };
 
-  const onExecutiveLevelCheckAllChange = (e) => {
-    setSelectedExecutiveLevelList(e.target.checked ? executiveLevelList : []);
-    setCheckAllExecutiveLevel(e.target.checked);
-    const payload = {
-      ...companySelectedFilterList,
-      selectedExecutiveLevel: e.target.checked ? executiveLevelList : [],
-    };
-    dispatch(saveAdvancedSelectedFilters(payload));
-    dispatch(getExecutiveEmployeeList(payload, companyPaginationValue));
-  };
+  // const onExecutiveLevelCheckAllChange = (e) => {
+  //   setSelectedExecutiveLevelList(e.target.checked ? executiveLevelList : []);
+  //   setCheckAllExecutiveLevel(e.target.checked);
+  //   const payload = {
+  //     ...companySelectedFilterList,
+  //     selectedExecutiveLevel: e.target.checked ? executiveLevelList : [],
+  //   };
+  //   dispatch(saveAdvancedSelectedFilters(payload));
+  //   dispatch(getExecutiveEmployeeList(payload, companyPaginationValue));
+  // };
   /*Executive Level End */
 
   //   useEffect(() => {
@@ -1722,7 +1670,14 @@ const AdvancedFilter = ({
   //   ]);
 
   const renderJsx = () => {
-    if (openAdvancedModel.key === 1) {
+     if (openAdvancedModel.key === 4) {
+      return (
+        <div className="filterblk" id="industry">
+          {showIndustryList()}
+        </div>
+      );
+       }
+    else if (openAdvancedModel.key === 1) {
       return (
         <div className="filterblk" id="county">
           {showCountriesList()}
@@ -1740,57 +1695,88 @@ const AdvancedFilter = ({
           {showCitiesList()}
         </div>
       );
-    } else if (openAdvancedModel.key === 4) {
-      return (
-        <div className="filterblk" id="industry">
-          {showIndustryList()}
-        </div>
-      );
-    } else if (openAdvancedModel.key === 5) {
-      return (
-        <div className="filterblk" id="companyType">
-          {showCompanyTypeList()}
-        </div>
-      );
-    } else if (openAdvancedModel.key === 6) {
-      return (
-        <div className="filterblk" id="emplyeeCount">
-          {showEmployeeCountList()}
-        </div>
-      );
-    } else if (openAdvancedModel.key === 7) {
-      return (
-        <div className="filterblk" id="revenueRange">
-          {showRevenueRangeList()}
-        </div>
-      );
-    } else if (openAdvancedModel.key === 8) {
-      return (
-        <div className="filterblk" id="savedsearch">
-          {showSaveSearchList()}
-        </div>
-      );
-    } else if (openAdvancedModel.key === 9) {
-      return (
-        <div className="filterblk" id="companyTag">
-          {showExecutiveTagList()}
-        </div>
-      );
-    } else if (openAdvancedModel.key === 10) {
-      return (
-        <div className="filterblk" id="execFunction">
-          {showExecutiveFunctionList()}
-        </div>
-      );
-    } else if (openAdvancedModel.key === 11) {
-      return (
-        <div className="filterblk" id="execLevel">
-          {showExecutiveLevelList()}
-        </div>
-      );
+    }  else if (openAdvancedModel.key === 5) {
+          return (
+            <div className="filterblk" id="leadOwner">
+              {showInputSearch(visibleFilter,'leadOwner','Lead Owner','la-industry')}
+            </div>
+          );
+       }else if (openAdvancedModel.key === 6) {
+       return (
+            <div className="filterblk" id="emplyeeCount">
+              {showEmployeeCountList()}
+            </div>
+          );
+       
+    
+    // else if (openAdvancedModel.key === 5) {
+    //   return (
+    //     <div className="filterblk" id="companyType">
+    //       {showCompanyTypeList()}
+    //     </div>
+    //   );
+    // } else if (openAdvancedModel.key === 6) {
+    //   return (
+    //     <div className="filterblk" id="emplyeeCount">
+    //       {showEmployeeCountList()}
+    //     </div>
+    //   );
+    // } else if (openAdvancedModel.key === 7) {
+    //   return (
+    //     <div className="filterblk" id="revenueRange">
+    //       {showRevenueRangeList()}
+    //     </div>
+    //   );
+    // } else if (openAdvancedModel.key === 8) {
+    //   return (
+    //     <div className="filterblk" id="savedsearch">
+    //       {showSaveSearchList()}
+    //     </div>
+    //   );
+    // } else if (openAdvancedModel.key === 9) {
+    //   return (
+    //     <div className="filterblk" id="companyTag">
+    //       {showExecutiveTagList()}
+    //     </div>
+    //   );
+    // } else if (openAdvancedModel.key === 10) {
+    //   return (
+    //     <div className="filterblk" id="execFunction">
+         
+    //     </div>
+    //   );
+    // } else if (openAdvancedModel.key === 11) {
+    //   return (
+    //     <div className="filterblk" id="execLevel">
+    //       {showExecutiveLevelList()}
+    //     </div>
+    //   );
     } else {
       return (
         <>
+        
+            <div className="filterblk" id="leadOwner">
+              {showInputSearch(visibleFilter,'leadOwner','Lead Owner','la-industry')}
+            </div>
+            <div className="filterblk" id="firstName">
+              {showInputSearch(visibleFilter,'firstName','First Name','la-industry')}
+            </div>
+            <div className="filterblk" id="lastName">
+              {showInputSearch(visibleFilter,'lastName','Last Name','la-industry')}
+            </div>
+            <div className="filterblk" id="companyName">
+              {showInputSearch(visibleFilter,'companyName','Company Name','la-industry')}
+            </div>
+            <div className="filterblk" id="designation">
+              {showInputSearch(visibleFilter,'designation','Designation','la-industry')}
+            </div>
+            <div className="filterblk" id="emplyeeCount">
+            {showEmployeeCountList()}
+          </div>
+          <div className="filterblk" id="industry">
+            {showIndustryList()}
+          </div>
+
           <div className="filterblk" id="county">
             {showCountriesList()}
           </div>
@@ -1800,12 +1786,9 @@ const AdvancedFilter = ({
           <div className="filterblk" id="city">
             {showCitiesList()}
           </div>
-          <div className="filterblk" id="industry">
-            {showIndustryList()}
-          </div>
-
-          <div className="filterblk" id="execFunction">
-            {showExecutiveFunctionList()}
+         
+          {/* <div className="filterblk" id="execFunction">
+           
           </div>
           <div className="filterblk" id="execLevel">
             {showExecutiveLevelList()}
@@ -1824,7 +1807,7 @@ const AdvancedFilter = ({
           </div>
           <div className="filterblk" id="companyTag">
             {showExecutiveTagList()}
-          </div>
+          </div> */}
         </>
       );
     }

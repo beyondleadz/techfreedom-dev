@@ -1,4 +1,6 @@
 import React, { useEffect, useState, useMemo } from "react";
+import Excel from "exceljs";
+import { saveAs } from "file-saver";
 import { useNavigate, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import _ from "lodash";
@@ -7,6 +9,7 @@ import { PAGE_LENGTH } from "../../config";
 import defaultLogo from "../../assets/images/default_company_logo.jpg";
 import popupImg from "../../assets/images/free-user-login-prompt.jpg.jpeg";
 import TrialModal from "../../common/TrialModal";
+import { saveExcel, testImage } from "../../utils/utils";
 
 import {
   getExecutiveEmployeeList,
@@ -18,6 +21,7 @@ import {
   saveSearchList,
   downloadExecutiveList,
   createGroupExecutiveTag,
+  emptyDownload
 } from "../../actionCreator/executiveListingActionCreater";
 import {
   getEmployeeViewableStatusUpdate
@@ -225,6 +229,10 @@ const ExecutiveContent = () => {
     (state) => state.HeaderReducer.topSearchValue
   );
 
+  const downloadExcelData = useSelector(
+    (state) => state.executiveListingReducer.download
+  );
+
   // useMemo(() => {
   //   dispatch(getExecutiveEmployeeList({}, paginationValue));
   // }, []);
@@ -421,6 +429,69 @@ const ExecutiveContent = () => {
       dispatch(downloadExecutiveList(selectedRecords, "exl"));
     }
   };
+
+
+  
+  const getSchema = (data) => {
+    var finaldata=[];
+    let cnt=0;
+    data.forEach((obj) => {
+      cnt++;
+      var dataObj={};
+      dataObj.id=obj.id;
+      dataObj.serealNo=cnt;
+      dataObj.firstName=obj.firstname;
+      dataObj.lastName=obj.lastname;
+      dataObj.designation=obj.title;
+      dataObj.email=obj.emailId;
+      dataObj.name=obj?.company?.name;
+      dataObj.revenueName=obj?.company?.revenue?.name;
+      dataObj.employeeRange=obj?.company?.range?.name;
+      dataObj.industryName=obj?.company?.industry?.name;
+      dataObj.country=obj?.company?.country;
+      dataObj.state=obj?.company?.state;
+      dataObj.city=obj?.company?.city;
+      dataObj.wedsite=obj?.company?.wedsite;
+      dataObj.address=obj?.company?.address;
+      dataObj.pincode=obj?.company?.pincode;
+      dataObj.phoneNo=obj.phoneNo;
+      finaldata.push(dataObj)
+    })
+    return finaldata;
+  }
+
+
+  useEffect(() => {
+    
+    if (downloadExcelData.length) {
+      const downloadedUpdatedData = getSchema(downloadExcelData)
+
+      //console.log(downloadExcelData, "downloadExcelData",downloadedUpdatedData);
+      const columns = [
+        { header: "Serial No.", key: "serealNo" },
+        { header: "FirstName", key: "firstName" },
+        { header: "LastName", key: "lastName" },
+        { header: "Designation", key: "designation" },
+        { header: "Email Available", key: "email" },
+        { header: "Company Name", key: "name" },
+        { header: "Phone", key: "phoneNo" },
+        { header: "Address", key: "address" },
+        { header: "City", key: "city" },
+        { header: "State", key: "state" },
+        { header: "Country", key: "country" },
+        { header: "Pin", key: "pincode" },
+        { header: "Website", key: "wedsite" },
+        { header: "Company Revenue", key: "revenueName" },
+        { header: "Employee Range", key: "rangeName" },
+        { header: "Industry", key: "industryName" },
+      ];
+      const fileName = "exeutiveData";
+      saveExcel(downloadedUpdatedData, columns, fileName, Excel, saveAs);
+      dispatch(emptyDownload());
+    }
+  }, [downloadExcelData]);
+
+
   const downloadPDF = () => {
     const isLoggedIn = checkLoginStatus();
     if (isLoggedIn) {
