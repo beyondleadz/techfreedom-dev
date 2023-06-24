@@ -48,7 +48,7 @@ import { Geolocation } from "../constant/Geolocation";
 import { createPayload, createPayloadWithTopSearch,saveExcel } from "../utils/utils";
 
 export const getIndustryList = (payload) => (dispatch) => {
-  return getAuthMethod(industryApiUrl)
+  return getAuthMethod(`$industryApiUrl}/sfds`)
     .then((res) => {
       dispatch({
         type: INDUSTRY_LIST,
@@ -56,11 +56,12 @@ export const getIndustryList = (payload) => (dispatch) => {
       });
     })
     .catch((err) => {
+      console.log(err,'9798798')
       dispatch({
         type: INDUSTRY_LIST_ERROR,
         payload:
-          { [errEnum.INDUSTRY_LIST_ERROR]: err.response.data[ErrKey] } ||
-          "Error Occured",
+          { [errEnum.INDUSTRY_LIST_ERROR]: err ||
+            "Error Occured"}
       });
     });
 };

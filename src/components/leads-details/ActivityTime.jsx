@@ -1,5 +1,5 @@
-import React from "react";
-
+import React, { useState,useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 import { Timeline, Button, Select, DatePicker, Space} from "antd";
 // import { Timeline, Button, Select } from 'antd';
@@ -8,7 +8,31 @@ import ActivityTimecopy from "./ActivityTimecopy";
 
 
 const { RangePicker } = DatePicker;
-const ActivityTime = () => {
+const ActivityTime = ({setActiveTab}) => {
+
+  const [itemData, setItemData] = useState([]);
+  const leadNotes = useSelector((state) => state.LeadDetailsReducer.leadNotes);
+
+  const editLeadNote=(id)=>{
+    setActiveTab(3,id);
+  }
+  useEffect(() => {
+    if (leadNotes.length) {
+      let items = [];
+      leadNotes.map((item, index) => {
+        let obj = {};
+        obj.color = "green";
+        obj.dot =
+          <div><a href="#" class="btn btn-phone btn-sm btn-circle"> <i class="las la-phone fs-14"></i></a></div>;
+        obj.children =
+          <div className="mt-3"><div className="col-md-12"><div id="steps" className=" row mt-3"> <div className="col-md-8 text-align-left fs-14 font-weight-normal ">{item.note}
+          <h6>{item.notefor}</h6></div>    <div className="col-sm-4 text-align-right"><a href="#" class="btn fs-20 " onClick={()=>editLeadNote(item.id)}> <i class="las la-edit "></i></a> <a href="#" class="btn fs-20 "> <i class="las la-trash"></i></a><div className="fs-12 mt-1">2023-06-26 18:43</div></div></div></div></div>;
+        items.push(obj);
+      });
+      setItemData(items);
+    }
+  }, [leadNotes]);
+
     return(
 <>
 
@@ -53,7 +77,14 @@ const ActivityTime = () => {
     <div className="col-md-3  float-right "><button className="btn btn-info btn-sm "><i class="las la-plus"></i>Add New Task</button></div>
 </div>
 
-<div><ActivityTimecopy /></div>
+<div>
+  {/* <ActivityTimecopy /> */}
+  <div className="mb-4 fs-14 font-weight-bold">Overdue Activity</div>
+
+<Timeline
+items={itemData}
+/>
+</div>
 <div className="mb-4 pb-2 fs-14 font-weight-bold">Past Activity</div>   
 
   <Timeline

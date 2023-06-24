@@ -10,7 +10,7 @@ const TrialModal = ({
   redirectToSignup,
   redirect = false,
 }) => {
-  console.log(redirect,'redirectredirect')
+  //console.log(redirect,'redirectredirect')
   return (
     <Modal
       width={modalWidth}

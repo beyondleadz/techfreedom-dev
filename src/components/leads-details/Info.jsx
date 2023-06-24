@@ -34,7 +34,7 @@ const Info = () => {
   const [form, setForm] = useState(formIntialValue);
 
   const updateLead=()=>{
-    console.log(form,leadDetail,'formform');
+    console.log(form,'formform');
     let payload=leadDetail;
     payload.fullname=form.fullname.value;
     payload.title=form.title.value;
@@ -47,14 +47,14 @@ const Info = () => {
     payload.source=form.source.value;
     payload.mobile=form.mobile.value;
     payload.description=form.description.value;
-    console.log(payload,'form on save');
-   // dispatch(updateLeadDetails(payload));
+    //console.log(payload,'form on save');
+    dispatch(updateLeadDetails(payload));
   }
 
   const onInputChange = (ele) => {
     setForm({
       ...form,
-      [ele.target.name]: ele.target.value,
+      [ele.target.name]:{...form[ele.target.name], value:ele.target.value},
     });
   };
   return (
@@ -64,7 +64,7 @@ const Info = () => {
         <div className="formcol2">
           <Input
             name="fullname"
-            value={errorForm?.fullname?.value}
+            value={form?.fullname?.value}
             placeholder="Full Name"
             onChange={onInputChange}
           />
@@ -76,7 +76,7 @@ const Info = () => {
         <div className="formcol2">
           <Input
             name="title"
-            value={errorForm?.title?.value}
+            value={form?.title?.value}
             placeholder="Designation"
             onChange={onInputChange}
           />
@@ -88,7 +88,7 @@ const Info = () => {
         <div className="formcol2">
           <Input
             name="phone"
-            value={errorForm?.phone?.value}
+            value={form?.phone?.value}
             placeholder="Phone"
             status=""
             onChange={onInputChange}
@@ -101,7 +101,7 @@ const Info = () => {
         <div className="formcol2">
           <Input
             name="mobile"
-            value={errorForm?.mobile?.value}
+            value={form?.mobile?.value}
             placeholder="Mobile"
             onChange={onInputChange}
           />
@@ -113,7 +113,7 @@ const Info = () => {
         <div className="formcol2">
           <Input
             name="email"
-            value={errorForm?.email?.value}
+            value={form?.email?.value}
             placeholder="Email"
             onChange={onInputChange}
           />
@@ -125,7 +125,7 @@ const Info = () => {
         <div className="formcol2">
           <Input
             name="company"
-            value={errorForm?.company?.value}
+            value={form?.company?.value}
             placeholder="Company Name"
             onChange={onInputChange}
           />
@@ -137,7 +137,7 @@ const Info = () => {
         <div className="formcol2">
           <TextArea
             name="address"
-            value={errorForm?.address?.value}
+            value={form?.address?.value}
             rows={2}
             maxLength={100}
             onChange={onInputChange}
@@ -149,7 +149,7 @@ const Info = () => {
         <div className="formcol2">
           <Input
             name="website"
-            value={errorForm?.website?.value}
+            value={form?.website?.value}
             placeholder="Website"
             onChange={onInputChange}
           />
@@ -160,7 +160,7 @@ const Info = () => {
         <div className="formcol2">
           <Input
             name="industry"
-            value={errorForm?.industry?.value}
+            value={form?.industry?.value}
             placeholder="Industry"
             onChange={onInputChange}
           />
@@ -227,7 +227,7 @@ const Info = () => {
         <div className="formcol2">
           <TextArea
             name="source"
-            value={errorForm?.source?.value}
+            value={form?.source?.value}
             rows={2}
             maxLength={100}
             onChange={onInputChange}
@@ -239,7 +239,7 @@ const Info = () => {
         <div className="formcol2">
           <TextArea
             name="description"
-            value={errorForm?.description?.value}
+            value={form?.description?.value}
             rows={2}
             maxLength={100}
             onChange={onInputChange}

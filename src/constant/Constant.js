@@ -1,6 +1,6 @@
 export const signInUrl = "api/authenticate"; //"signin.php";
 export const signUpUrl = "api/register";
-export const industryApiUrl = "api/industries";
+export const industryApiUrl = '' //"api/industries";
 export const employeeCountApiUrl = "api/employee-ranges";
 export const companyTypeApiUrl = "api/companycategories";
 export const revenueRangeApiUrl = "api/company-revenue-ranges";
@@ -29,4 +29,7 @@ export const groupExecutiveTagUrl = '/api/employee-tags/multi';
 export const subscriptionaccountInfoApiUrl='/api/subscriptions/';
 
 export const fetchExecutiveTagApiUrl = 'api/employee-tags';
+export const saveClientNoteApiUrl = 'api/client-notes';
+export const getClientNotesApiUrl = 'api/client-notes';
+export const getClientRemarksApiUrl = 'api/client-remarks';
 

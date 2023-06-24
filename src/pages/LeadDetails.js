@@ -20,17 +20,27 @@ import Stepsbar from "../components/leads-details/Stepsbar";
 
 import {
   getLeadDetails,
+  getAllLeadNotes,
+  getAllLeadRemarks,
+  getLeadNoteDetails
 } from "../actionCreator/leadDetailsActionCreator";
 
-const onChange = (key) => {
-  console.log(key);
-};
 
+const LeadDetails = () => {
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  const leadDetail= useSelector(
+    (state) => state.LeadDetailsReducer.leadDetails
+  );
+  const [loading, setLoading] = useState(true);
+  const [activeTab, setActiveTab1] = useState("1");
+
+  
 const items = [
   {
     key: "1",
-    label: <span>Activity Time</span>,
-    children: <ActivityTime />,
+    label: <span>Timeline</span>,
+    children: <ActivityTime setActiveTab={(tab,id) => getActiveTab(tab,id)} />,
   },
   {
     key: "2",
@@ -49,20 +59,26 @@ const items = [
   },
 ];
 
-const LeadDetails = () => {
-  const { id } = useParams();
-  const dispatch = useDispatch();
-  const leadDetail= useSelector(
-    (state) => state.LeadDetailsReducer.leadDetails
-  );
-  const [loading, setLoading] = useState(true);
+const getActiveTab = (tab,id) => {
+  setActiveTab1(`${tab}`)
+  dispatch(getLeadNoteDetails(id));
+  //console.log(`${tab}`,id,'535u39')
+}
+
+const onChange = (key) => {
+  console.log(key);
+  setActiveTab1(`${key}`)
+};
 
   useMemo(() => {
-     dispatch(getLeadDetails(id));    
+     dispatch(getLeadDetails(id));
+     dispatch(getAllLeadNotes(id));
+     dispatch(getAllLeadRemarks(id));    
    }, []);
    useMemo(() => {
     console.log(leadDetail, "leadDetail");
    },[leadDetail]);
+
   return (
     <>
       <Layout>
@@ -189,9 +205,11 @@ const LeadDetails = () => {
                     </div>
                     <div className="col-md-8 col-custom-2">
                       <div className="row">
+                        {console.log(activeTab,'activeTabactiveTab')}
                         <Tabs
                           className="ml-4 "
-                          defaultActiveKey="1"
+                          activeKey={activeTab}
+                          // defaultActiveKey="1"
                           items={items}
                           onChange={onChange}
                         />

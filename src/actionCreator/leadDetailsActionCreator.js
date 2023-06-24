@@ -2,7 +2,15 @@ import {
   LEAD_DETAILS,
   LEAD_DETAILS_ERROR,  
   UPDATE_LEAD_DETAILS,
-  UPDATE_LEAD_DETAILS_ERROR
+  UPDATE_LEAD_DETAILS_ERROR,
+  SAVE_CLIENT_NOTE,
+  SAVE_CLIENT_NOTE_ERROR,
+  LEAD_NOTES,
+  LEAD_NOTES_ERROR,
+  LEAD_REMARKS,
+  LEAD_REMARKS_ERROR,
+  LEAD_NOTE_DETAIL,
+  LEAD_NOTE_DETAIL_ERROR
 } from "../actionType/leadDetailsType";
 import {
   getAuthMethod,
@@ -11,7 +19,11 @@ import {
   putAuthMethod
 } from "../services/HttpServices";
 import {
-  getClientLeadsUrl  
+  getClientLeadsUrl,
+  saveClientNoteApiUrl,
+  getClientNotesApiUrl,
+  getClientRemarksApiUrl,
+ // getLeadNoteDetails
 } from "../constant/Constant";
 import { ErrKey, errEnum } from "../config";
 
@@ -58,4 +70,108 @@ export const updateLeadDetails = (payload) => (dispatch) => {
     });
     
 };
+
+export const submitLeadNotes = (payload) => (dispatch) => {  
+  if(payload.update){
+    return putAuthMethod(saveClientNoteApiUrl,payload.id, payload)
+    .then((res) => {
+      dispatch({
+        type: SAVE_CLIENT_NOTE,
+        payload: res.data,
+      });
+      dispatch(getAllLeadNotes(payload?.lead?.id));
+    })
+    .catch((err) => {
+      dispatch({
+        type: SAVE_CLIENT_NOTE_ERROR,
+        payload:
+          {
+            [errEnum.SAVE_CLIENT_NOTE_ERROR]: err.response.data[ErrKey],
+          } || "Error Occured",
+      });
+    });
+  }else{
+    return postAuthMethod(saveClientNoteApiUrl, payload)
+    .then((res) => {
+      dispatch({
+        type: SAVE_CLIENT_NOTE,
+        payload: res.data,
+      });
+      dispatch(getAllLeadNotes(payload?.lead?.id));
+    })
+    .catch((err) => {
+      dispatch({
+        type: SAVE_CLIENT_NOTE_ERROR,
+        payload:
+          {
+            [errEnum.SAVE_CLIENT_NOTE_ERROR]: err.response.data[ErrKey],
+          } || "Error Occured",
+      });
+    });
+  }
+  
+};
+
+export const resetSubmitLeadNotes = (payload) => {
+  return { type: SAVE_CLIENT_NOTE, payload: {} };
+};
+
+export const getAllLeadNotes = (id) => (dispatch) => {
+  const url = `${getClientNotesApiUrl}?leadId.equals=${id}`;
+  return getMethod(url)
+    .then((res) => {
+      dispatch({
+        type: LEAD_NOTES,
+        payload: res?.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: LEAD_NOTES_ERROR,
+        payload:
+          { [errEnum.LEAD_NOTES_ERROR]: err.response.data[ErrKey] } ||
+          "Error Occured",
+      });
+    });
+};
+
+export const getLeadNoteDetails = (id) => (dispatch) => {
+  const url = `${getClientNotesApiUrl}/${id}`;
+  return getMethod(url)
+    .then((res) => {
+      dispatch({
+        type: LEAD_NOTE_DETAIL,
+        payload: res?.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: LEAD_NOTE_DETAIL_ERROR,
+        payload:
+          { [errEnum.LEAD_NOTE_DETAIL_ERROR]: err.response.data[ErrKey] } ||
+          "Error Occured",
+      });
+    });
+};
+
+
+export const getAllLeadRemarks = (id) => (dispatch) => {
+  const url = `${getClientRemarksApiUrl}?leadId.equals=${id}`;
+  return getMethod(url)
+    .then((res) => {
+      dispatch({
+        type: LEAD_REMARKS,
+        payload: res?.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: LEAD_REMARKS_ERROR,
+        payload:
+          { [errEnum.LEAD_REMARKS_ERROR]: err.response.data[ErrKey] } ||
+          "Error Occured",
+      });
+    });
+};
+
 
