@@ -7570,8 +7570,8 @@ color: orange;
           width: 90%;
           text-align: initial;
       }
-      #leads .ant-steps-item:first-child {background-color: #15df44; color: #fff;}
-      #leads .ant-steps.ant-steps-navigation .ant-steps-item:first-child::after {background-color: #15df44;}
+      #leads .ant-steps-item:first-child {background-color: #15df44; color: #fff; border-radius: 10px 0 0 10px;}
+      #leads .ant-steps.ant-steps-navigation .ant-steps-item:first-child::after {background-color: #15df44; }
       #leads .ant-steps-item:nth-child(2){background-color: #5d44ff;}
       #leads .ant-steps.ant-steps-navigation .ant-steps-item:nth-child(2)::after{background-color: #5d44ff;}
       #leads .ant-steps-item:nth-child(3){background-color: #fdc401;}

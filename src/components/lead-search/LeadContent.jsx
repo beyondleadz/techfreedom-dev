@@ -489,7 +489,7 @@ const LeadContent = () => {
                       {companyFilterList?.totalExecutiveCount}
                       <span className="m-1">results</span>
                     </h6>
-
+                    <span className="ml-4 fs-23"><i class="text-info las la-calendar"></i></span>
                     <div className="buttons-container textsearch">
                     <ul className="d-flex mt-1  m-mt">
 

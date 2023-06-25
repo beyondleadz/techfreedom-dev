@@ -13,7 +13,7 @@ const BannerSection=()=>{
                     <span>Product </span>Comparison!</h3>
                  <p className="mr-5">Welcome to BeyondLeadz, a B2B data and lead management solutions provider. Our company specializes in providing businesses with accurate, up-to-date and actionable data that helps them identify potential leads and grow their customer base.</p>
                         
-                 <div className="container">
+                 {/* <div className="container">
               <div className="row">
             
             <div className="compareHead">Beyond Leads VS Linkedin</div>
@@ -61,7 +61,7 @@ const BannerSection=()=>{
         
             
             </div>
-            </div>
+            </div> */}
             
                     <div className="mt-md-5 mt-4 mb-lg-0 mb-4">
                         <a className="btn btn-style" href="about.html">Start Free Trial</a>  <a className="btn btn-style" href="about.html">See Plans</a>                        </div>

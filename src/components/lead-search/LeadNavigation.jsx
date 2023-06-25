@@ -123,11 +123,12 @@ const LeadNavigation = () => {
   };
 
   return (
-    <nav className="navbar navbar-light bg-white topbar mb-4 static-top">
+    <nav className="navbar navbar-light bg-white topbar mb-4 mr-2 static-top">
       <div className="buttons-container-top m-mt quickselection">
         <div>
+        {/* <span className="mr-4  fs-25 align-bottom "><i class=" text-info las la-calendar"></i></span> */}
           <span className="fs-12 mr-2">Quick Selection</span>
-          <div className=" fs-12 d-sm-inline-block  mr-1">
+          <div className=" fs-12 d-sm-inline-block  mr-2">
             <Input
               name="start"
               className="quickselectioninput btn-outline-grey"
