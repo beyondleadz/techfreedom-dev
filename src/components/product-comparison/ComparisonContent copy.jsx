@@ -14,15 +14,15 @@ const ComparisonContent=()=>{
        <div id="wrapper">
 	   
 		<div className="container  ">
-		<div class="product-comparison compare">
-			<ul class="compare-navigation_list d-flex">
+		<div className="product-comparison compare">
+			<ul className="compare-navigation_list d-flex">
 				
-						 <li class="compare-navigation_item1 "> <img src={logo} />
+						 <li className="compare-navigation_item1 "> <img src={logo} />
 						 <div className="vs"> vs </div></li>
-							<li class="compare-navigation_item"><div><span>LinkedIn</span></div></li>
-							<li class="compare-navigation_item"> <div> <span>Traditional Data Companies</span></div></li>
-							<li class="compare-navigation_item"> <div><span>Popular Prospecting Tools</span></div></li>
-							<li class="compare-navigation_item"> <div> <span>New Age Marketing Tools</span></div></li></ul>
+							<li className="compare-navigation_item"><div><span>LinkedIn</span></div></li>
+							<li className="compare-navigation_item"> <div> <span>Traditional Data Companies</span></div></li>
+							<li className="compare-navigation_item"> <div><span>Popular Prospecting Tools</span></div></li>
+							<li className="compare-navigation_item"> <div> <span>New Age Marketing Tools</span></div></li></ul>
 				
 						<div className="clearfix"> </div>
 					</div>

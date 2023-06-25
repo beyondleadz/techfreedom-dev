@@ -79,7 +79,7 @@ const Leads = () => {
 <div className="row headername"><h3>Leads</h3></div>
 <div className="row col-md-12 mt-3">
 <div className="col-md-10"><Stepsbar/></div>
-<div className="col"><button class="btn btn-primary fs-12 btn-sm ">Mark Step as Done</button></div>
+<div className="col"><button className="btn btn-primary fs-12 btn-sm ">Mark Step as Done</button></div>
 </div> 
 </div>
 </div>  
@@ -91,16 +91,16 @@ const Leads = () => {
 <div className="card shadow col-md-12">
           <div className="row">
             <div className="col-md-4 col-custom">
-            <div className="profilePic"><i class="btn btn-dark btn-circle btn-lg"> JC</i>
+            <div className="profilePic"><i className="btn btn-dark btn-circle btn-lg"> JC</i>
     <h3>John collines</h3>
     <div className="name mt-1">October14th, 2018 at 2:30 P.M.</div>
     
     <div>
     
-    <Tooltip overlayClassName="fs-12 "  title="Phone">  <a href="#" class="btn btn-phone btn-circle"> <i class="las la-phone"></i></a></Tooltip>
-    <Tooltip overlayClassName="fs-12 "   title="Email"> <a href="#" class="btn btn-email btn-circle ml-3"><i class="las la-envelope "></i></a></Tooltip>
-    <Tooltip overlayClassName="fs-12"   title="Activity"> <a href="#" class="btn btn-act btn-circle ml-3"><i class="las la-directions"></i></a></Tooltip>
-    <Tooltip overlayClassName="fs-12 "   title="Document"> <a href="#" class="btn btn-document btn-circle ml-3"><i class="las la-share-square "></i></a></Tooltip></div>
+    <Tooltip overlayClassName="fs-12 "  title="Phone">  <a href="#" className="btn btn-phone btn-circle"> <i className="las la-phone"></i></a></Tooltip>
+    <Tooltip overlayClassName="fs-12 "   title="Email"> <a href="#" className="btn btn-email btn-circle ml-3"><i className="las la-envelope "></i></a></Tooltip>
+    <Tooltip overlayClassName="fs-12"   title="Activity"> <a href="#" className="btn btn-act btn-circle ml-3"><i className="las la-directions"></i></a></Tooltip>
+    <Tooltip overlayClassName="fs-12 "   title="Document"> <a href="#" className="btn btn-document btn-circle ml-3"><i className="las la-share-square "></i></a></Tooltip></div>
     
     </div>
     <div className="col-md-12">

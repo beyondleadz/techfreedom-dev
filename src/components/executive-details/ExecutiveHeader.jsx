@@ -203,9 +203,9 @@ getToken() ?
                   </div>
                   <div className="col">
                     <div className="fs-12 font-weight-bold">Social</div>
-                    {/* <i class="lab fs-20 facebook lab la-facebook"></i>
-                  <i class="lab fs-20  twitter la la-twitter-square"></i>
-                  <i class="lab fs-20 linkedin lab la-linkedin"></i> */}
+                    {/* <i className="lab fs-20 facebook lab la-facebook"></i>
+                  <i className="lab fs-20  twitter la la-twitter-square"></i>
+                  <i className="lab fs-20 linkedin lab la-linkedin"></i> */}
                     {renderSocialLinks(executiveDetails?.socialLinks)}
                   </div>
                 </div>

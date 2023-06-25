@@ -67,7 +67,7 @@ const SummaryContent = () => {
   const items = [
     {
       key: "1",
-      label: <span><i class=" pr-1 fs-18 la la-user-friends"></i>Colleagues</span>,
+      label: <span><i className=" pr-1 fs-18 la la-user-friends"></i>Colleagues</span>,
       children: <KeyExecutives />,
     },
   ];
@@ -204,7 +204,7 @@ const SummaryContent = () => {
                 </li>
 
                 <li onClick={tagExecutive}>
-                  <a class=" mr-2" aria-haspopup="true" aria-expanded="false">
+                  <a className=" mr-2" aria-haspopup="true" aria-expanded="false">
                   <Tooltip title="Tag Executive">
                     <i
                       className="right-icons las  la-tags"
@@ -214,18 +214,18 @@ const SummaryContent = () => {
                 </li>
 
                 <li>
-                  <a class=" mr-2" aria-haspopup="true" aria-expanded="false">
+                  <a className=" mr-2" aria-haspopup="true" aria-expanded="false">
                     <i
-                      class="right-icons la la-file-excel"
+                      className="right-icons la la-file-excel"
                       aria-hidden="true"
                     ></i>
                   </a>
                 </li>
 
                 <li>
-                  <a class=" mr-2" aria-haspopup="true" aria-expanded="false">
+                  <a className=" mr-2" aria-haspopup="true" aria-expanded="false">
                     <i
-                      class="right-icons la la-file-pdf"
+                      className="right-icons la la-file-pdf"
                       aria-hidden="true"
                     ></i>
                   </a>
@@ -273,7 +273,7 @@ const SummaryContent = () => {
           onCancel={closeTagModal}
           onOk={onConfrim}
         >
-          <div class="pop-up errorformcontainer ">
+          <div className="pop-up errorformcontainer ">
             <div className="form">
               <div className="formcol1">
                 <label>Tag Name</label>
@@ -302,7 +302,7 @@ const SummaryContent = () => {
             </Button>,
           ]}
         >
-          <div class="pop-up errorformcontainer ">
+          <div className="pop-up errorformcontainer ">
             <p>Please select colleagues!</p>
           </div>
         </Modal>

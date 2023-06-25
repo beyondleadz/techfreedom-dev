@@ -40,9 +40,9 @@ const ExecutiveDetails1 = () => {
           <div className="col"><h5>Email</h5> <i className=" fs-23 mr-2 align-middle la la-envelope text-black"></i><span>View Email</span></div>
           <div className="col"><h5>Phone</h5>(206) 266-1000</div>
           <div className="col"><h5>Social</h5>
-            <i class="lab fs-20 facebook lab la-facebook"></i>
-<i class="lab fs-20  twitter la la-twitter-square"></i>
-<i class="lab fs-20 linkedin lab la-linkedin"></i></div>
+            <i className="lab fs-20 facebook lab la-facebook"></i>
+<i className="lab fs-20  twitter la la-twitter-square"></i>
+<i className="lab fs-20 linkedin lab la-linkedin"></i></div>
           </div>
           <div className="row pt-3 pb-3">
             <div className="col"><h5>Overview</h5> <span>Executive with strong experience in Large Account Management, P&L responsibility and leading high-caliber sales teams. Strong customer advocacy, communication and cross-group collaboration skills. 
@@ -54,20 +54,20 @@ const ExecutiveDetails1 = () => {
         
         {/* <div className="buttons-container">
                  <ul className="d-flex  m-mt">
-                 <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
-                    aria-expanded="false"><i class="right-icons la la-file-pdf" aria-hidden="true"></i>
+                 <li><a className=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
+                    aria-expanded="false"><i className="right-icons la la-file-pdf" aria-hidden="true"></i>
                   </a></li>
                          
-                  <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
-                    aria-expanded="false"><i class="right-icons la la-file-excel" aria-hidden="true"></i>
+                  <li><a className=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
+                    aria-expanded="false"><i className="right-icons la la-file-excel" aria-hidden="true"></i>
                   </a></li>
                 
-              <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
+              <li><a className=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
                     aria-expanded="false">
                     <i className="right-icons la la-star" aria-hidden="true"></i>
                   </a>
                 </li>
-                <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
+                <li><a className=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
                     aria-expanded="false">
                     <i className="right-icons las la-flag" aria-hidden="true"></i>
                   </a>

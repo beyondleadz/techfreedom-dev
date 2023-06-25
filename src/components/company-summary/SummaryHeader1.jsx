@@ -27,31 +27,31 @@ const CompanySummary = () => {
         <div className="descbox">
           <div className="fs-12">INVESTMENT FIRM</div>
           <div font-weight-bold><h3>Deutsche Bank</h3></div>
-          <div><span class=" fa  fa-map-marker mr-2"></span><strong>Address</strong>
+          <div><span className=" fa  fa-map-marker mr-2"></span><strong>Address</strong>
           410 Terry Ave N, Seattle, Washington 98109, US</div>
-          <div><span class=" fa  fa-globe mr-2" aria-hidden="true"></span><strong>Website</strong><a data-ceid="company_website" title="Amazon website" target="_blank" rel="nofollow noreferrer" href="https://www.amazon.com">
+          <div><span className=" fa  fa-globe mr-2" aria-hidden="true"></span><strong>Website</strong><a data-ceid="company_website" title="Amazon website" target="_blank" rel="nofollow noreferrer" href="https://www.amazon.com">
                                         https://www.Deutsche.com</a></div>
         </div>
         <div className="descbox1">
           <div>Is this company data relevant to you? <a href="#" id="" role="button" data-toggle=""aria-haspopup="true"
-                    aria-expanded="false"><i class="right-icons fa fa-thumbs-up" aria-hidden="true"></i></a></div>
-          <div font-weight-bold><button class="btn btn-outline-dark font-weight-bold mr-2 p-1">Realy Not</button>
-          <button class="btn btn-outline-dark font-weight-bold mr-2 p-1">Yes!</button></div>
+                    aria-expanded="false"><i className="right-icons fa fa-thumbs-up" aria-hidden="true"></i></a></div>
+          <div font-weight-bold><button className="btn btn-outline-dark font-weight-bold mr-2 p-1">Realy Not</button>
+          <button className="btn btn-outline-dark font-weight-bold mr-2 p-1">Yes!</button></div>
         </div>
         <div className="buttons-container">
                  <ul className="d-flex  m-mt">
-                 <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
-                    aria-expanded="false"><i class="right-icons la la-file-pdf" aria-hidden="true"></i>
+                 <li><a className=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
+                    aria-expanded="false"><i className="right-icons la la-file-pdf" aria-hidden="true"></i>
                   </a></li>
                          
               
                 
-              <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
+              <li><a className=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
                     aria-expanded="false">
                     <i className="right-icons la la-star" aria-hidden="true"></i>
                   </a>
                 </li>
-                <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
+                <li><a className=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
                     aria-expanded="false">
                     <i className="right-icons las la-flag" aria-hidden="true"></i>
                   </a>

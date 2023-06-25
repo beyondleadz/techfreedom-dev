@@ -27,7 +27,7 @@ const TrialModal = ({
         </Button>
       ]}
     >
-      <div class="pop-up">{modalBody}</div>
+      <div className="pop-up">{modalBody}</div>
     </Modal>
   );
 };

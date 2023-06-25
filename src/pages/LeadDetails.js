@@ -78,7 +78,9 @@ const onChange = (key) => {
    useMemo(() => {
     console.log(leadDetail, "leadDetail");
    },[leadDetail]);
-
+const switchToTimeline=()=>{
+  setActiveTab1(`1`);
+}
   return (
     <>
       <Layout>
@@ -118,7 +120,7 @@ const onChange = (key) => {
                       <Stepsbar />
                     </div>
                     <div className="col">
-                      <button class="btn btn-primary fs-12 btn-sm ">
+                      <button className="btn btn-primary fs-12 btn-sm ">
                         Mark Step as Done
                       </button>
                     </div>
@@ -131,7 +133,7 @@ const onChange = (key) => {
                   <div className="row">
                     <div className="col-md-4 col-custom">
                       <div className="profilePic">
-                        <i class="btn btn-dark btn-circle btn-lg" style={{ "text-transform": "uppercase" }}> {leadDetail?.firstname?.[0]}
+                        <i className="btn btn-dark btn-circle btn-lg" style={{ "text-transform": "uppercase" }}> {leadDetail?.firstname?.[0]}
                 {leadDetail?.lastname?.[0]}</i>
                         <h3>{leadDetail?.fullname}</h3>
                         <div className="name mt-1">
@@ -141,30 +143,28 @@ const onChange = (key) => {
                         <div>
                           <Tooltip overlayClassName="fs-12 " title="Phone">
                             {" "}
-                            <a href="#" class="btn btn-phone btn-circle">
+                            <a href="#" className="btn btn-phone btn-circle">
                               {" "}
-                              <i class="las la-phone"></i>
+                              <i className="las la-phone"></i>
                             </a>
                           </Tooltip>
                           <Tooltip overlayClassName="fs-12 " title="Email">
                             {" "}
-                            <a href="#" class="btn btn-email btn-circle ml-3">
-                              <i class="las la-envelope "></i>
+                            <a href="#" className="btn btn-email btn-circle ml-3">
+                              <i className="las la-envelope "></i>
                             </a>
                           </Tooltip>
                           <Tooltip overlayClassName="fs-12" title="Activity">
-                            {" "}
-                            <a href="#" class="btn btn-act btn-circle ml-3">
-                              <i class="las la-directions"></i>
+                            <a href="#" className="btn btn-act btn-circle ml-3" onClick={switchToTimeline}>
+                              <i className="las la-directions"></i>
                             </a>
                           </Tooltip>
                           <Tooltip overlayClassName="fs-12 " title="Document">
-                            {" "}
                             <a
                               href="#"
-                              class="btn btn-document btn-circle ml-3"
+                              className="btn btn-document btn-circle ml-3"
                             >
-                              <i class="las la-share-square "></i>
+                              <i className="las la-share-square "></i>
                             </a>
                           </Tooltip>
                         </div>

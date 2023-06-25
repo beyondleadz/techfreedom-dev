@@ -82,34 +82,34 @@ const SummaryContent = () => {
     <tr><td colspan="2"><span className="font-weight-bold">Deutsche Bank</span>,a Frankfurt-based global investment bank, offers financial products and services to corporate and institutional clients.
 </td></tr>
 <tr>
-  <td className="row-cols-5 td-w-2"><i class=" fa  fa-globe mr-2" aria-hidden="true"></i><strong>Website</strong></td>
+  <td className="row-cols-5 td-w-2"><i className=" fa  fa-globe mr-2" aria-hidden="true"></i><strong>Website</strong></td>
   <td><a data-ceid="company_website" title="Amazon website" target="_blank" rel="nofollow noreferrer" href="https://www.amazon.com">
                                         https://www.Deutsche.com</a></td></tr>
-  <tr>  <td><i class=" fa  fa-money-check mr-2"></i><strong>Revenue</strong></td>
-  <td>$280.52 billion</td> </tr> <tr> <td><i class=" fa fa-university mr-2" aria-hidden="true"></i><strong>Funding</strong></td>
+  <tr>  <td><i className=" fa  fa-money-check mr-2"></i><strong>Revenue</strong></td>
+  <td>$280.52 billion</td> </tr> <tr> <td><i className=" fa fa-university mr-2" aria-hidden="true"></i><strong>Funding</strong></td>
   <td>$48.00 Million</td></tr>
-  <tr> <td><i class=" fa  fa-users mr-2"></i><strong>Employees</strong></td>
- <td class="employee-count" >809,221 <span>
+  <tr> <td><i className=" fa  fa-users mr-2"></i><strong>Employees</strong></td>
+ <td className="employee-count" >809,221 <span>
     (<a rel="nofollow noreferrer" title="Search for Amazon Employees" href="/person?employer[]=&quot;amazon.com&quot;" target="_blank">687,052 on Deutsche Bank</a>)
   </span></td></tr>
                 
-  <tr> <td><i class=" fa  fa-map-pin mr-2"></i><strong>Founded</strong></td>
+  <tr> <td><i className=" fa  fa-map-pin mr-2"></i><strong>Founded</strong></td>
                             <td>1994</td> </tr><tr>
                         
   
-                            <td><i class=" fa  fa-map-marker mr-2"></i><strong>Address</strong></td>
+                            <td><i className=" fa  fa-map-marker mr-2"></i><strong>Address</strong></td>
                             <td> <a data-ceid="company_address" target="_blank" title="Amazon location" rel="nofollow noreferrer" href="https://www.google.com/maps?q=410%20Terry%20Ave%20N%2C%20Seattle%2C%20Washington%2098109%2C%20US">
                                         410 Terry Ave N, Seattle, Washington 98109, US
                                     </a> </td> </tr>
-                                     <tr><td><i class=" fa  fa-mobile mr-2"></i><strong>Phone</strong></td>
+                                     <tr><td><i className=" fa  fa-mobile mr-2"></i><strong>Phone</strong></td>
                             <td>
                                 <a rel="nofollow noreferrer" title="Amazon's phone" href="tel:(206) 266-1000">(206) 266-1000</a>
-                            </td> </tr><tr><td><i class=" fa  fa-fax mr-2"></i><strong>Fax</strong></td>
+                            </td> </tr><tr><td><i className=" fa  fa-fax mr-2"></i><strong>Fax</strong></td>
                         <td>
                             (206) 266-1821
                         </td>
                                             </tr>
- <tr><td><i class=" mr-2 fa  fa-laptop"></i><span className="font-weight-bold" >Technologies</span></td>
+ <tr><td><i className=" mr-2 fa  fa-laptop"></i><span className="font-weight-bold" >Technologies</span></td>
 <td><div >
  <span> JavaScript, HTML, PHP
   <strong> +1282 more</strong> <strong> (view full list) </strong>
@@ -120,7 +120,7 @@ const SummaryContent = () => {
   
                 <tr>
                 
-                    </tr><tr> <td><i class=" fa fa-th-large mr-2"></i><strong>Category</strong></td>
+                    </tr><tr> <td><i className=" fa fa-th-large mr-2"></i><strong>Category</strong></td>
                             <td><span>Retail,</span><span>Internet,</span>
                                 
                                 <span>Software Development,</span>
@@ -199,7 +199,7 @@ Contacts</div>
                  <ul className="d-flex  m-mt">
                 <li>
                   <a
-                    class=" mr-2"
+                    className=" mr-2"
                     href="#"
                     id=""
                     role="button"
@@ -207,12 +207,12 @@ Contacts</div>
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    <i class="right-icons la la-envelope" aria-hidden="true"></i>
+                    <i className="right-icons la la-envelope" aria-hidden="true"></i>
                   </a>
                 </li>
                 <li>
                   <a
-                    class=" mr-2"
+                    className=" mr-2"
                     href="#"
                     id=""
                     role="button"
@@ -220,12 +220,12 @@ Contacts</div>
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    <i class="right-icons las la-share-square" aria-hidden="true"></i>
+                    <i className="right-icons las la-share-square" aria-hidden="true"></i>
                   </a>
                 </li>
                 <li>
                   <a
-                    class="  mr-2"
+                    className="  mr-2"
                     href="#"
                     id=""
                     role="button"
@@ -238,7 +238,7 @@ Contacts</div>
                 </li>
                 <li>
                   <a
-                    class="  mr-2"
+                    className="  mr-2"
                     href="#"
                     id=""
                     role="button"
@@ -264,7 +264,7 @@ Contacts</div>
                  <ul className="d-flex  m-mt">
                  <li>
                   <a
-                    class="  mr-2"
+                    className="  mr-2"
                     href="#"
                     id=""
                     role="button"
@@ -272,12 +272,12 @@ Contacts</div>
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    <i class="right-icons la la-envelope" aria-hidden="true"></i>
+                    <i className="right-icons la la-envelope" aria-hidden="true"></i>
                   </a>
                 </li>
                 <li>
                   <a
-                    class="  mr-2"
+                    className="  mr-2"
                     href="#"
                     id=""
                     role="button"
@@ -285,12 +285,12 @@ Contacts</div>
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    <i class="right-icons las la-share-square" aria-hidden="true"></i>
+                    <i className="right-icons las la-share-square" aria-hidden="true"></i>
                   </a>
                 </li>
                 <li>
                   <a
-                    class="  mr-2"
+                    className="  mr-2"
                     href="#"
                     id=""
                     role="button"
@@ -303,7 +303,7 @@ Contacts</div>
                 </li>
                 <li>
                   <a
-                    class="  mr-2"
+                    className="  mr-2"
                     href="#"
                     id=""
                     role="button"
@@ -331,7 +331,7 @@ Contacts</div>
                  <ul className="d-flex  m-mt">
                  <li>
                   <a
-                    class="  mr-2"
+                    className="  mr-2"
                     href="#"
                     id=""
                     role="button"
@@ -339,12 +339,12 @@ Contacts</div>
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    <i class="right-icons la la-envelope" aria-hidden="true"></i>
+                    <i className="right-icons la la-envelope" aria-hidden="true"></i>
                   </a>
                 </li>
                 <li>
                   <a
-                    class="  mr-2"
+                    className="  mr-2"
                     href="#"
                     id=""
                     role="button"
@@ -352,12 +352,12 @@ Contacts</div>
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    <i class="right-icons las la-share-square" aria-hidden="true"></i>
+                    <i className="right-icons las la-share-square" aria-hidden="true"></i>
                   </a>
                 </li>
                 <li>
                   <a
-                    class="  mr-2"
+                    className="  mr-2"
                     href="#"
                     id=""
                     role="button"
@@ -370,7 +370,7 @@ Contacts</div>
                 </li>
                 <li>
                   <a
-                    class="  mr-2"
+                    className="  mr-2"
                     href="#"
                     id=""
                     role="button"
@@ -401,8 +401,8 @@ Contacts</div>
 </div>
 <div className="card-body">
     <div className="row">
-    <div class="orgchart">
-<nav class="org">
+    <div className="orgchart">
+<nav className="org">
 			<ul>
 				<li>
 					<a href="#"><span><img src={OrgChartImg} /><br />General Manager</span></a>

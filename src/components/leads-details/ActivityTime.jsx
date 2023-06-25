@@ -16,6 +16,9 @@ const ActivityTime = ({setActiveTab}) => {
   const editLeadNote=(id)=>{
     setActiveTab(3,id);
   }
+  const switchToTaskTab=()=>{
+    setActiveTab(4,'');
+  }
   useEffect(() => {
     if (leadNotes.length) {
       let items = [];
@@ -23,10 +26,10 @@ const ActivityTime = ({setActiveTab}) => {
         let obj = {};
         obj.color = "green";
         obj.dot =
-          <div><a href="#" class="btn btn-phone btn-sm btn-circle"> <i class="las la-phone fs-14"></i></a></div>;
+          <div><a href="#" className="btn btn-phone btn-sm btn-circle"> <i className="las la-phone fs-14"></i></a></div>;
         obj.children =
           <div className="mt-3"><div className="col-md-12"><div id="steps" className=" row mt-3"> <div className="col-md-8 text-align-left fs-14 font-weight-normal ">{item.note}
-          <h6>{item.notefor}</h6></div>    <div className="col-sm-4 text-align-right"><a href="#" class="btn fs-20 " onClick={()=>editLeadNote(item.id)}> <i class="las la-edit "></i></a> <a href="#" class="btn fs-20 "> <i class="las la-trash"></i></a><div className="fs-12 mt-1">2023-06-26 18:43</div></div></div></div></div>;
+          <h6>{item.notefor}</h6></div>    <div className="col-sm-4 text-align-right"><a href="#" className="btn fs-20 " onClick={()=>editLeadNote(item.id)}> <i className="las la-edit "></i></a> <a href="#" className="btn fs-20 "> <i className="las la-trash"></i></a><div className="fs-12 mt-1">2023-06-26 18:43</div></div></div></div></div>;
         items.push(obj);
       });
       setItemData(items);
@@ -74,7 +77,7 @@ const ActivityTime = ({setActiveTab}) => {
         
     <div className="col-md-5"><RangePicker /></div>
     <div className="col-md-1 "><button className="btn btn-info btn-sm ">Submit</button></div>
-    <div className="col-md-3  float-right "><button className="btn btn-info btn-sm "><i class="las la-plus"></i>Add New Task</button></div>
+    <div className="col-md-3  float-right "><button className="btn btn-info btn-sm " onClick={switchToTaskTab}><i className="las la-plus"></i>Add New Task</button></div>
 </div>
 
 <div>
@@ -91,7 +94,7 @@ items={itemData}
     items={[
     //   {
     //     color: 'green',
-    //     dot: <div><a href="#" class="btn btn-phone btn-sm btn-circle"> <i class="las la-phone fs-14"></i></a></div>,
+    //     dot: <div><a href="#" className="btn btn-phone btn-sm btn-circle"> <i className="las la-phone fs-14"></i></a></div>,
     //     children: <div className="mt-3"><div> Phone Call</div>
     //     <p>Called Main Office (open call)</p>
     //     <p>called Jeff Mobile (open call)</p>
@@ -100,14 +103,14 @@ items={itemData}
     //   },
     //   {
     //     color: 'green',
-    //     dot: <div><a href="#" class="btn btn-email btn-sm btn-circle"> <i class="las la-envelope fs-14"></i></a></div>,
+    //     dot: <div><a href="#" className="btn btn-email btn-sm btn-circle"> <i className="las la-envelope fs-14"></i></a></div>,
     //     children: <div><div>Email</div>
     //     <p>called Main Office</p>
     //             </div>,
     //   },
     //   {
     //     color: 'red',
-    //     dot: <div><a href="#" class="btn btn-whatsapp btn-sm btn-circle"> <i class="las la-mobile fs-14"></i></a></div>,
+    //     dot: <div><a href="#" className="btn btn-whatsapp btn-sm btn-circle"> <i className="las la-mobile fs-14"></i></a></div>,
     //     children: (
          
     //         <div><div>Whatsapp</div>
@@ -120,7 +123,7 @@ items={itemData}
 
 
     //   {
-    //     dot: <div><a href="#" class="btn btn-meet btn-sm btn-circle"> <i class="las la-handshake fs-14"></i></a></div>,
+    //     dot: <div><a href="#" className="btn btn-meet btn-sm btn-circle"> <i className="las la-handshake fs-14"></i></a></div>,
     //     children: (
     //       <>
     //        <div><div>Meeting</div>
@@ -131,12 +134,12 @@ items={itemData}
     //   },
       {
         color: 'gray',
-        dot: <div><a href="#" class="btn btn-act btn-sm btn-circle"> <i class="las la-phone fs-14"></i></a></div>,
+        dot: <div><a href="#" className="btn btn-act btn-sm btn-circle"> <i className="las la-phone fs-14"></i></a></div>,
         children: (
           <>
             <div> <div className="col-md-12">
          <div id="steps" className=" row mt-3"> <div className="col-md-8 text-align-left fs-14 font-weight-normal ">Follow up<h6 className="">Called Jeff Mobile (open call) </h6></div>
-           <div className="col-sm-4 text-align-right"><a href="#" class="btn fs-20 "> <i class="las la-edit "></i></a> <a href="#" class="btn fs-20 "> <i class="las la-trash"></i></a>
+           <div className="col-sm-4 text-align-right"><a href="#" className="btn fs-20 "> <i className="las la-edit "></i></a> <a href="#" className="btn fs-20 "> <i className="las la-trash"></i></a>
            <div className="fs-12 mt-1">2023-06-26 18:43</div>
             </div> 
            
@@ -148,12 +151,12 @@ items={itemData}
       },
       {
         color: 'gray',
-        dot: <div><a href="#" class="btn btn-app btn-sm btn-circle"> <i class="las la-mobile fs-14"></i></a></div>,
+        dot: <div><a href="#" className="btn btn-app btn-sm btn-circle"> <i className="las la-mobile fs-14"></i></a></div>,
         children: (
           <>
             <div><div className="col-md-12">
          <div id="steps" className=" row mt-3"> <div className="col-md-8 text-align-left fs-14 font-weight-normal ">Chat<h6>Request Feedback </h6></div>
-           <div className="col-sm-4 text-align-right"><a href="#" class="btn fs-20 "> <i class="las la-edit "></i></a> <a href="#" class="btn fs-20 "> <i class="las la-trash"></i></a>
+           <div className="col-sm-4 text-align-right"><a href="#" className="btn fs-20 "> <i className="las la-edit "></i></a> <a href="#" className="btn fs-20 "> <i className="las la-trash"></i></a>
            <div className="fs-12 mt-1">2023-06-26 18:43</div>
             </div>            
            </div>        
@@ -164,10 +167,10 @@ items={itemData}
       },
       {
         color: '#00CCFF',
-        dot: <div><a href="#" class="btn btn-document btn-sm btn-circle"> <i class="las la-phone fs-14"></i></a></div>,
+        dot: <div><a href="#" className="btn btn-document btn-sm btn-circle"> <i className="las la-phone fs-14"></i></a></div>,
         children: <div><div className="col-md-12">
         <div id="steps" className=" row mt-3"> <div className="col-md-8 text-align-left fs-14 font-weight-normal ">Review received<h6>Feedback received (Open Review)</h6></div>
-          <div className="col-sm-4 text-align-right"><a href="#" class="btn fs-20 "> <i class="las la-edit "></i></a> <a href="#" class="btn fs-20 "> <i class="las la-trash"></i></a>
+          <div className="col-sm-4 text-align-right"><a href="#" className="btn fs-20 "> <i className="las la-edit "></i></a> <a href="#" className="btn fs-20 "> <i className="las la-trash"></i></a>
           <div className="fs-12 mt-1">2023-06-26 18:43</div>
            </div>            
           </div>        

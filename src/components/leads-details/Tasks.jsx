@@ -26,6 +26,8 @@ const Tasks = () => {
  
   const { RangePicker } = DatePicker;
   const [errorForm, setErrorForm] = useState(formIntialValue);
+  const [form, setForm] = useState(formIntialValue);
+
   const { TextArea } = Input;
   const enableField = (ele) => {
     setErrorForm({
@@ -50,9 +52,16 @@ const Tasks = () => {
       <p>Add/Edit Task</p>
       <div className="errorformcontainer">
         <div className="form">
-          <div className="formcol1">Lead Status</div>
+          <div className="formcol1">Lead Remarks</div>
           <div className="formcol2">
-            <Select
+          <TextArea
+            name="noteFor"
+            value={form?.noteFor?.value}
+            rows={2}
+            maxLength={100}
+            onChange={onInputChange}
+          />
+            {/* <Select
               showSearch
               placeholder="Task Status   "
               optionFilterProp="children"
@@ -83,22 +92,58 @@ const Tasks = () => {
                   label: "Completed ",
                 },
               ]}
-            />
+            /> */}
           </div>
         </div>
         <div className="form">
           {console.log(errorForm, "skljfsljfklsd")}
           <div className="formcol1">Date and Time</div>
           <div className="formcol2">
-          <RangePicker
+          <DatePicker
+      format="YYYY-MM-DD HH:mm"
+      // disabledDate={disabledDate}
+      // disabledTime={disabledDateTime}
+       showTime={{
+        format: 'HH:mm',
+      }}
+      onChange={onDateChange}
+      onOk={onOk}
+    />
+          {/* <RangePicker
       showTime={{ format: 'HH:mm' }}
       format="YYYY-MM-DD HH:mm"
       onChange={onDateChange}
       onOk={onOk}
-    />
+    /> */}
           </div>
         </div>
-        <div className="form leadbox">
+        <div className="form">         
+        <div className="formcol1"> </div>
+        <div className="formcol2">
+        <span> <Checkbox name="isContactRequired" onChange={enableField}>
+                  Is Contact Back Required
+                </Checkbox></span>
+               </div>
+              </div>
+              <div className="form">         
+        <div className="formcol1"> </div>
+        <div className="formcol2">
+        <span>  <Checkbox name="isContacted" onChange={enableField}>
+                Is Contacted
+                </Checkbox>
+               </span> 
+               </div>
+              </div>
+              <div className="form">         
+        <div className="formcol1"> </div>
+        <div className="formcol2">
+        <span>  <Checkbox name="isToDisplay" onChange={enableField}>
+                Is To Display
+                </Checkbox>
+              </span> 
+               </div>
+              </div>
+        {/* <div className="form leadbox">
           {console.log(errorForm, "skljfsljfklsd")}
           <div className="formcol1">Related with </div>
           
@@ -136,8 +181,8 @@ const Tasks = () => {
                 },
               ]}
             />
-            </div>
-            <div>
+            </div> 
+             <div>
             <Input
               name="telephone"
               value={errorForm?.telephone?.value}
@@ -156,8 +201,8 @@ const Tasks = () => {
         <span className="mr-2"><button className="btn btn-light">1 Hr</button></span>
         <span className="mr-2"><button className="btn btn-light">2 Hr</button></span>
           </div>
-        </div>
-        <div className="form">
+        </div> 
+         <div className="form">
           {console.log(errorForm, "skljfsljfklsd")}
         <div className="formcol1"> </div>
         <div className="formcol2">
@@ -171,7 +216,7 @@ const Tasks = () => {
               </span> 
                </div>
               </div>
-              
+               */}
         
 
         {/* <div className="formcol1">

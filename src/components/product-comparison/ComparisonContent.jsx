@@ -456,7 +456,7 @@ const ComparisonContent = () => {
     <>
       <div id="wrapper">
         <div className="container  ">
-          <div class="product-comparison compare d-flex">
+          <div className="product-comparison compare d-flex">
             <div className="compare-navigation_list d-flex">
               <Tabs
                 tabBarExtraContent={OperationsSlot  }

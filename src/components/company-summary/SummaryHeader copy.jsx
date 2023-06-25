@@ -399,9 +399,9 @@ const SummaryHeader = () => {
                     </div>
                     <div className="col">
                       <h5>Social</h5>
-                      {/* <i class="lab fs-20 facebook lab la-facebook"></i>
-                      <i class="lab fs-20  twitter la la-twitter-square"></i>
-                      <i class="lab fs-20 linkedin lab la-linkedin"></i> */}
+                      {/* <i className="lab fs-20 facebook lab la-facebook"></i>
+                      <i className="lab fs-20  twitter la la-twitter-square"></i>
+                      <i className="lab fs-20 linkedin lab la-linkedin"></i> */}
                       {renderSocialLinks(companyDetails?.socialLinks)}
                     </div>
                   </div>
@@ -675,7 +675,7 @@ const SummaryHeader = () => {
             onCancel={closeTagModal}
             onOk={onConfrim}
           >
-            <div class="pop-up errorformcontainer ">
+            <div className="pop-up errorformcontainer ">
               <div className="form">
                 <div className="formcol1">
                   <label>Tag Name</label>
@@ -704,7 +704,7 @@ const SummaryHeader = () => {
               </Button>,
             ]}
           >
-            <div class="pop-up errorformcontainer ">
+            <div className="pop-up errorformcontainer ">
               <p>Already Tagged!</p>
             </div>
           </Modal>

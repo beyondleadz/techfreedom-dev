@@ -121,13 +121,13 @@ const OrgChart = () => {
   return (
     <div className="card shadow card-body">
       <div className="row">
-        <div class="orgchart">
+        <div className="orgchart">
        
           <StyledTreeExample />
 
 
 {/* 
-             <nav class="org">
+             <nav className="org">
             <ul>
               <li>
                 <a href="#">

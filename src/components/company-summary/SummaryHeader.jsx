@@ -644,7 +644,7 @@ const SummaryHeader = () => {
             onCancel={closeTagModal}
             onOk={onConfrim}
           >
-            <div class="pop-up errorformcontainer ">
+            <div className="pop-up errorformcontainer ">
               <div className="form">
                 <div className="formcol1">
                   <label>Tag Name</label>
@@ -688,7 +688,7 @@ const SummaryHeader = () => {
               </Button>,
             ]}
           >
-            <div class="pop-up errorformcontainer ">
+            <div className="pop-up errorformcontainer ">
               <p>Already Tagged!</p>
             </div>
           </Modal>

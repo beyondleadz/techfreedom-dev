@@ -331,13 +331,13 @@ const RightPanel = () => {
            <div className="row pb-3">
               <div className=" pl-3">
               
-                <div className="fs-12"><h6><i class=" fs-16 mr-2  la la-phone text-black"></i>Phone</h6><div className="pl-4 ">{companyDetails?.phoneNo}</div></div>
-                <div className="fs-12"><h6><i class=" fs-16 mr-2  la la-map-marker text-black"></i>Location</h6><div className="pl-4 ml-1">{companyDetails?.address}</div></div>
-                <div className="fs-12"><h6><i class=" fs-16 mr-2  la la-users text-black"></i>Employees Ranges</h6><div className="pl-4 ml-1">{companyDetails?.range?.name}</div></div>
-                <div className="fs-12"><h6><i class=" fs-16 mr-2  las la-industry text-black"></i>Industry</h6><div className="pl-4 ml-1">{companyDetails?.industry?.name}</div></div>
-                <div className="fs-12"><h6><i class=" fs-16 mr-2  la la-globe text-black"></i>Website</h6><div className="pl-4 ml-1">{companyDetails?.wedsite}</div></div>
-                <div className="fs-12"><h6><i class=" fs-16 mr-2  la la-city text-black"></i>Company Type</h6><div className="pl-4 ml-1">{companyDetails?.category?.name}</div></div>
-                <div className="fs-12"><h6><i class=" fs-16 mr-2  la la-money-check text-black"></i>Revenue Range</h6><div className="pl-4 ml-1"> {companyDetails?.ravenue?.name}</div></div>
+                <div className="fs-12"><h6><i className=" fs-16 mr-2  la la-phone text-black"></i>Phone</h6><div className="pl-4 ">{companyDetails?.phoneNo}</div></div>
+                <div className="fs-12"><h6><i className=" fs-16 mr-2  la la-map-marker text-black"></i>Location</h6><div className="pl-4 ml-1">{companyDetails?.address}</div></div>
+                <div className="fs-12"><h6><i className=" fs-16 mr-2  la la-users text-black"></i>Employees Ranges</h6><div className="pl-4 ml-1">{companyDetails?.range?.name}</div></div>
+                <div className="fs-12"><h6><i className=" fs-16 mr-2  las la-industry text-black"></i>Industry</h6><div className="pl-4 ml-1">{companyDetails?.industry?.name}</div></div>
+                <div className="fs-12"><h6><i className=" fs-16 mr-2  la la-globe text-black"></i>Website</h6><div className="pl-4 ml-1">{companyDetails?.wedsite}</div></div>
+                <div className="fs-12"><h6><i className=" fs-16 mr-2  la la-city text-black"></i>Company Type</h6><div className="pl-4 ml-1">{companyDetails?.category?.name}</div></div>
+                <div className="fs-12"><h6><i className=" fs-16 mr-2  la la-money-check text-black"></i>Revenue Range</h6><div className="pl-4 ml-1"> {companyDetails?.ravenue?.name}</div></div>
               </div>
             </div>
            </div>
@@ -460,14 +460,14 @@ const RightPanel = () => {
             aria-haspopup="true"
             aria-expanded="false"
             
-          ><i class="right-icons fa fa-thumbs-up" aria-hidden="true"></i></a>:<a
+          ><i className="right-icons fa fa-thumbs-up" aria-hidden="true"></i></a>:<a
             id=""
             role="button"
             data-toggle=""
             aria-haspopup="true"
             aria-expanded="false"
             onClick={() => checkRelavantExecutive(1,checkExecutiveStatus)}
-          ><i class="right-icons small fa fa-thumbs-up" aria-hidden="true"></i></a>}
+          ><i className="right-icons small fa fa-thumbs-up" aria-hidden="true"></i></a>}
             
             {checkExecutiveStatus===2?
           <a
@@ -478,7 +478,7 @@ const RightPanel = () => {
             aria-expanded="false"
           >
             <i
-              class="right-icons fa fa-thumbs-down"
+              className="right-icons fa fa-thumbs-down"
               aria-hidden="true"
             ></i>
           </a>:<a
@@ -490,7 +490,7 @@ const RightPanel = () => {
             onClick={() => checkRelavantExecutive(0,checkExecutiveStatus)}
           >
             <i
-              class="right-icons small fa fa-thumbs-down"
+              className="right-icons small fa fa-thumbs-down"
               aria-hidden="true"
             ></i>
           </a>}

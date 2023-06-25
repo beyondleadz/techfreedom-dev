@@ -86,7 +86,7 @@ const LeadContent = () => {
         let cnt=index;
         return (
           <div className="namecol" onClick={() => getDetails(row.key)}>
-            <div className="logo" style={{'text-transform': 'uppercase','background-color':colorArray[index]}}>
+            <div className="logo" style={{'textTransform': 'uppercase','backgroundColor':colorArray[index]}}>
             {record?.firstname?.[0]}{record?.lastname?.[0]}
             </div>
             <span className="cname">
@@ -218,19 +218,19 @@ const LeadContent = () => {
       if (link?.name === "facebook") {
         return (
           <Link to={link?.proifileUrl} target="_blank">
-            <i class="lab fs-20 facebook lab la-facebook"></i>
+            <i className="lab fs-20 facebook lab la-facebook"></i>
           </Link>
         );
       } else if (link?.name === "Linkedin") {
         return (
           <Link to={link?.proifileUrl} target="_blank">
-            <i class="lab fs-20 linkedin  lab la-linkedin"></i>
+            <i className="lab fs-20 linkedin  lab la-linkedin"></i>
           </Link>
         );
       } else if (link?.name === "twitter") {
         return (
           <Link to={link?.proifileUrl} target="_blank">
-            <i class="lab fs-20  twitter la la-twitter-square"></i>
+            <i className="lab fs-20  twitter la la-twitter-square"></i>
           </Link>
         );
       }
@@ -493,14 +493,14 @@ const LeadContent = () => {
                     <div className="buttons-container textsearch">
                     <ul className="d-flex mt-1  m-mt">
 
-                    <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
+                    <li><a className=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
                     aria-expanded="false">
                     <i className="right-icons las la-tags" aria-hidden="true" onClick={tagPage}></i>
                   </a>
                 </li>
                                          
-                  <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
-                    aria-expanded="false"><i class="right-icons la la-file-excel" aria-hidden="true" onClick={downloadExcel}></i>
+                  <li><a className=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
+                    aria-expanded="false"><i className="right-icons la la-file-excel" aria-hidden="true" onClick={downloadExcel}></i>
                   </a></li>
                   <li>
             <a
@@ -595,7 +595,7 @@ const LeadContent = () => {
         onCancel={closeTagModal}
         onOk={onTagConfrim}
       >
-        <div class="pop-up errorformcontainer ">
+        <div className="pop-up errorformcontainer ">
           <div className="form">
             <div className="formcol1">
               <label>Tag Name</label>
@@ -624,7 +624,7 @@ const LeadContent = () => {
           onCancel={closeModal}
           onOk={onConfrim}
         >
-          <div class="pop-up errorformcontainer ">
+          <div className="pop-up errorformcontainer ">
             <div className="form">
               <div className="formcol1">
                 <label>Search Name</label>

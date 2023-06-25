@@ -48,7 +48,7 @@ import { Geolocation } from "../constant/Geolocation";
 import { createPayload, createPayloadWithTopSearch,saveExcel } from "../utils/utils";
 
 export const getIndustryList = (payload) => (dispatch) => {
-  return getAuthMethod(`$industryApiUrl}/sfds`)
+  return getAuthMethod(industryApiUrl)
     .then((res) => {
       dispatch({
         type: INDUSTRY_LIST,

@@ -85,13 +85,13 @@ const Header = (props) => {
   const content = (
     <div className="fontf">
       <p className="fs-12">
-        <i class=" text-center fs-16 pop-img las la-cog"></i>Setting
+        <i className=" text-center fs-16 pop-img las la-cog"></i>Setting
       </p>
       <p className="fs-12">
-        <i class=" text-center fs-16 pop-img las la-user-lock"></i>Password
+        <i className=" text-center fs-16 pop-img las la-user-lock"></i>Password
       </p>
       <p className="fs-12" onClick={doLogout}>
-        <i class=" text-center fs-16 pop-img las la-sign-out-alt"></i>Sign out
+        <i className=" text-center fs-16 pop-img las la-sign-out-alt"></i>Sign out
       </p>
     </div>
   );
@@ -166,13 +166,13 @@ const Header = (props) => {
                     className="selected-field"
                     onClick={() => setValue("Company")}
                   >
-                    <i class="fa fs-14 pop-img la la-building"></i>Company
+                    <i className="fa fs-14 pop-img la la-building"></i>Company
                   </li>
                   <li
                     className="selected-field"
                     onClick={() => setValue("Executive")}
                   >
-                    <i class="fa fs-16 pop-img la la-user-tie"></i>Executive
+                    <i className="fa fs-16 pop-img la la-user-tie"></i>Executive
                   </li>
                 </ul>
               </div>

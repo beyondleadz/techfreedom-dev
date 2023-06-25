@@ -151,7 +151,7 @@ const KeyExecutives = () => {
               }
               onClick={() => updatePhoneStatus(showPhone, row)}
             >
-              {/* <i class="las la-mobile fs-12  pr-1"></i> */}
+              {/* <i className="las la-mobile fs-12  pr-1"></i> */}
               {/* VIEW */}
             </span>
             {showPhone[row.id] && record?.phoneNo && (
@@ -172,7 +172,7 @@ const KeyExecutives = () => {
             // className="keyexebtn d-none d-sm-inline-block small btn btn-primary text-black"
             onClick={() => openInfoModel()}
           >
-            {/* <i class="las la-mobile fs-12  pr-1"></i>
+            {/* <i className="las la-mobile fs-12  pr-1"></i>
             VIEW */}
           </span>
         );
@@ -183,7 +183,7 @@ const KeyExecutives = () => {
         //     className="keyexebtn d-none d-sm-inline-block small btn btn-primary text-black"
         //     onClick={() => openInfoModel(text)}
         //   >
-        //     <i class="las la-mobile fs-12 pt-1 pr-1"></i>
+        //     <i className="las la-mobile fs-12 pt-1 pr-1"></i>
         //     VIEW
         //   </Button>
         // );
@@ -205,7 +205,7 @@ const KeyExecutives = () => {
             }
             onClick={() => postLeads(record, checkLeadSubmitted)}
           >
-            <i class="las la-user-plus fs-12 pr-1"></i>{" "}
+            <i className="las la-user-plus fs-12 pr-1"></i>{" "}
             {checkLeadSubmitted ? "LEAD ADDED" : "ADD TO LEADS"}
           </Button>
         ) : (
@@ -219,7 +219,7 @@ const KeyExecutives = () => {
             }
             onClick={() => openInfoModel()}
           >
-            <i class="las la-user-plus  fs-12  pr-1"></i>ADD TO LEADS
+            <i className="las la-user-plus  fs-12  pr-1"></i>ADD TO LEADS
           </Button>
         );
       },
@@ -400,7 +400,7 @@ const KeyExecutives = () => {
             </Button>,
           ]}
         >
-          <div class="pop-up">
+          <div className="pop-up">
             <div id="small-dialog2">
               <p style={{ color: "#0000FF" }}>
                 New Client Leads is creted with new identifier :{" "}

@@ -366,14 +366,14 @@ const SimilarCompany = () => {
             aria-haspopup="true"
             aria-expanded="false"
             
-          ><i class="right-icons fa fa-thumbs-up" aria-hidden="true"></i></a>:<a
+          ><i className="right-icons fa fa-thumbs-up" aria-hidden="true"></i></a>:<a
             id=""
             role="button"
             data-toggle=""
             aria-haspopup="true"
             aria-expanded="false"
             onClick={() => checkRelavantCompany(1,checkCompanyStatus)}
-          ><i class="right-icons small fa fa-thumbs-up" aria-hidden="true"></i></a>}
+          ><i className="right-icons small fa fa-thumbs-up" aria-hidden="true"></i></a>}
             
             {checkCompanyStatus===2?
           <a
@@ -384,7 +384,7 @@ const SimilarCompany = () => {
             aria-expanded="false"
           >
             <i
-              class="right-icons fa fa-thumbs-down"
+              className="right-icons fa fa-thumbs-down"
               aria-hidden="true"
             ></i>
           </a>:<a
@@ -396,16 +396,16 @@ const SimilarCompany = () => {
             onClick={() => checkRelavantCompany(0,checkCompanyStatus)}
           >
             <i
-              class="right-icons small fa fa-thumbs-down"
+              className="right-icons small fa fa-thumbs-down"
               aria-hidden="true"
             ></i>
           </a>}
         </div>
         {/* <div font-weight-bold>
-                  <button class="btn btn-outline-dark font-weight-bold mr-2 p-1">
+                  <button className="btn btn-outline-dark font-weight-bold mr-2 p-1">
                     Really Not
                   </button>
-                  <button class="btn btn-outline-dark font-weight-bold mr-2 p-1">
+                  <button className="btn btn-outline-dark font-weight-bold mr-2 p-1">
                     Yes!
                   </button>
                 </div> */}

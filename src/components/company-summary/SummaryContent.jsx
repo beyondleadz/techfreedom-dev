@@ -387,7 +387,7 @@ const SummaryContent = () => {
             {/* <div className="excelcontainer ">
               <li>
                 <a
-                  class=" btn btn-outline-success fs-18"
+                  className=" btn btn-outline-success fs-18"
                   href="#"
                   id=""
                   role="button"
@@ -396,7 +396,7 @@ const SummaryContent = () => {
                   aria-expanded="false"
                 >
                   <i
-                    class="right-icons la la-file-excel"
+                    className="right-icons la la-file-excel"
                     aria-hidden="true"
                   ></i>
                 </a>
@@ -405,7 +405,7 @@ const SummaryContent = () => {
             <div className="excelcontainer">
                  <ul className="d-flex  m-mt">
                  
-                <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
+                <li><a className=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
                     aria-expanded="false">
                       <Tooltip title="Tag Executive">
                     <i
@@ -415,13 +415,13 @@ const SummaryContent = () => {
                     </a>
                 </li>
                          
-                <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
-                    aria-expanded="false"><i class="right-icons la la-file-excel" aria-hidden="true" onClick={() => downloadExcel()}></i>
+                <li><a className=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
+                    aria-expanded="false"><i className="right-icons la la-file-excel" aria-hidden="true" onClick={() => downloadExcel()}></i>
                     </a>
                 </li> 
 
-                {/* <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
-                    aria-expanded="false"><i class="right-icons la la-file-pdf" aria-hidden="true" onClick={() => downloadPDF(companyDetails?.id)}></i>
+                {/* <li><a className=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
+                    aria-expanded="false"><i className="right-icons la la-file-pdf" aria-hidden="true" onClick={() => downloadPDF(companyDetails?.id)}></i>
                     </a>
                 </li> */}
                 
@@ -484,7 +484,7 @@ const SummaryContent = () => {
             onCancel={closeTagModal}
             onOk={onConfrim}
           >
-            <div class="pop-up errorformcontainer ">
+            <div className="pop-up errorformcontainer ">
               <div className="form">
                 <div className="formcol1">
                   <label>Tag Name</label>
@@ -513,7 +513,7 @@ const SummaryContent = () => {
               </Button>,
             ]}
           >
-            <div class="pop-up errorformcontainer ">
+            <div className="pop-up errorformcontainer ">
               <p>Please select executive!</p>
             </div>
           </Modal>
