@@ -61,8 +61,8 @@ const AdvancedFilter = ({
     (state) => state.leadListingReducer.companyTagList
   );
 
-  const executiveFilterFunctionList = useSelector(
-    (state) => state.leadListingReducer.executiveFunctionList
+  const leadFilterStatusList = useSelector(
+    (state) => state.leadListingReducer.leadStatusList
   );
 
   const executiveFilterLevelList = useSelector(
@@ -173,27 +173,22 @@ const AdvancedFilter = ({
   }, [selectedStateList]);
 
   useEffect(() => {
+    setLeadStatusList(leadFilterStatusList);
     setCountriesList(companyFilterListCountries);
     setIndustryList(companyFilterListIndustry);
     setCitiesList(companyFilterListCities);
     setStatesList(companyFilterListStates);
-    setCompanyTypeList(companyFilterListCompanyType);
     setEmployeeCountList(companyFilterListEmployeeCountList);
     setSavedSearchList(companyFilterListSavedSearch);
     setCompanyTagList(companyFilterListTags);
-    setExecutiveFunctionList(executiveFilterFunctionList);
-    setExecutiveLevelList(executiveFilterLevelList);
   }, [
     companyFilterListCountries,
     companyFilterListIndustry,
     companyFilterListCities,
     companyFilterListStates,
-    companyFilterListCompanyType,
     companyFilterListEmployeeCountList,
     companyFilterListSavedSearch,
     companyFilterListTags,
-    executiveFilterFunctionList,
-    executiveFilterLevelList,
   ]);
 
   useEffect(() => {
@@ -244,16 +239,7 @@ const AdvancedFilter = ({
       companySelectedFilterList.selectedCompanyTag?.length ===
         companyFilterListTags?.length
     );
-
-    setSelectedExecutiveFunctionList(
-      companySelectedFilterList.selectedExecutiveFunction
-    );
-    setCheckAllExecutiveFunction(
-      companySelectedFilterList?.selectedExecutiveFunction?.length ===
-        executiveFilterFunctionList.length
-    );
-
-   
+  
   }, [companySelectedFilterList]);
   const setShowHideData = () => {
     setViewMore(!viewMore);

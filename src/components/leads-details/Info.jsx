@@ -206,16 +206,16 @@ const Info = () => {
             }
             options={[
               {
-                value: "one",
-                label: "One",
+                value: "Cold",
+                label: "Cold",
               },
               {
-                value: "two",
-                label: "Two",
+                value: "Hot",
+                label: "Hot",
               },
               {
-                value: "three",
-                label: "Three",
+                value: "Warm",
+                label: "Warm",
               },
             ]}
           />

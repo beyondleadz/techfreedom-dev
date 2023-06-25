@@ -4,16 +4,13 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   getIndustryList,
   getLocation,
-  getCompanyTypeList,
   getEmployeeCountList,
-  getRevenuerangeList,
   createExecutiveSearchPayload,
   getCompanyList,
   saveAdvancedSelectedFilters,
   saveExecutiveSearchList,
   getExecutiveTagList,
-  getExecutiveFunctionList,
-  getExecutiveLevelList
+  getLeadStatusList,
 } from "../../actionCreator/leadListingActionCreater";
 import AdvancedFilterModel from "./AdvancedFilterModel";
 import AdvancedFilter from "./AdvancedFilter";
@@ -53,21 +50,19 @@ const LeadLeft = () => {
   const userAccountInfo=useSelector((state)=>state.CommonReducer.accountInfo);
   useMemo(() => {
     /*?page=0&size=10&sort=id,asc */
+    dispatch(getLeadStatusList());
     dispatch(getIndustryList());
     dispatch(getLocation());
-    dispatch(getCompanyTypeList());
     dispatch(getEmployeeCountList());
-    dispatch(getRevenuerangeList());   
-    dispatch(getExecutiveFunctionList());
-    dispatch(getExecutiveLevelList());
+    
   }, []);
 
   useMemo(() => {   
     //console.log(Object.keys(userAccountInfo)?.length,'Object.keys(userAccountInfo)?.length') 
     if(Object.keys(getUserInfo()).length){
       const {id}= getUserInfo();
-      dispatch(saveExecutiveSearchList(id));
-      dispatch(getExecutiveTagList(id));
+     // dispatch(saveExecutiveSearchList(id));
+     // dispatch(getExecutiveTagList(id));
     }
   }, [userAccountInfo]);
 

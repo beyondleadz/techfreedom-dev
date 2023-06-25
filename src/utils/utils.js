@@ -408,3 +408,144 @@ export const saveExcel = async (data,columns,workBookName,Excel,saveAs) => {
   }
 };
 
+
+export const createLeadPayload = (
+  payload,
+  paginationValues,
+  companyListingApiUrl
+) => {
+  const {
+    selectedCompany,
+    selectedCountry,
+    selectedState,
+    selectedCity,
+    selectedIndustry,
+    selectedEmployeecount,
+    searchKeyword,
+    selectedCompanyTag,
+    topSearchValue,
+    selectedLeadOwner,
+selectedFirstName,
+selectedLastName,
+selectedCompanyName,
+selectedTitle,
+selectedZipCode,
+  } = payload || {};
+
+  let url = companyListingApiUrl;
+  let withPagination;
+  let country;
+  let state;
+  let city;
+  let industryId;
+  let rangeId;
+  let revenueId;
+  let companyTagId;
+  let company;
+  if (paginationValues) {
+    withPagination = `&page=${paginationValues?.start}&size=${paginationValues?.end}`;
+    url = `${url}${withPagination}`;
+  }
+
+  if (selectedCompany?.length) {
+    let ids = "";
+    for (let i = 0; i < selectedCompany.length - 1; i++) {
+      ids += `${selectedCompany[i].id},`;
+    }
+    ids += selectedCompany[selectedCompany.length - 1].id;
+    company = `&companyId.in=${ids}`;
+    url = `${url}${company}`;
+  }
+
+  if (selectedCountry?.length) {
+    let ids = "";
+    for (let i = 0; i < selectedCountry.length - 1; i++) {
+      ids += `${selectedCountry[i].name},`;
+    }
+    ids += selectedCountry[selectedCountry.length - 1].name;
+    country = `&country.in=${ids}`;
+    url = `${url}${country}`;
+  }
+
+  if (selectedState?.length) {
+    let ids = "";
+    for (let i = 0; i < selectedState.length - 1; i++) {
+      ids += `${selectedState[i].name},`;
+    }
+    ids += selectedState[selectedState.length - 1].name;
+    state = `&state.in=${ids}`;
+    url = `${url}${state}`;
+  }
+
+  if (selectedCity?.length) {
+    let ids = "";
+    for (let i = 0; i < selectedCity.length - 1; i++) {
+      ids += `${selectedCity[i].name},`;
+    }
+    ids += selectedCity[selectedCity.length - 1].name;
+    city = `&city.in=${ids}`;
+    url = `${url}${city}`;
+  }
+  //console.log(selectedIndustry,'selectedIndustryselectedIndustry')
+  if (selectedIndustry?.length) {
+    let ids = "";
+    for (let i = 0; i < selectedIndustry.length - 1; i++) {
+      ids += `${selectedIndustry[i].id},`;
+    }
+    ids += selectedIndustry[selectedIndustry.length - 1]?.id;
+    industryId = `&industryId.in=${ids}`;
+    url = `${url}${industryId}`;
+  }
+
+  if (selectedEmployeecount?.length) {
+    let ids = "";
+    for (let i = 0; i < selectedEmployeecount.length - 1; i++) {
+      ids += `${selectedEmployeecount[i].id},`;
+    }
+    ids += selectedEmployeecount[selectedEmployeecount.length - 1].id;
+    rangeId = `&rangeId.in=${ids}`;
+    url = `${url}${rangeId}`;
+  }
+  if (searchKeyword) {
+    let searchCondition = `&title.contains=${searchKeyword}`;
+    url = `${url}${searchCondition}`;
+  }
+
+  if (selectedCompanyTag?.length) {
+    let ids = "";
+    for (let i = 0; i < selectedCompanyTag.length - 1; i++) {
+      ids += `${selectedCompanyTag[i]},`;
+    }
+    ids += selectedCompanyTag[selectedCompanyTag.length - 1];
+    companyTagId = `&tags=${ids}`;
+    url = `${url}${companyTagId}`;
+  }
+
+  if(topSearchValue){
+    const searchCondition = `&fullname.contains=${topSearchValue}`;
+    url = `${url}${searchCondition}`;
+  }
+
+  if(selectedLeadOwner){    
+    //url = `${url}&fullname.contains=${selectedLeadOwner}`;
+  }
+  if(selectedFirstName){    
+    url = `${url}&firstname.contains=${selectedFirstName}`;
+  }
+  if(selectedLastName){    
+    url = `${url}&lastname.contains=${selectedLastName}`;
+  }
+  if(selectedCompanyName){    
+    //url = `${url}&lastname.contains=${selectedLastName}`;
+  }
+  if(selectedTitle){    
+    url = `${url}&title.contains=${selectedTitle}`;
+  }
+  if(selectedZipCode){    
+   // url = `${url}&title.contains=${selectedZipCode}`;
+  }
+  if (url.indexOf("&") !== -1) {
+    url = url.replace(/&/, "?");
+  }
+  return url;
+};

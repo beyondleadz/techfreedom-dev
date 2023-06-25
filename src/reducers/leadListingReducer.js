@@ -34,13 +34,13 @@ import {
   LEAD_EXECUTIVE_EMPLOYEELIST_ERROR,
   LEAD_EXECUTIVE_FUNCTION_LIST,
   LEAD_EXECUTIVE_FUNCTION_LIST_ERROR,
-  LEAD_EXECUTIVE_LEVEL_LIST,
-  LEAD_EXECUTIVE_LEVEL_LIST_ERROR,
+  LEAD_STATUS_LIST,
+  LEAD_STATUS_LIST_ERROR,
 } from "../actionType/leadListingType";
 import { PAGE_LENGTH } from "../config";
 
 const initialState = {
-  executiveFunctionList: [],
+  leadStatusList: [],
   executiveLevelList: [],
   industryList: [],
   geoLocation: [],
@@ -131,8 +131,8 @@ const LeadListingReducer = (state = initialState, action) => {
       return { ...state, executiveEmployeeList: payload, totalExecutiveCount: count };
     case LEAD_EXECUTIVE_FUNCTION_LIST:
       return { ...state, executiveFunctionList: payload };
-    case LEAD_EXECUTIVE_LEVEL_LIST:
-      return { ...state, executiveLevelList: payload };
+    case LEAD_STATUS_LIST:
+      return { ...state, leadStatusList: payload };
 
     case LEAD_EXECUTIVE_INDUSTRY_LIST_ERROR:
       return { ...state, errObj: { ...state.errObj, ...payload } };
@@ -168,7 +168,7 @@ const LeadListingReducer = (state = initialState, action) => {
       return { ...state, errObj: { ...state.errObj, ...payload } };
     case LEAD_EXECUTIVE_FUNCTION_LIST_ERROR:
       return { ...state, errObj: { ...state.errObj, ...payload } };
-    case LEAD_EXECUTIVE_LEVEL_LIST_ERROR:
+    case LEAD_STATUS_LIST_ERROR:
       return { ...state, errObj: { ...state.errObj, ...payload } };
     case LEAD_EXECUTIVE_EMPTY_ERROR_OBJ_LISTING:
       return { ...state, errObj: payload };

@@ -31,8 +31,9 @@ import {
   LEAD_EXECUTIVE_EMPLOYEE_SEARCH_PAYLOAD_ERROR,
   LEAD_EXECUTIVE_FUNCTION_LIST,
   LEAD_EXECUTIVE_FUNCTION_LIST_ERROR,
-  LEAD_EXECUTIVE_LEVEL_LIST,
-  LEAD_EXECUTIVE_LEVEL_LIST_ERROR,
+  LEAD_STATUS_LIST,
+  LEAD_STATUS_LIST_ERROR,
+
 } from "../actionType/leadListingType";
 import {
   getAuthMethod,
@@ -55,11 +56,12 @@ import {
   getExecutiveLevelApiUrl,
   groupExecutiveTagUrl,
   getRelavantCompanyApiUrl,
-  getClientLeadsUrl
+  getClientLeadsUrl,
+  getLeadStatusApiUrl
 } from "../constant/Constant";
 import { dispatchStatus } from "./commonActionCreator";
 import { Geolocation } from "../constant/Geolocation";
-import { createExecutivePayload } from "../utils/utils";
+import { createLeadPayload } from "../utils/utils";
 
 export const getIndustryList = (payload) => (dispatch) => {
   return getAuthMethod(industryApiUrl)
@@ -135,7 +137,7 @@ export const getRevenuerangeList = (payload) => (dispatch) => {
 
 export const getCompanyList = (payload, paginationValues) => (dispatch) => {
   dispatch(dispatchStatus(true));
-  const url = createExecutivePayload(payload, paginationValues, companyListingApiUrl);
+  const url = createLeadPayload(payload, paginationValues, companyListingApiUrl);
   // console.log(url,'urlurlurl')
   return getMethod(url)
     .then((res) => {
@@ -328,7 +330,7 @@ export const createGroupExecutiveTag = (payload) => (dispatch) => {
 
 export const getExecutiveEmployeeList = (payload, paginationValues) => (dispatch) => {
   dispatch(dispatchStatus(true));
-  const url = createExecutivePayload(payload, paginationValues, getClientLeadsUrl);
+  const url = createLeadPayload(payload, paginationValues, getClientLeadsUrl);
   // console.log(url,'urlurlurl')
   return getMethod(url)
     .then((res) => {
@@ -350,37 +352,19 @@ export const getExecutiveEmployeeList = (payload, paginationValues) => (dispatch
     });
 };
 
-export const getExecutiveFunctionList = (payload) => (dispatch) => {
-  return getAuthMethod(getExecutiveFunctionApiUrl)
+export const getLeadStatusList = (payload) => (dispatch) => {
+  return getAuthMethod(getLeadStatusApiUrl)
     .then((res) => {
       dispatch({
-        type: LEAD_EXECUTIVE_FUNCTION_LIST,
+        type: LEAD_STATUS_LIST,
         payload: res.data,
       });
     })
     .catch((err) => {
       dispatch({
-        type: LEAD_EXECUTIVE_FUNCTION_LIST_ERROR,
+        type: LEAD_STATUS_LIST_ERROR,
         payload:
-          { [errEnum.LEAD_EXECUTIVE_FUNCTION_LIST_ERROR]: err.response.data[ErrKey] } ||
-          "Error Occured",
-      });
-    });
-};
-
-export const getExecutiveLevelList = (payload) => (dispatch) => {
-  return getAuthMethod(getExecutiveLevelApiUrl)
-    .then((res) => {
-      dispatch({
-        type: LEAD_EXECUTIVE_LEVEL_LIST,
-        payload: res.data,
-      });
-    })
-    .catch((err) => {
-      dispatch({
-        type: LEAD_EXECUTIVE_LEVEL_LIST_ERROR,
-        payload:
-          { [errEnum.LEAD_EXECUTIVE_LEVEL_LIST_ERROR]: err.response.data[ErrKey] } ||
+          { [errEnum.LEAD_STATUS_LIST_ERROR]: err.response.data[ErrKey] } ||
           "Error Occured",
       });
     });
