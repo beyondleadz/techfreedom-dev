@@ -192,10 +192,10 @@ const switchToTimeline=()=>{
                         </div>
                         <div className="row mt-2">
                           {" "}
-                          <span className="col-md-2 fs-14">Address</span>{" "}
+                          <span className="col-md-2 fs-14">Address</span>
                           <span className="col namedc">
-                            
-                          </span>{" "}
+                          {leadDetail?.address} 
+                          </span>
                         </div>
                       </div>
 

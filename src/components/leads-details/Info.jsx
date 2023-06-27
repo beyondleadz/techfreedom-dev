@@ -12,17 +12,19 @@ const Info = () => {
     (state) => state.LeadDetailsReducer.leadDetails
   );
   const formIntialValue = {
+    status: { disabled: true, value: leadDetail?.status==1?'Active':'Inactive', status: null },
+    rate: { disabled: true, value: leadDetail?.rate, status: null },
     phone: { disabled: false, value: leadDetail?.phoneNo, status: null },
-    address: { disabled: false, value: "", status: null },
-    website: { disabled: false, value: "", status: null },
-    company: { disabled: false, value: "", status: null },
-    industry: { disabled: false, value: "", status: null },
+    address: { disabled: false, value: leadDetail?.address, status: null },
+    website: { disabled: false, value: leadDetail?.website, status: null },
+    company: { disabled: false, value: leadDetail?.companyName, status: null },
+    industry: { disabled: false, value: leadDetail?.industry, status: null },
     title: { disabled: false, value: leadDetail?.title, status: null },
     fullname: { disabled: false, value: (leadDetail?.fullname)?leadDetail.fullname:leadDetail.firstname+" "+leadDetail.lastname},
     email: { disabled: false, value: leadDetail?.emailId, status: null },
-    source: { disabled: false, value: "", status: null },
-    mobile:{ disabled: false, value: "", status: null },
-    description:{ disabled: false, value: "", status: null },
+    source: { disabled: false, value: leadDetail?.leadSource, status: null },
+    mobile:{ disabled: false, value: leadDetail?.mobile, status: null },
+    description:{ disabled: false, value: leadDetail?.description, status: null },
   };
 
   const dispatch = useDispatch();
@@ -34,7 +36,7 @@ const Info = () => {
   const [form, setForm] = useState(formIntialValue);
 
   const updateLead=()=>{
-    console.log(form,'formform');
+   // console.log(form,'formform');
     let payload=leadDetail;
     payload.fullname=form.fullname.value;
     payload.title=form.title.value;
@@ -42,11 +44,13 @@ const Info = () => {
     payload.phoneNo=form.phone.value;
     payload.address=form.address.value;
     payload.website=form.website.value;
-    payload.company=form.company.value;
+    payload.companyName=form.company.value;
     payload.industry=form.industry.value;
-    payload.source=form.source.value;
+    payload.leadSource=form.source.value;
     payload.mobile=form.mobile.value;
     payload.description=form.description.value;
+    payload.rate=form.rate.value;
+    payload.status=form.status.value;
     //console.log(payload,'form on save');
     dispatch(updateLeadDetails(payload));
   }
@@ -55,6 +59,19 @@ const Info = () => {
     setForm({
       ...form,
       [ele.target.name]:{...form[ele.target.name], value:ele.target.value},
+    });
+  };
+
+  const onSelectChange = (value) => {
+    setForm({
+      ...form,
+      rate: { ...form["rate"], value: value },
+    });
+  };
+  const onSelectChange1 = (value) => {
+    setForm({
+      ...form,
+      status: { ...form["status"], value: value },
     });
   };
   return (
@@ -171,8 +188,10 @@ const Info = () => {
         <div className="formcol2">
           <Select
             showSearch
+            value={form.status}
             placeholder="Select"
             optionFilterProp="children"
+            onChange={onSelectChange1}
             // onChange={onChange}
             // onSearch={onSearch}
             filterOption={(input, option) =>
@@ -180,11 +199,11 @@ const Info = () => {
             }
             options={[
               {
-                value: "active",
+                value: "1",
                 label: "Active",
               },
               {
-                value: "inactive",
+                value: "0",
                 label: "Inactive",
               },
               
@@ -197,9 +216,10 @@ const Info = () => {
         <div className="formcol2">
           <Select
             showSearch
+            value={form.rate}
             placeholder="Select"
             optionFilterProp="children"
-            // onChange={onChange}
+            onChange={onSelectChange}
             // onSearch={onSearch}
             filterOption={(input, option) =>
               (option?.label ?? "").toLowerCase().includes(input.toLowerCase())

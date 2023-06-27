@@ -76,6 +76,10 @@ const LeadContent = () => {
     }
   };
 
+  const getCompanyDetails = (id) => {
+    navigate(`/company-summary/${id}`);
+  };
+
   const columns = [
     
     {
@@ -132,7 +136,14 @@ const LeadContent = () => {
     },    
     {
       title: "Company",
-      dataIndex: "company",
+      dataIndex: "companyName",
+      render: (record, row) => {
+        return (
+          <div className="namecol" onClick={() => getCompanyDetails(row?.companyId)}>
+            <span className="cname">{row?.companyName}</span>
+          </div>
+        );
+      },
     },
     {
       title: "Status",
@@ -246,19 +257,21 @@ const LeadContent = () => {
           key: record.id,
           executiveData: record,
           name: record,
-          company: record?.company?.name,
+          companyName: record?.companyName,
+          companyId: record?.companyId,
           location: `${record?.city ? record?.city + ',' : ""} ${record?.state ? record?.state : ''}`,
           email:record?.emailId,
           phone: record?.phoneNo,
           mobile:record.phoneNo,
           status:record?.status,
           social: renderSocialLinks(record?.socialLinks),
-          notes:"",  
+          notes:"",
+            
         },
       ];
     });
 
-    // const data =
+    //console.log(data,'datadatadata')
 
     setExecutiveEmployeeList(data);
   }, [companyFilterList]);

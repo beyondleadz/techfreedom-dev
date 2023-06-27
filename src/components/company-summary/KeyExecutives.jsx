@@ -266,6 +266,9 @@ const KeyExecutives = () => {
       description: record.description,
       userId: id,
       employeeId: record.id,
+      address:record?.company?.address,
+      companyId:record?.company?.id,
+      companyName:record?.company?.name,
     };
     if (!isLeadSubmit) {
       dispatch(submitLead(leadPayload));
