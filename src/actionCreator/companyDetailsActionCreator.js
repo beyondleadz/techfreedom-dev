@@ -436,3 +436,8 @@ export const getEmployeeViewableStatusUpdate = (type, payload,department) => (di
       });
     });
 };
+
+export const emptyDownload=()=>({
+  type: DOWNLOAD_EXECUTIVE,
+  payload: {},  
+});
