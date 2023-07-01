@@ -1,12 +1,19 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { Modal, Checkbox, Input, Divider, Button, Select } from "antd";
 import { useSelector, useDispatch } from "react-redux";
-import { submitLeadNotes,resetSubmitLeadNotes } from "../../actionCreator/leadDetailsActionCreator";
+import { submitLeadNotes,resetSubmitLeadNotes,emptyErrorObj } from "../../actionCreator/leadDetailsActionCreator";
 import TrialModal from "../../common/TrialModal";
+import { SAVE_CLIENT_NOTE_ERROR } from "../../actionType/leadDetailsType";
 
 const Notes = () => {
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
+  const [isApiFailed, setIsApiFailed] = useState({
+    isFailed: false,
+    errObj: {},
+  });
+  const errObj = useSelector((state) => state.LeadDetailsReducer.errObj);
+  
   const leadDetail = useSelector(
     (state) => state.LeadDetailsReducer.leadDetails
   );
@@ -19,7 +26,16 @@ const Notes = () => {
     (state) => state.LeadDetailsReducer.leadNoteDetails
   );
 
-  
+  useEffect(() => {
+   // console.log(Object.keys(errObj).length,'Object.keys(errObj).lengths')
+    if (Object.keys(errObj).length) {
+      setIsApiFailed({ isFailed: true, errObj: errObj });
+    }
+    if (!Object.keys(errObj).length) {
+      setIsApiFailed({ isFailed: false, errObj: errObj });
+    }
+  }, [Object.keys(errObj).length]);
+
   useEffect(() => {
     if (Object.keys(leadNotesSubmitted).length) {
       setShowModal(true);
@@ -29,6 +45,7 @@ const Notes = () => {
   const closeModal = () => {
     setShowModal(false);
     dispatch(resetSubmitLeadNotes());
+    dispatch(emptyErrorObj());
   };
 
   const formIntialValue = {
@@ -69,11 +86,9 @@ const Notes = () => {
     payload.isActive = form.isActive.value;
     payload.isTask = form.isTask.value;
     payload.lead = { id: leadDetail?.id };
-    payload.update=(leadNoteDetails)?true:false;
-    payload.id=leadNoteDetails?.id;
-    //console.log(payload, "form on save");
-    dispatch(submitLeadNotes(payload));
-    
+    payload.update=Object.keys(leadNoteDetails).length?true:false;
+    payload.id=Object.keys(leadNoteDetails).length?leadNoteDetails?.id:"";    
+    dispatch(submitLeadNotes(payload));    
   };
 
   const onSelectChange = (value) => {
@@ -192,6 +207,25 @@ const Notes = () => {
         </span>
       </div>
     </div>
+    {console.log(isApiFailed.isFailed)}
+    {isApiFailed.isFailed ? (
+            <TrialModal
+              openModal={isApiFailed.isFailed}
+              closeModal={closeModal}
+              buttonText="OK"
+              title="Tests"
+              modalBody={
+                <div id="small-dialog2" style={{'textAlign':'left'}}>
+                  {isApiFailed.errObj[SAVE_CLIENT_NOTE_ERROR] &&
+                    isApiFailed.errObj[SAVE_CLIENT_NOTE_ERROR].message}
+                </div>
+              }
+              modalWidth="400px"
+            />
+          ) : (
+            ""
+          )}
+
     {showModal ? (
       <TrialModal
         openModal={showModal}

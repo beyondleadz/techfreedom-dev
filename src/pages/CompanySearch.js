@@ -30,7 +30,6 @@ const CompanySearch = ({ tab }) => {
   }, [tab]);
 
   useEffect(() => {
-    console.log("errObj", errObj);
     if (Object.keys(errObj).length) {
       console.log(errObj, "skjlfslkdf");
       setIsApiFailed({ isFailed: true, errObj: errObj });

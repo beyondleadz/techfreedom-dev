@@ -284,10 +284,11 @@ export const downloadExecutiveExl = (payload) => (dispatch) => {
   if (payload?.empIds) {
     filter += `&employeeTagId.in=${payload.empIds}`;
   }
-  if (payload?.department) {
-    filter += `&exfunction.equals=${payload?.department}`;
+  if (payload?.id) {
+    filter += `&id.notEquals=${payload?.id}`;
   }
   url = `${companyExlDownloadUrl}${filter}`;
+  
   return getAuthMethod(url)
     .then((res) => {
       dispatch({
@@ -465,6 +466,11 @@ export const getEmployeeViewableStatusUpdate = (type, payload) => (dispatch) => 
       });
     });
 };
+
+export const emptyDownload=()=>({
+  type: EXECUTIVE_DOWNLOAD_EXECUTIVE,
+  payload: {},  
+});
 
 
 

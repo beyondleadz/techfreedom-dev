@@ -21,6 +21,7 @@ const initialState = {
   leadNotes: [],
   leadRemarks: [],
   leadNoteDetails: {},
+  errObj:{}
 };
 
 const LeadDetailsReducer = (state = initialState, action) => {

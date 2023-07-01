@@ -5,14 +5,17 @@ import { useParams } from "react-router-dom";
 import TrialModal from "../../common/TrialModal";
 import popupImg from "../../assets/images/free-user-login-prompt.jpg.jpeg";
 import { useNavigate } from "react-router";
-
+import Excel from "exceljs";
+import { saveAs } from "file-saver";
 import KeyExecutives from "./KeyExecutives";
 import {
   getEmployeeList,
   resetEmployeeList,
   getExecutiveTag,
   resetExecutiveTag,
-  emptyErrorObj
+  emptyErrorObj,
+  downloadExecutiveExl,
+  emptyDownload
 } from "../../actionCreator/executiveDetailsActionCreator";
 
 import {
@@ -20,7 +23,7 @@ import {
   createGroupExecutiveTag,
 } from "../../actionCreator/executiveListingActionCreater";
 
-import { getToken, getUserInfo } from "../../utils/utils";
+import { saveExcel, getToken, getUserInfo } from "../../utils/utils";
 
 
 const SummaryContent = () => {
@@ -52,6 +55,10 @@ const SummaryContent = () => {
 
   const executiveDetails = useSelector(
     (state) => state.executiveDetailsReducer.executiveDetails
+  );
+
+  const downloadExcelData = useSelector(
+    (state) => state.executiveDetailsReducer.downloadExecutive
   );
 
   useMemo(() => {
@@ -164,6 +171,83 @@ const SummaryContent = () => {
       [e.target.name]: e.target.value,
     });
   };
+  const getSchema = (data) => {
+    var finaldata=[];
+    let cnt=0;
+    data.forEach((obj) => {
+      cnt++;
+      var dataObj={};
+      dataObj.id=obj.id;
+      dataObj.serealNo=cnt;
+      dataObj.firstName=obj.firstname;
+      dataObj.lastName=obj.lastname;
+      dataObj.designation=obj.title;
+      dataObj.email=obj.emailId;
+      dataObj.name=obj?.company?.name;
+      dataObj.revenueName=obj?.company?.revenue?.name;
+      dataObj.employeeRange=obj?.company?.range?.name;
+      dataObj.industryName=obj?.company?.industry?.name;
+      dataObj.country=obj?.company?.country;
+      dataObj.state=obj?.company?.state;
+      dataObj.city=obj?.company?.city;
+      dataObj.wedsite=obj?.company?.wedsite;
+      dataObj.address=obj?.company?.address;
+      dataObj.pincode=obj?.company?.pincode;
+      dataObj.phoneNo=obj.phoneNo;
+      finaldata.push(dataObj)
+    })
+    return finaldata;
+  }
+
+  useEffect(() => {  
+    if (downloadExcelData.length) {
+      const downloadedUpdatedData = getSchema(downloadExcelData)
+      const columns = [
+        { header: "Serial No.", key: "serealNo" },
+        { header: "FirstName", key: "firstName" },
+        { header: "LastName", key: "lastName" },
+        { header: "Designation", key: "designation" },
+        { header: "Email Available", key: "email" },
+        { header: "Company Name", key: "name" },
+        { header: "Phone", key: "phoneNo" },
+        { header: "Address", key: "address" },
+        { header: "City", key: "city" },
+        { header: "State", key: "state" },
+        { header: "Country", key: "country" },
+        { header: "Pin", key: "pincode" },
+        { header: "Website", key: "wedsite" },
+        { header: "Company Revenue", key: "revenueName" },
+        { header: "Employee Range", key: "rangeName" },
+        { header: "Industry", key: "industryName" },
+      ];
+      const [executiveCompanyDetails1]=executiveCompanyDetails;
+      const fileName = executiveCompanyDetails1.name+"-executive-data";
+      saveExcel(downloadedUpdatedData, columns, fileName, Excel, saveAs);
+      dispatch(emptyDownload());
+    }
+  }, [downloadExcelData]);
+
+
+  const downloadExcel = () => {
+    const isLoggedIn = checkLoginStatus();
+    if (isLoggedIn) {
+      let selectedEmpIds = "";
+      selectedEmployeeList?.forEach((exe) => {
+        selectedEmpIds += `${exe?.id},`;
+      });
+      selectedEmpIds = selectedEmpIds.substring(
+        selectedEmpIds.lastIndexOf(","),
+        0
+      );
+      const [executiveCompanyDetails1]=executiveCompanyDetails;
+      const payload={
+        empIds:selectedEmpIds,
+        companyId:executiveCompanyDetails1?.id,
+        id: executiveDetails?.id,
+      }
+      dispatch(downloadExecutiveExl(payload));
+    }
+  };
 
 
   <Tabs
@@ -218,6 +302,7 @@ const SummaryContent = () => {
                     <i
                       className="right-icons la la-file-excel"
                       aria-hidden="true"
+                      onClick={() => downloadExcel()}
                     ></i>
                   </a>
                 </li>

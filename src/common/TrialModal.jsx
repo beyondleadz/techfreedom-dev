@@ -9,10 +9,12 @@ const TrialModal = ({
   modalWidth = "400px",
   redirectToSignup,
   redirect = false,
+  title=""
 }) => {
   //console.log(redirect,'redirectredirect')
   return (
     <Modal
+      title={title}
       width={modalWidth}
       closable={true}
       open={openModal}
