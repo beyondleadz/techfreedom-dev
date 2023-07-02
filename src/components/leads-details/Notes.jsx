@@ -83,7 +83,7 @@ const Notes = () => {
     let payload = {};
     payload.note = form.note.value;
     payload.notefor = form.noteFor.value;
-    payload.isActive = form.isActive.value;
+    payload.isActive = form.isActive.value; 
     payload.isTask = form.isTask.value;
     payload.lead = { id: leadDetail?.id };
     payload.update=Object.keys(leadNoteDetails).length?true:false;

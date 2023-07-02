@@ -15,9 +15,12 @@ import {
   LEAD_REMARK_DETAIL_ERROR,
   SAVE_CLIENT_REMARKS,
   SAVE_CLIENT_REMARKS_ERROR,
-  LEAD_EMPTY_ERROR_OBJ
+  LEAD_EMPTY_ERROR_OBJ,
+  DELETE_LEAD_NOTE,
+  DELETE_LEAD_NOTE_ERROR
 } from "../actionType/leadDetailsType";
 import {
+  deleteAuthMethod,
   getAuthMethod,
   getMethod,
   postAuthMethod,
@@ -120,6 +123,28 @@ export const submitLeadNotes = (payload) => (dispatch) => {
 
 export const resetSubmitLeadNotes = (payload) => {
   return { type: SAVE_CLIENT_NOTE, payload: {} };
+};
+
+export const deleteLeadNote = (id,leadId) => (dispatch) => {
+  return deleteAuthMethod(`${saveClientNoteApiUrl}/${id}`)
+    .then((res) => {
+      dispatch({
+        type: DELETE_LEAD_NOTE,
+        payload: res.data,
+      });
+      dispatch(getAllLeadNotes(leadId));
+    })
+    .catch((err) => {
+      dispatch({
+        type: DELETE_LEAD_NOTE_ERROR,
+        payload:
+          {
+            [errEnum.DELETE_LEAD_NOTE_ERROR]:
+              err.response.data[ErrKey],
+          } || "Error Occured",
+      });     
+    });
+    
 };
 
 export const getAllLeadNotes = (id) => (dispatch) => {

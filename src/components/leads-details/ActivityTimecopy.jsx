@@ -12,6 +12,11 @@ const ActivityTimecopy = () => {
   const editLeadNote=(id)=>{
 console.log("lead data",id);
   }
+
+  const deleteLeadNote=(id)=>{
+    console.log("delete lead data",id);
+
+  }
   useEffect(() => {
     if (leadNotes.length) {
       let items = [];
@@ -22,7 +27,7 @@ console.log("lead data",id);
           <div><a href="#" className="btn btn-phone btn-sm btn-circle"> <i className="las la-phone fs-14"></i></a></div>;
         obj.children =
           <div className="mt-3"><div className="col-md-12"><div id="steps" className=" row mt-3"> <div className="col-md-8 text-align-left fs-14 font-weight-normal ">{item.note}
-          <h6>{item.notefor}</h6></div>    <div className="col-sm-4 text-align-right"><a href="#" className="btn fs-20 " onClick={()=>editLeadNote(item.id)}> <i className="las la-edit "></i></a> <a href="#" className="btn fs-20 "> <i className="las la-trash"></i></a><div className="fs-12 mt-1">2023-06-26 18:43</div></div></div></div></div>;
+          <h6>{item.notefor}</h6></div>    <div className="col-sm-4 text-align-right"><a href="#" className="btn fs-20 " onClick={()=>editLeadNote(item.id)}> <i className="las la-edit "></i></a> <a href="#" className="btn fs-20 "  onClick={()=>deleteLeadNote(item.id)}> <i className="las la-trash"></i></a><div className="fs-12 mt-1">2023-06-26 18:43</div></div></div></div></div>;
         items.push(obj);
       });
       setItemData(items);

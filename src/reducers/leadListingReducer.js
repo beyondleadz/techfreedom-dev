@@ -35,7 +35,7 @@ import {
   LEAD_EXECUTIVE_FUNCTION_LIST,
   LEAD_EXECUTIVE_FUNCTION_LIST_ERROR,
   LEAD_STATUS_LIST,
-  LEAD_STATUS_LIST_ERROR,
+  LEAD_STATUS_LIST_ERROR,  
 } from "../actionType/leadListingType";
 import { PAGE_LENGTH } from "../config";
 
@@ -57,9 +57,9 @@ const initialState = {
     selectedCity: [],
     selectedIndustry: [],
     selectedEmployeecount: [],
-    selectedLeadRating:[],
-    selectedLeadStatus:[],
-    selectedLeadSource:[],
+    selectedLeadRating: [],
+    selectedLeadStatus: [],
+    selectedLeadSource: [],
     searchKeyword: "",
     selectedSavedSearch: [],
     selectedCompanyTag: [],
@@ -88,7 +88,7 @@ const initialState = {
   download: "",
   saveSearch: "",
   groupCompanyTag: "",
-  errObj: {},
+  errObj: {},  
 };
 
 const LeadListingReducer = (state = initialState, action) => {
@@ -128,12 +128,16 @@ const LeadListingReducer = (state = initialState, action) => {
     case LEAD_EXECUTIVE_GROUP_COMPANY_TAG:
       return { ...state, groupCompanyTag: payload };
     case LEAD_EXECUTIVE_EMPLOYEELIST:
-      return { ...state, executiveEmployeeList: payload, totalExecutiveCount: count };
+      return {
+        ...state,
+        executiveEmployeeList: payload,
+        totalExecutiveCount: count,
+      };
     case LEAD_EXECUTIVE_FUNCTION_LIST:
       return { ...state, executiveFunctionList: payload };
     case LEAD_STATUS_LIST:
       return { ...state, leadStatusList: payload };
-
+    
     case LEAD_EXECUTIVE_INDUSTRY_LIST_ERROR:
       return { ...state, errObj: { ...state.errObj, ...payload } };
     case LEAD_EXECUTIVE_GEOLOCATION_ERROR:

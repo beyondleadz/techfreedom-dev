@@ -1,4 +1,7 @@
 import React, { useEffect, useState, useMemo } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import moment from "moment/moment";
+
 import {
   Modal,
   Checkbox,
@@ -7,27 +10,31 @@ import {
   Button,
   Select,
   DatePicker,
-  
 } from "antd";
 
 const Tasks = () => {
+  const dispatch = useDispatch();
+  const leadDetail = useSelector(
+    (state) => state.LeadDetailsReducer.leadDetails
+  );
+  const leadNoteDetails = useSelector(
+    (state) => state.LeadDetailsReducer.leadNoteDetails
+  );
+
   const formIntialValue = {
-    telephone: { disabled: true, value: "", status: null },
-    address: { disabled: true, value: "", status: null },
-    city: { disabled: true, value: "", status: null },
-    zip: { disabled: true, value: "", status: null },
-    employee: { disabled: true, value: "", status: null },
-    website: { disabled: true, value: "", status: null },
-    name: { disabled: true, value: "", status: null },
-    email: { disabled: true, value: "", status: null },
-    comment: { disabled: true, value: "", status: null },
+    interactionDate: { disabled: true, value: "2023-09-20 13:08", status: null },
+    isContactBackRequired: { disabled: true, value: "", status: null },
+    isContacted: { disabled: true, value: "", status: null },
+    isToDisplay: { disabled: true, value: "", status: null },
+    remarks: { disabled: true, value: "", status: null },
   };
 
- 
   const { RangePicker } = DatePicker;
   const [errorForm, setErrorForm] = useState(formIntialValue);
   const [form, setForm] = useState(formIntialValue);
-
+  const [isContactBackRequired, setIsContactBackRequired] = useState(false);
+  const [isContacted, setIsContacted] = useState(false);
+  const [isToDisplay, setIsToDisplay] = useState(false);
   const { TextArea } = Input;
   const enableField = (ele) => {
     setErrorForm({
@@ -37,16 +44,77 @@ const Tasks = () => {
         : { value: "", disabled: !ele.target.checked },
     });
   };
- 
-  const onInputChange = () => {};
+
+  const onInputChange = (ele) => {
+    setForm({
+      ...form,
+      [ele.target.name]: { ...form[ele.target.name], value: ele.target.value },
+    });
+  };
+
+  const onSelectChange = (value) => {
+    setForm({
+      ...form,
+      note: { ...form["note"], value: value },
+    });
+  };
+
   const onDateChange = (value, dateString) => {
-    console.log("Selected Time: ", value);
+    console.log("Selected Time: ", value, moment(value).format('YYYY-MM-DD HH:mm'));
     console.log("Formatted Selected Time: ", dateString);
+    setForm({
+      ...form,
+      interactionDate: { ...form["interactionDate"], value: value },
+    });
   };
 
   const onOk = (value) => {
     console.log("onOk: ", value);
+    
   };
+
+  const saveRemarks = () => {
+    let payload = {};
+    const newDate = new Date(form.interactionDate.value)
+    const formattedDate = moment(newDate).format('YYYY-MM-DD HH:mm')
+    payload.remarks = form.remarks.value;
+    payload.interactionDate = formattedDate;
+    payload.isContactBackRequired = form.isContactBackRequired.value;
+    payload.isContacted = form.isContacted.value;
+    payload.isToDisplay = form.isToDisplay.value;
+    payload.lead = { id: leadDetail?.id };
+    payload.update = Object.keys(leadNoteDetails).length ? true : false;
+    payload.id = Object.keys(leadNoteDetails).length ? leadNoteDetails?.id : "";
+    console.log(payload, "submit remarks");
+    //dispatch(submitLeadNotes(payload));
+  };
+
+  const onCheckChange = (e, type) => {
+    if (type === "isToDisplay") {
+      setIsToDisplay(e.target.checked);
+      setForm({
+        ...form,
+        isToDisplay: { ...form["isToDisplay"], value: e.target.checked },
+      });
+    } else if (type === "isContactBackRequired") {
+      setIsContactBackRequired(e.target.checked);
+      setForm({
+        ...form,
+        isContactBackRequired: {
+          ...form["isContactBackRequired"],
+          value: e.target.checked,
+        },
+      });
+    } else if (type === "isContacted") {
+      setIsContacted(e.target.checked);
+      setForm({
+        ...form,
+        isContacted: { ...form["isContacted"], value: e.target.checked },
+      });
+    } else {
+    }
+  };
+
   return (
     <div className="mt-3">
       <p>Add/Edit Task</p>
@@ -54,13 +122,13 @@ const Tasks = () => {
         <div className="form">
           <div className="formcol1">Lead Remarks</div>
           <div className="formcol2">
-          <TextArea
-            name="noteFor"
-            value={form?.noteFor?.value}
-            rows={2}
-            maxLength={100}
-            onChange={onInputChange}
-          />
+            <TextArea
+              name="remarks"
+              value={form?.remarks?.value}
+              rows={2}
+              maxLength={100}
+              onChange={onInputChange}
+            />
             {/* <Select
               showSearch
               placeholder="Task Status   "
@@ -96,20 +164,20 @@ const Tasks = () => {
           </div>
         </div>
         <div className="form">
-          {console.log(errorForm, "skljfsljfklsd")}
           <div className="formcol1">Date and Time</div>
           <div className="formcol2">
-          <DatePicker
-      format="YYYY-MM-DD HH:mm"
-      // disabledDate={disabledDate}
-      // disabledTime={disabledDateTime}
-       showTime={{
-        format: 'HH:mm',
-      }}
-      onChange={onDateChange}
-      onOk={onOk}
-    />
-          {/* <RangePicker
+            <DatePicker
+              format="YYYY-MM-DD HH:mm"
+              // disabledDate={disabledDate}
+              // disabledTime={disabledDateTime}
+              showTime={{
+                format: "HH:mm",
+              }}
+              value={moment(form?.interactionDate?.value)}
+              onChange={onDateChange}
+              onOk={onOk}
+            />
+            {/* <RangePicker
       showTime={{ format: 'HH:mm' }}
       format="YYYY-MM-DD HH:mm"
       onChange={onDateChange}
@@ -117,32 +185,51 @@ const Tasks = () => {
     /> */}
           </div>
         </div>
-        <div className="form">         
-        <div className="formcol1"> </div>
-        <div className="formcol2">
-        <span> <Checkbox name="isContactRequired" onChange={enableField}>
-                  Is Contact Back Required
-                </Checkbox></span>
-               </div>
-              </div>
-              <div className="form">         
-        <div className="formcol1"> </div>
-        <div className="formcol2">
-        <span>  <Checkbox name="isContacted" onChange={enableField}>
+        <div className="form">
+          <div className="formcol1"> </div>
+          <div className="formcol2">
+            <span>
+              {" "}
+              <Checkbox
+                name="isContactRequired"
+                onChange={(ele) => onCheckChange(ele, "isContactBackRequired")}
+                checked={isContactBackRequired}
+              >
+                Is Contact Back Required
+              </Checkbox>
+            </span>
+          </div>
+        </div>
+        <div className="form">
+          <div className="formcol1"> </div>
+          <div className="formcol2">
+            <span>
+              {" "}
+              <Checkbox
+                name="isContacted"
+                onChange={(ele) => onCheckChange(ele, "isContacted")}
+                checked={isContacted}
+              >
                 Is Contacted
-                </Checkbox>
-               </span> 
-               </div>
-              </div>
-              <div className="form">         
-        <div className="formcol1"> </div>
-        <div className="formcol2">
-        <span>  <Checkbox name="isToDisplay" onChange={enableField}>
+              </Checkbox>
+            </span>
+          </div>
+        </div>
+        <div className="form">
+          <div className="formcol1"> </div>
+          <div className="formcol2">
+            <span>
+              {" "}
+              <Checkbox
+                name="isToDisplay"
+                onChange={(ele) => onCheckChange(ele, "isToDisplay")}
+                checked={isToDisplay}
+              >
                 Is To Display
-                </Checkbox>
-              </span> 
-               </div>
-              </div>
+              </Checkbox>
+            </span>
+          </div>
+        </div>
         {/* <div className="form leadbox">
           {console.log(errorForm, "skljfsljfklsd")}
           <div className="formcol1">Related with </div>
@@ -217,7 +304,6 @@ const Tasks = () => {
                </div>
               </div>
                */}
-        
 
         {/* <div className="formcol1">
                 <Checkbox name="telephone" onChange={enableField}>
@@ -227,10 +313,14 @@ const Tasks = () => {
         <div className="mt-3">
           <span className="mt-3 mr-3">
             {" "}
-            <Button className="btn-info" type="primary">Cancel</Button>
+            <Button className="btn-info" type="primary">
+              Cancel
+            </Button>
           </span>
           <span className="mt-3 mr-3">
-            <Button className="btn-info" type="primary">Save</Button>
+            <Button className="btn-info" type="primary" onClick={saveRemarks}>
+              Save
+            </Button>
           </span>
         </div>
       </div>

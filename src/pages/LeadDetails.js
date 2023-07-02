@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 
 import Layout from "../layout/Layout";
-import { Steps } from "antd";
+import { Steps,Modal, Button } from "antd";
 import Banner from "../components/about/Banner";
 import Services from "../components/about/Services";
 import Aim from "../components/about/Aim";
@@ -22,65 +22,90 @@ import {
   getLeadDetails,
   getAllLeadNotes,
   getAllLeadRemarks,
-  getLeadNoteDetails
+  getLeadNoteDetails,
+  deleteLeadNote,
 } from "../actionCreator/leadDetailsActionCreator";
 
-
 const LeadDetails = () => {
-  const { id } = useParams();
+  const { confirm } = Modal;
+  const { id, type } = useParams();
   const dispatch = useDispatch();
-  const leadDetail= useSelector(
+  const leadDetail = useSelector(
     (state) => state.LeadDetailsReducer.leadDetails
   );
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab1] = useState("1");
 
-  
-const items = [
-  {
-    key: "1",
-    label: <span>Timeline</span>,
-    children: <ActivityTime setActiveTab={(tab,id) => getActiveTab(tab,id)} />,
-  },
-  {
-    key: "2",
-    label: `Lead Details`,
-    children: <Info />,
-  },
-  {
-    key: "3",
-    label: `Add Notes`,
-    children: <Notes />,
-  },
-  {
-    key: "4",
-    label: `Add Tasks`,
-    children: <Tasks />,
-  },
-];
+  const items = [
+    {
+      key: "1",
+      label: <span>Timeline</span>,
+      children: (
+        <ActivityTime
+          setActiveTab={(tab, id, type) => getActiveTab(tab, id, type)}
+        />
+      ),
+    },
+    {
+      key: "2",
+      label: `Lead Details`,
+      children: <Info />,
+    },
+    {
+      key: "3",
+      label: `Add Notes`,
+      children: <Notes />,
+    },
+    {
+      key: "4",
+      label: `Add Tasks`,
+      children: <Tasks />,
+    },
+  ];
 
-const getActiveTab = (tab,id) => {
-  setActiveTab1(`${tab}`)
-  dispatch(getLeadNoteDetails(id));
-  //console.log(`${tab}`,id,'535u39')
-}
+  const getActiveTab = (tab, id, type) => {
+    //console.log("typetype", type);
+    if (type == "delete") { 
+      showConfirm(id,leadDetail?.id);      
+    }else{
+      setActiveTab1(`${tab}`);
+      dispatch(getLeadNoteDetails(id));
+    }
+  };
 
-const onChange = (key) => {
-  console.log(key);
-  setActiveTab1(`${key}`)
-};
+  const onChange = (key) => {
+    console.log(key);
+    setActiveTab1(`${key}`);
+  };
 
   useMemo(() => {
-     dispatch(getLeadDetails(id));
-     dispatch(getAllLeadNotes(id));
-     dispatch(getAllLeadRemarks(id));    
-   }, []);
-   useMemo(() => {
+    dispatch(getLeadDetails(id));
+    dispatch(getAllLeadNotes(id));
+    dispatch(getAllLeadRemarks(id));
+  }, []);
+  useMemo(() => {
     console.log(leadDetail, "leadDetail");
-   },[leadDetail]);
-const switchToTimeline=()=>{
-  setActiveTab1(`1`);
-}
+  }, [leadDetail]);
+  const switchToTimeline = () => {
+    setActiveTab1(`1`);
+  };
+
+
+  function showConfirm(id, leadId) {
+    confirm({
+      title: 'Do you want to delete this note?',
+      content: '',
+      onOk() {
+        return new Promise((resolve, reject) => {
+          setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
+          dispatch(deleteLeadNote(id, leadId));
+        }).catch(() => 
+         console.log('Oops errors!')
+      );
+      },
+      onCancel() {},
+    });
+  }
   return (
     <>
       <Layout>
@@ -133,8 +158,14 @@ const switchToTimeline=()=>{
                   <div className="row">
                     <div className="col-md-4 col-custom">
                       <div className="profilePic">
-                        <i className="btn btn-dark btn-circle btn-lg" style={{ "text-transform": "uppercase" }}> {leadDetail?.firstname?.[0]}
-                {leadDetail?.lastname?.[0]}</i>
+                        <i
+                          className="btn btn-dark btn-circle btn-lg"
+                          style={{ "text-transform": "uppercase" }}
+                        >
+                          {" "}
+                          {leadDetail?.firstname?.[0]}
+                          {leadDetail?.lastname?.[0]}
+                        </i>
                         <h3>{leadDetail?.fullname}</h3>
                         <div className="name mt-1">
                           October14th, 2018 at 2:30 P.M.
@@ -150,12 +181,19 @@ const switchToTimeline=()=>{
                           </Tooltip>
                           <Tooltip overlayClassName="fs-12 " title="Email">
                             {" "}
-                            <a href="#" className="btn btn-email btn-circle ml-3">
+                            <a
+                              href="#"
+                              className="btn btn-email btn-circle ml-3"
+                            >
                               <i className="las la-envelope "></i>
                             </a>
                           </Tooltip>
                           <Tooltip overlayClassName="fs-12" title="Activity">
-                            <a href="#" className="btn btn-act btn-circle ml-3" onClick={switchToTimeline}>
+                            <a
+                              href="#"
+                              className="btn btn-act btn-circle ml-3"
+                              onClick={switchToTimeline}
+                            >
                               <i className="las la-directions"></i>
                             </a>
                           </Tooltip>
@@ -175,12 +213,18 @@ const switchToTimeline=()=>{
                           <span className="col-md-2 fs-14 ">
                             Designation
                           </span>{" "}
-                          <span className="col namedc"> {leadDetail?.title}</span>{" "}
+                          <span className="col namedc">
+                            {" "}
+                            {leadDetail?.title}
+                          </span>{" "}
                         </div>
                         <div className=" row mt-2">
                           {" "}
                           <span className="col-md-2 fs-14">Phone </span>{" "}
-                          <span className="col namedc"> {leadDetail?.phoneNo}</span>{" "}
+                          <span className="col namedc">
+                            {" "}
+                            {leadDetail?.phoneNo}
+                          </span>{" "}
                         </div>
                         <div className="row  mt-2">
                           {" "}
@@ -194,7 +238,7 @@ const switchToTimeline=()=>{
                           {" "}
                           <span className="col-md-2 fs-14">Address</span>
                           <span className="col namedc">
-                          {leadDetail?.address} 
+                            {leadDetail?.address}
                           </span>
                         </div>
                       </div>
@@ -205,7 +249,6 @@ const switchToTimeline=()=>{
                     </div>
                     <div className="col-md-8 col-custom-2">
                       <div className="row">
-                        {console.log(activeTab,'activeTabactiveTab')}
                         <Tabs
                           className="ml-4 "
                           activeKey={activeTab}
@@ -226,6 +269,7 @@ const switchToTimeline=()=>{
           </a>
         </div>
       </Layout>
+      
     </>
   );
 };
