@@ -220,7 +220,7 @@ export const submitLeadRemarks = (payload) => (dispatch) => {
         type: SAVE_CLIENT_REMARKS_ERROR,
         payload:
           {
-            [errEnum.SAVE_CLIENT_REMARKS_ERROR]: err.response.data[ErrKey],
+            [errEnum.SAVE_CLIENT_REMARKS_ERROR]: err.response.data,
           } || "Error Occured",
       });
     });
@@ -238,7 +238,7 @@ export const submitLeadRemarks = (payload) => (dispatch) => {
         type: SAVE_CLIENT_REMARKS_ERROR,
         payload:
           {
-            [errEnum.SAVE_CLIENT_REMARKS_ERROR]: err.response.data[ErrKey],
+            [errEnum.SAVE_CLIENT_REMARKS_ERROR]: err.response.data,
           } || "Error Occured",
       });
     });

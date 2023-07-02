@@ -11,18 +11,47 @@ import {
   Select,
   DatePicker,
 } from "antd";
+import { emptyErrorObj, resetSubmitLeadRemarkss, submitLeadRemarks } from "../../actionCreator/leadDetailsActionCreator";
+import TrialModal from "../../common/TrialModal";
+import { SAVE_CLIENT_REMARKS_ERROR } from "../../actionType/leadDetailsType";
 
 const Tasks = () => {
   const dispatch = useDispatch();
+  const [showModal, setShowModal] = useState(false);
+  const [isApiFailed, setIsApiFailed] = useState({
+    isFailed: false,
+    errObj: {},
+  });
+  const errObj = useSelector((state) => state.LeadDetailsReducer.errObj);
+
   const leadDetail = useSelector(
     (state) => state.LeadDetailsReducer.leadDetails
+  );
+  const leadRemarksSubmitted = useSelector(
+    (state) => state.LeadDetailsReducer.saveleadRemarks
   );
   const leadNoteDetails = useSelector(
     (state) => state.LeadDetailsReducer.leadNoteDetails
   );
 
+  useEffect(() => {
+    // console.log(Object.keys(errObj).length,'Object.keys(errObj).lengths')
+     if (Object.keys(errObj).length) {
+       setIsApiFailed({ isFailed: true, errObj: errObj });
+     }
+     if (!Object.keys(errObj).length) {
+       setIsApiFailed({ isFailed: false, errObj: errObj });
+     }
+   }, [Object.keys(errObj).length]);
+
+  useEffect(() => {
+    if (Object.keys(leadRemarksSubmitted).length) {
+      setShowModal(true);
+    }      
+  }, [leadRemarksSubmitted]);
+
   const formIntialValue = {
-    interactionDate: { disabled: true, value: "2023-09-20 13:08", status: null },
+    interactionDate: { disabled: true, value: "", status: null },
     isContactBackRequired: { disabled: true, value: "", status: null },
     isContacted: { disabled: true, value: "", status: null },
     isToDisplay: { disabled: true, value: "", status: null },
@@ -82,11 +111,11 @@ const Tasks = () => {
     payload.isContactBackRequired = form.isContactBackRequired.value;
     payload.isContacted = form.isContacted.value;
     payload.isToDisplay = form.isToDisplay.value;
-    payload.lead = { id: leadDetail?.id };
+    payload.lead = leadDetail;
     payload.update = Object.keys(leadNoteDetails).length ? true : false;
     payload.id = Object.keys(leadNoteDetails).length ? leadNoteDetails?.id : "";
-    console.log(payload, "submit remarks");
-    //dispatch(submitLeadNotes(payload));
+    //console.log(payload, "submit remarks");
+    dispatch(submitLeadRemarks(payload));
   };
 
   const onCheckChange = (e, type) => {
@@ -115,7 +144,15 @@ const Tasks = () => {
     }
   };
 
+  const closeModal = () => {
+    setShowModal(false);
+    dispatch(resetSubmitLeadRemarkss());
+    dispatch(emptyErrorObj());
+  };
+
+
   return (
+    <>
     <div className="mt-3">
       <p>Add/Edit Task</p>
       <div className="errorformcontainer">
@@ -173,7 +210,7 @@ const Tasks = () => {
               showTime={{
                 format: "HH:mm",
               }}
-              value={moment(form?.interactionDate?.value)}
+              value={form?.interactionDate?.value}
               onChange={onDateChange}
               onOk={onOk}
             />
@@ -325,6 +362,43 @@ const Tasks = () => {
         </div>
       </div>
     </div>
+    {isApiFailed.isFailed ? (
+            <TrialModal
+              openModal={isApiFailed.isFailed}
+              closeModal={closeModal}
+              buttonText="OK"
+              title=""
+              modalBody={
+                <div id="small-dialog2" style={{'textAlign':'left'}}>
+                  {isApiFailed.errObj[SAVE_CLIENT_REMARKS_ERROR] &&
+                    isApiFailed.errObj[SAVE_CLIENT_REMARKS_ERROR].message}
+                </div>
+              }
+              modalWidth="400px"
+            />
+          ) : (
+            ""
+          )}
+
+    {showModal ? (
+      <TrialModal
+        openModal={showModal}
+        closeModal={closeModal}
+        redirect={false}
+        buttonText="OK"
+        modalBody={
+          <div id="small-dialog2">
+            <p style={{ color: "#0000FF" }}>
+              Remarks Submitted.
+            </p>            
+          </div>
+        }
+        modalWidth="400px"
+      />
+    ) : (
+      ""
+    )}
+    </>
   );
 };
 export default Tasks;

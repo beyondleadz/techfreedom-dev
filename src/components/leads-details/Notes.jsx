@@ -207,13 +207,12 @@ const Notes = () => {
         </span>
       </div>
     </div>
-    {console.log(isApiFailed.isFailed)}
     {isApiFailed.isFailed ? (
             <TrialModal
               openModal={isApiFailed.isFailed}
               closeModal={closeModal}
               buttonText="OK"
-              title="Tests"
+              title=""
               modalBody={
                 <div id="small-dialog2" style={{'textAlign':'left'}}>
                   {isApiFailed.errObj[SAVE_CLIENT_NOTE_ERROR] &&
