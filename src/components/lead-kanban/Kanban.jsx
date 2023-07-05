@@ -26,6 +26,19 @@ const Kanban=()=>{
                 <div class="step current"> To Do</div>
                     <h6 class="card-title text-uppercase text-truncate py-2"></h6>
                     <div class="items border border-light">
+                    <div class="dropzone rounded"> &nbsp; </div>
+                        <div class="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
+                            <div class="card-body p-2">
+                                <div class="card-title">
+                                   
+                                    <a href="" class="lead font-weight-light">TSK-154</a>
+                                </div>
+                                <p>
+                                    This is a description of a item on the board.
+                                </p>
+                                <button class="btn btn-primary btn-sm">View</button>
+                            </div>
+                        </div>
                         <div class="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
                             <div class="card-body p-2">
                                 <div class="card-title">
@@ -75,18 +88,7 @@ const Kanban=()=>{
                 <div class="step done"> Lead</div>
                     <h6 class="card-title text-uppercase text-truncate py-2"></h6>
                     <div class="items border border-light">
-                        <div class="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
-                            <div class="card-body p-2">
-                                <div class="card-title">
-                                   
-                                    <a href="" class="lead font-weight-light">TSK-154</a>
-                                </div>
-                                <p>
-                                    This is a description of a item on the board.
-                                </p>
-                                <button class="btn btn-primary btn-sm">View</button>
-                            </div>
-                        </div>
+                       
                         <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
                         <div class="card draggable shadow-sm" id="cd2" draggable="true" ondragstart="drag(event)">
                             <div class="card-body p-2">
@@ -124,6 +126,7 @@ const Kanban=()=>{
                 <div class="step active"> Martting qualified lead</div>
                     <h6 class="card-title text-uppercase text-truncate py-2"></h6>
                     <div class="items border border-light">
+                    <div class="dropzone rounded"> &nbsp; </div>
                         <div class="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
                             <div class="card-body p-2">
                                 <div class="card-title">
@@ -173,6 +176,7 @@ const Kanban=()=>{
                 <div class="step "> Sales qualified lead</div>
                     <h6 class="card-title text-uppercase text-truncate py-2"></h6>
                     <div class="items border border-light">
+                    <div class="dropzone rounded"> &nbsp; </div>
                         <div class="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
                             <div class="card-body p-2">
                                 <div class="card-title">
@@ -222,6 +226,7 @@ const Kanban=()=>{
                 <div class="step">Opportunity</div>
                     <h6 class="card-title text-uppercase text-truncate py-2"></h6>
                     <div class="items border border-light">
+                    <div class="dropzone rounded"> &nbsp; </div>
                         <div class="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
                             <div class="card-body p-2">
                                 <div class="card-title">
@@ -271,6 +276,7 @@ const Kanban=()=>{
                 <div class="step "> Customer</div>
                     <h6 class="card-title text-uppercase text-truncate py-2"></h6>
                     <div class="items border border-light">
+                    <div class="dropzone rounded"> &nbsp; </div>
                         <div class="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
                             <div class="card-body p-2">
                                 <div class="card-title">
@@ -320,6 +326,7 @@ const Kanban=()=>{
                 <div class="step"> Other</div>
                     <h6 class="card-title text-uppercase text-truncate py-2"></h6>
                     <div class="items border border-light">
+                    <div class="dropzone rounded"> &nbsp; </div>
                         <div class="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
                             <div class="card-body p-2">
                                 <div class="card-title">
