@@ -31,7 +31,7 @@ const Kanban=()=>{
                             <div class="card-body p-2">
                                 <div class="card-title">
                                    
-                                    <a href="" class="lead font-weight-light">TSK-154</a>
+                                    <a href="" class=" text-primary lead font-weight-light">TSK-154</a>
                                 </div>
                                 <p>
                                     This is a description of a item on the board.
@@ -43,7 +43,7 @@ const Kanban=()=>{
                             <div class="card-body p-2">
                                 <div class="card-title">
                                    
-                                    <a href="" class="lead font-weight-light">TSK-154</a>
+                                    <a href="" class=" text-primary lead font-weight-light">TSK-154</a>
                                 </div>
                                 <p>
                                     This is a description of a item on the board.
@@ -56,7 +56,7 @@ const Kanban=()=>{
                             <div class="card-body p-2">
                                 <div class="card-title">
                                    
-                                    <a href="" class="lead font-weight-light">TSK-156</a>
+                                    <a href="" class=" text-primary lead font-weight-light">TSK-156</a>
                                 </div>
                                 <p>
                                     This is a description of a item on the board.
@@ -69,7 +69,7 @@ const Kanban=()=>{
                             <div class="card-body p-2">
                                 <div class="card-title">
                                    
-                                    <a href="" class="lead font-weight-light">TSK-157</a>
+                                    <a href="" class=" text-primary lead font-weight-light">TSK-157</a>
                                 </div>
                                 <p>
                                     This is an item on the board. There is some descriptive text that explains the item here.
@@ -94,7 +94,7 @@ const Kanban=()=>{
                             <div class="card-body p-2">
                                 <div class="card-title">
                                    
-                                    <a href="" class="lead font-weight-light">TSK-156</a>
+                                    <a href="" class="  text-primary lead font-weight-light">TSK-156</a>
                                 </div>
                                 <p>
                                     This is a description of a item on the board.
@@ -107,7 +107,7 @@ const Kanban=()=>{
                             <div class="card-body p-2">
                                 <div class="card-title">
                                    
-                                    <a href="" class="lead font-weight-light">TSK-157</a>
+                                    <a href="" class=" text-primary lead font-weight-light">TSK-157</a>
                                 </div>
                                 <p>
                                     This is an item on the board. There is some descriptive text that explains the item here.
@@ -131,7 +131,7 @@ const Kanban=()=>{
                             <div class="card-body p-2">
                                 <div class="card-title">
                                    
-                                    <a href="" class="lead font-weight-light">TSK-154</a>
+                                    <a href="" class=" text-primary lead font-weight-light">TSK-154</a>
                                 </div>
                                 <p>
                                     This is a description of a item on the board.
@@ -144,7 +144,7 @@ const Kanban=()=>{
                             <div class="card-body p-2">
                                 <div class="card-title">
                                    
-                                    <a href="" class="lead font-weight-light">TSK-156</a>
+                                    <a href="" class=" text-primary lead font-weight-light">TSK-156</a>
                                 </div>
                                 <p>
                                     This is a description of a item on the board.
@@ -157,7 +157,7 @@ const Kanban=()=>{
                             <div class="card-body p-2">
                                 <div class="card-title">
                                    
-                                    <a href="" class="lead font-weight-light">TSK-157</a>
+                                    <a href="" class=" text-primary lead font-weight-light">TSK-157</a>
                                 </div>
                                 <p>
                                     This is an item on the board. There is some descriptive text that explains the item here.
@@ -181,7 +181,7 @@ const Kanban=()=>{
                             <div class="card-body p-2">
                                 <div class="card-title">
                                    
-                                    <a href="" class="lead font-weight-light">TSK-154</a>
+                                    <a href="" class=" text-primary lead font-weight-light">TSK-154</a>
                                 </div>
                                 <p>
                                     This is a description of a item on the board.
@@ -194,7 +194,7 @@ const Kanban=()=>{
                             <div class="card-body p-2">
                                 <div class="card-title">
                                    
-                                    <a href="" class="lead font-weight-light">TSK-156</a>
+                                    <a href="" class=" text-primary lead font-weight-light">TSK-156</a>
                                 </div>
                                 <p>
                                     This is a description of a item on the board.
@@ -207,7 +207,7 @@ const Kanban=()=>{
                             <div class="card-body p-2">
                                 <div class="card-title">
                                    
-                                    <a href="" class="lead font-weight-light">TSK-157</a>
+                                    <a href="" class=" text-primary lead font-weight-light">TSK-157</a>
                                 </div>
                                 <p>
                                     This is an item on the board. There is some descriptive text that explains the item here.
@@ -231,7 +231,7 @@ const Kanban=()=>{
                             <div class="card-body p-2">
                                 <div class="card-title">
                                    
-                                    <a href="" class="lead font-weight-light">TSK-154</a>
+                                    <a href="" class=" text-primary lead font-weight-light">TSK-154</a>
                                 </div>
                                 <p>
                                     This is a description of a item on the board.
@@ -244,7 +244,7 @@ const Kanban=()=>{
                             <div class="card-body p-2">
                                 <div class="card-title">
                                    
-                                    <a href="" class="lead font-weight-light">TSK-156</a>
+                                    <a href="" class=" text-primary lead font-weight-light">TSK-156</a>
                                 </div>
                                 <p>
                                     This is a description of a item on the board.
@@ -257,7 +257,7 @@ const Kanban=()=>{
                             <div class="card-body p-2">
                                 <div class="card-title">
                                    
-                                    <a href="" class="lead font-weight-light">TSK-157</a>
+                                    <a href="" class=" text-primary lead font-weight-light">TSK-157</a>
                                 </div>
                                 <p>
                                     This is an item on the board. There is some descriptive text that explains the item here.
@@ -281,7 +281,7 @@ const Kanban=()=>{
                             <div class="card-body p-2">
                                 <div class="card-title">
                                    
-                                    <a href="" class="lead font-weight-light">TSK-154</a>
+                                    <a href="" class=" text-primary lead font-weight-light">TSK-154</a>
                                 </div>
                                 <p>
                                     This is a description of a item on the board.
@@ -294,7 +294,7 @@ const Kanban=()=>{
                             <div class="card-body p-2">
                                 <div class="card-title">
                                    
-                                    <a href="" class="lead font-weight-light">TSK-156</a>
+                                    <a href="" class=" text-primary lead font-weight-light">TSK-156</a>
                                 </div>
                                 <p>
                                     This is a description of a item on the board.
@@ -307,7 +307,7 @@ const Kanban=()=>{
                             <div class="card-body p-2">
                                 <div class="card-title">
                                    
-                                    <a href="" class="lead font-weight-light">TSK-157</a>
+                                    <a href="" class=" text-primary lead font-weight-light">TSK-157</a>
                                 </div>
                                 <p>
                                     This is an item on the board. There is some descriptive text that explains the item here.
@@ -331,7 +331,7 @@ const Kanban=()=>{
                             <div class="card-body p-2">
                                 <div class="card-title">
                                    
-                                    <a href="" class="lead font-weight-light">TSK-154</a>
+                                    <a href="" class=" text-primary lead font-weight-light">TSK-154</a>
                                 </div>
                                 <p>
                                     This is a description of a item on the board.
@@ -344,7 +344,7 @@ const Kanban=()=>{
                             <div class="card-body p-2">
                                 <div class="card-title">
                                    
-                                    <a href="" class="lead font-weight-light">TSK-156</a>
+                                    <a href="" class=" text-primary lead font-weight-light">TSK-156</a>
                                 </div>
                                 <p>
                                     This is a description of a item on the board.
@@ -357,7 +357,7 @@ const Kanban=()=>{
                             <div class="card-body p-2">
                                 <div class="card-title">
                                    
-                                    <a href="" class="lead font-weight-light">TSK-157</a>
+                                    <a href="" class=" text-primary lead font-weight-light">TSK-157</a>
                                 </div>
                                 <p>
                                     This is an item on the board. There is some descriptive text that explains the item here.
