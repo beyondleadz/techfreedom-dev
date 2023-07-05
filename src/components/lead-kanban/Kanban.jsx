@@ -51,7 +51,7 @@ const Kanban=()=>{
                                 <button class="btn btn-primary btn-sm">View</button>
                             </div>
                         </div>
-                        <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
+                        
                         <div class="card draggable shadow-sm" id="cd2" draggable="true" ondragstart="drag(event)">
                             <div class="card-body p-2">
                                 <div class="card-title">
@@ -64,7 +64,7 @@ const Kanban=()=>{
                                 <button class="btn btn-primary btn-sm">View</button>
                             </div>
                         </div>
-                        <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
+                        
                         <div class="card draggable shadow-sm" id="cd3" draggable="true" ondragstart="drag(event)">
                             <div class="card-body p-2">
                                 <div class="card-title">
@@ -77,7 +77,7 @@ const Kanban=()=>{
                                 <button class="btn btn-primary btn-sm">View</button>
                             </div>
                         </div>
-                        <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
+                        
                     </div>
                 </div>
             </div>
@@ -89,7 +89,7 @@ const Kanban=()=>{
                     <h6 class="card-title text-uppercase text-truncate py-2"></h6>
                     <div class="items border border-light">
                        
-                        <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
+                    <div class="dropzone rounded"> &nbsp; </div> 
                         <div class="card draggable shadow-sm" id="cd2" draggable="true" ondragstart="drag(event)">
                             <div class="card-body p-2">
                                 <div class="card-title">
@@ -102,7 +102,7 @@ const Kanban=()=>{
                                 <button class="btn btn-primary btn-sm">View</button>
                             </div>
                         </div>
-                        <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
+                        
                         <div class="card draggable shadow-sm" id="cd3" draggable="true" ondragstart="drag(event)">
                             <div class="card-body p-2">
                                 <div class="card-title">
@@ -115,7 +115,7 @@ const Kanban=()=>{
                                 <button class="btn btn-primary btn-sm">View</button>
                             </div>
                         </div>
-                        <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
+                        
                     </div>
                 </div>
             </div>
@@ -139,7 +139,7 @@ const Kanban=()=>{
                                 <button class="btn btn-primary btn-sm">View</button>
                             </div>
                         </div>
-                        <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
+                        
                         <div class="card draggable shadow-sm" id="cd2" draggable="true" ondragstart="drag(event)">
                             <div class="card-body p-2">
                                 <div class="card-title">
@@ -152,7 +152,7 @@ const Kanban=()=>{
                                 <button class="btn btn-primary btn-sm">View</button>
                             </div>
                         </div>
-                        <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
+                        
                         <div class="card draggable shadow-sm" id="cd3" draggable="true" ondragstart="drag(event)">
                             <div class="card-body p-2">
                                 <div class="card-title">
@@ -165,7 +165,7 @@ const Kanban=()=>{
                                 <button class="btn btn-primary btn-sm">View</button>
                             </div>
                         </div>
-                        <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
+                        
                     </div>
                 </div>
             </div>
@@ -189,7 +189,7 @@ const Kanban=()=>{
                                 <button class="btn btn-primary btn-sm">View</button>
                             </div>
                         </div>
-                        <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
+                        
                         <div class="card draggable shadow-sm" id="cd2" draggable="true" ondragstart="drag(event)">
                             <div class="card-body p-2">
                                 <div class="card-title">
@@ -202,7 +202,7 @@ const Kanban=()=>{
                                 <button class="btn btn-primary btn-sm">View</button>
                             </div>
                         </div>
-                        <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
+                        
                         <div class="card draggable shadow-sm" id="cd3" draggable="true" ondragstart="drag(event)">
                             <div class="card-body p-2">
                                 <div class="card-title">
@@ -215,7 +215,7 @@ const Kanban=()=>{
                                 <button class="btn btn-primary btn-sm">View</button>
                             </div>
                         </div>
-                        <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
+                        
                     </div>
                 </div>
             </div>
@@ -239,7 +239,7 @@ const Kanban=()=>{
                                 <button class="btn btn-primary btn-sm">View</button>
                             </div>
                         </div>
-                        <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
+                        
                         <div class="card draggable shadow-sm" id="cd2" draggable="true" ondragstart="drag(event)">
                             <div class="card-body p-2">
                                 <div class="card-title">
@@ -252,7 +252,7 @@ const Kanban=()=>{
                                 <button class="btn btn-primary btn-sm">View</button>
                             </div>
                         </div>
-                        <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
+                        
                         <div class="card draggable shadow-sm" id="cd3" draggable="true" ondragstart="drag(event)">
                             <div class="card-body p-2">
                                 <div class="card-title">
@@ -265,7 +265,7 @@ const Kanban=()=>{
                                 <button class="btn btn-primary btn-sm">View</button>
                             </div>
                         </div>
-                        <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
+                        
                     </div>
                 </div>
             </div>
@@ -289,7 +289,7 @@ const Kanban=()=>{
                                 <button class="btn btn-primary btn-sm">View</button>
                             </div>
                         </div>
-                        <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
+                        
                         <div class="card draggable shadow-sm" id="cd2" draggable="true" ondragstart="drag(event)">
                             <div class="card-body p-2">
                                 <div class="card-title">
@@ -302,7 +302,7 @@ const Kanban=()=>{
                                 <button class="btn btn-primary btn-sm">View</button>
                             </div>
                         </div>
-                        <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
+                        
                         <div class="card draggable shadow-sm" id="cd3" draggable="true" ondragstart="drag(event)">
                             <div class="card-body p-2">
                                 <div class="card-title">
@@ -315,7 +315,7 @@ const Kanban=()=>{
                                 <button class="btn btn-primary btn-sm">View</button>
                             </div>
                         </div>
-                        <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
+                        
                     </div>
                 </div>
             </div>
@@ -339,7 +339,7 @@ const Kanban=()=>{
                                 <button class="btn btn-primary btn-sm">View</button>
                             </div>
                         </div>
-                        <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
+                        
                         <div class="card draggable shadow-sm" id="cd2" draggable="true" ondragstart="drag(event)">
                             <div class="card-body p-2">
                                 <div class="card-title">
@@ -352,7 +352,7 @@ const Kanban=()=>{
                                 <button class="btn btn-primary btn-sm">View</button>
                             </div>
                         </div>
-                        <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
+                        
                         <div class="card draggable shadow-sm" id="cd3" draggable="true" ondragstart="drag(event)">
                             <div class="card-body p-2">
                                 <div class="card-title">
@@ -365,7 +365,7 @@ const Kanban=()=>{
                                 <button class="btn btn-primary btn-sm">View</button>
                             </div>
                         </div>
-                        <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
+                        
                     </div>
                 </div>
             </div>
