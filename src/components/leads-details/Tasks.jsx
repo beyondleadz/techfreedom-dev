@@ -30,8 +30,8 @@ const Tasks = () => {
   const leadRemarksSubmitted = useSelector(
     (state) => state.LeadDetailsReducer.saveleadRemarks
   );
-  const leadNoteDetails = useSelector(
-    (state) => state.LeadDetailsReducer.leadNoteDetails
+  const leadRemarksDetails = useSelector(
+    (state) => state.LeadDetailsReducer.leadRemarksDetails
   );
 
   useEffect(() => {
@@ -89,8 +89,8 @@ const Tasks = () => {
   };
 
   const onDateChange = (value, dateString) => {
-    console.log("Selected Time: ", value, moment(value).format('YYYY-MM-DD HH:mm'));
-    console.log("Formatted Selected Time: ", dateString);
+    //console.log("Selected Time: ", value, moment(value).format('YYYY-MM-DD HH:mm'));
+    //console.log("Formatted Selected Time: ", dateString);
     setForm({
       ...form,
       interactionDate: { ...form["interactionDate"], value: value },
@@ -112,8 +112,8 @@ const Tasks = () => {
     payload.isContacted = form.isContacted.value;
     payload.isToDisplay = form.isToDisplay.value;
     payload.lead = leadDetail;
-    payload.update = Object.keys(leadNoteDetails).length ? true : false;
-    payload.id = Object.keys(leadNoteDetails).length ? leadNoteDetails?.id : "";
+    payload.update = Object.keys(leadRemarksDetails).length ? true : false;
+    payload.id = Object.keys(leadRemarksDetails).length ? leadRemarksDetails?.id : "";
     //console.log(payload, "submit remarks");
     dispatch(submitLeadRemarks(payload));
   };

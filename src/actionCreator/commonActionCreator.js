@@ -42,7 +42,7 @@ export const getAccountInfo = (token) => (dispatch) => {
 };
 
 export const getSubscriptionInfo = (token,data) => (dispatch) => {
-  if(data?.account?.id){
+  if(data?.account?.id){ //subscriberId TODO
   return getAuthMethod(subscriptionaccountInfoApiUrl+data?.account?.id, token)
     .then((res) => {
       dispatch({

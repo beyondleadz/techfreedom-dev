@@ -1032,14 +1032,13 @@ const AdvancedFilter = ({
               onChange={leadStatusFilterList}
             />
           </div>
-
           <CheckboxGroup
             onChange={onLeadStatusChange}
             value={selectedLeadStatusList}
           >
             <>
               <ul>
-                {leadStatusList?.map((item, index) => {
+                {leadStatusList?.length && leadStatusList?.map((item, index) => {
                   if (showNumberofRecords) {
                     return (
                       index < showNumberofRecords && (

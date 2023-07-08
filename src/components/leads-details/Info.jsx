@@ -18,7 +18,7 @@ const Info = () => {
     address: { disabled: false, value: leadDetail?.address, status: null },
     website: { disabled: false, value: leadDetail?.website, status: null },
     company: { disabled: false, value: leadDetail?.companyName, status: null },
-    industry: { disabled: false, value: leadDetail?.industry, status: null },
+    industry: { disabled: false, value: leadDetail?.industryText, status: null },
     title: { disabled: false, value: leadDetail?.title, status: null },
     fullname: { disabled: false, value: (leadDetail?.fullname)?leadDetail.fullname:leadDetail.firstname+" "+leadDetail.lastname},
     email: { disabled: false, value: leadDetail?.emailId, status: null },

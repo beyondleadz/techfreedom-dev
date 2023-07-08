@@ -527,13 +527,13 @@ selectedZipCode,
   }
 
   if(selectedLeadOwner){    
-    //url = `${url}&fullname.contains=${selectedLeadOwner}`;
+   // url = `${url}&fullname.contains=${selectedLeadOwner}`;
   }
   if(selectedFirstName){    
-    url = `${url}&firstname.contains=${selectedFirstName}`;
+    url = `${url}&firstname.contains=${selectedFirstName}&fullname.contains=${selectedFirstName}`;
   }
   if(selectedLastName){    
-    url = `${url}&lastname.contains=${selectedLastName}`;
+    url = `${url}&lastname.contains=${selectedLastName}&fullname.contains=${selectedFirstName}`;
   }
   if(selectedCompanyName){    
     //url = `${url}&lastname.contains=${selectedLastName}`;

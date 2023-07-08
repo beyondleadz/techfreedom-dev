@@ -32,5 +32,5 @@ export const fetchExecutiveTagApiUrl = 'api/employee-tags';
 export const saveClientNoteApiUrl = 'api/client-notes';
 export const getClientNotesApiUrl = 'api/client-notes';
 export const getClientRemarksApiUrl = 'api/client-remarks';
-export const getLeadStatusApiUrl='api/lead-statuses';
+export const getLeadStatusApiUrl='api/statuses';
 

@@ -87,8 +87,10 @@ const Notes = () => {
     payload.isTask = form.isTask.value;
     payload.lead = { id: leadDetail?.id };
     payload.update=Object.keys(leadNoteDetails).length?true:false;
-    payload.id=Object.keys(leadNoteDetails).length?leadNoteDetails?.id:"";    
-    dispatch(submitLeadNotes(payload));    
+    payload.id=Object.keys(leadNoteDetails).length?leadNoteDetails?.id:"";  
+    //console.log(Object.keys(leadNoteDetails).length,'nnnn')  
+    dispatch(submitLeadNotes(payload));   
+    setForm(formIntialValue);
   };
 
   const onSelectChange = (value) => {

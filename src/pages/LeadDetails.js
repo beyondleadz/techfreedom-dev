@@ -17,6 +17,7 @@ import Info from "../components/leads-details/Info";
 import Notes from "../components/leads-details/Notes";
 import Tasks from "../components/leads-details/Tasks";
 import Stepsbar from "../components/leads-details/Stepsbar";
+import moment from "moment/moment";
 
 import {
   getLeadDetails,
@@ -24,6 +25,7 @@ import {
   getAllLeadRemarks,
   getLeadNoteDetails,
   deleteLeadNote,
+  getLeadRemarksDetails
 } from "../actionCreator/leadDetailsActionCreator";
 
 const LeadDetails = () => {
@@ -64,7 +66,7 @@ const LeadDetails = () => {
   ];
 
   const getActiveTab = (tab, id, type) => {
-    //console.log("typetype", type);
+    console.log("typetype", type);
     if (type == "delete") { 
       showConfirm(id,leadDetail?.id);      
     }else{
@@ -84,7 +86,7 @@ const LeadDetails = () => {
     dispatch(getAllLeadRemarks(id));
   }, []);
   useMemo(() => {
-    console.log(leadDetail, "leadDetail");
+    //console.log(leadDetail, "leadDetail");
   }, [leadDetail]);
   const switchToTimeline = () => {
     setActiveTab1(`1`);
@@ -168,7 +170,8 @@ const LeadDetails = () => {
                         </i>
                         <h3>{leadDetail?.fullname}</h3>
                         <div className="name mt-1">
-                          October14th, 2018 at 2:30 P.M.
+                        
+                        {leadDetail?.lastModifiedDate?moment(leadDetail?.lastModifiedDate).format('MMMM Do YYYY, h:mm a'):""}
                         </div>
 
                         <div>

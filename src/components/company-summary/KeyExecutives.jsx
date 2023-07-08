@@ -3,7 +3,7 @@ import { Table, Modal, Button, Tooltip } from "antd";
 import { PAGE_LENGTH } from "../../config";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-import { getToken, getUserInfo } from "../../utils/utils";
+import { getToken, getUserInfo,getSubscriptionUserInfo } from "../../utils/utils";
 import {
   submitLead,
   resetLead,
@@ -34,6 +34,10 @@ const KeyExecutives = () => {
 
   const getLeadsData = useSelector(
     (state) => state.companyDetailsReducer.getExecutiveLead
+  );
+
+  const companyDetails = useSelector(
+    (state) => state.companyDetailsReducer.companyDetails
   );
 
   const [employeeData, setEmployeeData] = useState([]);
@@ -254,7 +258,11 @@ const KeyExecutives = () => {
 
   const postLeads = (record, isLeadSubmit) => {
     const { id, login } = getUserInfo();
+    const { id: accountId } = getSubscriptionUserInfo();
     let leadPayload = {
+      // account: {
+      //   id: accountId
+      // },
       firstname: record.firstname,
       lastname: record.lastname,
       fullname: record.fullname,
@@ -266,15 +274,22 @@ const KeyExecutives = () => {
       description: record.description,
       userId: id,
       employeeId: record.id,
-      address:record?.company?.address,
-      companyId:record?.company?.id,
-      companyName:record?.company?.name,
+      address:companyDetails?.address,
+      companyId:companyDetails?.id,
+      companyName:companyDetails?.name,
+      industryId:companyDetails?.industry?.id,
+      industryText:companyDetails?.industry?.name,
+      empSizeId:companyDetails?.range?.name,
+      city:companyDetails?.city,
+      state:companyDetails?.state,
+      country:companyDetails?.country
     };
+    //console.log(leadPayload,'leadpayload');
     if (!isLeadSubmit) {
       dispatch(submitLead(leadPayload));
       setAddToLeads(record.id);
     }else{
-      navigate("/lead-details/"+record.id);
+     navigate("/lead-details/"+record.id);
     }
   };
 
@@ -285,6 +300,7 @@ const KeyExecutives = () => {
 
   useEffect(() => {
     let data = [];
+    
     employeeList?.forEach((record) => {
       data = [
         ...data,
@@ -296,10 +312,11 @@ const KeyExecutives = () => {
           emailId: record?.emailId,
           phoneNo: record?.company?.phoneNo,
           directDial: record,
-          leads: record,
+          leads: record
         },
       ];
     });
+    //console.log(data,'data')
     setEmployeeData(data);
   }, [employeeList]);
 
