@@ -33,6 +33,8 @@ import B2BData from './pages/B2BData';
 import Faq from './pages/Faq';
 import Leads from './pages/Leads';
 import LeadDetails from './pages/LeadDetails';
+import LeadKanban from './pages/LeadKanban';
+
 // import Test from './pages/Test';
 import Demo from './pages/Demo';
 const AppRoutes = (props) => {
@@ -73,6 +75,7 @@ const AppRoutes = (props) => {
                 <Route path='/faq' element={<Faq/>}/>
                 <Route path='/leads' element={<Leads/>}/>
                 <Route path='/lead-details/:id' element={<LeadDetails/>}/>
+                <Route path='/leadkanban' element={<LeadKanban/>}/>
                 {/* <Route path='/test' element={<Test/>}/> */}
                 <Route path='/demo' element={<Demo/>}/>
                 
