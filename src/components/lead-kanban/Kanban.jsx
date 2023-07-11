@@ -23,7 +23,7 @@ const Kanban=()=>{
             <div className="">
                 <div className=" arrow-steps">
                 <div className="step current">
-                <div className="title"> Subscribed <span className="num">8</span></div>
+                <div><span  className="title">Subscribed </span> <span className="num">8</span></div>
                 </div>
                    <div className="items">
                     <div className=""> &nbsp; </div>
@@ -32,8 +32,9 @@ const Kanban=()=>{
                             <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
-                                <div className="fs-12">131 Maker Towers, 'F' Cuffe Parade, Colaba</div>
-                                <div className="fs-12">9236587345</div></div></div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i>  ajay@companyname.com</div>
+                                {/* <div className="fs-12">131 Maker Towers, 'F' Cuffe Parade, Colaba</div> */}
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
                                                           
                             </div>
                         </div>
@@ -42,8 +43,8 @@ const Kanban=()=>{
                             <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
-                                <div className="fs-12">131 Maker Towers, 'F' Cuffe Parade, Colaba</div>
-                                <div className="fs-12">9236587345</div></div></div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
                                                           
                             </div>
                         </div>
@@ -53,8 +54,8 @@ const Kanban=()=>{
                             <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
-                                <div className="fs-12">131 Maker Towers, 'F' Cuffe Parade, Colaba</div>
-                                <div className="fs-12">9236587345</div></div></div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
                                                           
                             </div>
                         </div>
@@ -64,8 +65,8 @@ const Kanban=()=>{
                             <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
-                                <div className="fs-12">131 Maker Towers, 'F' Cuffe Parade, Colaba</div>
-                                <div className="fs-12">9236587345</div></div></div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
                                                           
                             </div>
                         </div>
@@ -78,7 +79,7 @@ const Kanban=()=>{
             <div className="">
                 <div className=" arrow-steps">
                 <div className="step done">
-                <div className="title">  Lead<span className="num">8</span></div></div>
+               <div><span  className="title">Lead</span> <span className="num">8</span></div></div>
                    <div className="items">
                        
                     <div className=""> &nbsp; </div> 
@@ -87,8 +88,8 @@ const Kanban=()=>{
                             <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
-                                <div className="fs-12">131 Maker Towers, 'F' Cuffe Parade, Colaba</div>
-                                <div className="fs-12">9236587345</div></div></div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
                                                           
                             </div>
                         </div>
@@ -98,8 +99,8 @@ const Kanban=()=>{
                             <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
-                                <div className="fs-12">131 Maker Towers, 'F' Cuffe Parade, Colaba</div>
-                                <div className="fs-12">9236587345</div></div></div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
                                                           
                             </div>
                         </div>
@@ -111,7 +112,9 @@ const Kanban=()=>{
         <div className="col-sm-6 col-md-4 col-xl-3">
             <div className="">
                 <div className=" arrow-steps">
-                <div className="step active"> Martting qualified lead</div>
+                <div className="step active">
+                    
+                <div><span  className="title">Martting qualified lead </span> <span className="num">2</span></div> </div>
                     <h6 className="card-title text-uppercase text-truncate py-2"></h6>
                     <div className="items">
                     <div className=""> &nbsp; </div>
@@ -120,8 +123,8 @@ const Kanban=()=>{
                             <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
-                                <div className="fs-12">131 Maker Towers, 'F' Cuffe Parade, Colaba</div>
-                                <div className="fs-12">9236587345</div></div></div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
                                                           
                             </div>
                         </div>
@@ -131,8 +134,8 @@ const Kanban=()=>{
                             <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
-                                <div className="fs-12">131 Maker Towers, 'F' Cuffe Parade, Colaba</div>
-                                <div className="fs-12">9236587345</div></div></div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
                                                           
                             </div>
                         </div>
@@ -142,8 +145,8 @@ const Kanban=()=>{
                             <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
-                                <div className="fs-12">131 Maker Towers, 'F' Cuffe Parade, Colaba</div>
-                                <div className="fs-12">9236587345</div></div></div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
                                                           
                             </div>
                         </div>
@@ -155,7 +158,8 @@ const Kanban=()=>{
         <div className="col-sm-6 col-md-4 col-xl-3">
             <div className="">
                 <div className=" arrow-steps">
-                <div className="step "> Sales qualified lead</div>
+                <div className="step ">
+                <div><span  className="title">Sales qualified lead</span> <span className="num">4</span></div> </div>
                     <h6 className="card-title text-uppercase text-truncate py-2"></h6>
                     <div className="items">
                     <div className=""> &nbsp; </div>
@@ -164,8 +168,8 @@ const Kanban=()=>{
                             <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
-                                <div className="fs-12">131 Maker Towers, 'F' Cuffe Parade, Colaba</div>
-                                <div className="fs-12">9236587345</div></div></div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
                                                           
                             </div>
                         </div>
@@ -175,8 +179,8 @@ const Kanban=()=>{
                             <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
-                                <div className="fs-12">131 Maker Towers, 'F' Cuffe Parade, Colaba</div>
-                                <div className="fs-12">9236587345</div></div></div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
                                                           
                             </div>
                         </div>
@@ -186,8 +190,8 @@ const Kanban=()=>{
                             <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
-                                <div className="fs-12">131 Maker Towers, 'F' Cuffe Parade, Colaba</div>
-                                <div className="fs-12">9236587345</div></div></div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
                                                           
                             </div>
                         </div>
@@ -199,7 +203,8 @@ const Kanban=()=>{
         <div className="col-sm-6 col-md-4 col-xl-3">
             <div className="">
                 <div className=" arrow-steps">
-                <div className="step">Opportunity</div>
+                <div className="step">
+                <div><span  className="title">Opportunity</span> <span className="num">3</span></div></div>
                     <h6 className="card-title text-uppercase text-truncate py-2"></h6>
                     <div className="items border border-light">
                     <div className="dropzone rounded"> &nbsp; </div>
@@ -208,8 +213,8 @@ const Kanban=()=>{
                             <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
-                                <div className="fs-12">131 Maker Towers, 'F' Cuffe Parade, Colaba</div>
-                                <div className="fs-12">9236587345</div></div></div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
                                                           
                             </div>
                         </div>
@@ -219,8 +224,8 @@ const Kanban=()=>{
                             <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
-                                <div className="fs-12">131 Maker Towers, 'F' Cuffe Parade, Colaba</div>
-                                <div className="fs-12">9236587345</div></div></div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
                                                           
                             </div>
                         </div>
@@ -230,8 +235,8 @@ const Kanban=()=>{
                             <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
-                                <div className="fs-12">131 Maker Towers, 'F' Cuffe Parade, Colaba</div>
-                                <div className="fs-12">9236587345</div></div></div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
                                                           
                             </div>
                         </div>
@@ -243,7 +248,8 @@ const Kanban=()=>{
         <div className="col-sm-6 col-md-4 col-xl-3">
             <div className="">
                 <div className=" arrow-steps">
-                <div className="step "> Customer</div>
+                <div className="step ">
+                <div><span  className="title">Customer</span> <span className="num">5</span></div> </div>
                     <h6 className="card-title text-uppercase text-truncate py-2"></h6>
                     <div className="items">
                     <div className=""> &nbsp; </div>
@@ -252,8 +258,8 @@ const Kanban=()=>{
                             <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
-                                <div className="fs-12">131 Maker Towers, 'F' Cuffe Parade, Colaba</div>
-                                <div className="fs-12">9236587345</div></div></div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
                                                           
                             </div>
                         </div>
@@ -263,8 +269,8 @@ const Kanban=()=>{
                             <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
-                                <div className="fs-12">131 Maker Towers, 'F' Cuffe Parade, Colaba</div>
-                                <div className="fs-12">9236587345</div></div></div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
                                                           
                             </div>
                         </div>
@@ -274,8 +280,8 @@ const Kanban=()=>{
                             <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
-                                <div className="fs-12">131 Maker Towers, 'F' Cuffe Parade, Colaba</div>
-                                <div className="fs-12">9236587345</div></div></div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
                                                           
                             </div>
                         </div>
@@ -287,7 +293,8 @@ const Kanban=()=>{
         <div className="col-sm-6 col-md-4 col-xl-3">
             <div className="">
                 <div className=" arrow-steps">
-                <div className="step"> Other</div>
+                <div className="step">
+                <div><span  className="title"> Other</span> <span className="num">3</span></div></div>
                     <h6 className="card-title text-uppercase text-truncate py-2"></h6>
                     <div className="items ">
                     <div className=""> &nbsp; </div>
@@ -296,8 +303,8 @@ const Kanban=()=>{
                             <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
-                                <div className="fs-12">131 Maker Towers, 'F' Cuffe Parade, Colaba</div>
-                                <div className="fs-12">9236587345</div></div></div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
                                                           
                             </div>
                         </div>
@@ -307,8 +314,8 @@ const Kanban=()=>{
                             <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
-                                <div className="fs-12">131 Maker Towers, 'F' Cuffe Parade, Colaba</div>
-                                <div className="fs-12">9236587345</div></div></div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
                                                           
                             </div>
                         </div>
@@ -318,8 +325,8 @@ const Kanban=()=>{
                             <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
-                                <div className="fs-12">131 Maker Towers, 'F' Cuffe Parade, Colaba</div>
-                                <div className="fs-12">9236587345</div></div></div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
                                                           
                             </div>
                         </div>
