@@ -5,76 +5,71 @@ const Kanban=()=>{
     return (
     <>
     {/* <div id="kanban" className="container py-5">	
-    <div class="arrow-steps clearfix">
-    <div class="step current"> <span> <a href="#" ><i class=" btn text-white las la-check "></i></a></span> </div>
-     <div class="step done"> <span><a href="#" >Lead</a></span> </div>
-    <div class="step active"> <span><a href="#" >Martting qualified lead</a></span> </div>
-    <div class="step"> <span><a href="#" >Sales qualified lead</a></span> </div>
-    <div class="step"> <span><a href="#" >Opportunity</a></span> </div>
-    <div class="step"> <span><a href="#" >Customer</a></span> </div>
-    <div class="step"> <span><a href="#" >other</a></span> </div>
+    <div className="arrow-steps clearfix">
+    <div className="step current"> <span> <a href="#" ><i className=" btn text-white las la-check "></i></a></span> </div>
+     <div className="step done"> <span><a href="#" >Lead</a></span> </div>
+    <div className="step active"> <span><a href="#" >Martting qualified lead</a></span> </div>
+    <div className="step"> <span><a href="#" >Sales qualified lead</a></span> </div>
+    <div className="step"> <span><a href="#" >Opportunity</a></span> </div>
+    <div className="step"> <span><a href="#" >Customer</a></span> </div>
+    <div className="step"> <span><a href="#" >other</a></span> </div>
   </div>
 </div> */}
 
-<div id="kanban" class="container-fluid pt-3">
-    <h3 class="font-weight-light text-white">Kanban Board</h3>
-    <div class="small  text-light">Drag and drop between swim lanes</div>
-    <div class="row flex-row flex-sm-nowrap py-3">
-        <div class="col-sm-6 col-md-4 col-xl-3">
-            <div class="">
-                <div class=" arrow-steps">
-                <div class="step current"> To Do</div>
-                    <h6 class="card-title text-uppercase text-truncate py-2"></h6>
-                    <div class="items border border-light">
-                    <div class="dropzone rounded"> &nbsp; </div>
-                        <div class="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
-                            <div class="card-body p-2">
-                                <div class="card-title">
-                                   
-                                    <a href="" class=" text-primary lead font-weight-light">TSK-154</a>
-                                </div>
-                                <p>
-                                    This is a description of a item on the board.
-                                </p>
-                                <button class="btn btn-primary btn-sm">View</button>
+<div id="kanban" className="container-fluid pt-3">
+    <h3 className="font-weight-light text-white">Kanban Board</h3>
+     <div className=" main-kanban">
+       
+        <div className="col-sm-6 col-kanban col-xl-3">
+            <div className="">
+                <div className=" arrow-steps">
+                <div className="step current">
+                <div><span  className="title">Subscribed </span> <span className="num">4</span></div>
+                </div>
+                <h6 className="card-title text-uppercase text-truncate py-2"></h6>
+                   <div className="items">
+                   <div className=""> &nbsp; </div>
+                        <div className="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
+                            <div className="kanbanbody p-2">
+                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
+                                <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
+                                <div className="fs-12">CEO at companyname pvt. ltd.</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i>  ajay@companyname.com</div>
+                                {/* <div className="fs-12">131 Maker Towers, 'F' Cuffe Parade, Colaba</div> */}
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
+                                                          
                             </div>
                         </div>
-                        <div class="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
-                            <div class="card-body p-2">
-                                <div class="card-title">
-                                   
-                                    <a href="" class=" text-primary lead font-weight-light">TSK-154</a>
-                                </div>
-                                <p>
-                                    This is a description of a item on the board.
-                                </p>
-                                <button class="btn btn-primary btn-sm">View</button>
-                            </div>
-                        </div>
-                        
-                        <div class="card draggable shadow-sm" id="cd2" draggable="true" ondragstart="drag(event)">
-                            <div class="card-body p-2">
-                                <div class="card-title">
-                                   
-                                    <a href="" class=" text-primary lead font-weight-light">TSK-156</a>
-                                </div>
-                                <p>
-                                    This is a description of a item on the board.
-                                </p>
-                                <button class="btn btn-primary btn-sm">View</button>
+                        <div className="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
+                            <div className="kanbanbody p-2">
+                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
+                                <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
+                                <div className="fs-12">CEO at companyname pvt. ltd.</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
+                                                          
                             </div>
                         </div>
                         
-                        <div class="card draggable shadow-sm" id="cd3" draggable="true" ondragstart="drag(event)">
-                            <div class="card-body p-2">
-                                <div class="card-title">
-                                   
-                                    <a href="" class=" text-primary lead font-weight-light">TSK-157</a>
-                                </div>
-                                <p>
-                                    This is an item on the board. There is some descriptive text that explains the item here.
-                                </p>
-                                <button class="btn btn-primary btn-sm">View</button>
+                        <div className="card draggable shadow-sm" id="cd2" draggable="true" ondragstart="drag(event)">
+                        <div className="kanbanbody p-2">
+                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
+                                <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
+                                <div className="fs-12">CEO at companyname pvt. ltd.</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
+                                                          
+                            </div>
+                        </div>
+                        
+                        <div className="card draggable shadow-sm" id="cd3" draggable="true" ondragstart="drag(event)">
+                        <div className="kanbanbody p-2">
+                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
+                                <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
+                                <div className="fs-12">CEO at companyname pvt. ltd.</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
+                                                          
                             </div>
                         </div>
                         
@@ -82,37 +77,126 @@ const Kanban=()=>{
                 </div>
             </div>
         </div>
-        <div class="col-sm-6 col-md-4 col-xl-3">
-            <div class="">
-                <div class=" arrow-steps">
-                <div class="step done"> Lead</div>
-                    <h6 class="card-title text-uppercase text-truncate py-2"></h6>
-                    <div class="items border border-light">
-                       
-                    <div class="dropzone rounded"> &nbsp; </div> 
-                        <div class="card draggable shadow-sm" id="cd2" draggable="true" ondragstart="drag(event)">
-                            <div class="card-body p-2">
-                                <div class="card-title">
-                                   
-                                    <a href="" class="  text-primary lead font-weight-light">TSK-156</a>
-                                </div>
-                                <p>
-                                    This is a description of a item on the board.
-                                </p>
-                                <button class="btn btn-primary btn-sm">View</button>
+        <div className="col-sm-6 col-kanban col-xl-3">
+            <div className="">
+                <div className=" arrow-steps">
+                <div className="step done">
+               <div><span  className="title">Lead</span> <span className="num">8</span></div></div>
+               <h6 className="card-title text-uppercase text-truncate py-2"></h6>
+                   <div className="items">                    
+                   <div className=""> &nbsp; </div>
+                        <div className="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
+                        <div className="kanbanbody p-2">
+                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
+                                <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
+                                <div className="fs-12">CEO at companyname pvt. ltd.</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
+                                                          
                             </div>
                         </div>
                         
-                        <div class="card draggable shadow-sm" id="cd3" draggable="true" ondragstart="drag(event)">
-                            <div class="card-body p-2">
-                                <div class="card-title">
-                                   
-                                    <a href="" class=" text-primary lead font-weight-light">TSK-157</a>
-                                </div>
-                                <p>
-                                    This is an item on the board. There is some descriptive text that explains the item here.
-                                </p>
-                                <button class="btn btn-primary btn-sm">View</button>
+                        <div className="card draggable shadow-sm" id="cd3" draggable="true" ondragstart="drag(event)">
+                        <div className="kanbanbody p-2">
+                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
+                                <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
+                                <div className="fs-12">CEO at companyname pvt. ltd.</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
+                                                          
+                            </div>
+                        </div>
+                        <div className="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
+                            <div className="kanbanbody p-2">
+                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
+                                <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
+                                <div className="fs-12">CEO at companyname pvt. ltd.</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
+                                                          
+                            </div>
+                        </div>
+                        <div className="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
+                            <div className="kanbanbody p-2">
+                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
+                                <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
+                                <div className="fs-12">CEO at companyname pvt. ltd.</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
+                                                          
+                            </div>
+                        </div>
+                        <div className="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
+                            <div className="kanbanbody p-2">
+                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
+                                <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
+                                <div className="fs-12">CEO at companyname pvt. ltd.</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
+                                                          
+                            </div>
+                        </div>
+                        <div className="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
+                            <div className="kanbanbody p-2">
+                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
+                                <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
+                                <div className="fs-12">CEO at companyname pvt. ltd.</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
+                                                          
+                            </div>
+                        </div>
+                        <div className="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
+                            <div className="kanbanbody p-2">
+                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
+                                <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
+                                <div className="fs-12">CEO at companyname pvt. ltd.</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
+                                                          
+                            </div>
+                        </div>
+                        <div className="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
+                            <div className="kanbanbody p-2">
+                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
+                                <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
+                                <div className="fs-12">CEO at companyname pvt. ltd.</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
+                                                          
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div className="col-sm-6 col-kanban col-xl-3">
+            <div className="">
+                <div className=" arrow-steps">
+                <div className="step active">
+                
+                <div><span  className="title">Martting qualified lead </span> <span className="num">2</span></div> </div>
+                    <h6 className="card-title text-uppercase text-truncate py-2"></h6>
+                    <div className="items">
+                    <div className=""> &nbsp; </div>
+                        <div className="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
+                        <div className="kanbanbody p-2">
+                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
+                                <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
+                                <div className="fs-12">CEO at companyname pvt. ltd.</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
+                                                          
+                            </div>
+                        </div>               
+                        <div className="card draggable shadow-sm" id="cd3" draggable="true" ondragstart="drag(event)">
+                        <div className="kanbanbody p-2">
+                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
+                                <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
+                                <div className="fs-12">CEO at companyname pvt. ltd.</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
+                                                          
                             </div>
                         </div>
                         
@@ -120,99 +204,53 @@ const Kanban=()=>{
                 </div>
             </div>
         </div>
-        <div class="col-sm-6 col-md-4 col-xl-3">
-            <div class="">
-                <div class=" arrow-steps">
-                <div class="step active"> Martting qualified lead</div>
-                    <h6 class="card-title text-uppercase text-truncate py-2"></h6>
-                    <div class="items border border-light">
-                    <div class="dropzone rounded"> &nbsp; </div>
-                        <div class="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
-                            <div class="card-body p-2">
-                                <div class="card-title">
-                                   
-                                    <a href="" class=" text-primary lead font-weight-light">TSK-154</a>
-                                </div>
-                                <p>
-                                    This is a description of a item on the board.
-                                </p>
-                                <button class="btn btn-primary btn-sm">View</button>
+        <div className="col-sm-6 col-kanban col-xl-3">
+            <div className="">
+                <div className=" arrow-steps">
+                <div className="step ">
+                <div><span  className="title">Sales qualified lead</span> <span className="num">4</span></div> </div>
+                    <h6 className="card-title text-uppercase text-truncate py-2"></h6>
+                    <div className="items">
+                    <div className=""> &nbsp; </div>
+                        <div className="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
+                        <div className="kanbanbody p-2">
+                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
+                                <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
+                                <div className="fs-12">CEO at companyname pvt. ltd.</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
+                                                          
                             </div>
                         </div>
                         
-                        <div class="card draggable shadow-sm" id="cd2" draggable="true" ondragstart="drag(event)">
-                            <div class="card-body p-2">
-                                <div class="card-title">
-                                   
-                                    <a href="" class=" text-primary lead font-weight-light">TSK-156</a>
-                                </div>
-                                <p>
-                                    This is a description of a item on the board.
-                                </p>
-                                <button class="btn btn-primary btn-sm">View</button>
+                        <div className="card draggable shadow-sm" id="cd2" draggable="true" ondragstart="drag(event)">
+                        <div className="kanbanbody p-2">
+                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
+                                <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
+                                <div className="fs-12">CEO at companyname pvt. ltd.</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
+                                                          
                             </div>
                         </div>
-                        
-                        <div class="card draggable shadow-sm" id="cd3" draggable="true" ondragstart="drag(event)">
-                            <div class="card-body p-2">
-                                <div class="card-title">
-                                   
-                                    <a href="" class=" text-primary lead font-weight-light">TSK-157</a>
-                                </div>
-                                <p>
-                                    This is an item on the board. There is some descriptive text that explains the item here.
-                                </p>
-                                <button class="btn btn-primary btn-sm">View</button>
+                        <div className="card draggable shadow-sm" id="cd2" draggable="true" ondragstart="drag(event)">
+                        <div className="kanbanbody p-2">
+                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
+                                <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
+                                <div className="fs-12">CEO at companyname pvt. ltd.</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
+                                                          
                             </div>
                         </div>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-4 col-xl-3">
-            <div class="">
-                <div class=" arrow-steps">
-                <div class="step "> Sales qualified lead</div>
-                    <h6 class="card-title text-uppercase text-truncate py-2"></h6>
-                    <div class="items border border-light">
-                    <div class="dropzone rounded"> &nbsp; </div>
-                        <div class="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
-                            <div class="card-body p-2">
-                                <div class="card-title">
-                                   
-                                    <a href="" class=" text-primary lead font-weight-light">TSK-154</a>
-                                </div>
-                                <p>
-                                    This is a description of a item on the board.
-                                </p>
-                                <button class="btn btn-primary btn-sm">View</button>
-                            </div>
-                        </div>
-                        
-                        <div class="card draggable shadow-sm" id="cd2" draggable="true" ondragstart="drag(event)">
-                            <div class="card-body p-2">
-                                <div class="card-title">
-                                   
-                                    <a href="" class=" text-primary lead font-weight-light">TSK-156</a>
-                                </div>
-                                <p>
-                                    This is a description of a item on the board.
-                                </p>
-                                <button class="btn btn-primary btn-sm">View</button>
-                            </div>
-                        </div>
-                        
-                        <div class="card draggable shadow-sm" id="cd3" draggable="true" ondragstart="drag(event)">
-                            <div class="card-body p-2">
-                                <div class="card-title">
-                                   
-                                    <a href="" class=" text-primary lead font-weight-light">TSK-157</a>
-                                </div>
-                                <p>
-                                    This is an item on the board. There is some descriptive text that explains the item here.
-                                </p>
-                                <button class="btn btn-primary btn-sm">View</button>
+                        <div className="card draggable shadow-sm" id="cd3" draggable="true" ondragstart="drag(event)">
+                        <div className="kanbanbody p-2">
+                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
+                                <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
+                                <div className="fs-12">CEO at companyname pvt. ltd.</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
+                                                          
                             </div>
                         </div>
                         
@@ -220,49 +258,44 @@ const Kanban=()=>{
                 </div>
             </div>
         </div>
-        <div class="col-sm-6 col-md-4 col-xl-3">
-            <div class="">
-                <div class=" arrow-steps">
-                <div class="step">Opportunity</div>
-                    <h6 class="card-title text-uppercase text-truncate py-2"></h6>
-                    <div class="items border border-light">
-                    <div class="dropzone rounded"> &nbsp; </div>
-                        <div class="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
-                            <div class="card-body p-2">
-                                <div class="card-title">
-                                   
-                                    <a href="" class=" text-primary lead font-weight-light">TSK-154</a>
-                                </div>
-                                <p>
-                                    This is a description of a item on the board.
-                                </p>
-                                <button class="btn btn-primary btn-sm">View</button>
+        <div className="col-sm-6 col-kanban col-xl-3">
+            <div className="">
+                <div className=" arrow-steps">
+                <div className="step">
+                <div><span  className="title">Opportunity</span> <span className="num">3</span></div></div>
+                    <h6 className="card-title text-uppercase text-truncate py-2"></h6>
+                    <div className="items ">
+                    <div className="dropzone rounded"> &nbsp; </div>
+                        <div className="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
+                        <div className="kanbanbody p-2">
+                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
+                                <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
+                                <div className="fs-12">CEO at companyname pvt. ltd.</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
+                                                          
                             </div>
                         </div>
                         
-                        <div class="card draggable shadow-sm" id="cd2" draggable="true" ondragstart="drag(event)">
-                            <div class="card-body p-2">
-                                <div class="card-title">
-                                   
-                                    <a href="" class=" text-primary lead font-weight-light">TSK-156</a>
-                                </div>
-                                <p>
-                                    This is a description of a item on the board.
-                                </p>
-                                <button class="btn btn-primary btn-sm">View</button>
+                        <div className="card draggable shadow-sm" id="cd2" draggable="true" ondragstart="drag(event)">
+                        <div className="kanbanbody p-2">
+                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
+                                <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
+                                <div className="fs-12">CEO at companyname pvt. ltd.</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
+                                                          
                             </div>
                         </div>
                         
-                        <div class="card draggable shadow-sm" id="cd3" draggable="true" ondragstart="drag(event)">
-                            <div class="card-body p-2">
-                                <div class="card-title">
-                                   
-                                    <a href="" class=" text-primary lead font-weight-light">TSK-157</a>
-                                </div>
-                                <p>
-                                    This is an item on the board. There is some descriptive text that explains the item here.
-                                </p>
-                                <button class="btn btn-primary btn-sm">View</button>
+                        <div className="card draggable shadow-sm" id="cd3" draggable="true" ondragstart="drag(event)">
+                        <div className="kanbanbody p-2">
+                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
+                                <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
+                                <div className="fs-12">CEO at companyname pvt. ltd.</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
+                                                          
                             </div>
                         </div>
                         
@@ -270,49 +303,63 @@ const Kanban=()=>{
                 </div>
             </div>
         </div>
-        <div class="col-sm-6 col-md-4 col-xl-3">
-            <div class="">
-                <div class=" arrow-steps">
-                <div class="step "> Customer</div>
-                    <h6 class="card-title text-uppercase text-truncate py-2"></h6>
-                    <div class="items border border-light">
-                    <div class="dropzone rounded"> &nbsp; </div>
-                        <div class="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
-                            <div class="card-body p-2">
-                                <div class="card-title">
-                                   
-                                    <a href="" class=" text-primary lead font-weight-light">TSK-154</a>
-                                </div>
-                                <p>
-                                    This is a description of a item on the board.
-                                </p>
-                                <button class="btn btn-primary btn-sm">View</button>
+        <div className="col-sm-6 col-kanban col-xl-3">
+            <div className="">
+                <div className=" arrow-steps">
+                <div className="step ">
+                <div><span  className="title">Customer</span> <span className="num">5</span></div> </div>
+                    <h6 className="card-title text-uppercase text-truncate py-2"></h6>
+                    <div className="items">
+                    <div className=""> &nbsp; </div>
+                        <div className="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
+                        <div className="kanbanbody p-2">
+                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
+                                <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
+                                <div className="fs-12">CEO at companyname pvt. ltd.</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
+                                                          
                             </div>
                         </div>
                         
-                        <div class="card draggable shadow-sm" id="cd2" draggable="true" ondragstart="drag(event)">
-                            <div class="card-body p-2">
-                                <div class="card-title">
-                                   
-                                    <a href="" class=" text-primary lead font-weight-light">TSK-156</a>
-                                </div>
-                                <p>
-                                    This is a description of a item on the board.
-                                </p>
-                                <button class="btn btn-primary btn-sm">View</button>
+                        <div className="card draggable shadow-sm" id="cd2" draggable="true" ondragstart="drag(event)">
+                        <div className="kanbanbody p-2">
+                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
+                                <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
+                                <div className="fs-12">CEO at companyname pvt. ltd.</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
+                                                          
                             </div>
                         </div>
-                        
-                        <div class="card draggable shadow-sm" id="cd3" draggable="true" ondragstart="drag(event)">
-                            <div class="card-body p-2">
-                                <div class="card-title">
-                                   
-                                    <a href="" class=" text-primary lead font-weight-light">TSK-157</a>
-                                </div>
-                                <p>
-                                    This is an item on the board. There is some descriptive text that explains the item here.
-                                </p>
-                                <button class="btn btn-primary btn-sm">View</button>
+                        <div className="card draggable shadow-sm" id="cd2" draggable="true" ondragstart="drag(event)">
+                        <div className="kanbanbody p-2">
+                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
+                                <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
+                                <div className="fs-12">CEO at companyname pvt. ltd.</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
+                                                          
+                            </div>
+                        </div>
+                         <div className="card draggable shadow-sm" id="cd2" draggable="true" ondragstart="drag(event)">
+                        <div className="kanbanbody p-2">
+                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
+                                <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
+                                <div className="fs-12">CEO at companyname pvt. ltd.</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
+                                                          
+                            </div>
+                        </div>
+                        <div className="card draggable shadow-sm" id="cd3" draggable="true" ondragstart="drag(event)">
+                        <div className="kanbanbody p-2">
+                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
+                                <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
+                                <div className="fs-12">CEO at companyname pvt. ltd.</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
+                                                          
                             </div>
                         </div>
                         
@@ -320,49 +367,44 @@ const Kanban=()=>{
                 </div>
             </div>
         </div>
-        <div class="col-sm-6 col-md-4 col-xl-3">
-            <div class="">
-                <div class=" arrow-steps">
-                <div class="step"> Other</div>
-                    <h6 class="card-title text-uppercase text-truncate py-2"></h6>
-                    <div class="items border border-light">
-                    <div class="dropzone rounded"> &nbsp; </div>
-                        <div class="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
-                            <div class="card-body p-2">
-                                <div class="card-title">
-                                   
-                                    <a href="" class=" text-primary lead font-weight-light">TSK-154</a>
-                                </div>
-                                <p>
-                                    This is a description of a item on the board.
-                                </p>
-                                <button class="btn btn-primary btn-sm">View</button>
+        <div className="col-sm-6 col-kanban col-xl-3">
+            <div className="">
+                <div className=" arrow-steps">
+                <div className="step">
+                <div><span  className="title"> Other</span> <span className="num">3</span></div></div>
+                    <h6 className="card-title text-uppercase text-truncate py-2"></h6>
+                    <div className="items ">
+                    <div className=""> &nbsp; </div>
+                        <div className="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
+                        <div className="kanbanbody p-2">
+                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
+                                <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
+                                <div className="fs-12">CEO at companyname pvt. ltd.</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
+                                                          
                             </div>
                         </div>
                         
-                        <div class="card draggable shadow-sm" id="cd2" draggable="true" ondragstart="drag(event)">
-                            <div class="card-body p-2">
-                                <div class="card-title">
-                                   
-                                    <a href="" class=" text-primary lead font-weight-light">TSK-156</a>
-                                </div>
-                                <p>
-                                    This is a description of a item on the board.
-                                </p>
-                                <button class="btn btn-primary btn-sm">View</button>
+                        <div className="card draggable shadow-sm" id="cd2" draggable="true" ondragstart="drag(event)">
+                        <div className="kanbanbody p-2">
+                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
+                                <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
+                                <div className="fs-12">CEO at companyname pvt. ltd.</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
+                                                          
                             </div>
                         </div>
                         
-                        <div class="card draggable shadow-sm" id="cd3" draggable="true" ondragstart="drag(event)">
-                            <div class="card-body p-2">
-                                <div class="card-title">
-                                   
-                                    <a href="" class=" text-primary lead font-weight-light">TSK-157</a>
-                                </div>
-                                <p>
-                                    This is an item on the board. There is some descriptive text that explains the item here.
-                                </p>
-                                <button class="btn btn-primary btn-sm">View</button>
+                        <div className="card draggable shadow-sm" id="cd3" draggable="true" ondragstart="drag(event)">
+                        <div className="kanbanbody p-2">
+                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
+                                <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
+                                <div className="fs-12">CEO at companyname pvt. ltd.</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
+                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
+                                                          
                             </div>
                         </div>
                         

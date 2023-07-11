@@ -5891,7 +5891,8 @@ background-color: #fff;
   font-size: 1rem;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center; padding: 10px;
+  margin: 10px;
 }
 
 .btn-circle.btn-sm, .btn-group-sm > .btn-circle.btn {
@@ -7589,9 +7590,10 @@ color: orange;
       #kanban  .container {
         padding-top: 0;
        margin-bottom: 15px;
-    border-radius: 10px;
+    border-radius: 10px; overflow: hidden;  overflow-x: auto;
       }
-      
+      #kanban .kanbancard{display: flex;
+        padding: 10px 0;}
       #kanban .arrow-steps .step {
         font-size: 14px;
         text-align: center;
@@ -7624,7 +7626,7 @@ color: orange;
         content: "";
         position: absolute;
         top: 0;
-        right: -13px;
+        right: -16px;
         width: 0;
         height: 0;
         border-top: 19px solid transparent;
@@ -7639,25 +7641,12 @@ color: orange;
         border-left: 17px solid #fff;
         z-index: 0;
       }
-      
-      /* #kanban .arrow-steps .step:first-child:before {
-        border: none;
-      }
-      
-      #kanban .arrow-steps .step:last-child:after {
-         border: none;
-      }
-      
-      #kanban .arrow-steps .step:first-child {
-        border-top-left-radius: 10px;
-        border-bottom-left-radius: 10px;
-      }
-      
-      #kanban .arrow-steps .step:last-child {
-        border-top-right-radius: 10px;
-        border-bottom-right-radius: 10px;
-      } */
-      
+      #kanban .kanbanbody
+      {        flex: 1 1 auto;
+        min-height: 1px;
+        padding: 0.25rem;     font-family: sans-serif;
+    }
+           
       #kanban .arrow-steps .step span {
         position: relative; 
       }
@@ -7672,10 +7661,16 @@ color: orange;
         line-height: 21px;
         
       }
-      
+      #kanban .title {
+              text-align: left; display: flex; padding-left: 15px; float:left;
+      }
+     
+      #kanban .num {
+               text-align: right; float:right;
+      }
       #kanban  .arrow-steps .step.current {
         color: #fff; width: 100%;
-        background-color: #15df44;
+        background-color: #15df44; 
       }
       
       #kanban  .arrow-steps .step.current a {
@@ -7714,14 +7709,19 @@ color: orange;
     #kanban  .arrow-steps .step.active:after {
         border-left: 17px solid #fdc401;
       }
+    #kanban .col-kanban{display: inline-block;
+      vertical-align: top;}  
+
       .card.draggable {
         margin-bottom: 1rem;
         cursor: grab;
     }
-    
+    #kanban .main-kanban{overflow: auto;
+      white-space: nowrap;}
     .droppable {
         background-color: var(--success);
         min-height: 120px;
         margin-bottom: 1rem;
     }
     
+   
