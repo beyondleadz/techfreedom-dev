@@ -342,7 +342,7 @@ const Kanban=()=>{
                                                           
                             </div>
                         </div>
-                        <div className="card draggable shadow-sm" id="cd2" draggable="true" ondragstart="drag(event)">
+                         <div className="card draggable shadow-sm" id="cd2" draggable="true" ondragstart="drag(event)">
                         <div className="kanbanbody p-2">
                             <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
