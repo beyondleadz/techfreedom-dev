@@ -7709,14 +7709,19 @@ color: orange;
     #kanban  .arrow-steps .step.active:after {
         border-left: 17px solid #fdc401;
       }
+    #kanban .col-kanban{display: inline-block;
+      vertical-align: top;}  
+
       .card.draggable {
         margin-bottom: 1rem;
         cursor: grab;
     }
-    
+    #kanban .main-kanban{overflow: auto;
+      white-space: nowrap;}
     .droppable {
         background-color: var(--success);
         min-height: 120px;
         margin-bottom: 1rem;
     }
     
+   
