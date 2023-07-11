@@ -7661,10 +7661,15 @@ color: orange;
         line-height: 21px;
         
       }
-      
+      #kanban .title {
+              text-align: left; display: flex; padding-left: 15px;
+      }
+      #kanban .num {
+               text-align: right; width: 100%;
+      }
       #kanban  .arrow-steps .step.current {
         color: #fff; width: 100%;
-        background-color: #15df44;
+        background-color: #15df44; 
       }
       
       #kanban  .arrow-steps .step.current a {

@@ -22,9 +22,10 @@ const Kanban=()=>{
         <div className="col-sm-6 col-md-4 col-xl-3">
             <div className="">
                 <div className=" arrow-steps">
-                <div className="step current"> Subscribed</div>
-                    <h6 className="card-title text-truncate py-2"></h6>
-                    <div className="items">
+                <div className="step current">
+                <div className="title"> Subscribed <span className="num">8</span></div>
+                </div>
+                   <div className="items">
                     <div className=""> &nbsp; </div>
                         <div className="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
                             <div className="kanbanbody p-2">
@@ -76,7 +77,8 @@ const Kanban=()=>{
         <div className="col-sm-6 col-md-4 col-xl-3">
             <div className="">
                 <div className=" arrow-steps">
-                <div className="step done"> Lead</div>
+                <div className="step done">
+                <div className="title">  Lead<span className="num">8</span></div></div>
                    <div className="items">
                        
                     <div className=""> &nbsp; </div> 
