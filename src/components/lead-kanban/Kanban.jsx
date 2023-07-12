@@ -1,7 +1,25 @@
 import React,{useState} from "react";
+import { DownOutlined } from '@ant-design/icons';
+import { Dropdown, Space, Button, menuProps } from 'antd'
 
-
+const items: MenuProps['items'] = [
+    {
+      key: '1',
+      label: 'Item 1',
+    },
+    {
+      key: '2',
+      label: 'Item 2',
+    },
+    {
+      key: '3',
+      label: 'Item 3',
+    },
+  ];
+  
+  
 const Kanban=()=>{
+    
     return (
     <>
     {/* <div id="kanban" className="container py-5">	
@@ -17,7 +35,39 @@ const Kanban=()=>{
 </div> */}
 
 <div id="kanban" className="container-fluid pt-3">
-    <div><i className=" btn mr-2  kanbanlist"></i><i className=" btn  kanbanview"></i></div>
+   
+<div className="col-sm-6 col-kanban col-xl-3">    <Dropdown
+    menu={{
+      items,
+      selectable: true,
+      defaultSelectedKeys: ['3'],
+    }}
+  >
+    <Button>
+      <Space>
+        Dropdown
+        <DownOutlined />
+      </Space>
+    </Button>
+  </Dropdown>
+ 
+    <span className="mr-4">   <Dropdown
+    menu={{
+      items,
+      selectable: true,
+      defaultSelectedKeys: ['3'],
+    }}
+  >
+    <Button>
+      <Space>
+        Name
+        <DownOutlined />
+      </Space>
+    </Button>
+  </Dropdown>
+  </span>
+    </div>
+    <div className="col-sm-6 col-kanban col-xl-3"><i className=" btn mr-2  kanbanlist"></i><i className=" btn  kanbanview"></i></div>
     <h3 className="font-weight-light text-white">Kanban Board</h3>
      <div className=" main-kanban">
        
