@@ -7593,7 +7593,7 @@ color: orange;
     border-radius: 10px; overflow: hidden;  overflow-x: auto;
       }
       #kanban .kanbancard{display: flex;
-        padding: 10px 0;}
+        padding: 10px;}
       #kanban .arrow-steps .step {
         font-size: 14px;
         text-align: center;
