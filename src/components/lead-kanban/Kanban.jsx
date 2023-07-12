@@ -82,7 +82,7 @@ const Kanban=()=>{
                    <div className=""> &nbsp; </div>
                         <div className="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
                             <div className="kanbanbody p-2">
-                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">AS</div><div className="similar-desc">
+                            <div className="kanbancard"><div className="btn-square  btn btn-primary">AS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
                                 <div className="fs-12"> ajay@companyname.com<i class=" fs-14 ml-1  la la-copy text-black"></i></div>
@@ -93,7 +93,7 @@ const Kanban=()=>{
                         </div>
                         <div className="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
                             <div className="kanbanbody p-2">
-                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">AS</div><div className="similar-desc">
+                            <div className="kanbancard"><div className="btn-square  btn btn-primary">AS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
                                 <div className="fs-12"> ajay@companyname.com<i class=" fs-14 ml-1  la la-copy text-black"></i></div>
@@ -104,7 +104,7 @@ const Kanban=()=>{
                         
                         <div className="card draggable shadow-sm" id="cd2" draggable="true" ondragstart="drag(event)">
                         <div className="kanbanbody p-2">
-                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">AS</div><div className="similar-desc">
+                            <div className="kanbancard"><div className="btn-square  btn btn-primary">AS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
                                 <div className="fs-12"> ajay@companyname.com<i class=" fs-14 ml-1  la la-copy text-black"></i></div>
@@ -115,7 +115,7 @@ const Kanban=()=>{
                         
                         <div className="card draggable shadow-sm" id="cd3" draggable="true" ondragstart="drag(event)">
                         <div className="kanbanbody p-2">
-                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">AS</div><div className="similar-desc">
+                            <div className="kanbancard"><div className="btn-square  btn btn-primary">AS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
                                 <div className="fs-12"> ajay@companyname.com<i class=" fs-14 ml-1  la la-copy text-black"></i></div>
@@ -138,7 +138,7 @@ const Kanban=()=>{
                    <div className=""> &nbsp; </div>
                         <div className="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
                         <div className="kanbanbody p-2">
-                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">AS</div><div className="similar-desc">
+                            <div className="kanbancard"><div className="btn-square  btn btn-primary">AS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
                                 <div className="fs-12"> ajay@companyname.com<i class=" fs-14 ml-1  la la-copy text-black"></i></div>
@@ -149,7 +149,7 @@ const Kanban=()=>{
                         
                         <div className="card draggable shadow-sm" id="cd3" draggable="true" ondragstart="drag(event)">
                         <div className="kanbanbody p-2">
-                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">AS</div><div className="similar-desc">
+                            <div className="kanbancard"><div className="btn-square  btn btn-primary">AS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
                                 <div className="fs-12"> ajay@companyname.com<i class=" fs-14 ml-1  la la-copy text-black"></i></div>
@@ -159,7 +159,7 @@ const Kanban=()=>{
                         </div>
                         <div className="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
                             <div className="kanbanbody p-2">
-                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">AS</div><div className="similar-desc">
+                            <div className="kanbancard"><div className="btn-square  btn btn-primary">AS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
                                 <div className="fs-12"> ajay@companyname.com<i class=" fs-14 ml-1  la la-copy text-black"></i></div>
@@ -169,7 +169,7 @@ const Kanban=()=>{
                         </div>
                         <div className="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
                             <div className="kanbanbody p-2">
-                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">AS</div><div className="similar-desc">
+                            <div className="kanbancard"><div className="btn-square  btn btn-primary">AS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
                                 <div className="fs-12"> ajay@companyname.com<i class=" fs-14 ml-1  la la-copy text-black"></i></div>
@@ -179,7 +179,7 @@ const Kanban=()=>{
                         </div>
                         <div className="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
                             <div className="kanbanbody p-2">
-                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">AS</div><div className="similar-desc">
+                            <div className="kanbancard"><div className="btn-square  btn btn-primary">AS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
                                 <div className="fs-12"> ajay@companyname.com<i class=" fs-14 ml-1  la la-copy text-black"></i></div>
@@ -189,7 +189,7 @@ const Kanban=()=>{
                         </div>
                         <div className="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
                             <div className="kanbanbody p-2">
-                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">AS</div><div className="similar-desc">
+                            <div className="kanbancard"><div className="btn-square  btn btn-primary">AS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
                                 <div className="fs-12"> ajay@companyname.com<i class=" fs-14 ml-1  la la-copy text-black"></i></div>
@@ -199,7 +199,7 @@ const Kanban=()=>{
                         </div>
                         <div className="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
                             <div className="kanbanbody p-2">
-                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">AS</div><div className="similar-desc">
+                            <div className="kanbancard"><div className="btn-square  btn btn-primary">AS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
                                 <div className="fs-12"> ajay@companyname.com<i class=" fs-14 ml-1  la la-copy text-black"></i></div>
@@ -209,7 +209,7 @@ const Kanban=()=>{
                         </div>
                         <div className="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
                             <div className="kanbanbody p-2">
-                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">AS</div><div className="similar-desc">
+                            <div className="kanbancard"><div className="btn-square  btn btn-primary">AS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
                                 <div className="fs-12"> ajay@companyname.com<i class=" fs-14 ml-1  la la-copy text-black"></i></div>
@@ -232,7 +232,7 @@ const Kanban=()=>{
                     <div className=""> &nbsp; </div>
                         <div className="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
                         <div className="kanbanbody p-2">
-                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">AS</div><div className="similar-desc">
+                            <div className="kanbancard"><div className="btn-square  btn btn-primary">AS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
                                 <div className="fs-12"> ajay@companyname.com<i class=" fs-14 ml-1  la la-copy text-black"></i></div>
@@ -242,7 +242,7 @@ const Kanban=()=>{
                         </div>               
                         <div className="card draggable shadow-sm" id="cd3" draggable="true" ondragstart="drag(event)">
                         <div className="kanbanbody p-2">
-                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">AS</div><div className="similar-desc">
+                            <div className="kanbancard"><div className="btn-square  btn btn-primary">AS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
                                 <div className="fs-12"> ajay@companyname.com<i class=" fs-14 ml-1  la la-copy text-black"></i></div>
@@ -265,7 +265,7 @@ const Kanban=()=>{
                     <div className=""> &nbsp; </div>
                         <div className="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
                         <div className="kanbanbody p-2">
-                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">AS</div><div className="similar-desc">
+                            <div className="kanbancard"><div className="btn-square  btn btn-primary">AS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
                                 <div className="fs-12"> ajay@companyname.com<i class=" fs-14 ml-1  la la-copy text-black"></i></div>
@@ -276,7 +276,7 @@ const Kanban=()=>{
                         
                         <div className="card draggable shadow-sm" id="cd2" draggable="true" ondragstart="drag(event)">
                         <div className="kanbanbody p-2">
-                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">AS</div><div className="similar-desc">
+                            <div className="kanbancard"><div className="btn-square  btn btn-primary">AS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
                                 <div className="fs-12"> ajay@companyname.com<i class=" fs-14 ml-1  la la-copy text-black"></i></div>
@@ -286,7 +286,7 @@ const Kanban=()=>{
                         </div>
                         <div className="card draggable shadow-sm" id="cd2" draggable="true" ondragstart="drag(event)">
                         <div className="kanbanbody p-2">
-                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">AS</div><div className="similar-desc">
+                            <div className="kanbancard"><div className="btn-square  btn btn-primary">AS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
                                 <div className="fs-12"> ajay@companyname.com<i class=" fs-14 ml-1  la la-copy text-black"></i></div>
@@ -296,7 +296,7 @@ const Kanban=()=>{
                         </div>
                         <div className="card draggable shadow-sm" id="cd3" draggable="true" ondragstart="drag(event)">
                         <div className="kanbanbody p-2">
-                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">AS</div><div className="similar-desc">
+                            <div className="kanbancard"><div className="btn-square  btn btn-primary">AS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
                                 <div className="fs-12"> ajay@companyname.com<i class=" fs-14 ml-1  la la-copy text-black"></i></div>
@@ -319,7 +319,7 @@ const Kanban=()=>{
                     <div className="dropzone rounded"> &nbsp; </div>
                         <div className="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
                         <div className="kanbanbody p-2">
-                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">AS</div><div className="similar-desc">
+                            <div className="kanbancard"><div className="btn-square  btn btn-primary">AS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
                                 <div className="fs-12"> ajay@companyname.com<i class=" fs-14 ml-1  la la-copy text-black"></i></div>
@@ -330,7 +330,7 @@ const Kanban=()=>{
                         
                         <div className="card draggable shadow-sm" id="cd2" draggable="true" ondragstart="drag(event)">
                         <div className="kanbanbody p-2">
-                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">AS</div><div className="similar-desc">
+                            <div className="kanbancard"><div className="btn-square  btn btn-primary">AS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
                                 <div className="fs-12"> ajay@companyname.com<i class=" fs-14 ml-1  la la-copy text-black"></i></div>
@@ -341,7 +341,7 @@ const Kanban=()=>{
                         
                         <div className="card draggable shadow-sm" id="cd3" draggable="true" ondragstart="drag(event)">
                         <div className="kanbanbody p-2">
-                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">AS</div><div className="similar-desc">
+                            <div className="kanbancard"><div className="btn-square  btn btn-primary">AS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
                                 <div className="fs-12"> ajay@companyname.com<i class=" fs-14 ml-1  la la-copy text-black"></i></div>
@@ -364,7 +364,7 @@ const Kanban=()=>{
                     <div className=""> &nbsp; </div>
                         <div className="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
                         <div className="kanbanbody p-2">
-                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">AS</div><div className="similar-desc">
+                            <div className="kanbancard"><div className="btn-square  btn btn-primary">AS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
                                 <div className="fs-12"> ajay@companyname.com<i class=" fs-14 ml-1  la la-copy text-black"></i></div>
@@ -375,7 +375,7 @@ const Kanban=()=>{
                         
                         <div className="card draggable shadow-sm" id="cd2" draggable="true" ondragstart="drag(event)">
                         <div className="kanbanbody p-2">
-                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">AS</div><div className="similar-desc">
+                            <div className="kanbancard"><div className="btn-square  btn btn-primary">AS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
                                 <div className="fs-12"> ajay@companyname.com<i class=" fs-14 ml-1  la la-copy text-black"></i></div>
@@ -385,7 +385,7 @@ const Kanban=()=>{
                         </div>
                         <div className="card draggable shadow-sm" id="cd2" draggable="true" ondragstart="drag(event)">
                         <div className="kanbanbody p-2">
-                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">AS</div><div className="similar-desc">
+                            <div className="kanbancard"><div className="btn-square  btn btn-primary">AS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
                                 <div className="fs-12"> ajay@companyname.com<i class=" fs-14 ml-1  la la-copy text-black"></i></div>
@@ -395,7 +395,7 @@ const Kanban=()=>{
                         </div>
                          <div className="card draggable shadow-sm" id="cd2" draggable="true" ondragstart="drag(event)">
                         <div className="kanbanbody p-2">
-                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">AS</div><div className="similar-desc">
+                            <div className="kanbancard"><div className="btn-square  btn btn-primary">AS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
                                 <div className="fs-12"> ajay@companyname.com<i class=" fs-14 ml-1  la la-copy text-black"></i></div>
@@ -405,7 +405,7 @@ const Kanban=()=>{
                         </div>
                         <div className="card draggable shadow-sm" id="cd3" draggable="true" ondragstart="drag(event)">
                         <div className="kanbanbody p-2">
-                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">AS</div><div className="similar-desc">
+                            <div className="kanbancard"><div className="btn-square  btn btn-primary">AS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
                                 <div className="fs-12"> ajay@companyname.com<i class=" fs-14 ml-1  la la-copy text-black"></i></div>
@@ -428,7 +428,7 @@ const Kanban=()=>{
                     <div className=""> &nbsp; </div>
                         <div className="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
                         <div className="kanbanbody p-2">
-                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">AS</div><div className="similar-desc">
+                            <div className="kanbancard"><div className="btn-square  btn btn-primary">AS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
                                 <div className="fs-12"> ajay@companyname.com<i class=" fs-14 ml-1  la la-copy text-black"></i></div>
@@ -439,7 +439,7 @@ const Kanban=()=>{
                         
                         <div className="card draggable shadow-sm" id="cd2" draggable="true" ondragstart="drag(event)">
                         <div className="kanbanbody p-2">
-                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">AS</div><div className="similar-desc">
+                            <div className="kanbancard"><div className="btn-square  btn btn-primary">AS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
                                 <div className="fs-12"> ajay@companyname.com<i class=" fs-14 ml-1  la la-copy text-black"></i></div>
@@ -450,7 +450,7 @@ const Kanban=()=>{
                         
                         <div className="card draggable shadow-sm" id="cd3" draggable="true" ondragstart="drag(event)">
                         <div className="kanbanbody p-2">
-                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">AS</div><div className="similar-desc">
+                            <div className="kanbancard"><div className="btn-square  btn btn-primary">AS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
                                 <div className="fs-12"> ajay@companyname.com<i class=" fs-14 ml-1  la la-copy text-black"></i></div>
