@@ -17,6 +17,7 @@ const Kanban=()=>{
 </div> */}
 
 <div id="kanban" className="container-fluid pt-3">
+    <div><i className=" btn mr-2  kanbanlist"></i><i className=" btn  kanbanview"></i></div>
     <h3 className="font-weight-light text-white">Kanban Board</h3>
      <div className=" main-kanban">
        

@@ -7155,6 +7155,13 @@ color: orange;
 .emails-open {
 	background: url(../images/email-icon-open.svg) no-repeat 0px 0px; width:30px; height: 19px; background-size: 100%;
 }
+
+.kanbanlist {
+	background: url(../images/unordered-list.svg) no-repeat 0px 0px; width:20px; height: 20px; background-size: 100%;
+}
+.kanbanview {
+	background: url(../images/kanban.svg) no-repeat 0px 0px; width:18px; height: 18px; background-size: 100%;
+}
 .companyintro h3{font-size: 16px; font-weight: 500;}
 
 #small-dialog,#small-dialog1,#small-dialog2,#small-dialog3,#small-dialog4,#small-dialog5{
