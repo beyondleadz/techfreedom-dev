@@ -5891,8 +5891,8 @@ background-color: #fff;
   font-size: 1rem;
   display: inline-flex;
   align-items: center;
-  justify-content: center; padding: 10px;
-  margin: 10px;
+  justify-content: center; padding: 10px ;
+  margin: 10px 10px 10px 5px;
 }
 
 .btn-circle.btn-sm, .btn-group-sm > .btn-circle.btn {
@@ -7593,7 +7593,7 @@ color: orange;
     border-radius: 10px; overflow: hidden;  overflow-x: auto;
       }
       #kanban .kanbancard{display: flex;
-        padding: 10px;}
+        padding: 10px 10px 10px 1px;}
       #kanban .arrow-steps .step {
         font-size: 14px;
         text-align: center;
