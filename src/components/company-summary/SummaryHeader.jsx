@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState, useMemo, useRef } from "react";
 import { Modal, Checkbox, Input, Divider, Button,Tooltip } from "antd";
 import _ from "lodash";
 import { useDispatch } from "react-redux";
@@ -6,6 +6,8 @@ import { Link, NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { deleteAuthMethod } from "../../services/HttpServices";
 import defaultLogo from "../../assets/images/default_company_logo.jpg";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 
 import {
   submitErrorForm,
@@ -26,6 +28,7 @@ import TrialModal from "../../common/TrialModal";
 import popupImg from "../../assets/images/free-user-login-prompt.jpg.jpeg";
 import { useNavigate } from "react-router";
 const SummaryHeader = () => {
+  const pdfRef=useRef();
   const [showModal, setShowModal] = useState(false);
 
   const formIntialValue = {
@@ -237,10 +240,25 @@ const SummaryHeader = () => {
     }
   };
   const downloadPDF = (id) => {
-    const isLoggedIn = checkLoginStatus();
-    if (isLoggedIn) {
-      dispatch(downloadCompany([id], "pdf"));
-    }
+    // const isLoggedIn = checkLoginStatus();
+    // if (isLoggedIn) {
+    //   dispatch(downloadCompany([id], "pdf"));
+    // }
+    const input=pdfRef.current;
+    console.log(input);
+    html2canvas(input).then((canvas)=>{
+      const imgData=canvas.toDataURL('image/png');
+      const pdf=new jsPDF('p','mm','a4',true);
+      const pdfWidth=pdf.internal.pageSize.getWidth();
+      const pdfHeight=pdf.internal.pageSize.getHeight();
+      const imgWidth=canvas.width;
+      const imgHeight=canvas.height;
+      const ratio=Math.min(pdfWidth/imgWidth,pdfHeight/imgHeight);
+      const imgX=(pdfWidth-imgWidth * ratio)/2;
+      const imgY=30;
+      pdf.addImage(imgData,'PNG',imgX,imgY,imgWidth*ratio,imgHeight*ratio);
+      pdf.save('comapny.pdf');
+    })
   };
 
   const onConfrim = () => {
@@ -429,6 +447,9 @@ const SummaryHeader = () => {
           </span>
         </div> */}
       </div>
+
+
+      <div style={{position:'absolute',left:'0',top:'-5000px'}} ref={pdfRef}><p>This is sample text for download.</p></div>
 
       {openErrorForm && (
         <Modal
