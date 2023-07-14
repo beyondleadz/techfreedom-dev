@@ -33,7 +33,7 @@ import {
   LEAD_EXECUTIVE_FUNCTION_LIST_ERROR,
   LEAD_STATUS_LIST,
   LEAD_STATUS_LIST_ERROR,
-
+  LEAD_PAGE_LAYOUT,
 } from "../actionType/leadListingType";
 import {
   getAuthMethod,
@@ -330,8 +330,8 @@ export const createGroupExecutiveTag = (payload) => (dispatch) => {
 
 export const getExecutiveEmployeeList = (payload, paginationValues) => (dispatch) => {
   dispatch(dispatchStatus(true));
-  const url = createLeadPayload(payload, paginationValues, getClientLeadsUrl);
-  // console.log(url,'urlurlurl')
+  //console.log(paginationValues,'paginationValues')
+  const url = createLeadPayload(payload, paginationValues, getClientLeadsUrl);  
   return getMethod(url)
     .then((res) => {
       dispatch({
@@ -368,5 +368,13 @@ export const getLeadStatusList = (payload) => (dispatch) => {
           "Error Occured",
       });
     });
+};
+
+
+export const setPageLayout = (payload) => {
+  return {
+    type: LEAD_PAGE_LAYOUT,
+    payload: payload,
+  };
 };
 

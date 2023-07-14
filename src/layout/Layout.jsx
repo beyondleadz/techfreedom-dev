@@ -5,7 +5,7 @@ import Footer from "../layout/Footer";
 import { getToken } from "../utils/utils";
 
 const Layout = (props) => {
-  console.log(props,'propsprops')
+ // console.log(props,'propsprops')
   return (
     <>
       <Header />

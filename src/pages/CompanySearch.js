@@ -100,9 +100,7 @@ const CompanySearch = ({ tab }) => {
             <div className="leftmenu">
               <LeadLeft />
             </div>
-            <div className="contentbody shadow">
-              <LeadContent />
-            </div>
+            <LeadContent />
           </div>
         </div>
       ),

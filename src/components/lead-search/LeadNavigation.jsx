@@ -11,6 +11,8 @@ import {
   saveAdvancedSelectedFilters,
   getCompanyListWithStartAndEnd,
   getCompanyList,
+  setPageLayout,
+  getExecutiveEmployeeList
 } from "../../actionCreator/leadListingActionCreater";
 import popupImg from "../../assets/images/free-user-login-prompt.jpg.jpeg";
 const LeadNavigation = () => {
@@ -122,11 +124,25 @@ const LeadNavigation = () => {
     navigate("/signup");
   };
 
+  const checkPageLayout=(page)=>{
+    dispatch(setPageLayout({activePage:page}));
+    const pageValues={
+      start: 0,
+      end: PAGE_LENGTH,
+    }
+    const payload = {
+      ...companySelectedFilterList,
+      selectedPageLayout: page,
+    };
+    dispatch(saveAdvancedSelectedFilters(payload));
+    dispatch(getExecutiveEmployeeList(payload, pageValues));      
+  }
+
   return (
     <nav className="navbar navbar-light bg-white topbar mb-4 mr-2 static-top">
       <div className="buttons-container-top m-mt quickselection">
         <div>
-        {/* <span className="mr-4  fs-25 align-bottom "><i class=" text-info las la-calendar"></i></span> */}
+          {/* <span className="mr-4  fs-25 align-bottom "><i className=" text-info las la-calendar"></i></span> */}
           <span className="fs-12 mr-2">Quick Selection</span>
           <div className=" fs-12 d-sm-inline-block  mr-2">
             <Input
@@ -152,16 +168,15 @@ const LeadNavigation = () => {
           >
             <i className="fas fs-12 fa-arrow-right"></i>
           </Button>
-          {/* <Button
-          type="primary"
-            className="fs-12  mr-1"
-            onClick={onClickSelectAll}
-          >
-            Select All
-          </Button> */}
         </div>
         <ul className="flex  m-mt">
-           {/*<li>
+          <li>
+            <i className=" btn mr-2  kanbanlist" onClick={()=>checkPageLayout(1)}></i>
+          </li>
+          <li>
+            <i className=" btn mr-2  kanbanview" onClick={()=>checkPageLayout(2)}></i>
+          </li>
+          {/*<li>
             <a
               className=" mr-2"
               role="button"
@@ -217,7 +232,7 @@ const LeadNavigation = () => {
 
         {showModal ? (
           <TrialModal
-          openModal={showModal}
+            openModal={showModal}
             closeModal={closeModal}
             redirectToSignup={redirectToSignup}
             buttonText="Start Free Trial"

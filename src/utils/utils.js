@@ -415,6 +415,7 @@ export const createLeadPayload = (
   companyListingApiUrl
 ) => {
   const {
+    selectedPageLayout,
     selectedCompany,
     selectedCountry,
     selectedState,
@@ -442,7 +443,7 @@ selectedZipCode,
   let revenueId;
   let companyTagId;
   let company;
-  if (paginationValues) {
+  if (selectedPageLayout!==2 && paginationValues) {
     withPagination = `&page=${paginationValues?.start}&size=${paginationValues?.end}`;
     url = `${url}${withPagination}`;
   }

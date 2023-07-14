@@ -308,7 +308,7 @@ const AdvancedFilter = ({
                   if (showNumberofRecords) {
                     return (
                       index < showNumberofRecords && (
-                        <li>
+                        <li key={`li_${item.id}`}>
                           <Checkbox
                             key={item.id}
                             value={item}
@@ -434,7 +434,7 @@ const AdvancedFilter = ({
                   if (showNumberofRecords) {
                     return (
                       index < showNumberofRecords && (
-                        <li>
+                        <li key={`stateli_${item.id}${index}`}>
                           <Checkbox
                             key={item.id}
                             value={item}
@@ -569,7 +569,7 @@ const AdvancedFilter = ({
                   if (viewMore && showNumberofRecords) {
                     return (
                       index < showNumberofRecords && (
-                        <li>
+                        <li key={`cityli_${item}${index}`}>
                           <Checkbox
                             key={item.id}
                             value={item}
@@ -704,7 +704,7 @@ const AdvancedFilter = ({
                   if (showNumberofRecords) {
                     return (
                       index < showNumberofRecords && (
-                        <li>
+                        <li key={`industryli_${item.id}`}>
                           <Checkbox
                             key={item.id}
                             value={item}
@@ -821,7 +821,7 @@ const AdvancedFilter = ({
                   if (showNumberofRecords) {
                     return (
                       index < showNumberofRecords && (
-                        <li>
+                        <li key={`ratingli_${index}`}>
                           <Checkbox
                             key={item.name}
                             value={item}
@@ -928,7 +928,7 @@ const AdvancedFilter = ({
                   if (showNumberofRecords) {
                     return (
                       index < showNumberofRecords && (
-                        <li>
+                        <li key={`leadtimeli_${index}`}>
                           <Checkbox
                             key={item.name}
                             value={item}
@@ -1042,7 +1042,7 @@ const AdvancedFilter = ({
                   if (showNumberofRecords) {
                     return (
                       index < showNumberofRecords && (
-                        <li>
+                        <li key={`leadstatusli_${item.id}`}>
                           <Checkbox
                             key={item.id}
                             value={item}
@@ -1169,7 +1169,7 @@ const AdvancedFilter = ({
                   if (showNumberofRecords) {
                     return (
                       index < showNumberofRecords && (
-                        <li>
+                        <li key={`leadsourceli_${item.id}`}>
                           <Checkbox
                             key={item.id}
                             value={item}
@@ -1372,7 +1372,7 @@ const AdvancedFilter = ({
                   if (showNumberofRecords) {
                     return (
                       index < showNumberofRecords && (
-                        <li>
+                        <li key={`empcountli_${item.id}`}>
                           <Checkbox
                             key={item.id}
                             value={item}
@@ -1499,7 +1499,7 @@ const AdvancedFilter = ({
                   if (showNumberofRecords) {
                     return (
                       index < showNumberofRecords && (
-                        <li>
+                        <li key={`searchli_${item.id}`}>
                           <Checkbox
                             key={item.id}
                             value={item}

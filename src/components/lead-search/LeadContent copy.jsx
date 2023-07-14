@@ -2,7 +2,8 @@ import React, { useEffect, useState, useMemo } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import _ from "lodash";
-import { Table, Input, Button, Modal } from "antd";
+import { DownOutlined } from '@ant-design/icons';
+import { Dropdown, Space, menuProps,Table, Input, Button, Modal } from "antd";
 import { PAGE_LENGTH } from "../../config";
 import defaultLogo from "../../assets/images/default_company_logo.jpg";
 import popupImg from "../../assets/images/free-user-login-prompt.jpg.jpeg";
@@ -221,7 +222,6 @@ const LeadContent = () => {
   const navigate = useNavigate();
   const [companyList, setCompanyList] = useState();
   const [executiveEmployeeList, setExecutiveEmployeeList] = useState();
-  const [executiveEmployeeListByStatus, setExecutiveEmployeeListByStatus] = useState(); 
 
   const [showModal, setShowModal] = useState(false);
   const [showTagModal, setShowTagModal] = useState(false);
@@ -248,18 +248,15 @@ const LeadContent = () => {
     (state) => state.leadListingReducer.selectedRecords
   );
 
-  const selectedPageLayout = useSelector(
-    (state) => state.leadListingReducer.leadPageLayout
-  );
   useMemo(() => {
     dispatch(getExecutiveEmployeeList({}, paginationValue));
   }, []);
 
   const renderSocialLinks = (socialLinks) => {
-    return socialLinks?.map((link,index) => {
+    return socialLinks?.map((link) => {
       if (link?.name === "facebook") {
         return (
-          <Link key={index} to={link?.proifileUrl} target="_blank">
+          <Link to={link?.proifileUrl} target="_blank">
             <i className="lab fs-20 facebook lab la-facebook"></i>
           </Link>
         );
@@ -280,8 +277,6 @@ const LeadContent = () => {
   };
 
   useEffect(() => {
-    const groupDataByStatus =  _.groupBy(companyFilterList?.executiveEmployeeList, function(b) { return b.title})
-    setExecutiveEmployeeListByStatus(groupDataByStatus);
     let data = [];
     companyFilterList?.executiveEmployeeList?.forEach((record) => {
       data = [
@@ -304,7 +299,13 @@ const LeadContent = () => {
         },
       ];
     });
-   setExecutiveEmployeeList(data);
+
+    //console.log(data,'datadatadata')
+
+   //const dd =  _.groupBy(companyFilterList?.executiveEmployeeList, function(b) { return b.title})
+
+   // console.log(dd,'dddddd')
+    setExecutiveEmployeeList(data);
   }, [companyFilterList]);
 
   const rowSelection = {
@@ -513,12 +514,187 @@ const LeadContent = () => {
 
   return (
     <>
-    {selectedPageLayout?.activePage==2?(       
-      <LeadKanbanView loading={loading} rowSelection={rowSelection} columns={columns} executiveEmployeeList={executiveEmployeeListByStatus} paginationValue={paginationValue} companyFilterList={companyFilterList} onPageChange={onPageChange}/>      
-    ):(
-      <LeadTableView tagPage={tagPage} downloadExcel={downloadExcel} downloadPDF={downloadPDF} printPage={printPage} loading={loading} rowSelection={rowSelection} columns={columns} executiveEmployeeList={executiveEmployeeList} paginationValue={paginationValue} companyFilterList={companyFilterList} onPageChange={onPageChange}/>
-    )}
-      
+      <div id="content-wrapper" className="d-flex flex-column ">
+        <div id="content" className="shadow">
+          <div className="container-fluid pl-0 pr-0">
+            <div className="row">
+              <div className="col-xl-12 col-lg-10 pl-0">
+                <div className="card shadow mb-4">
+                  <div className="card-header py-3 f-rev d-flex align-items-center justify-content-between">
+                    <h6 className="m-0 ml-2 font-weight-bold text-primary mob-t">
+                      Showing 1-
+                      {parseInt(PAGE_LENGTH) >
+                      parseInt(companyFilterList?.totalExecutiveCount)
+                        ? companyFilterList?.totalExecutiveCount
+                        : paginationValue.end
+                        ? paginationValue.end
+                        : PAGE_LENGTH}
+                      <span className="m-1">of</span>{" "}
+                      {companyFilterList?.totalExecutiveCount}
+                      <span className="m-1">results</span>
+                    </h6>
+                    <span className="ml-4 fs-23">
+                      <i className="text-info las la-calendar"></i>
+                    </span>
+                    <div className="buttons-container textsearch">
+                      <ul className="d-flex mt-1  m-mt">
+                        <li>
+                          <a
+                            className=" mr-2"
+                            href="#"
+                            id=""
+                            role="button"
+                            data-toggle=""
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                          >
+                            <i
+                              className="right-icons las la-tags"
+                              aria-hidden="true"
+                              onClick={tagPage}
+                            ></i>
+                          </a>
+                        </li>
+
+                        <li>
+                          <a
+                            className=" mr-2"
+                            href="#"
+                            id=""
+                            role="button"
+                            data-toggle=""
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                          >
+                            <i
+                              className="right-icons la la-file-excel"
+                              aria-hidden="true"
+                              onClick={downloadExcel}
+                            ></i>
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            className=" mr-2"
+                            role="button"
+                            data-toggle=""
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                            onClick={downloadPDF}
+                          >
+                            <i
+                              className="right-icons la la-file-pdf"
+                              aria-hidden="true"
+                            ></i>
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            className=" mr-2"
+                            role="button"
+                            data-toggle=""
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                            onClick={printPage}
+                          >
+                            <i
+                              className="right-icons la la-print"
+                              aria-hidden="true"
+                            ></i>
+                          </a>
+                        </li>
+<li><i className=" btn mr-2  kanbanlist"></i></li>
+<li><i className=" btn mr-2  kanbanview"></i></li>
+                      </ul>
+
+                      {/* <Search
+                        placeholder="Search By Designation"
+                        allowClear
+                        onSearch={onSearch}
+                        style={{ width: 200 }}
+                      />
+
+                      <Button
+                        className="d-none d-sm-inline-block ml-2 btn-outline-grey"
+                        onClick={onHandleSaveSearch}
+                        disabled={checkFilters()}
+                        title={checkFilters() ? "Filters are not selected" : ""}
+                      >
+                        <i className="fas fa-save pr-1"></i> SAVE SEARCH
+                      </Button> */}
+                      
+                      <Dropdown
+                        menu={{
+                          items,
+                          selectable: true,
+                          defaultSelectedKeys: ["3"],
+                        }}
+                      >
+                        <Button>
+                          <Space>
+                            Dropdown
+                            <DownOutlined />
+                          </Space>
+                        </Button>
+                      </Dropdown>
+                      <Dropdown
+                        menu={{
+                          items,
+                          selectable: true,
+                          defaultSelectedKeys: ["3"],
+                        }}
+                      >
+                        <Button>
+                          <Space>
+                            Name
+                            <DownOutlined />
+                          </Space>
+                        </Button>
+                      </Dropdown>
+                      <Button className="d-none d-sm-inline-block ml-2 btn-outline-grey">
+                        <i className="fas fa-bolt pr-1"></i> CONNECT TO CRM
+                      </Button>
+                    </div>
+                  </div>
+                  <LeadTableView loading={loading} rowSelection={rowSelection} columns={columns} executiveEmployeeList={executiveEmployeeList} paginationValue={paginationValue} companyFilterList={companyFilterList} onPageChange={onPageChange}/>
+                  {/* <div className="card-body">
+                    <div className="table-container text-nowrap">
+                      <div className="table-wrapper">
+                        {!loading ? (
+                          <Table
+                            rowSelection={{
+                              type: "checkbox",
+                              ...rowSelection,
+                            }}
+                            columns={columns}
+                            dataSource={executiveEmployeeList}
+                            pagination={{
+                              responsive: true,
+                              defaultCurrent: paginationValue?.start + 1,
+                              total: companyFilterList?.totalExecutiveCount,
+                              pageSize:
+                                parseInt(PAGE_LENGTH) >
+                                parseInt(companyFilterList?.totalExecutiveCount)
+                                  ? companyFilterList?.totalExecutiveCount
+                                  : paginationValue.end
+                                  ? paginationValue.end
+                                  : PAGE_LENGTH,
+                              position: ["bottomCenter"],
+                              onChange: onPageChange,
+                            }}
+                          />
+                        ) : (
+                          <Loader />
+                        )}
+                      </div>
+                    </div>
+                  </div> */}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       {showTagModal && getToken() ? (
         <Modal
           title="Tag Executive"

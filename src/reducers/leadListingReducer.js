@@ -35,11 +35,13 @@ import {
   LEAD_EXECUTIVE_FUNCTION_LIST,
   LEAD_EXECUTIVE_FUNCTION_LIST_ERROR,
   LEAD_STATUS_LIST,
-  LEAD_STATUS_LIST_ERROR,  
+  LEAD_STATUS_LIST_ERROR, 
+  LEAD_PAGE_LAYOUT 
 } from "../actionType/leadListingType";
 import { PAGE_LENGTH } from "../config";
 
 const initialState = {
+  leadPageLayout:{activePage:1},
   leadStatusList: [],
   executiveLevelList: [],
   industryList: [],
@@ -70,6 +72,7 @@ const initialState = {
     selectedCompanyName: "",
     selectedTitle: "",
     selectedZipCode: "",
+    selectedPageLayout: 1,
   },
   companySearchPayload: {
     country: [],
@@ -137,6 +140,8 @@ const LeadListingReducer = (state = initialState, action) => {
       return { ...state, executiveFunctionList: payload };
     case LEAD_STATUS_LIST:
       return { ...state, leadStatusList: payload };
+    case LEAD_PAGE_LAYOUT:
+      return { ...state, leadPageLayout: payload };  
     
     case LEAD_EXECUTIVE_INDUSTRY_LIST_ERROR:
       return { ...state, errObj: { ...state.errObj, ...payload } };
