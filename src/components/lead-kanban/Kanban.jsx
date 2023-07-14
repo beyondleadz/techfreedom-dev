@@ -1,7 +1,25 @@
 import React,{useState} from "react";
+import { DownOutlined } from '@ant-design/icons';
+import { Dropdown, Space, Button, menuProps } from 'antd'
 
-
+const items: MenuProps['items'] = [
+    {
+      key: '1',
+      label: 'Item 1',
+    },
+    {
+      key: '2',
+      label: 'Item 2',
+    },
+    {
+      key: '3',
+      label: 'Item 3',
+    },
+  ];
+  
+  
 const Kanban=()=>{
+    
     return (
     <>
     {/* <div id="kanban" className="container py-5">	
@@ -17,6 +35,39 @@ const Kanban=()=>{
 </div> */}
 
 <div id="kanban" className="container-fluid pt-3">
+   
+<div className="col-sm-6 col-kanban col-xl-3">    <Dropdown
+    menu={{
+      items,
+      selectable: true,
+      defaultSelectedKeys: ['3'],
+    }}
+  >
+    <Button>
+      <Space>
+        Dropdown
+        <DownOutlined />
+      </Space>
+    </Button>
+  </Dropdown>
+ 
+    <span className="mr-4">   <Dropdown
+    menu={{
+      items,
+      selectable: true,
+      defaultSelectedKeys: ['3'],
+    }}
+  >
+    <Button>
+      <Space>
+        Name
+        <DownOutlined />
+      </Space>
+    </Button>
+  </Dropdown>
+  </span>
+    </div>
+    <div className="col-sm-6 col-kanban col-xl-3"><i className=" btn mr-2  kanbanlist"></i><i className=" btn  kanbanview"></i></div>
     <h3 className="font-weight-light text-white">Kanban Board</h3>
      <div className=" main-kanban">
        
@@ -31,44 +82,44 @@ const Kanban=()=>{
                    <div className=""> &nbsp; </div>
                         <div className="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
                             <div className="kanbanbody p-2">
-                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
+                            <div className="kanbancard"><div className="btn-square  btn btn-primary">AS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
-                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i>  ajay@companyname.com</div>
+                                <div className="fs-12"> ajay@companyname.com<i class=" fs-14 ml-1  la la-copy text-black"></i></div>
                                 {/* <div className="fs-12">131 Maker Towers, 'F' Cuffe Parade, Colaba</div> */}
-                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
+                                <div className="fs-12">9236587345<i class=" fs-14 ml-1  la la-copy text-black"></i></div></div></div>
                                                           
                             </div>
                         </div>
                         <div className="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
                             <div className="kanbanbody p-2">
-                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
+                            <div className="kanbancard"><div className="btn-square  btn btn-primary">AS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
-                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
-                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
+                                <div className="fs-12"> ajay@companyname.com<i class=" fs-14 ml-1  la la-copy text-black"></i></div>
+                                <div className="fs-12">9236587345<i class=" fs-14 ml-1  la la-copy text-black"></i></div></div></div>
                                                           
                             </div>
                         </div>
                         
                         <div className="card draggable shadow-sm" id="cd2" draggable="true" ondragstart="drag(event)">
                         <div className="kanbanbody p-2">
-                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
+                            <div className="kanbancard"><div className="btn-square  btn btn-primary">AS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
-                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
-                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
+                                <div className="fs-12"> ajay@companyname.com<i class=" fs-14 ml-1  la la-copy text-black"></i></div>
+                                <div className="fs-12">9236587345<i class=" fs-14 ml-1  la la-copy text-black"></i></div></div></div>
                                                           
                             </div>
                         </div>
                         
                         <div className="card draggable shadow-sm" id="cd3" draggable="true" ondragstart="drag(event)">
                         <div className="kanbanbody p-2">
-                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
+                            <div className="kanbancard"><div className="btn-square  btn btn-primary">AS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
-                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
-                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
+                                <div className="fs-12"> ajay@companyname.com<i class=" fs-14 ml-1  la la-copy text-black"></i></div>
+                                <div className="fs-12">9236587345<i class=" fs-14 ml-1  la la-copy text-black"></i></div></div></div>
                                                           
                             </div>
                         </div>
@@ -87,82 +138,82 @@ const Kanban=()=>{
                    <div className=""> &nbsp; </div>
                         <div className="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
                         <div className="kanbanbody p-2">
-                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
+                            <div className="kanbancard"><div className="btn-square  btn btn-primary">AS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
-                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
-                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
+                                <div className="fs-12"> ajay@companyname.com<i class=" fs-14 ml-1  la la-copy text-black"></i></div>
+                                <div className="fs-12">9236587345<i class=" fs-14 ml-1  la la-copy text-black"></i></div></div></div>
                                                           
                             </div>
                         </div>
                         
                         <div className="card draggable shadow-sm" id="cd3" draggable="true" ondragstart="drag(event)">
                         <div className="kanbanbody p-2">
-                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
+                            <div className="kanbancard"><div className="btn-square  btn btn-primary">AS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
-                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
-                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
+                                <div className="fs-12"> ajay@companyname.com<i class=" fs-14 ml-1  la la-copy text-black"></i></div>
+                                <div className="fs-12">9236587345<i class=" fs-14 ml-1  la la-copy text-black"></i></div></div></div>
                                                           
                             </div>
                         </div>
                         <div className="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
                             <div className="kanbanbody p-2">
-                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
+                            <div className="kanbancard"><div className="btn-square  btn btn-primary">AS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
-                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
-                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
+                                <div className="fs-12"> ajay@companyname.com<i class=" fs-14 ml-1  la la-copy text-black"></i></div>
+                                <div className="fs-12">9236587345<i class=" fs-14 ml-1  la la-copy text-black"></i></div></div></div>
                                                           
                             </div>
                         </div>
                         <div className="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
                             <div className="kanbanbody p-2">
-                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
+                            <div className="kanbancard"><div className="btn-square  btn btn-primary">AS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
-                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
-                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
+                                <div className="fs-12"> ajay@companyname.com<i class=" fs-14 ml-1  la la-copy text-black"></i></div>
+                                <div className="fs-12">9236587345<i class=" fs-14 ml-1  la la-copy text-black"></i></div></div></div>
                                                           
                             </div>
                         </div>
                         <div className="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
                             <div className="kanbanbody p-2">
-                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
+                            <div className="kanbancard"><div className="btn-square  btn btn-primary">AS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
-                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
-                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
+                                <div className="fs-12"> ajay@companyname.com<i class=" fs-14 ml-1  la la-copy text-black"></i></div>
+                                <div className="fs-12">9236587345<i class=" fs-14 ml-1  la la-copy text-black"></i></div></div></div>
                                                           
                             </div>
                         </div>
                         <div className="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
                             <div className="kanbanbody p-2">
-                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
+                            <div className="kanbancard"><div className="btn-square  btn btn-primary">AS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
-                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
-                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
+                                <div className="fs-12"> ajay@companyname.com<i class=" fs-14 ml-1  la la-copy text-black"></i></div>
+                                <div className="fs-12">9236587345<i class=" fs-14 ml-1  la la-copy text-black"></i></div></div></div>
                                                           
                             </div>
                         </div>
                         <div className="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
                             <div className="kanbanbody p-2">
-                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
+                            <div className="kanbancard"><div className="btn-square  btn btn-primary">AS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
-                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
-                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
+                                <div className="fs-12"> ajay@companyname.com<i class=" fs-14 ml-1  la la-copy text-black"></i></div>
+                                <div className="fs-12">9236587345<i class=" fs-14 ml-1  la la-copy text-black"></i></div></div></div>
                                                           
                             </div>
                         </div>
                         <div className="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
                             <div className="kanbanbody p-2">
-                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
+                            <div className="kanbancard"><div className="btn-square  btn btn-primary">AS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
-                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
-                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
+                                <div className="fs-12"> ajay@companyname.com<i class=" fs-14 ml-1  la la-copy text-black"></i></div>
+                                <div className="fs-12">9236587345<i class=" fs-14 ml-1  la la-copy text-black"></i></div></div></div>
                                                           
                             </div>
                         </div>
@@ -181,21 +232,21 @@ const Kanban=()=>{
                     <div className=""> &nbsp; </div>
                         <div className="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
                         <div className="kanbanbody p-2">
-                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
+                            <div className="kanbancard"><div className="btn-square  btn btn-primary">AS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
-                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
-                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
+                                <div className="fs-12"> ajay@companyname.com<i class=" fs-14 ml-1  la la-copy text-black"></i></div>
+                                <div className="fs-12">9236587345<i class=" fs-14 ml-1  la la-copy text-black"></i></div></div></div>
                                                           
                             </div>
                         </div>               
                         <div className="card draggable shadow-sm" id="cd3" draggable="true" ondragstart="drag(event)">
                         <div className="kanbanbody p-2">
-                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
+                            <div className="kanbancard"><div className="btn-square  btn btn-primary">AS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
-                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
-                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
+                                <div className="fs-12"> ajay@companyname.com<i class=" fs-14 ml-1  la la-copy text-black"></i></div>
+                                <div className="fs-12">9236587345<i class=" fs-14 ml-1  la la-copy text-black"></i></div></div></div>
                                                           
                             </div>
                         </div>
@@ -214,42 +265,42 @@ const Kanban=()=>{
                     <div className=""> &nbsp; </div>
                         <div className="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
                         <div className="kanbanbody p-2">
-                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
+                            <div className="kanbancard"><div className="btn-square  btn btn-primary">AS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
-                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
-                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
+                                <div className="fs-12"> ajay@companyname.com<i class=" fs-14 ml-1  la la-copy text-black"></i></div>
+                                <div className="fs-12">9236587345<i class=" fs-14 ml-1  la la-copy text-black"></i></div></div></div>
                                                           
                             </div>
                         </div>
                         
                         <div className="card draggable shadow-sm" id="cd2" draggable="true" ondragstart="drag(event)">
                         <div className="kanbanbody p-2">
-                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
+                            <div className="kanbancard"><div className="btn-square  btn btn-primary">AS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
-                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
-                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
+                                <div className="fs-12"> ajay@companyname.com<i class=" fs-14 ml-1  la la-copy text-black"></i></div>
+                                <div className="fs-12">9236587345<i class=" fs-14 ml-1  la la-copy text-black"></i></div></div></div>
                                                           
                             </div>
                         </div>
                         <div className="card draggable shadow-sm" id="cd2" draggable="true" ondragstart="drag(event)">
                         <div className="kanbanbody p-2">
-                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
+                            <div className="kanbancard"><div className="btn-square  btn btn-primary">AS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
-                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
-                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
+                                <div className="fs-12"> ajay@companyname.com<i class=" fs-14 ml-1  la la-copy text-black"></i></div>
+                                <div className="fs-12">9236587345<i class=" fs-14 ml-1  la la-copy text-black"></i></div></div></div>
                                                           
                             </div>
                         </div>
                         <div className="card draggable shadow-sm" id="cd3" draggable="true" ondragstart="drag(event)">
                         <div className="kanbanbody p-2">
-                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
+                            <div className="kanbancard"><div className="btn-square  btn btn-primary">AS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
-                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
-                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
+                                <div className="fs-12"> ajay@companyname.com<i class=" fs-14 ml-1  la la-copy text-black"></i></div>
+                                <div className="fs-12">9236587345<i class=" fs-14 ml-1  la la-copy text-black"></i></div></div></div>
                                                           
                             </div>
                         </div>
@@ -268,33 +319,33 @@ const Kanban=()=>{
                     <div className="dropzone rounded"> &nbsp; </div>
                         <div className="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
                         <div className="kanbanbody p-2">
-                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
+                            <div className="kanbancard"><div className="btn-square  btn btn-primary">AS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
-                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
-                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
+                                <div className="fs-12"> ajay@companyname.com<i class=" fs-14 ml-1  la la-copy text-black"></i></div>
+                                <div className="fs-12">9236587345<i class=" fs-14 ml-1  la la-copy text-black"></i></div></div></div>
                                                           
                             </div>
                         </div>
                         
                         <div className="card draggable shadow-sm" id="cd2" draggable="true" ondragstart="drag(event)">
                         <div className="kanbanbody p-2">
-                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
+                            <div className="kanbancard"><div className="btn-square  btn btn-primary">AS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
-                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
-                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
+                                <div className="fs-12"> ajay@companyname.com<i class=" fs-14 ml-1  la la-copy text-black"></i></div>
+                                <div className="fs-12">9236587345<i class=" fs-14 ml-1  la la-copy text-black"></i></div></div></div>
                                                           
                             </div>
                         </div>
                         
                         <div className="card draggable shadow-sm" id="cd3" draggable="true" ondragstart="drag(event)">
                         <div className="kanbanbody p-2">
-                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
+                            <div className="kanbancard"><div className="btn-square  btn btn-primary">AS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
-                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
-                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
+                                <div className="fs-12"> ajay@companyname.com<i class=" fs-14 ml-1  la la-copy text-black"></i></div>
+                                <div className="fs-12">9236587345<i class=" fs-14 ml-1  la la-copy text-black"></i></div></div></div>
                                                           
                             </div>
                         </div>
@@ -313,52 +364,52 @@ const Kanban=()=>{
                     <div className=""> &nbsp; </div>
                         <div className="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
                         <div className="kanbanbody p-2">
-                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
+                            <div className="kanbancard"><div className="btn-square  btn btn-primary">AS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
-                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
-                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
+                                <div className="fs-12"> ajay@companyname.com<i class=" fs-14 ml-1  la la-copy text-black"></i></div>
+                                <div className="fs-12">9236587345<i class=" fs-14 ml-1  la la-copy text-black"></i></div></div></div>
                                                           
                             </div>
                         </div>
                         
                         <div className="card draggable shadow-sm" id="cd2" draggable="true" ondragstart="drag(event)">
                         <div className="kanbanbody p-2">
-                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
+                            <div className="kanbancard"><div className="btn-square  btn btn-primary">AS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
-                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
-                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
+                                <div className="fs-12"> ajay@companyname.com<i class=" fs-14 ml-1  la la-copy text-black"></i></div>
+                                <div className="fs-12">9236587345<i class=" fs-14 ml-1  la la-copy text-black"></i></div></div></div>
                                                           
                             </div>
                         </div>
                         <div className="card draggable shadow-sm" id="cd2" draggable="true" ondragstart="drag(event)">
                         <div className="kanbanbody p-2">
-                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
+                            <div className="kanbancard"><div className="btn-square  btn btn-primary">AS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
-                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
-                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
+                                <div className="fs-12"> ajay@companyname.com<i class=" fs-14 ml-1  la la-copy text-black"></i></div>
+                                <div className="fs-12">9236587345<i class=" fs-14 ml-1  la la-copy text-black"></i></div></div></div>
                                                           
                             </div>
                         </div>
                          <div className="card draggable shadow-sm" id="cd2" draggable="true" ondragstart="drag(event)">
                         <div className="kanbanbody p-2">
-                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
+                            <div className="kanbancard"><div className="btn-square  btn btn-primary">AS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
-                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
-                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
+                                <div className="fs-12"> ajay@companyname.com<i class=" fs-14 ml-1  la la-copy text-black"></i></div>
+                                <div className="fs-12">9236587345<i class=" fs-14 ml-1  la la-copy text-black"></i></div></div></div>
                                                           
                             </div>
                         </div>
                         <div className="card draggable shadow-sm" id="cd3" draggable="true" ondragstart="drag(event)">
                         <div className="kanbanbody p-2">
-                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
+                            <div className="kanbancard"><div className="btn-square  btn btn-primary">AS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
-                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
-                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
+                                <div className="fs-12"> ajay@companyname.com<i class=" fs-14 ml-1  la la-copy text-black"></i></div>
+                                <div className="fs-12">9236587345<i class=" fs-14 ml-1  la la-copy text-black"></i></div></div></div>
                                                           
                             </div>
                         </div>
@@ -377,33 +428,33 @@ const Kanban=()=>{
                     <div className=""> &nbsp; </div>
                         <div className="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
                         <div className="kanbanbody p-2">
-                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
+                            <div className="kanbancard"><div className="btn-square  btn btn-primary">AS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
-                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
-                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
+                                <div className="fs-12"> ajay@companyname.com<i class=" fs-14 ml-1  la la-copy text-black"></i></div>
+                                <div className="fs-12">9236587345<i class=" fs-14 ml-1  la la-copy text-black"></i></div></div></div>
                                                           
                             </div>
                         </div>
                         
                         <div className="card draggable shadow-sm" id="cd2" draggable="true" ondragstart="drag(event)">
                         <div className="kanbanbody p-2">
-                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
+                            <div className="kanbancard"><div className="btn-square  btn btn-primary">AS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
-                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
-                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
+                                <div className="fs-12"> ajay@companyname.com<i class=" fs-14 ml-1  la la-copy text-black"></i></div>
+                                <div className="fs-12">9236587345<i class=" fs-14 ml-1  la la-copy text-black"></i></div></div></div>
                                                           
                             </div>
                         </div>
                         
                         <div className="card draggable shadow-sm" id="cd3" draggable="true" ondragstart="drag(event)">
                         <div className="kanbanbody p-2">
-                            <div className="kanbancard"><div className="btn-circle  btn btn-primary">CS</div><div className="similar-desc">
+                            <div className="kanbancard"><div className="btn-square  btn btn-primary">AS</div><div className="similar-desc">
                                 <div><a className="font-weight-bold fs-14 text-dark" title="">Ajay Singh</a></div>
                                 <div className="fs-12">CEO at companyname pvt. ltd.</div>
-                                <div className="fs-12"><i class=" fs-16 mr-2  la la-envelope text-black"></i> ajay@companyname.com</div>
-                                <div className="fs-12"><i class=" fs-16 mr-2  la la-phone text-black"></i>9236587345</div></div></div>
+                                <div className="fs-12"> ajay@companyname.com<i class=" fs-14 ml-1  la la-copy text-black"></i></div>
+                                <div className="fs-12">9236587345<i class=" fs-14 ml-1  la la-copy text-black"></i></div></div></div>
                                                           
                             </div>
                         </div>
