@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useRoutes, NavLink, useNavigate, useLocation } from "react-router-dom";
-import { Popover, Button } from "antd";
+import { Popover, Button, Input,Modal } from "antd";
 // import { useRoutes, NavLink, redirect, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getToken } from "../utils/utils";
+import { getToken,getUserInfo } from "../utils/utils";
 import Logo from "../assets/images/logo.svg";
 import MoreArrowImg from "../assets/images/arrow.png";
 import "../assets/css/dropdown1.css";
@@ -12,17 +12,27 @@ import "../assets/css/line-awesome.min.css";
 import { doLogin } from "../actionCreator/signUpActionCreater";
 import { topSearch, selectItem } from "../actionCreator/headerActionCreater";
 import TrialModal from "../common/TrialModal";
+import {
+  getAccountInfo,
+  updateAccountInfo
+} from "../actionCreator/commonActionCreator";
 
 const Header = (props) => {
-  console.log(props, "sdfkllsj");
   const searchRef = useRef();
-  const location = useLocation()
+  const location = useLocation();
   const dispatch = useDispatch();
   const [showNav, setShowNav] = useState();
   const [dropDownToggle, setDropdownToggle] = useState(false);
   // const [selectedValue, setSelectedValue] = useState("Advanced");
   const [showModal, setShowModal] = useState(false);
-
+  const [searchValues, setSearchValues] = useState({
+    fname: "",
+    lname: "",
+    email: "",
+    fnameError: "",
+    lnameError: "",
+    emailError: "",
+  });
   const navigate = useNavigate();
   const token = useSelector((state) => state?.SignUpReducer?.signInData);
   const topSearchValue = useSelector(
@@ -31,43 +41,36 @@ const Header = (props) => {
   const selectedItem = useSelector(
     (state) => state?.HeaderReducer?.selectedItem
   );
+  const userAccountInfo = useSelector(
+    (state) => state?.CommonReducer?.accountInfo
+  );
   const toggleNav = (ele) => {
     setShowNav(!showNav);
-  };
-  const handleProvinceChange = (value) => {
-    // setCities(cityData[value]);
-    // setSecondCity(cityData[value][0]);
   };
   const toggleDropdown = () => {
     setDropdownToggle(!dropDownToggle);
   };
 
-  const closeModal = () => {
-    setShowModal(false);
-  };
-
   useEffect(() => {
-    if(location.pathname === "/search-executive"){
-      dispatch(selectItem('Executive'));
-    }else if(location.pathname === "/search-company"){
-      dispatch(selectItem('Company'));
-    }else{
-      dispatch(selectItem('Advanced'));
+    if (location.pathname === "/search-executive") {
+      dispatch(selectItem("Executive"));
+    } else if (location.pathname === "/search-company") {
+      dispatch(selectItem("Company"));
+    } else {
+      dispatch(selectItem("Company"));
     }
-    
-    console.log(location,'locationlocation')
-  },[location.pathname])
+  }, [location.pathname]);
 
-  const setValue = (val,btn=false) => { //console.log("986986968",val,selectedItem);
-    if (val == "Advanced") {
-      setShowModal(true);
-      return;
-    }
+  const setValue = (val, btn = false) => {
+    //if (val == "Advanced") {
+    //setShowModal(true);
+    //return;
+    //}
     dispatch(selectItem(val));
     // setSelectedValue(val);
-    if(!btn){
-    setDropdownToggle(!dropDownToggle);
-  }
+    if (!btn) {
+      setDropdownToggle(!dropDownToggle);
+    }
     dispatch(topSearch(searchRef.current.value));
     if (val === "Company") {
       navigate("/search-company");
@@ -79,24 +82,77 @@ const Header = (props) => {
   const doLogout = () => {
     sessionStorage.removeItem("token");
     sessionStorage.removeItem("userInfo");
+    sessionStorage.removeItem("subscriptionuserInfo");
     navigate("/");
   };
 
+  const showSetting = () => {
+    const { id, email, firstName,lastName } = getUserInfo();
+    setSearchValues({fname:firstName,lname:lastName,email:email});
+   // console.log(Object.keys(userAccountInfo).length,'bjhghgf')
+    if(Object.keys(userAccountInfo).length){
+
+    }else{
+     dispatch(getAccountInfo(getToken()));  
+    }
+    setShowModal(true);
+  };
+
+  const updatePassword = () => {};
+
+  const onInputChange = (e) => {
+    setSearchValues({
+      ...searchValues,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
+  const updateSetting =()=>{
+    if (!searchValues.fname) {
+      setSearchValues({
+        ...searchValues,
+        fnameError: "error",
+      });
+    }else if (!searchValues.lname) {
+      setSearchValues({
+        ...searchValues,
+        lnameError: "error",
+      });
+    }else if (!searchValues.email) {
+      setSearchValues({
+        ...searchValues,
+        emailError: "error",
+      });
+    } else {  
+      userAccountInfo.firstName=searchValues.fname;
+      userAccountInfo.lastName=searchValues.lname;
+      userAccountInfo.email=searchValues.email;
+      dispatch(updateAccountInfo(getToken(),userAccountInfo));
+      setShowModal(false);
+    }
+  }
+
+
   const content = (
     <div className="fontf">
-      <p className="fs-12">
+      <p className="fs-12" onClick={showSetting}>
         <i className=" text-center fs-16 pop-img las la-cog"></i>Setting
       </p>
-      <p className="fs-12">
+      <p className="fs-12" onClick={updatePassword}>
         <i className=" text-center fs-16 pop-img las la-user-lock"></i>Password
       </p>
       <p className="fs-12" onClick={doLogout}>
-        <i className=" text-center fs-16 pop-img las la-sign-out-alt"></i>Sign out
+        <i className=" text-center fs-16 pop-img las la-sign-out-alt"></i>Sign
+        out
       </p>
     </div>
   );
 
-  console.log(selectedItem, "sdfd");
+  //console.log(selectedItem, "sdfd");
 
   return (
     <header id="site-header" className="fixed-top">
@@ -141,7 +197,7 @@ const Header = (props) => {
                 <button
                   type="button"
                   className="btn search-btn"
-                  onClick={() => setValue(selectedItem,true)}
+                  onClick={() => setValue(selectedItem, true)}
                 >
                   <i className="fa fa-search" aria-hidden="true"></i>
                 </button>
@@ -150,7 +206,7 @@ const Header = (props) => {
               <div className="selected-area">
                 <div className="selected" onClick={toggleDropdown}>
                   {
-                    console.log( window.location.href,' window.location.href',window.location.href.includes("executive"))
+                    //  console.log( window.location.href,' window.location.href',window.location.href.includes("executive"))
                   }
                   {selectedItem}
                   <span className="fa"></span>
@@ -322,7 +378,10 @@ const Header = (props) => {
               {getToken() ? (
                 <>
                   <li className="nav-item">
-                    <NavLink to="/search-lead" className="hvr-underline-from-center">
+                    <NavLink
+                      to="/search-lead"
+                      className="hvr-underline-from-center"
+                    >
                       Leads
                     </NavLink>
                   </li>
@@ -339,14 +398,6 @@ const Header = (props) => {
                       <div></div>
                     </Popover>
                   </li>
-                  {/* <li className="nav-item">
-                  <div
-                    className="nav-item btn btn-login d-flex align-items-center"
-                    onClick={doLogout}
-                  >
-                    <i className="fas fa-desktop orng-clr-bg ml-1"></i>Logout
-                  </div>
-                </li> */}
                 </>
               ) : (
                 <>
@@ -387,17 +438,61 @@ const Header = (props) => {
           </div>
         </nav>
       </div>
-      <TrialModal
-        openModal={showModal}
-        closeModal={closeModal}
-        buttonText="OK"
-        modalBody={
-          <div id="small-dialog2">
-            <p style={{ color: "#0000FF" }}>Please select company/executive.</p>
+      <Modal
+        title="Settings"
+        open={showModal}
+        closable={true}
+        buttonText="Save"
+        onCancel={closeModal}
+        onOk={updateSetting}
+        width={"400px"}
+        >
+        <div className="pop-up errorformcontainer ">
+            <div className="form">
+              <div className="formcol1">
+                <label>First name</label>
+              </div>
+              <div className="formcol2">
+                <Input
+                  name="fname"
+                  status={searchValues?.fnameError}
+                  value={searchValues.fname}
+                  placeholder="First Name"
+                  onChange={onInputChange}
+                />
+              </div>
+            </div>
+            <div className="form">
+              <div className="formcol1">
+                <label>Last name</label>
+              </div>
+              <div className="formcol2">
+                <Input
+                  name="lname"
+                  status={searchValues?.lnameError}
+                  value={searchValues.lname}
+                  placeholder="Last Name"
+                  onChange={onInputChange}
+                />
+              </div>
+            </div>
+            <div className="form">
+              <div className="formcol1">
+                <label>Email</label>
+              </div>
+              <div className="formcol2">
+                <Input
+                  name="email"
+                  status={searchValues?.emailError}
+                  value={searchValues.email}
+                  placeholder="Email"
+                  onChange={onInputChange}
+                />
+              </div>
+            </div>
           </div>
-        }
-        modalWidth="400px"
-      />
+          </Modal>
+          
     </header>
   );
 };

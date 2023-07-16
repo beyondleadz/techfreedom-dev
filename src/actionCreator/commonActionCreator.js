@@ -5,12 +5,15 @@ import {
   SUBSCRIPTIONACCOUNTINFO,
   SUBSCRIPTIONACCOUNTINFO_ERROR,
   EMPTY_ERROR_COMMON_OBJ,
+  UPDATEACCOUNTINFO,
+  UPDATEACCOUNTINFO_ERROR
 } from "../actionType/commonType";
 import {
   accountInfoApiUrl,
   subscriptionaccountInfoApiUrl,
 } from "../constant/Constant";
-import { getAuthMethod } from "../services/HttpServices";
+
+import { getAuthMethod,postAuthMethod } from "../services/HttpServices";
 import { ErrKey, errEnum } from "../config";
 
 export const dispatchStatus = (payload) => {
@@ -31,7 +34,6 @@ export const getAccountInfo = (token) => (dispatch) => {
       sessionStorage.setItem("userInfo", JSON.stringify(res.data));
     })
     .catch((err) => {
-      console.log(err, "sjkflskdjfkl");
       dispatch({
         type: ACCOUNTINFO_ERROR,
         payload:
@@ -42,8 +44,9 @@ export const getAccountInfo = (token) => (dispatch) => {
 };
 
 export const getSubscriptionInfo = (token,data) => (dispatch) => {
-  if(data?.account?.id){ //subscriberId TODO
-  return getAuthMethod(subscriptionaccountInfoApiUrl+data?.account?.id, token)
+  //console.log(data,'getSubscriptionInfo')
+  if(data?.subscriberId){ //subscriberId TODO previouse data - data?.account?.subscriberId
+  return getAuthMethod(subscriptionaccountInfoApiUrl+data?.subscriberId, token)
     .then((res) => {
       dispatch({
         type: SUBSCRIPTIONACCOUNTINFO,
@@ -67,3 +70,24 @@ export const emptyCommonErrorObj = () => ({
   type: EMPTY_ERROR_COMMON_OBJ,
   payload: {},
 });
+
+
+export const updateAccountInfo = (token,payload) => (dispatch) => {
+  return postAuthMethod(accountInfoApiUrl, payload)
+    .then((res) => {
+      dispatch({
+        type: UPDATEACCOUNTINFO,
+        payload: res.data,
+      });
+      dispatch(getAccountInfo(token));
+    })
+    .catch((err) => {
+      dispatch({
+        type: UPDATEACCOUNTINFO_ERROR,
+        payload:
+          { [errEnum.UPDATEACCOUNTINFO_ERROR]: err.response.data[ErrKey] } ||
+          "Error Occured",
+      });
+    });
+};
+

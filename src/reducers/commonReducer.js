@@ -5,6 +5,8 @@ import {
   SUBSCRIPTIONACCOUNTINFO,
   SUBSCRIPTIONACCOUNTINFO_ERROR,
   EMPTY_ERROR_COMMON_OBJ,
+  UPDATEACCOUNTINFO,
+  UPDATEACCOUNTINFO_ERROR
 } from "../actionType/commonType";
 
 const initialState = {
@@ -12,6 +14,7 @@ const initialState = {
   accountInfo: {},
   errObj: {},
   subscriptionaccountInfo: {},
+  updateaccountInfo:{}
 };
 
 const CommonReducer = (state = initialState, action) => {
@@ -21,12 +24,16 @@ const CommonReducer = (state = initialState, action) => {
       return { ...state, loading: payload };
     case ACCOUNTINFO:
       return { ...state, accountInfo: payload };
+    case UPDATEACCOUNTINFO:
+      return { ...state, updateaccountInfo: payload };  
     case ACCOUNTINFO_ERROR:
       return { ...state, errObj: { ...state.errObj, ...payload } };
     case SUBSCRIPTIONACCOUNTINFO:
       return { ...state, subscriptionaccountInfo: payload };
     case SUBSCRIPTIONACCOUNTINFO_ERROR:
       return { ...state, errObj: { ...state.errObj, ...payload } };
+    case UPDATEACCOUNTINFO_ERROR:  
+    return { ...state, errObj: { ...state.errObj, ...payload } };
     case EMPTY_ERROR_COMMON_OBJ:
       return { ...state, errObj: payload };
     default:
