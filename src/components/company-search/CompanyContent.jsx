@@ -145,7 +145,7 @@ const CompanyContent = () => {
 
   useEffect(() => {
     let data = [];
-    console.log(companyFilterList, "companyFilterList");
+    //console.log(companyFilterList, "companyFilterList");
     if (!companyFilterList?.companyList) return;
     companyFilterList?.companyList?.forEach((record) => {
       data = [

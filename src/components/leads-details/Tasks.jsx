@@ -89,7 +89,7 @@ const Tasks = () => {
   };
 
   const onDateChange = (value, dateString) => {
-    //console.log("Selected Time: ", value, moment(value).format('YYYY-MM-DD HH:mm'));
+    //console.log("Selected Time: ", moment(value).format('YYYY-MM-DDTHH:mm:ss.sssZ'));
     //console.log("Formatted Selected Time: ", dateString);
     setForm({
       ...form,
@@ -104,8 +104,8 @@ const Tasks = () => {
 
   const saveRemarks = () => {
     let payload = {};
-    const newDate = new Date(form.interactionDate.value)
-    const formattedDate = moment(newDate).format('YYYY-MM-DD HH:mm')
+    const newDate = new Date(form.interactionDate.value);
+    const formattedDate = moment(newDate).format('YYYY-MM-DDTHH:mm:ss')+'Z'
     payload.remarks = form.remarks.value;
     payload.interactionDate = formattedDate;
     payload.isContactBackRequired = form.isContactBackRequired.value;
