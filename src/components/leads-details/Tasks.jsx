@@ -14,8 +14,10 @@ import {
 import { emptyErrorObj, resetSubmitLeadRemarkss, submitLeadRemarks } from "../../actionCreator/leadDetailsActionCreator";
 import TrialModal from "../../common/TrialModal";
 import { SAVE_CLIENT_REMARKS_ERROR } from "../../actionType/leadDetailsType";
+import { Navigate, redirect, useNavigate } from "react-router";
 
 const Tasks = () => {
+  const navigate=useNavigate();
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
   const [isApiFailed, setIsApiFailed] = useState({
@@ -73,6 +75,18 @@ const Tasks = () => {
         : { value: "", disabled: !ele.target.checked },
     });
   };
+
+  useEffect(() => {
+    if(!Object.keys(leadRemarksDetails).length) return
+   // console.log(leadRemarksDetails,'leadRemarksDetails',moment(leadRemarksDetails?.interactionDate))
+    setForm({
+      interactionDate: { disabled: true, value: moment(leadRemarksDetails?.interactionDate), status: null },
+      isContactBackRequired: { disabled: true, value: (leadRemarksDetails)?leadRemarksDetails.isContactBackRequired:false, status: null },
+      isContacted: { disabled: true, value: (leadRemarksDetails)?leadRemarksDetails?.isContacted:false, status: null },
+      isToDisplay: { disabled: true, value: (leadRemarksDetails)?leadRemarksDetails.isToDisplay:false, status: null },
+      remarks: { disabled: true, value: leadRemarksDetails?.remarks, status: null },
+    })
+  },[leadRemarksDetails])
 
   const onInputChange = (ele) => {
     setForm({
@@ -147,9 +161,9 @@ const Tasks = () => {
   const closeModal = () => {
     setShowModal(false);
     dispatch(resetSubmitLeadRemarkss());
-    dispatch(emptyErrorObj());
+    dispatch(emptyErrorObj());    
+    //navigate('/lead-details/'+leadDetail?.id)
   };
-
 
   return (
     <>
@@ -230,7 +244,7 @@ const Tasks = () => {
               <Checkbox
                 name="isContactRequired"
                 onChange={(ele) => onCheckChange(ele, "isContactBackRequired")}
-                checked={isContactBackRequired}
+                checked={form?.isContactBackRequired?.value}
               >
                 Is Contact Back Required
               </Checkbox>
@@ -245,7 +259,7 @@ const Tasks = () => {
               <Checkbox
                 name="isContacted"
                 onChange={(ele) => onCheckChange(ele, "isContacted")}
-                checked={isContacted}
+                checked={form?.isContacted?.value}
               >
                 Is Contacted
               </Checkbox>
@@ -260,7 +274,7 @@ const Tasks = () => {
               <Checkbox
                 name="isToDisplay"
                 onChange={(ele) => onCheckChange(ele, "isToDisplay")}
-                checked={isToDisplay}
+                checked={form?.isToDisplay?.value}
               >
                 Is To Display
               </Checkbox>
@@ -384,7 +398,8 @@ const Tasks = () => {
       <TrialModal
         openModal={showModal}
         closeModal={closeModal}
-        redirect={false}
+        redirect={true}
+        redirectToSignup={closeModal}
         buttonText="OK"
         modalBody={
           <div id="small-dialog2">

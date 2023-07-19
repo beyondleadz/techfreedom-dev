@@ -62,7 +62,7 @@ const Notes = () => {
 
   useEffect(() => {
     if(!Object.keys(leadNoteDetails).length) return
-    console.log(leadNoteDetails,'leadNoteDetails')
+    //console.log(leadNoteDetails,'leadNoteDetails')
     setForm({
       note: { disabled: true, value: leadNoteDetails?.note, status: null },
       noteFor: { disabled: true, value: leadNoteDetails?.notefor, status: null },
@@ -151,7 +151,7 @@ const Notes = () => {
               },
               {
                 value: "followup",
-                label: "Follow up ",
+                label: "Follow up",
               },
               {
                 value: "chat",

@@ -18,6 +18,23 @@ const ActivityTime = ({setActiveTab}) => {
   const leadNotes = useSelector((state) => state.LeadDetailsReducer.leadNotes);
   const leadRemarks = useSelector((state) => state.LeadDetailsReducer.leadRemarks);
 
+  const editTimeline=(id,isLead)=>{
+    console.log(id,isLead,'edit timeline')
+      if(isLead){
+        //editLeadNote(id);
+        setActiveTab(3,id,'editnote');
+      }else{
+        setActiveTab(4,id,'editremarks');
+      }
+  }
+  const deleteTimeline=(id,isLead)=>{
+    if(isLead){
+      //deleteLeadNote(id);
+      setActiveTab(1,id,'deletenote');
+    }else{
+     // setActiveTab(1,id,'deleteremarks');
+    }
+  }
   const editLeadNote=(id)=>{
     setActiveTab(3,id,'edit');
   }
@@ -32,11 +49,12 @@ const ActivityTime = ({setActiveTab}) => {
 //     const groupLeadRemarksDataByStatus =  _.groupBy(leadRemarks, function(b) { return b.interactionDate});
 // console.log(groupLeadNotesDataByStatus,'groupLeadNotesDataByStatus');
 // console.log(groupLeadRemarksDataByStatus,'groupLeadRemarksDataByStatus');
+    const colorActivityObj={"call":["act","phone","green"],"Email":["email","envelope","green"],"meeting":["meet","handshake","red"],"followup":["email","envelope","gray"],"Chat":["app","mobile","gray"],"Whatsapp":["whatsapp","whatsapp","red"],"Display":["act","phone","green"],"Contact":["email","envelope","green"],"Contact Back":["email","envelope","green"],"Custom":["email","envelope","green"],}
     const finalData=([...leadNotes,...leadRemarks]);
     if (finalData.length) {
       let items = [];let overdueItems = [];
       let today = new Date();
-      let formattedTodayData = moment(today).format('YYYY-MM-DD')
+      let formattedTodayData = moment(today).utc().format('YYYY-MM-DD')
       finalData.forEach((item,index) => {        
         let isLeadNote=item?.note?1:0;
         let title="";let description="";let activityTime="";
@@ -47,7 +65,7 @@ const ActivityTime = ({setActiveTab}) => {
         }else{
           //isContacted isToDisplay
           if(item.isContacted){
-            title="Contact Back";
+            title="Contact";
           }else if(item.isToDisplay){
             title="Display";
           }else{
@@ -56,27 +74,24 @@ const ActivityTime = ({setActiveTab}) => {
           description=item.remarks;
           activityTime=item.interactionDate;
         }
-        console.log(isLeadNote,item);
+        //console.log(isLeadNote,item);
         let savedformattedDate="";
         if(activityTime){
         let savedDate = new Date(activityTime)
-        savedformattedDate = moment(savedDate).format('YYYY-MM-DD');
+        savedformattedDate = moment(savedDate).utc().format('YYYY-MM-DD');
         }
         let obj = {};
-        obj.color = "green";
-        if(formattedTodayData===savedformattedDate){
+       // console.log(colorActivityObj[title],'colorActivityObj?.title',title)
+        //console.log(formattedTodayData,"===",savedformattedDate,activityTime)
+        obj.color =colorActivityObj[title]?.[2];  
         obj.dot =
-          <div><a href="#" className="btn btn-phone btn-sm btn-circle"> <i className="las la-phone fs-14"></i></a></div>;
-        obj.children =
-          <div className="mt-3"><div className="col-md-12"><div id="steps" className=" row mt-3"> <div className="col-md-8 text-align-left fs-14 font-weight-normal ">{title}
-          <h6>{description}</h6></div>    <div className="col-sm-4 text-align-right"><a href="#" className="btn fs-20 " onClick={()=>editLeadNote(item.id)}> <i className="las la-edit "></i></a> <a href="#" className="btn fs-20 " onClick={()=>deleteLeadNote(item.id)}> <i className="las la-trash"></i></a><div className="fs-12 mt-1">{activityTime}</div></div></div></div></div>;
+        <div><a href="#" className={`btn btn-${colorActivityObj[title]?.[0]} btn-sm btn-circle`} > <i className={`las la-${colorActivityObj[title]?.[1]} fs-14`}></i></a></div>;
+      obj.children =
+        <div className="mt-3"><div className="col-md-12"><div id="steps" className=" row mt-3"> <div className="col-md-8 text-align-left fs-14 font-weight-normal " style={{"textTransform": "capitalize"}}>{title}
+        <h6>{description}</h6></div>    <div className="col-sm-4 text-align-right"><a href="#" className="btn fs-20 " onClick={()=>editTimeline(item.id,isLeadNote)}> <i className="las la-edit "></i></a> <a href="#" className="btn fs-20 " onClick={()=>deleteTimeline(item.id,isLeadNote)}> <i className="las la-trash"></i></a><div className="fs-12 mt-1">{savedformattedDate}</div></div></div></div></div>;        
+        if(formattedTodayData===savedformattedDate){         
         items.push(obj);
         }else{
-        obj.dot =
-          <div><a href="#" className="btn btn-phone btn-sm btn-circle"> <i className="las la-phone fs-14"></i></a></div>;
-        obj.children =
-          <div className="mt-3"><div className="col-md-12"><div id="steps" className=" row mt-3"> <div className="col-md-8 text-align-left fs-14 font-weight-normal ">{title}
-          <h6>{description}</h6></div>    <div className="col-sm-4 text-align-right"><a href="#" className="btn fs-20 " onClick={()=>editLeadNote(item.id)}> <i className="las la-edit "></i></a> <a href="#" className="btn fs-20 " onClick={()=>deleteLeadNote(item.id)}> <i className="las la-trash"></i></a><div className="fs-12 mt-1">{activityTime}</div></div></div></div></div>;
         overdueItems.push(obj);
         }
       });

@@ -213,7 +213,7 @@ export const submitLeadRemarks = (payload) => (dispatch) => {
         type: SAVE_CLIENT_REMARKS,
         payload: res.data,
       });
-      dispatch(getAllLeadNotes(payload?.lead?.id));
+      dispatch(getAllLeadRemarks(payload?.lead?.id));
     })
     .catch((err) => {
       dispatch({

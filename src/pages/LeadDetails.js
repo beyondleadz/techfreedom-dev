@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
+import {Link} from 'react-router-dom'
 
 import Layout from "../layout/Layout";
 import { Steps,Modal, Button } from "antd";
@@ -66,17 +67,23 @@ const LeadDetails = () => {
   ];
 
   const getActiveTab = (tab, id, type) => {
-    console.log("typetype", type);
-    if (type == "delete") { 
+    //console.log("typetype", type);deleteremarks
+    if (type == "deletenote") { 
       showConfirm(id,leadDetail?.id);      
+    }else if (type == "deleteremarks") { 
+      //showConfirm(id,leadDetail?.id);      
     }else{
       setActiveTab1(`${tab}`);
+      if (type == "editnote") { 
       dispatch(getLeadNoteDetails(id));
+      }else if (type == "editremarks") { 
+        dispatch(getLeadRemarksDetails(id));
+        }
     }
   };
 
   const onChange = (key) => {
-    console.log(key);
+    //console.log(key);
     setActiveTab1(`${key}`);
   };
 
@@ -120,15 +127,13 @@ const LeadDetails = () => {
                   separator=""
                   items={[
                     {
-                      href: "",
-                      title: "Home",
+                      title: <Link to="/">Home</Link>,
                     },
                     {
                       type: "separator",
                     },
                     {
-                      href: "",
-                      title: "Leads",
+                      title: <Link to="/search-lead">Search Lead</Link>,
                     },
                     {
                       type: "separator",
