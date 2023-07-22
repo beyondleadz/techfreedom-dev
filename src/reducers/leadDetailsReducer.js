@@ -18,6 +18,8 @@ import {
   SAVE_CLIENT_REMARKS_ERROR,
   LEAD_REMARK_DETAIL,
   LEAD_REMARK_DETAIL_ERROR,
+  DELETE_LEAD_REMARKS,
+  DELETE_LEAD_REMARKS_ERROR
 } from "../actionType/leadDetailsType";
 
 const initialState = {
@@ -29,6 +31,7 @@ const initialState = {
   leadNoteDetails: {},
   errObj: {},
   delNote: {},
+  delRemarks: {},
   saveleadRemarks: {},
   leadRemarksDetails: {},
 };
@@ -72,6 +75,10 @@ const LeadDetailsReducer = (state = initialState, action) => {
       return { ...state, saveleadRemarks: payload };
     case SAVE_CLIENT_REMARKS_ERROR:
       return { ...state, errObj: { ...state.errObj, ...payload } };
+      case DELETE_LEAD_REMARKS:
+        return { ...state, delRemarks: payload };
+      case DELETE_LEAD_REMARKS_ERROR:
+        return { ...state, errObj: { ...state.errObj, ...payload } };  
     case LEAD_EMPTY_ERROR_OBJ:
       return { ...state, errObj: payload };
 

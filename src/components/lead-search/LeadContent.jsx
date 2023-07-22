@@ -17,7 +17,7 @@ import {
   saveSearchAction,
   saveSearchList,
   downloadExecutiveList,
-  createGroupExecutiveTag, //api/client-leads
+  createGroupLeadTag, //api/client-leads
 } from "../../actionCreator/leadListingActionCreater";
 import Loader from "../loader";
 import { getToken, getUserInfo } from "../../utils/utils";
@@ -473,7 +473,7 @@ const LeadContent = () => {
         ];
       }
       //console.log(payload,'payloadpayload');
-      dispatch(createGroupExecutiveTag(payload));
+      dispatch(createGroupLeadTag(payload));
       setShowTagModal(false);
     }
   };
@@ -521,7 +521,7 @@ const LeadContent = () => {
       
       {showTagModal && getToken() ? (
         <Modal
-          title="Tag Executive"
+          title="Tag Lead"
           width={"400px"}
           closable={true}
           open={showTagModal}

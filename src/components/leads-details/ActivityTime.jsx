@@ -14,14 +14,13 @@ const ActivityTime = ({setActiveTab}) => {
 
   const [itemData, setItemData] = useState([]);
   const [itemOverviewDueData, setItemOverviewDueData] = useState([]);
+  const [activityData, setActivityData] = useState([]);
 
   const leadNotes = useSelector((state) => state.LeadDetailsReducer.leadNotes);
   const leadRemarks = useSelector((state) => state.LeadDetailsReducer.leadRemarks);
 
   const editTimeline=(id,isLead)=>{
-    console.log(id,isLead,'edit timeline')
       if(isLead){
-        //editLeadNote(id);
         setActiveTab(3,id,'editnote');
       }else{
         setActiveTab(4,id,'editremarks');
@@ -29,27 +28,32 @@ const ActivityTime = ({setActiveTab}) => {
   }
   const deleteTimeline=(id,isLead)=>{
     if(isLead){
-      //deleteLeadNote(id);
       setActiveTab(1,id,'deletenote');
     }else{
-     // setActiveTab(1,id,'deleteremarks');
+      setActiveTab(1,id,'deleteremarks');
     }
   }
-  const editLeadNote=(id)=>{
-    setActiveTab(3,id,'edit');
-  }
+  
   const switchToTaskTab=()=>{
     setActiveTab(4,'','Add Task');
   }
-  const deleteLeadNote=(id,leadId)=>{
-    setActiveTab(1,id,'delete');
-  }
+
+  const colorActivityObj={"call":["act","phone","green"],"Email":["email","envelope","green"],"meeting":["meet","handshake","red"],"followup":["email","envelope","gray"],"Chat":["app","mobile","gray"],"Whatsapp":["whatsapp","whatsapp","red"],"Display":["act","phone","green"],"Contact":["email","envelope","green"],"Contact Back":["email","envelope","green"],"Custom":["email","envelope","green"],}
+
+  
+  
   useEffect(() => {
 //     const groupLeadNotesDataByStatus =  _.groupBy(leadNotes, function(b) { return b.lastUpdated});
 //     const groupLeadRemarksDataByStatus =  _.groupBy(leadRemarks, function(b) { return b.interactionDate});
 // console.log(groupLeadNotesDataByStatus,'groupLeadNotesDataByStatus');
 // console.log(groupLeadRemarksDataByStatus,'groupLeadRemarksDataByStatus');
-    const colorActivityObj={"call":["act","phone","green"],"Email":["email","envelope","green"],"meeting":["meet","handshake","red"],"followup":["email","envelope","gray"],"Chat":["app","mobile","gray"],"Whatsapp":["whatsapp","whatsapp","red"],"Display":["act","phone","green"],"Contact":["email","envelope","green"],"Contact Back":["email","envelope","green"],"Custom":["email","envelope","green"],}
+const activityItems=[];
+    Object.entries(colorActivityObj).map((key,index)=>{
+     return activityItems.push({value:key,label:key});
+    });
+    
+setActivityData(activityItems);
+
     const finalData=([...leadNotes,...leadRemarks]);
     if (finalData.length) {
       let items = [];let overdueItems = [];
@@ -102,7 +106,7 @@ const ActivityTime = ({setActiveTab}) => {
 
     return(
 <>
-
+{console.log(getActivitiesList,'colorActivityObj')}
 <div className="row mb-4 pb-4 pt-4">
     <div className="col-sm-2 mr-4 "><div className="form">
         {/* <div className="formcol1"></div> */}
@@ -116,25 +120,7 @@ const ActivityTime = ({setActiveTab}) => {
             filterOption={(input, option) =>
               (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
             }
-            options={[
-                {
-                    value: "all activities",
-                    label: "All Activities",
-                  },
-                  {
-                value: "call",
-                label: "Call",
-              },
-              {
-                value: "email",
-                label: "Email",
-              },
-              {
-                value: "meeting",
-                label: "Meeting",
-              },
-             
-            ]}
+            options={activityData}
           />
         </div>
         </div></div>

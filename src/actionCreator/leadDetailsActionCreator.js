@@ -17,7 +17,9 @@ import {
   SAVE_CLIENT_REMARKS_ERROR,
   LEAD_EMPTY_ERROR_OBJ,
   DELETE_LEAD_NOTE,
-  DELETE_LEAD_NOTE_ERROR
+  DELETE_LEAD_NOTE_ERROR,
+  DELETE_LEAD_REMARKS,
+  DELETE_LEAD_REMARKS_ERROR
 } from "../actionType/leadDetailsType";
 import {
   deleteAuthMethod,
@@ -268,6 +270,29 @@ export const getLeadRemarksDetails = (id) => (dispatch) => {
       });
     });
 };
+
+export const deleteLeadRemarks = (id,leadId) => (dispatch) => {
+  return deleteAuthMethod(`${getClientRemarksApiUrl}/${id}`)
+    .then((res) => {
+      dispatch({
+        type: DELETE_LEAD_REMARKS,
+        payload: res.data,
+      });
+      dispatch(getAllLeadRemarks(leadId));
+    })
+    .catch((err) => {
+      dispatch({
+        type: DELETE_LEAD_REMARKS_ERROR,
+        payload:
+          {
+            [errEnum.DELETE_LEAD_REMARKS_ERROR]:
+              err.response.data[ErrKey],
+          } || "Error Occured",
+      });     
+    });
+    
+};
+
 
 export const emptyErrorObj = () => ({
   type: LEAD_EMPTY_ERROR_OBJ,

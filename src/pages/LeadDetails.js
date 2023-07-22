@@ -26,7 +26,8 @@ import {
   getAllLeadRemarks,
   getLeadNoteDetails,
   deleteLeadNote,
-  getLeadRemarksDetails
+  getLeadRemarksDetails,
+  deleteLeadRemarks
 } from "../actionCreator/leadDetailsActionCreator";
 
 const LeadDetails = () => {
@@ -69,9 +70,9 @@ const LeadDetails = () => {
   const getActiveTab = (tab, id, type) => {
     //console.log("typetype", type);deleteremarks
     if (type == "deletenote") { 
-      showConfirm(id,leadDetail?.id);      
+      showConfirm(id,leadDetail?.id,'note');      
     }else if (type == "deleteremarks") { 
-      //showConfirm(id,leadDetail?.id);      
+      showConfirm(id,leadDetail?.id,'task');      
     }else{
       setActiveTab1(`${tab}`);
       if (type == "editnote") { 
@@ -100,14 +101,19 @@ const LeadDetails = () => {
   };
 
 
-  function showConfirm(id, leadId) {
+  function showConfirm(id, leadId,type) {
+    
     confirm({
-      title: 'Do you want to delete this note?',
+      title: 'Do you want to delete this '+type+'?',
       content: '',
       onOk() {
         return new Promise((resolve, reject) => {
           setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
-          dispatch(deleteLeadNote(id, leadId));
+          if(type==='note'){
+            dispatch(deleteLeadNote(id, leadId));
+          }else{
+            dispatch(deleteLeadRemarks(id, leadId));
+          }          
         }).catch(() => 
          console.log('Oops errors!')
       );

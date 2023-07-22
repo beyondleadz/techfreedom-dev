@@ -26,7 +26,7 @@ const LeadKanbanView = ({
         "active",
         ""
     ];    
-  console.log(executiveEmployeeList, "groupData");
+  //console.log(executiveEmployeeList, "groupData");
 
   return (
     <>
