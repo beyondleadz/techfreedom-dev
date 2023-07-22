@@ -3,6 +3,8 @@ import { useNavigate, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import _ from "lodash";
 import { Table, Input, Button, Modal } from "antd";
+import { Dropdown, Space, menuProps, MenuProps1 } from 'antd';
+import { DownOutlined } from '@ant-design/icons';
 import { PAGE_LENGTH } from "../../config";
 import defaultLogo from "../../assets/images/default_company_logo.jpg";
 import popupImg from "../../assets/images/free-user-login-prompt.jpg.jpeg";
@@ -21,6 +23,23 @@ import {
 } from "../../actionCreator/leadListingActionCreater";
 import Loader from "../loader";
 import { getToken,getUserInfo } from "../../utils/utils";
+
+
+
+const items: MenuProps ['items'] = [
+  {
+    key: '1',
+    label: 'Item 1',
+  },
+  {
+    key: '2',
+    label: 'Item 2',
+  },
+  {
+    key: '3',
+    label: 'Item 3',
+  },
+];
 
 const LeadContent = () => {
   const { Search, TextArea } = Input;
@@ -488,7 +507,36 @@ const LeadContent = () => {
                       {companyFilterList?.totalExecutiveCount}
                       <span className="m-1">results</span>
                     </h6>
-                    <span className="ml-4 fs-23"><i class="text-info las la-calendar"></i></span>
+                    <span className="ml-4 fs-23 mr-3"><i class=" las la-calendar"></i></span> <span className=" fs-23"><i className=" btn mr-3   kanbanlist"></i><i className=" btn text-info  kanbanview"></i></span>
+                    <span className="ml-3  mr-3"> <Dropdown
+    menu={{
+      items,
+      selectable: true,
+      defaultSelectedKeys: ['3'],
+    }}
+  >
+    <Button>
+      <Space>
+       Add Lead
+        <DownOutlined />
+      </Space>
+    </Button>
+  </Dropdown></span>
+  <span className="mr-4">   <Dropdown
+    menu={{
+      items,
+      selectable: true,
+      defaultSelectedKeys: ['2'],
+    }}
+  >
+    <Button>
+      <Space>
+        Action
+        <DownOutlined />
+      </Space>
+    </Button>
+  </Dropdown>
+  </span>
                     <div className="buttons-container textsearch">
                     <ul className="d-flex mt-1  m-mt">
 
@@ -530,21 +578,7 @@ const LeadContent = () => {
 
 
               </ul>
-                      <Search
-                        placeholder="Search By Designation"
-                        allowClear
-                        onSearch={onSearch}
-                        style={{ width: 200 }}
-                      />
-
-                      <Button
-                        className="d-none d-sm-inline-block ml-2 btn-outline-grey"
-                        onClick={onHandleSaveSearch}
-                        disabled={checkFilters()}
-                        title={checkFilters() ? "Filters are not selected" : ""}
-                      >
-                        <i className="fas fa-save pr-1"></i> SAVE SEARCH
-                      </Button>
+                      
                       <Button className="d-none d-sm-inline-block ml-2 btn-outline-grey">
                         <i className="fas fa-bolt pr-1"></i> CONNECT TO CRM
                       </Button>
