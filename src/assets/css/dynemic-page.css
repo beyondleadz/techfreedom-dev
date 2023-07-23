@@ -7167,6 +7167,8 @@ color: orange;
 .kanbanlist {
 	background: url(../images/unordered-list.svg) no-repeat 0px 0px; width:20px; height: 26px; background-size: 100%;
 }
+.kanspan{display: inline-block;
+  float: right;}
 .kanbanview {
 	background: url(../images/kanban.svg) no-repeat 0px 0px; width:18px; height: 24px; background-size: 100%;
 }
