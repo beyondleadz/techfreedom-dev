@@ -97,7 +97,6 @@ export const getEmployeeList = (id, department) => (dispatch) => {
       });
     })
     .catch((err) => {
-      console.log(err, "sjkflskdjfkl");
       dispatch({
         type: EMPLOYEE_LIST_ERROR,
         payload:
@@ -195,7 +194,7 @@ export const submitErrorForm = (payload) => (dispatch) => {
 };
 
 export const createCompanyTag = (payload) => (dispatch) => {
-  console.log(payload, "payloadpayload");
+  //console.log(payload, "payloadpayload");
   return postAuthMethod(sigleCompanyTag, payload)
     .then((res) => {
       dispatch({

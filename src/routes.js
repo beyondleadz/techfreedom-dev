@@ -75,6 +75,7 @@ const AppRoutes = (props) => {
                 <Route path='/faq' element={<Faq/>}/>
                 <Route path='/leads' element={<Leads/>}/>
                 <Route path='/lead-details/:id' element={<LeadDetails/>}/>
+                <Route path='/create-lead' element={<LeadDetails/>}/>
                 <Route path='/leadkanban' element={<LeadKanban/>}/>
                 {/* <Route path='/test' element={<Test/>}/> */}
                 <Route path='/demo' element={<Demo/>}/>

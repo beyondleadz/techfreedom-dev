@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { Modal, Checkbox, Input, Divider, Button, Select } from "antd";
 import { useSelector, useDispatch } from "react-redux";
+import {getUserInfo} from "../../utils/utils";
 
 import _ from "lodash";
 import {
@@ -20,7 +21,8 @@ const Info = () => {
     company: { disabled: false, value: leadDetail?.companyName, status: null },
     industry: { disabled: false, value: leadDetail?.industryText, status: null },
     title: { disabled: false, value: leadDetail?.title, status: null },
-    fullname: { disabled: false, value: (leadDetail?.fullname)?leadDetail.fullname:leadDetail.firstname+" "+leadDetail.lastname},
+    firstname: { disabled: false, value: (leadDetail?.firstname)?leadDetail.firstname:"", status: null },
+    lastname: { disabled: false, value: (leadDetail?.lastname)?leadDetail.lastname:"", status: null },
     email: { disabled: false, value: leadDetail?.emailId, status: null },
     source: { disabled: false, value: leadDetail?.leadSource, status: null },
     mobile:{ disabled: false, value: leadDetail?.mobile, status: null },
@@ -38,7 +40,9 @@ const Info = () => {
   const updateLead=()=>{
    // console.log(form,'formform');
     let payload=leadDetail;
-    payload.fullname=form.fullname.value;
+    payload.firstname=form.firstname.value;
+    payload.lastname=form.lastname.value;
+    payload.fullname=form.firstname.value+" "+form.lastname.value;
     payload.title=form.title.value;
     payload.emailId=form.email.value;
     payload.phoneNo=form.phone.value;
@@ -52,7 +56,24 @@ const Info = () => {
     payload.rate=form.rate.value;
     payload.status=form.status.value;
     //console.log(payload,'form on save');
-    dispatch(updateLeadDetails(payload));
+    let isUpdate=false;
+    if(payload?.id){  
+      isUpdate=true;
+    }else{
+      const { id, login } = getUserInfo();
+      payload.userId=id;
+      payload.client="";
+      payload.bio="";
+      payload.employeeId="";
+      payload.companyId="";
+      payload.industryId="";
+      payload.industryText="";
+      payload.empSizeId="";
+      payload.city="";
+      payload.state="";
+      payload.country="";
+    }    
+    dispatch(updateLeadDetails(payload,isUpdate));    
   }
 
   const onInputChange = (ele) => {
@@ -77,18 +98,28 @@ const Info = () => {
   return (
     <div className="errorformcontainer mt-3">
       <div className="form">
-        <div className="formcol1">Full Name</div>
+        <div className="formcol1">First Name</div>
         <div className="formcol2">
           <Input
-            name="fullname"
-            value={form?.fullname?.value}
-            placeholder="Full Name"
+            name="firstname"
+            value={form?.firstname?.value}
+            placeholder="First Name"
             onChange={onInputChange}
           />
         </div>
       </div>
       <div className="form">
-        {console.log(errorForm, "skljfsljfklsd")}
+        <div className="formcol1">Last Name</div>
+        <div className="formcol2">
+          <Input
+            name="lastname"
+            value={form?.lastname?.value}
+            placeholder="Last Name"
+            onChange={onInputChange}
+          />
+        </div>
+      </div>
+      <div className="form">
         <div className="formcol1">Designation</div>
         <div className="formcol2">
           <Input
@@ -245,13 +276,12 @@ const Info = () => {
       <div className="form">
         <div className="formcol1">Lead Source</div>
         <div className="formcol2">
-          <TextArea
+        <Input
             name="source"
             value={form?.source?.value}
-            rows={2}
-            maxLength={100}
+            placeholder="source"
             onChange={onInputChange}
-          />
+          />        
         </div>
       </div>
       <div className="form">

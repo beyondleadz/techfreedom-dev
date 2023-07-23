@@ -100,7 +100,7 @@ const SummaryContent = () => {
   }, [Object.keys(errObj).length]);
 
   useMemo(() => {
-    if (Object.keys(getUserInfo()).length) {
+    if (Object.keys(getUserInfo()).length && companyDetails?.id) {
       const { id } = getUserInfo();
       dispatch(resetCompanyTag());
       dispatch(getCompanyTag(companyDetails?.id, id));
@@ -131,7 +131,7 @@ const SummaryContent = () => {
 
   useMemo(() => {
     dispatch(resetPostRelavantCompany);
-    if (Object.keys(getUserInfo()).length) {
+    if (Object.keys(getUserInfo()).length && companyDetails?.id) {
       const { id } = getUserInfo();
       dispatch(getRelavantCompany(id, companyDetails?.id));
     }

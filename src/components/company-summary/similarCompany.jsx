@@ -72,7 +72,7 @@ const SimilarCompany = () => {
   );
 
   useEffect(() => {
-    console.log(getRelavantCompanyDetails,'getRelavantCompanyDetails')
+   // console.log(getRelavantCompanyDetails,'getRelavantCompanyDetails')
     const [data] = getRelavantCompanyDetails || [];
     if(data){
     setCheckCompanyStatus(data?.prescribedby==="True"?1:2);
@@ -81,11 +81,11 @@ const SimilarCompany = () => {
 
   useMemo(() => {
     dispatch(resetPostRelavantCompany);
-    if (Object.keys(getUserInfo()).length) {
+    if (Object.keys(getUserInfo()).length && companyDetails?.id) {
       const { id } = getUserInfo();
       dispatch(getRelavantCompany(id, companyDetails?.id));
     }
-  }, [userAccountInfo]);
+  }, [userAccountInfo,companyDetails]);
 
   useEffect(() => {
     setSimilarCount(
@@ -208,7 +208,7 @@ const SimilarCompany = () => {
   const checkRelavantCompany = (flag,thumbStatus) => { //checkCompanyStatus
     const isLoggedIn = checkLoginStatus();
     if (isLoggedIn) {
-      console.log(getRelavantCompanyDetails,'getRelavantCompanyDetails vfhgfhf');
+      //console.log(getRelavantCompanyDetails,'getRelavantCompanyDetails vfhgfhf');
       const [data] = getRelavantCompanyDetails || [];
       
       const { id } = getUserInfo();

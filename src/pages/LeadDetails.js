@@ -89,9 +89,11 @@ const LeadDetails = () => {
   };
 
   useMemo(() => {
+    if(id){
     dispatch(getLeadDetails(id));
     dispatch(getAllLeadNotes(id));
     dispatch(getAllLeadRemarks(id));
+    }
   }, []);
   useMemo(() => {
     //console.log(leadDetail, "leadDetail");

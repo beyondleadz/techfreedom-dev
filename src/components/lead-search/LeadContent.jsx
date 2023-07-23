@@ -240,7 +240,7 @@ const LeadContent = () => {
   const companySelectedFilterList = useSelector(
     (state) => state.leadListingReducer.selectedFilters
   );
-  const loading = useSelector((state) => state.CommonReducer.loading);
+  const loading =useSelector((state) => state.CommonReducer.loading);
   const paginationValue = useSelector(
     (state) => state.leadListingReducer.paginationValue
   );

@@ -31,7 +31,6 @@ const CompanySummary = () => {
   }, [id]);
 
   useMemo(() => {
-    console.log(companyDetails, "companyDetailscompanyDetails");
     if (Object.keys(companyDetails).length) {
       dispatch(
         getSimilarCompanyList(
@@ -49,7 +48,7 @@ const CompanySummary = () => {
   }, [companyDetails]);
 
   useEffect(() => {
-    Object.keys(companyDetails).length ? setLoading(false) : setLoading(true);
+    Object.keys(companyDetails).length ? setLoading(false) : setLoading(false);
   }, [Object.keys(companyDetails).length]);
 
   return (

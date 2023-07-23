@@ -38,7 +38,7 @@ const ActivityTime = ({setActiveTab}) => {
     setActiveTab(4,'','Add Task');
   }
 
-  const colorActivityObj={"call":["act","phone","green"],"Email":["email","envelope","green"],"meeting":["meet","handshake","red"],"followup":["email","envelope","gray"],"Chat":["app","mobile","gray"],"Whatsapp":["whatsapp","whatsapp","red"],"Display":["act","phone","green"],"Contact":["email","envelope","green"],"Contact Back":["email","envelope","green"],"Custom":["email","envelope","green"],}
+  const colorActivityObj={"call":["app","phone","green"],"Email":["email","envelope","green"],"meeting":["meet","handshake","red"],"followup":["email","envelope","gray"],"chat":["app","mobile","gray"],"Whatsapp":["whatsapp","whatsapp","red"],"Display":["act","phone","green"],"Contact":["email","envelope","green"],"Contact Back":["email","envelope","green"],"Custom":["email","envelope","green"],}
 
   
   
@@ -49,7 +49,8 @@ const ActivityTime = ({setActiveTab}) => {
 // console.log(groupLeadRemarksDataByStatus,'groupLeadRemarksDataByStatus');
 const activityItems=[];
     Object.entries(colorActivityObj).map((key,index)=>{
-     return activityItems.push({value:key,label:key});
+      //console.log(key[0],'keykey')
+     return activityItems.push({value:key[0],label:key[0]});
     });
     
 setActivityData(activityItems);
@@ -106,7 +107,6 @@ setActivityData(activityItems);
 
     return(
 <>
-{console.log(getActivitiesList,'colorActivityObj')}
 <div className="row mb-4 pb-4 pt-4">
     <div className="col-sm-2 mr-4 "><div className="form">
         {/* <div className="formcol1"></div> */}

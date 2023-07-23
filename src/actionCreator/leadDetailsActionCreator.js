@@ -59,8 +59,9 @@ export const getLeadDetails = (id) => (dispatch) => {
     });
 };
 
-export const updateLeadDetails = (payload) => (dispatch) => {
+export const updateLeadDetails = (payload,isUpdate) => (dispatch) => {
   //console.log(payload, "payloadpayload");
+  if(isUpdate){
   return putAuthMethod(getClientLeadsUrl,payload.id, payload)
     .then((res) => {
       dispatch({
@@ -79,7 +80,26 @@ export const updateLeadDetails = (payload) => (dispatch) => {
           } || "Error Occured",
       });     
     });
-    
+  }else{
+    return postAuthMethod(getClientLeadsUrl,payload)
+    .then((res) => {
+      dispatch({
+        type: UPDATE_LEAD_DETAILS,
+        payload: res.data,
+      });
+      dispatch(getLeadDetails(payload.id));
+    })
+    .catch((err) => {
+      dispatch({
+        type: UPDATE_LEAD_DETAILS_ERROR,
+        payload:
+          {
+            [errEnum.UPDATE_LEAD_DETAILS_ERROR]:
+              err.response.data[ErrKey],
+          } || "Error Occured",
+      });     
+    });
+  }
 };
 
 export const submitLeadNotes = (payload) => (dispatch) => {  
