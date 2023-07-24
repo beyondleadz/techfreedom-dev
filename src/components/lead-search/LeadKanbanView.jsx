@@ -7,9 +7,25 @@ import {
   Button,
   Modal,
   Select,
+  Dropdown,
+  menuProps,
+  Space
 } from "antd";
 import { PAGE_LENGTH } from "../../config";
 import Loader from "../loader";
+import { DownOutlined } from '@ant-design/icons';
+
+const items: MenuProps['items'] = [
+    {
+      key: '1',
+      label: 'Quick Create',
+    },
+    
+    {
+      key: '3',
+      label: 'Import',
+    },
+  ];
 
 const LeadKanbanView = ({
   loading,
@@ -31,27 +47,24 @@ const LeadKanbanView = ({
   return (
     <>
       {!loading ? (
-        <div id="kanban" className="container-fluid pt-3">
-          <div class="col-sm-6 col-kanban col-xl-3">
-            <Select
-              name="note"
-              value="Select Name"
-              showSearch
-              placeholder="Select Name"
-              optionFilterProp="children"
-              //onChange={onSelectChange}
-              options={[
-                {
-                  value: "Item 1",
-                  label: "Item 1",
-                },
-                {
-                  value: "Item 2",
-                  label: "Item 2",
-                },
-              ]}
-            />{" "}
-            <Select
+        <div id="kanban" className="container-fluid" style={{'width':'80%'}}>
+          <div className="card-header col-xl-12 col-lg-10 card  shadow col-kanban "> 
+<span class="ml-4 fs-23 mr-3"><i class=" las la-calendar"></i><i className=" btn  mr-3 ml-3 kanbanlist"></i><i className=" btn  kanbanview"></i></span>   <Dropdown
+    menu={{
+      items,
+      selectable: true,
+      defaultSelectedKeys: ['3'],
+    }}
+  >
+    <Button>
+      <Space>
+      <i class=" fs-14 font-weight-bold fa fa-plus"></i>Add Lead
+        <DownOutlined />
+      </Space>
+    </Button>
+  </Dropdown>
+  <span class="ml-4 fs-23 mr-3">
+  <Select
               name="note"
               value="Activity"
               showSearch
@@ -68,8 +81,9 @@ const LeadKanbanView = ({
                   label: "Item 2",
                 },
               ]}
-            />
-          </div>
+            /></span>
+   <span className="kanspan"><div class="buttons-container textsearch"><ul class="d-flex mt-1  m-mt"><li><a class=" mr-2" href="#" id="" role="button" data-toggle="" aria-haspopup="true" aria-expanded="false"><i class="right-icons las la-tags" aria-hidden="true"></i></a></li><li><a class=" mr-2" href="#" id="" role="button" data-toggle="" aria-haspopup="true" aria-expanded="false"><i class="right-icons la la-file-excel" aria-hidden="true"></i></a></li><li><a class=" mr-2" role="button" data-toggle="" aria-haspopup="true" aria-expanded="false"><i class="right-icons la la-file-pdf" aria-hidden="true"></i></a></li><li><a class=" mr-2" role="button" data-toggle="" aria-haspopup="true" aria-expanded="false"><i class="right-icons la la-print" aria-hidden="true"></i></a></li></ul><button type="button" class="ant-btn css-dev-only-do-not-override-1mqg3i0 ant-btn-default d-none d-sm-inline-block ml-2 btn-outline-grey"><i class="fas fa-bolt pr-1"></i><span> CONNECT TO CRM</span></button></div></span>
+    </div>
           <h3 class="font-weight-light text-white">Kanban Board</h3>
           <div className=" main-kanban">
             {/* {executiveEmployeeList &&
