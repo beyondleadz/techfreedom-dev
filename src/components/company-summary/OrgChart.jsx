@@ -2,9 +2,13 @@ import React, { useEffect, useState, useMemo } from "react";
 import { INode, ReactHiererchyChart } from "react-hierarchy-chart";
 import { useSelector, useDispatch } from "react-redux";
 import _ from "lodash";
+import { Link } from "react-router-dom";
 const OrgChart = () => {
   const employeeList = useSelector(
     (state) => state.companyDetailsReducer.employeeList
+  );
+  const companyDetails = useSelector(
+    (state) => state.companyDetailsReducer.companyDetails
   );
 
   // Sample employee data array
@@ -73,6 +77,7 @@ groupedEmployeesArray.forEach((data) => {
               let thirdchild=[];
               data.data.forEach((data)=>{
                 let obj={};
+                obj.id=data.id;
                 obj.name=data.firstname;
                 obj.cssClass='level4';
                 obj.position=data.title;
@@ -90,7 +95,7 @@ groupedEmployeesArray.forEach((data) => {
 
 let chartData1=[
   {
-    name: "Dassault Systems India Pvt Ltd",
+    name: companyDetails?.name,
     cssClass: "level1",
     position: "",
     childs: chartData
@@ -111,11 +116,12 @@ return (
                   return (
                     <div className="node-template">
                       {node.position?
+                      <>
                       <span className="position">{node.position} </span>
-                      :""
-                }
-                      <span>{node.name} </span>
-                      {/* <button onClick={() => { alert(node.name); }}>ok</button> */}
+                      <span><Link to={`/executive-details/${node?.id}`}>{node.name}</Link> </span>
+                      </>
+                      :<span>{node.name} </span>
+                      }
                     </div>
                   );
                 }

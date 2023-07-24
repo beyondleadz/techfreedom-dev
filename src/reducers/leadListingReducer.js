@@ -61,7 +61,7 @@ const initialState = {
     selectedEmployeecount: [],
     selectedLeadRating: [],
     selectedLeadStatus: [],
-    selectedLeadSource: [],
+    selectedLeadSource: "",
     searchKeyword: "",
     selectedSavedSearch: [],
     selectedCompanyTag: [],

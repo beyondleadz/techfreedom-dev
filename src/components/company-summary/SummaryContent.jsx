@@ -188,7 +188,7 @@ const SummaryContent = () => {
 
   const onChange = (key) => {
     setTabActiveKey(key);
-    if (key !== "2") {
+    if (key !== "2" && key !== "3") {
       setSelectedValue("Filter by Department");
       dispatch(getEmployeeList(id));
     }

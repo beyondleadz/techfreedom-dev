@@ -9,11 +9,28 @@ import {
 } from "../../actionCreator/leadDetailsActionCreator";
 
 const Info = () => {
+  
+  const [leadStatusList,setLeadStatusList]=useState([]);
   const leadDetail= useSelector(
     (state) => state.LeadDetailsReducer.leadDetails
   );
+  const leadStatusListing = useSelector(
+    (state) => state.leadListingReducer.leadStatusList
+  );
+  useEffect(()=>{
+    const statusItem=[];
+    leadStatusListing.map((item)=>{
+      statusItem.push({label:item.text,value:item.id});
+    });
+    setLeadStatusList(statusItem);
+  })
+ // console.log(leadStatusList,'leadStatusList')
+
+
+
+
   const formIntialValue = {
-    status: { disabled: true, value: leadDetail?.status==1?'Active':'Inactive', status: null },
+    status: { disabled: true, value: leadDetail?.status, status: null },
     rate: { disabled: true, value: leadDetail?.rate, status: null },
     phone: { disabled: false, value: leadDetail?.phoneNo, status: null },
     address: { disabled: false, value: leadDetail?.address, status: null },
@@ -228,17 +245,18 @@ const Info = () => {
             filterOption={(input, option) =>
               (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
             }
-            options={[
-              {
-                value: "1",
-                label: "Active",
-              },
-              {
-                value: "0",
-                label: "Inactive",
-              },
-              
-            ]}
+            options={leadStatusList
+            //   [
+            //   {
+            //     value: "1",
+            //     label: "Active",
+            //   },
+            //   {
+            //     value: "0",
+            //     label: "Inactive",
+            //   },              
+            // ]
+          }
           />
         </div>
       </div>

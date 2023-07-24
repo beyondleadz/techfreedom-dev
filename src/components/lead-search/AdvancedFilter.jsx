@@ -1048,7 +1048,7 @@ const AdvancedFilter = ({
                             value={item}
                             onChange={($event) => updateLeadStatus($event)}
                           >
-                            {item.name}
+                            {item.text}
                           </Checkbox>
                         </li>
                       )
@@ -1109,8 +1109,8 @@ const AdvancedFilter = ({
       ...companySelectedFilterList,
       selectedLeadStatus: newList,
     };
-    //dispatch(saveAdvancedSelectedFilters(payload));
-    //dispatch(getExecutiveEmployeeList(payload, companyPaginationValue));
+    dispatch(saveAdvancedSelectedFilters(payload));
+    dispatch(getExecutiveEmployeeList(payload, companyPaginationValue));
   };
 
   const onLeadStatusChange = (list) => {
@@ -1320,6 +1320,11 @@ const AdvancedFilter = ({
         ...companySelectedFilterList,
         selectedZipCode:inputValue,
       };
+    }else if(type==="leadSource"){
+      payload = {
+        ...companySelectedFilterList,
+        selectedLeadSource:inputValue,
+      };  
     }else{
 
     }  
@@ -1928,7 +1933,13 @@ const AdvancedFilter = ({
             {showLeadStatus()}
           </div>
           <div className="filterblk" id="leadSource">
-            {showLeadSource()}
+            {/* {showLeadSource()} */}
+            {showInputSearch(
+              visibleFilter,
+              "leadSource",
+              "Lead Source",
+              "la-industry"
+            )}
           </div>
           <div className="filterblk" id="county">
             {showCountriesList()}

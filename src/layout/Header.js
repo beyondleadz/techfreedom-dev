@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useRoutes, NavLink, useNavigate, useLocation } from "react-router-dom";
-import { Popover, Button, Input,Modal } from "antd";
+import { Popover, Button, Input, Modal } from "antd";
 // import { useRoutes, NavLink, redirect, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getToken,getUserInfo } from "../utils/utils";
+import { getToken, getUserInfo } from "../utils/utils";
 import Logo from "../assets/images/logo.svg";
 import MoreArrowImg from "../assets/images/arrow.png";
 import "../assets/css/dropdown1.css";
@@ -14,7 +14,7 @@ import { topSearch, selectItem } from "../actionCreator/headerActionCreater";
 import TrialModal from "../common/TrialModal";
 import {
   getAccountInfo,
-  updateAccountInfo
+  updateAccountInfo,
 } from "../actionCreator/commonActionCreator";
 
 const Header = (props) => {
@@ -87,13 +87,12 @@ const Header = (props) => {
   };
 
   const showSetting = () => {
-    const { id, email, firstName,lastName } = getUserInfo();
-    setSearchValues({fname:firstName,lname:lastName,email:email});
-   // console.log(Object.keys(userAccountInfo).length,'bjhghgf')
-    if(Object.keys(userAccountInfo).length){
-
-    }else{
-     dispatch(getAccountInfo(getToken()));  
+    const { id, email, firstName, lastName } = getUserInfo();
+    setSearchValues({ fname: firstName, lname: lastName, email: email });
+    // console.log(Object.keys(userAccountInfo).length,'bjhghgf')
+    if (Object.keys(userAccountInfo).length) {
+    } else {
+      dispatch(getAccountInfo(getToken()));
     }
     setShowModal(true);
   };
@@ -111,31 +110,30 @@ const Header = (props) => {
     setShowModal(false);
   };
 
-  const updateSetting =()=>{
+  const updateSetting = () => {
     if (!searchValues.fname) {
       setSearchValues({
         ...searchValues,
         fnameError: "error",
       });
-    }else if (!searchValues.lname) {
+    } else if (!searchValues.lname) {
       setSearchValues({
         ...searchValues,
         lnameError: "error",
       });
-    }else if (!searchValues.email) {
+    } else if (!searchValues.email) {
       setSearchValues({
         ...searchValues,
         emailError: "error",
       });
-    } else {  
-      userAccountInfo.firstName=searchValues.fname;
-      userAccountInfo.lastName=searchValues.lname;
-      userAccountInfo.email=searchValues.email;
-      dispatch(updateAccountInfo(getToken(),userAccountInfo));
+    } else {
+      userAccountInfo.firstName = searchValues.fname;
+      userAccountInfo.lastName = searchValues.lname;
+      userAccountInfo.email = searchValues.email;
+      dispatch(updateAccountInfo(getToken(), userAccountInfo));
       setShowModal(false);
     }
-  }
-
+  };
 
   const content = (
     <div className="fontf">
@@ -233,129 +231,135 @@ const Header = (props) => {
                 </ul>
               </div>
               {/* </div> */}
+              {!getToken() ? (
+                <>
+                  <div className="navbar-drop">
+                    <div className="dropdown-menu1">
+                      <button className="dropbtn">
+                        More
+                        <i className="fa fa-caret-down ml-1"></i>
+                      </button>
+                      <div className="dropdown-menu-content">
+                        <div className="row">
+                          <div className="column-left">
+                            <h2>Capabilities</h2>
+                            {/* <i className="icondrop leads"></i>                       */}
+                            <i className="icondrop las la-user-friends"></i>
+                            <a href="#">
+                              <h3> Leads </h3>
+                              <span className="menu-sub">
+                                Profile your ideal customers and build your
+                                leads
+                              </span>
+                            </a>
 
-              <div className="navbar-drop">
-                <div className="dropdown-menu1">
-                  <button className="dropbtn">
-                    More
-                    <i className="fa fa-caret-down ml-1"></i>
-                  </button>
-                  <div className="dropdown-menu-content">
-                    <div className="row">
-                      <div className="column-left">
-                        <h2>Capabilities</h2>
-                        {/* <i className="icondrop leads"></i>                       */}
-                        <i className="icondrop las la-user-friends"></i>
-                        <a href="#">
-                          <h3> Leads </h3>
-                          <span className="menu-sub">
-                            Profile your ideal customers and build your leads
-                          </span>
-                        </a>
+                            {/* <i className="icondrop list-building-icon"></i> */}
+                            <i className="icondrop text-success la la-user-plus"></i>
+                            <a href="#">
+                              <h3> List Building </h3>
+                              <span className="menu-sub">
+                                Create a list of potential customers{" "}
+                              </span>
+                            </a>
 
-                        {/* <i className="icondrop list-building-icon"></i> */}
-                        <i className="icondrop text-success la la-user-plus"></i>
-                        <a href="#">
-                          <h3> List Building </h3>
-                          <span className="menu-sub">
-                            Create a list of potential customers{" "}
-                          </span>
-                        </a>
+                            {/* <i className="icondrop enrichment"></i> */}
+                            <i className="icondrop la la-cloud-upload-alt"></i>
+                            <a href="#">
+                              <h3> Data Enrichment </h3>
+                              <span className="menu-sub">
+                                Match and append data{" "}
+                              </span>
+                            </a>
+                          </div>
+                          <div className="column1">
+                            {/* <i className="icondrop extension"></i> */}
+                            <i className="icondrop las la-link"></i>
+                            <a href="#">
+                              <h3> Extension </h3>
+                              <span className="menu-sub">
+                                Build data through Linkedin and Web real time
+                              </span>
+                            </a>
 
-                        {/* <i className="icondrop enrichment"></i> */}
-                        <i className="icondrop la la-cloud-upload-alt"></i>
-                        <a href="#">
-                          <h3> Data Enrichment </h3>
-                          <span className="menu-sub">
-                            Match and append data{" "}
-                          </span>
-                        </a>
-                      </div>
-                      <div className="column1">
-                        {/* <i className="icondrop extension"></i> */}
-                        <i className="icondrop las la-link"></i>
-                        <a href="#">
-                          <h3> Extension </h3>
-                          <span className="menu-sub">
-                            Build data through Linkedin and Web real time
-                          </span>
-                        </a>
+                            {/* <i className="icondrop integrations"></i> */}
+                            <i className="icondrop la la-plug"></i>
+                            <a href="#">
+                              <h3> Intigrations </h3>
+                              <span className="menu-sub">
+                                Integrate with your existing crm or app{" "}
+                              </span>
+                            </a>
+                          </div>
 
-                        {/* <i className="icondrop integrations"></i> */}
-                        <i className="icondrop la la-plug"></i>
-                        <a href="#">
-                          <h3> Intigrations </h3>
-                          <span className="menu-sub">
-                            Integrate with your existing crm or app{" "}
-                          </span>
-                        </a>
-                      </div>
+                          <div className="column">
+                            <h2>Functions</h2>
 
-                      <div className="column">
-                        <h2>Functions</h2>
+                            {/* <i className="icondrop sales"></i> */}
+                            <i className="icondrop la la-handshake"></i>
+                            <a href="#">
+                              <h3> Sales </h3>
+                              <span className="menu-sub">
+                                Find more leads and build your pipeline{" "}
+                              </span>
+                            </a>
 
-                        {/* <i className="icondrop sales"></i> */}
-                        <i className="icondrop la la-handshake"></i>
-                        <a href="#">
-                          <h3> Sales </h3>
-                          <span className="menu-sub">
-                            Find more leads and build your pipeline{" "}
-                          </span>
-                        </a>
+                            {/* <i className="icondrop marketing"></i> */}
+                            <i className="icondrop la la-briefcase"></i>
+                            <a href="#">
+                              <h3> Marketing </h3>
+                              <span className="menu-sub">
+                                Profile your targeted audience{" "}
+                              </span>
+                            </a>
 
-                        {/* <i className="icondrop marketing"></i> */}
-                        <i className="icondrop la la-briefcase"></i>
-                        <a href="#">
-                          <h3> Marketing </h3>
-                          <span className="menu-sub">
-                            Profile your targeted audience{" "}
-                          </span>
-                        </a>
+                            {/* <i className="icondrop recruiters"></i> */}
+                            <i className="icondrop la la-user-tie"></i>
+                            <a href="#">
+                              <h3> HR & Recruiting </h3>
+                              <span className="menu-sub">
+                                Reach out to top hiring talent and companies{" "}
+                              </span>
+                            </a>
+                          </div>
 
-                        {/* <i className="icondrop recruiters"></i> */}
-                        <i className="icondrop la la-user-tie"></i>
-                        <a href="#">
-                          <h3> HR & Recruiting </h3>
-                          <span className="menu-sub">
-                            Reach out to top hiring talent and companies{" "}
-                          </span>
-                        </a>
-                      </div>
+                          <div className="column">
+                            <h2>Industries</h2>
+                            {/* <i className="icondrop hospitality-travel"></i> */}
+                            <i className="icondrop las la-hotel"></i>
+                            <a href="#">
+                              <h3> Hospitality & Travel </h3>
+                              <span className="menu-sub">
+                                Streamline your Marketing efforts{" "}
+                              </span>
+                            </a>
 
-                      <div className="column">
-                        <h2>Industries</h2>
-                        {/* <i className="icondrop hospitality-travel"></i> */}
-                        <i className="icondrop las la-hotel"></i>
-                        <a href="#">
-                          <h3> Hospitality & Travel </h3>
-                          <span className="menu-sub">
-                            Streamline your Marketing efforts{" "}
-                          </span>
-                        </a>
+                            {/* <i className="icondrop technology"></i> */}
+                            <i className="icondrop la la-microchip"></i>
+                            <a href="#">
+                              <h3> Technology </h3>
+                              <span className="menu-sub">
+                                Automate and Optimize lead generation{" "}
+                              </span>
+                            </a>
 
-                        {/* <i className="icondrop technology"></i> */}
-                        <i className="icondrop la la-microchip"></i>
-                        <a href="#">
-                          <h3> Technology </h3>
-                          <span className="menu-sub">
-                            Automate and Optimize lead generation{" "}
-                          </span>
-                        </a>
-
-                        {/* <i className="icondrop finance"></i> */}
-                        <i className="icondrop la la-money-bill-wave"></i>
-                        <a href="#">
-                          <h3> Finance </h3>
-                          <span className="menu-sub">
-                            Gain insights into potential clients{" "}
-                          </span>
-                        </a>
-                        <span className="menu-sub">…more industries </span>
+                            {/* <i className="icondrop finance"></i> */}
+                            <i className="icondrop la la-money-bill-wave"></i>
+                            <a href="#">
+                              <h3> Finance </h3>
+                              <span className="menu-sub">
+                                Gain insights into potential clients{" "}
+                              </span>
+                            </a>
+                            <span className="menu-sub">…more industries </span>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
+                </>
+              ) : (
+                ""
+              )}
             </div>
             <ul className="navbar-nav ml-lg-auto">
               <li className="nav-item ">
@@ -446,53 +450,52 @@ const Header = (props) => {
         onCancel={closeModal}
         onOk={updateSetting}
         width={"400px"}
-        >
+      >
         <div className="pop-up errorformcontainer ">
-            <div className="form">
-              <div className="formcol1">
-                <label>First name</label>
-              </div>
-              <div className="formcol2">
-                <Input
-                  name="fname"
-                  status={searchValues?.fnameError}
-                  value={searchValues.fname}
-                  placeholder="First Name"
-                  onChange={onInputChange}
-                />
-              </div>
+          <div className="form">
+            <div className="formcol1">
+              <label>First name</label>
             </div>
-            <div className="form">
-              <div className="formcol1">
-                <label>Last name</label>
-              </div>
-              <div className="formcol2">
-                <Input
-                  name="lname"
-                  status={searchValues?.lnameError}
-                  value={searchValues.lname}
-                  placeholder="Last Name"
-                  onChange={onInputChange}
-                />
-              </div>
-            </div>
-            <div className="form">
-              <div className="formcol1">
-                <label>Email</label>
-              </div>
-              <div className="formcol2">
-                <Input
-                  name="email"
-                  status={searchValues?.emailError}
-                  value={searchValues.email}
-                  placeholder="Email"
-                  onChange={onInputChange}
-                />
-              </div>
+            <div className="formcol2">
+              <Input
+                name="fname"
+                status={searchValues?.fnameError}
+                value={searchValues.fname}
+                placeholder="First Name"
+                onChange={onInputChange}
+              />
             </div>
           </div>
-          </Modal>
-          
+          <div className="form">
+            <div className="formcol1">
+              <label>Last name</label>
+            </div>
+            <div className="formcol2">
+              <Input
+                name="lname"
+                status={searchValues?.lnameError}
+                value={searchValues.lname}
+                placeholder="Last Name"
+                onChange={onInputChange}
+              />
+            </div>
+          </div>
+          <div className="form">
+            <div className="formcol1">
+              <label>Email</label>
+            </div>
+            <div className="formcol2">
+              <Input
+                name="email"
+                status={searchValues?.emailError}
+                value={searchValues.email}
+                placeholder="Email"
+                onChange={onInputChange}
+              />
+            </div>
+          </div>
+        </div>
+      </Modal>
     </header>
   );
 };

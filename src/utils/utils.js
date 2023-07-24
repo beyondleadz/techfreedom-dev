@@ -431,6 +431,9 @@ selectedLastName,
 selectedCompanyName,
 selectedTitle,
 selectedZipCode,
+selectedLeadSource,
+selectedLeadStatus,
+selectedLeadRating
   } = payload || {};
 
   let url = companyListingApiUrl;
@@ -443,6 +446,8 @@ selectedZipCode,
   let revenueId;
   let companyTagId;
   let company;
+  let leadStatus;
+  let leadRating;
   if (selectedPageLayout!==2 && paginationValues) {
     withPagination = `&page=${paginationValues?.start}&size=${paginationValues?.end}`;
     url = `${url}${withPagination}`;
@@ -522,6 +527,26 @@ selectedZipCode,
     url = `${url}${companyTagId}`;
   }
 
+  if (selectedLeadStatus?.length) {
+    let ids = "";
+    for (let i = 0; i < selectedLeadStatus.length - 1; i++) {
+      ids += `${selectedLeadStatus[i].id},`;
+    }
+    ids += selectedLeadStatus[selectedLeadStatus.length - 1].id;
+    leadStatus = `&statusId.in=${ids}`;
+    url = `${url}${leadStatus}`;
+  }
+
+  if (selectedLeadRating?.length) {
+    let ids = "";
+    for (let i = 0; i < selectedLeadRating.length - 1; i++) {
+      ids += `${selectedLeadRating[i].name},`;
+    }
+    ids += selectedLeadRating[selectedLeadRating.length - 1].name;
+    leadRating = `&leadRating.in=${ids}`;
+    url = `${url}${leadRating}`;
+  }
+
   if(topSearchValue){
     const searchCondition = `&fullname.contains=${topSearchValue}`;
     url = `${url}${searchCondition}`;
@@ -531,19 +556,22 @@ selectedZipCode,
    // url = `${url}&fullname.contains=${selectedLeadOwner}`;
   }
   if(selectedFirstName){    
-    url = `${url}&firstname.contains=${selectedFirstName}&fullname.contains=${selectedFirstName}`;
+    url = `${url}&firstname.contains=${selectedFirstName}`;
   }
   if(selectedLastName){    
-    url = `${url}&lastname.contains=${selectedLastName}&fullname.contains=${selectedFirstName}`;
+    url = `${url}&lastname.contains=${selectedLastName}`;
   }
   if(selectedCompanyName){    
-    //url = `${url}&lastname.contains=${selectedLastName}`;
+    url = `${url}&companyName.contains=${selectedCompanyName}`;
+  }
+  if(selectedLeadSource){
+    url = `${url}&leadSource.contains=${selectedLeadSource}`;
   }
   if(selectedTitle){    
     url = `${url}&title.contains=${selectedTitle}`;
   }
   if(selectedZipCode){    
-   // url = `${url}&title.contains=${selectedZipCode}`;
+    url = `${url}&zipcode.contains=${selectedZipCode}`;
   }
   if (url.indexOf("&") !== -1) {
     url = url.replace(/&/, "?");

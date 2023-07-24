@@ -23,21 +23,6 @@ import Loader from "../loader";
 import { getToken, getUserInfo } from "../../utils/utils";
 import LeadTableView from "./LeadTableView";
 import LeadKanbanView from "./LeadKanbanView";
-const items: MenuProps['items'] = [
-  {
-    key: '1',
-    label: 'Item 1',
-  },
-  {
-    key: '2',
-    label: 'Item 2',
-  },
-  {
-    key: '3',
-    label: 'Item 3',
-  },
-];
-
 const LeadContent = () => {
   const { Search, TextArea } = Input;
   const [showEmail, setShowEmail] = useState({});
@@ -46,6 +31,9 @@ const LeadContent = () => {
     info: null,
     open: false,
   });
+  const leadStatusListing = useSelector(
+    (state) => state.leadListingReducer.leadStatusList
+  );
   
   const colorArray = [
     "#b0b0e1",
@@ -86,6 +74,16 @@ const LeadContent = () => {
     }
   };
 
+  const showStatusName=(status)=>{
+    let st="";
+    for(let i=0;i<leadStatusListing.length;i++){      
+      if(status==leadStatusListing[i].id){
+        st=leadStatusListing[i].text;
+        break;
+      } 
+    }    
+    return st;
+  }
   const openInfoModel = () => {
     if (getToken()) {
       setOpenModal({ info: null, open: false });
@@ -130,34 +128,7 @@ const LeadContent = () => {
     {
       title: "Phone",
       dataIndex: "phone",
-      className: "phone",
-      // render: (record, row) => {
-      //   return getToken() ? (
-      //     <>
-      //       <span
-      //         className={row?.isdownloadedMobile?" btn mobile-open":" btn mobile"}
-      //         onClick={()=>updatePhoneStatus(showPhone,row)}
-      //       >
-      //       </span>
-      //       {showPhone[row.key] && row?.mobile && (
-      //         <>
-      //           <span className="phoneValue fs-12 pl-1">{row?.mobile}</span>
-      //           <span
-      //             title="copy phone"
-      //             className="  fs-17 btn  la  la-copy text-black"
-      //             onClick={() => copyToClipboard(row?.mobile)}
-      //           ></span>
-      //         </>
-      //       )}
-      //     </>
-      //   ) : (
-      //     <span
-      //       className=" btn mobile"
-      //       onClick={() => openInfoModel()}
-      //     >
-      //     </span>
-      //   );
-      // },
+      className: "phone",      
     },
     {
       title: "Company",
@@ -176,41 +147,20 @@ const LeadContent = () => {
     {
       title: "Status",
       dataIndex: "status",
+      render: (record, row) => {
+        return (
+          <div
+            className="namecol"
+          >{row?.status?showStatusName(row?.status):""}
+          </div>
+        );
+      },
     },
     {
       title: "Email",
       dataIndex: "email",
       className: "email",
-      // render: (text, row) => {
-      //   return getToken() ? (
-      //     <>
-      //       <h4
-      //        className={row?.isdownloadedEmail?" btn iconemail emails-open":" btn iconemail emails"}
-      //        onClick={()=>updateEmailStatus(showEmail,row)}
-      //       ></h4>
-      //       {showEmail[row.key] && (
-      //         <>
-      //           <span className="emailvalue pl-1 fs-12">{text}</span>
-      //           <span
-      //             title="copy email"
-      //             className="  fs-17 btn  la  la-copy text-black"
-      //             onClick={() => copyToClipboard(text)}
-      //           ></span>
-      //         </>
-      //       )}
-      //     </>
-      //   ) : (
-      //     <h4
-      //       className="  btn iconemail emails"
-      //       onClick={() => openInfoModel()}
-      //     ></h4>
-      //   );
-      // },
     },
-    // {
-    //   title: "Activity Notes",
-    //   dataIndex: "notes",
-    // },
     {
       title: "Created Dated",
       dataIndex: "notes",

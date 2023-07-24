@@ -29,6 +29,9 @@ import {
   getLeadRemarksDetails,
   deleteLeadRemarks
 } from "../actionCreator/leadDetailsActionCreator";
+import {
+  getLeadStatusList,
+} from "../actionCreator/leadListingActionCreater";
 
 const LeadDetails = () => {
   const { confirm } = Modal;
@@ -93,6 +96,8 @@ const LeadDetails = () => {
     dispatch(getLeadDetails(id));
     dispatch(getAllLeadNotes(id));
     dispatch(getAllLeadRemarks(id));
+    dispatch(getLeadStatusList());        
+
     }
   }, []);
   useMemo(() => {
@@ -280,7 +285,7 @@ const LeadDetails = () => {
             </div>
           </div>
 
-          <a classNameName="scroll-to-top rounded" href="#page-top">
+          <a className="scroll-to-top rounded" href="#page-top">
             <i className="fas fa-angle-up"></i>{" "}
           </a>
         </div>
