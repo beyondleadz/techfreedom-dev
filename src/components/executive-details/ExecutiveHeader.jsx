@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Modal, Checkbox, Input, Texta, Divider } from "antd";
+import { Modal, Checkbox, Input, Texta, Divider,Tooltip } from "antd";
 import _ from "lodash";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { submitErrorForm } from "../../actionCreator/executiveDetailsActionCreator";
+import { getEmployeeViewableStatusUpdate } from "../../actionCreator/executiveDetailsActionCreator";
 import { emailRegex } from "../../config";
 import { getToken } from "../../utils/utils";
 import popupImg from "../../assets/images/free-user-login-prompt.jpg.jpeg";
@@ -13,7 +13,7 @@ import TrialModal from "../../common/TrialModal";
 
 const ExecutiveHeader = () => {
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
   const [isCompanyBoxHeightFixed, setIsCompanyBoxHeightFixed] = useState(false);
 
   const executiveDetails = useSelector(
@@ -96,12 +96,24 @@ const ExecutiveHeader = () => {
     setOpenModal(false);
   };
 
+  const updateEmailStatus = (row) => {
+    setShowEmail(true);
+    //call api to update status
+    if(!row?.isdownloadedEmail){
+     const payload= {
+        id: row.id,
+        pageFor:1
+      }  
+    dispatch(getEmployeeViewableStatusUpdate('Email',payload));    
+    }    
+  };
+
   return (
     <>
       <div className="row pl-3 pr-3">
         <div className="headername">
           <div className="font-weight-bold mb-1 ">
-            <h3>{executiveDetails?.fullname}</h3>
+            <h3>{(executiveDetails?.fullname)?executiveDetails.fullname:executiveDetails.firstname+" "+executiveDetails.lastname}</h3>
           </div>
         </div>
         <div>
@@ -149,6 +161,7 @@ getToken() ?
                     {getToken() ? (
                       showEmail ? (
                         <>
+                        <i className={executiveDetails?.isdownloadedEmail?" btn iconemail emails-open":" btn iconemail emails"}></i>
                           <span className="emailvalue pl-1 fs-12">
                             {executiveDetails?.emailId}
                           </span>
@@ -159,17 +172,19 @@ getToken() ?
                               copyToClipboard(executiveDetails?.emailId)
                             }
                           ></span>
-                          <i className="align-top btn iconemail emails-open"></i>
+                          
                         </>
                       ) : (
                         <>
+                         <Tooltip title="View Email">
                           <i
-                            className="align-top btn iconemail emails-open"
-                            onClick={() => setShowEmail(true)}
+                            className={executiveDetails?.isdownloadedEmail?" btn iconemail emails-open":" btn iconemail emails"}
+                            onClick={() => updateEmailStatus(executiveDetails)}
                           ></i>
-                          <span onClick={() => setShowEmail(true)}>
+                          </Tooltip>
+                          {/* <span onClick={() => setShowEmail(true)}>
                             View Email
-                          </span>
+                          </span> */}
                         </>
                       )
                     ) : (
@@ -188,9 +203,9 @@ getToken() ?
                   </div>
                   <div className="col">
                     <div className="fs-12 font-weight-bold">Social</div>
-                    {/* <i class="lab fs-20 facebook lab la-facebook"></i>
-                  <i class="lab fs-20  twitter la la-twitter-square"></i>
-                  <i class="lab fs-20 linkedin lab la-linkedin"></i> */}
+                    {/* <i className="lab fs-20 facebook lab la-facebook"></i>
+                  <i className="lab fs-20  twitter la la-twitter-square"></i>
+                  <i className="lab fs-20 linkedin lab la-linkedin"></i> */}
                     {renderSocialLinks(executiveDetails?.socialLinks)}
                   </div>
                 </div>

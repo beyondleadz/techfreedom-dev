@@ -12,7 +12,7 @@ export const userRegister = (payload) => (dispatch) => {
   return postMethod(signUpUrl, payload).then((res) => {
     dispatch({
       type: REGISTER_USER,
-      payload: res.data,
+      payload: {data:res.data,statusCode:res.status},
     });
   });
 };

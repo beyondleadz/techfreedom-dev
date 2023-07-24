@@ -1,16 +1,42 @@
-import React, { useState, useEffect } from "react";
-import { useRoutes, NavLink } from "react-router-dom";
+import React, { useState, useEffect, useMemo } from "react";
+import { useRoutes, NavLink, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { Table, Input, Button, Modal } from "antd";
+
 import {
   formActionStep1,
   userRegister,
 } from "../../actionCreator/signUpActionCreater";
 import horizentalImage from "../../assets/login/horizental-line.jpg";
-
+import popupImg from "../../assets/images/congratulations-header.jpg";
+import { REGISTER_USER } from "../../actionType/signUpType";
 const Step1 = () => {
   const [form, setForm] = useState({});
   const [errorObj, setError] = useState();
+  const [showModal, setShowModal] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  //registrationDetails?.statusCode
+  const registrationDetails = useSelector(
+    (state) => state.SignUpReducer.registrationDetails
+  );
+
+  useMemo(() => {
+    if (registrationDetails?.statusCode) {
+      setShowModal(true);
+    }
+  }, [registrationDetails]);
+
+  const closeModal = () => {
+    setShowModal(false);
+    dispatch({
+      type: REGISTER_USER,
+      payload: {},
+    });
+    navigate("/");
+  };
+
   const OnInputChange = (ele) => {
     setForm({
       ...form,
@@ -156,6 +182,27 @@ const Step1 = () => {
       <br />
       <br />
       <br />
+      {showModal && (
+        <Modal
+          title=""
+          width={"800px"}
+          closable={true}
+          open={showModal}
+          footer=""
+          onCancel={closeModal}
+          // onOk={onConfrim}
+        >
+          <div className="privacy-security-term">
+            <div align="center" style={{ "text-align": "center" }}>
+              <img src={popupImg} />
+            </div>
+            <h2>Congratulations! Your account is ready to use</h2>
+            <p style={{ "text-align": "center" }}>
+              Prepairing your account, we are taking you in...
+            </p>
+          </div>
+        </Modal>
+      )}
     </>
   );
 };

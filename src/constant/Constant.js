@@ -28,3 +28,9 @@ export const getExecutiveLevelApiUrl = '/api/executive-levels';
 export const groupExecutiveTagUrl = '/api/employee-tags/multi';
 export const subscriptionaccountInfoApiUrl='/api/subscriptions/';
 
+export const fetchExecutiveTagApiUrl = 'api/employee-tags';
+export const saveClientNoteApiUrl = 'api/client-notes';
+export const getClientNotesApiUrl = 'api/client-notes';
+export const getClientRemarksApiUrl = 'api/client-remarks';
+export const getLeadStatusApiUrl='api/statuses';
+

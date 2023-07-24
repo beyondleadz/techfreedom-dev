@@ -35,12 +35,19 @@ const ExecutiveDetails = () => {
     console.log(executiveDetails, "executiveDetails");
     if (Object.keys(executiveDetails).length) {
       dispatch(getEmployeeList(id,executiveDetails?.company?.id));
+      let exlevel;
+      if(executiveDetails?.exlevel){ 
+         exlevel=executiveDetails?.exlevel?.id;
+      }else{
+         exlevel=0;
+      }
       
       dispatch(
         getSimilarExecutiveList(
           {
             id:executiveDetails?.id,
             selectedCompany: [executiveDetails?.company],
+            selectedExecutiveLevel: [{'id':exlevel}],
           },
           {
             start: 0,

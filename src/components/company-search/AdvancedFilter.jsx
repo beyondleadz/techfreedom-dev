@@ -60,6 +60,10 @@ const AdvancedFilter = ({
     (state) => state.companyListingReducer.companyTagList
   );
 
+  const topSearchValue = useSelector(
+    (state) => state.HeaderReducer.topSearchValue
+  );
+
   const [visibleFilter, setVisibleFilter] = useState({
     country: false,
     state: false,
@@ -114,10 +118,20 @@ const AdvancedFilter = ({
   const [viewMore, setViewMore] = useState(true);
   const CheckboxGroup = Checkbox.Group;
 
-  useEffect(() => {
-    if (!selectedStateList.length) {
+  useEffect(() => { 
+    if (!selectedStateList.length) { 
       setCitiesOnSelectedStateList(companyFilterList?.geoLocation?.cities);
       setCitiesList(companyFilterList?.geoLocation?.cities);
+    }else{
+      //By Nawedita 
+      const cityList = companyFilterList?.geoLocation?.cities.filter((city) => {
+        return selectedStateList.some((ct) => {
+          return ct.state_id===city?.state_id;
+        });
+      });
+      //console.log(selectedStateList,'selectedStateList',cityList)
+      setCitiesOnSelectedStateList(cityList);
+      setCitiesList(cityList);
     }
   }, [selectedStateList]);
 
@@ -317,10 +331,18 @@ const AdvancedFilter = ({
     }
     setSelectedCountryList(newList);
     //console.log(companySelectedFilterList,"companySelectedFilterListcompanySelectedFilterList")
-    const payload = {
+    let payload = {
       ...companySelectedFilterList,
       selectedCountry: newList,
     };
+
+    if(topSearchValue){
+     payload = {
+      ...payload,
+      topSearchValue:topSearchValue
+     } 
+    }
+
     dispatch(saveAdvancedSelectedFilters(payload));
     dispatch(getCompanyList(payload, companyPaginationValue));
   };
@@ -333,10 +355,18 @@ const AdvancedFilter = ({
     console.log(e.target.checked, "e.target.checkede.target.checked");
     setSelectedCountryList(e.target.checked ? countriesList : []);
     setCheckAllCountries(e.target.checked);
-    const payload = {
+    let payload = {
       ...companySelectedFilterList,
       selectedCountry: e.target.checked ? countriesList : [],
     };
+
+    if(topSearchValue){
+      payload = {
+       ...payload,
+       topSearchValue:topSearchValue
+      } 
+     }
+
     dispatch(saveAdvancedSelectedFilters(payload));
     dispatch(getCompanyList(payload, companyPaginationValue));
   };
@@ -442,10 +472,16 @@ const AdvancedFilter = ({
       );
     }
     setSelectedStateList(newList);
-    const payload = {
+    let payload = {
       ...companySelectedFilterList,
       selectedState: newList,
     };
+    if(topSearchValue){
+      payload = {
+       ...payload,
+       topSearchValue:topSearchValue
+      } 
+     }
     dispatch(saveAdvancedSelectedFilters(payload));
     dispatch(getCompanyList(payload, companyPaginationValue));
   };
@@ -460,7 +496,7 @@ const AdvancedFilter = ({
   const updateCityBasedOnState = (list) => {
     const cityList = companyFilterList?.geoLocation?.cities.filter((city) => {
       return list.some((ct) => {
-        return city?.state_id === ct.state_id;
+        return ct.state_id===city?.state_id;
       });
     });
     setCitiesOnSelectedStateList(cityList);
@@ -471,10 +507,16 @@ const AdvancedFilter = ({
     setSelectedStateList(e.target.checked ? statesList : []);
     setCheckAllStates(e.target.checked);
     updateCityBasedOnState(statesList);
-    const payload = {
+    let payload = {
       ...companySelectedFilterList,
       selectedState: e.target.checked ? statesList : [],
     };
+    if(topSearchValue){
+      payload = {
+       ...payload,
+       topSearchValue:topSearchValue
+      } 
+     }
     dispatch(saveAdvancedSelectedFilters(payload));
     dispatch(getCompanyList(payload, companyPaginationValue));
   };
@@ -570,6 +612,9 @@ const AdvancedFilter = ({
     const filterdData = citiesOnSelectedStateList?.filter((item) =>
       item?.name.toLowerCase().includes(ele.target.value.toLowerCase())
     );
+
+    console.log(filterdData,'filterdDatafilterdDatafilterdData')
+
     setCitiesList(filterdData);
     setSelectedCitiesList([]);
     setCheckAllCities(false);
@@ -585,10 +630,16 @@ const AdvancedFilter = ({
       );
     }
     setSelectedCitiesList(newList);
-    const payload = {
+    let payload = {
       ...companySelectedFilterList,
       selectedCity: newList,
     };
+    if(topSearchValue){
+      payload = {
+       ...payload,
+       topSearchValue:topSearchValue
+      } 
+     }
     dispatch(saveAdvancedSelectedFilters(payload));
     dispatch(getCompanyList(payload, companyPaginationValue));
   };
@@ -601,10 +652,16 @@ const AdvancedFilter = ({
     setSelectedCitiesList(e.target.checked ? citiesList : []);
     setCheckAllCities(e.target.checked);
 
-    const payload = {
+    let payload = {
       ...companySelectedFilterList,
       selectedCity: e.target.checked ? citiesList : [],
     };
+    if(topSearchValue){
+      payload = {
+       ...payload,
+       topSearchValue:topSearchValue
+      } 
+     }
     dispatch(saveAdvancedSelectedFilters(payload));
     dispatch(getCompanyList(payload, companyPaginationValue));
   };
@@ -713,10 +770,16 @@ const AdvancedFilter = ({
     }
     setSelectedIndustryList(newList);
 
-    const payload = {
+    let payload = {
       ...companySelectedFilterList,
       selectedIndustry: newList,
     };
+    if(topSearchValue){
+      payload = {
+       ...payload,
+       topSearchValue:topSearchValue
+      } 
+     }
     dispatch(saveAdvancedSelectedFilters(payload));
     dispatch(getCompanyList(payload, companyPaginationValue));
   };
@@ -728,10 +791,16 @@ const AdvancedFilter = ({
   const onIndustryCheckAllChange = (e) => {
     setSelectedIndustryList(e.target.checked ? industryList : []);
     setCheckAllIndustry(e.target.checked);
-    const payload = {
+    let payload = {
       ...companySelectedFilterList,
       selectedIndustry: e.target.checked ? industryList : [],
     };
+    if(topSearchValue){
+      payload = {
+       ...payload,
+       topSearchValue:topSearchValue
+      } 
+     }
     dispatch(saveAdvancedSelectedFilters(payload));
     dispatch(getCompanyList(payload, companyPaginationValue));
   };
@@ -839,10 +908,16 @@ const AdvancedFilter = ({
     }
     setSelectedCompanyTypeList(newList);
 
-    const payload = {
+    let payload = {
       ...companySelectedFilterList,
       selectedCompanytype: newList,
     };
+    if(topSearchValue){
+      payload = {
+       ...payload,
+       topSearchValue:topSearchValue
+      } 
+     }
     dispatch(saveAdvancedSelectedFilters(payload));
     dispatch(getCompanyList(payload, companyPaginationValue));
   };
@@ -855,10 +930,16 @@ const AdvancedFilter = ({
     setSelectedCompanyTypeList(e.target.checked ? companyTypeList : []);
     setCheckAllCompanyType(e.target.checked);
 
-    const payload = {
+    let payload = {
       ...companySelectedFilterList,
       selectedCompanytype: e.target.checked ? companyTypeList : [],
     };
+    if(topSearchValue){
+      payload = {
+       ...payload,
+       topSearchValue:topSearchValue
+      } 
+     }
     dispatch(saveAdvancedSelectedFilters(payload));
     dispatch(getCompanyList(payload, companyPaginationValue));
   };
@@ -966,10 +1047,16 @@ const AdvancedFilter = ({
       );
     }
     setSelectedEmployeeCountList(newList);
-    const payload = {
+    let payload = {
       ...companySelectedFilterList,
       selectedEmployeecount: newList,
     };
+    if(topSearchValue){
+      payload = {
+       ...payload,
+       topSearchValue:topSearchValue
+      } 
+     }
     dispatch(saveAdvancedSelectedFilters(payload));
     dispatch(getCompanyList(payload, companyPaginationValue));
   };
@@ -982,10 +1069,16 @@ const AdvancedFilter = ({
     setSelectedEmployeeCountList(e.target.checked ? employeeCountList : []);
     setCheckAllEmployeeCount(e.target.checked);
 
-    const payload = {
+    let payload = {
       ...companySelectedFilterList,
       selectedEmployeecount: e.target.checked ? employeeCountList : [],
     };
+    if(topSearchValue){
+      payload = {
+       ...payload,
+       topSearchValue:topSearchValue
+      } 
+     }
     dispatch(saveAdvancedSelectedFilters(payload));
     dispatch(getCompanyList(payload, companyPaginationValue));
   };
@@ -1094,10 +1187,16 @@ const AdvancedFilter = ({
     }
     setSelectedRevenueRangeList(newList);
 
-    const payload = {
+    let payload = {
       ...companySelectedFilterList,
       selectedRevenuerange: newList,
     };
+    if(topSearchValue){
+      payload = {
+       ...payload,
+       topSearchValue:topSearchValue
+      } 
+     }
     dispatch(saveAdvancedSelectedFilters(payload));
     dispatch(getCompanyList(payload, companyPaginationValue));
   };
@@ -1110,10 +1209,16 @@ const AdvancedFilter = ({
     setSelectedRevenueRangeList(e.target.checked ? revenueRangeList : []);
     setCheckAllRevenueRange(e.target.checked);
 
-    const payload = {
+    let payload = {
       ...companySelectedFilterList,
       selectedRevenuerange: e.target.checked ? revenueRangeList : [],
     };
+    if(topSearchValue){
+      payload = {
+       ...payload,
+       topSearchValue:topSearchValue
+      } 
+     }
     dispatch(saveAdvancedSelectedFilters(payload));
     dispatch(getCompanyList(payload, companyPaginationValue));
   };
@@ -1226,10 +1331,16 @@ const AdvancedFilter = ({
     );
     // console.log(JSON.parse(searchData[0].dataDump),'selectedSavedSearchList')
     const searchPayload = JSON.parse(searchData[0].dataDump);
-    const payload = {
+    let payload = {
       ...companySelectedFilterList,
       selectedSavedSearch: newList,
     };
+    if(topSearchValue){
+      payload = {
+       ...payload,
+       topSearchValue:topSearchValue
+      } 
+     }
     dispatch(saveAdvancedSelectedFilters(payload));
     dispatch(getCompanyList(searchPayload, companyPaginationValue));
   };
@@ -1242,10 +1353,16 @@ const AdvancedFilter = ({
     setSelectedSavedSearchList(e.target.checked ? savedSearchList : []);
     setCheckAllSavedSearch(e.target.checked);
 
-    const payload = {
+    let payload = {
       ...companySelectedFilterList,
       selectedSavedSearch: e.target.checked ? savedSearchList : [],
     };
+    if(topSearchValue){
+      payload = {
+       ...payload,
+       topSearchValue:topSearchValue
+      } 
+     }
     dispatch(saveAdvancedSelectedFilters(payload));
     dispatch(getCompanyList(payload, companyPaginationValue));
   };
@@ -1358,10 +1475,16 @@ const AdvancedFilter = ({
     // );
     // // console.log(JSON.parse(searchData[0].dataDump),'selectedSavedSearchList')
     // const searchPayload = JSON.parse(searchData[0].dataDump);
-    const payload = {
+    let payload = {
       ...companySelectedFilterList,
       selectedCompanyTag: newList,
     };
+    if(topSearchValue){
+      payload = {
+       ...payload,
+       topSearchValue:topSearchValue
+      } 
+     }
     dispatch(saveAdvancedSelectedFilters(payload));
     dispatch(getCompanyList(payload, companyPaginationValue));
   };
@@ -1374,10 +1497,16 @@ const AdvancedFilter = ({
     setSelectedCompanyTagList(e.target.checked ? companyTagList : []);
     setCheckAllCompanyTag(e.target.checked);
 
-    const payload = {
+    let payload = {
       ...companySelectedFilterList,
       selectedCompanyTag: e.target.checked ? companyTagList : [],
     };
+    if(topSearchValue){
+      payload = {
+       ...payload,
+       topSearchValue:topSearchValue
+      } 
+     }
     dispatch(saveAdvancedSelectedFilters(payload));
     dispatch(getCompanyList(payload, companyPaginationValue));
   };

@@ -5883,7 +5883,15 @@ background-color: #fff;
 .ssidebar-dark.toggled #ssidebarToggle::after {
   color: rgba(255, 255, 255, 0.5);
 }
-
+.btn-square {
+   height: 2.2rem;
+  width: 2.2rem;
+  font-size: 0.8rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center; padding: 10px ;
+  margin: 5px 10px 10px 5px;
+}
 .btn-circle {
   border-radius: 100%;
   height: 2.5rem;
@@ -5891,7 +5899,8 @@ background-color: #fff;
   font-size: 1rem;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center; padding: 10px ;
+  margin: 10px 10px 10px 5px;
 }
 
 .btn-circle.btn-sm, .btn-group-sm > .btn-circle.btn {
@@ -7154,6 +7163,13 @@ color: orange;
 .emails-open {
 	background: url(../images/email-icon-open.svg) no-repeat 0px 0px; width:30px; height: 19px; background-size: 100%;
 }
+
+.kanbanlist {
+	background: url(../images/unordered-list.svg) no-repeat 0px 0px; width:20px; height: 20px; background-size: 100%;
+}
+.kanbanview {
+	background: url(../images/kanban.svg) no-repeat 0px 0px; width:18px; height: 18px; background-size: 100%;
+}
 .companyintro h3{font-size: 16px; font-weight: 500;}
 
 #small-dialog,#small-dialog1,#small-dialog2,#small-dialog3,#small-dialog4,#small-dialog5{
@@ -7164,7 +7180,7 @@ color: orange;
 	margin: 15px auto;
 	position: relative;
 	text-align:center;
-	border: 9px solid#eee;
+	/* border: 9px solid#eee; */
 	border-radius: 1em;
 		-o-border-radius: 1em;
 		-moz-border-radius: 1em;
@@ -7427,10 +7443,10 @@ color: orange;
     padding-bottom: 2rem;
   }}
   #leads .card{margin: 15px; padding: 15px;}
-#leads .headername{margin: 30px 0 0 25px;}
+#leads .headername{margin: 30px 0 0 0;}
 #leads .profilePic
 {text-align: center;
-  width: 100%;
+  width: 80%;
   margin: 10px;}
   #leads .name {
     font-size: 14px;
@@ -7448,22 +7464,30 @@ color: orange;
     margin: 10px 0 0 30px;
 }
 #leads .namedt {
-  text-align: left;
-  margin: 0 0 0 20px;
-  width: 100px;
-  display: inline-block;
-  
-  font-size: 14px;
+  flex: 0 0 35%;
+    max-width: 35%;
+    padding-top: 0;
 }
-    #leads .namedc{font-size: 14px; font-weight: 600; 
+    #leads .namedc{font-size: 14px; font-weight: 500; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji';
       color: rgba(0, 0, 0, 0.88);
       }
       #leads    .col-md-3 {
-        flex: 0 0 25%;
-        max-width: 25%;
-        padding-top: 0;
-        /* padding-right: 35px; */
-    }
+        flex: 0 0 30%;
+        max-width: 30%;
+        padding-top: 0;    }
+
+        #leads .mt-1, .my-1 {
+          margin-top: 6px;}
+
+        #leads    .col-md-2 {
+          flex: 0 0 35%;
+          max-width: 35%;
+          font-weight:normal ;
+          padding-top: 0; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji';   }
+#steps .btn{padding: 0 1px;
+  line-height: 10px;}
+ #steps .col-md-8{padding: 0;}
+
 #leads .btn-circle.btn-lg, .btn-group-lg > .btn-circle.btn {
   height: 4.5rem;
   width: 4.5rem;
@@ -7473,7 +7497,7 @@ color: orange;
     padding: 10px 16px;
     vertical-align: middle;}
 
- .ant-steps {
+    #leads .ant-steps {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -7483,6 +7507,254 @@ color: orange;
     list-style: none;
     font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji';
     display: flex;
-    width: 80%;
-    text-align: initial;
+    width: 90%;
+    text-align: initial; height: 28px;
+    margin-bottom: 15px;
 }
+#leads .ant-steps.ant-steps-navigation .ant-steps-item::after {
+  position: absolute;
+  top: calc(50% - 5px);
+  inset-inline-start: 100%;
+  display: inline-block;
+  width: 25px; margin-top: 5px;
+  height: 25px;
+  border-top: 5px solid #fff;
+  border-bottom: none;
+  border-inline-start: none;
+  border-inline-end: 5px solid #fff;
+  transform: translateY(-50%) translateX(-50%) rotate(45deg);
+  z-index: 1; background-color: #ebe9ed;
+  content: "";
+}
+#leads .ant-steps.ant-steps-navigation .ant-steps-item::before {
+    position: absolute;
+    bottom: 0;
+    inset-inline-start: 50%;
+    display: inline-block;
+    width: 0;
+    height: 2px;
+    background-color: transparent;
+    transition: width 0.3s,inset-inline-start 0.3s;
+    transition-timing-function: ease-out;
+    content: "";
+}
+#leads .ant-steps-item {
+  /* padding-inline-start: 16px;
+  padding-inline-end: 16px; */
+  white-space: nowrap; 
+  background-color: #ebe9ed; 
+  /* border-top: 1px solid #000; border-bottom: 1px solid #000;  */
+}
+#leads .ant-steps.ant-steps-navigation .ant-steps-item-container .ant-steps-item-content {
+  max-width: auto; width: auto;
+}
+#leads .ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
+  width: 140px;
+  height: 32px;
+  padding: 0 11px;
+}
+#leads .ant-steps .ant-steps-item-icon {display: none;}
+#leads .ant-steps.ant-steps-navigation {
+  padding-top: 0; height: 30px;
+  margin-bottom: 15px; 
+  border-radius: 10px;
+}
+#leads  .ant-steps-item-title{transition: color 0.3s;
+    font-size: 14px;
+    color: #000;}
+    #leads   .ant-steps .ant-steps-item-title {
+      position: relative;
+      display: inline-block;
+      /* padding-inline-end: 16px; */
+      color: rgba(0, 0, 0, 0.88);
+      font-size: 14px;
+      line-height: 27px;
+      padding: 0 20px 0 30px; }
+  
+      #leads .ant-steps.ant-steps-navigation .ant-steps-item::before { background-color:#f9f7fb;}     
+        #leads  .ant-steps {
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+          color: rgba(0, 0, 0, 0.88);
+          font-size: 0;
+          height: 30px;
+          /* line-height: 10px; */
+          list-style: none;
+          background-color:#f9f7fb;
+          display: flex;
+          width: 90%;
+          text-align: initial;
+      }
+      /* #leads .ant-steps-item:first-child {background-color: #15df44; color: #fff; border-radius: 10px 0 0 10px;}
+      #leads .ant-steps.ant-steps-navigation .ant-steps-item:first-child::after {background-color: #15df44; }
+      #leads .ant-steps-item:nth-child(2){background-color: #5d44ff;}
+      #leads .ant-steps.ant-steps-navigation .ant-steps-item:nth-child(2)::after{background-color: #5d44ff;}
+      #leads .ant-steps-item:nth-child(3){background-color: #fdc401;}
+      #leads .ant-steps.ant-steps-navigation .ant-steps-item:nth-child(3)::after{background-color: #fdc401;} */
+
+      #kanban  .clearfix:after {
+        clear: both;
+        content: "";
+        display: block;
+        height: 0;
+      }
+      
+      /* Responsive Arrow Progress Bar */
+      
+      #kanban  .container {
+        padding-top: 0;
+       margin-bottom: 15px;
+    border-radius: 10px; overflow: hidden;  overflow-x: auto;
+      }
+      #kanban .kanbancard{display: flex;
+        padding: 10px 10px 10px 1px;}
+      #kanban .arrow-steps .step {
+        font-size: 14px;
+        text-align: center;
+        color: #777;
+        width: 100%;
+        cursor: default;
+        margin: 0 1px 0 0;
+        padding: 7px 7px 7px 15px;
+        float: left;
+        position: relative;
+        background-color: #ebe9ed;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+      
+      #kanban .arrow-steps .step a {
+        color: #000;
+    text-decoration: none;
+    padding: 0 15px;
+    height:30px;
+    font-size: 14px;
+    font-weight: normal;
+    font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji';
+      }
+      
+      #kanban .arrow-steps .step:after,
+      #kanban .arrow-steps .step:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: -16px;
+        width: 0;
+        height: 0;
+        border-top: 19px solid transparent;
+        border-bottom: 17px solid transparent;
+        border-left: 17px solid #ebe9ed;
+        z-index: 2;
+      }
+      
+      #kanban  .arrow-steps .step:before {
+        right: auto;
+        left: 0;
+        border-left: 17px solid #fff;
+        z-index: 0;
+      }
+      #kanban .kanbanbody
+      {        flex: 1 1 auto;
+        min-height: 1px;
+        padding: 0.25rem;     font-family: sans-serif;
+    }
+           
+      #kanban .arrow-steps .step span {
+        position: relative; 
+      }
+      
+      #kanban *.arrow-steps .step.done span:before {
+        opacity: 1;
+        content: "";
+        position: absolute;
+        top: -2px;
+        left: -10px;
+        font-size: 11px;
+        line-height: 21px;
+        
+      }
+      #kanban .title {
+              text-align: left; display: flex; padding-left: 15px; float:left;
+      }
+     
+      #kanban .num {
+               text-align: right; float:right;
+      }
+      #kanban  .arrow-steps .step.current {
+        color: #fff; width: 100%;
+        background-color: #15df44; 
+      }
+      
+      #kanban  .arrow-steps .step.current a {
+        color: #fff;
+        text-decoration: none;
+      }
+      
+      #kanban .arrow-steps .step.current:after {
+        border-left: 17px solid #15df44;
+      }
+      
+      #kanban .arrow-steps .step.done {
+        color: #fff;
+        background-color: #5d44ff; width: 100%;
+      }
+      
+      #kanban .arrow-steps .step.done a {
+        color: #fff;
+        text-decoration: none;
+      }
+      
+    #kanban  .arrow-steps .step.done:after {
+        border-left: 17px solid #5d44ff;
+      }
+
+      #kanban .arrow-steps .step.active {
+        color: #fff;
+        background-color: #fdc401; width: 100%;
+      }
+      
+      #kanban .arrow-steps .step.active a {
+        color: #fff;
+        text-decoration: none;
+      }
+      
+    #kanban  .arrow-steps .step.active:after {
+        border-left: 17px solid #fdc401;
+      }
+    #kanban .col-kanban{display: inline-block;
+      vertical-align: top;}  
+
+      .card.draggable {
+        margin-bottom: 1rem;
+        cursor: grab;
+    }
+    #kanban .main-kanban{overflow: auto;
+      white-space: nowrap;}
+    .droppable {
+        background-color: var(--success);
+        min-height: 120px;
+        margin-bottom: 1rem;
+    }
+    
+
+    /* org chart css */
+    .node-template{font-size:12px;text-align:center;min-width:100px;}.node-template .position{text-align: center; font-weight:bold;  background-color:rgba(0,0,0,.1);display:flex;padding:.25em}.node-template span{display:flex;justify-content:center;padding:.25em}.node-template span a{color:#000;font-weight: normal;}.node-template button{margin-bottom:.5em}h1{margin-bottom:10px;text-align:center}.hierarchy-viewer{background:#f4f4f4;display:block;margin:20px;padding:15px}.level1{background-color:#e7e4ff}.level2{background-color:#ffede3}.level3{background-color:#f2f8e3}
+    
+    #leads .ant-steps-item.steps-pending  {background-color: #ebe9ed; border-radius: 10px 0 0 10px;}
+    #leads .ant-steps.ant-steps-navigation .ant-steps-item.steps-pending::after{background-color: #ebe9ed;}
+    #leads .ant-steps-item.steps-pending .ant-steps-item-title{color:rgba(0, 0, 0, 0.88);}
+
+    #leads .ant-steps-item.steps-active  {background-color: #5d44ff; border-radius: 10px 0 0 10px;}
+    #leads .ant-steps.ant-steps-navigation .ant-steps-item.steps-active::after{background-color: #5d44ff;}
+    #leads .ant-steps-item.steps-active .ant-steps-item-title{color:#fff;}
+
+    #leads .ant-steps-item.steps-next  {background-color: #fdc401; border-radius: 10px 0 0 10px;}
+    #leads .ant-steps.ant-steps-navigation .ant-steps-item.steps-next::after{background-color: #fdc401;}
+    #leads .ant-steps-item.steps-next .ant-steps-item-title{color:#fff;}
+
+    #leads .ant-steps-item.steps-done  {background-color: #15df44; border-radius: 10px 0 0 10px;}
+    #leads .ant-steps.ant-steps-navigation .ant-steps-item.steps-done::after{background-color: #15df44;}
+    #leads .ant-steps-item.steps-done .ant-steps-item-title{color:#fff;}

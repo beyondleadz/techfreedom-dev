@@ -181,15 +181,15 @@ export const downloadExecutiveList = (payload, urlSubstring) => (dispatch) => {
   let url = "";
   if (payload?.length) {
     //console.log(payload,'payloadpayload')
-    let selectedRecords = "id.in=";
+    let selectedRecords = "?id.in=";
     payload?.forEach((obj) => (selectedRecords += `${obj.key},`));
     const removedLastComma = selectedRecords.substring(
       selectedRecords.lastIndexOf(","),
       0
     );
-    url = `${executiveEmployeeListingApiUrl}/${urlSubstring}/${removedLastComma}`;
+    url = `${executiveEmployeeListingApiUrl}/${urlSubstring}${removedLastComma}`;
   } else {
-    url = `${executiveEmployeeListingApiUrl}/${urlSubstring}`;
+    url = `${executiveEmployeeListingApiUrl}/${urlSubstring}?id.in=11,12`;
   }
   return getAuthMethod(url)
     .then((res) => {
@@ -384,4 +384,9 @@ export const getExecutiveLevelList = (payload) => (dispatch) => {
       });
     });
 };
+
+export const emptyDownload=()=>({
+  type: EXECUTIVE_DOWNLOAD_COMPANYLIST,
+  payload: {},  
+});
 

@@ -1,15 +1,18 @@
-import React, { useState, useEffect,useMemo } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { Table, Modal, Button, Tooltip } from "antd";
 import { PAGE_LENGTH } from "../../config";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-import { getToken, getUserInfo } from "../../utils/utils";
+import { getToken, getUserInfo,getSubscriptionUserInfo } from "../../utils/utils";
 import {
   submitLead,
   resetLead,
   storeSelectedExecutive,
-  getExecutiveLead
+  getExecutiveLead,
+  getEmployeeList,
+  getEmployeeViewableStatusUpdate
 } from "../../actionCreator/companyDetailsActionCreator";
+
 import popupImg from "../../assets/images/subscribe-now-prompt-img.jpg";
 import Loader from "../loader";
 import TrialModal from "../../common/TrialModal";
@@ -24,6 +27,19 @@ const KeyExecutives = () => {
   const userAccountInfo = useSelector(
     (state) => state.CommonReducer.accountInfo
   );
+
+  const selectedDepartment = useSelector(
+    (state) => state.companyDetailsReducer.selectedDepartment
+  );
+
+  const getLeadsData = useSelector(
+    (state) => state.companyDetailsReducer.getExecutiveLead
+  );
+
+  const companyDetails = useSelector(
+    (state) => state.companyDetailsReducer.companyDetails
+  );
+
   const [employeeData, setEmployeeData] = useState([]);
   const [openModal, setOpenModal] = useState({
     info: null,
@@ -41,6 +57,35 @@ const KeyExecutives = () => {
     }
   }, [userAccountInfo]);
 
+  const updateEmailStatus = (showEmail, row) => {
+    setShowEmail({ ...showEmail, [row.id]: true });
+    //call api to update status
+    if (!row?.isdownloadedEmail) {
+      dispatch(
+        getEmployeeViewableStatusUpdate("Email", row, selectedDepartment)
+      );
+    }
+  };
+  const updatePhoneStatus = (showPhone, row) => {
+    setShowPhone({ ...showPhone, [row.id]: true });
+    if (!row?.isdownloadedMobile) {
+      dispatch(
+        getEmployeeViewableStatusUpdate("Mobile", row, selectedDepartment)
+      );
+    }
+  };
+
+  const isLeadsSubmitted = (selEmployeeId) => {
+    //console.log("selEmployeeId",selEmployeeId)
+    const filteredData = getLeadsData.filter(
+      (item) => item.employeeId == selEmployeeId.id
+    );
+    if (filteredData?.length > 0) {
+      return 1;
+    } else {
+      return 0;
+    }
+  };
   const columns = [
     // {
     //   title: "ID",
@@ -64,8 +109,12 @@ const KeyExecutives = () => {
           //  <Tooltip title={text}>
           <>
             <h4
-              className=" btn iconemail emails-open"
-              onClick={() => setShowEmail({ ...showEmail, [row.id]: true })}
+              className={
+                row?.isdownloadedEmail
+                  ? " btn iconemail emails-open"
+                  : " btn iconemail emails"
+              }
+              onClick={() => updateEmailStatus(showEmail, row)}
             ></h4>
             {showEmail[row.id] && (
               <>
@@ -101,10 +150,12 @@ const KeyExecutives = () => {
             <span
               // style={{ height: "auto" }}
               // className="keyexebtn d-none d-sm-inline-block small btn btn-primary text-black"
-              className=" btn mobile-open"
-              onClick={() => setShowPhone({ ...showPhone, [row.id]: true })}
+              className={
+                row?.isdownloadedMobile ? " btn mobile-open" : " btn mobile"
+              }
+              onClick={() => updatePhoneStatus(showPhone, row)}
             >
-              {/* <i class="las la-mobile fs-12  pr-1"></i> */}
+              {/* <i className="las la-mobile fs-12  pr-1"></i> */}
               {/* VIEW */}
             </span>
             {showPhone[row.id] && record?.phoneNo && (
@@ -125,7 +176,7 @@ const KeyExecutives = () => {
             // className="keyexebtn d-none d-sm-inline-block small btn btn-primary text-black"
             onClick={() => openInfoModel()}
           >
-            {/* <i class="las la-mobile fs-12  pr-1"></i>
+            {/* <i className="las la-mobile fs-12  pr-1"></i>
             VIEW */}
           </span>
         );
@@ -136,7 +187,7 @@ const KeyExecutives = () => {
         //     className="keyexebtn d-none d-sm-inline-block small btn btn-primary text-black"
         //     onClick={() => openInfoModel(text)}
         //   >
-        //     <i class="las la-mobile fs-12 pt-1 pr-1"></i>
+        //     <i className="las la-mobile fs-12 pt-1 pr-1"></i>
         //     VIEW
         //   </Button>
         // );
@@ -146,6 +197,7 @@ const KeyExecutives = () => {
       title: "",
       dataIndex: "leads",
       render: (record) => {
+        let checkLeadSubmitted = isLeadsSubmitted(record);
         return getToken() ? (
           <Button
             style={{ height: "auto" }}
@@ -155,9 +207,10 @@ const KeyExecutives = () => {
                 ? true
                 : false
             }
-            onClick={() => postLeads(record)}
+            onClick={() => postLeads(record, checkLeadSubmitted)}
           >
-            <i class="las la-user-plus fs-12 pr-1"></i> ADD TO LEADS
+            <i className="las la-user-plus fs-12 pr-1"></i>{" "}
+            {checkLeadSubmitted ? "LEAD ADDED" : "ADD TO LEADS"}
           </Button>
         ) : (
           <Button
@@ -170,7 +223,7 @@ const KeyExecutives = () => {
             }
             onClick={() => openInfoModel()}
           >
-            <i class="las la-user-plus  fs-12  pr-1"></i>ADD TO LEADS
+            <i className="las la-user-plus  fs-12  pr-1"></i>ADD TO LEADS
           </Button>
         );
       },
@@ -203,9 +256,13 @@ const KeyExecutives = () => {
     }
   };
 
-  const postLeads = (record) => {
-    const { id,login } = getUserInfo();
+  const postLeads = (record, isLeadSubmit) => {
+    const { id, login } = getUserInfo();
+    const { id: accountId } = getSubscriptionUserInfo();
     let leadPayload = {
+      // account: {
+      //   id: accountId
+      // },
       firstname: record.firstname,
       lastname: record.lastname,
       fullname: record.fullname,
@@ -215,10 +272,25 @@ const KeyExecutives = () => {
       phoneNo: record.phoneNo,
       bio: record.bio,
       description: record.description,
-      userId:id
+      userId: id,
+      employeeId: record.id,
+      address:companyDetails?.address,
+      companyId:companyDetails?.id,
+      companyName:companyDetails?.name,
+      industryId:companyDetails?.industry?.id,
+      industryText:companyDetails?.industry?.name,
+      empSizeId:companyDetails?.range?.name,
+      city:companyDetails?.city,
+      state:companyDetails?.state,
+      country:companyDetails?.country
     };
-    dispatch(submitLead(leadPayload));
-    setAddToLeads(record.id);
+    //console.log(leadPayload,'leadpayload');
+    if (!isLeadSubmit) {
+      dispatch(submitLead(leadPayload));
+      setAddToLeads(record.id);
+    }else{
+     navigate("/lead-details/"+record.id);
+    }
   };
 
   const resetLeadsData = () => {
@@ -228,21 +300,23 @@ const KeyExecutives = () => {
 
   useEffect(() => {
     let data = [];
+    
     employeeList?.forEach((record) => {
       data = [
         ...data,
         {
           key: record.id,
           id: record.id,
-          fullname: record.fullname,
+          fullname: (record?.fullname)?record.fullname:record.firstname+" "+record.lastname,
           title: record?.title,
           emailId: record?.emailId,
           phoneNo: record?.company?.phoneNo,
           directDial: record,
-          leads: record,
+          leads: record
         },
       ];
     });
+    //console.log(data,'data')
     setEmployeeData(data);
   }, [employeeList]);
 
@@ -271,8 +345,7 @@ const KeyExecutives = () => {
         selectedRows
       );
 
-      dispatch(storeSelectedExecutive(selectedRows))
-
+      dispatch(storeSelectedExecutive(selectedRows));
     },
     getCheckboxProps: (record) => ({
       disabled: record.name === "Disabled User", // Column configuration not to be checked
@@ -347,7 +420,7 @@ const KeyExecutives = () => {
             </Button>,
           ]}
         >
-          <div class="pop-up">
+          <div className="pop-up">
             <div id="small-dialog2">
               <p style={{ color: "#0000FF" }}>
                 New Client Leads is creted with new identifier :{" "}

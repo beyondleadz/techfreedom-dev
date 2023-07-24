@@ -1,4 +1,6 @@
 import React, { useEffect, useState, useMemo } from "react";
+import Excel from "exceljs";
+import { saveAs } from "file-saver";
 import { useNavigate, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import _ from "lodash";
@@ -7,7 +9,7 @@ import { PAGE_LENGTH } from "../../config";
 import defaultLogo from "../../assets/images/default_company_logo.jpg";
 import popupImg from "../../assets/images/free-user-login-prompt.jpg.jpeg";
 import TrialModal from "../../common/TrialModal";
-
+import { saveExcel, testImage } from "../../utils/utils";
 import {
   getCompanyList,
   savePaginationValues,
@@ -17,6 +19,7 @@ import {
   saveSearchList,
   downloadCompanyList,
   createGroupCompanyTag,
+  emptyDownload,
 } from "../../actionCreator/companyListingActionCreater";
 import Loader from "../loader";
 import { getToken, getUserInfo } from "../../utils/utils";
@@ -31,7 +34,12 @@ const CompanyContent = () => {
         return (
           <div className="namecol" onClick={() => getDetails(row.key)}>
             <div className="logo">
-              <img src={record?.companyLogoUrl || defaultLogo} />
+              <img
+                src={record?.companyLogoUrl || defaultLogo}
+                onError={(e) => {
+                  e.currentTarget.src = defaultLogo;
+                }}
+              />
             </div>
             <span className="cname">{record?.name}</span>
           </div>
@@ -91,28 +99,44 @@ const CompanyContent = () => {
     (state) => state.companyListingReducer.selectedRecords
   );
 
+  const topSearchValue = useSelector(
+    (state) => state.HeaderReducer.topSearchValue
+  );
+
+  const downloadExcelData = useSelector(
+    (state) => state.companyListingReducer.download
+  );
+
   useMemo(() => {
-    dispatch(getCompanyList({}, paginationValue));
-  }, []);
+    if (topSearchValue) {
+      const payload = {
+        ...companySelectedFilterList,
+        topSearchValue: topSearchValue,
+      };
+      dispatch(getCompanyList(payload, paginationValue, true));
+    } else {
+      dispatch(getCompanyList({}, paginationValue));
+    }
+  }, [topSearchValue]);
 
   const renderSocialLinks = (socialLinks) => {
     return socialLinks?.map((link) => {
       if (link?.name === "facebook") {
         return (
           <Link to={link?.proifileUrl} target="_blank">
-            <i class="lab fs-20 facebook lab la-facebook"></i>
+            <i className="lab fs-20 facebook lab la-facebook"></i>
           </Link>
         );
       } else if (link?.name === "Linkedin") {
         return (
           <Link to={link?.proifileUrl} target="_blank">
-            <i class="lab fs-20 linkedin  lab la-linkedin"></i>
+            <i className="lab fs-20 linkedin  lab la-linkedin"></i>
           </Link>
         );
       } else if (link?.name === "twitter") {
         return (
           <Link to={link?.proifileUrl} target="_blank">
-            <i class="lab fs-20  twitter la la-twitter-square"></i>
+            <i className="lab fs-20  twitter la la-twitter-square"></i>
           </Link>
         );
       }
@@ -121,6 +145,8 @@ const CompanyContent = () => {
 
   useEffect(() => {
     let data = [];
+    //console.log(companyFilterList, "companyFilterList");
+    if (!companyFilterList?.companyList) return;
     companyFilterList?.companyList?.forEach((record) => {
       data = [
         ...data,
@@ -142,6 +168,17 @@ const CompanyContent = () => {
 
     setCompanyList(data);
   }, [companyFilterList]);
+
+  // useEffect(() => {
+  //   console.log(topSearchValue, "topSearchValue");
+  //   //if (!topSearchValue) return;
+
+  //   const payload = {
+  //     ...companySelectedFilterList,
+  //     topSearchValue: topSearchValue,
+  //   };
+  //   dispatch(getCompanyList(payload, paginationValue, true));
+  // }, [topSearchValue]);
 
   const rowSelection = {
     onChange: (selectedRowKeys, selectedRows) => {
@@ -184,8 +221,19 @@ const CompanyContent = () => {
       start: page - 1,
       end: pageSize,
     };
+    let payload = {
+      ...companySelectedFilterList,
+    };
+
+    if (topSearchValue) {
+      payload = {
+        ...payload,
+        topSearchValue: topSearchValue,
+      };
+    }
+
     dispatch(savePaginationValues(pageValues));
-    dispatch(getCompanyList(companySelectedFilterList, pageValues));
+    dispatch(getCompanyList(payload, pageValues));
   };
 
   const getDetails = (id) => {
@@ -255,7 +303,64 @@ const CompanyContent = () => {
       // dispatch(downloadCompanyList(companySelectedFilterList, "exl"));
       dispatch(downloadCompanyList(selectedRecords, "exl"));
     }
+    // saveExcel();//DOWNLOAD_COMPANYLIST download
   };
+
+  const getSchema = (data) => {
+    var finaldata=[];
+    let cnt=0;
+    data.forEach((obj) => {
+      cnt++;
+      var dataObj={};
+      dataObj.id=obj.id;
+      dataObj.serealNo=cnt;
+      dataObj.name=obj.name;
+      dataObj.revenueName=obj?.revenue?.name;
+      dataObj.employeeRange=obj?.range?.name;
+      dataObj.industryName=obj?.industry?.name;
+      dataObj.country=obj.country;
+      dataObj.state=obj.state;
+      dataObj.city=obj.city;
+      dataObj.wedsite=obj.wedsite;
+      dataObj.address=obj.address;
+      dataObj.pincode=obj.pincode;
+      dataObj.phoneNo=obj.phoneNo;
+      finaldata.push(dataObj)
+    })
+    return finaldata;
+  }
+
+
+  useEffect(() => {
+    
+    if (downloadExcelData.length) {
+      const downloadedUpdatedData = getSchema(downloadExcelData)
+
+      //console.log(downloadExcelData, "downloadExcelData",downloadedUpdatedData);
+      const columns = [
+        { header: "Serial No.", key: "serealNo" },
+        // { header: "FirstName", key: "" },
+        // { header: "LastName", key: "" },
+        // { header: "Designation", key: "" },
+        // { header: "Email Available", key: "" },
+        // 
+        { header: "Company Name", key: "name" },
+        { header: "Phone", key: "phoneNo" },
+        { header: "Address", key: "address" },
+        { header: "City", key: "city" },
+        { header: "State", key: "state" },
+        { header: "Country", key: "country" },
+        { header: "Pin", key: "pincode" },
+        { header: "Website", key: "wedsite" },
+        { header: "Company Revenue", key: "revenueName" },
+        { header: "Employee Range", key: "rangeName" },
+        { header: "Industry", key: "industryName" },
+      ];
+      const fileName = "companyData";
+      saveExcel(downloadedUpdatedData, columns, fileName, Excel, saveAs);
+      dispatch(emptyDownload());
+    }
+  }, [downloadExcelData]);
 
   const downloadPDF = () => {
     const isLoggedIn = checkLoginStatus();
@@ -290,17 +395,16 @@ const CompanyContent = () => {
     } else {
       const { id } = getUserInfo();
       //selectedRecords
-      let payload = []
+      let payload = [];
       for (let i = 0; i < selectedRecords.length; i++) {
         payload = [
-           ...payload,
+          ...payload,
           {
             company: selectedRecords[i].name,
             text: tagValues.tagname,
             userId: id,
-          }
-        ]
-        
+          },
+        ];
       }
       dispatch(createGroupCompanyTag(payload));
 
@@ -336,6 +440,8 @@ const CompanyContent = () => {
                       {parseInt(PAGE_LENGTH) >
                       parseInt(companyFilterList?.totalCount)
                         ? companyFilterList?.totalCount
+                        : paginationValue.end
+                        ? paginationValue.end
                         : PAGE_LENGTH}
                       <span className="m-1">of</span>{" "}
                       {companyFilterList?.totalCount}
@@ -346,7 +452,7 @@ const CompanyContent = () => {
                       <ul className="d-flex mt-1  m-mt">
                         <li>
                           <a
-                            class=" mr-2"
+                            className=" mr-2"
                             href="#"
                             id=""
                             role="button"
@@ -364,7 +470,7 @@ const CompanyContent = () => {
 
                         <li>
                           <a
-                            class=" mr-2"
+                            className=" mr-2"
                             href="#"
                             id=""
                             role="button"
@@ -373,7 +479,7 @@ const CompanyContent = () => {
                             aria-expanded="false"
                           >
                             <i
-                              class="right-icons la la-file-excel"
+                              className="right-icons la la-file-excel"
                               aria-hidden="true"
                               onClick={downloadExcel}
                             ></i>
@@ -445,8 +551,15 @@ const CompanyContent = () => {
                             dataSource={companyList}
                             pagination={{
                               responsive: true,
+                              defaultCurrent: paginationValue?.start + 1,
                               total: companyFilterList?.totalCount,
-                              pageSize: PAGE_LENGTH,
+                              pageSize:
+                                parseInt(PAGE_LENGTH) >
+                                parseInt(companyFilterList?.totalCount)
+                                  ? companyFilterList?.totalCount
+                                  : paginationValue.end
+                                  ? paginationValue.end
+                                  : PAGE_LENGTH,
                               position: ["bottomCenter"],
                               onChange: onPageChange,
                             }}
@@ -472,7 +585,7 @@ const CompanyContent = () => {
           onCancel={closeTagModal}
           onOk={onTagConfrim}
         >
-          <div class="pop-up errorformcontainer ">
+          <div className="pop-up errorformcontainer ">
             <div className="form">
               <div className="formcol1">
                 <label>Tag Name</label>
@@ -503,7 +616,7 @@ const CompanyContent = () => {
             onCancel={closeModal}
             onOk={onConfrim}
           >
-            <div class="pop-up errorformcontainer ">
+            <div className="pop-up errorformcontainer ">
               <div className="form">
                 <div className="formcol1">
                   <label>Search Name</label>

@@ -1,5 +1,5 @@
 .pop_up{
-		border: 9px solid#485460;
+		/* border: 9px solid#485460; */
 		border-radius: 1em;
 		-o-border-radius: 1em;
 		-moz-border-radius: 1em;
@@ -14,7 +14,7 @@
 	margin: 40px auto;
 	position: relative;
 	text-align:center;
-	border: 9px solid#eee;
+	/* border: 9px solid#eee; */
 	border-radius: 1em;
 		-o-border-radius: 1em;
 		-moz-border-radius: 1em;

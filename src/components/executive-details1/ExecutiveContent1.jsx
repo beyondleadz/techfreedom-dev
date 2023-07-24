@@ -39,9 +39,9 @@ const ExecutiveContent1 = () => {
         <div className="col"><h5>Email</h5> <i className=" align-top btn iconemail emails"></i><span>View Email</span></div>
         <div className="col"><h5>Phone</h5>(206) 266-1000</div>
         <div className="col"><h5>Social</h5>
-          <i class="lab fs-20 facebook lab la-facebook"></i>
-<i class="lab fs-20  twitter la la-twitter-square"></i>
-<i class="lab fs-20 linkedin lab la-linkedin"></i></div>
+          <i className="lab fs-20 facebook lab la-facebook"></i>
+<i className="lab fs-20  twitter la la-twitter-square"></i>
+<i className="lab fs-20 linkedin lab la-linkedin"></i></div>
         </div>
         <div className="row pt-3">
           <div className="col"><h5>Overview</h5> <span>Executive with strong experience in Large Account Management, P&L responsibility and leading high-caliber sales teams. Strong customer advocacy, communication and cross-group collaboration skills. 
@@ -81,15 +81,15 @@ const ExecutiveContent1 = () => {
                             <li><div className="btn btn-outline-secondary pr-1 mr-2"><i className="fs-16 mr-1  la la-plus"></i>Create List</div></li>
                         
                             <li><div className="btn btn-outline-secondary pr-1 mr-4"><i className="fs-14 mr-1 fas fa-paper-plane"></i>Send Campaign</div></li>
-                 <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
-                    aria-expanded="false"><i class="right-icons la la-file-pdf" aria-hidden="true"></i>
+                 <li><a className=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
+                    aria-expanded="false"><i className="right-icons la la-file-pdf" aria-hidden="true"></i>
                   </a></li>
                          
-                  <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
-                    aria-expanded="false"><i class="right-icons la la-file-excel" aria-hidden="true"></i>
+                  <li><a className=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
+                    aria-expanded="false"><i className="right-icons la la-file-excel" aria-hidden="true"></i>
                   </a></li>
                 
-              <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
+              <li><a className=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
                     aria-expanded="false">
                     <i className="right-icons las  la-user-tag" aria-hidden="true"></i>
                   </a>
@@ -137,9 +137,9 @@ const ExecutiveContent1 = () => {
                                 </td>
                                 <td>(206) 266-1000</td>
                                 <td>
-                                  <h4 class="btn btn-primary pr-1 small text-black align-items-center">
+                                  <h4 className="btn btn-primary pr-1 small text-black align-items-center">
                                     {" "}
-                                    <i class="las la-mobile fs-12 pt-1 pr-1"></i>
+                                    <i className="las la-mobile fs-12 pt-1 pr-1"></i>
                                     VIEW
                                   </h4>
                                 </td>
@@ -160,9 +160,9 @@ const ExecutiveContent1 = () => {
                                 </td>
                                 <td>(206) 266-1000</td>
                                 <td>
-                                  <h4 class="btn btn-primary pr-1 small text-black align-items-center">
+                                  <h4 className="btn btn-primary pr-1 small text-black align-items-center">
                                     {" "}
-                                    <i class="las la-mobile fs-12 pt-1 pr-1"></i>
+                                    <i className="las la-mobile fs-12 pt-1 pr-1"></i>
                                     VIEW
                                   </h4>
                                 </td>
@@ -183,9 +183,9 @@ const ExecutiveContent1 = () => {
                                 </td>
                                 <td>(206) 266-1000</td>
                                 <td>
-                                  <h4 class="btn btn-primary pr-1 small text-black align-items-center">
+                                  <h4 className="btn btn-primary pr-1 small text-black align-items-center">
                                     {" "}
-                                    <i class="las la-mobile fs-12 pt-1 pr-1"></i>
+                                    <i className="las la-mobile fs-12 pt-1 pr-1"></i>
                                     VIEW
                                   </h4>
                                 </td>
@@ -206,9 +206,9 @@ const ExecutiveContent1 = () => {
                                 </td>
                                 <td>(206) 266-1000</td>
                                 <td>
-                                  <h4 class="btn btn-primary pr-1 small text-black align-items-center">
+                                  <h4 className="btn btn-primary pr-1 small text-black align-items-center">
                                     {" "}
-                                    <i class="las la-mobile fs-12 pt-1 pr-1"></i>
+                                    <i className="las la-mobile fs-12 pt-1 pr-1"></i>
                                     VIEW
                                   </h4>
                                 </td>
@@ -229,9 +229,9 @@ const ExecutiveContent1 = () => {
                                 </td>
                                 <td>(206) 266-1000</td>
                                 <td>
-                                  <h4 class="btn btn-primary pr-1 small text-black align-items-center">
+                                  <h4 className="btn btn-primary pr-1 small text-black align-items-center">
                                     {" "}
-                                    <i class="las la-mobile fs-12 pt-1 pr-1"></i>
+                                    <i className="las la-mobile fs-12 pt-1 pr-1"></i>
                                     VIEW
                                   </h4>
                                 </td>
@@ -253,9 +253,9 @@ const ExecutiveContent1 = () => {
                                 </td>
                                 <td>(206) 266-1000</td>
                                 <td>
-                                  <h4 class="btn btn-primary pr-1 small text-black align-items-center">
+                                  <h4 className="btn btn-primary pr-1 small text-black align-items-center">
                                     {" "}
-                                    <i class="las la-mobile fs-12 pt-1 pr-1"></i>
+                                    <i className="las la-mobile fs-12 pt-1 pr-1"></i>
                                     VIEW
                                   </h4>
                                 </td>
@@ -276,9 +276,9 @@ const ExecutiveContent1 = () => {
                                 </td>
                                 <td>(206) 266-1000</td>
                                 <td>
-                                  <h4 class="btn btn-primary pr-1 small text-black align-items-center">
+                                  <h4 className="btn btn-primary pr-1 small text-black align-items-center">
                                     {" "}
-                                    <i class="las la-mobile fs-12 pt-1 pr-1"></i>
+                                    <i className="las la-mobile fs-12 pt-1 pr-1"></i>
                                     VIEW
                                   </h4>
                                 </td>
@@ -330,13 +330,13 @@ const ExecutiveContent1 = () => {
                  <div className="row pb-3">
                     <div className=" pl-3">
                     
-                      <div className="fs-12"><h6><i class=" fs-16 mr-2  la la-phone text-black"></i>Phone</h6><div className="pl-4 ">(206) 266-1000</div></div>
-                      <div className="fs-12"><h6><i class=" fs-16 mr-2  la la-map-marker text-black"></i>Location</h6><div className="pl-4 ml-1"> Okhla Industrial Estate Phase 3 Rd, New Delhi, Delhi 110020</div></div>
-                      <div className="fs-12"><h6><i class=" fs-16 mr-2  la la-users text-black"></i>Employees Ranges</h6><div className="pl-4 ml-1">1.0K to 5.0K</div></div>
-                      <div className="fs-12"><h6><i class=" fs-16 mr-2  las la-industry text-black"></i>Industry</h6><div className="pl-4 ml-1">Commercial & professional services</div></div>
-                      <div className="fs-12"><h6><i class=" fs-16 mr-2  la la-globe text-black"></i>Website</h6><div className="pl-4 ml-1">https://www.dnb.co.in/</div></div>
-                      <div className="fs-12"><h6><i class=" fs-16 mr-2  la la-city text-black"></i>Company Type</h6><div className="pl-4 ml-1">Business information Credit & risk Sales & marketing Data analytics Supply & compliance</div></div>
-                      <div className="fs-12"><h6><i class=" fs-16 mr-2  la la-money-check text-black"></i>Revenue Range</h6><div className="pl-4 ml-1"> $2,270 million to $2,315 million</div></div>
+                      <div className="fs-12"><h6><i className=" fs-16 mr-2  la la-phone text-black"></i>Phone</h6><div className="pl-4 ">(206) 266-1000</div></div>
+                      <div className="fs-12"><h6><i className=" fs-16 mr-2  la la-map-marker text-black"></i>Location</h6><div className="pl-4 ml-1"> Okhla Industrial Estate Phase 3 Rd, New Delhi, Delhi 110020</div></div>
+                      <div className="fs-12"><h6><i className=" fs-16 mr-2  la la-users text-black"></i>Employees Ranges</h6><div className="pl-4 ml-1">1.0K to 5.0K</div></div>
+                      <div className="fs-12"><h6><i className=" fs-16 mr-2  las la-industry text-black"></i>Industry</h6><div className="pl-4 ml-1">Commercial & professional services</div></div>
+                      <div className="fs-12"><h6><i className=" fs-16 mr-2  la la-globe text-black"></i>Website</h6><div className="pl-4 ml-1">https://www.dnb.co.in/</div></div>
+                      <div className="fs-12"><h6><i className=" fs-16 mr-2  la la-city text-black"></i>Company Type</h6><div className="pl-4 ml-1">Business information Credit & risk Sales & marketing Data analytics Supply & compliance</div></div>
+                      <div className="fs-12"><h6><i className=" fs-16 mr-2  la la-money-check text-black"></i>Revenue Range</h6><div className="pl-4 ml-1"> $2,270 million to $2,315 million</div></div>
                     </div>
                   </div>
                  </div>
@@ -448,7 +448,7 @@ const ExecutiveContent1 = () => {
               </div>
               <div className="card shadow descbox1 mb-3">
               
-                <div>Is this company data relevant to you? <a href="#" id="" role="button" data-toggle="" aria-haspopup="true" aria-expanded="false"><i class="right-icons small fa fa-thumbs-up" aria-hidden="true"></i></a><a href="#" id="" role="button" data-toggle="" aria-haspopup="true" aria-expanded="false"><i class="right-icons small fa fa-thumbs-down" aria-hidden="true"></i></a></div>
+                <div>Is this company data relevant to you? <a href="#" id="" role="button" data-toggle="" aria-haspopup="true" aria-expanded="false"><i className="right-icons small fa fa-thumbs-up" aria-hidden="true"></i></a><a href="#" id="" role="button" data-toggle="" aria-haspopup="true" aria-expanded="false"><i className="right-icons small fa fa-thumbs-down" aria-hidden="true"></i></a></div>
                
               </div>
             </div>

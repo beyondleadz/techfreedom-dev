@@ -1,10 +1,13 @@
-import React, { useEffect, useState, useMemo } from "react";
-import { Modal, Checkbox, Input, Divider, Button } from "antd";
+import React, { useEffect, useState, useMemo, useRef } from "react";
+import { Modal, Checkbox, Input, Divider, Button,Tooltip } from "antd";
 import _ from "lodash";
 import { useDispatch } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { deleteAuthMethod } from "../../services/HttpServices";
+import defaultLogo from "../../assets/images/default_company_logo.jpg";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 
 import {
   submitErrorForm,
@@ -16,11 +19,16 @@ import {
   downloadExecutiveExl,
 } from "../../actionCreator/companyDetailsActionCreator";
 import { emailRegex } from "../../config";
-import { getSubscriptionUserInfo, getToken, getUserInfo } from "../../utils/utils";
+import {
+  getSubscriptionUserInfo,
+  getToken,
+  getUserInfo,
+} from "../../utils/utils";
 import TrialModal from "../../common/TrialModal";
 import popupImg from "../../assets/images/free-user-login-prompt.jpg.jpeg";
 import { useNavigate } from "react-router";
 const SummaryHeader = () => {
+  const pdfRef=useRef();
   const [showModal, setShowModal] = useState(false);
 
   const formIntialValue = {
@@ -82,7 +90,7 @@ const SummaryHeader = () => {
   }, [Object.keys(errObj).length]);
 
   useMemo(() => {
-    if (Object.keys(getUserInfo()).length) {
+    if (Object.keys(getUserInfo()).length && companyDetails?.id) {
       const { id } = getUserInfo();
       dispatch(resetCompanyTag());
       dispatch(getCompanyTag(companyDetails?.id, id));
@@ -155,8 +163,8 @@ const SummaryHeader = () => {
         [key]: errorForm[key].value,
       };
     });
-    const { id,login } = getUserInfo();
-    const { id:accountId } = getSubscriptionUserInfo();
+    const { id, login } = getUserInfo();
+    const { id: accountId } = getSubscriptionUserInfo();
     const payload = {
       accountId: accountId,
       companyId: companyDetails?.id,
@@ -223,19 +231,34 @@ const SummaryHeader = () => {
         selectedEmpIds.lastIndexOf(","),
         0
       );
-      const payload={
-        empIds:selectedEmpIds,
-        department:selectedDepartment,
-        companyId:companyDetails?.id
-      }
+      const payload = {
+        empIds: selectedEmpIds,
+        department: selectedDepartment,
+        companyId: companyDetails?.id,
+      };
       dispatch(downloadExecutiveExl(payload));
     }
   };
   const downloadPDF = (id) => {
-    const isLoggedIn = checkLoginStatus();
-    if (isLoggedIn) {
-      dispatch(downloadCompany([id], "pdf"));
-    }
+    // const isLoggedIn = checkLoginStatus();
+    // if (isLoggedIn) {
+    //   dispatch(downloadCompany([id], "pdf"));
+    // }
+    const input=pdfRef.current;
+    console.log(input);
+    html2canvas(input).then((canvas)=>{
+      const imgData=canvas.toDataURL('image/png');
+      const pdf=new jsPDF('p','mm','a4',true);
+      const pdfWidth=pdf.internal.pageSize.getWidth();
+      const pdfHeight=pdf.internal.pageSize.getHeight();
+      const imgWidth=canvas.width;
+      const imgHeight=canvas.height;
+      const ratio=Math.min(pdfWidth/imgWidth,pdfHeight/imgHeight);
+      const imgX=(pdfWidth-imgWidth * ratio)/2;
+      const imgY=30;
+      pdf.addImage(imgData,'PNG',imgX,imgY,imgWidth*ratio,imgHeight*ratio);
+      pdf.save('comapny.pdf');
+    })
   };
 
   const onConfrim = () => {
@@ -293,7 +316,12 @@ const SummaryHeader = () => {
         }`}
       >
         <div className="logobox">
-          <img src={companyDetails?.companyLogoUrl} />
+          <img
+            src={companyDetails?.companyLogoUrl || defaultLogo}
+            onError={(e) => {
+              e.currentTarget.src = defaultLogo;
+            }}
+          />
         </div>
 
         <div className="descbox">
@@ -336,42 +364,60 @@ const SummaryHeader = () => {
             </div>
           </div>
 
-          <div style={{position:'relative'}}>
+          <div style={{ position: "relative" }}>
             {/* <h3>Overview</h3> */}
-            <div 
-            className={`companyintro ${
-              isCompanyBoxHeightFixed ? "setauto" : ""
-            }`}>
+            <div
+              className={`companyintro ${
+                isCompanyBoxHeightFixed ? "setauto" : ""
+              }`}
+            >
               <strong className="mr-2 fs-12">Description of business</strong>
               {companyDetails?.introduction}
             </div>
             {companyDetails?.introduction && (
-            <span className="readmoreoverview" onClick={toggleCompanyHeight}>
-              {isCompanyBoxHeightFixed ? "Hide..." : "Read more..."}
-            </span>
-          )}
+              <span className="readmoreoverview" onClick={toggleCompanyHeight}>
+                {isCompanyBoxHeightFixed ? "Hide..." : "Read more..."}
+              </span>
+            )}
           </div>
-     
 
-{/* <div className="buttons-container socialgroup" style={{"display":"block"}}>
-          <ul className="d-flex  m-mt">
-            <li>
-              <a
-                className=" mr-2"
-                role="button"
-                data-toggle=""
-                aria-haspopup="true"
-                aria-expanded="false"
-                onClick={() => downloadPDF(companyDetails?.id)}
-              >
-                <i
-                  className="right-icons la la-file-pdf"
-                  aria-hidden="true"
-                ></i>
-              </a>
-            </li>
+          <div
+            className="buttons-container socialgroup"
+            style={{ display: "block" }}
+          >
+            <ul className="d-flex  m-mt">
+              <li>
+                <a
+                  className=" mr-2"
+                  id=""
+                  role="button"
+                  data-toggle=""
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  onClick={tagCompany}
+                >
+                   <Tooltip title="Tag Company">
+                  <i className="right-icons las la-tag" aria-hidden="true"></i>
+                  </Tooltip>
+                </a>
+              </li>
+              <li>
+                <a
+                  className=" mr-2"
+                  role="button"
+                  data-toggle=""
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  onClick={() => downloadPDF(companyDetails?.id)}
+                >
+                  <i
+                    className="right-icons la la-file-pdf"
+                    aria-hidden="true"
+                  ></i>
+                </a>
+              </li>
 
-            <li>
+              {/* <li>
               <a
                 className=" mr-2"
                 role="button"
@@ -385,28 +431,14 @@ const SummaryHeader = () => {
                   aria-hidden="true"
                 ></i>
               </a>
-            </li>
-
-            <li>
-              <a
-                className=" mr-2"
-                id=""
-                role="button"
-                data-toggle=""
-                aria-haspopup="true"
-                aria-expanded="false"
-                onClick={tagCompany}
-              >
-                <i className="right-icons las la-tag" aria-hidden="true"></i>
-              </a>
-            </li>
-            <li>
+            </li> 
+             <li>
               <a className=" mr-2" onClick={handleErrorForm}>
                 <i className="right-icons las la-flag" aria-hidden="true"></i>
               </a>
-            </li>
-          </ul>
-        </div> */}
+            </li> */}
+            </ul>
+          </div>
         </div>
 
         {/* <div className=" d-flex social-icons fs-12 ml-3 pl-2">
@@ -414,8 +446,10 @@ const SummaryHeader = () => {
             {renderSocialLinks(companyDetails?.socialLinks)}
           </span>
         </div> */}
-      
       </div>
+
+
+      <div style={{position:'absolute',left:'0',top:'-5000px'}} ref={pdfRef}><p>This is sample text for download.</p></div>
 
       {openErrorForm && (
         <Modal
@@ -631,7 +665,7 @@ const SummaryHeader = () => {
             onCancel={closeTagModal}
             onOk={onConfrim}
           >
-            <div class="pop-up errorformcontainer ">
+            <div className="pop-up errorformcontainer ">
               <div className="form">
                 <div className="formcol1">
                   <label>Tag Name</label>
@@ -675,7 +709,7 @@ const SummaryHeader = () => {
               </Button>,
             ]}
           >
-            <div class="pop-up errorformcontainer ">
+            <div className="pop-up errorformcontainer ">
               <p>Already Tagged!</p>
             </div>
           </Modal>

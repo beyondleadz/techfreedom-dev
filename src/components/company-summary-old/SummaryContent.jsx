@@ -281,7 +281,7 @@ const SummaryContent = () => {
                     onClick={()=>checkRelavantCompany(1)}
                   >
                     <i
-                      class="right-icons small fa fa-thumbs-up"
+                      className="right-icons small fa fa-thumbs-up"
                       aria-hidden="true"
                     ></i>
                   </a>
@@ -294,16 +294,16 @@ const SummaryContent = () => {
                     onClick={()=>checkRelavantCompany(0)}
                   >
                     <i
-                      class="right-icons small fa fa-thumbs-down"
+                      className="right-icons small fa fa-thumbs-down"
                       aria-hidden="true"
                     ></i>
                   </a>
                 </div>
                 {/* <div font-weight-bold>
-                  <button class="btn btn-outline-dark font-weight-bold mr-2 p-1">
+                  <button className="btn btn-outline-dark font-weight-bold mr-2 p-1">
                     Really Not
                   </button>
-                  <button class="btn btn-outline-dark font-weight-bold mr-2 p-1">
+                  <button className="btn btn-outline-dark font-weight-bold mr-2 p-1">
                     Yes!
                   </button>
                 </div> */}

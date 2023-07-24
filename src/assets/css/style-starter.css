@@ -2895,45 +2895,46 @@ fieldset:disabled a.btn {
   box-shadow: 0 0 0 0.2rem rgba(88, 84, 122, 0.5);
 }
 
-.btn-success {
-  color: #fff;
-  background-color: #28a745;
-  border-color: #28a745;
+.btn-phone {  color: #1f1f1f;  background-color: #b1f5de;  border-color: #b1f5de;}
+.btn-phone:hover {  color: #fff;  background-color: #a6f5da;  border-color: #a6f5da;}
+.btn-phone:focus,.btn-phone.focus {
+  color: #fff;  background-color: #27b989;  border-color: #27b989;  box-shadow: 0 0 0 0.2rem rgba(72, 180, 97, 0.5);
 }
 
-.btn-success:hover {
-  color: #fff;
-  background-color: #218838;
-  border-color: #1e7e34;
+.btn-whatsapp {  color: #1f1f1f;  background-color: #c0faa8;  border-color: #c0faa8;}
+.btn-whatsapp:hover {  color: #fff;  background-color: #a1fd79;  border-color: #a1fd79;}
+.btn-whatsapp:focus,.btn-whatsapp.focus {
+  color: #fff;  background-color: #8ffb60;  border-color: #8ffb60;  box-shadow: 0 0 0 0.2rem rgba(72, 180, 97, 0.5);
 }
 
-.btn-success:focus,
-.btn-success.focus {
-  color: #fff;
-  background-color: #218838;
-  border-color: #1e7e34;
-  box-shadow: 0 0 0 0.2rem rgba(72, 180, 97, 0.5);
+.btn-act {  color: #1f1f1f;  background-color: #d3b0fb;  border-color: #d3b0fb;}
+.btn-act:hover {  color: #fff;  background-color: #c494fc;  border-color: #c494fc;}
+.btn-act:focus,.btn-act.focus {
+  color: #fff;  background-color: #b67dfa;  border-color: #b67dfa;  box-shadow: 0 0 0 0.2rem rgba(72, 180, 97, 0.5);
 }
 
-.btn-success.disabled,
-.btn-success:disabled {
-  color: #fff;
-  background-color: #28a745;
-  border-color: #28a745;
+.btn-email {  color: #1f1f1f;  background-color: #b0bafb;  border-color: #b0bafb;}
+.btn-email:hover {  color: #fff;  background-color: #92a0fb;  border-color: #92a0fb;}
+.btn-email:focus,.btn-email.focus {
+  color: #fff;  background-color: #7486fa;  border-color: #7486fa;  box-shadow: 0 0 0 0.2rem rgba(72, 180, 97, 0.5);
 }
 
-.btn-success:not(:disabled):not(.disabled):active,
-.btn-success:not(:disabled):not(.disabled).active,
-.show>.btn-success.dropdown-toggle {
-  color: #fff;
-  background-color: #1e7e34;
-  border-color: #1c7430;
+.btn-document {  color: #1f1f1f;  background-color: #fef270;  border-color: #fef270;}
+.btn-document:hover {  color: #fff;  background-color: #fef162;  border-color: #fef162;}
+.btn-document:focus,.btn-document.focus {
+  color: #fff;  background-color: #fbec4b;  border-color: #fbec4b;  box-shadow: 0 0 0 0.2rem rgba(72, 180, 97, 0.5);
 }
 
-.btn-success:not(:disabled):not(.disabled):active:focus,
-.btn-success:not(:disabled):not(.disabled).active:focus,
-.show>.btn-success.dropdown-toggle:focus {
-  box-shadow: 0 0 0 0.2rem rgba(72, 180, 97, 0.5);
+.btn-meet {  color: #1f1f1f;  background-color: #fac6e7;  border-color: #fac6e7;}
+.btn-meet:hover {  color: #fff;  background-color: #fbacde;  border-color: #fbacde;}
+.btn-meet:focus,.btn-meet.focus {
+  color: #fff;  background-color: #fa8cd1;  border-color: #fa8cd1;  box-shadow: 0 0 0 0.2rem rgba(72, 180, 97, 0.5);
+}
+
+.btn-app {  color: #1f1f1f;  background-color: #fce5a5;  border-color: #fce5a5;}
+.btn-app:hover {  color: #fff;  background-color: #fadd8d;  border-color: #fadd8d;}
+.btn-app:focus,.btn-app.focus {
+  color: #fff;  background-color: #fad775;  border-color: #fad775;  box-shadow: 0 0 0 0.2rem rgba(72, 180, 97, 0.5);
 }
 
 .btn-info {
@@ -7076,9 +7077,7 @@ a.close.disabled {
   }
 }
 
-.carousel-indicators .active {
-  opacity: 1;
-}
+.carousel-indicators .active {  opacity: 1;}
 
 .carousel-caption {
   position: absolute;
@@ -10928,7 +10927,7 @@ button.bg-dark:focus {
 }
 
 .font-weight-bold {
-  font-weight: 700 ;
+  font-weight: 650 ;
 }
 
 .font-weight-bolder {
@@ -11308,7 +11307,7 @@ h6 {
 p {
   margin: 0;
   padding: 0;
-  font-size: 15px;
+  font-size: 14px;
   line-height: 25px;
   color: var(--font-color);
   font-weight: 500;
@@ -14177,9 +14176,9 @@ p.white {
   content: "\e05e";
 }
 
-.fa-handshake:before {
+/* .fa-handshake:before {
   content: "\f2b5";
-}
+} */
 
 .fa-handshake-alt-slash:before {
   content: "\e05f";
@@ -18498,6 +18497,10 @@ button.search-btn {
     padding: 8px 20px 8px 2px;
 }
 
+input[type="search"]::-webkit-search-cancel-button {
+  display: none;
+}
+
 button.search-btn:hover {
   color: var(--secondary-color);
 }
@@ -22638,3 +22641,4 @@ li.whyt.lost {
   border-bottom-right-radius: 5px;
 
 }
+.text-align-right{text-align: right;}

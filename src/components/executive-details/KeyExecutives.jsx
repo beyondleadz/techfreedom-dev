@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useMemo } from "react";
 import { Table, Modal, Button, Tooltip } from "antd";
 import { PAGE_LENGTH } from "../../config";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-import { getToken } from "../../utils/utils";
+import { getToken, getUserInfo } from "../../utils/utils";
 import {
   submitLead,
   resetLead,
+  getExecutiveLead,
+  storeSelectedColleagues,
+  getEmployeeViewableStatusUpdate
 } from "../../actionCreator/executiveDetailsActionCreator";
 import popupImg from "../../assets/images/free-user-login-prompt.jpg.jpeg";
 import TrialModal from "../../common/TrialModal";
@@ -29,10 +32,35 @@ const KeyExecutives = () => {
   const [showPhone, setShowPhone] = useState({});
   
   const navigate = useNavigate();
+  const userAccountInfo = useSelector(
+    (state) => state.CommonReducer.accountInfo
+  );
+  useMemo(() => {
+    if (Object.keys(getUserInfo()).length) {
+      const { id } = getUserInfo();
+      dispatch(getExecutiveLead(id));
+    }
+  }, [userAccountInfo]);
+
+  const updateEmailStatus = (showEmail,row) => {
+    setShowEmail({ ...showEmail, [row.id]: true });
+    //call api to update status
+    if(!row?.isdownloadedEmail){
+    dispatch(getEmployeeViewableStatusUpdate('Email',row));    
+    }
+    
+  };
+  const updatePhoneStatus = (showPhone,row) => {
+    setShowPhone({ ...showPhone, [row.id]: true });
+    if(!row?.isdownloadedMobile){
+    dispatch(getEmployeeViewableStatusUpdate('Mobile',row));
+    }
+  }
+
 
   const columns = [
     {
-      title: "Executive name",
+      title: "Executive Name",
       dataIndex: "fullname",
       fixed: "left",
     },
@@ -48,8 +76,8 @@ const KeyExecutives = () => {
           //  <Tooltip title={text}>
           <>
             <h4
-              className=" btn iconemail emails-open"
-              onClick={() => setShowEmail({ ...showEmail, [row.id]: true })}
+              className={row?.isdownloadedEmail?" btn iconemail emails-open":" btn iconemail emails"}
+              onClick={()=>updateEmailStatus(showEmail,row)}
             ></h4>
             {showEmail[row.id] && (
               <>
@@ -85,10 +113,10 @@ const KeyExecutives = () => {
             <span
               // style={{ height: "auto" }}
               // className="keyexebtn d-none d-sm-inline-block small btn btn-primary text-black"
-              className=" btn mobile-open"
-              onClick={() => setShowPhone({ ...showPhone, [row.id]: true })}
+              className={row?.isdownloadedMobile?" btn mobile-open":" btn mobile"}
+              onClick={()=>updatePhoneStatus(showPhone,row)}
             >
-              {/* <i class="las la-mobile fs-12  pr-1"></i> */}
+              {/* <i className="las la-mobile fs-12  pr-1"></i> */}
               {/* VIEW */}
             </span>
             {showPhone[row.id] && record?.phoneNo && (
@@ -109,7 +137,7 @@ const KeyExecutives = () => {
             // className="keyexebtn d-none d-sm-inline-block small btn btn-primary text-black"
             onClick={() => openInfoModel()}
           >
-            {/* <i class="las la-mobile fs-12  pr-1"></i>
+            {/* <i className="las la-mobile fs-12  pr-1"></i>
             VIEW */}
           </span>
         );
@@ -120,7 +148,7 @@ const KeyExecutives = () => {
         //     className="keyexebtn d-none d-sm-inline-block small btn btn-primary text-black"
         //     onClick={() => openInfoModel(text)}
         //   >
-        //     <i class="las la-mobile fs-12 pt-1 pr-1"></i>
+        //     <i className="las la-mobile fs-12 pt-1 pr-1"></i>
         //     VIEW
         //   </Button>
         // );
@@ -141,7 +169,7 @@ const KeyExecutives = () => {
             }
             onClick={() => postLeads(record)}
           >
-            <i class="las la-user-plus fs-12 pr-1"></i> ADD TO LEADS
+            <i className="las la-user-plus fs-12 pr-1"></i> ADD TO LEADS
           </Button>
         ) : (
           <Button
@@ -154,7 +182,7 @@ const KeyExecutives = () => {
             }
             onClick={() => openInfoModel()}
           >
-            <i class="las la-user-plus  fs-12  pr-1"></i>ADD TO LEADS
+            <i className="las la-user-plus  fs-12  pr-1"></i>ADD TO LEADS
           </Button>
         );
       },
@@ -162,6 +190,7 @@ const KeyExecutives = () => {
   ];
 
   const postLeads = (record) => {
+    const { id,login } = getUserInfo();
     let leadPayload = {
       firstname: record.firstname,
       lastname: record.lastname,
@@ -172,6 +201,7 @@ const KeyExecutives = () => {
       phoneNo: record.phoneNo,
       bio: record.bio,
       description: record.description,
+      userId:id
     };
     dispatch(submitLead(leadPayload));
     setAddToLeads(record.id);
@@ -190,12 +220,13 @@ const KeyExecutives = () => {
         {
           key: record.id,
           id: record.id,
-          fullname: record.fullname,
+          fullname: (record?.fullname)?record.fullname:record.firstname+" "+record.lastname,
           title: record?.title,
           emailId: record?.emailId,
           phoneNo: record?.company?.phoneNo,
           directDial: record,
           leads: record,
+          pageFor:2
         },
       ];
     });
@@ -226,11 +257,15 @@ const KeyExecutives = () => {
         "selectedRows: ",
         selectedRows
       );
+
+      dispatch(storeSelectedColleagues(selectedRows))
+
     },
     getCheckboxProps: (record) => ({
       disabled: record.name === "Disabled User", // Column configuration not to be checked
       name: record.name,
-    }),
+    })
+
   };
 
   const onPageChange = (page, pageSize) => {
@@ -324,7 +359,7 @@ const KeyExecutives = () => {
             </Button>,
           ]}
         >
-          <div class="pop-up">
+          <div className="pop-up">
             <div id="small-dialog2">
               <p style={{ color: "#0000FF" }}>
                 New Client Leads is creted with new identifier :{" "}

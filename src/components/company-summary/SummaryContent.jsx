@@ -1,5 +1,7 @@
 import React, { useEffect, useState, useMemo } from "react";
-import { Modal, Checkbox, Input, Divider, Button,Tabs } from "antd";
+import Excel from "exceljs";
+import { saveAs } from "file-saver";
+import { Modal, Checkbox, Input, Divider, Button,Tabs,Tooltip } from "antd";
 import _ from "lodash";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -8,7 +10,7 @@ import defaultLogo from "../../assets/images/default_company_logo.jpg";
 import AboutCompany from "./AboutCompany";
 import KeyExecutives from "./KeyExecutives";
 import OrgChart from "./OrgChart";
-import { getToken, getUserInfo } from "../../utils/utils";
+import { saveExcel, testImage, getToken, getUserInfo } from "../../utils/utils";
 import TrialModal from "../../common/TrialModal";
 import popupImg from "../../assets/images/free-user-login-prompt.jpg.jpeg";
 import { useNavigate } from "react-router";
@@ -21,13 +23,18 @@ import {
   resetPostRelavantCompany,
   storeSelectedDepartment,
   submitErrorForm,
-  createCompanyTag,
   emptyErrorObj,
   downloadCompany,
   getCompanyTag,
   resetCompanyTag,
   downloadExecutiveExl,
+  emptyDownload
 } from "../../actionCreator/companyDetailsActionCreator";
+
+import {
+  // downloadExecutiveList,
+  createGroupExecutiveTag,
+} from "../../actionCreator/executiveListingActionCreater";
 
 const SummaryContent = () => {
   const dispatch = useDispatch();
@@ -75,10 +82,14 @@ const SummaryContent = () => {
   const sigleCompanyTag = useSelector(
     (state) => state.companyDetailsReducer.sigleCompanyTag
   );
+  const downloadExcelData = useSelector(
+    (state) => state.companyDetailsReducer.downloadExecutive
+  );
+  
   const errObj = useSelector((state) => state.companyDetailsReducer.errObj);
 
 
-  const [taggedCompany, setTaggedCompany] = useState(false);
+  const [taggedExecutive, setTaggedExecutive] = useState(false);
   useEffect(() => {
     if (Object.keys(errObj).length) {
       setIsApiFailed(true);
@@ -89,29 +100,38 @@ const SummaryContent = () => {
   }, [Object.keys(errObj).length]);
 
   useMemo(() => {
-    if (Object.keys(getUserInfo()).length) {
+    if (Object.keys(getUserInfo()).length && companyDetails?.id) {
       const { id } = getUserInfo();
       dispatch(resetCompanyTag());
       dispatch(getCompanyTag(companyDetails?.id, id));
     }
   }, [companyDetails, userAccountInfo]);
 
+  // useEffect(() => {
+  //   console.log(
+  //     fetchCompanyTag.length,
+  //     Object.keys(sigleCompanyTag).length,
+  //     "chk len"
+  //   );
+  //   if (fetchCompanyTag.length || Object.keys(sigleCompanyTag).length) {
+  //     setTaggedExecutive(true);
+  //   } else {
+  //     setTaggedExecutive(false);
+  //   }
+  // }, [fetchCompanyTag, sigleCompanyTag]);
+
   useEffect(() => {
-    console.log(
-      fetchCompanyTag.length,
-      Object.keys(sigleCompanyTag).length,
-      "chk len"
-    );
-    if (fetchCompanyTag.length || Object.keys(sigleCompanyTag).length) {
-      setTaggedCompany(true);
-    } else {
-      setTaggedCompany(false);
-    }
-  }, [fetchCompanyTag, sigleCompanyTag]);
+    if (selectedEmployeeList?.length > 0) {
+          setTaggedExecutive(false);
+        } else {
+          setTaggedExecutive(true);
+        }
+       
+  },[selectedEmployeeList]);
 
   useMemo(() => {
     dispatch(resetPostRelavantCompany);
-    if (Object.keys(getUserInfo()).length) {
+    if (Object.keys(getUserInfo()).length && companyDetails?.id) {
       const { id } = getUserInfo();
       dispatch(getRelavantCompany(id, companyDetails?.id));
     }
@@ -168,7 +188,7 @@ const SummaryContent = () => {
 
   const onChange = (key) => {
     setTabActiveKey(key);
-    if (key !== "2") {
+    if (key !== "2" && key !== "3") {
       setSelectedValue("Filter by Department");
       dispatch(getEmployeeList(id));
     }
@@ -270,12 +290,68 @@ const SummaryContent = () => {
     navigate("/signup");
   };
 
-  const tagCompany = () => {
+  const tagExecutive = () => {
     const isLoggedIn = checkLoginStatus();
     if (isLoggedIn) {
       setOpenTagModal(true);
     }
   };
+
+  const getSchema = (data) => {
+    var finaldata=[];
+    let cnt=0;
+    data.forEach((obj) => {
+      cnt++;
+      var dataObj={};
+      dataObj.id=obj.id;
+      dataObj.serealNo=cnt;
+      dataObj.firstName=obj.firstname;
+      dataObj.lastName=obj.lastname;
+      dataObj.designation=obj.title;
+      dataObj.email=obj.emailId;
+      dataObj.name=obj?.company?.name;
+      dataObj.revenueName=obj?.company?.revenue?.name;
+      dataObj.employeeRange=obj?.company?.range?.name;
+      dataObj.industryName=obj?.company?.industry?.name;
+      dataObj.country=obj?.company?.country;
+      dataObj.state=obj?.company?.state;
+      dataObj.city=obj?.company?.city;
+      dataObj.wedsite=obj?.company?.wedsite;
+      dataObj.address=obj?.company?.address;
+      dataObj.pincode=obj?.company?.pincode;
+      dataObj.phoneNo=obj.phoneNo;
+      finaldata.push(dataObj)
+    })
+    return finaldata;
+  }
+
+  useEffect(() => {
+    
+    if (downloadExcelData.length) {
+      const downloadedUpdatedData = getSchema(downloadExcelData)
+      const columns = [
+        { header: "Serial No.", key: "serealNo" },
+        { header: "FirstName", key: "firstName" },
+        { header: "LastName", key: "lastName" },
+        { header: "Designation", key: "designation" },
+        { header: "Email Available", key: "email" },
+        { header: "Company Name", key: "name" },
+        { header: "Phone", key: "phoneNo" },
+        { header: "Address", key: "address" },
+        { header: "City", key: "city" },
+        { header: "State", key: "state" },
+        { header: "Country", key: "country" },
+        { header: "Pin", key: "pincode" },
+        { header: "Website", key: "wedsite" },
+        { header: "Company Revenue", key: "revenueName" },
+        { header: "Employee Range", key: "rangeName" },
+        { header: "Industry", key: "industryName" },
+      ];
+      const fileName = companyDetails.name+"-executive-data";
+      saveExcel(downloadedUpdatedData, columns, fileName, Excel, saveAs);
+      dispatch(emptyDownload());
+    }
+  }, [downloadExcelData]);
 
   const downloadExcel = () => {
     const isLoggedIn = checkLoginStatus();
@@ -296,6 +372,9 @@ const SummaryContent = () => {
       dispatch(downloadExecutiveExl(payload));
     }
   };
+
+
+
   const downloadPDF = (id) => {
     const isLoggedIn = checkLoginStatus();
     if (isLoggedIn) {
@@ -308,7 +387,7 @@ const SummaryContent = () => {
   };
 
 
-  const onConfrim = () => {
+  const onConfrim = () => { //selectedEmployeeList
     if (!tagValues.tagname) {
       setTagValues({
         ...tagValues,
@@ -317,12 +396,18 @@ const SummaryContent = () => {
     } else {
       //console.log(companyDetails, "companyDetailscompanyDetails");
       const { id } = getUserInfo();
-      const payload = {
-        company: companyDetails,
-        text: tagValues.tagname,
-        userId: id,
-      };
-      dispatch(createCompanyTag(payload));
+      let payload = [];
+      for (let i = 0; i < selectedEmployeeList.length; i++) {
+        payload = [
+          ...payload,
+          {
+            employee: selectedEmployeeList[i],
+            text: tagValues.tagname,
+            userId: id,
+          },
+        ];
+      }      
+      dispatch(createGroupExecutiveTag(payload));
       setOpenTagModal(false);
     }
   };
@@ -368,7 +453,7 @@ const SummaryContent = () => {
             {/* <div className="excelcontainer ">
               <li>
                 <a
-                  class=" btn btn-outline-success fs-18"
+                  className=" btn btn-outline-success fs-18"
                   href="#"
                   id=""
                   role="button"
@@ -377,7 +462,7 @@ const SummaryContent = () => {
                   aria-expanded="false"
                 >
                   <i
-                    class="right-icons la la-file-excel"
+                    className="right-icons la la-file-excel"
                     aria-hidden="true"
                   ></i>
                 </a>
@@ -386,21 +471,25 @@ const SummaryContent = () => {
             <div className="excelcontainer">
                  <ul className="d-flex  m-mt">
                  
-                <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
+                <li><a className=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
                     aria-expanded="false">
-                    <i className="right-icons la la-tag" aria-hidden="true" onClick={tagCompany}></i>
+                      <Tooltip title="Tag Executive">
+                    <i
+                      className="right-icons las  la-tags"
+                      aria-hidden="true"  onClick={tagExecutive}
+                    ></i></Tooltip>
                     </a>
                 </li>
                          
-                <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
-                    aria-expanded="false"><i class="right-icons la la-file-excel" aria-hidden="true" onClick={() => downloadExcel()}></i>
+                <li><a className=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
+                    aria-expanded="false"><i className="right-icons la la-file-excel" aria-hidden="true" onClick={() => downloadExcel()}></i>
                     </a>
                 </li> 
 
-                <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
-                    aria-expanded="false"><i class="right-icons la la-file-pdf" aria-hidden="true" onClick={() => downloadPDF(companyDetails?.id)}></i>
+                {/* <li><a className=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
+                    aria-expanded="false"><i className="right-icons la la-file-pdf" aria-hidden="true" onClick={() => downloadPDF(companyDetails?.id)}></i>
                     </a>
-                </li>
+                </li> */}
                 
               </ul>
             </div>
@@ -452,16 +541,16 @@ const SummaryContent = () => {
       )}
 
       {openTagModal ? (
-        !taggedCompany ? (
+        !taggedExecutive ? (
           <Modal
-            title="Tag Company"
+            title="Tag Executive"
             width={"400px"}
             closable={true}
             open={openTagModal}
             onCancel={closeTagModal}
             onOk={onConfrim}
           >
-            <div class="pop-up errorformcontainer ">
+            <div className="pop-up errorformcontainer ">
               <div className="form">
                 <div className="formcol1">
                   <label>Tag Name</label>
@@ -475,22 +564,7 @@ const SummaryContent = () => {
                     onChange={onTagInputChange}
                   />
                 </div>
-              </div>
-              {/* <div className="form">
-              <div className="formcol1">
-                <label>Description</label>
-              </div>
-              <div className="formcol2">
-                <TextArea
-                  name="description"
-                  placeholder="Description"
-                  value={tagValues.description}
-                  rows={2}
-                  maxLength={100}
-                  onChange={onTagInputChange}
-                />
-              </div>
-            </div> */}
+              </div>              
             </div>
           </Modal>
         ) : (
@@ -505,8 +579,8 @@ const SummaryContent = () => {
               </Button>,
             ]}
           >
-            <div class="pop-up errorformcontainer ">
-              <p>Already Tagged!</p>
+            <div className="pop-up errorformcontainer ">
+              <p>Please select executive!</p>
             </div>
           </Modal>
         )

@@ -9,10 +9,12 @@ const TrialModal = ({
   modalWidth = "400px",
   redirectToSignup,
   redirect = false,
+  title=""
 }) => {
-  console.log(redirect,'redirectredirect')
+  //console.log(redirect,'redirectredirect')
   return (
     <Modal
+      title={title}
       width={modalWidth}
       closable={true}
       open={openModal}
@@ -24,10 +26,10 @@ const TrialModal = ({
           onClick={redirect ? redirectToSignup : closeModal}
         >
           {buttonText}
-        </Button>,
+        </Button>
       ]}
     >
-      <div class="pop-up">{modalBody}</div>
+      <div className="pop-up">{modalBody}</div>
     </Modal>
   );
 };

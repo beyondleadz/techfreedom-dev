@@ -1,4 +1,6 @@
 import React, { useEffect, useState, useMemo } from "react";
+import Excel from "exceljs";
+import { saveAs } from "file-saver";
 import { useNavigate, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import _ from "lodash";
@@ -7,6 +9,7 @@ import { PAGE_LENGTH } from "../../config";
 import defaultLogo from "../../assets/images/default_company_logo.jpg";
 import popupImg from "../../assets/images/free-user-login-prompt.jpg.jpeg";
 import TrialModal from "../../common/TrialModal";
+import { saveExcel, testImage } from "../../utils/utils";
 
 import {
   getExecutiveEmployeeList,
@@ -18,28 +21,98 @@ import {
   saveSearchList,
   downloadExecutiveList,
   createGroupExecutiveTag,
+  emptyDownload
 } from "../../actionCreator/executiveListingActionCreater";
+import {
+  getEmployeeViewableStatusUpdate
+} from "../../actionCreator/executiveDetailsActionCreator";
 import Loader from "../loader";
 import { getToken,getUserInfo } from "../../utils/utils";
 
 const ExecutiveContent = () => {
   const { Search, TextArea } = Input;
+  const [showEmail, setShowEmail] = useState({});
+  const [showPhone, setShowPhone] = useState({});
+  const [openModal, setOpenModal] = useState({
+    info: null,
+    open: false,
+  });
+    const colorArray = [
+      "#b0b0e1",
+      "#f3ca7f",
+      "#e5e589",
+      "#f3a1a1",
+      "#98e398",
+      "#e5d8d8",
+      "#5dfb5d",
+      "#999966",
+      "#f39af3",
+      "#b2b2f1",
+      "#89e5e5",
+      "#999933",
+      "#FF3380",
+      "#CCCC00",
+      "#66E64D",
+      "#4D80CC",
+      "#FF4D4D",
+      "#99E6E6",
+      "#6666FF"
+  ];
+  // const colorArray= ['aqua', 'blue', 'fuchsia', 'gray', 'green', 
+  // 'lime', 'maroon', 'navy', 'olive', 'orange', 'purple', 'red', 
+  // 'silver', 'teal', 'white', 'yellow'];
+  const updateEmailStatus = (showEmail,row) => {
+    setShowEmail({ ...showEmail, [row.key]: true });
+    //call api to update status
+    if(!row?.isdownloadedEmail){
+    dispatch(getEmployeeViewableStatusUpdate('Email',row));    
+    // const payload = {
+    //   ...companySelectedFilterList,
+    //   topSearchValue: topSearchValue,
+    // };
+    // dispatch(getExecutiveEmployeeList(payload, paginationValue, true));
+    }    
+  };
+  const updatePhoneStatus = (showPhone,row) => { console.log("click mob",row)
+    setShowPhone({ ...showPhone, [row.key]: true });
+    if(!row?.isdownloadedMobile){
+    dispatch(getEmployeeViewableStatusUpdate('Mobile',row));
+    // const payload = {
+    //   ...companySelectedFilterList,
+    //   topSearchValue: topSearchValue,
+    // };
+    // dispatch(getExecutiveEmployeeList(payload, paginationValue, true));
+    }
+  }
+
+  const openInfoModel = () => {
+    if (getToken()) {
+      setOpenModal({ info: null, open: false });
+    } else {
+      setOpenModal({ info: null, open: true });
+    }
+  };
+
   const columns = [
+    
     {
       title: <div className="companyname">Executive Name</div>,
       dataIndex: "name",
       fixed: "left",
-      render: (record, row) => {
+      render: (record, row,index) => {
+        let cnt=index;
         return (
           <div className="namecol" onClick={() => getDetails(row.key)}>
-            <div className="logo" style={{'text-transform': 'uppercase'}}>
+            <div className="logo" style={{'text-transform': 'uppercase','background-color':colorArray[index]}}>
             {record?.firstname?.[0]}{record?.lastname?.[0]}
             </div>
             <span className="cname">
-              {record?.fullname}
+              {/* {record?.fullname} */}
+              {(record?.fullname)?record.fullname:record.firstname+" "+record.lastname}
             </span>
           </div>
         );
+        
       }
     },
     {
@@ -54,6 +127,31 @@ const ExecutiveContent = () => {
       title: "Email",
       dataIndex: "email",
       className: "email",
+      render: (text, row) => {
+        return getToken() ? (
+          <>
+            <h4
+             className={row?.isdownloadedEmail?" btn iconemail emails-open":" btn iconemail emails"}
+             onClick={()=>updateEmailStatus(showEmail,row)}
+            ></h4>
+            {showEmail[row.key] && (
+              <>
+                <span className="emailvalue pl-1 fs-12">{text}</span>
+                <span
+                  title="copy email"
+                  className="  fs-17 btn  la  la-copy text-black"
+                  onClick={() => copyToClipboard(text)}
+                ></span>
+              </>
+            )}
+          </>
+        ) : (
+          <h4
+            className="  btn iconemail emails"
+            onClick={() => openInfoModel()}
+          ></h4>
+        );
+      },
     },
     {
       title: "Phone",
@@ -63,6 +161,33 @@ const ExecutiveContent = () => {
     {
       title: "Mobile",
       dataIndex: "mobile",
+      render: (record, row) => {
+        return getToken() ? (
+          <>
+            <span
+              className={row?.isdownloadedMobile?" btn mobile-open":" btn mobile"}
+              onClick={()=>updatePhoneStatus(showPhone,row)}
+            >
+            </span>
+            {showPhone[row.key] && row?.mobile && (
+              <>
+                <span className="phoneValue fs-12 pl-1">{row?.mobile}</span>
+                <span
+                  title="copy phone"
+                  className="  fs-17 btn  la  la-copy text-black"
+                  onClick={() => copyToClipboard(row?.mobile)}
+                ></span>
+              </>
+            )}
+          </>
+        ) : (
+          <span
+            className=" btn mobile"
+            onClick={() => openInfoModel()}
+          >
+          </span>
+        );
+      },
     },
     {
       title: "Social",
@@ -100,29 +225,48 @@ const ExecutiveContent = () => {
     (state) => state.executiveListingReducer.selectedRecords
   );
   
+  const topSearchValue = useSelector(
+    (state) => state.HeaderReducer.topSearchValue
+  );
+
+  const downloadExcelData = useSelector(
+    (state) => state.executiveListingReducer.download
+  );
+
+  // useMemo(() => {
+  //   dispatch(getExecutiveEmployeeList({}, paginationValue));
+  // }, []);
 
   useMemo(() => {
-    dispatch(getExecutiveEmployeeList({}, paginationValue));
-  }, []);
+    if (topSearchValue) {
+      const payload = {
+        ...companySelectedFilterList,
+        topSearchValue: topSearchValue,
+      };
+      dispatch(getExecutiveEmployeeList(payload, paginationValue, true));
+    } else {
+      dispatch(getExecutiveEmployeeList({}, paginationValue));
+    }
+  }, [topSearchValue]);
 
   const renderSocialLinks = (socialLinks) => {
     return socialLinks?.map((link) => {
       if (link?.name === "facebook") {
         return (
           <Link to={link?.proifileUrl} target="_blank">
-            <i class="lab fs-20 facebook lab la-facebook"></i>
+            <i className="lab fs-20 facebook lab la-facebook"></i>
           </Link>
         );
       } else if (link?.name === "Linkedin") {
         return (
           <Link to={link?.proifileUrl} target="_blank">
-            <i class="lab fs-20 linkedin  lab la-linkedin"></i>
+            <i className="lab fs-20 linkedin  lab la-linkedin"></i>
           </Link>
         );
       } else if (link?.name === "twitter") {
         return (
           <Link to={link?.proifileUrl} target="_blank">
-            <i class="lab fs-20  twitter la la-twitter-square"></i>
+            <i className="lab fs-20  twitter la la-twitter-square"></i>
           </Link>
         );
       }
@@ -136,6 +280,7 @@ const ExecutiveContent = () => {
         ...data,
         {
           key: record.id,
+          id: record.id,
           executiveData: record,
           name: record,
           company: record?.company?.name,
@@ -144,7 +289,10 @@ const ExecutiveContent = () => {
           phone: record?.company?.phoneNo,
           mobile:record.phoneNo,
           designation:record?.title,
-          social: renderSocialLinks(record?.socialLinks)       
+          social: renderSocialLinks(record?.socialLinks),
+          isdownloadedEmail:record?.isdownloadedEmail,
+          isdownloadedMobile:record?.isdownloadedMobile,
+          directDial: record,       
         },
       ];
     });
@@ -225,6 +373,7 @@ const ExecutiveContent = () => {
 
   const closeModal = () => {
     setShowModal(false);
+    setOpenModal(false);
   };
 
   const onConfrim = () => {
@@ -257,6 +406,7 @@ const ExecutiveContent = () => {
 
   const redirectToSignup = () => {
     setShowModal(false);
+    setOpenModal(false);
     navigate("/signup");
   };
 
@@ -279,6 +429,69 @@ const ExecutiveContent = () => {
       dispatch(downloadExecutiveList(selectedRecords, "exl"));
     }
   };
+
+
+  
+  const getSchema = (data) => {
+    var finaldata=[];
+    let cnt=0;
+    data.forEach((obj) => {
+      cnt++;
+      var dataObj={};
+      dataObj.id=obj.id;
+      dataObj.serealNo=cnt;
+      dataObj.firstName=obj.firstname;
+      dataObj.lastName=obj.lastname;
+      dataObj.designation=obj.title;
+      dataObj.email=obj.emailId;
+      dataObj.name=obj?.company?.name;
+      dataObj.revenueName=obj?.company?.revenue?.name;
+      dataObj.employeeRange=obj?.company?.range?.name;
+      dataObj.industryName=obj?.company?.industry?.name;
+      dataObj.country=obj?.company?.country;
+      dataObj.state=obj?.company?.state;
+      dataObj.city=obj?.company?.city;
+      dataObj.wedsite=obj?.company?.wedsite;
+      dataObj.address=obj?.company?.address;
+      dataObj.pincode=obj?.company?.pincode;
+      dataObj.phoneNo=obj.phoneNo;
+      finaldata.push(dataObj)
+    })
+    return finaldata;
+  }
+
+
+  useEffect(() => {
+    
+    if (downloadExcelData.length) {
+      const downloadedUpdatedData = getSchema(downloadExcelData)
+
+      //console.log(downloadExcelData, "downloadExcelData",downloadedUpdatedData);
+      const columns = [
+        { header: "Serial No.", key: "serealNo" },
+        { header: "FirstName", key: "firstName" },
+        { header: "LastName", key: "lastName" },
+        { header: "Designation", key: "designation" },
+        { header: "Email Available", key: "email" },
+        { header: "Company Name", key: "name" },
+        { header: "Phone", key: "phoneNo" },
+        { header: "Address", key: "address" },
+        { header: "City", key: "city" },
+        { header: "State", key: "state" },
+        { header: "Country", key: "country" },
+        { header: "Pin", key: "pincode" },
+        { header: "Website", key: "wedsite" },
+        { header: "Company Revenue", key: "revenueName" },
+        { header: "Employee Range", key: "rangeName" },
+        { header: "Industry", key: "industryName" },
+      ];
+      const fileName = "exeutiveData";
+      saveExcel(downloadedUpdatedData, columns, fileName, Excel, saveAs);
+      dispatch(emptyDownload());
+    }
+  }, [downloadExcelData]);
+
+
   const downloadPDF = () => {
     const isLoggedIn = checkLoginStatus();
     if (isLoggedIn) {
@@ -308,13 +521,6 @@ const ExecutiveContent = () => {
       });
     } else {
       const {id}= getUserInfo();
-      //selectedRecords
-    //   const payload = [{
-    //     employee: selectedRecords[0]?.executiveData,
-    //     text: tagValues.tagname,
-    //     userId: id
-    //   }
-    // ];
     let payload = []
       for (let i = 0; i < selectedRecords.length; i++) {
         payload = [
@@ -340,6 +546,32 @@ const ExecutiveContent = () => {
     });
   };
 
+  const copyToClipboard = (text) => {
+    if (window.clipboardData && window.clipboardData.setData) {
+      // IE: prevent textarea being shown while dialog is visible
+      return window.clipboardData.setData("Text", text);
+    } else if (
+      document.queryCommandSupported &&
+      document.queryCommandSupported("copy")
+    ) {
+      var textarea = document.createElement("textarea");
+      textarea.textContent = text;
+      // Prevent scrolling to bottom of page in MS Edge
+      textarea.style.position = "fixed";
+      document.body.appendChild(textarea);
+      textarea.select();
+      try {
+        // Security exception may be thrown by some browsers
+        return document.execCommand("copy");
+      } catch (ex) {
+        console.warn("Copy to clipboard failed.", ex);
+        return false;
+      } finally {
+        document.body.removeChild(textarea);
+      }
+    }
+  };
+
   return (
     <>
       <div id="content-wrapper" className="d-flex flex-column ">
@@ -350,11 +582,11 @@ const ExecutiveContent = () => {
                 <div className="card shadow mb-4">
                   <div className="card-header py-3 f-rev d-flex align-items-center justify-content-between">
                     <h6 className="m-0 ml-2 font-weight-bold text-primary mob-t">
-                      Showing 1-
+                    Showing 1-
                       {parseInt(PAGE_LENGTH) >
                       parseInt(companyFilterList?.totalExecutiveCount)
                         ? companyFilterList?.totalExecutiveCount
-                        : PAGE_LENGTH}
+                        : (paginationValue.end)?paginationValue.end:PAGE_LENGTH}
                       <span className="m-1">of</span>{" "}
                       {companyFilterList?.totalExecutiveCount}
                       <span className="m-1">results</span>
@@ -363,14 +595,14 @@ const ExecutiveContent = () => {
                     <div className="buttons-container textsearch">
                     <ul className="d-flex mt-1  m-mt">
 
-                    <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
+                    <li><a className=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
                     aria-expanded="false">
                     <i className="right-icons las la-tags" aria-hidden="true" onClick={tagPage}></i>
                   </a>
                 </li>
                                          
-                  <li><a class=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
-                    aria-expanded="false"><i class="right-icons la la-file-excel" aria-hidden="true" onClick={downloadExcel}></i>
+                  <li><a className=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
+                    aria-expanded="false"><i className="right-icons la la-file-excel" aria-hidden="true" onClick={downloadExcel}></i>
                   </a></li>
                   <li>
             <a
@@ -434,8 +666,11 @@ const ExecutiveContent = () => {
                             dataSource={executiveEmployeeList}
                             pagination={{
                               responsive: true,
+                              defaultCurrent:paginationValue?.start + 1,
                               total: companyFilterList?.totalExecutiveCount,
-                              pageSize: PAGE_LENGTH,
+                              pageSize: parseInt(PAGE_LENGTH) > parseInt(companyFilterList?.totalExecutiveCount)
+                                  ? companyFilterList?.totalExecutiveCount
+                                  : (paginationValue.end)?paginationValue.end:PAGE_LENGTH,
                               position: ["bottomCenter"],
                               onChange: onPageChange,
                             }}
@@ -462,7 +697,7 @@ const ExecutiveContent = () => {
         onCancel={closeTagModal}
         onOk={onTagConfrim}
       >
-        <div class="pop-up errorformcontainer ">
+        <div className="pop-up errorformcontainer ">
           <div className="form">
             <div className="formcol1">
               <label>Tag Name</label>
@@ -491,7 +726,7 @@ const ExecutiveContent = () => {
           onCancel={closeModal}
           onOk={onConfrim}
         >
-          <div class="pop-up errorformcontainer ">
+          <div className="pop-up errorformcontainer ">
             <div className="form">
               <div className="formcol1">
                 <label>Search Name</label>
@@ -534,6 +769,29 @@ const ExecutiveContent = () => {
       ) : (
         ""
       )}
+
+{openModal?.open && (
+        <TrialModal
+          openModal={openModal}
+          closeModal={closeModal}
+          redirectToSignup={redirectToSignup}
+          redirect={true}
+          // buttonText="Start Free Trial"
+          buttonText="SUBSCRIBE NOW!"
+          modalBody={
+            <div id="small-dialog2">
+              <div align="center">
+                <img src={popupImg} />
+              </div>
+              <p style={{ color: "#0000FF" }}>
+                PLEASE SUBSCRIBE TO VIEW ALL DETAILS
+              </p>              
+            </div>
+          }
+          modalWidth="400px"
+        />
+      )}
+
     </>
   );
 };

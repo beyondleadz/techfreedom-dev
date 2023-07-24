@@ -28,15 +28,15 @@ const CompanySummary = () => {
     dispatch(getDepartmentList());
     dispatch(getCompanyDetails(id));
     dispatch(getEmployeeList(id));
-  }, []);
+  }, [id]);
 
   useMemo(() => {
-    console.log(companyDetails, "companyDetailscompanyDetails");
     if (Object.keys(companyDetails).length) {
       dispatch(
         getSimilarCompanyList(
           {
             selectedIndustry: companyDetails?.industry?[companyDetails?.industry]:[{id:0}],
+            cid:companyDetails?.id
           },
           {
             start: 0,
@@ -48,7 +48,7 @@ const CompanySummary = () => {
   }, [companyDetails]);
 
   useEffect(() => {
-    Object.keys(companyDetails).length ? setLoading(false) : setLoading(true);
+    Object.keys(companyDetails).length ? setLoading(false) : setLoading(false);
   }, [Object.keys(companyDetails).length]);
 
   return (

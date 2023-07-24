@@ -45,7 +45,7 @@ import {
 } from "../constant/Constant";
 import { dispatchStatus } from "./commonActionCreator";
 import { Geolocation } from "../constant/Geolocation";
-import { createPayload } from "../utils/utils";
+import { createPayload, createPayloadWithTopSearch,saveExcel } from "../utils/utils";
 
 export const getIndustryList = (payload) => (dispatch) => {
   return getAuthMethod(industryApiUrl)
@@ -56,11 +56,12 @@ export const getIndustryList = (payload) => (dispatch) => {
       });
     })
     .catch((err) => {
+      console.log(err,'9798798')
       dispatch({
         type: INDUSTRY_LIST_ERROR,
         payload:
-          { [errEnum.INDUSTRY_LIST_ERROR]: err.response.data[ErrKey] } ||
-          "Error Occured",
+          { [errEnum.INDUSTRY_LIST_ERROR]: err ||
+            "Error Occured"}
       });
     });
 };
@@ -119,10 +120,17 @@ export const getRevenuerangeList = (payload) => (dispatch) => {
     });
 };
 
-export const getCompanyList = (payload, paginationValues) => (dispatch) => {
+export const getCompanyList = (payload, paginationValues,topSearch=false) => (dispatch) => {
   dispatch(dispatchStatus(true));
-  const url = createPayload(payload, paginationValues, companyListingApiUrl);
-  // console.log(url,'urlurlurl')
+  let url = createPayload(payload, paginationValues, companyListingApiUrl);
+
+  // if(topSearch){
+  //   url = createPayloadWithTopSearch(payload,paginationValues,companyListingApiUrl)
+  // }else{
+  //    url = createPayload(payload, paginationValues, companyListingApiUrl);
+  // }
+
+  console.log(url,'urlurlurl')
   return getMethod(url)
     .then((res) => {
       dispatch({
@@ -169,15 +177,15 @@ export const downloadCompanyList = (payload, urlSubstring) => (dispatch) => {
   let url = "";
   if (payload?.length) {
     //console.log(payload,'payloadpayload')
-    let selectedRecords = "id.in=";
+    let selectedRecords = "?id.in=";
     payload?.forEach((obj) => (selectedRecords += `${obj.key},`));
     const removedLastComma = selectedRecords.substring(
       selectedRecords.lastIndexOf(","),
       0
     );
-    url = `${companyListingApiUrl}/${urlSubstring}/${removedLastComma}`;
+    url = `${companyListingApiUrl}/${urlSubstring}${removedLastComma}`;
   } else {
-    url = `${companyListingApiUrl}/${urlSubstring}`;
+    url = `${companyListingApiUrl}/${urlSubstring}?id.in=11,12`;
   }
   return getAuthMethod(url)
     .then((res) => {
@@ -185,6 +193,7 @@ export const downloadCompanyList = (payload, urlSubstring) => (dispatch) => {
         type: DOWNLOAD_COMPANYLIST,
         payload: res.data,
       });
+      //saveExcel();
     })
     .catch((err) => {
       dispatch({
@@ -312,3 +321,8 @@ export const createGroupCompanyTag = (payload) => (dispatch) => {
       });
     });
 };
+
+export const emptyDownload=()=>({
+    type: DOWNLOAD_COMPANYLIST,
+    payload: {},  
+});

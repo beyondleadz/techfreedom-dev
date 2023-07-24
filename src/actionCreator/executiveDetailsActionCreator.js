@@ -34,6 +34,8 @@ import {
   GET_RELAVANT_EXECUTIVE_TAG_ERROR,
   POST_RELAVANT_EXECUTIVE_TAG,
   POST_RELAVANT_EXECUTIVE_TAG_ERROR,
+  EXECUTIVE_EMPLOYEE_VIEWABLE_STATUS,
+  EXECUTIVE_EMPLOYEE_VIEWABLE_STATUS_ERROR
 } from "../actionType/executiveDetailsType";
 import {
   getAuthMethod,
@@ -47,14 +49,14 @@ import {
   executiveDepartmentList,
   clientLeadsUrl,
   errorReport,
-  sigleCompanyTag,
-  fetchCompanyTagApiUrl,
   postRelavantCompanyApiUrl,
   getRelavantCompanyApiUrl,
   companyExlDownloadUrl,
   getClientLeadsUrl,
   companyPdfDownloadUrl,
   executiveEmployeeListingApiUrl,
+  fetchExecutiveTagApiUrl,
+  groupExecutiveTagUrl,
 } from "../constant/Constant";
 import { createExecutivePayload, createPayload } from "../utils/utils";
 import { ErrKey, errEnum } from "../config";
@@ -111,7 +113,10 @@ export const resetEmployeeList = () => ({
 
 export const getEmployeeList = (id, cid) => (dispatch) => {
   let url = `${employeeListUrl}?companyId.in=${cid}`;
-  url+="&id.notEquals="+id;
+  if(id > 0){
+  url+="&id.notEquals="+id; 
+  }
+  //console.log(url,"urlurl")
   return getMethod(url)
     .then((res) => {
       dispatch({
@@ -216,15 +221,15 @@ export const submitErrorForm = (payload) => (dispatch) => {
     });
 };
 
-export const createCompanyTag = (payload) => (dispatch) => {
+export const createExecutiveTag = (payload) => (dispatch) => {
   console.log(payload, "payloadpayload");
-  return postAuthMethod(sigleCompanyTag, payload)
+  return postAuthMethod(groupExecutiveTagUrl, payload)
     .then((res) => {
       dispatch({
         type: EXECUTIVE_SINGLE_COMPANY_TAG,
         payload: res.data,
       });
-      dispatch(getCompanyTag(payload?.company?.id, payload?.userId));
+      dispatch(getExecutiveTag(payload?.company?.id, payload?.userId));
     })
     .catch((err) => {
       dispatch({
@@ -279,10 +284,11 @@ export const downloadExecutiveExl = (payload) => (dispatch) => {
   if (payload?.empIds) {
     filter += `&employeeTagId.in=${payload.empIds}`;
   }
-  if (payload?.department) {
-    filter += `&exfunction.equals=${payload?.department}`;
+  if (payload?.id) {
+    filter += `&id.notEquals=${payload?.id}`;
   }
   url = `${companyExlDownloadUrl}${filter}`;
+  
   return getAuthMethod(url)
     .then((res) => {
       dispatch({
@@ -300,9 +306,9 @@ export const downloadExecutiveExl = (payload) => (dispatch) => {
     });
 };
 
-export const getCompanyTag = (cid, userId) => (dispatch) => {
-  let filter = "userId.equals=" + userId + "&companyId.equals=" + cid;
-  const url = `${fetchCompanyTagApiUrl}?${filter}`;
+export const getExecutiveTag = (cid, userId) => (dispatch) => {
+  let filter = "employeeId.equals=" + userId + "&companyId.equals=" + cid;
+  const url = `${fetchExecutiveTagApiUrl}?${filter}`;
   //console.log(url, id, "lksjdfklsjd");
   return getAuthMethod(url)
     .then((res) => {
@@ -322,11 +328,11 @@ export const getCompanyTag = (cid, userId) => (dispatch) => {
     });
 };
 
-export const resetCompanyTag = (payload) => {
+export const resetExecutiveTag = (payload) => {
   return { type: EXECUTIVE_SINGLE_COMPANY_TAG, payload: [] };
 };
 
-export const storeSelectedExecutive = (selectedExecutive) => ({
+export const storeSelectedColleagues = (selectedExecutive) => ({
   type: EXECUTIVE_SELECTED_EXECUTIVE,
   payload: selectedExecutive,
 });
@@ -432,3 +438,39 @@ export const postRelavantExecutive = (payload) => (dispatch) => {
 export const resetPostRelavantExecutive = (payload) => {
   return { type: POST_RELAVANT_EXECUTIVE_TAG, payload: [] };
 };
+
+export const getEmployeeViewableStatusUpdate = (type, payload) => (dispatch) => {
+  let url = `${employeeListUrl}/${type}/${payload.id}`;
+  return getAuthMethod(url)
+    .then((res) => {
+      dispatch({
+        type: EXECUTIVE_EMPLOYEE_VIEWABLE_STATUS,
+        payload: res.data,
+      });
+      //console.log('getEmployeeViewableStatusUpdate',payload)
+      if(payload?.pageFor && payload?.pageFor==1){
+        dispatch(getExecutiveDetails(payload.id));   
+      }
+      if(payload?.pageFor && payload?.pageFor==2){
+      dispatch(getEmployeeList(payload.id,payload?.directDial?.company.id)); 
+      }
+      
+      
+    })
+    .catch((err) => {
+      dispatch({
+        type: EXECUTIVE_EMPLOYEE_VIEWABLE_STATUS_ERROR,
+        payload:
+          { [errEnum.EXECUTIVE_EMPLOYEE_VIEWABLE_STATUS_ERROR]: err?.response?.data[ErrKey] } ||
+          "Error Occured",
+      });
+    });
+};
+
+export const emptyDownload=()=>({
+  type: EXECUTIVE_DOWNLOAD_EXECUTIVE,
+  payload: {},  
+});
+
+
+

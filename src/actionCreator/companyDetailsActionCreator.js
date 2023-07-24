@@ -27,7 +27,9 @@ import {
   DOWNLOAD_EXECUTIVE_ERROR,
   SELECTED_DEPARTMENT,
   GET_EXECUTIVE_LEAD,
-  GET_EXECUTIVE_LEAD_ERROR  
+  GET_EXECUTIVE_LEAD_ERROR,
+  EMPLOYEE_VIEWABLE_STATUS,
+  EMPLOYEE_VIEWABLE_STATUS_ERROR  
 } from "../actionType/companyDetailsType";
 import {
   getAuthMethod,
@@ -95,7 +97,6 @@ export const getEmployeeList = (id, department) => (dispatch) => {
       });
     })
     .catch((err) => {
-      console.log(err, "sjkflskdjfkl");
       dispatch({
         type: EMPLOYEE_LIST_ERROR,
         payload:
@@ -151,7 +152,8 @@ export const resetLead = (payload) => {
 export const getSimilarCompanyList = (payload, paginationValues) => (
   dispatch
 ) => {
-  const url = createPayload(payload, paginationValues, companyListingApiUrl);
+  let url = createPayload(payload, paginationValues, companyListingApiUrl);
+  url+="&id.notEquals="+payload.cid;
   console.log(payload, "payloadpayload");
   return getMethod(url)
     .then((res) => {
@@ -192,7 +194,7 @@ export const submitErrorForm = (payload) => (dispatch) => {
 };
 
 export const createCompanyTag = (payload) => (dispatch) => {
-  console.log(payload, "payloadpayload");
+  //console.log(payload, "payloadpayload");
   return postAuthMethod(sigleCompanyTag, payload)
     .then((res) => {
       dispatch({
@@ -406,3 +408,35 @@ export const getExecutiveLead = (id) => (dispatch) => {
       });
     });
 };
+
+
+export const getEmployeeViewableStatusUpdate = (type, payload,department) => (dispatch) => {
+  let url = `${employeeListUrl}/${type}/${payload.id}`;
+  return getAuthMethod(url)
+    .then((res) => {
+      dispatch({
+        type: EMPLOYEE_VIEWABLE_STATUS,
+        payload: res.data,
+      });
+      //console.log('getEmployeeViewableStatusUpdate',payload)
+      if(department){
+        dispatch(getEmployeeList(payload?.directDial?.company.id,department));
+      }else{
+        dispatch(getEmployeeList(payload?.directDial?.company.id));
+      }
+      
+    })
+    .catch((err) => {
+      dispatch({
+        type: EMPLOYEE_VIEWABLE_STATUS_ERROR,
+        payload:
+          { [errEnum.EMPLOYEE_VIEWABLE_STATUS_ERROR]: err.response.data[ErrKey] } ||
+          "Error Occured",
+      });
+    });
+};
+
+export const emptyDownload=()=>({
+  type: DOWNLOAD_EXECUTIVE,
+  payload: {},  
+});

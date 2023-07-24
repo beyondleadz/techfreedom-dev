@@ -7,28 +7,35 @@ import CompanyLeft from "../components/company-search/CompanyLeft";
 import CompanyContent from "../components/company-search/CompanyContent";
 import CompanyNavigation from "../components/company-search/CompanyNavigation";
 import TrialModal from "../common/TrialModal";
-import {emptyErrorObj} from '../actionCreator/companyListingActionCreater'
+import { emptyErrorObj } from "../actionCreator/companyListingActionCreater";
 import "../assets/css/dynemic-page.css";
 import ExecutiveNavigation from "../components/executive-search/ExecutiveNavigation";
 import ExecutiveLeft from "../components/executive-search/ExecutiveLeft";
 import ExecutiveContent from "../components/executive-search/ExecutiveContent";
+import LeadContent from "../components/lead-search/LeadContent";
+import LeadNavigation from "../components/lead-search/LeadNavigation";
+import LeadLeft from "../components/lead-search/LeadLeft";
+import { INDUSTRY_LIST_ERROR } from "../actionType/companyListingType";
 const CompanySearch = ({ tab }) => {
   const [activeTab, setActiveTab] = useState(tab);
-  const [isApiFailed, setIsApiFailed] = useState(false);
+  const [isApiFailed, setIsApiFailed] = useState({
+    isFailed: false,
+    errObj: {},
+  });
   const errObj = useSelector((state) => state.companyListingReducer.errObj);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setActiveTab(tab);
   }, [tab]);
 
   useEffect(() => {
-    console.log("errObj", errObj);
     if (Object.keys(errObj).length) {
-      setIsApiFailed(true);
+      console.log(errObj, "skjlfslkdf");
+      setIsApiFailed({ isFailed: true, errObj: errObj });
     }
     if (!Object.keys(errObj).length) {
-      setIsApiFailed(false);
+      setIsApiFailed({ isFailed: false, errObj: errObj });
     }
   }, [Object.keys(errObj).length]);
 
@@ -88,21 +95,18 @@ const CompanySearch = ({ tab }) => {
       ),
       children: (
         <div>
-          <CompanyNavigation />
+          <LeadNavigation />
           <div id="wrapper">
             <div className="leftmenu">
-              <CompanyLeft />
+              <LeadLeft />
             </div>
-            <div className="contentbody shadow">
-              <CompanyContent />
-            </div>
+            <LeadContent />
           </div>
         </div>
       ),
     },
   ];
 
-  
   const closeModal = () => {
     dispatch(emptyErrorObj());
   };
@@ -125,13 +129,15 @@ const CompanySearch = ({ tab }) => {
             type="card"
           />
 
-          {isApiFailed ? (
+          {isApiFailed.isFailed ? (
             <TrialModal
-              openModal={isApiFailed}
+              openModal={isApiFailed.isFailed}
               closeModal={closeModal}
               buttonText="OK"
               modalBody={
                 <div id="small-dialog2">
+                  {isApiFailed.errObj[INDUSTRY_LIST_ERROR] &&
+                    isApiFailed.errObj[INDUSTRY_LIST_ERROR].message}
                   Please call System support. You application having some issue.
                 </div>
               }

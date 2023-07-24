@@ -2,12 +2,13 @@ import React, { useEffect, useState, useMemo } from "react";
 import { Modal, Checkbox, Input, Divider, Button } from "antd";
 import _ from "lodash";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
-import logo from "../../assets/images/icici.jpg";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import defaultLogo from "../../assets/images/default_company_logo.jpg";
 import AboutCompany from "./AboutCompany";
 import KeyExecutives from "./KeyExecutives";
 import OrgChart from "./OrgChart";
+import { getBaseUrl } from "../../config";
+
 import {
   getSubscriptionUserInfo,
   getToken,
@@ -15,7 +16,6 @@ import {
 } from "../../utils/utils";
 import TrialModal from "../../common/TrialModal";
 import popupImg from "../../assets/images/free-user-login-prompt.jpg.jpeg";
-import { useNavigate } from "react-router";
 import {
   submitErrorForm,
   getEmployeeList,
@@ -72,7 +72,7 @@ const SimilarCompany = () => {
   );
 
   useEffect(() => {
-    console.log(getRelavantCompanyDetails,'getRelavantCompanyDetails')
+   // console.log(getRelavantCompanyDetails,'getRelavantCompanyDetails')
     const [data] = getRelavantCompanyDetails || [];
     if(data){
     setCheckCompanyStatus(data?.prescribedby==="True"?1:2);
@@ -81,11 +81,11 @@ const SimilarCompany = () => {
 
   useMemo(() => {
     dispatch(resetPostRelavantCompany);
-    if (Object.keys(getUserInfo()).length) {
+    if (Object.keys(getUserInfo()).length && companyDetails?.id) {
       const { id } = getUserInfo();
       dispatch(getRelavantCompany(id, companyDetails?.id));
     }
-  }, [userAccountInfo]);
+  }, [userAccountInfo,companyDetails]);
 
   useEffect(() => {
     setSimilarCount(
@@ -152,17 +152,23 @@ const SimilarCompany = () => {
     setTabActiveKey("2");
   };
 
+  const getDetails = (id) => { 
+    navigate(`/company-summary/${id}`);
+  };
+
   const renderSimilarCompanyList = () => {
     let similarList = [];
     for (let i = 0; i < similarCount; i++) {
       similarList.push(
         <div className="similarinnerblk">
           <div className="s-company img-responsive">
-            <img src={similarCompanyList[i]?.companyLogoUrl || defaultLogo} />
+            <img src={similarCompanyList[i]?.companyLogoUrl || defaultLogo} onError={(e) => {
+                  e.currentTarget.src = defaultLogo;
+                }} />
           </div>
           <div className="similar-desc">
             <div>
-              <a className="font-weight-bold fs-14 text-dark" title="">
+            <a onClick={() => getDetails(`${similarCompanyList[i]?.id}`)} className="font-weight-bold fs-14 text-dark" title="">
                 {similarCompanyList[i]?.name}
               </a>
             </div>
@@ -202,7 +208,7 @@ const SimilarCompany = () => {
   const checkRelavantCompany = (flag,thumbStatus) => { //checkCompanyStatus
     const isLoggedIn = checkLoginStatus();
     if (isLoggedIn) {
-      console.log(getRelavantCompanyDetails,'getRelavantCompanyDetails vfhgfhf');
+      //console.log(getRelavantCompanyDetails,'getRelavantCompanyDetails vfhgfhf');
       const [data] = getRelavantCompanyDetails || [];
       
       const { id } = getUserInfo();
@@ -360,14 +366,14 @@ const SimilarCompany = () => {
             aria-haspopup="true"
             aria-expanded="false"
             
-          ><i class="right-icons fa fa-thumbs-up" aria-hidden="true"></i></a>:<a
+          ><i className="right-icons fa fa-thumbs-up" aria-hidden="true"></i></a>:<a
             id=""
             role="button"
             data-toggle=""
             aria-haspopup="true"
             aria-expanded="false"
             onClick={() => checkRelavantCompany(1,checkCompanyStatus)}
-          ><i class="right-icons small fa fa-thumbs-up" aria-hidden="true"></i></a>}
+          ><i className="right-icons small fa fa-thumbs-up" aria-hidden="true"></i></a>}
             
             {checkCompanyStatus===2?
           <a
@@ -378,7 +384,7 @@ const SimilarCompany = () => {
             aria-expanded="false"
           >
             <i
-              class="right-icons fa fa-thumbs-down"
+              className="right-icons fa fa-thumbs-down"
               aria-hidden="true"
             ></i>
           </a>:<a
@@ -390,16 +396,16 @@ const SimilarCompany = () => {
             onClick={() => checkRelavantCompany(0,checkCompanyStatus)}
           >
             <i
-              class="right-icons small fa fa-thumbs-down"
+              className="right-icons small fa fa-thumbs-down"
               aria-hidden="true"
             ></i>
           </a>}
         </div>
         {/* <div font-weight-bold>
-                  <button class="btn btn-outline-dark font-weight-bold mr-2 p-1">
+                  <button className="btn btn-outline-dark font-weight-bold mr-2 p-1">
                     Really Not
                   </button>
-                  <button class="btn btn-outline-dark font-weight-bold mr-2 p-1">
+                  <button className="btn btn-outline-dark font-weight-bold mr-2 p-1">
                     Yes!
                   </button>
                 </div> */}
