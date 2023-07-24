@@ -165,9 +165,9 @@ const LeadDetails = () => {
                       <Stepsbar />
                     </div>
                     <div className="col">
-                      <button className="btn btn-primary fs-12 btn-sm ">
+                      {/* <button className="btn btn-primary fs-12 btn-sm ">
                         Mark Step as Done
-                      </button>
+                      </button> */}
                     </div>
                   </div>
                 </div>
