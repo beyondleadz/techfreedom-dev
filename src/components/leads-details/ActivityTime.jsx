@@ -1,20 +1,27 @@
 import React, { useState,useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import _ from "lodash";
+import { useParams } from "react-router-dom";
 
 import { Timeline, Button, Select, DatePicker, Space} from "antd";
 // import { Timeline, Button, Select } from 'antd';
 import { SmileOutlined } from '@ant-design/icons';
 import ActivityTimecopy from "./ActivityTimecopy";
 import moment from "moment";
-
+import {
+  getAllLeadNotes,
+  getAllLeadRemarks,  
+} from "../../actionCreator/leadDetailsActionCreator";
 
 const { RangePicker } = DatePicker;
 const ActivityTime = ({setActiveTab}) => {
-
+  const { id } = useParams();
+  const dispatch=useDispatch();
   const [itemData, setItemData] = useState([]);
   const [itemOverviewDueData, setItemOverviewDueData] = useState([]);
   const [activityData, setActivityData] = useState([]);
+  const [selectedActivity, setSelectedActivity] = useState();
+  const [selectedDate, setSelectedDate] = useState([]);
 
   const leadNotes = useSelector((state) => state.LeadDetailsReducer.leadNotes);
   const leadRemarks = useSelector((state) => state.LeadDetailsReducer.leadRemarks);
@@ -47,17 +54,18 @@ const ActivityTime = ({setActiveTab}) => {
 //     const groupLeadRemarksDataByStatus =  _.groupBy(leadRemarks, function(b) { return b.interactionDate});
 // console.log(groupLeadNotesDataByStatus,'groupLeadNotesDataByStatus');
 // console.log(groupLeadRemarksDataByStatus,'groupLeadRemarksDataByStatus');
-const activityItems=[];
+const activityItems=[{value:"",label:"ALL"}];
     Object.entries(colorActivityObj).map((key,index)=>{
       //console.log(key[0],'keykey')
      return activityItems.push({value:key[0],label:key[0]});
     });
     
 setActivityData(activityItems);
-
     const finalData=([...leadNotes,...leadRemarks]);
+    //console.log(finalData,'finalDatafinalData');
+    let items = [];let overdueItems = [];
+      
     if (finalData.length) {
-      let items = [];let overdueItems = [];
       let today = new Date();
       let formattedTodayData = moment(today).utc().format('YYYY-MM-DD')
       finalData.forEach((item,index) => {        
@@ -99,11 +107,26 @@ setActivityData(activityItems);
         }else{
         overdueItems.push(obj);
         }
-      });
-      setItemOverviewDueData(overdueItems);
-      setItemData(items);
+      });      
     }
+    setItemOverviewDueData(overdueItems);
+    setItemData(items);
   }, [leadNotes,leadRemarks]);
+
+  const onActivityChange=(value)=>{
+    setSelectedActivity(value);
+  }
+  const changeDate=(value,dateString)=>{
+    setSelectedDate(dateString);
+  }
+
+  const getTimelineActivity=(id)=>{
+     //console.log(selectedActivity,selectedDate,id);
+     const payload={date:selectedDate,activity:selectedActivity};
+     dispatch(getAllLeadNotes(id,payload));
+     dispatch(getAllLeadRemarks(id,payload));
+    
+  }
 
     return(
 <>
@@ -115,7 +138,7 @@ setActivityData(activityItems);
             showSearch
             placeholder="Activities"
             optionFilterProp="children"
-            // onChange={onChange}
+            onChange={onActivityChange}
             // onSearch={onSearch}
             filterOption={(input, option) =>
               (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
@@ -125,8 +148,8 @@ setActivityData(activityItems);
         </div>
         </div></div>
         
-    <div className="col-md-5"><RangePicker /></div>
-    <div className="col-md-1 "><button className="btn btn-info btn-sm ">Submit</button></div>
+    <div className="col-md-5"><RangePicker  onChange={changeDate}/></div>
+    <div className="col-md-1 "><button className="btn btn-info btn-sm " onClick={()=>getTimelineActivity(id)}>Submit</button></div>
     <div className="col-md-3  float-right "><button className="btn btn-info btn-sm " onClick={switchToTaskTab}><i className="las la-plus"></i>Add New Task</button></div>
 </div>
 

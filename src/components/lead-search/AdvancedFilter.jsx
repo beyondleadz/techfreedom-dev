@@ -68,6 +68,9 @@ const AdvancedFilter = ({
   const executiveFilterLevelList = useSelector(
     (state) => state.leadListingReducer.executiveLevelList
   );
+  const leadFilterRatingList = useSelector(
+    (state) => state.leadListingReducer.leadRatingList
+  );
 
   const [visibleFilter, setVisibleFilter] = useState({
     country: false,
@@ -131,12 +134,12 @@ const AdvancedFilter = ({
   const [checkAllLeadStatus, setCheckAllLeadStatus] = useState(false);
 
   const [selectedLeadRatingList, setSelectedLeadRatingList] = useState([]);
-  const [leadRatingListOrg, setLeadRatingListOrg] = useState([
-    { name: "Cold" },
-    { name: "Hot" },
-    { name: "Warm" },
-  ]);
-  const [leadRatingList, setLeadRatingList] = useState(leadRatingListOrg);
+  // const [leadRatingListOrg, setLeadRatingListOrg] = useState([
+  //   { name: "Cold" },
+  //   { name: "Hot" },
+  //   { name: "Warm" },
+  // ]);
+  const [leadRatingList, setLeadRatingList] = useState([]);
   const [checkAllLeadRating, setCheckAllLeadRating] = useState(false);
   const [selectedLeadTimeList, setSelectedLeadTimeList] = useState([]);
   const [leadTimeListOrg, setLeadTimeListOrg] = useState([
@@ -173,6 +176,7 @@ const AdvancedFilter = ({
   }, [selectedStateList]);
 
   useEffect(() => {
+    setLeadRatingList(leadFilterRatingList);
     setLeadStatusList(leadFilterStatusList);
     setCountriesList(companyFilterListCountries);
     setIndustryList(companyFilterListIndustry);
@@ -823,11 +827,11 @@ const AdvancedFilter = ({
                       index < showNumberofRecords && (
                         <li key={`ratingli_${index}`}>
                           <Checkbox
-                            key={item.name}
+                            key={item.id}
                             value={item}
                             onChange={($event) => updateLeadRating($event)}
                           >
-                            {item.name}
+                            {item.ratingText}
                           </Checkbox>
                         </li>
                       )
@@ -864,7 +868,7 @@ const AdvancedFilter = ({
   };
 
   const filterLeadRating = (ele) => {
-    const filterdData = leadRatingListOrg?.filter((item) =>
+    const filterdData = leadRatingList?.filter((item) =>
       item?.name.toLowerCase().includes(ele.target.value.toLowerCase())
     );
     //const filterdData = [{"name":"Cold"},{"name":"Hot"},{"name":"Warm"}]
@@ -879,7 +883,9 @@ const AdvancedFilter = ({
       newList = [...selectedLeadRatingList, el.target.value];
     } else {
       newList = selectedLeadRatingList.filter(
-        (listItem) => listItem.name !== el.target.value.name
+        (listItem) => {
+          return listItem.ratingText !== el.target.value.ratingText
+        } 
       );
     }
     setSelectedLeadRatingList(newList);
@@ -892,7 +898,7 @@ const AdvancedFilter = ({
   };
 
   const onLeadRatingChange = (list) => {
-    setCheckAllCountries(list.length === leadRatingList.length);
+    setCheckAllLeadRating(list.length === leadRatingList.length);
   };
 
   /*Lead Rating End */

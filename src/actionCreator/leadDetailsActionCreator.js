@@ -37,6 +37,7 @@ import {
 } from "../constant/Constant";
 import { ErrKey, errEnum } from "../config";
 import { EMPTY_ERROR_COMMON_OBJ } from "../actionType/commonType";
+import { createActivityPayload, createActivityPayloadForRemarks } from "../utils/utils";
 
 export const getLeadDetails = (id) => (dispatch) => {
   const url = `${getClientLeadsUrl}/${id}`;
@@ -169,8 +170,9 @@ export const deleteLeadNote = (id,leadId) => (dispatch) => {
     
 };
 
-export const getAllLeadNotes = (id) => (dispatch) => {
-  const url = `${getClientNotesApiUrl}?leadId.equals=${id}`;
+export const getAllLeadNotes = (id,payload={}) => (dispatch) => {
+  let apiUrl=`${getClientNotesApiUrl}?leadId.equals=${id}`;
+  const url =createActivityPayload(payload,apiUrl); 
   return getMethod(url)
     .then((res) => {
       dispatch({
@@ -208,8 +210,10 @@ export const getLeadNoteDetails = (id) => (dispatch) => {
 };
 
 
-export const getAllLeadRemarks = (id) => (dispatch) => {
-  const url = `${getClientRemarksApiUrl}?leadId.equals=${id}`;
+export const getAllLeadRemarks = (id,payload={}) => (dispatch) => {
+  let apiUrl=`${getClientRemarksApiUrl}?leadId.equals=${id}`;
+  const url =createActivityPayloadForRemarks(payload,apiUrl); 
+  //const url = `${getClientRemarksApiUrl}?leadId.equals=${id}`;
   return getMethod(url)
     .then((res) => {
       dispatch({

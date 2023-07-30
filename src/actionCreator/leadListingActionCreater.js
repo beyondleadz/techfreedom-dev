@@ -34,6 +34,8 @@ import {
   LEAD_STATUS_LIST,
   LEAD_STATUS_LIST_ERROR,
   LEAD_PAGE_LAYOUT,
+  LEAD_RATING_LIST,
+  LEAD_RATING_LIST_ERROR
 } from "../actionType/leadListingType";
 import {
   getAuthMethod,
@@ -57,7 +59,9 @@ import {
   groupExecutiveTagUrl,
   getRelavantCompanyApiUrl,
   getClientLeadsUrl,
-  getLeadStatusApiUrl
+  getClientLeadsKanbanUrl,
+  getLeadStatusApiUrl,
+  getLeadRatingApiUrl
 } from "../constant/Constant";
 import { dispatchStatus } from "./commonActionCreator";
 import { Geolocation } from "../constant/Geolocation";
@@ -330,8 +334,13 @@ export const createGroupLeadTag = (payload) => (dispatch) => {
 
 export const getExecutiveEmployeeList = (payload, paginationValues) => (dispatch) => {
   dispatch(dispatchStatus(true));
-  //console.log(paginationValues,'paginationValues')
-  const url = createLeadPayload(payload, paginationValues, getClientLeadsUrl);  
+  //console.log(payload,'payloadpayload')
+  //payload?.checkPageLayout
+  let apiUrl=getClientLeadsUrl;
+  if(payload?.selectedPageLayout===2){
+    apiUrl=getClientLeadsKanbanUrl;
+  }
+  const url = createLeadPayload(payload, paginationValues,apiUrl );  
   return getMethod(url)
     .then((res) => {
       dispatch({
@@ -370,6 +379,23 @@ export const getLeadStatusList = (payload) => (dispatch) => {
     });
 };
 
+export const getLeadRatingList = (payload) => (dispatch) => {
+  return getAuthMethod(getLeadRatingApiUrl)
+    .then((res) => {
+      dispatch({
+        type: LEAD_RATING_LIST,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: LEAD_RATING_LIST_ERROR,
+        payload:
+          { [errEnum.LEAD_RATING_LIST_ERROR]: err.response.data[ErrKey] } ||
+          "Error Occured",
+      });
+    });
+};
 
 export const setPageLayout = (payload) => {
   return {

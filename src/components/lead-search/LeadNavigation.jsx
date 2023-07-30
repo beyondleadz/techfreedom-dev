@@ -124,19 +124,19 @@ const LeadNavigation = () => {
     navigate("/signup");
   };
 
-  const checkPageLayout=(page)=>{
-    dispatch(setPageLayout({activePage:page}));
-    const pageValues={
-      start: 0,
-      end: PAGE_LENGTH,
-    }
-    const payload = {
-      ...companySelectedFilterList,
-      selectedPageLayout: page,
-    };
-    dispatch(saveAdvancedSelectedFilters(payload));
-    dispatch(getExecutiveEmployeeList(payload, pageValues));      
-  }
+  // const checkPageLayout=(page)=>{
+  //   dispatch(setPageLayout({activePage:page}));
+  //   const pageValues={
+  //     start: 0,
+  //     end: PAGE_LENGTH,
+  //   }
+  //   const payload = {
+  //     ...companySelectedFilterList,
+  //     selectedPageLayout: page,
+  //   };
+  //   dispatch(saveAdvancedSelectedFilters(payload));
+  //   dispatch(getExecutiveEmployeeList(payload, pageValues));      
+  // }
 
   return (
     <nav className="navbar navbar-light bg-white topbar mb-4 mr-2 static-top">
@@ -170,12 +170,12 @@ const LeadNavigation = () => {
           </Button>
         </div>
         <ul className="flex  m-mt">
-          <li>
+          {/* <li>
             <i className=" btn mr-2  kanbanlist" onClick={()=>checkPageLayout(1)}></i>
           </li>
           <li>
             <i className=" btn mr-2  kanbanview" onClick={()=>checkPageLayout(2)}></i>
-          </li>
+          </li> */}
           {/*<li>
             <a
               className=" mr-2"

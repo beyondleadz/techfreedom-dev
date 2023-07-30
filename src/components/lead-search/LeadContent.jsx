@@ -20,6 +20,7 @@ import {
   saveSearchList,
   downloadExecutiveList,
   createGroupLeadTag, //api/client-leads
+  setPageLayout,
 } from "../../actionCreator/leadListingActionCreater";
 import Loader from "../loader";
 import { getToken, getUserInfo } from "../../utils/utils";
@@ -463,12 +464,26 @@ const LeadContent = () => {
     }
   };
 
+  const checkPageLayout=(page)=>{
+    dispatch(setPageLayout({activePage:page}));
+    const pageValues={
+      start: 0,
+      end: PAGE_LENGTH,
+    }
+    const payload = {
+      ...companySelectedFilterList,
+      selectedPageLayout: page,
+    };
+    dispatch(saveAdvancedSelectedFilters(payload));
+    dispatch(getExecutiveEmployeeList(payload, pageValues));      
+  }
+
   return (
     <>
     {selectedPageLayout?.activePage==2?(       
-      <LeadKanbanView loading={loading} rowSelection={rowSelection} columns={columns} executiveEmployeeList={executiveEmployeeListByStatus} paginationValue={paginationValue} companyFilterList={companyFilterList} onPageChange={onPageChange}/>      
+      <LeadKanbanView checkPageLayout={checkPageLayout} loading={loading} rowSelection={rowSelection} columns={columns} executiveEmployeeList={executiveEmployeeListByStatus} paginationValue={paginationValue} companyFilterList={companyFilterList} onPageChange={onPageChange}/>      
     ):(
-      <LeadTableView tagPage={tagPage} downloadExcel={downloadExcel} downloadPDF={downloadPDF} printPage={printPage} loading={loading} rowSelection={rowSelection} columns={columns} executiveEmployeeList={executiveEmployeeList} paginationValue={paginationValue} companyFilterList={companyFilterList} onPageChange={onPageChange}/>
+      <LeadTableView checkPageLayout={checkPageLayout} tagPage={tagPage} downloadExcel={downloadExcel} downloadPDF={downloadPDF} printPage={printPage} loading={loading} rowSelection={rowSelection} columns={columns} executiveEmployeeList={executiveEmployeeList} paginationValue={paginationValue} companyFilterList={companyFilterList} onPageChange={onPageChange}/>
     )}
       
       {showTagModal && getToken() ? (

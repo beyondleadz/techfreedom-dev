@@ -1,11 +1,23 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { Dropdown, Space, menuProps, Table, Input, Button, Modal } from "antd";
+import { Dropdown, Space, menuProps, Table, Input, Button, Modal ,Select} from "antd";
 import { PAGE_LENGTH } from "../../config";
 import Loader from "../loader";
-
+import { DownOutlined } from '@ant-design/icons';
+const items: MenuProps['items'] = [
+  {
+    key: '1',
+    label: 'Quick Create',
+  },
+  
+  {
+    key: '3',
+    label: 'Import',
+  },
+];
 const LeadTableView = ({
+  checkPageLayout,
   tagPage,
   downloadExcel,
   downloadPDF,
@@ -40,9 +52,43 @@ const LeadTableView = ({
                         {companyFilterList?.totalExecutiveCount}
                         <span className="m-1">results</span>
                       </h6>
-                      <span className="ml-4 fs-23">
+                      <span class="ml-4 fs-23 mr-3"><i class=" las la-calendar"></i><i className=" btn  mr-3 ml-3 kanbanlist" onClick={()=>checkPageLayout(1)}></i><i className=" btn  kanbanview" onClick={()=>checkPageLayout(2)}></i></span>
+                      <Dropdown
+    menu={{
+      items,
+      selectable: true,
+      defaultSelectedKeys: ['3'],
+    }}
+  >
+    <Button>
+      <Space>
+      <i class=" fs-14 font-weight-bold fa fa-plus"></i>Add Lead
+        <DownOutlined />
+      </Space>
+    </Button>
+  </Dropdown>
+  <span class="ml-4 fs-23 mr-3">
+  <Select
+              name="note"
+              value="Activity"
+              showSearch
+              placeholder="Select Name"
+              optionFilterProp="children"
+              //onChange={onSelectChange}
+              options={[
+                {
+                  value: "Item 1",
+                  label: "Item 1",
+                },
+                {
+                  value: "Item 2",
+                  label: "Item 2",
+                },
+              ]}
+            /></span>
+                      {/* <span className="ml-4 fs-23">
                         <i className="text-info las la-calendar"></i>
-                      </span>
+                      </span> */}
                       <div className="buttons-container textsearch">
                         <ul className="d-flex mt-1  m-mt">
                           <li>

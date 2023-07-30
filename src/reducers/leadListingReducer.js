@@ -35,14 +35,17 @@ import {
   LEAD_EXECUTIVE_FUNCTION_LIST,
   LEAD_EXECUTIVE_FUNCTION_LIST_ERROR,
   LEAD_STATUS_LIST,
-  LEAD_STATUS_LIST_ERROR, 
-  LEAD_PAGE_LAYOUT 
+  LEAD_STATUS_LIST_ERROR,
+  LEAD_PAGE_LAYOUT,
+  LEAD_RATING_LIST,
+  LEAD_RATING_LIST_ERROR,
 } from "../actionType/leadListingType";
 import { PAGE_LENGTH } from "../config";
 
 const initialState = {
-  leadPageLayout:{activePage:1},
+  leadPageLayout: { activePage: 1 },
   leadStatusList: [],
+  leadRatingList: [],
   executiveLevelList: [],
   industryList: [],
   geoLocation: [],
@@ -91,7 +94,7 @@ const initialState = {
   download: "",
   saveSearch: "",
   groupCompanyTag: "",
-  errObj: {},  
+  errObj: {},
 };
 
 const LeadListingReducer = (state = initialState, action) => {
@@ -141,8 +144,10 @@ const LeadListingReducer = (state = initialState, action) => {
     case LEAD_STATUS_LIST:
       return { ...state, leadStatusList: payload };
     case LEAD_PAGE_LAYOUT:
-      return { ...state, leadPageLayout: payload };  
-    
+      return { ...state, leadPageLayout: payload };
+    case LEAD_RATING_LIST:
+      return { ...state, leadRatingList: payload };
+
     case LEAD_EXECUTIVE_INDUSTRY_LIST_ERROR:
       return { ...state, errObj: { ...state.errObj, ...payload } };
     case LEAD_EXECUTIVE_GEOLOCATION_ERROR:
@@ -178,6 +183,8 @@ const LeadListingReducer = (state = initialState, action) => {
     case LEAD_EXECUTIVE_FUNCTION_LIST_ERROR:
       return { ...state, errObj: { ...state.errObj, ...payload } };
     case LEAD_STATUS_LIST_ERROR:
+      return { ...state, errObj: { ...state.errObj, ...payload } };
+    case LEAD_RATING_LIST_ERROR:
       return { ...state, errObj: { ...state.errObj, ...payload } };
     case LEAD_EXECUTIVE_EMPTY_ERROR_OBJ_LISTING:
       return { ...state, errObj: payload };

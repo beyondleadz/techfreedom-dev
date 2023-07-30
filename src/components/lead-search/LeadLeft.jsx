@@ -11,6 +11,7 @@ import {
   saveExecutiveSearchList,
   getExecutiveTagList,
   getLeadStatusList,
+  getLeadRatingList,
 } from "../../actionCreator/leadListingActionCreater";
 import AdvancedFilterModel from "./AdvancedFilterModel";
 import AdvancedFilter from "./AdvancedFilter";
@@ -51,6 +52,7 @@ const LeadLeft = () => {
   useMemo(() => {
     /*?page=0&size=10&sort=id,asc */
     dispatch(getLeadStatusList());
+    dispatch(getLeadRatingList());
     dispatch(getIndustryList());
     dispatch(getLocation());
     dispatch(getEmployeeCountList());

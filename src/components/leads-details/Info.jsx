@@ -11,11 +11,15 @@ import {
 const Info = () => {
   
   const [leadStatusList,setLeadStatusList]=useState([]);
+  const [leadRatingList,setLeadRatingList]=useState([]);
   const leadDetail= useSelector(
     (state) => state.LeadDetailsReducer.leadDetails
   );
   const leadStatusListing = useSelector(
     (state) => state.leadListingReducer.leadStatusList
+  );
+  const leadRatingListing = useSelector(
+    (state) => state.leadListingReducer.leadRatingList
   );
   useEffect(()=>{
     const statusItem=[];
@@ -23,6 +27,11 @@ const Info = () => {
       statusItem.push({label:item.text,value:item.id});
     });
     setLeadStatusList(statusItem);
+    const ratingItem=[];
+    leadRatingListing.map((item)=>{
+      ratingItem.push({label:item.ratingText,value:item.ratingText});
+    });
+    setLeadRatingList(ratingItem);
   })
  // console.log(leadStatusList,'leadStatusList')
 
@@ -273,20 +282,7 @@ const Info = () => {
             filterOption={(input, option) =>
               (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
             }
-            options={[
-              {
-                value: "Cold",
-                label: "Cold",
-              },
-              {
-                value: "Hot",
-                label: "Hot",
-              },
-              {
-                value: "Warm",
-                label: "Warm",
-              },
-            ]}
+            options={leadRatingList}
           />
         </div>
       </div>

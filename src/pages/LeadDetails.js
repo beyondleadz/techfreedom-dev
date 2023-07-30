@@ -31,6 +31,7 @@ import {
 } from "../actionCreator/leadDetailsActionCreator";
 import {
   getLeadStatusList,
+  getLeadRatingList,
 } from "../actionCreator/leadListingActionCreater";
 
 const LeadDetails = () => {
@@ -94,15 +95,19 @@ const LeadDetails = () => {
   useMemo(() => {
     if(id){
     dispatch(getLeadDetails(id));
-    dispatch(getAllLeadNotes(id));
-    dispatch(getAllLeadRemarks(id));
-    dispatch(getLeadStatusList());        
-
+    //dispatch(getAllLeadNotes(id));
+    //dispatch(getAllLeadRemarks(id));
+    dispatch(getLeadStatusList());
+    dispatch(getLeadRatingList());
     }
   }, []);
   useMemo(() => {
+    if(id){
+      dispatch(getAllLeadNotes(id));
+      dispatch(getAllLeadRemarks(id));
+    }  
     //console.log(leadDetail, "leadDetail");
-  }, [leadDetail]);
+  }, [getAllLeadNotes,getAllLeadRemarks]);
   const switchToTimeline = () => {
     setActiveTab1(`1`);
   };

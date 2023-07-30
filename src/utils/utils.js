@@ -1,3 +1,5 @@
+import moment from "moment";
+
 export const createPayload = (
   payload,
   paginationValues,
@@ -433,7 +435,8 @@ selectedTitle,
 selectedZipCode,
 selectedLeadSource,
 selectedLeadStatus,
-selectedLeadRating
+selectedLeadRating,
+selectedLeadTime
   } = payload || {};
 
   let url = companyListingApiUrl;
@@ -448,6 +451,43 @@ selectedLeadRating
   let company;
   let leadStatus;
   let leadRating;
+  let leadTime;
+  if(selectedLeadTime?.length){
+    let dates = "";
+    if(selectedLeadTime[0].name==="Today"){   
+      let savedDate = new Date();   
+      dates = moment(savedDate).utc().format('YYYY-MM-DDT')+'00:00:00Z';
+      leadTime = `&createdDate.greaterThanOrEqual=${dates}`;
+    }else if(selectedLeadTime[0].name==="Yesterday"){
+      let savedDate = new Date();
+      savedDate.setDate(savedDate.getDate() - 1);
+      dates = moment(savedDate).utc().format('YYYY-MM-DDT')+'00:00:00.569Z';
+      let date1 = moment(savedDate).utc().format('YYYY-MM-DDT')+'23:59:59.569Z';
+      leadTime = `&createdDate.greaterThanOrEqual=${dates}&createdDate.lessThan=${date1}`;    
+    }else if(selectedLeadTime[0].name==="This Month"){
+      let savedDate = new Date();
+      let month = savedDate.getMonth();
+      let monthFormatted =month >=10?month:'0'+month;
+      let dateFormatted=savedDate.getDate() >=10?savedDate.getDate():'0'+savedDate.getDate();
+      let date1=savedDate.getFullYear()+"-"+monthFormatted+"-01T00:00:00.569Z";
+      let date2=savedDate.getFullYear()+"-"+monthFormatted+"-"+dateFormatted+"T23:59:59.569Z";
+      leadTime = `&createdDate.greaterThanOrEqual=${date1}&createdDate.lessThan=${date2}`;       
+    }else if(selectedLeadTime[0].name==="This Year"){
+      let savedDate = new Date();
+      let year = savedDate.getFullYear();
+      let date1=savedDate.getFullYear()+"-01-01T00:00:00.569Z";
+      let date2=savedDate.getFullYear()+"-12-31T23:59:59.569Z";
+      leadTime = `&createdDate.greaterThanOrEqual=${date1}&createdDate.lessThan=${date2}`;    
+    }else{
+      let savedDate = new Date();
+      let date2 = moment(savedDate).utc().format('YYYY-MM-DDT')+'00:00:00.569Z';
+      savedDate.setDate(savedDate.getDate() - 7);
+      let date1 = moment(savedDate).utc().format('YYYY-MM-DDT')+'23:59:59.569Z';
+      leadTime = `&createdDate.greaterThanOrEqual=${date1}&createdDate.lessThan=${date2}`;
+    }
+    url = `${url}${leadTime}`;
+  }
+
   if (selectedPageLayout!==2 && paginationValues) {
     withPagination = `&page=${paginationValues?.start}&size=${paginationValues?.end}`;
     url = `${url}${withPagination}`;
@@ -540,10 +580,10 @@ selectedLeadRating
   if (selectedLeadRating?.length) {
     let ids = "";
     for (let i = 0; i < selectedLeadRating.length - 1; i++) {
-      ids += `${selectedLeadRating[i].name},`;
+      ids += `${selectedLeadRating[i].ratingText},`;
     }
-    ids += selectedLeadRating[selectedLeadRating.length - 1].name;
-    leadRating = `&leadRating.in=${ids}`;
+    ids += selectedLeadRating[selectedLeadRating.length - 1].ratingText;
+    leadRating = `&rate.in=${ids}`;
     url = `${url}${leadRating}`;
   }
 
@@ -553,7 +593,7 @@ selectedLeadRating
   }
 
   if(selectedLeadOwner){    
-   // url = `${url}&fullname.contains=${selectedLeadOwner}`;
+    url = `${url}&createdBy.contains=${selectedLeadOwner}`;
   }
   if(selectedFirstName){    
     url = `${url}&firstname.contains=${selectedFirstName}`;
@@ -578,3 +618,43 @@ selectedLeadRating
   }
   return url;
 };
+
+export const createActivityPayload=(payload,url)=>{
+  let activityTime;
+  if(payload?.date?.length){    
+    let sdate = new Date(payload?.date[0]);
+    let edate = new Date(payload?.date[1]);
+    let date1 = moment(sdate).utc().format('YYYY-MM-DDT')+'00:00:00.569Z';
+    let date2 = moment(edate).utc().format('YYYY-MM-DDT')+'23:59:59.569Z';
+    activityTime = `&lastUpdated.greaterThanOrEqual=${date1}&lastUpdated.lessThan=${date2}`;
+    url = `${url}${activityTime}`;
+  }
+  if(payload?.activity){ 
+    url = `${url}&note.contains=${payload?.activity}`;
+  }
+  return url;
+}
+
+export const createActivityPayloadForRemarks=(payload,url)=>{
+  let activityTime;
+  if(payload?.date?.length){    
+    let sdate = new Date(payload?.date[0]);
+    let edate = new Date(payload?.date[1]);
+    let date1 = moment(sdate).utc().format('YYYY-MM-DDT')+'00:00:00.569Z';
+    let date2 = moment(edate).utc().format('YYYY-MM-DDT')+'23:59:59.569Z';
+    activityTime = `&interactionDate.greaterThanOrEqual=${date1}&interactionDate.lessThan=${date2}`;
+    url = `${url}${activityTime}`;
+  }
+  if(payload?.activity){
+    if(payload?.activity==="Contact"){
+    url = `${url}&isContacted.equals=true`;
+    }else if(payload?.activity==="Contact Back"){
+    url = `${url}&isContactBackRequired.equals=true`;
+    }else if(payload?.activity==="Display"){
+    url = `${url}&isToDisplay.equals=true`;
+    }else{
+    url = `${url}&remarks.equals=${payload?.activity}`; 
+    }    
+  }
+  return url;
+}

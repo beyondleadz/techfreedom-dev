@@ -20,6 +20,7 @@ export const getCompanyTagApiUrl = '/api/company-tags/uniqueList/';
 export const postRelavantCompanyApiUrl = '/api/user-prefered-records';
 export const getRelavantCompanyApiUrl = '/api/user-prefered-records';
 export const getClientLeadsUrl = "/api/client-leads";
+export const getClientLeadsKanbanUrl = "/api/client-leads/Kanban";
 export const groupCompanyTagUrl = '/api/company-tags/multi';
 export const executiveEmployeeListingApiUrl="/api/employees";
 export const getExecutiveTagApiUrl = '/api/employee-tags/uniqueList/';
@@ -33,4 +34,5 @@ export const saveClientNoteApiUrl = 'api/client-notes';
 export const getClientNotesApiUrl = 'api/client-notes';
 export const getClientRemarksApiUrl = 'api/client-remarks';
 export const getLeadStatusApiUrl='api/statuses';
+export const getLeadRatingApiUrl='api/lead-rating';
 
