@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useMemo } from "react";
 import Excel from "exceljs";
 import { saveAs } from "file-saver";
-import { Modal, Checkbox, Input, Divider, Button,Tabs,Tooltip } from "antd";
+import { Modal, Checkbox, Input, Divider, Button, Tabs, Tooltip } from "antd";
 import _ from "lodash";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -28,7 +28,7 @@ import {
   getCompanyTag,
   resetCompanyTag,
   downloadExecutiveExl,
-  emptyDownload
+  emptyDownload,
 } from "../../actionCreator/companyDetailsActionCreator";
 
 import {
@@ -85,9 +85,8 @@ const SummaryContent = () => {
   const downloadExcelData = useSelector(
     (state) => state.companyDetailsReducer.downloadExecutive
   );
-  
-  const errObj = useSelector((state) => state.companyDetailsReducer.errObj);
 
+  const errObj = useSelector((state) => state.companyDetailsReducer.errObj);
 
   const [taggedExecutive, setTaggedExecutive] = useState(false);
   useEffect(() => {
@@ -122,12 +121,11 @@ const SummaryContent = () => {
 
   useEffect(() => {
     if (selectedEmployeeList?.length > 0) {
-          setTaggedExecutive(false);
-        } else {
-          setTaggedExecutive(true);
-        }
-       
-  },[selectedEmployeeList]);
+      setTaggedExecutive(false);
+    } else {
+      setTaggedExecutive(true);
+    }
+  }, [selectedEmployeeList]);
 
   useMemo(() => {
     dispatch(resetPostRelavantCompany);
@@ -143,10 +141,10 @@ const SummaryContent = () => {
     );
   }, [similarCompanyList]);
 
-  useEffect(()=>{
-    const dpt=[{id:0,name:'All'},...departmentList];
+  useEffect(() => {
+    const dpt = [{ id: 0, name: "All" }, ...departmentList];
     setDepartmentAllList(dpt);
-  },[])
+  }, [departmentList]);
 
   const items = [
     {
@@ -204,7 +202,12 @@ const SummaryContent = () => {
     dispatch(storeSelectedDepartment(selectedItem?.id));
     setSelectedValue(selectedItem?.name);
     setDropdownToggle(!dropDownToggle);
-    setTabActiveKey("2");
+    //console.log(tabActiveKey,'tabActiveKey epartmentAllList')
+    if (tabActiveKey === "3") {
+      setTabActiveKey("3");
+    } else {
+      setTabActiveKey("2");
+    }
   };
 
   const renderSimilarCompanyList = () => {
@@ -298,37 +301,36 @@ const SummaryContent = () => {
   };
 
   const getSchema = (data) => {
-    var finaldata=[];
-    let cnt=0;
+    var finaldata = [];
+    let cnt = 0;
     data.forEach((obj) => {
       cnt++;
-      var dataObj={};
-      dataObj.id=obj.id;
-      dataObj.serealNo=cnt;
-      dataObj.firstName=obj.firstname;
-      dataObj.lastName=obj.lastname;
-      dataObj.designation=obj.title;
-      dataObj.email=obj.emailId;
-      dataObj.name=obj?.company?.name;
-      dataObj.revenueName=obj?.company?.revenue?.name;
-      dataObj.employeeRange=obj?.company?.range?.name;
-      dataObj.industryName=obj?.company?.industry?.name;
-      dataObj.country=obj?.company?.country;
-      dataObj.state=obj?.company?.state;
-      dataObj.city=obj?.company?.city;
-      dataObj.wedsite=obj?.company?.wedsite;
-      dataObj.address=obj?.company?.address;
-      dataObj.pincode=obj?.company?.pincode;
-      dataObj.phoneNo=obj.phoneNo;
-      finaldata.push(dataObj)
-    })
+      var dataObj = {};
+      dataObj.id = obj.id;
+      dataObj.serealNo = cnt;
+      dataObj.firstName = obj.firstname;
+      dataObj.lastName = obj.lastname;
+      dataObj.designation = obj.title;
+      dataObj.email = obj.emailId;
+      dataObj.name = obj?.company?.name;
+      dataObj.revenueName = obj?.company?.revenue?.name;
+      dataObj.employeeRange = obj?.company?.range?.name;
+      dataObj.industryName = obj?.company?.industry?.name;
+      dataObj.country = obj?.company?.country;
+      dataObj.state = obj?.company?.state;
+      dataObj.city = obj?.company?.city;
+      dataObj.wedsite = obj?.company?.wedsite;
+      dataObj.address = obj?.company?.address;
+      dataObj.pincode = obj?.company?.pincode;
+      dataObj.phoneNo = obj.phoneNo;
+      finaldata.push(dataObj);
+    });
     return finaldata;
-  }
+  };
 
   useEffect(() => {
-    
     if (downloadExcelData.length) {
-      const downloadedUpdatedData = getSchema(downloadExcelData)
+      const downloadedUpdatedData = getSchema(downloadExcelData);
       const columns = [
         { header: "Serial No.", key: "serealNo" },
         { header: "FirstName", key: "firstName" },
@@ -347,7 +349,7 @@ const SummaryContent = () => {
         { header: "Employee Range", key: "rangeName" },
         { header: "Industry", key: "industryName" },
       ];
-      const fileName = companyDetails.name+"-executive-data";
+      const fileName = companyDetails.name + "-executive-data";
       saveExcel(downloadedUpdatedData, columns, fileName, Excel, saveAs);
       dispatch(emptyDownload());
     }
@@ -364,16 +366,14 @@ const SummaryContent = () => {
         selectedEmpIds.lastIndexOf(","),
         0
       );
-      const payload={
-        empIds:selectedEmpIds,
-        department:selectedDepartment,
-        companyId:companyDetails?.id
-      }
+      const payload = {
+        empIds: selectedEmpIds,
+        department: selectedDepartment,
+        companyId: companyDetails?.id,
+      };
       dispatch(downloadExecutiveExl(payload));
     }
   };
-
-
 
   const downloadPDF = (id) => {
     const isLoggedIn = checkLoginStatus();
@@ -386,8 +386,8 @@ const SummaryContent = () => {
     setOpenTagModal(false);
   };
 
-
-  const onConfrim = () => { //selectedEmployeeList
+  const onConfrim = () => {
+    //selectedEmployeeList
     if (!tagValues.tagname) {
       setTagValues({
         ...tagValues,
@@ -406,7 +406,7 @@ const SummaryContent = () => {
             userId: id,
           },
         ];
-      }      
+      }
       dispatch(createGroupExecutiveTag(payload));
       setOpenTagModal(false);
     }
@@ -469,28 +469,49 @@ const SummaryContent = () => {
               </li>
             </div> */}
             <div className="excelcontainer">
-                 <ul className="d-flex  m-mt">
-                 
-                <li><a className=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
-                    aria-expanded="false">
-                      <Tooltip title="Tag Executive">
-                    <i
-                      className="right-icons las  la-tags"
-                      aria-hidden="true"  onClick={tagExecutive}
-                    ></i></Tooltip>
-                    </a>
+              <ul className="d-flex  m-mt">
+                <li>
+                  <a
+                    className=" mr-2"
+                    href="#"
+                    id=""
+                    role="button"
+                    data-toggle=""
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <Tooltip title="Tag Executive">
+                      <i
+                        className="right-icons las  la-tags"
+                        aria-hidden="true"
+                        onClick={tagExecutive}
+                      ></i>
+                    </Tooltip>
+                  </a>
                 </li>
-                         
-                <li><a className=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
-                    aria-expanded="false"><i className="right-icons la la-file-excel" aria-hidden="true" onClick={() => downloadExcel()}></i>
-                    </a>
-                </li> 
+
+                <li>
+                  <a
+                    className=" mr-2"
+                    href="#"
+                    id=""
+                    role="button"
+                    data-toggle=""
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <i
+                      className="right-icons la la-file-excel"
+                      aria-hidden="true"
+                      onClick={() => downloadExcel()}
+                    ></i>
+                  </a>
+                </li>
 
                 {/* <li><a className=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
                     aria-expanded="false"><i className="right-icons la la-file-pdf" aria-hidden="true" onClick={() => downloadPDF(companyDetails?.id)}></i>
                     </a>
                 </li> */}
-                
               </ul>
             </div>
           </div>
@@ -523,7 +544,7 @@ const SummaryContent = () => {
         ""
       )}
 
-{isApiFailed ? (
+      {isApiFailed ? (
         <TrialModal
           openModal={isApiFailed}
           closeModal={closeModal}
@@ -564,7 +585,7 @@ const SummaryContent = () => {
                     onChange={onTagInputChange}
                   />
                 </div>
-              </div>              
+              </div>
             </div>
           </Modal>
         ) : (
@@ -587,7 +608,6 @@ const SummaryContent = () => {
       ) : (
         ""
       )}
-
     </>
   );
 };

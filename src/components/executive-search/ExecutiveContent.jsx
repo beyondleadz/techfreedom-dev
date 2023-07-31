@@ -23,13 +23,17 @@ import {
   createGroupExecutiveTag,
   emptyDownload
 } from "../../actionCreator/executiveListingActionCreater";
+
 import {
+  submitLead,
+  getExecutiveLead,
   getEmployeeViewableStatusUpdate
 } from "../../actionCreator/executiveDetailsActionCreator";
 import Loader from "../loader";
-import { getToken,getUserInfo } from "../../utils/utils";
+import { getToken,getUserInfo,getSubscriptionUserInfo } from "../../utils/utils";
 
 const ExecutiveContent = () => {
+  const dispatch =useDispatch();
   const { Search, TextArea } = Input;
   const [showEmail, setShowEmail] = useState({});
   const [showPhone, setShowPhone] = useState({});
@@ -58,6 +62,12 @@ const ExecutiveContent = () => {
       "#99E6E6",
       "#6666FF"
   ];
+  const userAccountInfo = useSelector(
+    (state) => state.CommonReducer.accountInfo
+  );
+  const getLeadsData = useSelector(
+    (state) => state.executiveDetailsReducer?.getExecutiveLead
+  );
   // const colorArray= ['aqua', 'blue', 'fuchsia', 'gray', 'green', 
   // 'lime', 'maroon', 'navy', 'olive', 'orange', 'purple', 'red', 
   // 'silver', 'teal', 'white', 'yellow'];
@@ -93,6 +103,62 @@ const ExecutiveContent = () => {
     }
   };
 
+  
+
+  useMemo(() => {
+    if (Object.keys(getUserInfo()).length) {
+      const { id } = getUserInfo();
+      dispatch(getExecutiveLead(id));
+    }
+  }, [userAccountInfo]);
+
+  const postLeads = (record, isLeadSubmit) => {
+    //console.log(record,'selectedrecord');
+    const { id, login } = getUserInfo();
+    const { id: accountId } = getSubscriptionUserInfo();
+    let leadPayload = {
+      firstname: record.firstname,
+      lastname: record.lastname,
+      fullname: record.fullname,
+      title: record.title,
+      client: record.client,
+      emailId: record.emailId,
+      phoneNo: record.phoneNo,
+      bio: record.bio,
+      description: record.description,
+      userId: id,
+      employeeId: record.id,
+      address:record?.company?.address,
+      companyId:record?.company?.id,
+      companyName:record?.company?.name,
+      industryId:record?.company?.industry?.id,
+      industryText:record?.company?.industry?.name,
+      empSizeId:record?.company?.range?.name,
+      city:record?.company?.city,
+      state:record?.company?.state,
+      country:record?.company?.country
+    };
+    //console.log(isLeadSubmit,leadPayload,'leadpayload');
+    if (!isLeadSubmit) {
+      dispatch(submitLead(leadPayload));
+      //setAddToLeads(record.id);
+    }else{
+     navigate("/lead-details/"+isLeadSubmit);
+    }
+  }
+
+  const isLeadsSubmitted = (selEmployeeId) => {
+    //console.log("selEmployeeId",selEmployeeId)
+    const filteredData = getLeadsData.filter(
+      (item) => item.employeeId == selEmployeeId.id
+    );
+    if (filteredData?.length > 0) {
+      return filteredData[0].id;
+    } else {
+      return 0;
+    }
+  };
+
   const columns = [
     
     {
@@ -103,7 +169,7 @@ const ExecutiveContent = () => {
         let cnt=index;
         return (
           <div className="namecol" onClick={() => getDetails(row.key)}>
-            <div className="logo" style={{'text-transform': 'uppercase','background-color':colorArray[index]}}>
+            <div className="logo" style={{textTransform: 'uppercase',backgroundColor:colorArray[index]}}>
             {record?.firstname?.[0]}{record?.lastname?.[0]}
             </div>
             <span className="cname">
@@ -193,9 +259,43 @@ const ExecutiveContent = () => {
       title: "Social",
       dataIndex: "social",
     },
+    {
+      title: "",
+      dataIndex: "name",
+      render: (record, row) => {
+        let checkLeadSubmitted =isLeadsSubmitted(record);
+        return getToken() ? (
+          <>
+          <Button
+            style={{ height: "auto" }}
+            className="keyexebtn d-none d-sm-inline-block small btn btn-primary text-black"
+            // loading={
+            //   !Object.keys(submitLeadRes).length && addToLeads === record.id
+            //     ? true
+            //     : false
+            // }
+            onClick={() => postLeads(record, checkLeadSubmitted)}
+          >
+            <i className="las la-user-plus fs-12 pr-1"></i>{" "}
+            {checkLeadSubmitted ? "LEAD ADDED" : "ADD TO LEADS"}
+          </Button>           
+          </>
+        ) : (
+          <>
+          <Button
+            style={{ height: "auto" }}
+            className="keyexebtn d-none d-sm-inline-block small btn btn-primary text-black"
+            onClick={() => openInfoModel()}
+          >
+            <i className="las la-user-plus  fs-12  pr-1"></i>ADD TO LEADS
+          </Button>
+          </>          
+        );
+      },
+    },
   ];
 
-  const dispatch = useDispatch();
+  //const dispatch = useDispatch();
   const navigate = useNavigate();
   const [companyList, setCompanyList] = useState();
   const [executiveEmployeeList, setExecutiveEmployeeList] = useState();
@@ -304,11 +404,11 @@ const ExecutiveContent = () => {
 
   const rowSelection = {
     onChange: (selectedRowKeys, selectedRows) => {
-      console.log(
-        `selectedRowKeys: ${selectedRowKeys}`,
-        "selectedRows: ",
-        selectedRows
-      );
+      // console.log(
+      //   `selectedRowKeys: ${selectedRowKeys}`,
+      //   "selectedRows: ",
+      //   selectedRows
+      // );
       dispatch(selectedRow(selectedRows));
     },
     getCheckboxProps: (record) => ({
@@ -413,7 +513,7 @@ const ExecutiveContent = () => {
   const tagPage = () => {
     const isLoggedIn = checkLoginStatus();
     if (isLoggedIn) {
-      console.log("call tag api");
+      //console.log("call tag api");
       if(selectedRecords.length){
       setShowTagModal(true);
       }else{

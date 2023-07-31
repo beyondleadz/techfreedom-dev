@@ -155,7 +155,7 @@ const SummaryHeader = () => {
       return false;
     }
 
-    console.log(errorForm, "errorFormerrorForm");
+    //console.log(errorForm, "errorFormerrorForm");
     let newPayload = {};
     Object.keys(errorForm).forEach((key) => {
       newPayload = {

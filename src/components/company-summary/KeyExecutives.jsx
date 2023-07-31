@@ -81,7 +81,7 @@ const KeyExecutives = () => {
       (item) => item.employeeId == selEmployeeId.id
     );
     if (filteredData?.length > 0) {
-      return 1;
+      return filteredData[0].id;
     } else {
       return 0;
     }
@@ -289,7 +289,7 @@ const KeyExecutives = () => {
       dispatch(submitLead(leadPayload));
       setAddToLeads(record.id);
     }else{
-     navigate("/lead-details/"+record.id);
+     navigate("/lead-details/"+isLeadSubmit);
     }
   };
 

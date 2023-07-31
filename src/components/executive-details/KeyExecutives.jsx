@@ -21,6 +21,9 @@ const KeyExecutives = () => {
   const submitLeadRes = useSelector(
     (state) => state.companyDetailsReducer?.executiveLeads
   );
+  const getLeadsData = useSelector(
+    (state) => state.executiveDetailsReducer?.getExecutiveLead
+  );
 
   const [employeeData, setEmployeeData] = useState([]);
   const [openModal, setOpenModal] = useState({
@@ -57,6 +60,17 @@ const KeyExecutives = () => {
     }
   }
 
+  const isLeadsSubmitted = (selEmployeeId) => {
+    //console.log("selEmployeeId",selEmployeeId)
+    const filteredData = getLeadsData.filter(
+      (item) => item.employeeId == selEmployeeId.id
+    );
+    if (filteredData?.length > 0) {
+      return filteredData[0].id;
+    } else {
+      return 0;
+    }
+  };
 
   const columns = [
     {
@@ -158,6 +172,7 @@ const KeyExecutives = () => {
       title: "",
       dataIndex: "leads",
       render: (record) => {
+        let checkLeadSubmitted =isLeadsSubmitted(record);
         return getToken() ? (
           <Button
             style={{ height: "auto" }}
@@ -167,9 +182,9 @@ const KeyExecutives = () => {
                 ? true
                 : false
             }
-            onClick={() => postLeads(record)}
+            onClick={() => postLeads(record,checkLeadSubmitted)}
           >
-            <i className="las la-user-plus fs-12 pr-1"></i> ADD TO LEADS
+            <i className="las la-user-plus fs-12 pr-1"></i> {checkLeadSubmitted ? "LEAD ADDED" : "ADD TO LEADS"}
           </Button>
         ) : (
           <Button
@@ -189,7 +204,7 @@ const KeyExecutives = () => {
     },
   ];
 
-  const postLeads = (record) => {
+  const postLeads = (record,isLeadSubmit) => {
     const { id,login } = getUserInfo();
     let leadPayload = {
       firstname: record.firstname,
@@ -201,10 +216,25 @@ const KeyExecutives = () => {
       phoneNo: record.phoneNo,
       bio: record.bio,
       description: record.description,
-      userId:id
+      userId:id,
+      employeeId: record.id,
+      address:record?.company?.address,
+      companyId:record?.company?.id,
+      companyName:record?.company?.name,
+      industryId:record?.company?.industry?.id,
+      industryText:record?.company?.industry?.name,
+      empSizeId:record?.company?.range?.name,
+      city:record?.company?.city,
+      state:record?.company?.state,
+      country:record?.company?.country
     };
-    dispatch(submitLead(leadPayload));
-    setAddToLeads(record.id);
+    if (!isLeadSubmit) {
+      dispatch(submitLead(leadPayload));
+      setAddToLeads(record.id);
+    }else{
+     navigate("/lead-details/"+isLeadSubmit);
+    }
+    
   };
 
   const resetLeadsData = () => {

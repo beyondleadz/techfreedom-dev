@@ -150,7 +150,7 @@ export const createPayloadWithTopSearch = (
     url = `${url}${withPagination}`;
   }
 
-  console.log(payload,'payloadpayload')
+  //console.log(payload,'payloadpayload')
 
   if (payload) {
     const searchCondition = `&name.contains=${payload}`;
@@ -349,7 +349,7 @@ export const getSubscriptionUserInfo = () => {
 
 
 export const saveExcel = async (data,columns,workBookName,Excel,saveAs) => {
-  console.log("downloading excel ...");
+  //console.log("downloading excel ...");
   const workbook = new Excel.Workbook();
   const workSheetName = 'Worksheet-1';
   try {

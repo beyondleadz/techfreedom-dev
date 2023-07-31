@@ -41,7 +41,7 @@ import { createActivityPayload, createActivityPayloadForRemarks } from "../utils
 
 export const getLeadDetails = (id) => (dispatch) => {
   const url = `${getClientLeadsUrl}/${id}`;
-  console.log(url, id, "lksjdfklsjd");
+  //console.log(url, id, "lksjdfklsjd");
   return getMethod(url)
     .then((res) => {
       dispatch({
@@ -50,7 +50,7 @@ export const getLeadDetails = (id) => (dispatch) => {
       });
     })
     .catch((err) => {
-      console.log(err, "sjkflskdjfkl");
+      //console.log(err, "sjkflskdjfkl");
       dispatch({
         type: LEAD_DETAILS_ERROR,
         payload:
