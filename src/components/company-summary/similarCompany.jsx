@@ -111,7 +111,7 @@ const SimilarCompany = () => {
         </span>
       ),
       children: <KeyExecutives />,
-    },
+    },    
     {
       key: "3",
       label: (

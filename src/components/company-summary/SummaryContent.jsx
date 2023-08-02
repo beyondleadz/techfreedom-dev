@@ -174,6 +174,15 @@ const SummaryContent = () => {
       ),
       children: <OrgChart />,
     },
+    // {
+    //   key: "4",
+    //   label: (
+    //     <span>
+    //       <i className="text-black fa fa-sitemap pr-2"></i>Triggers
+    //     </span>
+    //   ),
+    //   children: <OrgChart />,
+    // },
   ];
 
   useEffect(() => {
