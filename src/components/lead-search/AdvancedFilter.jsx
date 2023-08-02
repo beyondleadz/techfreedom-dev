@@ -803,7 +803,7 @@ const AdvancedFilter = ({
           onClick={() => openVisibleFilter("leadRating")}
         >
           <h2>
-            <i className="left-company-menu-icons la la-globe"></i>
+            <i className="left-company-menu-icons las la-check-square"></i>
             <span>Lead Rating</span>
           </h2>
         </div>
@@ -912,7 +912,7 @@ const AdvancedFilter = ({
           onClick={() => openVisibleFilter("leadTime")}
         >
           <h2>
-            <i className="left-company-menu-icons la la-globe"></i>
+            <i className="left-company-menu-icons las la-clock"></i>
             <span>Lead Time</span>
           </h2>
         </div>
@@ -1018,7 +1018,7 @@ const AdvancedFilter = ({
           onClick={() => openVisibleFilter("leadStatus")}
         >
           <h2>
-            <i className="left-company-menu-icons las la-industry"></i>
+            <i className="left-company-menu-icons las la-thumbs-up"></i>
             <span>Lead Status</span>
           </h2>
           {showCheckAll && (
@@ -1144,7 +1144,7 @@ const AdvancedFilter = ({
           onClick={() => openVisibleFilter("leadSource")}
         >
           <h2>
-            <i className="left-company-menu-icons las la-industry"></i>
+            <i className="left-company-menu-icons las la-book"></i>
             <span>Lead Source</span>
           </h2>
           {showCheckAll && (
@@ -1891,7 +1891,7 @@ const AdvancedFilter = ({
               visibleFilter,
               "leadOwner",
               "Lead Owner",
-              "la-industry"
+              "la-user-alt"
             )}
           </div>
           <div className="filterblk" id="firstName">
@@ -1899,7 +1899,7 @@ const AdvancedFilter = ({
               visibleFilter,
               "firstName",
               "First Name",
-              "la-industry"
+              "la-address-book"
             )}
           </div>
           <div className="filterblk" id="lastName">
@@ -1907,7 +1907,7 @@ const AdvancedFilter = ({
               visibleFilter,
               "lastName",
               "Last Name",
-              "la-industry"
+              "la-address-book"
             )}
           </div>
           <div className="filterblk" id="companyName">
@@ -1915,7 +1915,7 @@ const AdvancedFilter = ({
               visibleFilter,
               "companyName",
               "Company Name",
-              "la-industry"
+              "la-building"
             )}
           </div>
           <div className="filterblk" id="designation">
@@ -1923,7 +1923,7 @@ const AdvancedFilter = ({
               visibleFilter,
               "designation",
               "Designation",
-              "la-industry"
+              "la-suitcase"
             )}
           </div>
           <div className="filterblk" id="emplyeeCount">
@@ -1944,7 +1944,7 @@ const AdvancedFilter = ({
               visibleFilter,
               "leadSource",
               "Lead Source",
-              "la-industry"
+              "la-history"
             )}
           </div>
           <div className="filterblk" id="county">
@@ -1961,7 +1961,7 @@ const AdvancedFilter = ({
               visibleFilter,
               "zipCode",
               "Zip Code",
-              "la-industry"
+              "la-book"
             )}
           </div>
           {/* <div className="filterblk" id="execFunction">
