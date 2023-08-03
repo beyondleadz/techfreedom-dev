@@ -28,6 +28,7 @@ const items: MenuProps['items'] = [
   ];
 
 const LeadKanbanView = ({
+  calendarShow,
   checkPageLayout,
   loading,
   rowSelection,
@@ -50,7 +51,7 @@ const LeadKanbanView = ({
       {!loading ? (
         <div id="kanban" className="container-fluid">
           <div className="card-header col-xl-12 col-lg-10 card  shadow col-kanban "> 
-<span class="ml-4 fs-23 mr-3"><i class=" las la-calendar"></i><i className=" btn  mr-3 ml-3 kanbanlist" onClick={()=>checkPageLayout(1)}></i><i className=" btn  kanbanview" onClick={()=>checkPageLayout(2)}></i></span> 
+<span class="ml-4 fs-23 mr-3"><i class=" las la-calendar" onClick={calendarShow}></i><i className=" btn  mr-3 ml-3 kanbanlist" onClick={()=>checkPageLayout(1)}></i><i className=" btn  kanbanview" onClick={()=>checkPageLayout(2)}></i></span> 
   <Dropdown
     menu={{
       items,

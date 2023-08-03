@@ -7760,3 +7760,23 @@ color: orange;
     #leads .ant-steps-item.steps-done  {background-color: #15df44; border-radius: 10px 0 0 10px;}
     #leads .ant-steps.ant-steps-navigation .ant-steps-item.steps-done::after{background-color: #15df44;}
     #leads .ant-steps-item.steps-done .ant-steps-item-title{color:#fff;}
+
+    .events {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .events .ant-badge-status {
+      width: 100%;
+      overflow: hidden;
+      font-size: 12px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    .notes-month {
+      font-size: 28px;
+      text-align: center;
+    }
+    .notes-month section {
+      font-size: 28px;
+    }

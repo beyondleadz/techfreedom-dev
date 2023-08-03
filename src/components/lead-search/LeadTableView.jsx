@@ -17,6 +17,7 @@ const items: MenuProps['items'] = [
   },
 ];
 const LeadTableView = ({
+  calendarShow,
   checkPageLayout,
   tagPage,
   downloadExcel,
@@ -52,7 +53,7 @@ const LeadTableView = ({
                         {companyFilterList?.totalExecutiveCount}
                         <span className="m-1">results</span>
                       </h6>
-                      <span class="ml-4 fs-23 mr-3"><i class=" las la-calendar"></i><i className=" btn  mr-3 ml-3 kanbanlist" onClick={()=>checkPageLayout(1)}></i><i className=" btn  kanbanview" onClick={()=>checkPageLayout(2)}></i></span>
+                      <span class="ml-4 fs-23 mr-3"><i class=" las la-calendar" onClick={calendarShow}></i><i className=" btn  mr-3 ml-3 kanbanlist" onClick={()=>checkPageLayout(1)}></i><i className=" btn  kanbanview" onClick={()=>checkPageLayout(2)}></i></span>
                       <Dropdown
     menu={{
       items,
