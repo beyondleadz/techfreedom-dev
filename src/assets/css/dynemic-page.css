@@ -7765,6 +7765,7 @@ color: orange;
       margin: 0;
       padding: 0;
       list-style: none;
+      background-color: #75fb75;
     }
     .events .ant-badge-status {
       width: 100%;
@@ -7776,6 +7777,7 @@ color: orange;
     .notes-month {
       font-size: 28px;
       text-align: center;
+      background-color: #75fb75
     }
     .notes-month section {
       font-size: 28px;
