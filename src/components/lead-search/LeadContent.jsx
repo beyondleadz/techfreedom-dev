@@ -209,7 +209,7 @@ const LeadContent = () => {
     (state) => state.leadListingReducer.leadPageLayout
   );
   useMemo(() => {
-    dispatch(getExecutiveEmployeeList({}, paginationValue));
+    dispatch(getExecutiveEmployeeList({selectedPageLayout:selectedPageLayout.activePage}, paginationValue));
   }, []);
 
   const renderSocialLinks = (socialLinks) => {
@@ -237,13 +237,13 @@ const LeadContent = () => {
   };
 
   useEffect(() => {
-    const groupDataByStatus = _.groupBy(
-      companyFilterList?.executiveEmployeeList,
-      function (b) {
-        return b.title;
-      }
-    );
-    setExecutiveEmployeeListByStatus(groupDataByStatus);
+    // const groupDataByStatus = _.groupBy(
+    //   companyFilterList?.executiveEmployeeList,
+    //   function (b) {
+    //     return b.title;
+    //   }
+    // );
+    // setExecutiveEmployeeListByStatus(groupDataByStatus);
     let data = [];
     companyFilterList?.executiveEmployeeList?.forEach((record) => {
       data = [
@@ -504,8 +504,8 @@ const LeadContent = () => {
           checkPageLayout={checkPageLayout}
           loading={loading}
           rowSelection={rowSelection}
-          columns={columns}
-          executiveEmployeeList={executiveEmployeeListByStatus}
+          getDetails={getDetails}
+          executiveEmployeeList={executiveEmployeeList}
           paginationValue={paginationValue}
           companyFilterList={companyFilterList}
           onPageChange={onPageChange}

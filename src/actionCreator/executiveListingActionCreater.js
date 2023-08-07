@@ -329,7 +329,7 @@ export const getExecutiveEmployeeList = (payload, paginationValues) => (dispatch
   dispatch(dispatchStatus(true));
   const url = createExecutivePayload(payload, paginationValues, executiveEmployeeListingApiUrl);
   // console.log(url,'urlurlurl')
-  return getMethod(url)
+  return getAuthMethod(url)
     .then((res) => {
       dispatch({
         type: EXECUTIVE_EMPLOYEELIST,
