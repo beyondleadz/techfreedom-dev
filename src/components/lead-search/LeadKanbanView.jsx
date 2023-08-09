@@ -46,6 +46,32 @@ const LeadKanbanView = ({
         "active",
         ""
     ];    
+
+    const copyToClipboard = (text) => {
+      if (window.clipboardData && window.clipboardData.setData) {
+        // IE: prevent textarea being shown while dialog is visible
+        return window.clipboardData.setData("Text", text);
+      } else if (
+        document.queryCommandSupported &&
+        document.queryCommandSupported("copy")
+      ) {
+        var textarea = document.createElement("textarea");
+        textarea.textContent = text;
+        // Prevent scrolling to bottom of page in MS Edge
+        textarea.style.position = "fixed";
+        document.body.appendChild(textarea);
+        textarea.select();
+        try {
+          // Security exception may be thrown by some browsers
+          return document.execCommand("copy");
+        } catch (ex) {
+          console.warn("Copy to clipboard failed.", ex);
+          return false;
+        } finally {
+          document.body.removeChild(textarea);
+        }
+      }
+    };
   //console.log(executiveEmployeeList,loading, "groupData");
 
   return (
@@ -115,7 +141,6 @@ return record1?.totalRecords ?  (
                 className="card draggable shadow-sm"
                 id="cd3"
                 draggable="true"
-                onClick={() => getDetails(record.id)}
                 key={`lead_${record.id}_${index}`}
               >
                 <div className="kanbanbody p-2">
@@ -125,6 +150,8 @@ return record1?.totalRecords ?  (
                       style={{
                         textTransform: "uppercase",
                       }}
+                      onClick={() => getDetails(record.id)}
+                
                     >
                       {record?.firstname?.[0]}
                       {record?.lastname?.[0]}
@@ -132,6 +159,7 @@ return record1?.totalRecords ?  (
                     <div className="similar-desc" style={{width:"75%"}}>
                       <div>
                         <a
+                         onClick={() => getDetails(record.id)}
                           className="font-weight-bold fs-14 text-dark"
                           title=""
                         >
@@ -145,11 +173,11 @@ return record1?.totalRecords ?  (
                       <div className="fs-12" style={{textOverflow: "ellipsis",overflow: "hidden"}}>
                         {record?.title} at {record?.companyName}
                       </div>
-                      <div className="fs-12">
+                      <div className="fs-12" onClick={()=>copyToClipboard(record?.emailId)}>
                         {record?.emailId}
                         <i className=" fs-14 ml-1  la la-copy text-black"></i>
                       </div>
-                      <div className="fs-12">
+                      <div className="fs-12" onClick={()=>copyToClipboard(record?.phoneNo)}>
                         {record?.phoneNo}
                         <i className=" fs-14 ml-1  la la-copy text-black"></i>
                       </div>

@@ -489,7 +489,7 @@ const LeadContent = () => {
 
   const calendarShow = () => {
     setShowCal(!showCal)
-    console.log("sdkfjl");
+    //console.log("sdkfjl");
   };
 
   const closeCalenderModal = () => {

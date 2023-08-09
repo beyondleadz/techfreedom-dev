@@ -7731,7 +7731,7 @@ color: orange;
 
       .card.draggable {
         margin-bottom: 1rem;
-        cursor: grab;
+        /* cursor: grab; */
     }
     #kanban .main-kanban{overflow: auto;
       white-space: nowrap;}

@@ -1,4 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState, useMemo } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  getLeadExecutiveNotes,
+} from "../../actionCreator/leadListingActionCreater";
 import { Badge, Calendar } from 'antd';
 const getListData = (value) => {
   let listData;
@@ -69,6 +73,11 @@ const getMonthData = (value) => {
   }
 };
 const CalenderModal = () => {
+  const dispatch = useDispatch();
+  useMemo(() => {
+    dispatch(getLeadExecutiveNotes());    
+  }, []);
+
   const monthCellRender = (value) => {
     const num = getMonthData(value);
     return num ? (
@@ -95,6 +104,11 @@ const CalenderModal = () => {
     if (info.type === 'month') return monthCellRender(current);
     return info.originNode;
   };
-  return <Calendar cellRender={cellRender} />;
+
+  
+  const onPanelChange=(date,dateString)=>{
+    console.log(date,dateString);
+  }
+  return <Calendar onPanelChange={onPanelChange}  cellRender={cellRender} />;
 };
 export default CalenderModal;
