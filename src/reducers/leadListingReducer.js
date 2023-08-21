@@ -40,12 +40,15 @@ import {
   LEAD_RATING_LIST,
   LEAD_RATING_LIST_ERROR,
   LEAD_EXECUTIVE_NOTES,
-  LEAD_EXECUTIVE_NOTES_ERROR
+  LEAD_EXECUTIVE_NOTES_ERROR,
+  LEAD_EXECUTIVE_REMARKS,
+  LEAD_EXECUTIVE_REMARKS_ERROR
 } from "../actionType/leadListingType";
 import { PAGE_LENGTH } from "../config";
 
 const initialState = {
-  leadExecutiveNotes:[],
+  leadExecutiveRemarks:[],
+  leadExecutiveNotes: [],
   leadPageLayout: { activePage: 1 },
   leadStatusList: [],
   leadRatingList: [],
@@ -151,10 +154,14 @@ const LeadListingReducer = (state = initialState, action) => {
     case LEAD_RATING_LIST:
       return { ...state, leadRatingList: payload };
     case LEAD_EXECUTIVE_NOTES:
-      return {...state, leadExecutiveNotes:payload};
+      return { ...state, leadExecutiveNotes: payload };
+    case LEAD_EXECUTIVE_REMARKS:
+      return { ...state, leadExecutiveRemarks: payload };
 
     case LEAD_EXECUTIVE_NOTES_ERROR:
-      return { ...state, errObj: { ...state.errObj, ...payload } }; 
+      return { ...state, errObj: { ...state.errObj, ...payload } };
+    case LEAD_EXECUTIVE_REMARKS_ERROR:
+      return { ...state, errObj: { ...state.errObj, ...payload } };
     case LEAD_EXECUTIVE_INDUSTRY_LIST_ERROR:
       return { ...state, errObj: { ...state.errObj, ...payload } };
     case LEAD_EXECUTIVE_GEOLOCATION_ERROR:

@@ -667,7 +667,7 @@ export const createActivityPayloadForCalendar=(payload,url)=>{
     activityTime = `?lastUpdated.greaterThanOrEqual=${date1}`;    
   }else{
     let savedDate = new Date();
-      let month = savedDate.getMonth();
+      let month = savedDate.getMonth()+1;
       let monthFormatted =month >=10?month:'0'+month;
       let dateFormatted=savedDate.getDate() >=10?savedDate.getDate():'0'+savedDate.getDate();
       let date1=savedDate.getFullYear()+"-"+monthFormatted+"-01T00:00:00.569Z";

@@ -37,7 +37,9 @@ import {
   LEAD_RATING_LIST,
   LEAD_RATING_LIST_ERROR,
   LEAD_EXECUTIVE_NOTES,
-  LEAD_EXECUTIVE_NOTES_ERROR
+  LEAD_EXECUTIVE_NOTES_ERROR,
+  LEAD_EXECUTIVE_REMARKS,
+  LEAD_EXECUTIVE_REMARKS_ERROR
 } from "../actionType/leadListingType";
 import {
   getAuthMethod,
@@ -46,6 +48,7 @@ import {
 } from "../services/HttpServices";
 import { errEnum, ErrKey } from "../config";
 import {
+  getClientRemarksApiUrl,
   industryApiUrl,
   employeeCountApiUrl,
   companyTypeApiUrl,
@@ -408,8 +411,8 @@ export const setPageLayout = (payload) => {
 };
 
 export const getLeadExecutiveNotes = (payload={}) => (dispatch) => {
-  let apiUrl=`${getClientNotesApiUrl}`;
-  const url =createActivityPayloadForCalendar(payload,apiUrl); 
+  const url=`${getClientNotesApiUrl}`;
+  //const url =createActivityPayloadForCalendar(payload,apiUrl); getClientRemarksApiUrl
   return getMethod(url)
     .then((res) => {
       dispatch({
@@ -422,6 +425,26 @@ export const getLeadExecutiveNotes = (payload={}) => (dispatch) => {
         type: LEAD_EXECUTIVE_NOTES_ERROR,
         payload:
           { [errEnum.LEAD_EXECUTIVE_NOTES_ERROR]: err.response.data[ErrKey] } ||
+          "Error Occured",
+      });
+    });
+};
+
+export const getLeadExecutiveRemarks = (payload={}) => (dispatch) => {
+  const url=`${getClientRemarksApiUrl}`;
+  //const url =createActivityPayloadForCalendar(payload,apiUrl); 
+  return getMethod(url)
+    .then((res) => {
+      dispatch({
+        type: LEAD_EXECUTIVE_REMARKS,
+        payload: res?.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: LEAD_EXECUTIVE_REMARKS_ERROR,
+        payload:
+          { [errEnum.LEAD_EXECUTIVE_REMARKS_ERROR]: err.response.data[ErrKey] } ||
           "Error Occured",
       });
     });
