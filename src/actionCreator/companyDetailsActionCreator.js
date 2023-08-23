@@ -89,7 +89,7 @@ export const getEmployeeList = (id, department) => (dispatch) => {
   if (department) {
     url += `&exfunction.in=${department}`;
   }
-  return getMethod(url)
+  return getAuthMethod(url)
     .then((res) => {
       dispatch({
         type: EMPLOYEE_LIST,

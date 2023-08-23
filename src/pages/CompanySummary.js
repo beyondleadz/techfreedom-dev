@@ -16,6 +16,7 @@ import NoDataFound from "../components/NoData";
 import "../assets/css/dynemic-page.css";
 import Loader from "../components/loader";
 import SimilarCompany from "../components/company-summary/similarCompany";
+import CompanyPdfFormat from "../components/company-summary/CompanyPdfFormat";
 const CompanySummary = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -88,6 +89,9 @@ const CompanySummary = () => {
           <Loader />
         )}
       </Layout>
+      {/* <div style={{position:'absolute',left:'0',top:'-5000px'}} ref={pdfRef}> */}
+<CompanyPdfFormat/>
+      {/* </div> */}
     </>
   );
 };

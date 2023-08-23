@@ -658,3 +658,21 @@ export const createActivityPayloadForRemarks=(payload,url)=>{
   }
   return url;
 }
+
+export const createActivityPayloadForCalendar=(payload,url)=>{
+  let activityTime;
+  if(payload?.date?.length){    
+    let sdate = new Date(payload?.date[0]);
+    let date1 = moment(sdate).utc().format('YYYY-MM-DDT')+'00:00:00.569Z';
+    activityTime = `?lastUpdated.greaterThanOrEqual=${date1}`;    
+  }else{
+    let savedDate = new Date();
+      let month = savedDate.getMonth()+1;
+      let monthFormatted =month >=10?month:'0'+month;
+      let dateFormatted=savedDate.getDate() >=10?savedDate.getDate():'0'+savedDate.getDate();
+      let date1=savedDate.getFullYear()+"-"+monthFormatted+"-01T00:00:00.569Z";
+      activityTime = `?lastUpdated.greaterThanOrEqual=${date1}`;
+  }
+  url = `${url}${activityTime}`;
+  return url;
+}

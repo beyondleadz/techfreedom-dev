@@ -3,8 +3,8 @@ import { useNavigate, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import _ from "lodash";
 import { Table, Input, Button, Modal } from "antd";
-import { Dropdown, Space, menuProps, MenuProps1 } from 'antd';
-import { DownOutlined } from '@ant-design/icons';
+import { Dropdown, Space, menuProps, MenuProps1 } from "antd";
+import { DownOutlined } from "@ant-design/icons";
 import { PAGE_LENGTH } from "../../config";
 import defaultLogo from "../../assets/images/default_company_logo.jpg";
 import popupImg from "../../assets/images/free-user-login-prompt.jpg.jpeg";
@@ -26,8 +26,10 @@ import Loader from "../loader";
 import { getToken, getUserInfo } from "../../utils/utils";
 import LeadTableView from "./LeadTableView";
 import LeadKanbanView from "./LeadKanbanView";
+import CalenderModal from "./CalenderModal";
 const LeadContent = () => {
   const { Search, TextArea } = Input;
+  const [showCal,setShowCal] = useState(false)
   const [showEmail, setShowEmail] = useState({});
   const [showPhone, setShowPhone] = useState({});
   const [openModal, setOpenModal] = useState({
@@ -37,7 +39,7 @@ const LeadContent = () => {
   const leadStatusListing = useSelector(
     (state) => state.leadListingReducer.leadStatusList
   );
-  
+
   const colorArray = [
     "#b0b0e1",
     "#f3ca7f",
@@ -77,16 +79,16 @@ const LeadContent = () => {
     }
   };
 
-  const showStatusName=(status)=>{
-    let st="";
-    for(let i=0;i<leadStatusListing.length;i++){      
-      if(status==leadStatusListing[i].id){
-        st=leadStatusListing[i].text;
+  const showStatusName = (status) => {
+    let st = "";
+    for (let i = 0; i < leadStatusListing.length; i++) {
+      if (status == leadStatusListing[i].id) {
+        st = leadStatusListing[i].text;
         break;
-      } 
-    }    
+      }
+    }
     return st;
-  }
+  };
   const openInfoModel = () => {
     if (getToken()) {
       setOpenModal({ info: null, open: false });
@@ -131,7 +133,7 @@ const LeadContent = () => {
     {
       title: "Phone",
       dataIndex: "phone",
-      className: "phone",      
+      className: "phone",
     },
     {
       title: "Company",
@@ -152,9 +154,8 @@ const LeadContent = () => {
       dataIndex: "status",
       render: (record, row) => {
         return (
-          <div
-            className="namecol"
-          >{row?.status?showStatusName(row?.status):""}
+          <div className="namecol">
+            {row?.status ? showStatusName(row?.status) : ""}
           </div>
         );
       },
@@ -174,7 +175,10 @@ const LeadContent = () => {
   const navigate = useNavigate();
   const [companyList, setCompanyList] = useState();
   const [executiveEmployeeList, setExecutiveEmployeeList] = useState();
-  const [executiveEmployeeListByStatus, setExecutiveEmployeeListByStatus] = useState(); 
+  const [
+    executiveEmployeeListByStatus,
+    setExecutiveEmployeeListByStatus,
+  ] = useState();
 
   const [showModal, setShowModal] = useState(false);
   const [showTagModal, setShowTagModal] = useState(false);
@@ -193,7 +197,7 @@ const LeadContent = () => {
   const companySelectedFilterList = useSelector(
     (state) => state.leadListingReducer.selectedFilters
   );
-  const loading =useSelector((state) => state.CommonReducer.loading);
+  const loading = useSelector((state) => state.CommonReducer.loading);
   const paginationValue = useSelector(
     (state) => state.leadListingReducer.paginationValue
   );
@@ -205,11 +209,11 @@ const LeadContent = () => {
     (state) => state.leadListingReducer.leadPageLayout
   );
   useMemo(() => {
-    dispatch(getExecutiveEmployeeList({}, paginationValue));
+    dispatch(getExecutiveEmployeeList({selectedPageLayout:selectedPageLayout.activePage}, paginationValue));
   }, []);
 
   const renderSocialLinks = (socialLinks) => {
-    return socialLinks?.map((link,index) => {
+    return socialLinks?.map((link, index) => {
       if (link?.name === "facebook") {
         return (
           <Link key={index} to={link?.proifileUrl} target="_blank">
@@ -233,8 +237,13 @@ const LeadContent = () => {
   };
 
   useEffect(() => {
-    const groupDataByStatus =  _.groupBy(companyFilterList?.executiveEmployeeList, function(b) { return b.title})
-    setExecutiveEmployeeListByStatus(groupDataByStatus);
+    // const groupDataByStatus = _.groupBy(
+    //   companyFilterList?.executiveEmployeeList,
+    //   function (b) {
+    //     return b.title;
+    //   }
+    // );
+    // setExecutiveEmployeeListByStatus(groupDataByStatus);
     let data = [];
     companyFilterList?.executiveEmployeeList?.forEach((record) => {
       data = [
@@ -257,7 +266,7 @@ const LeadContent = () => {
         },
       ];
     });
-   setExecutiveEmployeeList(data);
+    setExecutiveEmployeeList(data);
   }, [companyFilterList]);
 
   const rowSelection = {
@@ -464,28 +473,61 @@ const LeadContent = () => {
     }
   };
 
-  const checkPageLayout=(page)=>{
-    dispatch(setPageLayout({activePage:page}));
-    const pageValues={
+  const checkPageLayout = (page) => {
+    dispatch(setPageLayout({ activePage: page }));
+    const pageValues = {
       start: 0,
       end: PAGE_LENGTH,
-    }
+    };
     const payload = {
       ...companySelectedFilterList,
       selectedPageLayout: page,
     };
     dispatch(saveAdvancedSelectedFilters(payload));
-    dispatch(getExecutiveEmployeeList(payload, pageValues));      
+    dispatch(getExecutiveEmployeeList(payload, pageValues));
+  };
+
+  const calendarShow = () => {
+    setShowCal(!showCal)
+    //console.log("sdkfjl");
+  };
+
+  const closeCalenderModal = () => {
+    setShowCal(false)
   }
 
   return (
     <>
-    {selectedPageLayout?.activePage==2?(       
-      <LeadKanbanView checkPageLayout={checkPageLayout} loading={loading} rowSelection={rowSelection} columns={columns} executiveEmployeeList={executiveEmployeeListByStatus} paginationValue={paginationValue} companyFilterList={companyFilterList} onPageChange={onPageChange}/>      
-    ):(
-      <LeadTableView checkPageLayout={checkPageLayout} tagPage={tagPage} downloadExcel={downloadExcel} downloadPDF={downloadPDF} printPage={printPage} loading={loading} rowSelection={rowSelection} columns={columns} executiveEmployeeList={executiveEmployeeList} paginationValue={paginationValue} companyFilterList={companyFilterList} onPageChange={onPageChange}/>
-    )}
-      
+      {selectedPageLayout?.activePage == 2 ? (
+        <LeadKanbanView
+          calendarShow={calendarShow}
+          checkPageLayout={checkPageLayout}
+          loading={loading}
+          rowSelection={rowSelection}
+          getDetails={getDetails}
+          executiveEmployeeList={executiveEmployeeList}
+          paginationValue={paginationValue}
+          companyFilterList={companyFilterList}
+          onPageChange={onPageChange}
+        />
+      ) : (
+        <LeadTableView
+          calendarShow={calendarShow}
+          checkPageLayout={checkPageLayout}
+          tagPage={tagPage}
+          downloadExcel={downloadExcel}
+          downloadPDF={downloadPDF}
+          printPage={printPage}
+          loading={loading}
+          rowSelection={rowSelection}
+          columns={columns}
+          executiveEmployeeList={executiveEmployeeList}
+          paginationValue={paginationValue}
+          companyFilterList={companyFilterList}
+          onPageChange={onPageChange}
+        />
+      )}
+
       {showTagModal && getToken() ? (
         <Modal
           title="Tag Lead"
@@ -592,6 +634,21 @@ const LeadContent = () => {
           modalWidth="400px"
         />
       )}
+
+      {
+
+        showCal && <Modal
+          title="Calendar"
+          width={"800px"}
+          closable={true}
+          open={showCal}
+          onCancel={closeCalenderModal}
+          // onOk={onConfrimCalenderModal}
+          footer={[]}
+        >
+          <CalenderModal />
+        </Modal>
+      }
     </>
   );
 };

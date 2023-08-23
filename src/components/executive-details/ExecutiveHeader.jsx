@@ -121,7 +121,7 @@ const ExecutiveHeader = () => {
             <div className="executiveheader">
               <div
                 className="executivelogobox"
-                style={{ "text-transform": "uppercase" }}
+                style={{ textTransform: "uppercase" }}
               >
                 {executiveDetails?.firstname?.[0]}
                 {executiveDetails?.lastname?.[0]}
