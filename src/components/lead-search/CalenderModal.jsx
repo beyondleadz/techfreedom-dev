@@ -91,7 +91,7 @@ const CalenderModal = () => {
   const monthCellRender = (value) => {
     //const num = getMonthData(value); 
     const filteredData = filter(notesFilterList, (p) => p.lastUpdated ? moment(p.lastUpdated).utc().format('YYYY-MM')=== dayjs(value).format('YYYY-MM'):"");
-    const remarksFilteredData = filter(remarksFilterList, (p) => p.interactionDate?moment(p.interactionDate).utc().format('YYYY-MM')=== dayjs(value).format('YYYY-MM'):"");
+   // const remarksFilteredData = filter(remarksFilterList, (p) => p.interactionDate?moment(p.interactionDate).utc().format('YYYY-MM')=== dayjs(value).format('YYYY-MM'):"");
     // return num ? (
     //   <div className="notes-month">
     //     <section>{num}</section>
@@ -101,11 +101,11 @@ const CalenderModal = () => {
 
     return (
       <ul className="events">
-        {remarksFilteredData.map((item) => (
+        {/* {remarksFilteredData.map((item) => (
           <li key={item.id}>
             <Badge status="success" text={item.remarks}/>
           </li>
-        ))}
+        ))} */}
         {filteredData.map((item) => (
           <li key={item.id}>
             <Badge status="success" text={item.notefor}/>
@@ -116,16 +116,16 @@ const CalenderModal = () => {
   };
   const dateCellRender = (value) => {
     const filteredData = filter(notesFilterList, (p) => p.lastUpdated ? moment(p.lastUpdated).utc().format('YYYY-MM')=== dayjs(value).format('YYYY-MM'):"");
-    const remarksFilteredData = filter(remarksFilterList, (p) => p.interactionDate?moment(p.interactionDate).utc().format('YYYY-MM')=== dayjs(value).format('YYYY-MM'):"");
+    //const remarksFilteredData = filter(remarksFilterList, (p) => p.interactionDate?moment(p.interactionDate).utc().format('YYYY-MM')=== dayjs(value).format('YYYY-MM'):"");
     //const listData = getListData(value);notefor
 
     return (
       <ul className="events">
-        {remarksFilteredData.map((item) => (
+        {/* {remarksFilteredData.map((item) => (
           <li key={item.id}>
             <Badge status="success" text={item.remarks}/>
           </li>
-        ))}
+        ))} */}
         {filteredData.map((item) => (
           <li key={item.id}>
             <Badge status="success" text={item.notefor}/>

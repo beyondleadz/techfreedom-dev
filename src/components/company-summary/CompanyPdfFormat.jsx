@@ -23,7 +23,7 @@ const CompanyPdfFormat=()=>{
 	<div style= {{minWidth: "175px",minHeight: "120px",width: "160px",padding: "10px 35px",display: "flex",alignItems: "center"}}>
 		<img src="https://logo.clearbit.com/www.dabur.com"/></div>
 	<div style={{position: "relative",paddingBottom: "15px",marginLeft: 20}}>
-		<h1 style={{ fontSize: "60px", fontWeight: "bolder", fontFamily: "arial", marginBlockStart: "17px",marginBlockEnd: "5px",letterSpacing: "-3px"}}>
+		<h1 style={{ textAlign:"left",lineHeight:"45px",fontSize: "60px", fontWeight: "bolder", fontFamily: "arial", marginBlockStart: "17px",marginBlockEnd: "5px",letterSpacing: "-3px"}}>
 		Dabur India Ltd</h1>
 	<h2 style={{fontSize:18, marginBlockStart:0,marginBlockEnd: 0, textAlign:"left"}}> Kaushambi, Ghaziabad, Uttar Pradesh, India, 201010</h2>
 	
