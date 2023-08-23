@@ -7785,7 +7785,70 @@ color: orange;
 
 
     /*PDF wrapper style*/
-    .pdfWrapperStyle {
+    .pdfWrapperStyle .title{ width: 200px;
+      font-size: 14px;
+      line-height: 0.5em;
+      padding-bottom: 15px;
+      position: relative;
+      font-weight: bold;
+      color: #000; margin-top: 30px;}
+      .pdfWrapperStyle .title:before {
+    content: "";
+    position: absolute;
+    right: 10px;
+    bottom: 0;
+    height: 5px;
+    width: 5px;
+    background-color: #111;
+  }
+  .pdfWrapperStyle .title:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 2px;
+    height: 1px;
+    width: 95%;
+    max-width: 255px;
+    background-color: #333;
+  }
+  .pdfWrapperStyle .step {
+      font-size: 14px;
+      text-align: left;
+      color: #fff;
+      width: 28%;
+      cursor: default;
+      margin: 0 1px 0 0;
+      padding: 7px 7px 7px 15px;
+      float: left;
+      position: relative;
+      background-color: #5d44ff;
+      -webkit-user-select: none;
+      user-select: none;
+       margin-block-start: 0;
+      margin-block-end: 0; font-weight:bold;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .pdfWrapperStyle .step:after {
+  content: "";
+      position: absolute;
+      right: auto;
+      left: 0;
+      border-left: 17px solid #fdc401;
+      z-index: 0;
+  }
+  .pdfWrapperStyle .step:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: -16px;
+      width: 0;
+      height: 0;
+      border-top: 19px solid transparent;
+      border-bottom: 17px solid transparent;
+      border-left: 17px solid #5d44ff;
+      z-index: 2;
+  }
+  
+    /* .pdfWrapperStyle {
       font-family: sans-serif;
       padding: 10px;
        background-image: url(../images/pdf/bg.jpg);
@@ -7899,7 +7962,6 @@ color: orange;
        background-color: #ffffff;  display: table-cell; height: 692px;
     }
     
-    /* Right column */
     .pdfWrapperStyle .rightcolumn {
       float: left;
       width: 25%;
@@ -7953,7 +8015,6 @@ color: orange;
     .pdfWrapperStyle .bordrblock{background-color: #f7f6f1;
         padding: 5px 16px;
         border-radius: 50px;
-        /* border: 2px solid #5d44ff; */
         color: #000; font-size:12px;}	
     .pdfWrapperStyle .title{ width: 200px;
         font-size: 14px;
@@ -7981,7 +8042,6 @@ color: orange;
       max-width: 255px;
       background-color: #333;
     }
-    /* Fake image */
     .pdfWrapperStyle .fakeimg {
     
         margin-left: 25px;
@@ -8007,7 +8067,6 @@ color: orange;
         margin-left: 50px;
         margin-top: 25px;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
-    /* Add a card effect for articles */
     .pdfWrapperStyle .card {
        padding: 10px;
       margin-top: 10px;
@@ -8021,14 +8080,12 @@ color: orange;
         height: 35px; text-align: center;
     } 
     .pdfWrapperStyle .card1 img{margin-right:10px; }
-    /* Clear floats after the columns */
     .row::after {
       content: "";
       display: table;
       clear: both;
     }
     
-    /* Footer */
     .pdfWrapperStyle .footer {
      padding: 20px;
         text-align: center;
@@ -8042,5 +8099,5 @@ color: orange;
     .pdfWrapperStyle table{border:1px solid #d7d3d3; font-size:11px; font-weight:550; }
     .pdfWrapperStyle .thead{background-color:#5d44ff; border:1px solid #d7d3d3; color:#fff; padding:5px; font-size:12px; text-align:left;}
     .pdfWrapperStyle .thead1{background-color:#5d44ff; border:1px solid #d7d3d3; width:20px; font-size:8px; color:#fff; padding:5px; text-align:left;}
-    .pdfWrapperStyle td{border:1px solid #d7d3d3; padding:5px; text-align:left;}
+    .pdfWrapperStyle td{border:1px solid #d7d3d3; padding:5px; text-align:left;} */
     
