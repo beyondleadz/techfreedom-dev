@@ -34,6 +34,7 @@ import Faq from './pages/Faq';
 import Leads from './pages/Leads';
 import LeadDetails from './pages/LeadDetails';
 import LeadKanban from './pages/LeadKanban';
+import MoreMenuContent from './pages/MoreMenuContent';
 
 // import Test from './pages/Test';
 import Demo from './pages/Demo';
@@ -77,6 +78,7 @@ const AppRoutes = (props) => {
                 <Route path='/lead-details/:id' element={<LeadDetails/>}/>
                 <Route path='/create-lead' element={<LeadDetails/>}/>
                 <Route path='/leadkanban' element={<LeadKanban/>}/>
+                <Route path='/more-menu-content' element={<MoreMenuContent/>}/>
                 {/* <Route path='/test' element={<Test/>}/> */}
                 <Route path='/demo' element={<Demo/>}/>
                 

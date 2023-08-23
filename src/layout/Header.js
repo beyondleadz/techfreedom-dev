@@ -245,50 +245,50 @@ const Header = (props) => {
                             <h2>Capabilities</h2>
                             {/* <i className="icondrop leads"></i>                       */}
                             <i className="icondrop las la-user-friends"></i>
-                            <a href="#">
+                            <NavLink to={"/more-menu-content"}>
                               <h3> Leads </h3>
                               <span className="menu-sub">
                                 Profile your ideal customers and build your
                                 leads
                               </span>
-                            </a>
+                              </NavLink>
 
                             {/* <i className="icondrop list-building-icon"></i> */}
                             <i className="icondrop text-success la la-user-plus"></i>
-                            <a href="#">
+                            <NavLink to={"/more-menu-content"}>
                               <h3> List Building </h3>
                               <span className="menu-sub">
                                 Create a list of potential customers{" "}
                               </span>
-                            </a>
+                              </NavLink>
 
                             {/* <i className="icondrop enrichment"></i> */}
                             <i className="icondrop la la-cloud-upload-alt"></i>
-                            <a href="#">
+                            <NavLink to={"/more-menu-content"}>
                               <h3> Data Enrichment </h3>
                               <span className="menu-sub">
                                 Match and append data{" "}
                               </span>
-                            </a>
+                              </NavLink>
                           </div>
                           <div className="column1">
                             {/* <i className="icondrop extension"></i> */}
                             <i className="icondrop las la-link"></i>
-                            <a href="#">
+                            <NavLink to={"/more-menu-content"}>
                               <h3> Extension </h3>
                               <span className="menu-sub">
                                 Build data through Linkedin and Web real time
                               </span>
-                            </a>
+                              </NavLink>
 
                             {/* <i className="icondrop integrations"></i> */}
                             <i className="icondrop la la-plug"></i>
-                            <a href="#">
+                            <NavLink to={"/more-menu-content"}>
                               <h3> Intigrations </h3>
                               <span className="menu-sub">
                                 Integrate with your existing crm or app{" "}
                               </span>
-                            </a>
+                              </NavLink>
                           </div>
 
                           <div className="column">
@@ -296,60 +296,60 @@ const Header = (props) => {
 
                             {/* <i className="icondrop sales"></i> */}
                             <i className="icondrop la la-handshake"></i>
-                            <a href="#">
+                            <NavLink to={"/more-menu-content"}>
                               <h3> Sales </h3>
                               <span className="menu-sub">
                                 Find more leads and build your pipeline{" "}
                               </span>
-                            </a>
+                              </NavLink>
 
                             {/* <i className="icondrop marketing"></i> */}
                             <i className="icondrop la la-briefcase"></i>
-                            <a href="#">
+                            <NavLink to={"/more-menu-content"}>
                               <h3> Marketing </h3>
                               <span className="menu-sub">
                                 Profile your targeted audience{" "}
                               </span>
-                            </a>
+                              </NavLink>
 
                             {/* <i className="icondrop recruiters"></i> */}
                             <i className="icondrop la la-user-tie"></i>
-                            <a href="#">
+                            <NavLink to={"/more-menu-content"}>
                               <h3> HR & Recruiting </h3>
                               <span className="menu-sub">
                                 Reach out to top hiring talent and companies{" "}
                               </span>
-                            </a>
+                              </NavLink>
                           </div>
 
                           <div className="column">
                             <h2>Industries</h2>
                             {/* <i className="icondrop hospitality-travel"></i> */}
                             <i className="icondrop las la-hotel"></i>
-                            <a href="#">
+                            <NavLink to={"/more-menu-content"}>
                               <h3> Hospitality & Travel </h3>
                               <span className="menu-sub">
                                 Streamline your Marketing efforts{" "}
                               </span>
-                            </a>
+                              </NavLink>
 
                             {/* <i className="icondrop technology"></i> */}
                             <i className="icondrop la la-microchip"></i>
-                            <a href="#">
+                            <NavLink to={"/more-menu-content"}>
                               <h3> Technology </h3>
                               <span className="menu-sub">
                                 Automate and Optimize lead generation{" "}
                               </span>
-                            </a>
+                              </NavLink>
 
                             {/* <i className="icondrop finance"></i> */}
                             <i className="icondrop la la-money-bill-wave"></i>
-                            <a href="#">
+                            <NavLink to={"/more-menu-content"}>
                               <h3> Finance </h3>
                               <span className="menu-sub">
                                 Gain insights into potential clients{" "}
                               </span>
-                            </a>
+                              </NavLink>
                             <span className="menu-sub">…more industries </span>
                           </div>
                         </div>
