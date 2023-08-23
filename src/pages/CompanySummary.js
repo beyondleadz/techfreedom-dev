@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState, useMemo,useRef} from "react";
 import Layout from "../layout/Layout";
 import {Link} from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux";
@@ -16,7 +16,13 @@ import NoDataFound from "../components/NoData";
 import "../assets/css/dynemic-page.css";
 import Loader from "../components/loader";
 import SimilarCompany from "../components/company-summary/similarCompany";
+import CompanyPdfFormat from "../components/company-summary/CompanyPdfFormat";
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
+
 const CompanySummary = () => {
+  const pdfRef=useRef();
+
   const { id } = useParams();
   const dispatch = useDispatch();
   const companyDetails = useSelector(
@@ -51,6 +57,30 @@ const CompanySummary = () => {
     Object.keys(companyDetails).length ? setLoading(false) : setLoading(false);
   }, [Object.keys(companyDetails).length]);
 
+  const downloadPDF = (id) => {
+    // const isLoggedIn = checkLoginStatus();
+    // if (isLoggedIn) {
+    //   dispatch(downloadCompany([id], "pdf"));
+    // }
+    const input=pdfRef.current;
+    console.log(input);
+    html2canvas(input).then((canvas)=>{
+       const imgData=canvas.toDataURL('image/png');
+       const pdf = new jsPDF('p', 'px', 'a4');
+       const pdfWidth=pdf.internal.pageSize.getWidth();
+       const pdfHeight=pdf.internal.pageSize.getHeight();
+      // const imgWidth=canvas.width;
+      //  const imgHeight=canvas.height;
+      //  const ratio=Math.min(pdfWidth/imgWidth,pdfHeight/imgHeight);
+      //  const imgX=(pdfWidth-imgWidth * ratio)/2;
+      //  const imgY=30;
+      // pdf.addImage(imgData,'PNG',imgX,imgY,imgWidth*ratio,imgHeight*ratio);
+      pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
+      pdf.save('company.pdf');
+    })
+  };
+
+
   return (
     <>
       <Layout>
@@ -73,7 +103,7 @@ const CompanySummary = () => {
             </div>
             <div className="row col-md-12">
             <div className="col-md-9">
-            <SummaryHeader />
+            <SummaryHeader downloadPDFCallback={downloadPDF} />
 
             {/* <div id="wrapper"> */}
               <SummaryContent />
@@ -88,6 +118,9 @@ const CompanySummary = () => {
           <Loader />
         )}
       </Layout>
+      {/* <div style={{position:'absolute',left:'0',top:'-5000px'}} ref={pdfRef}>   */}
+<CompanyPdfFormat/>
+       {/* </div> */}
     </>
   );
 };

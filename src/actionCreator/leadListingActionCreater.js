@@ -35,7 +35,11 @@ import {
   LEAD_STATUS_LIST_ERROR,
   LEAD_PAGE_LAYOUT,
   LEAD_RATING_LIST,
-  LEAD_RATING_LIST_ERROR
+  LEAD_RATING_LIST_ERROR,
+  LEAD_EXECUTIVE_NOTES,
+  LEAD_EXECUTIVE_NOTES_ERROR,
+  LEAD_EXECUTIVE_REMARKS,
+  LEAD_EXECUTIVE_REMARKS_ERROR
 } from "../actionType/leadListingType";
 import {
   getAuthMethod,
@@ -44,6 +48,7 @@ import {
 } from "../services/HttpServices";
 import { errEnum, ErrKey } from "../config";
 import {
+  getClientRemarksApiUrl,
   industryApiUrl,
   employeeCountApiUrl,
   companyTypeApiUrl,
@@ -61,11 +66,12 @@ import {
   getClientLeadsUrl,
   getClientLeadsKanbanUrl,
   getLeadStatusApiUrl,
-  getLeadRatingApiUrl
+  getLeadRatingApiUrl,
+  getClientNotesApiUrl
 } from "../constant/Constant";
 import { dispatchStatus } from "./commonActionCreator";
 import { Geolocation } from "../constant/Geolocation";
-import { createLeadPayload } from "../utils/utils";
+import { createLeadPayload,createActivityPayloadForCalendar } from "../utils/utils";
 
 export const getIndustryList = (payload) => (dispatch) => {
   return getAuthMethod(industryApiUrl)
@@ -404,3 +410,42 @@ export const setPageLayout = (payload) => {
   };
 };
 
+export const getLeadExecutiveNotes = (payload={}) => (dispatch) => {
+  const url=`${getClientNotesApiUrl}`;
+  //const url =createActivityPayloadForCalendar(payload,apiUrl); getClientRemarksApiUrl
+  return getMethod(url)
+    .then((res) => {
+      dispatch({
+        type: LEAD_EXECUTIVE_NOTES,
+        payload: res?.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: LEAD_EXECUTIVE_NOTES_ERROR,
+        payload:
+          { [errEnum.LEAD_EXECUTIVE_NOTES_ERROR]: err.response.data[ErrKey] } ||
+          "Error Occured",
+      });
+    });
+};
+
+export const getLeadExecutiveRemarks = (payload={}) => (dispatch) => {
+  const url=`${getClientRemarksApiUrl}`;
+  //const url =createActivityPayloadForCalendar(payload,apiUrl); 
+  return getMethod(url)
+    .then((res) => {
+      dispatch({
+        type: LEAD_EXECUTIVE_REMARKS,
+        payload: res?.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: LEAD_EXECUTIVE_REMARKS_ERROR,
+        payload:
+          { [errEnum.LEAD_EXECUTIVE_REMARKS_ERROR]: err.response.data[ErrKey] } ||
+          "Error Occured",
+      });
+    });
+};

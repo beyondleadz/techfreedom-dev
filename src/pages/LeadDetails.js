@@ -185,7 +185,7 @@ const LeadDetails = () => {
                       <div className="profilePic">
                         <i
                           className="btn btn-dark btn-circle btn-lg"
-                          style={{ "text-transform": "uppercase" }}
+                          style={{ textTransform: "uppercase" }}
                         >
                           {" "}
                           {leadDetail?.firstname?.[0]}
