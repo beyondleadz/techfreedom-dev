@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useMemo } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, redirect } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import _ from "lodash";
 import { Table, Input, Button, Modal } from "antd";
@@ -488,7 +488,8 @@ const LeadContent = () => {
   };
 
   const calendarShow = () => {
-    setShowCal(!showCal)
+    navigate(`/leads-timeline`);
+    //setShowCal(!showCal)
     //console.log("sdkfjl");
   };
 
