@@ -23,7 +23,11 @@ const CompanyPdfFormat=()=>{
 	<div style= {{minWidth: "175px",minHeight: "120px",width: "160px",padding: "10px 35px",display: "flex",alignItems: "center"}}>
 		<img src="https://logo.clearbit.com/www.dabur.com"/></div>
 	<div style={{position: "relative",paddingBottom: "15px",marginLeft: 20}}>
+<<<<<<< HEAD
 		<h1 style={{ fontSize: "60px", textAlign: "left",  fontWeight: "bolder", fontFamily: "arial", marginBlockStart: "17px",marginBlockEnd: "5px",letterSpacing: "-3px"}}>
+=======
+		<h1 style={{ textAlign:"left",lineHeight:"45px",fontSize: "60px", fontWeight: "bolder", fontFamily: "arial", marginBlockStart: "17px",marginBlockEnd: "5px",letterSpacing: "-3px"}}>
+>>>>>>> 7b4d24c1306f57768edc39a14d3ff5519829b0f0
 		Dabur India Ltd</h1>
 	<h2 style={{fontSize:18, marginBlockStart:"10px", marginBlockEnd: 0, textAlign:"left"}}> Kaushambi, Ghaziabad, Uttar Pradesh, India, 201010</h2>
 	
@@ -33,11 +37,17 @@ const CompanyPdfFormat=()=>{
 	<strong style={{ marginRight: "0.5em", fontSize:14}}>Phone</strong>
 	<span> 112312323 </span></div>
 	<div style={{backgroundColor: "#f7f6f1",padding: "5px 16px",borderRadius: 50,color: "#000", fontSize:12}}>
-	<strong style={{marginRight: "0.5em"}}>Website</strong><a  title="" href="http://www.dabur.com" target="_blank">www.dabur.com</a></div></div>
+	<strong style={{marginRight: "0.5em"}}>Website</strong><a style={{color: "#000",textDecoration: "underline"}}  title="" href="http://www.dabur.com" target="_blank">www.dabur.com</a></div></div>
 	
+<<<<<<< HEAD
 	<div style={{fontWeight: 400,boxSizing: "borderBox",width: "95%",marginTop: "35px",fontSize: 12, textAlign: "justify",paddingRight: 0,position: "relative"}}>
 	<div className="step">Description of Business</div>
 	<div style={{fontWeight: 400,boxSizing: "borderBox",width: "95%",marginTop: "35px",fontSize: 12, textAlign: "justify",paddingRight: 0,position: "relative"}}>
+=======
+	<div style={{fontWeight: 400,boxSizing: "borderBox",width: "95%",marginTop: "35px",fontSize: 12,lineHeight: "22px",textAlign: "justify",paddingRight: 0,position: "relative"}}>
+	<div className="step">Description of Business</div>
+	<div style={{fontWeight: 400,boxSizing: "borderBox",width: "95%",marginTop: "35px",fontSize: 12,lineHeight: "22px",textAlign: "justify",paddingRight: 0,position: "relative"}}>
+>>>>>>> 7b4d24c1306f57768edc39a14d3ff5519829b0f0
 	<div style={{display: "inline-table", marginTop: 20}}>
 	<strong>Dabur India Limited</strong> was incorporated in the year 1884 and is based in Ghaziabad, India. It is one of the
 Indias largest Ayurvedic medicine and natural consumer products manufacturer. Dabur as the master

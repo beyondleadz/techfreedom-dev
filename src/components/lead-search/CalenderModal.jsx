@@ -4,7 +4,7 @@ import moment from "moment";
 import dayjs from 'dayjs';
 import { useSelector, useDispatch } from "react-redux";
 import {
-  getLeadExecutiveNotes,
+  //getLeadExecutiveNotes,
   getLeadExecutiveRemarks
 } from "../../actionCreator/leadListingActionCreater";
 import { Badge, Calendar } from 'antd';
@@ -83,15 +83,15 @@ const CalenderModal = () => {
   
 
   useMemo(() => {
-    dispatch(getLeadExecutiveNotes());  
+    //dispatch(getLeadExecutiveNotes());  
     dispatch(getLeadExecutiveRemarks());
   }, []);
 
   //console.log(notesFilterList,'notesFilterListnotesFilterList')
   const monthCellRender = (value) => {
     //const num = getMonthData(value); 
-    const filteredData = filter(notesFilterList, (p) => p.lastUpdated ? moment(p.lastUpdated).utc().format('YYYY-MM')=== dayjs(value).format('YYYY-MM'):"");
-    const remarksFilteredData = filter(remarksFilterList, (p) => p.interactionDate?moment(p.interactionDate).utc().format('YYYY-MM')=== dayjs(value).format('YYYY-MM'):"");
+    //const filteredData = filter(notesFilterList, (p) => p.lastUpdated ? moment(p.lastUpdated).utc().format('YYYY-MM')=== dayjs(value).format('YYYY-MM'):"");
+   const filteredData = filter(remarksFilterList, (p) => p.interactionDate?moment(p.interactionDate).utc().format('YYYY-MM')=== dayjs(value).format('YYYY-MM'):"");
     // return num ? (
     //   <div className="notes-month">
     //     <section>{num}</section>
@@ -101,36 +101,36 @@ const CalenderModal = () => {
 
     return (
       <ul className="events">
-        {remarksFilteredData.map((item) => (
+        {filteredData.map((item) => (
           <li key={item.id}>
             <Badge status="success" text={item.remarks}/>
           </li>
         ))}
-        {filteredData.map((item) => (
+        {/* {filteredData.map((item) => (
           <li key={item.id}>
             <Badge status="success" text={item.notefor}/>
           </li>
-        ))}
+        ))} */}
       </ul>
     );
   };
   const dateCellRender = (value) => {
-    const filteredData = filter(notesFilterList, (p) => p.lastUpdated ? moment(p.lastUpdated).utc().format('YYYY-MM')=== dayjs(value).format('YYYY-MM'):"");
-    const remarksFilteredData = filter(remarksFilterList, (p) => p.interactionDate?moment(p.interactionDate).utc().format('YYYY-MM')=== dayjs(value).format('YYYY-MM'):"");
+    //const filteredData = filter(notesFilterList, (p) => p.lastUpdated ? moment(p.lastUpdated).utc().format('YYYY-MM')=== dayjs(value).format('YYYY-MM'):"");
+    const filteredData = filter(remarksFilterList, (p) => p.interactionDate?moment(p.interactionDate).utc().format('YYYY-MM-DD')=== dayjs(value).format('YYYY-MM-DD'):"");
     //const listData = getListData(value);notefor
 
     return (
       <ul className="events">
-        {remarksFilteredData.map((item) => (
+        {filteredData.map((item) => (
           <li key={item.id}>
             <Badge status="success" text={item.remarks}/>
           </li>
         ))}
-        {filteredData.map((item) => (
+        {/* {filteredData.map((item) => (
           <li key={item.id}>
             <Badge status="success" text={item.notefor}/>
           </li>
-        ))}
+        ))} */}
       </ul>
     );
   };
