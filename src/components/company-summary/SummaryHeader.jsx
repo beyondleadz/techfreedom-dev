@@ -129,7 +129,7 @@ const SummaryHeader = ({downloadPDFCallback}) => {
   };
 
   const onInputChange = (ele) => {
-    console.log(ele.target.value, "skljfslkd");
+    //console.log(ele.target.value, "skljfslkd");
     setErrorForm({
       ...errorForm,
       [ele.target.name]: {
