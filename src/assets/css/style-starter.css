@@ -22645,3 +22645,15 @@ li.whyt.lost {
 
 }
 .text-align-right{text-align: right;}
+
+
+ @media (min-width: 1200px){
+.col-xl-3 {
+    flex: 0 0 16.6%;
+    max-width:20%;
+}
+}
+#dashboard .card-body {
+  flex: 1 1 auto;
+  min-height: 1px;
+  padding: 1rem 1.25rem;}
