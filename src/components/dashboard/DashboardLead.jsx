@@ -22,7 +22,7 @@ const DashboardLead=()=>{
             aria-selected="true"
           >
             {" "}
-            <i className="fa tab-img la la-building"></i>Companies
+            <i className="fa tab-img las la-users"></i>Leads
           </button>
         </li>
         <li className="nav-item" role="presentation">
@@ -36,7 +36,7 @@ const DashboardLead=()=>{
             aria-controls="profile"
             aria-selected="false"
           >
-            <i className="fa tab-img la la-user-tie text-info"></i>Executive
+            <i className="fa tab-img la la-briefcase text-info"></i>Marketing
           </button>
         </li>
         <li className="nav-item" role="presentation">
@@ -50,7 +50,7 @@ const DashboardLead=()=>{
             aria-controls="contact"
             aria-selected="false"
           >
-            <i className="fa tab-img las la-user-friends"></i>Leads
+            <i className="fa tab-img las la-clock"></i>Activities
           </button>
         </li>
 		<li className="nav-item" role="presentation">

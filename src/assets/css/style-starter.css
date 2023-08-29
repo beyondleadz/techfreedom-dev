@@ -10973,7 +10973,7 @@ a.text-success:focus {
 }
 
 .text-info {
-  color: #17a2b8 ;
+  color: #5d44ff ;
 }
 
 a.text-info:hover,
@@ -22657,3 +22657,13 @@ li.whyt.lost {
   flex: 1 1 auto;
   min-height: 1px;
   padding: 1rem 1.25rem;}
+
+ #dashboard .la-briefcase:before {
+  color: #5d44ff;
+}
+#dashboard .tab-img{display: inline;
+    padding: 0.2rem 0.5rem;
+    font-size: 16px;
+    background-size: 75%;
+    color: #5d44ff;
+    font-weight: bolder;}
