@@ -11438,7 +11438,7 @@ p.white {
 }
 
 .fa-2x {
-  font-size: 2em;
+  font-size: 2rem;
 }
 
 .fa-3x {
@@ -22664,7 +22664,10 @@ li.whyt.lost {
 }
 #dashboard .tab-img{display: inline;
     padding: 0.2rem 0.5rem;
-    font-size: 16px;
+    font-size: 20px;
     background-size: 75%;
     color: #5d44ff;
     font-weight: bolder;}
+  #dashboard  .la-filter:before {
+    color: #dddfeb !important;
+    font-size: 2rem;}

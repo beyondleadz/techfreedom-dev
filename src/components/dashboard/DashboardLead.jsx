@@ -36,7 +36,7 @@ const DashboardLead=()=>{
             aria-controls="profile"
             aria-selected="false"
           >
-            <i className="fa tab-img la la-briefcase text-info"></i>Marketing
+            <i className="fa tab-img las la-bullhorn text-info"></i>Marketing
           </button>
         </li>
         <li className="nav-item" role="presentation">
@@ -84,7 +84,7 @@ const DashboardLead=()=>{
 					<div class="h5 mb-0 font-weight-bold text-gray-800">1892</div>
 				</div>
 				<div class="col-auto">
-					<i class="fas fa-calendar fa-2x text-gray-300"></i>
+					<i class="las la-filter fa-2x text-gray-300"></i>
 				</div>
 			</div>
 		</div>
@@ -104,7 +104,7 @@ const DashboardLead=()=>{
 					<div class="h5 mb-0 font-weight-bold text-gray-800">2.9%</div>
 				</div>
 				<div class="col-auto">
-					<i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+					<i class="las la-funnel-dollar fa-2x text-gray-300"></i>
 				</div>
 			</div>
 		</div>
@@ -133,7 +133,7 @@ const DashboardLead=()=>{
 					</div>
 				</div>
 				<div class="col-auto">
-					<i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+					<i class="las la-percent fa-2x text-gray-300"></i>
 				</div>
 			</div>
 		</div>
@@ -151,7 +151,7 @@ const DashboardLead=()=>{
 					<div class="h5 mb-0 font-weight-bold text-gray-800">55</div>
 				</div>
 				<div class="col-auto">
-					<i class="fas fa-comments fa-2x text-gray-300"></i>
+					<i class="las la-comments fa-2x text-gray-300"></i>
 				</div>
 			</div>
 		</div>
@@ -171,7 +171,7 @@ const DashboardLead=()=>{
 					<div class="h5 mb-0 font-weight-bold text-gray-800">11 M</div>
 				</div>
 				<div class="col-auto">
-					<i class="fas fa-calendar fa-2x text-gray-300"></i>
+					<i class="las la-hand-holding-usd fa-2x text-gray-300"></i>
 				</div>
 			</div>
 		</div>
@@ -191,7 +191,7 @@ const DashboardLead=()=>{
 					<div class="h5 mb-0 font-weight-bold text-gray-800">2 M</div>
 				</div>
 				<div class="col-auto">
-					<i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+					<i class="lab la-creative-commons-nc fa-2x text-gray-300"></i>
 				</div>
 			</div>
 		</div>
