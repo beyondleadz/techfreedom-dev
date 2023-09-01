@@ -118,9 +118,10 @@ const CompanySummary = () => {
           <Loader />
         )}
       </Layout>
-      {/* <div style={{position:'absolute',left:'0',top:'-5000px'}} ref={pdfRef}>   */}
+      {/* style={{position:'absolute',left:'0',top:'-5000px'}}  */}
+       <div ref={pdfRef}>   
 <CompanyPdfFormat/>
-       {/* </div> */}
+       </div> 
     </>
   );
 };
