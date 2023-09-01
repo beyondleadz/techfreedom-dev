@@ -8100,4 +8100,14 @@ color: orange;
     .pdfWrapperStyle .thead{background-color:#5d44ff; border:1px solid #d7d3d3; color:#fff; padding:5px; font-size:12px; text-align:left;}
     .pdfWrapperStyle .thead1{background-color:#5d44ff; border:1px solid #d7d3d3; width:20px; font-size:8px; color:#fff; padding:5px; text-align:left;}
     .pdfWrapperStyle td{border:1px solid #d7d3d3; padding:5px; text-align:left;} */
-    
+    ul.events{
+      background: none;
+    }
+    .events li{
+      margin: 5px 0;
+      background: #dce7f5;
+      list-style: none;
+    }
+    #taskcalender .ant-badge-status-dot{
+      display: none;
+    }
