@@ -121,9 +121,9 @@ const Notes = () => {
     <>
     <div className="mt-3">
       <p>Add/Edit Note</p>
-
+      <div className="errorformcontainer">
       <div className="form">
-        <div className="formcol1"></div>
+        <div className="formcol1">Title</div>
         <div className="formcol2 mt-2">
           <Select
             name="note"
@@ -165,7 +165,7 @@ const Notes = () => {
           />
         </div>
       </div>
-      <Divider dashed={true} />
+      {/* <Divider dashed={true} /> */}
       <div className="form">
         <div className="formcol1">Type Note</div>
         <div className="formcol2">
@@ -178,16 +178,18 @@ const Notes = () => {
           />
         </div>
       </div>
-      <Divider dashed={true} />
+      {/* <Divider dashed={true} /> */}
       <div className="form">
+      <div className="formcol1"></div>
         <div className="formcol2">
           <Checkbox onChange={(ele)=>onCheckChange(ele,'isActive')} checked={isActive}>
             Is Active
           </Checkbox>
         </div>
       </div>
-      <Divider dashed={true} />
+      {/* <Divider dashed={true} /> */}
       <div className="form">
+      <div className="formcol1"></div>
         <div className="formcol2">
           <Checkbox onChange={(ele)=>onCheckChange(ele,'isTask')} checked={isTask}>
             Is Task
@@ -207,6 +209,7 @@ const Notes = () => {
             Save
           </Button>
         </span>
+      </div>
       </div>
     </div>
     {isApiFailed.isFailed ? (

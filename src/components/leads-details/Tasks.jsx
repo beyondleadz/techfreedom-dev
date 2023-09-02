@@ -168,8 +168,88 @@ const Tasks = () => {
   return (
     <>
     <div className="mt-3">
-      <p>Add/Edit Task</p>
+    <p>Add/Edit Task</p>
       <div className="errorformcontainer">
+      <div className="form">
+      <div className="formcol1">Title</div>
+          <div className="formcol2">
+          <Select
+            name="note"
+            value={form.note}
+            showSearch
+            placeholder="Title"
+            optionFilterProp="children"
+            onChange={onSelectChange}
+            // onSearch={onSearch}
+            filterOption={(input, option) =>
+              (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
+            }
+            options={[
+              {
+                value: "call",
+                label: "Call",
+              },
+              {
+                value: "email",
+                label: "Email",
+              },
+              {
+                value: "meeting",
+                label: "Meeting",
+              },
+              {
+                value: "followup",
+                label: "Follow up",
+              },
+              {
+                value: "chat",
+                label: "Chat",
+              },
+              {
+                value: "whatsapp",
+                label: "Whatsapp",
+              },
+            ]}
+          />
+        </div>
+      </div>
+      <div className="form">
+          <div className="formcol1">Status</div>
+          <div className="formcol2">
+            <Select
+              showSearch
+              placeholder="Task Status   "
+              optionFilterProp="children"
+              // onChange={onChange}
+              // onSearch={onSearch}
+              filterOption={(input, option) =>
+                (option?.label ?? "")
+                  .toLowerCase()
+                  .includes(input.toLowerCase())
+              }
+              options={[
+                {
+                  value: "open",
+                  label: "Open",
+                },
+                {
+                  value: "re-scheduled ",
+                  label: "Re-scheduled ",
+                },
+
+                {
+                  value: "cancelled ",
+                  label: "Cancelled ",
+                },
+
+                {
+                  value: "completed ",
+                  label: "Completed ",
+                },
+              ]}
+            />
+          </div>
+        </div>
         <div className="form">
           <div className="formcol1">Lead Remarks</div>
           <div className="formcol2">
@@ -236,7 +316,7 @@ const Tasks = () => {
     /> */}
           </div>
         </div>
-        <div className="form">
+        {/* <div className="form">
           <div className="formcol1"> </div>
           <div className="formcol2">
             <span>
@@ -280,7 +360,7 @@ const Tasks = () => {
               </Checkbox>
             </span>
           </div>
-        </div>
+        </div> */}
         {/* <div className="form leadbox">
           {console.log(errorForm, "skljfsljfklsd")}
           <div className="formcol1">Related with </div>
