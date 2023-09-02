@@ -390,10 +390,13 @@ const Header = (props) => {
                     </NavLink>
                   </li>
 
-                  <li className="nav-item mt-3">
-                    <NavLink>
-                      <i className="bell ml-1"></i>{" "}
-                    </NavLink>
+                  <li className="nav-item">
+                  <NavLink
+                      to="/dashboard-view"
+                      className="hvr-underline-from-center"
+                    >
+                      Dashboard
+                    </NavLink>                    
                   </li>
 
                   <li className="nav-item mt-2 account">

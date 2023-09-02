@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import {DEVMODE} from './config'
 import About from './pages/About';
 import Dashboard from './pages/Dashboard';
+import MyDashboard from './pages/MyDashboard';
 import Career from './pages/Career';
 import Features from './pages/Features';
 import Contact from './pages/Contact';
@@ -50,6 +51,7 @@ const AppRoutes = (props) => {
                 <Route path='/signup' element={<Signup/>}/>
                 <Route path='/forgetpassword' element={<ForgetPassword/>}/>
                 <Route path="/about-us" element={<About/>} />
+                <Route path="/dashboard-view" element={<MyDashboard/>} />
                 <Route path="/dashboard" element={<Dashboard/>} />
                 <Route path="/career" element={<Career/>} />
                 <Route path="/features" element={<Features/>} />
