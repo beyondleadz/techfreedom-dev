@@ -1,9 +1,10 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { Modal, Checkbox, Input, Divider, Button, Select } from "antd";
 import { useSelector, useDispatch } from "react-redux";
-import { submitLeadNotes,resetSubmitLeadNotes,emptyErrorObj } from "../../actionCreator/leadDetailsActionCreator";
+import { submitLeadNotes,resetSubmitLeadNotes,emptyErrorObj,submitLeadRemarks } from "../../actionCreator/leadDetailsActionCreator";
 import TrialModal from "../../common/TrialModal";
 import { SAVE_CLIENT_NOTE_ERROR } from "../../actionType/leadDetailsType";
+import moment from "moment/moment";
 
 const Notes = () => {
   const dispatch = useDispatch();
@@ -89,7 +90,24 @@ const Notes = () => {
     payload.update=Object.keys(leadNoteDetails).length?true:false;
     payload.id=Object.keys(leadNoteDetails).length?leadNoteDetails?.id:"";  
     //console.log(Object.keys(leadNoteDetails).length,'nnnn')  
-    dispatch(submitLeadNotes(payload));   
+    dispatch(submitLeadNotes(payload));
+    if(!payload.update && payload.isTask){
+      let remarksPayload = {};
+      const newDate = new Date();
+      const formattedDate = moment(newDate).format('YYYY-MM-DDTHH:mm:ss')+'Z'
+      remarksPayload.remarks = form.noteFor.value;
+      remarksPayload.interactionDate = formattedDate;
+      remarksPayload.isContactBackRequired = false;//form?.isContactBackRequired?.value;
+      remarksPayload.isContacted = false;//form.isContacted.value;
+      remarksPayload.isToDisplay =true;// form.isToDisplay.value;
+      remarksPayload.status="open";
+      remarksPayload.title=form.note.value;
+      remarksPayload.lead = leadDetail;
+      remarksPayload.update = false;
+      remarksPayload.id = "";
+      dispatch(submitLeadRemarks(remarksPayload));
+    }   
+    
     setForm(formIntialValue);
   };
 

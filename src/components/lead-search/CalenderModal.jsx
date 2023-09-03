@@ -10,13 +10,14 @@ import {
   //getLeadExecutiveNotes,
   getLeadExecutiveRemarks,
 } from "../../actionCreator/leadListingActionCreater";
-import { getLeadRemarksDetails,submitLeadRemarks } from "../../actionCreator/leadDetailsActionCreator";
+import { getLeadRemarksDetails,submitLeadRemarks,resetSubmitLeadRemarkss } from "../../actionCreator/leadDetailsActionCreator";
 import { Badge, Calendar } from "antd";
 
 const CalenderModal = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [showCal, setShowCal] = useState(false);
+  const [payloadData, setPayloadData] = useState({});
   const notesFilterList = useSelector(
     (state) => state.leadListingReducer.leadExecutiveNotes
   );
@@ -26,11 +27,24 @@ const CalenderModal = () => {
   const leadRemarksDetails = useSelector(
     (state) => state.LeadDetailsReducer.leadRemarksDetails
   );
+  const saveleadRemarks = useSelector(
+    (state) => state.LeadDetailsReducer.saveleadRemarks
+  );
+  
 
   useMemo(() => {
     //dispatch(getLeadExecutiveNotes());
     dispatch(getLeadExecutiveRemarks());
   }, []);
+
+  useEffect(()=>{
+    if(Object.keys(saveleadRemarks).length){
+      //saveleadRemarks
+      //console.log(saveleadRemarks,'saveleadRemarks')
+      dispatch(resetSubmitLeadRemarkss());
+      setShowCal(false);
+    }    
+  },[saveleadRemarks]);
 
   const showTaskDetails = (id) => {
     setShowCal(!showCal);
@@ -65,7 +79,7 @@ const CalenderModal = () => {
       <ul className="events">
         {filteredData.map((item) => (
           <li key={item.id} onClick={() => showTaskDetails(item.id)}>
-            <Badge status="success" text={item.remarks} />
+            <Badge status="success" text={item.title?item.title:item.remarks} />
           </li>
         ))}
         {/* {filteredData.map((item) => (
@@ -90,7 +104,7 @@ const CalenderModal = () => {
       <ul className="events">
         {filteredData.map((item) => (
           <li key={item.id} onClick={() => showTaskDetails(item.id)}>
-            <Badge status="success" text={item.remarks} />
+            <Badge status="success" text={item.title?item.title:item.remarks} />
           </li>
         ))}
         {/* {filteredData.map((item) => (
@@ -108,19 +122,29 @@ const CalenderModal = () => {
   };
 
   const onPanelChange = (date, dateString) => {
-    console.log(date, dateString);
+    //console.log(date, dateString);
   };
 
+  const onConfrimCalenderModal=async()=>{
+    const payload=payloadData;
+    //console.log("completed",payload);
+    if(payload?.interactionDate){
+    await dispatch(submitLeadRemarks(payload));  
+    await dispatch(getLeadExecutiveRemarks()); 
+    }
+  }
+
   const onOk =async (value) => {
-    console.log("onOk: ", value);
+    //console.log("onOk: ", value);
     let payload = leadRemarksDetails;
     const newDate = new Date(value);
     const formattedDate = moment(newDate).format('YYYY-MM-DDTHH:mm:ss')+'Z'
     payload.interactionDate = formattedDate;
     payload.update = true;
+    setPayloadData(payload);
     //console.log(payload, "update remarks");
-    await dispatch(submitLeadRemarks(payload));  
-    await dispatch(getLeadExecutiveRemarks());  
+    //await dispatch(submitLeadRemarks(payload));  
+    //await dispatch(getLeadExecutiveRemarks());  
   };
   return (
     <>
@@ -132,10 +156,16 @@ const CalenderModal = () => {
           closable={true}
           open={showCal}
           onCancel={closeTaskModal}
-          // onOk={onConfrimCalenderModal}
+          //onOk={onConfrimCalenderModal}
           footer={[
             <Button
-              key="submit"
+          key="submit"
+          type="primary"
+          onClick={onConfrimCalenderModal}
+        >Save
+        </Button>,
+            <Button
+              key="submit1"
               type="primary"
               onClick={() => viewLeadsData(leadRemarksDetails?.lead?.id)}
             >
@@ -143,18 +173,18 @@ const CalenderModal = () => {
             </Button>,
           ]}
         >
-          <div class="col-md-12">
-            <div class=" row mt-3">
-              <span class="col-md-4 fs-14 ">Remarks</span>
-              <span class="col namedc"> {leadRemarksDetails?.remarks}</span>
+          <div className="col-md-12">
+            <div className=" row mt-3">
+              <span className="col-md-4 fs-14 ">Remarks</span>
+              <span className="col namedc"> {leadRemarksDetails?.remarks}</span>
             </div>
-            <div class=" row mt-2">
-              <span class="col-md-4 fs-14">Task Status </span>
-              <span class="col namedc"> Open</span>
+            <div className=" row mt-2">
+              <span className="col-md-4 fs-14">Task Status </span>
+              <span className="col namedc"> Open</span>
             </div>
-            <div class=" row mt-3">
-              <span class="col-md-4 fs-14 ">Reschedule Date</span>
-              <span class="col namedc"><DatePicker
+            <div className=" row mt-3">
+              <span className="col-md-4 fs-14 ">Reschedule Date</span>
+              <span className="col namedc"><DatePicker
               format="YYYY-MM-DD HH:mm"
               // disabledDate={disabledDate}
               // disabledTime={disabledDateTime}

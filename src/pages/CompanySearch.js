@@ -31,7 +31,7 @@ const CompanySearch = ({ tab }) => {
 
   useEffect(() => {
     if (Object.keys(errObj).length) {
-      console.log(errObj, "skjlfslkdf");
+      //console.log(errObj, "skjlfslkdf");
       setIsApiFailed({ isFailed: true, errObj: errObj });
     }
     if (!Object.keys(errObj).length) {

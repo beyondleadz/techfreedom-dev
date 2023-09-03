@@ -19,10 +19,13 @@ import {
   LEAD_REMARK_DETAIL,
   LEAD_REMARK_DETAIL_ERROR,
   DELETE_LEAD_REMARKS,
-  DELETE_LEAD_REMARKS_ERROR
+  DELETE_LEAD_REMARKS_ERROR,
+  LEAD_TASKS_STATUS_LIST,
+  LEAD_TASKS_STATUS_LIST_ERROR
 } from "../actionType/leadDetailsType";
 
 const initialState = {
+  leadTasksStatusList:[],
   leadDetails: {},
   updateleadDetails: {},
   saveleadNotes: {},
@@ -53,6 +56,10 @@ const LeadDetailsReducer = (state = initialState, action) => {
       return { ...state, leadNoteDetails: payload };
     case LEAD_REMARK_DETAIL:
       return { ...state, leadRemarksDetails: payload };
+    case LEAD_TASKS_STATUS_LIST:
+      return { ...state, leadTasksStatusList: payload };  
+    case LEAD_TASKS_STATUS_LIST_ERROR:
+      return { ...state, errObj: { ...state.errObj, ...payload } };
     case LEAD_DETAILS_ERROR:
       return { ...state, errObj: { ...state.errObj, ...payload } };
     case UPDATE_LEAD_DETAILS_ERROR:

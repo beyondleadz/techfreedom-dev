@@ -32,7 +32,7 @@ const Info = () => {
       ratingItem.push({label:item.ratingText,value:item.ratingText});
     });
     setLeadRatingList(ratingItem);
-  })
+  },[leadStatusListing])
  // console.log(leadStatusList,'leadStatusList')
 
 

@@ -63,7 +63,7 @@ const CompanySummary = () => {
     //   dispatch(downloadCompany([id], "pdf"));
     // }
     const input=pdfRef.current;
-    console.log(input);
+    //console.log(input);
     html2canvas(input).then((canvas)=>{
        const imgData=canvas.toDataURL('image/png');
        const pdf = new jsPDF('p', 'px', 'a4');

@@ -86,7 +86,7 @@ const RightPanel = () => {
     }, [userAccountInfo]);
 
     useEffect(() => {
-      console.log(getRelavantExecutiveDetails,'getRelavantExecutiveDetails')
+      //console.log(getRelavantExecutiveDetails,'getRelavantExecutiveDetails')
       const [data] = getRelavantExecutiveDetails || [];
       if(data){
       setCheckExecutiveStatus(data?.prescribedby==="True"?1:2);
@@ -133,7 +133,7 @@ const RightPanel = () => {
       for (let i = 0; i < similarCount; i++) {
         similarList.push(  
           <div className={i > 0?"row mt-3 pl-2 brdr-b pb-3":"row brdr-b pl-2 pb-3"}>
-              <div className=" btn-circle btn-info"  style={{'text-transform': 'uppercase'}}>
+              <div className=" btn-circle btn-info"  style={{textTransform: 'uppercase'}}>
               {similarExecutiveList[i]?.firstname?.[0]}{similarExecutiveList[i]?.lastname?.[0]}
               </div>
               <div className="col">
@@ -184,7 +184,7 @@ const RightPanel = () => {
     const checkRelavantExecutive = (flag,thumbStatus) => { //checkRelavantExecutive
       const isLoggedIn = checkLoginStatus();
       if (isLoggedIn) {
-        console.log(getRelavantExecutiveDetails,'getRelavantExecutiveDetails vfhgfhf');
+        //console.log(getRelavantExecutiveDetails,'getRelavantExecutiveDetails vfhgfhf');
         const [data] = getRelavantExecutiveDetails || [];
         
         const { id } = getUserInfo();
@@ -268,7 +268,7 @@ const RightPanel = () => {
         return false;
       }
   
-      console.log(errorForm, "errorFormerrorForm");
+      //console.log(errorForm, "errorFormerrorForm");
       let newPayload = {};
       Object.keys(errorForm).forEach((key) => {
         newPayload = {
@@ -523,7 +523,7 @@ const RightPanel = () => {
             appropriate text box.
           </p>
           <div className="form">
-            {console.log(errorForm, "skljfsljfklsd")}
+            {/* {console.log(errorForm, "skljfsljfklsd")} */}
             <div className="formcol1">
               <Checkbox name="telephone" onChange={enableField}>
                 Telephone

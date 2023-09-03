@@ -352,7 +352,7 @@ const AdvancedFilter = ({
   };
 
   const onCountriesCheckAllChange = (e) => {
-    console.log(e.target.checked, "e.target.checkede.target.checked");
+    //console.log(e.target.checked, "e.target.checkede.target.checked");
     setSelectedCountryList(e.target.checked ? countriesList : []);
     setCheckAllCountries(e.target.checked);
     let payload = {
@@ -613,7 +613,7 @@ const AdvancedFilter = ({
       item?.name.toLowerCase().includes(ele.target.value.toLowerCase())
     );
 
-    console.log(filterdData,'filterdDatafilterdDatafilterdData')
+    //console.log(filterdData,'filterdDatafilterdDatafilterdData')
 
     setCitiesList(filterdData);
     setSelectedCitiesList([]);

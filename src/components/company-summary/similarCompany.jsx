@@ -291,7 +291,7 @@ const SimilarCompany = () => {
       return false;
     }
 
-    console.log(errorForm, "errorFormerrorForm");
+    //console.log(errorForm, "errorFormerrorForm");
     let newPayload = {};
     Object.keys(errorForm).forEach((key) => {
       newPayload = {
@@ -317,7 +317,7 @@ const SimilarCompany = () => {
   };
 
   const onInputChange = (ele) => {
-    console.log(ele.target.value, "skljfslkd");
+   // console.log(ele.target.value, "skljfslkd");
     setErrorForm({
       ...errorForm,
       [ele.target.name]: {

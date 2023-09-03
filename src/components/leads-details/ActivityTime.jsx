@@ -45,7 +45,7 @@ const ActivityTime = ({setActiveTab}) => {
     setActiveTab(4,'','Add Task');
   }
 
-  const colorActivityObj={"call":["app","phone","green"],"Email":["email","envelope","green"],"meeting":["meet","handshake","red"],"followup":["email","envelope","gray"],"chat":["app","mobile","gray"],"Whatsapp":["whatsapp","whatsapp","red"],"Display":["act","phone","green"],"Contact":["email","envelope","green"],"Contact Back":["email","envelope","green"],"Custom":["email","envelope","green"],}
+  const colorActivityObj={"call":["app","las la-phone","green"],"email":["email","las la-envelope","green"],"meeting":["meet","las la-handshake","red"],"followup":["email","las la-phone","gray"],"chat":["app","las la-mobile","gray"],"whatsapp":["whatsapp","lab la-whatsapp","red"]}
 
   
   
@@ -77,13 +77,14 @@ setActivityData(activityItems);
           activityTime=item.lastUpdated;          
         }else{
           //isContacted isToDisplay
-          if(item.isContacted){
-            title="Contact";
-          }else if(item.isToDisplay){
-            title="Display";
-          }else{
-            title=item.isContactBackRequired?"Contact Back":"Custom";
-          }
+          // if(item.isContacted){
+          //   title="Contact";
+          // }else if(item.isToDisplay){
+          //   title="Display";
+          // }else{
+          //   title=item.isContactBackRequired?"Contact Back":"Custom";
+          // }
+          title=item.title;
           description=item.remarks;
           activityTime=item.interactionDate;
         }
@@ -98,7 +99,7 @@ setActivityData(activityItems);
         //console.log(formattedTodayData,"===",savedformattedDate,activityTime)
         obj.color =colorActivityObj[title]?.[2];  
         obj.dot =
-        <div><a href="#" className={`btn btn-${colorActivityObj[title]?.[0]} btn-sm btn-circle`} > <i className={`las la-${colorActivityObj[title]?.[1]} fs-14`}></i></a></div>;
+        <div><a href="#" className={`btn btn-${colorActivityObj[title]?.[0]} btn-sm btn-circle`} > <i className={`${colorActivityObj[title]?.[1]} fs-14`}></i></a></div>;
       obj.children =
         <div className="mt-3"><div className="col-md-12"><div id="steps" className=" row mt-3"> <div className="col-md-8 text-align-left fs-14 font-weight-normal " style={{"textTransform": "capitalize"}}>{title}
         <h6>{description}</h6></div>    <div className="col-sm-4 text-align-right"><a href="#" className="btn fs-20 " onClick={()=>editTimeline(item.id,isLeadNote)}> <i className="las la-edit "></i></a> <a href="#" className="btn fs-20 " onClick={()=>deleteTimeline(item.id,isLeadNote)}> <i className="las la-trash"></i></a><div className="fs-12 mt-1">{savedformattedDate}</div></div></div></div></div>;        

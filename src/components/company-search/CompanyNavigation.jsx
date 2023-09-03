@@ -65,7 +65,7 @@ const CompanyNavigation = () => {
   const tagPage = () => {
     const isLoggedIn = checkLoginStatus();
     if (isLoggedIn) {
-      console.log("call tag api");
+      //console.log("call tag api");
     }
   };
 

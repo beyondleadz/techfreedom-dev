@@ -90,11 +90,11 @@ const SummaryHeader = () => {
   }, [companyDetails, userAccountInfo]);
 
   useEffect(() => {
-    console.log(
-      fetchCompanyTag.length,
-      Object.keys(sigleCompanyTag).length,
-      "chk len"
-    );
+    // console.log(
+    //   fetchCompanyTag.length,
+    //   Object.keys(sigleCompanyTag).length,
+    //   "chk len"
+    // );
     if (fetchCompanyTag.length || Object.keys(sigleCompanyTag).length) {
       setTaggedCompany(true);
     } else {

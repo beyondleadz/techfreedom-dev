@@ -35,6 +35,9 @@ const Tasks = () => {
   const leadRemarksDetails = useSelector(
     (state) => state.LeadDetailsReducer.leadRemarksDetails
   );
+  const leadTasksStatusListing = useSelector(
+    (state) => state.LeadDetailsReducer.leadTasksStatusList
+  );
 
   useEffect(() => {
     // console.log(Object.keys(errObj).length,'Object.keys(errObj).lengths')
@@ -57,6 +60,8 @@ const Tasks = () => {
     isContactBackRequired: { disabled: true, value: "", status: null },
     isContacted: { disabled: true, value: "", status: null },
     isToDisplay: { disabled: true, value: "", status: null },
+    title: { disabled: true, value: '', status: null },
+    status: { disabled: true, value: '', status: null },
     remarks: { disabled: true, value: "", status: null },
   };
 
@@ -84,6 +89,8 @@ const Tasks = () => {
       isContactBackRequired: { disabled: true, value: (leadRemarksDetails)?leadRemarksDetails.isContactBackRequired:false, status: null },
       isContacted: { disabled: true, value: (leadRemarksDetails)?leadRemarksDetails?.isContacted:false, status: null },
       isToDisplay: { disabled: true, value: (leadRemarksDetails)?leadRemarksDetails.isToDisplay:false, status: null },
+      title: { disabled: true, value: leadRemarksDetails?.title, status: null },
+      status: { disabled: true, value: leadRemarksDetails?.status, status: null },
       remarks: { disabled: true, value: leadRemarksDetails?.remarks, status: null },
     })
   },[leadRemarksDetails])
@@ -98,9 +105,12 @@ const Tasks = () => {
   const onSelectChange = (value) => {
     setForm({
       ...form,
-      note: { ...form["note"], value: value },
+      title: { ...form["title"], value: value },
     });
   };
+  const onStatusChange=(value)=>{
+    setForm({...form, status:{...form["status"],value:value}});
+  }
 
   const onDateChange = (value, dateString) => {
     //console.log("Selected Time: ", moment(value).format('YYYY-MM-DDTHH:mm:ss.sssZ'));
@@ -112,7 +122,7 @@ const Tasks = () => {
   };
 
   const onOk = (value) => {
-    console.log("onOk: ", value);
+    // console.log("onOk: ", value);
     
   };
 
@@ -122,9 +132,11 @@ const Tasks = () => {
     const formattedDate = moment(newDate).format('YYYY-MM-DDTHH:mm:ss')+'Z'
     payload.remarks = form.remarks.value;
     payload.interactionDate = formattedDate;
-    payload.isContactBackRequired = form.isContactBackRequired.value;
-    payload.isContacted = form.isContacted.value;
-    payload.isToDisplay = form.isToDisplay.value;
+    payload.isContactBackRequired = false;//form?.isContactBackRequired?.value;
+    payload.isContacted = false;//form.isContacted.value;
+    payload.isToDisplay =form.status.value=="open"?true:false;// form.isToDisplay.value;
+    payload.status=form.status.value;
+    payload.title=form.title.value;
     payload.lead = leadDetail;
     payload.update = Object.keys(leadRemarksDetails).length ? true : false;
     payload.id = Object.keys(leadRemarksDetails).length ? leadRemarksDetails?.id : "";
@@ -174,8 +186,8 @@ const Tasks = () => {
       <div className="formcol1">Title</div>
           <div className="formcol2">
           <Select
-            name="note"
-            value={form.note}
+            name="title"
+            value={form.title}
             showSearch
             placeholder="Title"
             optionFilterProp="children"
@@ -218,10 +230,12 @@ const Tasks = () => {
           <div className="formcol2">
             <Select
               showSearch
-              placeholder="Task Status   "
+              value={form.status}
+              placeholder="Task Status"
               optionFilterProp="children"
               // onChange={onChange}
               // onSearch={onSearch}
+              onChange={onStatusChange}
               filterOption={(input, option) =>
                 (option?.label ?? "")
                   .toLowerCase()

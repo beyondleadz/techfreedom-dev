@@ -38,12 +38,12 @@ const Tasks = () => {
  
   const onInputChange = () => {};
   const onDateChange = (value, dateString) => {
-    console.log("Selected Time: ", value);
-    console.log("Formatted Selected Time: ", dateString);
+    // console.log("Selected Time: ", value);
+    // console.log("Formatted Selected Time: ", dateString);
   };
 
   const onOk = (value) => {
-    console.log("onOk: ", value);
+    // console.log("onOk: ", value);
   };
   return (
     <div className="mt-3">
@@ -87,7 +87,6 @@ const Tasks = () => {
           </div>
         </div>
         <div className="form">
-          {console.log(errorForm, "skljfsljfklsd")}
           <div className="formcol1">Date and Time</div>
           <div className="formcol2">
           <RangePicker
@@ -148,7 +147,7 @@ const Tasks = () => {
           </div>
         </div>
         <div className="form">
-          {console.log(errorForm, "skljfsljfklsd")}
+          {/* {console.log(errorForm, "skljfsljfklsd")} */}
           <div className="formcol1">Reminder </div>
           <div className="formcol2">
           <span className="mr-2"><button className="btn btn-light">15 min</button></span>
@@ -158,7 +157,7 @@ const Tasks = () => {
           </div>
         </div>
         <div className="form">
-          {console.log(errorForm, "skljfsljfklsd")}
+          {/* {console.log(errorForm, "skljfsljfklsd")} */}
         <div className="formcol1"> </div>
         <div className="formcol2">
         <span> <Checkbox name="telephone" onChange={enableField}>

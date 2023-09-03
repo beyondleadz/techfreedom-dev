@@ -161,7 +161,7 @@ const LeadLeft = () => {
   };
 
   const menuOptions = (arrObj, key = null, prop = "id") => {
-    console.log(arrObj, "vvccxvcv");
+    // console.log(arrObj, "vvccxvcv");
     if (!arrObj) return;
     let menuSize = [];
     const data = _.cloneDeep(arrObj);

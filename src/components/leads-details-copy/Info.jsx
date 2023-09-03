@@ -32,7 +32,7 @@ const Info = () => {
   return (
     <div className="errorformcontainer mt-3">
       <div className="form">
-        {console.log(errorForm, "skljfsljfklsd")}
+        {/* {console.log(errorForm, "skljfsljfklsd")} */}
         <div className="formcol1">Full Name</div>
         <div className="formcol2">
           <Input
@@ -44,7 +44,7 @@ const Info = () => {
         </div>
       </div>
       <div className="form">
-        {console.log(errorForm, "skljfsljfklsd")}
+        {/* {console.log(errorForm, "skljfsljfklsd")} */}
         <div className="formcol1">Designation</div>
         <div className="formcol2">
           <Input

@@ -21,7 +21,7 @@ const ExecutiveSearch = ({ tab }) => {
   }, [tab]);
 
   const onChange = (key) => {
-    console.log(key);
+    //console.log(key);
     setActiveTab(key);
   };
 

@@ -67,7 +67,7 @@ import {
 
 export const getExecutiveCompanyDetails = (id) => (dispatch) => {
   const url = `${companyListingApiUrl}?employeeId.equals=${id}`;
-  console.log(url, id, "lksjdfklsjd");
+  //console.log(url, id, "lksjdfklsjd");
   return getMethod(url)
     .then((res) => {
       dispatch({
@@ -76,7 +76,7 @@ export const getExecutiveCompanyDetails = (id) => (dispatch) => {
       });
     })
     .catch((err) => {
-      console.log(err, "sjkflskdjfkl");
+      //console.log(err, "sjkflskdjfkl");
       dispatch({
         type: EXECUTIVE_COMPANY_DETAILS_ERROR,
         payload:
@@ -125,7 +125,7 @@ export const getEmployeeList = (id, cid) => (dispatch) => {
       });
     })
     .catch((err) => {
-      console.log(err, "sjkflskdjfkl");
+      //console.log(err, "sjkflskdjfkl");
       dispatch({
         type: EXECUTIVE_EMPLOYEE_LIST_ERROR,
         payload:
@@ -144,7 +144,7 @@ export const getDepartmentList = () => (dispatch) => {
       });
     })
     .catch((err) => {
-      console.log(err, "sjkflskdjfkl");
+      //console.log(err, "sjkflskdjfkl");
       dispatch({
         type: EXECUTIVE_DEPARTMENT_LIST_ERROR,
         payload:
@@ -182,7 +182,7 @@ export const getSimilarExecutiveList = (payload, paginationValues) => (
   dispatch
 ) => {
   let url = createExecutivePayload(payload, paginationValues, employeeListUrl);
-  console.log(payload, "payloadpayload");
+  //console.log(payload, "payloadpayload");
   url+="&id.notEquals="+payload.id;
   return getMethod(url)
     .then((res) => {
@@ -202,7 +202,7 @@ export const getSimilarExecutiveList = (payload, paginationValues) => (
 };
 
 export const submitErrorForm = (payload) => (dispatch) => {
-  console.log(payload, "payloadpayload");
+  //console.log(payload, "payloadpayload");
   return postAuthMethod(errorReport, payload)
     .then((res) => {
       dispatch({
@@ -211,7 +211,7 @@ export const submitErrorForm = (payload) => (dispatch) => {
       });
     })
     .catch((err) => {
-      console.log(err, "sjkflskdjfkl");
+      //console.log(err, "sjkflskdjfkl");
       dispatch({
         type: EXECUTIVE_SUBMIT_ERROR_FORM_ERROR,
         payload:
@@ -222,7 +222,7 @@ export const submitErrorForm = (payload) => (dispatch) => {
 };
 
 export const createExecutiveTag = (payload) => (dispatch) => {
-  console.log(payload, "payloadpayload");
+  //console.log(payload, "payloadpayload");
   return postAuthMethod(groupExecutiveTagUrl, payload)
     .then((res) => {
       dispatch({
@@ -268,7 +268,7 @@ export const downloadCompany = (payload, urlSubstring) => (dispatch) => {
       });
     })
     .catch((err) => {
-      console.log(err, "skjfslkjdf", err.response.data.error);
+      //console.log(err, "skjfslkjdf", err.response.data.error);
       dispatch({
         type: EXECUTIVE_DOWNLOAD_COMPANY_ERROR,
         payload:
@@ -318,7 +318,7 @@ export const getExecutiveTag = (cid, userId) => (dispatch) => {
       });
     })
     .catch((err) => {
-      console.log(err, "sjkflskdjfkl");
+      //console.log(err, "sjkflskdjfkl");
       dispatch({
         type: EXECUTIVE_FETCH_COMPANY_TAG_ERROR,
         payload:
@@ -354,7 +354,7 @@ export const getExecutiveLead = (id) => (dispatch) => {
       });
     })
     .catch((err) => {
-      console.log(err, "sjkflskdjfkl");
+      //console.log(err, "sjkflskdjfkl");
       dispatch({
         type: EXECUTIVE_GET_EXECUTIVE_LEAD_ERROR,
         payload:
@@ -378,7 +378,7 @@ export const getRelavantExecutive = (id, cid) => (dispatch) => {
       });
     })
     .catch((err) => {
-      console.log(err, "sjkflskdjfkl");
+      //console.log(err, "sjkflskdjfkl");
       dispatch({
         type: GET_RELAVANT_EXECUTIVE_TAG_ERROR,
         payload:

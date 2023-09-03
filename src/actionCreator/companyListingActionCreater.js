@@ -56,7 +56,7 @@ export const getIndustryList = (payload) => (dispatch) => {
       });
     })
     .catch((err) => {
-      console.log(err,'9798798')
+     // console.log(err,'9798798')
       dispatch({
         type: INDUSTRY_LIST_ERROR,
         payload:
@@ -130,7 +130,6 @@ export const getCompanyList = (payload, paginationValues,topSearch=false) => (di
   //    url = createPayload(payload, paginationValues, companyListingApiUrl);
   // }
 
-  console.log(url,'urlurlurl')
   return getMethod(url)
     .then((res) => {
       dispatch({
@@ -303,7 +302,7 @@ export const getCompanyTagList = (userId) => (dispatch) => {
 
 
 export const createGroupCompanyTag = (payload) => (dispatch) => {
-  console.log(payload, "payloadpayload");
+  //console.log(payload, "payloadpayload");
   return postAuthMethod(groupCompanyTagUrl, payload)
     .then((res) => {
       dispatch({

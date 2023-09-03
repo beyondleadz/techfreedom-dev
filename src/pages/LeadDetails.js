@@ -27,7 +27,8 @@ import {
   getLeadNoteDetails,
   deleteLeadNote,
   getLeadRemarksDetails,
-  deleteLeadRemarks
+  deleteLeadRemarks,
+  getLeadTasksStatusList
 } from "../actionCreator/leadDetailsActionCreator";
 import {
   getLeadStatusList,
@@ -99,6 +100,7 @@ const LeadDetails = () => {
     //dispatch(getAllLeadRemarks(id));
     dispatch(getLeadStatusList());
     dispatch(getLeadRatingList());
+    dispatch(getLeadTasksStatusList());
     }
   }, []);
   useMemo(() => {
@@ -128,7 +130,7 @@ const LeadDetails = () => {
           }          
         }).catch(() => 
          console.log('Oops errors!')
-      );
+      )
       },
       onCancel() {},
     });

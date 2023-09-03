@@ -646,15 +646,15 @@ export const createActivityPayloadForRemarks=(payload,url)=>{
     url = `${url}${activityTime}`;
   }
   if(payload?.activity){
-    if(payload?.activity==="Contact"){
-    url = `${url}&isContacted.equals=true`;
-    }else if(payload?.activity==="Contact Back"){
-    url = `${url}&isContactBackRequired.equals=true`;
-    }else if(payload?.activity==="Display"){
-    url = `${url}&isToDisplay.equals=true`;
-    }else{
-    url = `${url}&remarks.equals=${payload?.activity}`; 
-    }    
+    // if(payload?.activity==="Contact"){
+    // url = `${url}&isContacted.equals=true`;
+    // }else if(payload?.activity==="Contact Back"){
+    // url = `${url}&isContactBackRequired.equals=true`;
+    // }else if(payload?.activity==="Display"){
+    // url = `${url}&isToDisplay.equals=true`;
+    // }else{
+    url = `${url}&title.equals=${payload?.activity}`; 
+    // }    
   }
   return url;
 }

@@ -17,7 +17,7 @@ const CompanyLeft = () => {
   })
 
   const openMenu = (menu) => {
-    console.log(menu,open,'sdfjslkd')
+    //console.log(menu,open,'sdfjslkd')
     setopen({
       ...open,
       [menu]:!open[menu]

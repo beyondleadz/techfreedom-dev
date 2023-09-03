@@ -337,61 +337,61 @@ const MarketingReport = () => {
       
   return (
     <>
-      <div class=" row mt-4 pt-4">
-        <div class="col-xl-3 col-md-6 mb-4">
-          <div class="card border-left-primary shadow h-100 py-2">
-            <div class="card-body">
-              <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+      <div className=" row mt-4 pt-4">
+        <div className="col-xl-3 col-md-6 mb-4">
+          <div className="card border-left-primary shadow h-100 py-2">
+            <div className="card-body">
+              <div className="text-xs font-weight-bold text-primary text-uppercase mb-1">
                 All New Leads
               </div>
-              <div class="row no-gutters align-items-center">
-                <div class="col mr-2">
-                  <div class="h5 mb-0 font-weight-bold text-gray-800">1892</div>
+              <div className="row no-gutters align-items-center">
+                <div className="col mr-2">
+                  <div className="h5 mb-0 font-weight-bold text-gray-800">1892</div>
                 </div>
-                <div class="col-auto">
-                  <i class="las la-filter fa-2x text-gray-300"></i>
+                <div className="col-auto">
+                  <i className="las la-filter fa-2x text-gray-300"></i>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="col-xl-3 col-md-6 mb-4">
-          <div class="card border-left-success shadow h-100 py-2">
-            <div class="card-body">
-              <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+        <div className="col-xl-3 col-md-6 mb-4">
+          <div className="card border-left-success shadow h-100 py-2">
+            <div className="card-body">
+              <div className="text-xs font-weight-bold text-success text-uppercase mb-1">
                 Campaign Sent
               </div>
-              <div class="row no-gutters align-items-center">
-                <div class="col mr-2">
-                  <div class="h5 mb-0 font-weight-bold text-gray-800">0.0</div>
+              <div className="row no-gutters align-items-center">
+                <div className="col mr-2">
+                  <div className="h5 mb-0 font-weight-bold text-gray-800">0.0</div>
                 </div>
-                <div class="col-auto">
-                  <i class="las la-funnel-dollar fa-2x text-gray-300"></i>
+                <div className="col-auto">
+                  <i className="las la-funnel-dollar fa-2x text-gray-300"></i>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="col-xl-3 col-md-6 mb-4">
-          <div class="card border-left-info shadow h-100 py-2">
-            <div class="card-body">
-              <div class="text-xs font-weight-bold text-leftinfo text-uppercase mb-1">
+        <div className="col-xl-3 col-md-6 mb-4">
+          <div className="card border-left-info shadow h-100 py-2">
+            <div className="card-body">
+              <div className="text-xs font-weight-bold text-leftinfo text-uppercase mb-1">
               Lead Generated Through Campaigns
               </div>
-              <div class="row no-gutters align-items-center">
-                <div class="col mr-2">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col-auto">
-                      <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+              <div className="row no-gutters align-items-center">
+                <div className="col mr-2">
+                  <div className="row no-gutters align-items-center">
+                    <div className="col-auto">
+                      <div className="h5 mb-0 mr-3 font-weight-bold text-gray-800">
                         0.0
                       </div>
                     </div>
-                    <div class="col">
-                      <div class="progress progress-sm mr-2">
+                    <div className="col">
+                      <div className="progress progress-sm mr-2">
                         <div
-                          class="progress-bar bg-info"
+                          className="progress-bar bg-info"
                           role="progressbar"
                           aria-valuenow="50"
                           aria-valuemin="0"
@@ -401,8 +401,8 @@ const MarketingReport = () => {
                     </div>
                   </div>
                 </div>
-                <div class="col-auto">
-                  <i class="las la-percent fa-2x text-gray-300"></i>
+                <div className="col-auto">
+                  <i className="las la-percent fa-2x text-gray-300"></i>
                 </div>
               </div>
             </div>
@@ -410,39 +410,39 @@ const MarketingReport = () => {
         </div>
 
       </div>
-      <div class="row">
-        <div class="col-xl-8 col-lg-7">
-          <div class="card shadow mb-4">
-            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-              <h6 class="m-0 font-weight-bold text-gray-800 text-uppercase">
+      <div className="row">
+        <div className="col-xl-8 col-lg-7">
+          <div className="card shadow mb-4">
+            <div className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+              <h6 className="m-0 font-weight-bold text-gray-800 text-uppercase">
                 Lead By Status
               </h6>
             </div>
 
-            <div class="card-body">
-              <div class="chart-area">
+            <div className="card-body">
+              <div className="chart-area">
               <Column {...leadByStatus} />
               </div>
             </div>
           </div>
         </div>
 
-        <div class="col-xl-4 col-lg-5">
-          <div class="card shadow mb-4">
-            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-              <h6 class="m-0 font-weight-bold text-gray-800 text-uppercase">
+        <div className="col-xl-4 col-lg-5">
+          <div className="card shadow mb-4">
+            <div className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+              <h6 className="m-0 font-weight-bold text-gray-800 text-uppercase">
                 Lead By Source
               </h6>
             </div>
 
-            <div class="card-body">
-              <div class="chart-pie pt-4 pb-2">
-                <div class="chartjs-size-monitor">
-                  <div class="chartjs-size-monitor-expand">
-                  <div class="" style={{height:220}}> { <Pie {...config} />  }</div>
+            <div className="card-body">
+              <div className="chart-pie pt-4 pb-2">
+                <div className="chartjs-size-monitor">
+                  <div className="chartjs-size-monitor-expand">
+                  <div className="" style={{height:220}}> { <Pie {...config} />  }</div>
                   </div>
-                  <div class="chartjs-size-monitor-shrink">
-                    <div class=""></div>
+                  <div className="chartjs-size-monitor-shrink">
+                    <div className=""></div>
                   </div>
                 </div>
               </div>
@@ -451,23 +451,23 @@ const MarketingReport = () => {
         </div>
       </div>
       <div className="row">
-        <div class="col-xl-4 col-lg-5">
-          <div class="card shadow mb-4">
-            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-              <h6 class="m-0 font-weight-bold text-uppercase text-gray-800">
+        <div className="col-xl-4 col-lg-5">
+          <div className="card shadow mb-4">
+            <div className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+              <h6 className="m-0 font-weight-bold text-uppercase text-gray-800">
                 Lead By Industry
               </h6>
             </div>
-            <div class="card-body">
-              <div class="chart-pie pt-4 pb-2">
-                <div class="chartjs-size-monitor">
-                  <div class="chartjs-size-monitor-expand">
-                    <div class="" style={{height:220}}>
+            <div className="card-body">
+              <div className="chart-pie pt-4 pb-2">
+                <div className="chartjs-size-monitor">
+                  <div className="chartjs-size-monitor-expand">
+                    <div className="" style={{height:220}}>
                     { <Pie {...config} />  }
                     </div>
                   </div>
-                  <div class="chartjs-size-monitor-shrink">
-                    <div class="">                        
+                  <div className="chartjs-size-monitor-shrink">
+                    <div className="">                        
                     </div>
                   </div>
                 </div>
@@ -475,46 +475,46 @@ const MarketingReport = () => {
             </div>
           </div>
         </div>
-        <div class="col-xl-4 col-lg-5">
-          <div class="card shadow mb-4">
-            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-              <h6 class="m-0 font-weight-bold text-uppercase text-gray-800">
+        <div className="col-xl-4 col-lg-5">
+          <div className="card shadow mb-4">
+            <div className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+              <h6 className="m-0 font-weight-bold text-uppercase text-gray-800">
               Converted Leads
               </h6>
             </div>
-            <div class="card-body">
-              <div class="chart-pie pt-4 pb-2">
-                <div class="chartjs-size-monitor">
-                  <div class="chartjs-size-monitor-expand">
-                  <div class="" style={{height:220}}>
+            <div className="card-body">
+              <div className="chart-pie pt-4 pb-2">
+                <div className="chartjs-size-monitor">
+                  <div className="chartjs-size-monitor-expand">
+                  <div className="" style={{height:220}}>
                   <Bar {...chart4} />
                     </div>
                   </div>
-                  <div class="chartjs-size-monitor-shrink">
-                    <div class=""></div>
+                  <div className="chartjs-size-monitor-shrink">
+                    <div className=""></div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-xl-4 col-lg-5">
-          <div class="card shadow mb-4">
-            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-              <h6 class="m-0 font-weight-bold text-uppercase text-gray-800">
+        <div className="col-xl-4 col-lg-5">
+          <div className="card shadow mb-4">
+            <div className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+              <h6 className="m-0 font-weight-bold text-uppercase text-gray-800">
                 Lead Trend
               </h6>
             </div>
-            <div class="card-body">
-              <div class="chart-pie pt-4 pb-2">
-                <div class="chartjs-size-monitor">
-                  <div class="chartjs-size-monitor-expand">
-                  <div class="" style={{height:220}}>
+            <div className="card-body">
+              <div className="chart-pie pt-4 pb-2">
+                <div className="chartjs-size-monitor">
+                  <div className="chartjs-size-monitor-expand">
+                  <div className="" style={{height:220}}>
                     { <Line {...chart3} />  }
                     </div>
                   </div>
-                  <div class="chartjs-size-monitor-shrink">
-                    <div class=""></div>
+                  <div className="chartjs-size-monitor-shrink">
+                    <div className=""></div>
                   </div>
                 </div>
               </div>

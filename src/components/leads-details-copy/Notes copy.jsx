@@ -22,7 +22,7 @@ const Notes = ()=>{
         <div><p>Create or Edit a Client Note</p>
          <div className="errorformcontainer">
       <div className="form">
-        {console.log(errorForm, "skljfsljfklsd")}
+        {/* {console.log(errorForm, "skljfsljfklsd")} */}
         <div className="formcol1">Title Full Name</div>
         <div className="formcol2">
           <Input
@@ -34,7 +34,7 @@ const Notes = ()=>{
         </div>
       </div>
       <div className="form">
-        {console.log(errorForm, "skljfsljfklsd")}
+        {/* {console.log(errorForm, "skljfsljfklsd")} */}
         <div className="formcol1">Designation</div>
         <div className="formcol2">
           <Input

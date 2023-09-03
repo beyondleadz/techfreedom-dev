@@ -19,7 +19,9 @@ import {
   DELETE_LEAD_NOTE,
   DELETE_LEAD_NOTE_ERROR,
   DELETE_LEAD_REMARKS,
-  DELETE_LEAD_REMARKS_ERROR
+  DELETE_LEAD_REMARKS_ERROR,
+  LEAD_TASKS_STATUS_LIST,
+  LEAD_TASKS_STATUS_LIST_ERROR
 } from "../actionType/leadDetailsType";
 import {
   deleteAuthMethod,
@@ -33,6 +35,7 @@ import {
   saveClientNoteApiUrl,
   getClientNotesApiUrl,
   getClientRemarksApiUrl,
+  getLeadTasksStatusApiUrl,
  // getLeadNoteDetails
 } from "../constant/Constant";
 import { ErrKey, errEnum } from "../config";
@@ -322,3 +325,21 @@ export const emptyErrorObj = () => ({
   type: LEAD_EMPTY_ERROR_OBJ,
   payload: {},
 });
+
+export const getLeadTasksStatusList = (payload) => (dispatch) => {
+  return getAuthMethod(getLeadTasksStatusApiUrl)
+    .then((res) => {
+      dispatch({
+        type: LEAD_TASKS_STATUS_LIST,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: LEAD_TASKS_STATUS_LIST_ERROR,
+        payload:
+          { [errEnum.LEAD_TASKS_STATUS_LIST_ERROR]: err.response.data[ErrKey] } ||
+          "Error Occured",
+      });
+    });
+};

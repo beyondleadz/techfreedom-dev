@@ -306,7 +306,7 @@ export const getExecutiveTagList = (userId) => (dispatch) => {
 
 
 export const createGroupExecutiveTag = (payload) => (dispatch) => {
-  console.log(payload, "payloadpayload");
+  //console.log(payload, "payloadpayload");
   return postAuthMethod(groupExecutiveTagUrl, payload)
     .then((res) => {
       dispatch({

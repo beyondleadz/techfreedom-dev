@@ -123,7 +123,7 @@ const LeadKanbanView = ({
 //                console.log(record1,'kanaban')
 
 return record1?.totalRecords ?  (
-  <div className="col-sm-6 col-kanban col-xl-3" key={`leadst_${record1.id}_${index}`}>
+  <div className="col-sm-6 col-kanban col-xl-4" key={`leadst_${record1.id}_${index}`}>
     <div className="">
       <div className=" arrow-steps">
         <div className={`step ${stepsArray[index]}`}>
@@ -132,13 +132,13 @@ return record1?.totalRecords ?  (
             <span className="num">{record1?.totalRecords}</span>
           </div>
         </div>
-        <h6 className="card-title text-uppercase text-truncate py-2"></h6>
+                <h6 className="card-title text-uppercase text-truncate py-2"></h6>
         <div className="items">
           <div className=""> &nbsp; </div>
           {record1?.totalRecords ? record1?.leadsList.map((record, index) => {
             return (
-              <div
-                className="card draggable shadow-sm"
+              <div 
+                              className="card draggable shadow-sm"
                 id="cd3"
                 draggable="true"
                 key={`lead_${record.id}_${index}`}

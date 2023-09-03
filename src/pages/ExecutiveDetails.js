@@ -32,7 +32,7 @@ const ExecutiveDetails = () => {
   }, []);
 
   useMemo(() => {
-    console.log(executiveDetails, "executiveDetails");
+    //console.log(executiveDetails, "executiveDetails");
     if (Object.keys(executiveDetails).length) {
       dispatch(getEmployeeList(id,executiveDetails?.company?.id));
       let exlevel;

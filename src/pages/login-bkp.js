@@ -32,7 +32,7 @@ const Login1 = () => {
         setError(errObj)
         if (Object.keys(errObj).length === 0) {
                //calling API  
-               console.log(form);
+               //console.log(form);
                postMethod("/signin.php",form).then((res)=>{
                 if(res.data.id_token){
                     sessionStorage.setItem("token",res.data.id_token);
@@ -41,10 +41,10 @@ const Login1 = () => {
                 }else{
                 setError({error:"Invalid Credentials"});
                 setForm({userName:"",password:""})        
-                console.log(res.data.id_token);
+                //console.log(res.data.id_token);
                 }
                }).catch((error)=>{
-                    console.log(error);
+                   // console.log(error);
                })                
         }
     }
