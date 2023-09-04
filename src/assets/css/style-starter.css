@@ -2895,14 +2895,14 @@ fieldset:disabled a.btn {
   box-shadow: 0 0 0 0.2rem rgba(88, 84, 122, 0.5);
 }
 
-.btn-phone {  color: #1f1f1f;  background-color: #b1f5de;  border-color: #b1f5de;}
-.btn-phone:hover {  color: #fff;  background-color: #a6f5da;  border-color: #a6f5da;}
+.btn-phone {  color: #1f1f1f;  background-color: #EE5262;  border-color: #EE5262;}
+.btn-phone:hover {  color: #fff;  background-color: #EE5262;  border-color: #EE5262;}
 .btn-phone:focus,.btn-phone.focus {
   color: #fff;  background-color: #27b989;  border-color: #27b989;  box-shadow: 0 0 0 0.2rem rgba(72, 180, 97, 0.5);
 }
 
-.btn-whatsapp {  color: #1f1f1f;  background-color: #c0faa8;  border-color: #c0faa8;}
-.btn-whatsapp:hover {  color: #fff;  background-color: #a1fd79;  border-color: #a1fd79;}
+.btn-whatsapp {  color: #1f1f1f;  background-color: #00C600;  border-color: #00C600;}
+.btn-whatsapp:hover {  color: #fff;  background-color: #00C600;  border-color: #00C600;}
 .btn-whatsapp:focus,.btn-whatsapp.focus {
   color: #fff;  background-color: #8ffb60;  border-color: #8ffb60;  box-shadow: 0 0 0 0.2rem rgba(72, 180, 97, 0.5);
 }
@@ -2913,8 +2913,8 @@ fieldset:disabled a.btn {
   color: #fff;  background-color: #b67dfa;  border-color: #b67dfa;  box-shadow: 0 0 0 0.2rem rgba(72, 180, 97, 0.5);
 }
 
-.btn-email {  color: #1f1f1f;  background-color: #b0bafb;  border-color: #b0bafb;}
-.btn-email:hover {  color: #fff;  background-color: #92a0fb;  border-color: #92a0fb;}
+.btn-email {  color: #1f1f1f;  background-color: #42ACFF;  border-color: #42ACFF;}
+.btn-email:hover {  color: #fff;  background-color: #42ACFF;  border-color: #42ACFF;}
 .btn-email:focus,.btn-email.focus {
   color: #fff;  background-color: #7486fa;  border-color: #7486fa;  box-shadow: 0 0 0 0.2rem rgba(72, 180, 97, 0.5);
 }
@@ -2925,8 +2925,8 @@ fieldset:disabled a.btn {
   color: #fff;  background-color: #fbec4b;  border-color: #fbec4b;  box-shadow: 0 0 0 0.2rem rgba(72, 180, 97, 0.5);
 }
 
-.btn-meet {  color: #1f1f1f;  background-color: #fac6e7;  border-color: #fac6e7;}
-.btn-meet:hover {  color: #fff;  background-color: #fbacde;  border-color: #fbacde;}
+.btn-meet {  color: #1f1f1f;  background-color: #FAC300;  border-color: #FAC300;}
+.btn-meet:hover {  color: #fff;  background-color: #FAC300;  border-color: #FAC300;}
 .btn-meet:focus,.btn-meet.focus {
   color: #fff;  background-color: #fa8cd1;  border-color: #fa8cd1;  box-shadow: 0 0 0 0.2rem rgba(72, 180, 97, 0.5);
 }

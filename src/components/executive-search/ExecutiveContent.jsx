@@ -42,12 +42,12 @@ const ExecutiveContent = () => {
     open: false,
   });
     const colorArray = [
-      "#b0b0e1",
-      "#f3ca7f",
-      "#e5e589",
-      "#f3a1a1",
-      "#98e398",
-      "#e5d8d8",
+      "#337EBB", //b0b0e1
+      "#EFC800", //f3ca7f
+      "#21B05C", //e5e589
+      "#E74C3C", //f3a1a1
+      "#913DB0", //98e398
+      "#E68015", //e5d8d8
       "#5dfb5d",
       "#999966",
       "#f39af3",
