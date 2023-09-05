@@ -41,7 +41,17 @@ const LeadContent = () => {
   );
 
   const colorArray = [
-    "#b0b0e1",
+    "#43ACFF",
+      "#EF5261",
+      "#FAC300",
+      "#9AD888",
+      "#18B0A7",
+      "#3C78D8",
+      "#43ACFF",
+      "#EF5261",
+      "#FAC300",
+      "#9AD888"
+    /* "#b0b0e1",
     "#f3ca7f",
     "#e5e589",
     "#f3a1a1",
@@ -59,7 +69,7 @@ const LeadContent = () => {
     "#4D80CC",
     "#FF4D4D",
     "#99E6E6",
-    "#6666FF",
+    "#6666FF", */
   ];
   // const colorArray= ['aqua', 'blue', 'fuchsia', 'gray', 'green',
   // 'lime', 'maroon', 'navy', 'olive', 'orange', 'purple', 'red',

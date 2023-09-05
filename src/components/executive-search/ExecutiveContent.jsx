@@ -42,25 +42,35 @@ const ExecutiveContent = () => {
     open: false,
   });
     const colorArray = [
-      "#337EBB", //b0b0e1
-      "#EFC800", //f3ca7f
-      "#21B05C", //e5e589
-      "#E74C3C", //f3a1a1
-      "#913DB0", //98e398
-      "#E68015", //e5d8d8
-      "#5dfb5d",
-      "#999966",
-      "#f39af3",
-      "#b2b2f1",
-      "#89e5e5",
-      "#999933",
-      "#FF3380",
-      "#CCCC00",
-      "#66E64D",
-      "#4D80CC",
-      "#FF4D4D",
-      "#99E6E6",
-      "#6666FF"
+      "#43ACFF",
+      "#EF5261",
+      "#FAC300",
+      "#9AD888",
+      "#18B0A7",
+      "#3C78D8",
+      "#43ACFF",
+      "#EF5261",
+      "#FAC300",
+      "#9AD888"
+    /* "#b0b0e1",
+    "#f3ca7f",
+    "#e5e589",
+    "#f3a1a1",
+    "#98e398",
+    "#e5d8d8",
+    "#5dfb5d",
+    "#999966",
+    "#f39af3",
+    "#b2b2f1",
+    "#89e5e5",
+    "#999933",
+    "#FF3380",
+    "#CCCC00",
+    "#66E64D",
+    "#4D80CC",
+    "#FF4D4D",
+    "#99E6E6",
+    "#6666FF", */
   ];
   const userAccountInfo = useSelector(
     (state) => state.CommonReducer.accountInfo
