@@ -178,7 +178,7 @@ const SummaryContent = () => {
        key: "4",
        label: (
          <span>
-           <i className="text-black lab la-telegram fs-18 pr-2"></i>Triggers
+           <i className="text-black fa-paper-plane fs-18 pr-2"></i>Triggers
          </span>
        ),
        children: <OrgChart />,
