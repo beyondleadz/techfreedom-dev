@@ -5,6 +5,7 @@ import { Popover, Button, Input, Modal } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import { getToken, getUserInfo } from "../utils/utils";
 import Logo from "../assets/images/logo.svg";
+import logoGecko from "../assets/images/logo-gecko.svg";
 import MoreArrowImg from "../assets/images/arrow.png";
 import "../assets/css/dropdown1.css";
 import "../assets/css/line-awesome.css";
@@ -158,6 +159,7 @@ const Header = (props) => {
         <nav className="navbar navbar-expand-lg stroke px-0">
           <h1>
             <NavLink to={"/"} className="navbar-brand">
+            <img src={logoGecko} />
               <img src={Logo} />
             </NavLink>
           </h1>

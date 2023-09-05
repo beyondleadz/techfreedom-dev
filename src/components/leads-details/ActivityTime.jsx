@@ -45,7 +45,7 @@ const ActivityTime = ({setActiveTab}) => {
     setActiveTab(4,'','Add Task');
   }
 
-  const colorActivityObj={"call":["app","las la-phone","green"],"email":["email","las la-envelope","green"],"meeting":["meet","las la-handshake","red"],"followup":["email","las la-phone","gray"],"chat":["app","las la-mobile","gray"],"whatsapp":["whatsapp","lab la-whatsapp","red"]}
+  const colorActivityObj={"call":["app","las la-phone","green"],"email":["email","las la-envelope","green"],"meeting":["meet","las la-handshake","red"],"followup":["email","las la-file-alt","gray"],"chat":["app","las la-comment-dots","gray"],"whatsapp":["whatsapp","lab la-whatsapp","red"]}
 
   
   
