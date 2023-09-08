@@ -411,23 +411,7 @@ const MarketingReport = () => {
 
       </div>
       <div className="row">
-        <div className="col-xl-8 col-lg-7">
-          <div className="card shadow mb-4">
-            <div className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-              <h6 className="m-0 font-weight-bold text-gray-800 text-uppercase">
-                Lead By Status
-              </h6>
-            </div>
-
-            <div className="card-body">
-              <div className="chart-area">
-              <Column {...leadByStatus} />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="col-xl-4 col-lg-5">
+      <div className="col-xl-4 col-lg-5">
           <div className="card shadow mb-4">
             <div className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
               <h6 className="m-0 font-weight-bold text-gray-800 text-uppercase">
@@ -449,6 +433,24 @@ const MarketingReport = () => {
             </div>
           </div>
         </div>
+        
+        <div className="col-xl-8 col-lg-7">
+          <div className="card shadow mb-4">
+            <div className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+              <h6 className="m-0 font-weight-bold text-gray-800 text-uppercase">
+                Lead By Status
+              </h6>
+            </div>
+
+            <div className="card-body">
+              <div className="chart-area">
+              <Column {...leadByStatus} />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        
       </div>
       <div className="row">
         <div className="col-xl-4 col-lg-5">

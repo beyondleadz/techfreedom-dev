@@ -42,11 +42,14 @@ import {
   LEAD_EXECUTIVE_NOTES,
   LEAD_EXECUTIVE_NOTES_ERROR,
   LEAD_EXECUTIVE_REMARKS,
-  LEAD_EXECUTIVE_REMARKS_ERROR
+  LEAD_EXECUTIVE_REMARKS_ERROR,
+  UPDATE_LEAD_STATUS_ERROR,
+  UPDATE_LEAD_STATUS
 } from "../actionType/leadListingType";
 import { PAGE_LENGTH } from "../config";
 
 const initialState = {
+  leadstatusDetails:{},
   leadExecutiveRemarks:[],
   leadExecutiveNotes: [],
   leadPageLayout: { activePage: 1 },
@@ -157,7 +160,11 @@ const LeadListingReducer = (state = initialState, action) => {
       return { ...state, leadExecutiveNotes: payload };
     case LEAD_EXECUTIVE_REMARKS:
       return { ...state, leadExecutiveRemarks: payload };
+    case UPDATE_LEAD_STATUS:
+      return { ...state, leadstatusDetails: payload };  
 
+    case UPDATE_LEAD_STATUS_ERROR:
+      return {...state, errObj: { ...state.errObj, ...payload } }; 
     case LEAD_EXECUTIVE_NOTES_ERROR:
       return { ...state, errObj: { ...state.errObj, ...payload } };
     case LEAD_EXECUTIVE_REMARKS_ERROR:

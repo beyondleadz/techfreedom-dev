@@ -39,12 +39,15 @@ import {
   LEAD_EXECUTIVE_NOTES,
   LEAD_EXECUTIVE_NOTES_ERROR,
   LEAD_EXECUTIVE_REMARKS,
-  LEAD_EXECUTIVE_REMARKS_ERROR
+  LEAD_EXECUTIVE_REMARKS_ERROR,
+  UPDATE_LEAD_STATUS,
+  UPDATE_LEAD_STATUS_ERROR
 } from "../actionType/leadListingType";
 import {
   getAuthMethod,
   getMethod,
-  postAuthMethod  
+  postAuthMethod,
+  putAuthMethod
 } from "../services/HttpServices";
 import { errEnum, ErrKey } from "../config";
 import {
@@ -449,3 +452,24 @@ export const getLeadExecutiveRemarks = (payload={}) => (dispatch) => {
       });
     });
 };
+
+export const updateLeadStatus = (payload) => (dispatch) => {
+  return putAuthMethod(getClientLeadsUrl,payload.id, payload)
+    .then((res) => {
+      dispatch({
+        type: UPDATE_LEAD_STATUS,
+        payload: res.data,
+      });
+      dispatch(getExecutiveEmployeeList({selectedPageLayout:2}, {paginationValue:{start:0,end:10}}));
+    })
+    .catch((err) => {
+      dispatch({
+        type: UPDATE_LEAD_STATUS_ERROR,
+        payload:
+          {
+            [errEnum.UPDATE_LEAD_STATUS_ERROR]:
+              err.response.data[ErrKey],
+          } || "Error Occured",
+      });     
+    });
+  }
