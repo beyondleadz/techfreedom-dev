@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useMemo } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { Dropdown, Space, menuProps, Table, Input, Button, Modal ,Select} from "antd";
+//import { useNavigate, Link } from "react-router-dom";
+//import { useSelector, useDispatch } from "react-redux";
+import { Dropdown, Space, Table, Button} from "antd";
 import { PAGE_LENGTH } from "../../config";
 import Loader from "../loader";
 import { DownOutlined } from '@ant-design/icons';
-const items: MenuProps['items'] = [
+const items = [
   {
     key: '1',
     label: 'Quick Create',
@@ -69,7 +69,7 @@ const LeadTableView = ({
     </Button>
   </Dropdown>
   <span className="ml-4 fs-23 mr-3">
-  <Select
+  {/* <Select
               name="note"
               value="Activity"
               showSearch
@@ -86,7 +86,8 @@ const LeadTableView = ({
                   label: "Item 2",
                 },
               ]}
-            /></span>
+            /> */}
+            </span>
                       {/* <span className="ml-4 fs-23">
                         <i className="text-info las la-calendar"></i>
                       </span> */}

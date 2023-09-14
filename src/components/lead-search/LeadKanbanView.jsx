@@ -1,17 +1,11 @@
-import React, { useEffect, useState, useMemo } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+
 import {
-  Table,
-  Input,
   Button,
-  Modal,
-  Select,
   Dropdown,
-  menuProps,
   Space,
 } from "antd";
-import { PAGE_LENGTH } from "../../config";
 import Loader from "../loader";
 import { DownOutlined } from "@ant-design/icons";
 import { updateLeadStatus } from "../../actionCreator/leadListingActionCreater";
@@ -121,13 +115,12 @@ const LeadKanbanView = ({
               </Button>
             </Dropdown>
             <span className="ml-4 fs-23 mr-3">
-              <Select
+              {/* <Select
                 name="note"
                 value="Activity"
                 showSearch
                 placeholder="Select Name"
                 optionFilterProp="children"
-                //onChange={onSelectChange}
                 options={[
                   {
                     value: "Item 1",
@@ -138,9 +131,10 @@ const LeadKanbanView = ({
                     label: "Item 2",
                   },
                 ]}
-              />
+              /> */}
+               {/* style={{ marginRight: "15%" }} */}
             </span>
-            <span className="kanspan" style={{ marginRight: "15%" }}>
+            <span className="kanspan">
               <div className="buttons-container textsearch">
                 <ul className="d-flex mt-1  m-mt">
                   <li>
@@ -206,7 +200,7 @@ const LeadKanbanView = ({
                 </ul>
                 <button
                   type="button"
-                  className="ant-btn css-dev-only-do-not-override-1mqg3i0 ant-btn-default d-none d-sm-inline-block ml-2 btn-outline-grey"
+                  className="ant-btn css-1mqg3i0 ant-btn-default d-none d-sm-inline-block ml-2 btn-outline-grey"
                 >
                   <i className="fas fa-bolt pr-1"></i>
                   <span> CONNECT TO CRM</span>
@@ -219,7 +213,7 @@ const LeadKanbanView = ({
             {executiveEmployeeList &&
               executiveEmployeeList?.map((rec, index) => {
                 const { executiveData: record1 } = rec;
-                console.log(record1, "kanaban");
+               // console.log(record1, "kanaban");
 
                 return record1?.totalRecords ? (
                   // col-xl-3

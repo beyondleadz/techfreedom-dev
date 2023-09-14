@@ -446,7 +446,6 @@ selectedLeadTime
   let city;
   let industryId;
   let rangeId;
-  let revenueId;
   let companyTagId;
   let company;
   let leadStatus;
@@ -474,7 +473,7 @@ selectedLeadTime
       leadTime = `&createdDate.greaterThanOrEqual=${date1}&createdDate.lessThan=${date2}`;       
     }else if(selectedLeadTime[0].name==="This Year"){
       let savedDate = new Date();
-      let year = savedDate.getFullYear();
+      //let year = savedDate.getFullYear();
       let date1=savedDate.getFullYear()+"-01-01T00:00:00.569Z";
       let date2=savedDate.getFullYear()+"-12-31T23:59:59.569Z";
       leadTime = `&createdDate.greaterThanOrEqual=${date1}&createdDate.lessThan=${date2}`;    
@@ -669,7 +668,7 @@ export const createActivityPayloadForCalendar=(payload,url)=>{
     let savedDate = new Date();
       let month = savedDate.getMonth()+1;
       let monthFormatted =month >=10?month:'0'+month;
-      let dateFormatted=savedDate.getDate() >=10?savedDate.getDate():'0'+savedDate.getDate();
+      //let dateFormatted=savedDate.getDate() >=10?savedDate.getDate():'0'+savedDate.getDate();
       let date1=savedDate.getFullYear()+"-"+monthFormatted+"-01T00:00:00.569Z";
       activityTime = `?lastUpdated.greaterThanOrEqual=${date1}`;
   }

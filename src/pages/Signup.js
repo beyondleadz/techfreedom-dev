@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useRoutes, NavLink,useNavigate } from "react-router-dom";
+import React from "react";
+import { NavLink } from "react-router-dom";
 
 import Img from "../assets/login/bg-left-sign-up.jpg";
 import Gmail from "../assets/login/gmail.png";
@@ -12,12 +12,12 @@ import Signup1 from "../components/signup/Signup1";
 // import Signup3 from "../components/signup/Signup3";
 // import { signUpUrl } from "../constant/Constant";
 // import {postMethod} from "../services/HttpServices"
-import { useSelector,useDispatch } from "react-redux";
+//import { useSelector,useDispatch } from "react-redux";
 const Signup = () => {
   // const [step, setStep] = useState({ step1: true, step2: false, step3: false });
   // const [signupData, setSignupData] = useState();
   // const signUpFormData = useSelector(state => state.SignUpReducer)
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
   // const changeStep = (stepCnt) => {
   //   setSignupData({
   //     ...signupData,

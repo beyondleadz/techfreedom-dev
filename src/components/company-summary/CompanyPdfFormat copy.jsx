@@ -61,14 +61,14 @@ const CompanyPdfFormat = () => {
     <>
       <div
         className="pdfWrapperStyle"
-        style={{ width:"100%",fontFamily: "sans-serif", padding: "10px", fontSize: "14px" }}
+        style={{ fontFamily: "sans-serif", padding: "10px", fontSize: "14px" }}
       >
-        {/* backgroundImage: url(images/bg.jpg);   background-repeat: repeat-y;    background-position: unset;    background-size: 100%; */}
+        { backgroundImage: url(images/bg.jpg);   background-repeat: repeat-y;    background-position: unset;    background-size: 100%; }
 
         <div
           style={{
             float: "left",
-            width: "60%",
+            width: "75%",
             backgroundColor: "#ffffff",
             display: "tableCell",
             height: "692px",
@@ -344,7 +344,8 @@ const CompanyPdfFormat = () => {
             </div>
           </div>
         </div>
-        
+      </div>
+
       <div
         style={{
           padding: "20px",
@@ -353,8 +354,8 @@ const CompanyPdfFormat = () => {
           marginTop: "26px",
         }}
       >
-        {/*<div style={{ display: "flex", margin: "25px 5px 0 5px" }}>
-           <div style={{ display: "tableCell", width: "100%" }}>
+        <div style={{ display: "flex", margin: "25px 5px 0 5px" }}>
+          <div style={{ display: "tableCell", width: "100%" }}>
             <div
               style={{
                 marginLeft: "25px",
@@ -373,8 +374,8 @@ const CompanyPdfFormat = () => {
             >
               <img src={PDFLOGO} width="76px" height="auto" />
             </div>
-          </div> */}
-          {/* <div style={{ display: "tableCell", width: 100 }}>
+          </div>
+          <div style={{ display: "tableCell", width: 100 }}>
             <div
               style={{
                 padding: "10px",
@@ -387,7 +388,7 @@ const CompanyPdfFormat = () => {
             >
               Time Stamp: 07-07-2023 / 06 : 30 : 45 pm
             </div>
-          </div> 
+          </div>
         </div>
         <div
           style={{
@@ -407,7 +408,7 @@ const CompanyPdfFormat = () => {
           >
             Executives Detail
           </h2>
-        </div>*/}
+        </div>
         <div
           style={{
             padding: "10px",
@@ -416,23 +417,13 @@ const CompanyPdfFormat = () => {
             marginRight: 20,
           }}
         >
-          {/* <h2
-            style={{
-              fontSize: "18px",
-              marginBlockStart: 0,
-              marginBlockEnd: 0,
-              textAlign: "left",
-            }}
-          >
-            Executives Detail
-          </h2> */}
           <table
             style={{
               border: "1px solid #d7d3d3",
               fontSize: 11,
               fontWeight: 550,
             }}
-            width="80%"
+            width="100%"
             border="0"
             cellspacing="0"
             cellpadding="0"
@@ -581,8 +572,6 @@ const CompanyPdfFormat = () => {
           </table>
         </div>
       </div>
-      </div>
-
 
       {/* <div className="row colcontainer">
   <div className="leftcolumn col">

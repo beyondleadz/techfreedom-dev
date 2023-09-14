@@ -21,7 +21,7 @@ import {
   POST_RELAVANT_COMPANY_TAG,
   POST_RELAVANT_COMPANY_TAG_ERROR,
   GET_RELAVANT_COMPANY_TAG,
-  GET_RELAVANT_COMPANY_TAG_ERROR,
+  //GET_RELAVANT_COMPANY_TAG_ERROR,
   SELECTED_EXECUTIVE,
   DOWNLOAD_EXECUTIVE,
   DOWNLOAD_EXECUTIVE_ERROR,
@@ -102,8 +102,6 @@ const CompanyDetailsReducer = (state = initialState, action) => {
     case FETCH_COMPANY_TAG_ERROR:
       return { ...state, errObj: { ...state.errObj, ...payload } };
     case POST_RELAVANT_COMPANY_TAG_ERROR:
-      return { ...state, errObj: { ...state.errObj, ...payload } };
-    case GET_RELAVANT_COMPANY_TAG:
       return { ...state, errObj: { ...state.errObj, ...payload } };
     case DOWNLOAD_EXECUTIVE_ERROR:
       return { ...state, errObj: { ...state.errObj, ...payload } };
