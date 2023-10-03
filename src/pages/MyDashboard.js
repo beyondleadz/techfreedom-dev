@@ -9,6 +9,8 @@ import CompanyContent from "../components/company-search/CompanyContent";
 import CompanyNavigation from "../components/company-search/CompanyNavigation";
 import LeadReport from "../components/dashboard/LeadReport";
 import MarketingReport from "../components/dashboard/MarketingReport";
+import ActivitiesReport from "../components/dashboard/ActivitiesReport";
+import MyViewReport from "../components/dashboard/MyViewReport";
 const MyDashboard = () => {
   const [activeTab, setActiveTab] = useState("1");
   const onChange = (key) => {
@@ -50,7 +52,7 @@ const MyDashboard = () => {
       ),
       children: (
         <div>
-          <LeadReport />
+          <ActivitiesReport />
         </div>
       ),
     },
@@ -63,7 +65,7 @@ const MyDashboard = () => {
       ),
       children: (
         <div>
-          <LeadReport />
+          <MyViewReport />
         </div>
       ),
     },

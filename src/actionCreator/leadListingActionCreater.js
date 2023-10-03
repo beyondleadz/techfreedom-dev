@@ -460,7 +460,11 @@ export const updateLeadStatus = (payload) => (dispatch) => {
         type: UPDATE_LEAD_STATUS,
         payload: res.data,
       });
-      dispatch(getExecutiveEmployeeList({selectedPageLayout:2}, {paginationValue:{start:0,end:10}}));
+      if(payload?.customLayout){
+
+      }else{
+        dispatch(getExecutiveEmployeeList({selectedPageLayout:2}, {paginationValue:{start:0,end:10}}));
+      }     
     })
     .catch((err) => {
       dispatch({

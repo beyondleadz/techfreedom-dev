@@ -7735,7 +7735,7 @@ color: orange;
         margin-bottom: 1rem;
         /* cursor: grab; */
     }
-    #kanban .main-kanban{overflow: auto;
+    #kanban .main-kanban{/*overflow: auto;*/
       white-space: nowrap;}
     .droppable {
         background-color: var(--success);

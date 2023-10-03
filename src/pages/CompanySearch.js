@@ -1,5 +1,7 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { Tabs } from "antd";
+import { useLocation } from "react-router-dom";
+
 import { useSelector, useDispatch } from "react-redux";
 import _ from "lodash";
 import Layout from "../layout/Layout";
@@ -17,6 +19,7 @@ import LeadNavigation from "../components/lead-search/LeadNavigation";
 import LeadLeft from "../components/lead-search/LeadLeft";
 import { INDUSTRY_LIST_ERROR } from "../actionType/companyListingType";
 const CompanySearch = ({ tab }) => {
+  const location = useLocation();
   const [activeTab, setActiveTab] = useState(tab);
   const [isApiFailed, setIsApiFailed] = useState({
     isFailed: false,
@@ -42,6 +45,21 @@ const CompanySearch = ({ tab }) => {
   const onChange = (key) => {
     setActiveTab(key);
   };
+  const selectedItem = useSelector((state) => state.HeaderReducer.selectedItem);
+  const topSearchClick = useSelector(
+    (state) => state.HeaderReducer.topSearchClick
+  );
+
+  useEffect(() => {
+    if (location.pathname === "/search-company" && selectedItem === "Company") {
+      setActiveTab("1");
+    } else if (
+      location.pathname === "/search-company" &&
+      selectedItem === "Executive"
+    ) {
+      setActiveTab("2");
+    }
+  }, [topSearchClick, selectedItem]);
 
   const items = [
     {

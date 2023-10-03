@@ -1,5 +1,8 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { Tabs } from "antd";
+import { useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
+
 import _ from "lodash";
 import Layout from "../layout/Layout";
 import CompanyLeft from "../components/company-search/CompanyLeft";
@@ -15,7 +18,7 @@ import LeadLeft from "../components/lead-search/LeadLeft";
 import "../assets/css/dynemic-page.css";
 const ExecutiveSearch = ({ tab }) => {
   const [activeTab, setActiveTab] = useState(tab);
-
+  const location = useLocation();
   useEffect(() => {
     setActiveTab(tab);
   }, [tab]);
@@ -24,6 +27,22 @@ const ExecutiveSearch = ({ tab }) => {
     //console.log(key);
     setActiveTab(key);
   };
+
+  const selectedItem = useSelector((state) => state.HeaderReducer.selectedItem);
+  const topSearchClick = useSelector(
+    (state) => state.HeaderReducer.topSearchClick
+  );
+
+  useEffect(() => {
+    if (location.pathname === "/search-executive" && selectedItem === "Company") {
+      setActiveTab("1");
+    } else if (
+      location.pathname === "/search-executive" &&
+      selectedItem === "Executive"
+    ) {
+      setActiveTab("2");
+    }
+  }, [topSearchClick, selectedItem]);
 
   const items = [
     {

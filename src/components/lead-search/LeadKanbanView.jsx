@@ -1,14 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useDispatch } from "react-redux";
 
-import {
-  Button,
-  Dropdown,
-  Space,
-} from "antd";
+import { Button, Dropdown, Space } from "antd";
 import Loader from "../loader";
 import { DownOutlined } from "@ant-design/icons";
 import { updateLeadStatus } from "../../actionCreator/leadListingActionCreater";
+import _ from "lodash";
 const items = [
   {
     key: "1",
@@ -34,7 +31,15 @@ const LeadKanbanView = ({
 }) => {
   const dispatch = useDispatch();
   const [draggableLead, setDraggableLead] = useState({});
+  const [localExecutiveEmployeeList, setLocalExecutiveEmployeeList] = useState(
+    []
+  );
   const stepsArray = ["current", "done", "active", ""];
+  
+  useMemo(() => {
+    //console.log(executiveEmployeeList,'executiveEmployeeList')
+    setLocalExecutiveEmployeeList(executiveEmployeeList);
+  }, [executiveEmployeeList.length]);
 
   const dragOverEvent = (e, obj) => {
     e.preventDefault();
@@ -43,17 +48,50 @@ const LeadKanbanView = ({
 
   const dropEvent = (e, obj) => {
     e.preventDefault();
-    //console.log(e, obj, "dropEvent", draggableLead);
+    const newPayload = _.cloneDeep(localExecutiveEmployeeList);
+    //debugger;
+    newPayload.forEach((item) => {
+      if (item.executiveData.statusId === obj.statusId) {
+        let payload = _.cloneDeep(draggableLead);
+        payload.status = obj.statusId;
+        item.executiveData.leadsList.push(payload);
+        item.executiveData.totalRecords=item.executiveData.leadsList.length;
+//    console.log(payload,'payloadAfter Drop');
+     payload.customLayout="1";
+     dispatch(updateLeadStatus(payload));
+
+        // setLocalExecutiveEmployeeList(newPayload);
+      }
+      if (item.executiveData.statusId === draggableLead.status) {
+        const filterList = item.executiveData.leadsList.filter(
+          (it) => it.id !== draggableLead.id
+        );
+        item.executiveData.totalRecords=filterList.length;
+        item.executiveData.leadsList = filterList;
+        // setLocalExecutiveEmployeeList(newPayload);
+      }
+    });
+    setLocalExecutiveEmployeeList(newPayload);
+    // console.log(
+    //   e,
+    //   obj,
+    //   "dropEvent",
+    //   draggableLead,
+    //   "-----",
+    //   executiveEmployeeList
+    // );
     //update status API call
-    let payload = draggableLead;
+    // let payload = draggableLead;
     //console.log(payload.status,'payload',obj.statusId);
-    payload.status = obj.statusId;
+    // payload.status = obj.statusId;
     //console.log(payload,'payloadAfter Drop');
-    dispatch(updateLeadStatus(payload));
+
+
+    // dispatch(updateLeadStatus(payload));
   };
 
   const dragStartEvent = (e, obj, obj1) => {
-    //console.log(e, obj, "dragStartEvent");
+    //console.log(e, obj, "dragStartEvent", obj1);
     setDraggableLead(obj);
   };
 
@@ -83,7 +121,18 @@ const LeadKanbanView = ({
     }
   };
   //console.log(executiveEmployeeList,loading, "groupData");
-
+  const colorArray = [
+    "#43ACFF",
+    "#EF5261",
+    "#FAC300",
+    "#9AD888",
+    "#18B0A7",
+    "#3C78D8",
+    "#43ACFF",
+    "#EF5261",
+    "#FAC300",
+    "#9AD888",
+  ];
   return (
     <>
       {!loading ? (
@@ -132,7 +181,7 @@ const LeadKanbanView = ({
                   },
                 ]}
               /> */}
-               {/* style={{ marginRight: "15%" }} */}
+              {/* style={{ marginRight: "15%" }} */}
             </span>
             <span className="kanspan">
               <div className="buttons-container textsearch">
@@ -210,11 +259,13 @@ const LeadKanbanView = ({
           </div>
           <h3 className="font-weight-light text-white">Kanban Board</h3>
           <div className=" main-kanban">
-            {executiveEmployeeList &&
-              executiveEmployeeList?.map((rec, index) => {
+            {/* {console.log(
+              localExecutiveEmployeeList,
+              "localExecutiveEmployeeListlocalExecutiveEmployeeList"
+            )} */}
+            {localExecutiveEmployeeList &&
+              localExecutiveEmployeeList?.map((rec, index) => {
                 const { executiveData: record1 } = rec;
-               // console.log(record1, "kanaban");
-
                 return record1?.totalRecords ? (
                   // col-xl-3
                   <div
@@ -255,6 +306,7 @@ const LeadKanbanView = ({
                                           className="btn-square  btn btn-primary"
                                           style={{
                                             textTransform: "uppercase",
+                                            background: colorArray[index],
                                           }}
                                           onClick={() => getDetails(record.id)}
                                         >
@@ -323,1091 +375,11 @@ const LeadKanbanView = ({
                   ""
                 );
               })}
-
-            {/* <div className="col-sm-6 col-kanban col-xl-3">
-              <div className="">
-                <div className=" arrow-steps">
-                  <div className="step current">
-                    <div>
-                      <span className="title">Subscribed </span>{" "}
-                      <span className="num">4</span>
-                    </div>
-                  </div>
-                  <h6 className="card-title text-uppercase text-truncate py-2"></h6>
-                  <div className="items">
-                    <div className=""> &nbsp; </div>
-                    <div
-                      className="card draggable shadow-sm"
-                      id="cd1"
-                      draggable="true"
-                    >
-                      <div className="kanbanbody p-2">
-                        <div className="kanbancard">
-                          <div className="btn-square  btn btn-primary">AS</div>
-                          <div className="similar-desc">
-                            <div>
-                              <a
-                                className="font-weight-bold fs-14 text-dark"
-                                title=""
-                              >
-                                Ajay Singh
-                              </a>
-                            </div>
-                            <div className="fs-12">
-                              CEO at companyname pvt. ltd.
-                            </div>
-                            <div className="fs-12">
-                              {" "}
-                              ajay@companyname.com
-                              <i className=" fs-14 ml-1  la la-copy text-black"></i>
-                            </div>
-                            {/* <div className="fs-12">131 Maker Towers, 'F' Cuffe Parade, Colaba</div> */}
-            {/* <div className="fs-12">
-                              9236587345
-                              <i className=" fs-14 ml-1  la la-copy text-black"></i>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className="card draggable shadow-sm"
-                      id="cd1"
-                      draggable="true"
-                    >
-                      <div className="kanbanbody p-2">
-                        <div className="kanbancard">
-                          <div className="btn-square  btn btn-primary">AS</div>
-                          <div className="similar-desc">
-                            <div>
-                              <a
-                                className="font-weight-bold fs-14 text-dark"
-                                title=""
-                              >
-                                Ajay Singh
-                              </a>
-                            </div>
-                            <div className="fs-12">
-                              CEO at companyname pvt. ltd.
-                            </div>
-                            <div className="fs-12">
-                              {" "}
-                              ajay@companyname.com
-                              <i className=" fs-14 ml-1  la la-copy text-black"></i>
-                            </div>
-                            <div className="fs-12">
-                              9236587345
-                              <i className=" fs-14 ml-1  la la-copy text-black"></i>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div
-                      className="card draggable shadow-sm"
-                      id="cd2"
-                      draggable="true"
-                    >
-                      <div className="kanbanbody p-2">
-                        <div className="kanbancard">
-                          <div className="btn-square  btn btn-primary">AS</div>
-                          <div className="similar-desc">
-                            <div>
-                              <a
-                                className="font-weight-bold fs-14 text-dark"
-                                title=""
-                              >
-                                Ajay Singh
-                              </a>
-                            </div>
-                            <div className="fs-12">
-                              CEO at companyname pvt. ltd.
-                            </div>
-                            <div className="fs-12">
-                              {" "}
-                              ajay@companyname.com
-                              <i className=" fs-14 ml-1  la la-copy text-black"></i>
-                            </div>
-                            <div className="fs-12">
-                              9236587345
-                              <i className=" fs-14 ml-1  la la-copy text-black"></i>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div
-                      className="card draggable shadow-sm"
-                      id="cd3"
-                      draggable="true"
-                    >
-                      <div className="kanbanbody p-2">
-                        <div className="kanbancard">
-                          <div className="btn-square  btn btn-primary">AS</div>
-                          <div className="similar-desc">
-                            <div>
-                              <a
-                                className="font-weight-bold fs-14 text-dark"
-                                title=""
-                              >
-                                Ajay Singh
-                              </a>
-                            </div>
-                            <div className="fs-12">
-                              CEO at companyname pvt. ltd.
-                            </div>
-                            <div className="fs-12">
-                              {" "}
-                              ajay@companyname.com
-                              <i className=" fs-14 ml-1  la la-copy text-black"></i>
-                            </div>
-                            <div className="fs-12">
-                              9236587345
-                              <i className=" fs-14 ml-1  la la-copy text-black"></i>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-sm-6 col-kanban col-xl-3">
-              <div className="">
-                <div className=" arrow-steps">
-                  <div className="step done">
-                    <div>
-                      <span className="title">Lead</span>{" "}
-                      <span className="num">8</span>
-                    </div>
-                  </div>
-                  <h6 className="card-title text-uppercase text-truncate py-2"></h6>
-                  <div className="items">
-                    <div className=""> &nbsp; </div>
-                    <div
-                      className="card draggable shadow-sm"
-                      id="cd1"
-                      draggable="true"
-                    >
-                      <div className="kanbanbody p-2">
-                        <div className="kanbancard">
-                          <div className="btn-square  btn btn-primary">AS</div>
-                          <div className="similar-desc">
-                            <div>
-                              <a
-                                className="font-weight-bold fs-14 text-dark"
-                                title=""
-                              >
-                                Ajay Singh
-                              </a>
-                            </div>
-                            <div className="fs-12">
-                              CEO at companyname pvt. ltd.
-                            </div>
-                            <div className="fs-12">
-                              {" "}
-                              ajay@companyname.com
-                              <i className=" fs-14 ml-1  la la-copy text-black"></i>
-                            </div>
-                            <div className="fs-12">
-                              9236587345
-                              <i className=" fs-14 ml-1  la la-copy text-black"></i>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div
-                      className="card draggable shadow-sm"
-                      id="cd3"
-                      draggable="true"
-                    >
-                      <div className="kanbanbody p-2">
-                        <div className="kanbancard">
-                          <div className="btn-square  btn btn-primary">AS</div>
-                          <div className="similar-desc">
-                            <div>
-                              <a
-                                className="font-weight-bold fs-14 text-dark"
-                                title=""
-                              >
-                                Ajay Singh
-                              </a>
-                            </div>
-                            <div className="fs-12">
-                              CEO at companyname pvt. ltd.
-                            </div>
-                            <div className="fs-12">
-                              {" "}
-                              ajay@companyname.com
-                              <i className=" fs-14 ml-1  la la-copy text-black"></i>
-                            </div>
-                            <div className="fs-12">
-                              9236587345
-                              <i className=" fs-14 ml-1  la la-copy text-black"></i>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className="card draggable shadow-sm"
-                      id="cd1"
-                      draggable="true"
-                    >
-                      <div className="kanbanbody p-2">
-                        <div className="kanbancard">
-                          <div className="btn-square  btn btn-primary">AS</div>
-                          <div className="similar-desc">
-                            <div>
-                              <a
-                                className="font-weight-bold fs-14 text-dark"
-                                title=""
-                              >
-                                Ajay Singh
-                              </a>
-                            </div>
-                            <div className="fs-12">
-                              CEO at companyname pvt. ltd.
-                            </div>
-                            <div className="fs-12">
-                              {" "}
-                              ajay@companyname.com
-                              <i className=" fs-14 ml-1  la la-copy text-black"></i>
-                            </div>
-                            <div className="fs-12">
-                              9236587345
-                              <i className=" fs-14 ml-1  la la-copy text-black"></i>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className="card draggable shadow-sm"
-                      id="cd1"
-                      draggable="true"
-                    >
-                      <div className="kanbanbody p-2">
-                        <div className="kanbancard">
-                          <div className="btn-square  btn btn-primary">AS</div>
-                          <div className="similar-desc">
-                            <div>
-                              <a
-                                className="font-weight-bold fs-14 text-dark"
-                                title=""
-                              >
-                                Ajay Singh
-                              </a>
-                            </div>
-                            <div className="fs-12">
-                              CEO at companyname pvt. ltd.
-                            </div>
-                            <div className="fs-12">
-                              {" "}
-                              ajay@companyname.com
-                              <i className=" fs-14 ml-1  la la-copy text-black"></i>
-                            </div>
-                            <div className="fs-12">
-                              9236587345
-                              <i className=" fs-14 ml-1  la la-copy text-black"></i>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className="card draggable shadow-sm"
-                      id="cd1"
-                      draggable="true"
-                    >
-                      <div className="kanbanbody p-2">
-                        <div className="kanbancard">
-                          <div className="btn-square  btn btn-primary">AS</div>
-                          <div className="similar-desc">
-                            <div>
-                              <a
-                                className="font-weight-bold fs-14 text-dark"
-                                title=""
-                              >
-                                Ajay Singh
-                              </a>
-                            </div>
-                            <div className="fs-12">
-                              CEO at companyname pvt. ltd.
-                            </div>
-                            <div className="fs-12">
-                              {" "}
-                              ajay@companyname.com
-                              <i className=" fs-14 ml-1  la la-copy text-black"></i>
-                            </div>
-                            <div className="fs-12">
-                              9236587345
-                              <i className=" fs-14 ml-1  la la-copy text-black"></i>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className="card draggable shadow-sm"
-                      id="cd1"
-                      draggable="true"
-                    >
-                      <div className="kanbanbody p-2">
-                        <div className="kanbancard">
-                          <div className="btn-square  btn btn-primary">AS</div>
-                          <div className="similar-desc">
-                            <div>
-                              <a
-                                className="font-weight-bold fs-14 text-dark"
-                                title=""
-                              >
-                                Ajay Singh
-                              </a>
-                            </div>
-                            <div className="fs-12">
-                              CEO at companyname pvt. ltd.
-                            </div>
-                            <div className="fs-12">
-                              {" "}
-                              ajay@companyname.com
-                              <i className=" fs-14 ml-1  la la-copy text-black"></i>
-                            </div>
-                            <div className="fs-12">
-                              9236587345
-                              <i className=" fs-14 ml-1  la la-copy text-black"></i>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className="card draggable shadow-sm"
-                      id="cd1"
-                      draggable="true"
-                    >
-                      <div className="kanbanbody p-2">
-                        <div className="kanbancard">
-                          <div className="btn-square  btn btn-primary">AS</div>
-                          <div className="similar-desc">
-                            <div>
-                              <a
-                                className="font-weight-bold fs-14 text-dark"
-                                title=""
-                              >
-                                Ajay Singh
-                              </a>
-                            </div>
-                            <div className="fs-12">
-                              CEO at companyname pvt. ltd.
-                            </div>
-                            <div className="fs-12">
-                              {" "}
-                              ajay@companyname.com
-                              <i className=" fs-14 ml-1  la la-copy text-black"></i>
-                            </div>
-                            <div className="fs-12">
-                              9236587345
-                              <i className=" fs-14 ml-1  la la-copy text-black"></i>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className="card draggable shadow-sm"
-                      id="cd1"
-                      draggable="true"
-                    >
-                      <div className="kanbanbody p-2">
-                        <div className="kanbancard">
-                          <div className="btn-square  btn btn-primary">AS</div>
-                          <div className="similar-desc">
-                            <div>
-                              <a
-                                className="font-weight-bold fs-14 text-dark"
-                                title=""
-                              >
-                                Ajay Singh
-                              </a>
-                            </div>
-                            <div className="fs-12">
-                              CEO at companyname pvt. ltd.
-                            </div>
-                            <div className="fs-12">
-                              {" "}
-                              ajay@companyname.com
-                              <i className=" fs-14 ml-1  la la-copy text-black"></i>
-                            </div>
-                            <div className="fs-12">
-                              9236587345
-                              <i className=" fs-14 ml-1  la la-copy text-black"></i>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-sm-6 col-kanban col-xl-3">
-              <div className="">
-                <div className=" arrow-steps">
-                  <div className="step active">
-                    <div>
-                      <span className="title">Martting qualified lead </span>{" "}
-                      <span className="num">2</span>
-                    </div>{" "}
-                  </div>
-                  <h6 className="card-title text-uppercase text-truncate py-2"></h6>
-                  <div className="items">
-                    <div className=""> &nbsp; </div>
-                    <div
-                      className="card draggable shadow-sm"
-                      id="cd1"
-                      draggable="true"
-                    >
-                      <div className="kanbanbody p-2">
-                        <div className="kanbancard">
-                          <div className="btn-square  btn btn-primary">AS</div>
-                          <div className="similar-desc">
-                            <div>
-                              <a
-                                className="font-weight-bold fs-14 text-dark"
-                                title=""
-                              >
-                                Ajay Singh
-                              </a>
-                            </div>
-                            <div className="fs-12">
-                              CEO at companyname pvt. ltd.
-                            </div>
-                            <div className="fs-12">
-                              {" "}
-                              ajay@companyname.com
-                              <i className=" fs-14 ml-1  la la-copy text-black"></i>
-                            </div>
-                            <div className="fs-12">
-                              9236587345
-                              <i className=" fs-14 ml-1  la la-copy text-black"></i>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className="card draggable shadow-sm"
-                      id="cd3"
-                      draggable="true"
-                    >
-                      <div className="kanbanbody p-2">
-                        <div className="kanbancard">
-                          <div className="btn-square  btn btn-primary">AS</div>
-                          <div className="similar-desc">
-                            <div>
-                              <a
-                                className="font-weight-bold fs-14 text-dark"
-                                title=""
-                              >
-                                Ajay Singh
-                              </a>
-                            </div>
-                            <div className="fs-12">
-                              CEO at companyname pvt. ltd.
-                            </div>
-                            <div className="fs-12">
-                              {" "}
-                              ajay@companyname.com
-                              <i className=" fs-14 ml-1  la la-copy text-black"></i>
-                            </div>
-                            <div className="fs-12">
-                              9236587345
-                              <i className=" fs-14 ml-1  la la-copy text-black"></i>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-sm-6 col-kanban col-xl-3">
-              <div className="">
-                <div className=" arrow-steps">
-                  <div className="step ">
-                    <div>
-                      <span className="title">Sales qualified lead</span>{" "}
-                      <span className="num">4</span>
-                    </div>{" "}
-                  </div>
-                  <h6 className="card-title text-uppercase text-truncate py-2"></h6>
-                  <div className="items">
-                    <div className=""> &nbsp; </div>
-                    <div
-                      className="card draggable shadow-sm"
-                      id="cd1"
-                      draggable="true"
-                    >
-                      <div className="kanbanbody p-2">
-                        <div className="kanbancard">
-                          <div className="btn-square  btn btn-primary">AS</div>
-                          <div className="similar-desc">
-                            <div>
-                              <a
-                                className="font-weight-bold fs-14 text-dark"
-                                title=""
-                              >
-                                Ajay Singh
-                              </a>
-                            </div>
-                            <div className="fs-12">
-                              CEO at companyname pvt. ltd.
-                            </div>
-                            <div className="fs-12">
-                              {" "}
-                              ajay@companyname.com
-                              <i className=" fs-14 ml-1  la la-copy text-black"></i>
-                            </div>
-                            <div className="fs-12">
-                              9236587345
-                              <i className=" fs-14 ml-1  la la-copy text-black"></i>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div
-                      className="card draggable shadow-sm"
-                      id="cd2"
-                      draggable="true"
-                    >
-                      <div className="kanbanbody p-2">
-                        <div className="kanbancard">
-                          <div className="btn-square  btn btn-primary">AS</div>
-                          <div className="similar-desc">
-                            <div>
-                              <a
-                                className="font-weight-bold fs-14 text-dark"
-                                title=""
-                              >
-                                Ajay Singh
-                              </a>
-                            </div>
-                            <div className="fs-12">
-                              CEO at companyname pvt. ltd.
-                            </div>
-                            <div className="fs-12">
-                              {" "}
-                              ajay@companyname.com
-                              <i className=" fs-14 ml-1  la la-copy text-black"></i>
-                            </div>
-                            <div className="fs-12">
-                              9236587345
-                              <i className=" fs-14 ml-1  la la-copy text-black"></i>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className="card draggable shadow-sm"
-                      id="cd2"
-                      draggable="true"
-                    >
-                      <div className="kanbanbody p-2">
-                        <div className="kanbancard">
-                          <div className="btn-square  btn btn-primary">AS</div>
-                          <div className="similar-desc">
-                            <div>
-                              <a
-                                className="font-weight-bold fs-14 text-dark"
-                                title=""
-                              >
-                                Ajay Singh
-                              </a>
-                            </div>
-                            <div className="fs-12">
-                              CEO at companyname pvt. ltd.
-                            </div>
-                            <div className="fs-12">
-                              {" "}
-                              ajay@companyname.com
-                              <i className=" fs-14 ml-1  la la-copy text-black"></i>
-                            </div>
-                            <div className="fs-12">
-                              9236587345
-                              <i className=" fs-14 ml-1  la la-copy text-black"></i>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className="card draggable shadow-sm"
-                      id="cd3"
-                      draggable="true"
-                    >
-                      <div className="kanbanbody p-2">
-                        <div className="kanbancard">
-                          <div className="btn-square  btn btn-primary">AS</div>
-                          <div className="similar-desc">
-                            <div>
-                              <a
-                                className="font-weight-bold fs-14 text-dark"
-                                title=""
-                              >
-                                Ajay Singh
-                              </a>
-                            </div>
-                            <div className="fs-12">
-                              CEO at companyname pvt. ltd.
-                            </div>
-                            <div className="fs-12">
-                              {" "}
-                              ajay@companyname.com
-                              <i className=" fs-14 ml-1  la la-copy text-black"></i>
-                            </div>
-                            <div className="fs-12">
-                              9236587345
-                              <i className=" fs-14 ml-1  la la-copy text-black"></i>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-sm-6 col-kanban col-xl-3">
-              <div className="">
-                <div className=" arrow-steps">
-                  <div className="step">
-                    <div>
-                      <span className="title">Opportunity</span>{" "}
-                      <span className="num">3</span>
-                    </div>
-                  </div>
-                  <h6 className="card-title text-uppercase text-truncate py-2"></h6>
-                  <div className="items ">
-                    <div className="dropzone rounded"> &nbsp; </div>
-                    <div
-                      className="card draggable shadow-sm"
-                      id="cd1"
-                      draggable="true"
-                    >
-                      <div className="kanbanbody p-2">
-                        <div className="kanbancard">
-                          <div className="btn-square  btn btn-primary">AS</div>
-                          <div className="similar-desc">
-                            <div>
-                              <a
-                                className="font-weight-bold fs-14 text-dark"
-                                title=""
-                              >
-                                Ajay Singh
-                              </a>
-                            </div>
-                            <div className="fs-12">
-                              CEO at companyname pvt. ltd.
-                            </div>
-                            <div className="fs-12">
-                              {" "}
-                              ajay@companyname.com
-                              <i className=" fs-14 ml-1  la la-copy text-black"></i>
-                            </div>
-                            <div className="fs-12">
-                              9236587345
-                              <i className=" fs-14 ml-1  la la-copy text-black"></i>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div
-                      className="card draggable shadow-sm"
-                      id="cd2"
-                      draggable="true"
-                    >
-                      <div className="kanbanbody p-2">
-                        <div className="kanbancard">
-                          <div className="btn-square  btn btn-primary">AS</div>
-                          <div className="similar-desc">
-                            <div>
-                              <a
-                                className="font-weight-bold fs-14 text-dark"
-                                title=""
-                              >
-                                Ajay Singh
-                              </a>
-                            </div>
-                            <div className="fs-12">
-                              CEO at companyname pvt. ltd.
-                            </div>
-                            <div className="fs-12">
-                              {" "}
-                              ajay@companyname.com
-                              <i className=" fs-14 ml-1  la la-copy text-black"></i>
-                            </div>
-                            <div className="fs-12">
-                              9236587345
-                              <i className=" fs-14 ml-1  la la-copy text-black"></i>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div
-                      className="card draggable shadow-sm"
-                      id="cd3"
-                      draggable="true"
-                    >
-                      <div className="kanbanbody p-2">
-                        <div className="kanbancard">
-                          <div className="btn-square  btn btn-primary">AS</div>
-                          <div className="similar-desc">
-                            <div>
-                              <a
-                                className="font-weight-bold fs-14 text-dark"
-                                title=""
-                              >
-                                Ajay Singh
-                              </a>
-                            </div>
-                            <div className="fs-12">
-                              CEO at companyname pvt. ltd.
-                            </div>
-                            <div className="fs-12">
-                              {" "}
-                              ajay@companyname.com
-                              <i className=" fs-14 ml-1  la la-copy text-black"></i>
-                            </div>
-                            <div className="fs-12">
-                              9236587345
-                              <i className=" fs-14 ml-1  la la-copy text-black"></i>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-sm-6 col-kanban col-xl-3">
-              <div className="">
-                <div className=" arrow-steps">
-                  <div className="step ">
-                    <div>
-                      <span className="title">Customer</span>{" "}
-                      <span className="num">5</span>
-                    </div>{" "}
-                  </div>
-                  <h6 className="card-title text-uppercase text-truncate py-2"></h6>
-                  <div className="items">
-                    <div className=""> &nbsp; </div>
-                    <div
-                      className="card draggable shadow-sm"
-                      id="cd1"
-                      draggable="true"
-                    >
-                      <div className="kanbanbody p-2">
-                        <div className="kanbancard">
-                          <div className="btn-square  btn btn-primary">AS</div>
-                          <div className="similar-desc">
-                            <div>
-                              <a
-                                className="font-weight-bold fs-14 text-dark"
-                                title=""
-                              >
-                                Ajay Singh
-                              </a>
-                            </div>
-                            <div className="fs-12">
-                              CEO at companyname pvt. ltd.
-                            </div>
-                            <div className="fs-12">
-                              {" "}
-                              ajay@companyname.com
-                              <i className=" fs-14 ml-1  la la-copy text-black"></i>
-                            </div>
-                            <div className="fs-12">
-                              9236587345
-                              <i className=" fs-14 ml-1  la la-copy text-black"></i>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div
-                      className="card draggable shadow-sm"
-                      id="cd2"
-                      draggable="true"
-                    >
-                      <div className="kanbanbody p-2">
-                        <div className="kanbancard">
-                          <div className="btn-square  btn btn-primary">AS</div>
-                          <div className="similar-desc">
-                            <div>
-                              <a
-                                className="font-weight-bold fs-14 text-dark"
-                                title=""
-                              >
-                                Ajay Singh
-                              </a>
-                            </div>
-                            <div className="fs-12">
-                              CEO at companyname pvt. ltd.
-                            </div>
-                            <div className="fs-12">
-                              {" "}
-                              ajay@companyname.com
-                              <i className=" fs-14 ml-1  la la-copy text-black"></i>
-                            </div>
-                            <div className="fs-12">
-                              9236587345
-                              <i className=" fs-14 ml-1  la la-copy text-black"></i>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className="card draggable shadow-sm"
-                      id="cd2"
-                      draggable="true"
-                    >
-                      <div className="kanbanbody p-2">
-                        <div className="kanbancard">
-                          <div className="btn-square  btn btn-primary">AS</div>
-                          <div className="similar-desc">
-                            <div>
-                              <a
-                                className="font-weight-bold fs-14 text-dark"
-                                title=""
-                              >
-                                Ajay Singh
-                              </a>
-                            </div>
-                            <div className="fs-12">
-                              CEO at companyname pvt. ltd.
-                            </div>
-                            <div className="fs-12">
-                              {" "}
-                              ajay@companyname.com
-                              <i className=" fs-14 ml-1  la la-copy text-black"></i>
-                            </div>
-                            <div className="fs-12">
-                              9236587345
-                              <i className=" fs-14 ml-1  la la-copy text-black"></i>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className="card draggable shadow-sm"
-                      id="cd2"
-                      draggable="true"
-                    >
-                      <div className="kanbanbody p-2">
-                        <div className="kanbancard">
-                          <div className="btn-square  btn btn-primary">AS</div>
-                          <div className="similar-desc">
-                            <div>
-                              <a
-                                className="font-weight-bold fs-14 text-dark"
-                                title=""
-                              >
-                                Ajay Singh
-                              </a>
-                            </div>
-                            <div className="fs-12">
-                              CEO at companyname pvt. ltd.
-                            </div>
-                            <div className="fs-12">
-                              {" "}
-                              ajay@companyname.com
-                              <i className=" fs-14 ml-1  la la-copy text-black"></i>
-                            </div>
-                            <div className="fs-12">
-                              9236587345
-                              <i className=" fs-14 ml-1  la la-copy text-black"></i>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className="card draggable shadow-sm"
-                      id="cd3"
-                      draggable="true"
-                    >
-                      <div className="kanbanbody p-2">
-                        <div className="kanbancard">
-                          <div className="btn-square  btn btn-primary">AS</div>
-                          <div className="similar-desc">
-                            <div>
-                              <a
-                                className="font-weight-bold fs-14 text-dark"
-                                title=""
-                              >
-                                Ajay Singh
-                              </a>
-                            </div>
-                            <div className="fs-12">
-                              CEO at companyname pvt. ltd.
-                            </div>
-                            <div className="fs-12">
-                              {" "}
-                              ajay@companyname.com
-                              <i className=" fs-14 ml-1  la la-copy text-black"></i>
-                            </div>
-                            <div className="fs-12">
-                              9236587345
-                              <i className=" fs-14 ml-1  la la-copy text-black"></i>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-sm-6 col-kanban col-xl-3">
-              <div className="">
-                <div className=" arrow-steps">
-                  <div className="step">
-                    <div>
-                      <span className="title"> Other</span>{" "}
-                      <span className="num">3</span>
-                    </div>
-                  </div>
-                  <h6 className="card-title text-uppercase text-truncate py-2"></h6>
-                  <div className="items ">
-                    <div className=""> &nbsp; </div>
-                    <div
-                      className="card draggable shadow-sm"
-                      id="cd1"
-                      draggable="true"
-                    >
-                      <div className="kanbanbody p-2">
-                        <div className="kanbancard">
-                          <div className="btn-square  btn btn-primary">AS</div>
-                          <div className="similar-desc">
-                            <div>
-                              <a
-                                className="font-weight-bold fs-14 text-dark"
-                                title=""
-                              >
-                                Ajay Singh
-                              </a>
-                            </div>
-                            <div className="fs-12">
-                              CEO at companyname pvt. ltd.
-                            </div>
-                            <div className="fs-12">
-                              {" "}
-                              ajay@companyname.com
-                              <i className=" fs-14 ml-1  la la-copy text-black"></i>
-                            </div>
-                            <div className="fs-12">
-                              9236587345
-                              <i className=" fs-14 ml-1  la la-copy text-black"></i>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div
-                      className="card draggable shadow-sm"
-                      id="cd2"
-                      draggable="true"
-                    >
-                      <div className="kanbanbody p-2">
-                        <div className="kanbancard">
-                          <div className="btn-square  btn btn-primary">AS</div>
-                          <div className="similar-desc">
-                            <div>
-                              <a
-                                className="font-weight-bold fs-14 text-dark"
-                                title=""
-                              >
-                                Ajay Singh
-                              </a>
-                            </div>
-                            <div className="fs-12">
-                              CEO at companyname pvt. ltd.
-                            </div>
-                            <div className="fs-12">
-                              {" "}
-                              ajay@companyname.com
-                              <i className=" fs-14 ml-1  la la-copy text-black"></i>
-                            </div>
-                            <div className="fs-12">
-                              9236587345
-                              <i className=" fs-14 ml-1  la la-copy text-black"></i>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div
-                      className="card draggable shadow-sm"
-                      id="cd3"
-                      draggable="true"
-                    >
-                      <div className="kanbanbody p-2">
-                        <div className="kanbancard">
-                          <div className="btn-square  btn btn-primary">AS</div>
-                          <div className="similar-desc">
-                            <div>
-                              <a
-                                className="font-weight-bold fs-14 text-dark"
-                                title=""
-                              >
-                                Ajay Singh
-                              </a>
-                            </div>
-                            <div className="fs-12">
-                              CEO at companyname pvt. ltd.
-                            </div>
-                            <div className="fs-12">
-                              {" "}
-                              ajay@companyname.com
-                              <i className=" fs-14 ml-1  la la-copy text-black"></i>
-                            </div>
-                            <div className="fs-12">
-                              9236587345
-                              <i className=" fs-14 ml-1  la la-copy text-black"></i>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div> */}
           </div>
         </div>
       ) : (
         <div id="kanban" className="container-fluid">
-        <Loader />
+          <Loader />
         </div>
       )}
     </>

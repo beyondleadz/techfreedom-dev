@@ -6,12 +6,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { getToken, getUserInfo } from "../utils/utils";
 import Logo from "../assets/images/logo.svg";
 import Logo1 from "../assets/images/logo-gecko.svg";
-import MoreArrowImg from "../assets/images/arrow.png";
 import "../assets/css/dropdown1.css";
 import "../assets/css/line-awesome.css";
 import "../assets/css/line-awesome.min.css";
 import { doLogin } from "../actionCreator/signUpActionCreater";
-import { topSearch, selectItem } from "../actionCreator/headerActionCreater";
+import { topSearch, selectItem,topSearchClick} from "../actionCreator/headerActionCreater";
 import TrialModal from "../common/TrialModal";
 import {
   getAccountInfo,
@@ -39,6 +38,7 @@ const Header = (props) => {
   const topSearchValue = useSelector(
     (state) => state?.HeaderReducer?.topSearchValue
   );
+  
   const selectedItem = useSelector(
     (state) => state?.HeaderReducer?.selectedItem
   );
@@ -59,21 +59,24 @@ const Header = (props) => {
       dispatch(selectItem("Company"));
     } else {
       dispatch(selectItem("Company"));
+      dispatch(topSearch(""));      
     }
   }, [location.pathname]);
 
-  const setValue = (val, btn = false) => {
+  const setValue = (val, btn = false) => { 
     //if (val == "Advanced") {
     //setShowModal(true);
     //return;
     //}
-    dispatch(selectItem(val));
+     dispatch(selectItem(val));
+    dispatch(topSearchClick(Math.random()));
     // setSelectedValue(val);
     if (!btn) {
       setDropdownToggle(!dropDownToggle);
     }
     dispatch(topSearch(searchRef.current.value));
-    if (val === "Company") {
+    
+    if (val === "Company") { 
       navigate("/search-company");
     } else {
       navigate("/search-executive");
