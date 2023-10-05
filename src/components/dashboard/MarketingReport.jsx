@@ -370,7 +370,7 @@ const MarketingReport = () => {
                   </div>
                 </div>
                 <div className="col-auto">
-                  <i className="las la-funnel-dollar fa-2x text-gray-300"></i>
+                  <i className="lab la-telegram fa-2x text-gray-300"></i>
                 </div>
               </div>
             </div>
@@ -405,7 +405,7 @@ const MarketingReport = () => {
                   </div>
                 </div>
                 <div className="col-auto">
-                  <i className="las la-percent fa-2x text-gray-300"></i>
+                  <i className="las la-funnel-dollar fa-2x text-gray-300"></i>
                 </div>
               </div>
             </div>

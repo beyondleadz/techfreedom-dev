@@ -106,7 +106,9 @@ const ExecutiveSearch = ({ tab }) => {
           </div>
         </div>
       ),
+    
     },
+    
   ];
 
   return (

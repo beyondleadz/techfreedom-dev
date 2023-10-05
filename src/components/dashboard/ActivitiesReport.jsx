@@ -341,7 +341,7 @@ const ActivitiesReport = () => {
                   </div>
                 </div>
                 <div className="col-auto">
-                  <i className="las la-filter fa-2x text-gray-300"></i>
+                  <i className="las la-phone-volume fa-2x text-gray-300"></i>
                 </div>
               </div>
             </div>
@@ -361,7 +361,7 @@ const ActivitiesReport = () => {
                   </div>
                 </div>
                 <div className="col-auto">
-                  <i className="las la-funnel-dollar fa-2x text-gray-300"></i>
+                  <i className="las la-envelope fa-2x text-gray-300"></i>
                 </div>
               </div>
             </div>
@@ -396,7 +396,7 @@ const ActivitiesReport = () => {
                   </div>
                 </div>
                 <div className="col-auto">
-                  <i className="las la-percent fa-2x text-gray-300"></i>
+                  <i className="las la-laptop fa-2x text-gray-300"></i>
                 </div>
               </div>
             </div>
@@ -415,7 +415,7 @@ const ActivitiesReport = () => {
                   <div className="h5 mb-0 font-weight-bold text-gray-800">01</div>
                 </div>
                 <div className="col-auto">
-                  <i className="las la-comments fa-2x text-gray-300"></i>
+                  <i className="las la-handshake fa-2x text-gray-300"></i>
                 </div>
               </div>
             </div>
@@ -433,7 +433,7 @@ const ActivitiesReport = () => {
                   <div className="h5 mb-0 font-weight-bold text-gray-800">0</div>
                 </div>
                 <div className="col-auto">
-                  <i className="las la-hand-holding-usd fa-2x text-gray-300"></i>
+                  <i className="las la-comments fa-2x text-gray-300"></i>
                 </div>
               </div>
             </div>
@@ -451,7 +451,7 @@ const ActivitiesReport = () => {
                   <div className="h5 mb-0 font-weight-bold text-gray-800">2</div>
                 </div>
                 <div className="col-auto">
-                  <i className="lab la-creative-commons-nc fa-2x text-gray-300"></i>
+                  <i className="las la-hand-pointer fa-2x text-gray-300"></i>
                 </div>
               </div>
             </div>
