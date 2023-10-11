@@ -22662,6 +22662,39 @@ li.whyt.lost {
  #dashboard .la-briefcase:before {
   color: #5d44ff;
 }
+#dashboard .ant-tabs{    margin: 20px 25px 0 25px;
+  width: 100%;}
+#dashboard .ant-tabs .ant-tabs-content {
+  position: relative;
+  width: 100%;
+  flex: 1 1 auto;
+  min-height: 500px;
+  padding: 1rem 1.25rem;}
+  #dashboard .ant-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: #5d44ff;
+    text-shadow: 0 0 0.25px currentcolor;
+}
+  #dashboard .ant-tabs .ant-tabs-tab+.ant-tabs-tab {
+    margin: 0 0 0 51px;}
+  #dashboard .ant-tabs .ant-tabs-content-holder {
+    flex: auto;
+    min-width: 0;
+    min-height: 0;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15) !important;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid #e3e6f0;
+    border-radius: 0.35rem;
+    width: 100%;
+    margin-bottom: 1.5rem;
+    
+}
+
 #dashboard .tab-img{display: inline;
     padding: 0.2rem 0.5rem;
     font-size: 20px;

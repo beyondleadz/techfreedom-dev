@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import {DEVMODE} from './config'
 import About from './pages/About';
 import Dashboard from './pages/Dashboard';
+import MyView from './pages/MyView';
 import MyDashboard from './pages/MyDashboard';
 import Career from './pages/Career';
 import Features from './pages/Features';
@@ -53,6 +54,7 @@ const AppRoutes = (props) => {
                 <Route path="/about-us" element={<About/>} />
                 <Route path="/dashboard-view" element={<MyDashboard/>} />
                 <Route path="/dashboard" element={<Dashboard/>} />
+                <Route path="/my-view" element={<MyView/>} />
                 <Route path="/career" element={<Career/>} />
                 <Route path="/features" element={<Features/>} />
                 <Route path="/contact-us" element={<Contact/>} />
