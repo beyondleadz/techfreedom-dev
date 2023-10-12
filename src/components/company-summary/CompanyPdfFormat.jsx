@@ -68,13 +68,13 @@ const CompanyPdfFormat = () => {
         <div
           style={{
             float: "left",
-            width: "60%",
+            width: "50%",
             backgroundColor: "#ffffff",
             display: "tableCell",
             height: "692px",
           }}
         >
-          <div style={{ display: "flex", margin: "25px 5px 0 5px" }}>
+          <div style={{ display: "flex", margin: "25px -49px 5px" }}>
             <div style={{ display: "tableCell", width: "100%" }}>
               <div
                 style={{
@@ -102,10 +102,10 @@ const CompanyPdfFormat = () => {
             <div style={{ display: "flex", alignItems: "self-start" }}>
               <div
                 style={{
-                  minWidth: "175px",
+                  minWidth: "130px",
                   minHeight: "120px",
                   width: "160px",
-                  padding: "10px 35px",
+                  padding: "10px 35px 10px 0px",
                   display: "flex",
                   alignItems: "center",
                 }}
@@ -245,7 +245,7 @@ const CompanyPdfFormat = () => {
         <div
           style={{
             float: "left",
-            width: "25%",
+            width: "20%",
             backgroundColor: "#fdc401",
             paddingLeft: "20px",
             color: "#575656",
@@ -432,7 +432,7 @@ const CompanyPdfFormat = () => {
               fontSize: 11,
               fontWeight: 550,
             }}
-            width="80%"
+            width="60%"
             border="0"
             cellspacing="0"
             cellpadding="0"

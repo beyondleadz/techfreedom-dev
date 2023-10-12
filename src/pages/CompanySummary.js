@@ -66,7 +66,7 @@ const CompanySummary = () => {
     //console.log(input);
     html2canvas(input).then((canvas)=>{
        const imgData=canvas.toDataURL('image/png');
-       const pdf = new jsPDF('p', 'px', 'a4');
+       const pdf = new jsPDF();//'p', 'px', 'a4'
        const pdfWidth=pdf.internal.pageSize.getWidth();
        const pdfHeight=pdf.internal.pageSize.getHeight();
       // const imgWidth=canvas.width;
@@ -75,7 +75,7 @@ const CompanySummary = () => {
       //  const imgX=(pdfWidth-imgWidth * ratio)/2;
       //  const imgY=30;
       // pdf.addImage(imgData,'PNG',imgX,imgY,imgWidth*ratio,imgHeight*ratio);
-      pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
+      pdf.addImage(imgData, 'JPEG', 10, 10);//, pdfWidth, pdfHeight
       pdf.save('company.pdf');
     })
   };
@@ -119,7 +119,7 @@ const CompanySummary = () => {
         )}
       </Layout>
       {/* style={{position:'absolute',left:'0',top:'-5000px'}}   */}
-       <div style={{position:'absolute',left:'0',top:'-5000px'}} ref={pdfRef}>   
+       <div ref={pdfRef}>   
 <CompanyPdfFormat/>
        </div> 
     </>
