@@ -23,7 +23,7 @@ import {
   createGroupExecutiveTag,
   emptyDownload
 } from "../../actionCreator/executiveListingActionCreater";
-
+import { topSearch} from "../../actionCreator/headerActionCreater";
 import {
   submitLead,
   getExecutiveLead,
@@ -355,6 +355,7 @@ const ExecutiveContent = () => {
         topSearchValue: topSearchValue,
       };
       dispatch(getExecutiveEmployeeList(payload, paginationValue, true));
+     // dispatch(topSearch("")); 
     } else {
       dispatch(getExecutiveEmployeeList({}, paginationValue));
     }

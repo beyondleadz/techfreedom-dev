@@ -21,6 +21,8 @@ import {
   createGroupCompanyTag,
   emptyDownload,
 } from "../../actionCreator/companyListingActionCreater";
+import { topSearch} from "../../actionCreator/headerActionCreater";
+
 import Loader from "../loader";
 import { getToken, getUserInfo } from "../../utils/utils";
 
@@ -114,6 +116,7 @@ const CompanyContent = () => {
         topSearchValue: topSearchValue,
       };
       dispatch(getCompanyList(payload, paginationValue, true));
+     // dispatch(topSearch(""));  
     } else {
       dispatch(getCompanyList({}, paginationValue));
     }

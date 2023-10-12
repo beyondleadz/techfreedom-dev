@@ -8,7 +8,9 @@ import './assets/css/style-starter.css'
 import './assets/css/popup.css'
 
 import Routes from './routes'
+import { useEffect } from 'react';
 function App() {
+  
   return (
     <Routes  /> 
   );

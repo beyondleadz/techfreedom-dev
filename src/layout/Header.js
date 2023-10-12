@@ -153,7 +153,12 @@ const Header = (props) => {
       </p>
     </div>
   );
-
+  const handleKeyPress = (event) => {
+    if(event.key === 'Enter'){
+    //console.log('enter press here! ',selectedItem,searchRef.current.value)
+    setValue(selectedItem, true);
+    }
+    }
   //console.log(selectedItem, "sdfd");
 
   return (
@@ -197,6 +202,7 @@ const Header = (props) => {
                   placeholder="Search"
                   name="search"
                   className="search-popup"
+                  onKeyPress={handleKeyPress}
                 />
                 <button
                   type="button"

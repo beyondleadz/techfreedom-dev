@@ -73,15 +73,15 @@ const MyDashboard = () => {
   return (
     <>
       <Layout>
-        <div id="tabscompany">
-          <h3 className="pagetitle">Dashboard</h3>
-          <Tabs
-            activeKey={activeTab}
-            items={items}
-            onChange={onChange}
-            type="card"
-          />
-        </div>
+            <div id="tabscompany">
+              <h3 className="pagetitle">Dashboard</h3>
+              <Tabs
+                activeKey={activeTab}
+                items={items}
+                onChange={onChange}
+                type="card"
+              />
+            </div>
       </Layout>
     </>
   );
