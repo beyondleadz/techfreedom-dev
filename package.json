@@ -2,7 +2,7 @@
   "name": "app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "",
+  "homepage": "http:///beyondleads",
   "dependencies": {
     "@ant-design/colors": "^7.0.0",
     "@ant-design/plots": "^1.2.5",
