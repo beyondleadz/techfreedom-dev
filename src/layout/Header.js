@@ -18,6 +18,9 @@ import {
 } from "../actionCreator/commonActionCreator";
 
 const Header = (props) => {
+  const topSearchValue = useSelector(
+    (state) => state?.HeaderReducer?.topSearchValue
+  );
   const searchRef = useRef();
   const location = useLocation();
   const dispatch = useDispatch();
@@ -25,6 +28,7 @@ const Header = (props) => {
   const [dropDownToggle, setDropdownToggle] = useState(false);
   // const [selectedValue, setSelectedValue] = useState("Advanced");
   const [showModal, setShowModal] = useState(false);
+  const [searchValue,setSearchValue] = useState(topSearchValue);
   const [searchValues, setSearchValues] = useState({
     fname: "",
     lname: "",
@@ -35,9 +39,7 @@ const Header = (props) => {
   });
   const navigate = useNavigate();
   const token = useSelector((state) => state?.SignUpReducer?.signInData);
-  const topSearchValue = useSelector(
-    (state) => state?.HeaderReducer?.topSearchValue
-  );
+  
   
   const selectedItem = useSelector(
     (state) => state?.HeaderReducer?.selectedItem
@@ -53,13 +55,15 @@ const Header = (props) => {
   };
 
   useEffect(() => {
+    console.log(location.pathname,'header location.pathname')
     if (location.pathname === "/search-executive") {
       dispatch(selectItem("Executive"));
     } else if (location.pathname === "/search-company") {
       dispatch(selectItem("Company"));
     } else {
       dispatch(selectItem("Company"));
-      dispatch(topSearch(""));      
+      dispatch(topSearch(""));
+      setSearchValue("")      
     }
   }, [location.pathname]);
 
@@ -74,7 +78,7 @@ const Header = (props) => {
     if (!btn) {
       setDropdownToggle(!dropDownToggle);
     }
-    dispatch(topSearch(searchRef.current.value));
+    dispatch(topSearch(searchValue));
     
     if (val === "Company") { 
       navigate("/search-company");
@@ -153,6 +157,12 @@ const Header = (props) => {
       </p>
     </div>
   );
+
+  const handleSetValue = (event) => {
+    console.log(event,'slkjdfskd')
+    setSearchValue(event.target.value)
+  }
+
   const handleKeyPress = (event) => {
     if(event.key === 'Enter'){
     //console.log('enter press here! ',selectedItem,searchRef.current.value)
@@ -196,12 +206,13 @@ const Header = (props) => {
               <div className="search-box position-relative">
                 <input
                   type="search"
-                  ref={searchRef}
-                  defaultValue={topSearchValue}
-                  // value={topSearchValue}
+                  // ref={searchRef}
+                  // defaultValue={topSearchValue}
+                  value={searchValue}
                   placeholder="Search"
                   name="search"
                   className="search-popup"
+                  onChange={handleSetValue}
                   onKeyPress={handleKeyPress}
                 />
                 <button

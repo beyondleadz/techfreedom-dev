@@ -40,9 +40,24 @@ import LeadKanban from './pages/LeadKanban';
 import MoreMenuContent from './pages/MoreMenuContent';
 import LeadsTimeline from './pages/LeadsTimeline';
 
+import { useEffect } from 'react';
+// import { useLocation } from "react-router-dom";
+import { topSearch} from "./actionCreator/headerActionCreater";
+import { useDispatch } from "react-redux";
 // import Test from './pages/Test';
 import Demo from './pages/Demo';
 const AppRoutes = (props) => {
+//     // const location = useLocation();
+//     const dispatch = useDispatch();
+
+//   useEffect(() => {
+//     console.log(window.location.pathname,'window.location')
+//     if (window.location.pathname === "/search-executive" || window.location.pathname === "/search-company") {
+//     }else{
+//       dispatch(topSearch("")); 
+//     }
+//   },[window.location.pathname]);
+
     return (
         <Router basename={DEVMODE?"":"/beyondleads"} {...props}>
             {/* <Header setToken={props.setToken} /> */}
