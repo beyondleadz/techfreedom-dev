@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, NavLink} from "react-router-dom";
+
 import {Link} from 'react-router-dom'
 
 import Layout from "../layout/Layout";
@@ -202,19 +203,18 @@ const LeadDetails = () => {
                         <div>
                           <Tooltip overlayClassName="fs-12 " title="Phone">
                             {" "}
-                            <a href="#" className="btn btn-phone btn-circle">
+                            <NavLink to="tel:`${leadDetail?.phoneNo}`" className="btn btn-phone btn-circle">
                               {" "}
                               <i className="las la-phone"></i>
-                            </a>
+                            </NavLink>
                           </Tooltip>
                           <Tooltip overlayClassName="fs-12 " title="Email">
                             {" "}
-                            <a
-                              href="#"
+                            <NavLink to="mailto:`${leadDetail?.emailId}`"
                               className="btn btn-email btn-circle ml-3"
                             >
                               <i className="las la-envelope "></i>
-                            </a>
+                            </NavLink>
                           </Tooltip>
                           <Tooltip overlayClassName="fs-12" title="Activity">
                             <a
@@ -246,7 +246,7 @@ const LeadDetails = () => {
                             {leadDetail?.title}
                           </span>{" "}
                         </div>
-                        <div className=" row mt-2">
+                        <div  className=" row mt-2">
                           {" "}
                           <span className="col-md-2 fs-14">Phone </span>{" "}
                           <span className="col namedc">

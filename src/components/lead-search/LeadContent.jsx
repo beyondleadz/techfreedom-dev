@@ -9,6 +9,7 @@ import { PAGE_LENGTH } from "../../config";
 import defaultLogo from "../../assets/images/default_company_logo.jpg";
 import popupImg from "../../assets/images/free-user-login-prompt.jpg.jpeg";
 import TrialModal from "../../common/TrialModal";
+import dayjs from "dayjs";
 
 import {
   getExecutiveEmployeeList,
@@ -177,7 +178,7 @@ const LeadContent = () => {
     },
     {
       title: "Created Dated",
-      dataIndex: "notes",
+      dataIndex: "createdDate",
     },
   ];
 
@@ -273,6 +274,7 @@ const LeadContent = () => {
           status: record?.status,
           social: renderSocialLinks(record?.socialLinks),
           notes: "",
+          createdDate:(record?.createdDate)?dayjs(record?.createdDate).format("DD-MM-YYYY"):"",
         },
       ];
     });
