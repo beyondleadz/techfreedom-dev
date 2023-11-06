@@ -37,3 +37,6 @@ export const getLeadStatusApiUrl='api/statusforkanban';
 export const getLeadRatingApiUrl='api/lead-rating';
 export const getLeadTasksStatusApiUrl='api/statusfortasks';
 
+export const getDashboardClosedOpportunityApiUrl='api/dashBoard-top5Closed';
+export const getDashboardOpenOpportunityApiUrl='api/dashBoard-top5Open';
+

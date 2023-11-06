@@ -1,9 +1,30 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+
 import { Funnel,Gauge,Line,Bar } from '@ant-design/plots';
 import { purple } from '@ant-design/colors';
 import { Table } from "antd";
+import {getTopClosedOpportunity,getTopOpenOpportunity} from "../../actionCreator/dashboardActionCreator"
+import { getUserInfo } from "../../utils/utils";
 
 const LeadReport = () => {
+  const dispatch = useDispatch();
+  const userAccountInfo = useSelector(
+    (state) => state.CommonReducer.accountInfo
+  );
+  const closedOpprtunityData = useSelector(
+    (state) => state.DashboardReducer.closedOpp
+  );
+  const openOpprtunityData = useSelector(
+    (state) => state.DashboardReducer.openOpp
+  );
+  useEffect(() => {
+    if (Object.keys(getUserInfo()).length) {
+      dispatch(getTopClosedOpportunity());
+      dispatch(getTopOpenOpportunity());
+    }
+  }, [userAccountInfo,closedOpprtunityData,openOpprtunityData]);
+    //console.log(closedOpprtunityData,'closedOpprtunityData');
     const data = [
         {
           stage: 'First',

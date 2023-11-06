@@ -70,6 +70,7 @@ const CompanyNavigation = () => {
   };
 
   const onChangeQuickSelection = (e) => {
+    //console.log(e.target.name,e.target.value);
     setQuickSelection({
       ...quickSelection,
       [e.target.name]: e.target.value,
@@ -102,6 +103,7 @@ const CompanyNavigation = () => {
         (parseInt(quickSelection.end) - startValue) * parseInt(PAGE_LENGTH) ||
         PAGE_LENGTH,
     };
+    //console.log(pageValues,'pageValuespageValues');
     if ((pageValues?.start || pageValues?.start === 0) && pageValues?.end) {
       emptyFilters();
       dispatch(getCompanyListWithStartAndEnd(pageValues));

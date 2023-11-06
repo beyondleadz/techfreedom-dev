@@ -7,6 +7,7 @@ import HeaderReducer from './headerReducer'
 import leadListingReducer from './leadListingReducer'
 import LeadDetailsReducer from './leadDetailsReducer'
 import CommonReducer from './commonReducer'
+import DashboardReducer from './dashboardReducer'
 import {combineReducers} from 'redux'
 
 const rootReducer = combineReducers({
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
     executiveListingReducer,
     executiveDetailsReducer,
     leadListingReducer,
-    LeadDetailsReducer
+    LeadDetailsReducer,
+    DashboardReducer
 
 
 })
