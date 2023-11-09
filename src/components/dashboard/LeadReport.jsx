@@ -23,8 +23,27 @@ const LeadReport = () => {
       dispatch(getTopClosedOpportunity());
       dispatch(getTopOpenOpportunity());
     }
-  }, [userAccountInfo,closedOpprtunityData,openOpprtunityData]);
+  }, [userAccountInfo]);
     //console.log(closedOpprtunityData,'closedOpprtunityData');
+    const dataSource =closedOpprtunityData;
+      
+      const columns = [
+        {
+          title: 'Opportunity with Account name',
+          dataIndex: 'fullname',
+          key: 'fullname',
+        },
+        {
+          title: 'Amount',
+          dataIndex: 'oppurtunityAmount',
+          key: 'oppurtunityAmount',
+        },
+        {
+          title: 'Owner & Closing Date',
+          dataIndex: 'createdBy',
+          key: 'createdBy',
+        },
+      ];
     const data = [
         {
           stage: 'First',
@@ -132,80 +151,22 @@ const LeadReport = () => {
         ],
       };
 
-      const chartFourData = [
-        {
-          type: 'Test 1',
-          sales: 38,
-        },
-        {
-          type: 'Test 2',
-          sales: 52,
-        },
-        {
-          type: 'Test 3',
-          sales: 61,
-        },
-        {
-          type: 'Test 4',
-          sales: 145,
-        },
-        {
-          type: 'Test 5',
-          sales: 48,
-        },
-        {
-          type: 'Test 6',
-          sales: 38,
-        }
-      ];
+      
       const chart4 = {
-        data:chartFourData,
-        xField: 'sales',
-        yField: 'type',
+        data:openOpprtunityData,
+        xField: 'oppurtunityAmount',
+        yField: 'fullname',
         meta: {
-          type: {
+          fullname: {
             alias: 'Category',
           },
-          sales: {
-            alias: 'Sales',
+          oppurtunityAmount: {
+            alias: 'Amount',
           },
         },
         minBarWidth: 20,
         maxBarWidth: 20,
-      };
-
-      const dataSource = [
-        {
-          key: '1',
-          name: 'Mike',
-          age: 32000,
-          address: 'RK, 3 September 2023',
-        },
-        {
-          key: '2',
-          name: 'John',
-          age: 42000,
-          address: 'SG, 1 September 2023',
-        },
-      ];
-      
-      const columns = [
-        {
-          title: 'Opportunity with Account name',
-          dataIndex: 'name',
-          key: 'name',
-        },
-        {
-          title: 'Amount',
-          dataIndex: 'age',
-          key: 'age',
-        },
-        {
-          title: 'Owner & Closing Date',
-          dataIndex: 'address',
-          key: 'address',
-        },
-      ];
+      }; 
       
       
   return (
