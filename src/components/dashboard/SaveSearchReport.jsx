@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { Funnel,Gauge,Line,Bar } from '@ant-design/plots';
-import { purple } from '@ant-design/colors';
+import { Funnel, Gauge, Line, Bar } from "@ant-design/plots";
+import { purple } from "@ant-design/colors";
 import { Table } from "antd";
-import {  saveExecutiveSearchList} from "../../actionCreator/executiveListingActionCreater";
-import {  saveSearchList} from "../../actionCreator/companyListingActionCreater";
+import { saveExecutiveSearchList } from "../../actionCreator/executiveListingActionCreater";
+import { saveSearchList } from "../../actionCreator/companyListingActionCreater";
 
 import { getUserInfo } from "../../utils/utils";
 
@@ -20,33 +20,32 @@ const SaveSearchReport = () => {
   const companySaveSearchList = useSelector(
     (state) => state.companyListingReducer.saveSearchList
   );
-  
+
   useEffect(() => {
     if (Object.keys(getUserInfo()).length) {
-        const {id}= getUserInfo();
-        dispatch(saveExecutiveSearchList(id));
-        dispatch(saveSearchList(id));
+      const { id } = getUserInfo();
+      dispatch(saveExecutiveSearchList(id));
+      dispatch(saveSearchList(id));
     }
   }, [userAccountInfo]);
 
-  
-    //console.log(closedOpprtunityData,'closedOpprtunityData');
-    const dataSource =companySaveSearchList;
-    const executiveDataSource=executiveSaveSearchList;
-      
-      const columns = [
-        {
-          title: 'Search',
-          dataIndex: 'fullName',
-          key: 'fullName',
-        },
-        {
-          title: 'Source',
-          dataIndex: 'source',
-          key: 'source',
-        }
-      ];
-      
+  //console.log(closedOpprtunityData,'closedOpprtunityData');
+  const dataSource = companySaveSearchList;
+  const executiveDataSource = executiveSaveSearchList;
+
+  const columns = [
+    {
+      title: "Search",
+      dataIndex: "fullName",
+      key: "fullName",
+    },
+    {
+      title: "Source",
+      dataIndex: "source",
+      key: "source",
+    },
+  ];
+
   return (
     <>
       <div className="row">
@@ -60,7 +59,19 @@ const SaveSearchReport = () => {
 
             <div className="card-body">
               <div className="chart-area">
-              <Table pagination={{ position: ['none'] }} dataSource={dataSource} columns={columns} />
+                <Table
+                    pagination={{
+                      responsive: true,
+                      total: dataSource?.length,
+                      pageSize: 10,
+                      position:
+                      dataSource?.length > 10
+                          ? ["bottomCenter"]
+                          : ["none"],
+                    }}
+                  dataSource={dataSource}
+                  columns={columns}
+                />
               </div>
             </div>
           </div>
@@ -75,12 +86,23 @@ const SaveSearchReport = () => {
 
             <div className="card-body">
               <div className="chart-area">
-              <Table pagination={{ position: ['none'] }} dataSource={executiveDataSource} columns={columns} />
+                <Table
+                  pagination={{
+                    responsive: true,
+                    total: executiveDataSource?.length,
+                    pageSize: 10,
+                    position:
+                      executiveDataSource?.length > 10
+                        ? ["bottomCenter"]
+                        : ["none"],
+                  }}
+                  dataSource={executiveDataSource}
+                  columns={columns}
+                />
               </div>
             </div>
           </div>
         </div>
-       
       </div>
     </>
   );

@@ -86,6 +86,10 @@ const KeyExecutives = () => {
       return 0;
     }
   };
+
+  const viewExecutiveDetails=(row)=>{
+    navigate(`/executive-details/${row.id}`);
+  };
   const columns = [
     // {
     //   title: "ID",
@@ -96,6 +100,12 @@ const KeyExecutives = () => {
       title: "Executive Name",
       dataIndex: "fullname",
       fixed: "left",
+      render: (text, row) => {
+        return  <span className="namecol"
+        onClick={() => viewExecutiveDetails(row)}
+      >{row.fullname}
+      </span>
+      }
     },
     {
       title: "Designation",

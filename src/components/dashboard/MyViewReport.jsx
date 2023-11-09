@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Tabs, TabsProps } from "antd";
 import SaveSearchReport from "./SaveSearchReport";
+import TagsReport from "./TagsReport";
 
 const MyViewReport = () => {
   const onChange = (key: string) => {
@@ -14,8 +15,8 @@ const MyViewReport = () => {
     },
     {
       key: "2",
-      label: "Top 5 Tags",
-      children: "Content of Tab Pane 2",
+      label: "My Tags",
+      children: <TagsReport/>,
     },
     {
       key: "3",
