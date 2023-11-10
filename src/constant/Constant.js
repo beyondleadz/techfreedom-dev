@@ -39,4 +39,5 @@ export const getLeadTasksStatusApiUrl='api/statusfortasks';
 
 export const getDashboardClosedOpportunityApiUrl='api/dashBoard-top5Closed';
 export const getDashboardOpenOpportunityApiUrl='api/dashBoard-top5Open';
+export const getDashboardGroupedCountApiUrl='api/grouped-count';
 

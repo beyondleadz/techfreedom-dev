@@ -41,19 +41,6 @@ const TagsReport = () => {
     "#FAC300",
     "#9AD888",
   ];
-  const columns = [
-    {
-      title: "Search",
-      dataIndex: "fullName",
-      key: "fullName",
-    },
-    {
-      title: "Source",
-      dataIndex: "source",
-      key: "source",
-    },
-  ];
-
   return (
     <>
       <div className="row">

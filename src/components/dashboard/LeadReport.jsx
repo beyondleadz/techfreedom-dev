@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Funnel,Gauge,Line,Bar } from '@ant-design/plots';
 import { purple } from '@ant-design/colors';
 import { Table } from "antd";
-import {getTopClosedOpportunity,getTopOpenOpportunity} from "../../actionCreator/dashboardActionCreator"
+import {getTopClosedOpportunity,getTopOpenOpportunity,getGroupedCountData} from "../../actionCreator/dashboardActionCreator"
 import { getUserInfo } from "../../utils/utils";
 
 const LeadReport = () => {
@@ -18,14 +18,38 @@ const LeadReport = () => {
   const openOpprtunityData = useSelector(
     (state) => state.DashboardReducer.openOpp
   );
+  const groupedCountData=useSelector((state)=>state.DashboardReducer.groupedCountData);
   useEffect(() => {
     if (Object.keys(getUserInfo()).length) {
       dispatch(getTopClosedOpportunity());
       dispatch(getTopOpenOpportunity());
+      dispatch(getGroupedCountData());
     }
   }, [userAccountInfo]);
     //console.log(closedOpprtunityData,'closedOpprtunityData');
     const dataSource =closedOpprtunityData;
+    let leadConversionValue=0;
+    let opportunityWonValue=0;
+    let leadConversionRate=0;
+    let opportunityWonRatio=0;
+    let lostOpportunity=0; 
+    if(groupedCountData?.dashboardDTOS?.length > 0){
+      groupedCountData?.dashboardDTOS?.forEach((record) => {
+          if(record?.typeValue =="qulified"){
+            leadConversionValue+=Math.number(record.countSum);
+          }
+          if(record?.typeValue =="WON"){
+            opportunityWonValue+=Math.number(record.leadclosedOpportunity);
+          }
+          if(record?.typeValue =="un-qulified" || record?.typeValue =="lost"){
+            lostOpportunity+=Math.number(record.opportunitSum);
+          }
+      });
+    }
+    if(groupedCountData?.leadGenareatedCount > 0){
+      leadConversionRate=leadConversionValue/groupedCountData?.leadGenareatedCount * 100;
+      opportunityWonRatio=opportunityWonValue/groupedCountData?.leadGenareatedCount * 100;
+    }
       
       const columns = [
         {
@@ -180,7 +204,7 @@ const LeadReport = () => {
               </div>
               <div className="row no-gutters align-items-center">
                 <div className="col mr-2">
-                  <div className="h5 mb-0 font-weight-bold text-gray-800">1892</div>
+                  <div className="h5 mb-0 font-weight-bold text-gray-800">{groupedCountData?.leadGenareatedCount}</div>
                 </div>
                 <div className="col-auto">
                   <i className="las la-filter fa-2x text-gray-300"></i>
@@ -198,7 +222,7 @@ const LeadReport = () => {
               </div>
               <div className="row no-gutters align-items-center">
                 <div className="col mr-2">
-                  <div className="h5 mb-0 font-weight-bold text-gray-800">2.9%</div>
+                  <div className="h5 mb-0 font-weight-bold text-gray-800">{leadConversionRate}%</div>
                 </div>
                 <div className="col-auto">
                   <i className="las la-funnel-dollar fa-2x text-gray-300"></i>
@@ -219,7 +243,7 @@ const LeadReport = () => {
                   <div className="row no-gutters align-items-center">
                     <div className="col-auto">
                       <div className="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                        51.0%
+                        {opportunityWonRatio}%
                       </div>
                     </div>
                     <div className="col">
@@ -251,7 +275,7 @@ const LeadReport = () => {
               </div>
               <div className="row no-gutters align-items-center">
                 <div className="col mr-2">
-                  <div className="h5 mb-0 font-weight-bold text-gray-800">55</div>
+                  <div className="h5 mb-0 font-weight-bold text-gray-800">{groupedCountData?.leadOpenOpportunity}</div>
                 </div>
                 <div className="col-auto">
                   <i className="las la-comments fa-2x text-gray-300"></i>
@@ -269,7 +293,7 @@ const LeadReport = () => {
               </div>
               <div className="row no-gutters align-items-center">
                 <div className="col mr-2">
-                  <div className="h5 mb-0 font-weight-bold text-gray-800">11 M</div>
+                  <div className="h5 mb-0 font-weight-bold text-gray-800">{groupedCountData?.totalOpportunity}</div>
                 </div>
                 <div className="col-auto">
                   <i className="las la-hand-holding-usd fa-2x text-gray-300"></i>
@@ -287,7 +311,7 @@ const LeadReport = () => {
               </div>
               <div className="row no-gutters align-items-center">
                 <div className="col mr-2">
-                  <div className="h5 mb-0 font-weight-bold text-gray-800">2 M</div>
+                  <div className="h5 mb-0 font-weight-bold text-gray-800">{lostOpportunity}</div>
                 </div>
                 <div className="col-auto">
                   <i className="lab la-creative-commons-nc fa-2x text-gray-300"></i>
