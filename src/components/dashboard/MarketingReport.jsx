@@ -1,9 +1,40 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import _ from "lodash";
 import { Funnel, Gauge, Line, Bar, Pie, Column } from "@ant-design/plots";
 import { purple } from "@ant-design/colors";
 import { Table } from "antd";
+import {getGroupedCountData,getSalesTrendData} from "../../actionCreator/dashboardActionCreator"
+import { getUserInfo } from "../../utils/utils";
 
 const MarketingReport = () => {
+  const dispatch = useDispatch();
+  const [salesReport, setSalesReport] = useState([]);
+  const userAccountInfo = useSelector(
+    (state) => state.CommonReducer.accountInfo
+  );
+  const groupedCountData=useSelector((state)=>state.DashboardReducer.groupedCountData);
+  const salesTrendData=useSelector((state)=>state.DashboardReducer.salesTrendData);
+  useEffect(() => {
+    if (Object.keys(getUserInfo()).length) {
+      dispatch(getGroupedCountData());
+      dispatch(getSalesTrendData());
+    }
+  }, [userAccountInfo]);
+  let salesOrderByStatus=[];
+  if(salesTrendData?.dashboardDTOS?.length > 0){
+  let rawData=groupedCountData?.dashboardDTOS;
+  salesOrderByStatus=_.orderBy(rawData, 'statusId', 'asc');
+  }
+
+  let salesTrendWonData=[];
+    if(salesTrendData?.dashboardDTOS?.length > 0){
+      salesTrendData?.dashboardDTOS?.forEach((record) => {
+          if(record?.typeValue =="WON"){
+            salesTrendWonData.push(record);
+          }          
+      });
+    }
   const data = [
     {
       stage: "First",
@@ -158,6 +189,7 @@ const MarketingReport = () => {
       value: 628,
     },
   ];
+ 
   const leadByStatus = {
     data: leadByStatusdata,
     xField: "year",
@@ -204,39 +236,39 @@ const MarketingReport = () => {
     },
   };
 
-  const chartThreedata = [
+  const salesTrendWonDataDummy = [
     {
-      year: "1991",
-      value: 3,
+      typeValue: '1991',
+      opportunitSum: 3,
     },
     {
-      year: "1992",
-      value: 4,
+      typeValue: '1992',
+      opportunitSum: 4,
     },
     {
-      year: "1993",
-      value: 3.5,
+      typeValue: '1993',
+      opportunitSum: 3.5,
     },
     {
-      year: "1994",
-      value: 5,
+      typeValue: '1994',
+      opportunitSum: 5,
     },
     {
-      year: "1995",
-      value: 4.9,
-    },
-  ];
+      typeValue: '1995',
+      opportunitSum: 4.9,
+    }        
+  ];      
   const chart3 = {
-    data: chartThreedata,
-    xField: "year",
-    yField: "value",
+    data:salesTrendWonDataDummy,//salesTrendWonData
+    xField: 'typeValue',
+    yField: 'opportunitSum',
     label: {},
     point: {
       size: 5,
-      shape: "diamond",
+      shape: 'diamond',
       style: {
-        fill: "white",
-        stroke: "#5B8FF9",
+        fill: 'white',
+        stroke: '#5B8FF9',
         lineWidth: 2,
       },
     },
@@ -247,14 +279,14 @@ const MarketingReport = () => {
       active: {
         style: {
           shadowBlur: 4,
-          stroke: "#000",
-          fill: "red",
+          stroke: '#000',
+          fill: 'red',
         },
       },
     },
     interactions: [
       {
-        type: "marker-active",
+        type: 'marker-active',
       },
     ],
   };
@@ -346,7 +378,7 @@ const MarketingReport = () => {
               <div className="row no-gutters align-items-center">
                 <div className="col mr-2">
                   <div className="h5 mb-0 font-weight-bold text-gray-800">
-                    1892
+                  {groupedCountData?.leadGenareatedCount}
                   </div>
                 </div>
                 <div className="col-auto">

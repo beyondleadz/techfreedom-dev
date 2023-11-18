@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-
+import _ from "lodash";
 import { Funnel,Gauge,Line,Bar } from '@ant-design/plots';
 import { purple } from '@ant-design/colors';
 import { Table } from "antd";
-import {getTopClosedOpportunity,getTopOpenOpportunity,getGroupedCountData} from "../../actionCreator/dashboardActionCreator"
+import {getTopClosedOpportunity,getTopOpenOpportunity,getGroupedCountData,getSalesTrendData} from "../../actionCreator/dashboardActionCreator"
 import { getUserInfo } from "../../utils/utils";
 
 const LeadReport = () => {
   const dispatch = useDispatch();
+  const [salesReport, setSalesReport] = useState([]);
   const userAccountInfo = useSelector(
     (state) => state.CommonReducer.accountInfo
   );
@@ -19,11 +20,13 @@ const LeadReport = () => {
     (state) => state.DashboardReducer.openOpp
   );
   const groupedCountData=useSelector((state)=>state.DashboardReducer.groupedCountData);
+  const salesTrendData=useSelector((state)=>state.DashboardReducer.salesTrendData);
   useEffect(() => {
     if (Object.keys(getUserInfo()).length) {
       dispatch(getTopClosedOpportunity());
       dispatch(getTopOpenOpportunity());
       dispatch(getGroupedCountData());
+      dispatch(getSalesTrendData());
     }
   }, [userAccountInfo]);
     //console.log(closedOpprtunityData,'closedOpprtunityData');
@@ -33,6 +36,15 @@ const LeadReport = () => {
     let leadConversionRate=0;
     let opportunityWonRatio=0;
     let lostOpportunity=0; 
+    let salesOrderByStatus=[];
+    let salesTrendWonData=[];
+    if(salesTrendData?.dashboardDTOS?.length > 0){
+      salesTrendData?.dashboardDTOS?.forEach((record) => {
+          if(record?.typeValue =="WON"){
+            salesTrendWonData.push(record);
+          }          
+      });
+    }
     if(groupedCountData?.dashboardDTOS?.length > 0){
       groupedCountData?.dashboardDTOS?.forEach((record) => {
           if(record?.typeValue =="qulified"){
@@ -45,12 +57,15 @@ const LeadReport = () => {
             lostOpportunity+=Math.number(record.opportunitSum);
           }
       });
+      let rawData=groupedCountData?.dashboardDTOS;
+      salesOrderByStatus=_.orderBy(rawData, 'statusId', 'asc');
+      //setSalesReport(salesOrderByStatus);
+      //console.log(salesOrderByStatus,'salesReportsalesReport')
     }
     if(groupedCountData?.leadGenareatedCount > 0){
       leadConversionRate=leadConversionValue/groupedCountData?.leadGenareatedCount * 100;
       opportunityWonRatio=opportunityWonValue/groupedCountData?.leadGenareatedCount * 100;
     }
-      
       const columns = [
         {
           title: 'Opportunity with Account name',
@@ -68,30 +83,32 @@ const LeadReport = () => {
           key: 'createdBy',
         },
       ];
-    const data = [
+
+      const salesOrderByStatus_dummy = [
         {
-          stage: 'First',
-          number: 400,
+          typeValue: 'First',
+          countSum: 400,
         },
         {
-          stage: 'Second',
-          number: 151,
+          typeValue: 'Second',
+          countSum: 151,
         }
-      ];
-      const config = {
-        data: data,
-        xField: 'stage',
-        yField: 'number',
+      ];  
+    const config = {
+        data: salesOrderByStatus_dummy,
+        xField: 'typeValue',
+        yField: 'countSum',
         legend: false,
         meta: {
             value: {
             min: 0,
-            max: 100,
+            max: 10000,
            },
          },
          //color:['#E6F7FF', '#BAE7FF', '#91D5FF', '#69C0FF', '#40A9FF', '#1890FF', '#096DD9', '#0050B3', '#003A8C', '#002766'],
       }; 
-      
+      let totalOpportunityDummy=50;
+      let totalValueRateDummy=100;
       const chart2 = {
         percent: 0.75,
         range: {
@@ -120,32 +137,32 @@ const LeadReport = () => {
         },
       };
  
-      const chartThreedata = [
+      const salesTrendWonDataDummy = [
         {
-          year: '1991',
-          value: 3,
+          typeValue: '1991',
+          opportunitSum: 3,
         },
         {
-          year: '1992',
-          value: 4,
+          typeValue: '1992',
+          opportunitSum: 4,
         },
         {
-          year: '1993',
-          value: 3.5,
+          typeValue: '1993',
+          opportunitSum: 3.5,
         },
         {
-          year: '1994',
-          value: 5,
+          typeValue: '1994',
+          opportunitSum: 5,
         },
         {
-          year: '1995',
-          value: 4.9,
+          typeValue: '1995',
+          opportunitSum: 4.9,
         }        
-      ];
+      ];      
       const chart3 = {
-        data:chartThreedata,
-        xField: 'year',
-        yField: 'value',
+        data:salesTrendWonDataDummy,//salesTrendWonData
+        xField: 'typeValue',
+        yField: 'opportunitSum',
         label: {},
         point: {
           size: 5,

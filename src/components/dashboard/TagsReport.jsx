@@ -29,7 +29,7 @@ const TagsReport = () => {
   //console.log(closedOpprtunityData,'closedOpprtunityData');
   const dataSource = companyTagList;
   const executiveDataSource = executiveCompanyTagList;
-  const colorArray = [
+  const colorArray1 = [
     "#43ACFF",
     "#EF5261",
     "#FAC300",
@@ -41,6 +41,15 @@ const TagsReport = () => {
     "#FAC300",
     "#9AD888",
   ];
+  function repeatFor(arr, size) {
+    var newArr = new Array(size);  
+    for(var i = 0; i < size; i++) {
+      newArr[i] = arr[i % size];
+    } 
+    return newArr;
+  }
+  const colorArray =repeatFor(colorArray1, colorArray1.length);
+//  console.log(colorArray,'colorArray')
   return (
     <>
       <div className="row">

@@ -4,12 +4,15 @@ import {
   OPEN_OPPORTUNITY,
   OPEN_OPPORTUNITY_ERROR,
   DASHBOARD_GROUPED_COUNT,
-  DASHBOARD_GROUPED_COUNT_ERROR
+  DASHBOARD_GROUPED_COUNT_ERROR,
+  DASHBOARD_SALES_TREND,
+  DASHBOARD_SALES_TREND_ERROR
 } from "../actionType/dashboardType";
 import {
   getDashboardClosedOpportunityApiUrl,
   getDashboardOpenOpportunityApiUrl,
-  getDashboardGroupedCountApiUrl
+  getDashboardGroupedCountApiUrl,
+  getDashboardSalesTrendApiUrl
 } from "../constant/Constant";
 
 import { getAuthMethod,postAuthMethod } from "../services/HttpServices";
@@ -66,6 +69,24 @@ export const getGroupedCountData = (payload) => (dispatch) => {
         type: DASHBOARD_GROUPED_COUNT_ERROR,
         payload:
           { [errEnum.DASHBOARD_GROUPED_COUNT_ERROR]: err.response.data[ErrKey] } ||
+          "Error Occured",
+      });
+    });
+};
+
+export const getSalesTrendData = (payload) => (dispatch) => {
+  return getAuthMethod(getDashboardSalesTrendApiUrl, payload)
+    .then((res) => {
+      dispatch({
+        type: DASHBOARD_SALES_TREND,
+        payload: res.data,
+      });      
+    })
+    .catch((err) => {
+      dispatch({
+        type: DASHBOARD_SALES_TREND_ERROR,
+        payload:
+          { [errEnum.DASHBOARD_SALES_TREND_ERROR]: err.response.data[ErrKey] } ||
           "Error Occured",
       });
     });

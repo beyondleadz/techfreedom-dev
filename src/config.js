@@ -2,9 +2,9 @@ let baseUrl;
 export const DEVMODE = false;
 export const getBaseUrl = () => {
   if (DEVMODE) {
-    baseUrl = "http://3.215.187.36/"; //"http://besthosting4u.co.in/beyondapi/";
+    baseUrl = "https://beyondleadz.com/"; //"http://besthosting4u.co.in/beyondapi/";
   } else {
-    baseUrl = "http://3.215.187.36/"; //"http://besthosting4u.co.in/beyondapi/";
+    baseUrl = "https://beyondleadz.com/"; //"http://besthosting4u.co.in/beyondapi/";
   }
   return baseUrl;
 };
@@ -96,6 +96,7 @@ export const errEnum = {
   LEAD_TASKS_STATUS_LIST:'LEAD_TASKS_STATUS_LIST',
   CLOSED_OPPORTUNITY_ERROR:'CLOSED_OPPORTUNITY_ERROR',
   DASHBOARD_GROUPED_COUNT_ERROR:'DASHBOARD_GROUPED_COUNT_ERROR',
+  DASHBOARD_SALES_TREND_ERROR:'DASHBOARD_SALES_TREND_ERROR',
 };
 
 export const ErrKey = 'title'
