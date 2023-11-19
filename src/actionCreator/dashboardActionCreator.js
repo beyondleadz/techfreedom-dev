@@ -6,13 +6,22 @@ import {
   DASHBOARD_GROUPED_COUNT,
   DASHBOARD_GROUPED_COUNT_ERROR,
   DASHBOARD_SALES_TREND,
-  DASHBOARD_SALES_TREND_ERROR
+  DASHBOARD_SALES_TREND_ERROR,
+  DASHBOARD_GROUPED_BYSOURCE,
+  DASHBOARD_GROUPED_BYSOURCE_ERROR,
+  DASHBOARD_GROUPED_BYINDUSTRY,
+  DASHBOARD_GROUPED_BYINDUSTRY_ERROR,
+  DASHBOARD_GROUPED_BYACTIVITY,
+  DASHBOARD_GROUPED_BYACTIVITY_ERROR
 } from "../actionType/dashboardType";
 import {
   getDashboardClosedOpportunityApiUrl,
   getDashboardOpenOpportunityApiUrl,
   getDashboardGroupedCountApiUrl,
-  getDashboardSalesTrendApiUrl
+  getDashboardSalesTrendApiUrl,
+  getDashboardGroupedBySourceApiUrl,
+  getDashboardGroupedByIndustryApiUrl,
+  getDashboardGroupedByActivityApiUrl
 } from "../constant/Constant";
 
 import { getAuthMethod,postAuthMethod } from "../services/HttpServices";
@@ -92,4 +101,57 @@ export const getSalesTrendData = (payload) => (dispatch) => {
     });
 };
 
+export const getGroupedBySourceData = (payload) => (dispatch) => {
+  return getAuthMethod(getDashboardGroupedBySourceApiUrl, payload)
+    .then((res) => {
+      dispatch({
+        type: DASHBOARD_GROUPED_BYSOURCE,
+        payload: res.data,
+      });      
+    })
+    .catch((err) => {
+      dispatch({
+        type: DASHBOARD_GROUPED_BYSOURCE_ERROR,
+        payload:
+          { [errEnum.DASHBOARD_GROUPED_BYSOURCE_ERROR]: err.response.data[ErrKey] } ||
+          "Error Occured",
+      });
+    });
+};
+
+export const getGroupedByIndustryData = (payload) => (dispatch) => {
+  return getAuthMethod(getDashboardGroupedByIndustryApiUrl, payload)
+    .then((res) => {
+      dispatch({
+        type: DASHBOARD_GROUPED_BYINDUSTRY,
+        payload: res.data,
+      });      
+    })
+    .catch((err) => {
+      dispatch({
+        type: DASHBOARD_GROUPED_BYINDUSTRY_ERROR,
+        payload:
+          { [errEnum.DASHBOARD_GROUPED_BYINDUSTRY_ERROR]: err.response.data[ErrKey] } ||
+          "Error Occured",
+      });
+    });
+};
+
+export const getGroupedByActivityData = (payload) => (dispatch) => {
+  return getAuthMethod(getDashboardGroupedByActivityApiUrl, payload)
+    .then((res) => {
+      dispatch({
+        type: DASHBOARD_GROUPED_BYACTIVITY,
+        payload: res.data,
+      });      
+    })
+    .catch((err) => {
+      dispatch({
+        type: DASHBOARD_GROUPED_BYACTIVITY_ERROR,
+        payload:
+          { [errEnum.DASHBOARD_GROUPED_BYACTIVITY_ERROR]: err.response.data[ErrKey] } ||
+          "Error Occured",
+      });
+    });
+};
 

@@ -1,9 +1,20 @@
-import React, { useState } from "react";
-import { Funnel, Gauge, Line, Bar, Pie, Column } from "@ant-design/plots";
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";import { Funnel, Gauge, Line, Bar, Pie, Column } from "@ant-design/plots";
 import { purple } from "@ant-design/colors";
 import { Table } from "antd";
-
+import {getGroupedByActivityData} from "../../actionCreator/dashboardActionCreator"
+import { getUserInfo } from "../../utils/utils";
 const ActivitiesReport = () => {
+  const dispatch = useDispatch();
+  const userAccountInfo = useSelector(
+    (state) => state.CommonReducer.accountInfo
+  );
+  const groupedActivityData=useSelector((state)=>state.DashboardReducer.groupedActivityData);
+  useEffect(() => {
+    if (Object.keys(getUserInfo()).length) {
+      dispatch(getGroupedByActivityData());
+    }
+  }, [userAccountInfo]);
   const data = [
     {
       stage: "First",

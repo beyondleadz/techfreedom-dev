@@ -4,7 +4,7 @@ import _ from "lodash";
 import { Funnel, Gauge, Line, Bar, Pie, Column } from "@ant-design/plots";
 import { purple } from "@ant-design/colors";
 import { Table } from "antd";
-import {getGroupedCountData,getSalesTrendData} from "../../actionCreator/dashboardActionCreator"
+import {getGroupedCountData,getSalesTrendData,getGroupedBySourceData,getGroupedByIndustryData} from "../../actionCreator/dashboardActionCreator"
 import { getUserInfo } from "../../utils/utils";
 
 const MarketingReport = () => {
@@ -15,20 +15,35 @@ const MarketingReport = () => {
   );
   const groupedCountData=useSelector((state)=>state.DashboardReducer.groupedCountData);
   const salesTrendData=useSelector((state)=>state.DashboardReducer.salesTrendData);
+  const groupedSourceData=useSelector((state)=>state.DashboardReducer.groupedSourceData);
+  const groupedIndustryData=useSelector((state)=>state.DashboardReducer.groupedIndustryData);
+
+
   useEffect(() => {
     if (Object.keys(getUserInfo()).length) {
       dispatch(getGroupedCountData());
       dispatch(getSalesTrendData());
+      dispatch(getGroupedBySourceData());
+      dispatch(getGroupedByIndustryData());
     }
   }, [userAccountInfo]);
   let salesOrderByStatus=[];
-  if(salesTrendData?.dashboardDTOS?.length > 0){
+  if(salesTrendData?.dashboardDTOS){
   let rawData=groupedCountData?.dashboardDTOS;
   salesOrderByStatus=_.orderBy(rawData, 'statusId', 'asc');
   }
-
+  let groupedIndustryData1=[];let groupedIndustryTotal=0;
+  let groupedSourceData1=[];let groupedSourceTotal=0;
+  if(groupedIndustryData?.dashboardDTOS?.length > 0){
+    groupedIndustryData1=groupedIndustryData.dashboardDTOS;
+    groupedIndustryTotal=groupedIndustryData.leadGenareatedCount;
+  }
+  if(groupedSourceData?.dashboardDTOS?.length > 0){
+    groupedSourceData1=groupedSourceData.dashboardDTOS;
+    groupedSourceTotal=groupedSourceData.leadGenareatedCount;
+  }
   let salesTrendWonData=[];
-    if(salesTrendData?.dashboardDTOS?.length > 0){
+    if(salesTrendData && salesTrendData?.dashboardDTOS){
       salesTrendData?.dashboardDTOS?.forEach((record) => {
           if(record?.typeValue =="WON"){
             salesTrendWonData.push(record);
@@ -37,19 +52,19 @@ const MarketingReport = () => {
     }
   const data = [
     {
-      stage: "First",
-      number: 400,
+      typeValue: "First",
+      countSum: 400,
     },
     {
-      stage: "Second",
-      number: 600,
+      typeValue: "Second",
+      countSum: 600,
     },
   ];
   const config = {
     appendPadding: 10,
-    data,
-    angleField: "number",
-    colorField: "stage",
+    data:groupedSourceData1,
+    angleField: "countSum",
+    colorField: "typeValue",
     radius: 1,
     innerRadius: 0.6,
     label: {
@@ -77,11 +92,48 @@ const MarketingReport = () => {
           overflow: "hidden",
           textOverflow: "ellipsis",
         },
-        content: "Total\n1000",
+        content: "Total\n"+groupedSourceTotal,
       },
     },
   };
-
+  //groupedIndustryData1 +groupedIndustryData?.leadGenareatedCount
+  const leadByIndustry = {
+    appendPadding: 10,
+    data:groupedIndustryData1,
+    angleField: "countSum",
+    colorField: "typeValue",
+    radius: 1,
+    innerRadius: 0.6,
+    label: {
+      type: "inner",
+      offset: "-50%",
+      content: "{value}",
+      style: {
+        textAlign: "center",
+        fontSize: 14,
+      },
+    },
+    interactions: [
+      {
+        type: "element-selected",
+      },
+      {
+        type: "element-active",
+      },
+    ],
+    statistic: {
+      title: false,
+      content: {
+        style: {
+          whiteSpace: "pre-wrap",
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+        },
+        content: "Total\n"+groupedIndustryTotal,
+      },
+    },
+  };
+  
   const leadByStatusdata = [
     {
       country: "Asia",
@@ -482,7 +534,7 @@ const MarketingReport = () => {
                 <div className="chartjs-size-monitor">
                   <div className="chartjs-size-monitor-expand">
                     <div className="" style={{ height: 220 }}>
-                      {<Pie {...config} />}
+                      {<Pie {...leadByIndustry} />}
                     </div>
                   </div>
                   <div className="chartjs-size-monitor-shrink">

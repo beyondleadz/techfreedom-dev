@@ -41,4 +41,6 @@ export const getDashboardClosedOpportunityApiUrl='api/dashBoard-top5Closed';
 export const getDashboardOpenOpportunityApiUrl='api/dashBoard-top5Open';
 export const getDashboardGroupedCountApiUrl='api/grouped-count';
 export const getDashboardSalesTrendApiUrl="api/grouped-salestrendz";
-
+export const getDashboardGroupedBySourceApiUrl="api/grouped-bysource";
+export const getDashboardGroupedByIndustryApiUrl="api/grouped-byindustry";
+export const getDashboardGroupedByActivityApiUrl="api/dashboard-groupcountOnactivity";

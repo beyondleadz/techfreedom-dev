@@ -7,6 +7,12 @@ import {
   DASHBOARD_GROUPED_COUNT_ERROR,
   DASHBOARD_SALES_TREND,
   DASHBOARD_SALES_TREND_ERROR,
+  DASHBOARD_GROUPED_BYSOURCE,
+  DASHBOARD_GROUPED_BYSOURCE_ERROR,
+  DASHBOARD_GROUPED_BYINDUSTRY,
+  DASHBOARD_GROUPED_BYINDUSTRY_ERROR,
+  DASHBOARD_GROUPED_BYACTIVITY,
+  DASHBOARD_GROUPED_BYACTIVITY_ERROR,
 } from "../actionType/dashboardType";
 
 const initialState = {
@@ -14,6 +20,9 @@ const initialState = {
   openOpp: [],
   groupedCountData: {},
   salesTrendData: {},
+  groupedSourceData: {},
+  groupedIndustryData: {},
+  groupedActivityData: {},
 };
 
 const DashboardReducer = (state = initialState, action) => {
@@ -27,6 +36,12 @@ const DashboardReducer = (state = initialState, action) => {
       return { ...state, groupedCountData: payload };
     case DASHBOARD_SALES_TREND:
       return { ...state, salesTrendData: payload };
+    case DASHBOARD_GROUPED_BYSOURCE:
+      return { ...state, groupedSourceData: payload };
+    case DASHBOARD_GROUPED_BYINDUSTRY:
+      return { ...state, groupedIndustryData: payload };
+    case DASHBOARD_GROUPED_BYACTIVITY:
+      return { ...state, groupedActivityData: payload };
     case CLOSED_OPPORTUNITY_ERROR:
       return { ...state, errObj: { ...state.errObj, ...payload } };
     case OPEN_OPPORTUNITY_ERROR:
@@ -34,6 +49,12 @@ const DashboardReducer = (state = initialState, action) => {
     case DASHBOARD_GROUPED_COUNT_ERROR:
       return { ...state, errObj: { ...state.errObj, ...payload } };
     case DASHBOARD_SALES_TREND_ERROR:
+      return { ...state, errObj: { ...state.errObj, ...payload } };
+    case DASHBOARD_GROUPED_BYSOURCE_ERROR:
+      return { ...state, errObj: { ...state.errObj, ...payload } };
+    case DASHBOARD_GROUPED_BYINDUSTRY_ERROR:
+      return { ...state, errObj: { ...state.errObj, ...payload } };
+    case DASHBOARD_GROUPED_BYACTIVITY_ERROR:
       return { ...state, errObj: { ...state.errObj, ...payload } };
     default:
       return state;
