@@ -350,7 +350,7 @@ export const getExecutiveEmployeeList = (payload, paginationValues) => (dispatch
     apiUrl=getClientLeadsKanbanUrl;
   }
   const url = createLeadPayload(payload, paginationValues,apiUrl );  
-  return getMethod(url)
+  return getAuthMethod(url)
     .then((res) => {
       dispatch({
         type: LEAD_EXECUTIVE_EMPLOYEELIST,

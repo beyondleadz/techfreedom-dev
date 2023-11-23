@@ -10,7 +10,7 @@ const restService = axios.create({
 });
 
 const restAuthService = (token = sessionStorage.getItem('token')) => {
-   return axios.create({
+   const instance= axios.create({
       baseURL: getBaseUrl(),
       headers: {
           'Authorization':`Bearer ${token}`,
@@ -18,6 +18,17 @@ const restAuthService = (token = sessionStorage.getItem('token')) => {
           'Access-Control-Allow-Origin': '*'
       }
    });
+   instance.interceptors.response.use(response => {
+      //console.log('valid login case', response);
+      return response;
+    }, error => {
+      //console.log(error,'error');
+      if(error?.response?.data=="User login not found" && error?.response?.status==403){
+      console.log('invalid login case', error,error.response.data);
+      window.location.href="http://localhost:3000/beyondleads/signin";
+      }
+    });
+    return instance;
 } 
 
 export const getAuthMethod=(apiUrl,token) =>{

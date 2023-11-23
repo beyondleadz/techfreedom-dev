@@ -18,6 +18,8 @@ import LeadContent from "../components/lead-search/LeadContent";
 import LeadNavigation from "../components/lead-search/LeadNavigation";
 import LeadLeft from "../components/lead-search/LeadLeft";
 import { INDUSTRY_LIST_ERROR } from "../actionType/companyListingType";
+import { getToken } from "../utils/utils";
+
 const CompanySearch = ({ tab }) => {
   const location = useLocation();
   const [activeTab, setActiveTab] = useState(tab);
@@ -60,71 +62,123 @@ const CompanySearch = ({ tab }) => {
       setActiveTab("2");
     }
   }, [topSearchClick, selectedItem]);
-
-  const items = [
-    {
-      key: "1",
-      label: (
-        <span>
-          <i className="fa tab-img la la-building"></i>Companies
-        </span>
-      ),
-      children: (
-        <div>
-          <CompanyNavigation />
-          <div id="wrapper">
-            <div className="leftmenu">
-              <CompanyLeft />
-            </div>
-            <div className="contentbody shadow">
-              <CompanyContent />
-            </div>
-          </div>
-        </div>
-      ),
-    },
-    {
-      key: "2",
-      label: (
-        <span>
-          <i className="fa tab-img la la-user-tie"></i>Executive
-        </span>
-      ),
-      children: (
-        <div>
-          <ExecutiveNavigation />
-          <div id="wrapper">
-            <div className="leftmenu">
-              <ExecutiveLeft />
-            </div>
-            <div className="contentbody shadow">
-              <ExecutiveContent />
+let items=[];
+  if(getToken()){
+     items = [
+      {
+        key: "1",
+        label: (
+          <span>
+            <i className="fa tab-img la la-building"></i>Companies
+          </span>
+        ),
+        children: (
+          <div>
+            <CompanyNavigation />
+            <div id="wrapper">
+              <div className="leftmenu">
+                <CompanyLeft />
+              </div>
+              <div className="contentbody shadow">
+                <CompanyContent />
+              </div>
             </div>
           </div>
-        </div>
-      ),
-    },
-    {
-      key: "3",
-      label: (
-        <span>
-          <i className="fa tab-img las la-user-friends"></i>Leads
-        </span>
-      ),
-      children: (
-        <div>
-          <LeadNavigation />
-          <div id="wrapper">
-            <div className="leftmenu">
-              <LeadLeft />
+        ),
+      },
+      {
+        key: "2",
+        label: (
+          <span>
+            <i className="fa tab-img la la-user-tie"></i>Executive
+          </span>
+        ),
+        children: (
+          <div>
+            <ExecutiveNavigation />
+            <div id="wrapper">
+              <div className="leftmenu">
+                <ExecutiveLeft />
+              </div>
+              <div className="contentbody shadow">
+                <ExecutiveContent />
+              </div>
             </div>
-            <LeadContent />
           </div>
-        </div>
-      ),
-    },
-  ];
-
+        ),
+      },
+      
+      {
+        key: "3",
+        label: (
+          <span>
+             <i className="fa tab-img las la-user-friends"></i>Leads
+          </span>
+        ),
+        children: (
+          <div>
+            <LeadNavigation />
+            <div id="wrapper">
+              <div className="leftmenu">
+                <LeadLeft />
+              </div>
+              <LeadContent />
+            </div>
+          </div>
+        ),
+      },
+    
+    ];
+  
+  }else{
+     items = [
+      {
+        key: "1",
+        label: (
+          <span>
+            <i className="fa tab-img la la-building"></i>Companies
+          </span>
+        ),
+        children: (
+          <div>
+            <CompanyNavigation />
+            <div id="wrapper">
+              <div className="leftmenu">
+                <CompanyLeft />
+              </div>
+              <div className="contentbody shadow">
+                <CompanyContent />
+              </div>
+            </div>
+          </div>
+        ),
+      },
+      {
+        key: "2",
+        label: (
+          <span>
+            <i className="fa tab-img la la-user-tie"></i>Executive
+          </span>
+        ),
+        children: (
+          <div>
+            <ExecutiveNavigation />
+            <div id="wrapper">
+              <div className="leftmenu">
+                <ExecutiveLeft />
+              </div>
+              <div className="contentbody shadow">
+                <ExecutiveContent />
+              </div>
+            </div>
+          </div>
+        ),
+      }
+    
+    ];
+  
+  }
+  
   const closeModal = () => {
     dispatch(emptyErrorObj());
   };

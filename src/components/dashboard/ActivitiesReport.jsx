@@ -10,6 +10,9 @@ const ActivitiesReport = () => {
     (state) => state.CommonReducer.accountInfo
   );
   const groupedActivityData=useSelector((state)=>state.DashboardReducer.groupedActivityData);
+  //const errObj = useSelector((state) => state.DashboardReducer.errObj);
+//console.log(errObj,'dashboardErr');
+
   useEffect(() => {
     if (Object.keys(getUserInfo()).length) {
       dispatch(getGroupedByActivityData());

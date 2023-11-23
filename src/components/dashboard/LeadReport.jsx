@@ -110,12 +110,46 @@ const LeadReport = () => {
       let totalOpportunityDummy=50;
       let totalValueRateDummy=100;
       const chart2 = {
+        percent: 0.1,
+        radius: 0.75,
+        innerRadius: 0.75,
+        // Label
+        
+        range: {
+          ticks: [0.1, 1],
+          color: [
+            "#F4664A",
+            "#FAAD14",
+          ]
+        },
+        statistic: {
+          title: {
+            style: ({ percent }) => {
+              return {
+                fontSize: "36px",
+                lineHeight: 1,
+                color: "#FAAD14"
+              };
+            }
+          },
+          content: {
+            offsetY: 36,
+            offsetX: 6,
+            style: {
+              fontSize: "24px",
+              color: "#4B535E"
+            },
+            formatter: () => "ABC"
+          }
+        }
+      };
+      const chart2_old = {
         percent: 0.75,
         range: {
           color: 'l(0) 0:#B8E1FF 1:#3D76DD',
         },
-        startAngle: Math.PI,
-        endAngle: 2 * Math.PI,
+        startAngle: 1,
+        endAngle: 0.75,
         indicator: null,
         statistic: {
           title: {

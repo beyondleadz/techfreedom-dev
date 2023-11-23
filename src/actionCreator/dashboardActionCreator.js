@@ -24,7 +24,7 @@ import {
   getDashboardGroupedByActivityApiUrl
 } from "../constant/Constant";
 
-import { getAuthMethod,postAuthMethod } from "../services/HttpServices";
+import { getMethod,getAuthMethod,postAuthMethod } from "../services/HttpServices";
 import { ErrKey, errEnum } from "../config";
 
 
@@ -138,6 +138,7 @@ export const getGroupedByIndustryData = (payload) => (dispatch) => {
 };
 
 export const getGroupedByActivityData = (payload) => (dispatch) => {
+  //console.log("getGroupedByActivityData")
   return getAuthMethod(getDashboardGroupedByActivityApiUrl, payload)
     .then((res) => {
       dispatch({
@@ -146,10 +147,11 @@ export const getGroupedByActivityData = (payload) => (dispatch) => {
       });      
     })
     .catch((err) => {
+     // console.log(err.response.status,err.response.data,'error data')
       dispatch({
         type: DASHBOARD_GROUPED_BYACTIVITY_ERROR,
         payload:
-          { [errEnum.DASHBOARD_GROUPED_BYACTIVITY_ERROR]: err.response.data[ErrKey] } ||
+          { [errEnum.DASHBOARD_GROUPED_BYACTIVITY_ERROR]: err.response.data} ||
           "Error Occured",
       });
     });

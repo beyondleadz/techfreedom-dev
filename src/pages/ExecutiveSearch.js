@@ -16,6 +16,8 @@ import LeadContent from "../components/lead-search/LeadContent";
 import LeadNavigation from "../components/lead-search/LeadNavigation";
 import LeadLeft from "../components/lead-search/LeadLeft";
 import "../assets/css/dynemic-page.css";
+import { getToken } from "../utils/utils";
+
 const ExecutiveSearch = ({ tab }) => {
   const [activeTab, setActiveTab] = useState(tab);
   const location = useLocation();
@@ -43,8 +45,9 @@ const ExecutiveSearch = ({ tab }) => {
       setActiveTab("2");
     }
   }, [topSearchClick, selectedItem]);
-
-  const items = [
+  let items=[];
+  if(getToken()){
+   items = [
     {
       key: "1",
       label: (
@@ -110,6 +113,54 @@ const ExecutiveSearch = ({ tab }) => {
     },
     
   ];
+}else{
+  items = [
+    {
+      key: "1",
+      label: (
+        <span>
+          {" "}
+          <i className="fa tab-img la la-building"></i>Companies
+        </span>
+      ),
+      children: (
+        <div>
+          <CompanyNavigation />
+          <div id="wrapper">
+            <div className="leftmenu">
+              <CompanyLeft />
+            </div>
+            <div className="contentbody shadow">
+              <CompanyContent />
+            </div>
+          </div>
+        </div>
+      ),
+    },
+    {
+      key: "2",
+      label: (
+        <span>
+          <i className="fa tab-img la la-user-tie"></i>Executive
+        </span>
+      ),
+      children: (
+        <div>
+          <ExecutiveNavigation />
+          <div id="wrapper">
+            <div className="leftmenu">
+              <ExecutiveLeft />
+            </div>
+            <div className="contentbody shadow">
+              <ExecutiveContent />
+            </div>
+          </div>
+        </div>
+      ),
+    }
+    
+  ];
+}
 
   return (
     <>

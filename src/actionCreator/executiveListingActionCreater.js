@@ -340,12 +340,15 @@ export const getExecutiveEmployeeList = (payload, paginationValues) => (dispatch
       dispatch(dispatchStatus(false));
     })
     .catch((err) => {
+      //console.log(err.response,'emp api error')
+      if(err?.response){
       dispatch({
         type: EXECUTIVE_EMPLOYEELIST_ERROR,
         payload:
           { [errEnum.EXECUTIVE_EMPLOYEELIST_ERROR]: err.response.data[ErrKey] } ||
           "Error Occured",
       });
+    }
     });
 };
 

@@ -23,6 +23,7 @@ const initialState = {
   groupedSourceData: {},
   groupedIndustryData: {},
   groupedActivityData: {},
+  errObj: {},
 };
 
 const DashboardReducer = (state = initialState, action) => {
