@@ -42,6 +42,7 @@ const MarketingReport = () => {
     groupedSourceData1=groupedSourceData.dashboardDTOS;
     groupedSourceTotal=groupedSourceData.leadGenareatedCount;
   }
+  console.log(groupedSourceData1,'groupedSourceData1')
   let salesTrendWonData=[];
     if(salesTrendData && salesTrendData?.dashboardDTOS){
       salesTrendData?.dashboardDTOS?.forEach((record) => {

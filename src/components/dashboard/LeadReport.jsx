@@ -10,6 +10,7 @@ import { getUserInfo } from "../../utils/utils";
 const LeadReport = () => {
   const dispatch = useDispatch();
   const [salesReport, setSalesReport] = useState([]);
+  
   const userAccountInfo = useSelector(
     (state) => state.CommonReducer.accountInfo
   );
@@ -60,7 +61,7 @@ const LeadReport = () => {
       let rawData=groupedCountData?.dashboardDTOS;
       salesOrderByStatus=_.orderBy(rawData, 'statusId', 'asc');
       //setSalesReport(salesOrderByStatus);
-      //console.log(salesOrderByStatus,'salesReportsalesReport')
+      //console.log(salesTrendWonData,'salesTrendWonData')
     }
     if(groupedCountData?.leadGenareatedCount > 0){
       leadConversionRate=leadConversionValue/groupedCountData?.leadGenareatedCount * 100;
@@ -84,21 +85,23 @@ const LeadReport = () => {
         },
       ];
 
-      const salesOrderByStatus_dummy = [
-        {
-          typeValue: 'First',
-          countSum: 400,
-        },
-        {
-          typeValue: 'Second',
-          countSum: 151,
-        }
-      ];  
+      // const salesOrderByStatus_dummy = [
+      //   {
+      //     typeValue: 'First',
+      //     countSum: 400,
+      //   }
+      // ];  
     const config = {
-        data: salesOrderByStatus_dummy,
+        data: salesOrderByStatus,
         xField: 'typeValue',
         yField: 'countSum',
         legend: false,
+        yAxis: {
+          visible: true,
+          label: {
+              formatter: (v) => parseInt(v)
+          },
+      },
         meta: {
             value: {
             min: 0,
@@ -107,16 +110,19 @@ const LeadReport = () => {
          },
          //color:['#E6F7FF', '#BAE7FF', '#91D5FF', '#69C0FF', '#40A9FF', '#1890FF', '#096DD9', '#0050B3', '#003A8C', '#002766'],
       }; 
-      let totalOpportunityDummy=50;
-      let totalValueRateDummy=100;
+      let totalOpportunity=groupedCountData?.totalOpportunity;//50;
+      let totalValueRate=groupedCountData?.totalValueRate;//100;
+      let salesTarget=0;
+      if(totalValueRate > 0){
+        salesTarget=(totalOpportunity/totalValueRate);
+      }      
       const chart2 = {
         percent: 0.1,
         radius: 0.75,
         innerRadius: 0.75,
-        // Label
-        
+        indicator: null,
         range: {
-          ticks: [0.1, 1],
+          ticks: [salesTarget, 1],
           color: [
             "#F4664A",
             "#FAAD14",
@@ -139,62 +145,62 @@ const LeadReport = () => {
               fontSize: "24px",
               color: "#4B535E"
             },
-            formatter: () => "ABC"
+            formatter: () => ""
           }
         }
       };
-      const chart2_old = {
-        percent: 0.75,
-        range: {
-          color: 'l(0) 0:#B8E1FF 1:#3D76DD',
-        },
-        startAngle: 1,
-        endAngle: 0.75,
-        indicator: null,
-        statistic: {
-          title: {
-            offsetY: -36,
-            style: {
-              fontSize: '36px',
-              color: '#4B535E',
-            },
-            formatter: () => '70%',
-          },
-          content: {
-            style: {
-              fontSize: '24px',
-              lineHeight: '44px',
-              color: '#4B535E',
-            },
-            formatter: () => '',
-          },
-        },
-      };
+      // const chart2_old = {
+      //   percent: 0.75,
+      //   range: {
+      //     color: 'l(0) 0:#B8E1FF 1:#3D76DD',
+      //   },
+      //   startAngle: 1,
+      //   endAngle: 0.75,
+      //   indicator: null,
+      //   statistic: {
+      //     title: {
+      //       offsetY: -36,
+      //       style: {
+      //         fontSize: '36px',
+      //         color: '#4B535E',
+      //       },
+      //       formatter: () => '70%',
+      //     },
+      //     content: {
+      //       style: {
+      //         fontSize: '24px',
+      //         lineHeight: '44px',
+      //         color: '#4B535E',
+      //       },
+      //       formatter: () => '',
+      //     },
+      //   },
+      // };
  
-      const salesTrendWonDataDummy = [
-        {
-          typeValue: '1991',
-          opportunitSum: 3,
-        },
-        {
-          typeValue: '1992',
-          opportunitSum: 4,
-        },
-        {
-          typeValue: '1993',
-          opportunitSum: 3.5,
-        },
-        {
-          typeValue: '1994',
-          opportunitSum: 5,
-        },
-        {
-          typeValue: '1995',
-          opportunitSum: 4.9,
-        }        
-      ];      
+      // const salesTrendWonDataDummy = [
+      //   {
+      //     typeValue: '1991',
+      //     opportunitSum: 3,
+      //   },
+      //   {
+      //     typeValue: '1992',
+      //     opportunitSum: 4,
+      //   },
+      //   {
+      //     typeValue: '1993',
+      //     opportunitSum: 3.5,
+      //   },
+      //   {
+      //     typeValue: '1994',
+      //     opportunitSum: 5,
+      //   },
+      //   {
+      //     typeValue: '1995',
+      //     opportunitSum: '4.9',
+      //   }        
+      // ];      
       const chart3 = {
-        data:salesTrendWonDataDummy,//salesTrendWonData
+        data:salesTrendWonData,//salesTrendWonData
         xField: 'typeValue',
         yField: 'opportunitSum',
         label: {},
