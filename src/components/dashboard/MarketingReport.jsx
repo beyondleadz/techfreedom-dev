@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import _ from "lodash";
-import { Funnel, Gauge, Line, Bar, Pie, Column } from "@ant-design/plots";
-import { purple } from "@ant-design/colors";
-import { Table } from "antd";
+import { Line, Bar, Pie, Column } from "@ant-design/plots";
 import {getGroupedCountData,getSalesTrendData,getGroupedBySourceData,getGroupedByIndustryData} from "../../actionCreator/dashboardActionCreator"
 import { getUserInfo } from "../../utils/utils";
-
 const MarketingReport = () => {
   const dispatch = useDispatch();
   const [salesReport, setSalesReport] = useState([]);
@@ -17,8 +14,6 @@ const MarketingReport = () => {
   const salesTrendData=useSelector((state)=>state.DashboardReducer.salesTrendData);
   const groupedSourceData=useSelector((state)=>state.DashboardReducer.groupedSourceData);
   const groupedIndustryData=useSelector((state)=>state.DashboardReducer.groupedIndustryData);
-
-
   useEffect(() => {
     if (Object.keys(getUserInfo()).length) {
       dispatch(getGroupedCountData());
@@ -42,7 +37,7 @@ const MarketingReport = () => {
     groupedSourceData1=groupedSourceData.dashboardDTOS;
     groupedSourceTotal=groupedSourceData.leadGenareatedCount;
   }
-  console.log(groupedSourceData1,'groupedSourceData1')
+  //console.log(groupedSourceData1,'groupedSourceData1')
   let salesTrendWonData=[];
     if(salesTrendData && salesTrendData?.dashboardDTOS){
       salesTrendData?.dashboardDTOS?.forEach((record) => {
@@ -51,16 +46,7 @@ const MarketingReport = () => {
           }          
       });
     }
-  const data = [
-    {
-      typeValue: "First",
-      countSum: 400,
-    },
-    {
-      typeValue: "Second",
-      countSum: 600,
-    },
-  ];
+  //const data = [{typeValue:"First",countSum:400,},{typeValue:"Second",countSum:600,}];
   const config = {
     appendPadding: 10,
     data:groupedSourceData1,
@@ -289,30 +275,9 @@ const MarketingReport = () => {
     },
   };
 
-  const salesTrendWonDataDummy = [
-    {
-      typeValue: '1991',
-      opportunitSum: 3,
-    },
-    {
-      typeValue: '1992',
-      opportunitSum: 4,
-    },
-    {
-      typeValue: '1993',
-      opportunitSum: 3.5,
-    },
-    {
-      typeValue: '1994',
-      opportunitSum: 5,
-    },
-    {
-      typeValue: '1995',
-      opportunitSum: 4.9,
-    }        
-  ];      
-  const chart3 = {
-    data:salesTrendWonDataDummy,//salesTrendWonData
+  //const leadTrendchartDummy = [{typeValue:'1991',opportunitSum:3,},{typeValue:'1992',opportunitSum:4,},{typeValue:'1993',opportunitSum:3.5,},{typeValue:'1994',opportunitSum:5,},{typeValue:'1995',opportunitSum:4.9,}];      
+  const leadTrendchart = {
+    data:salesTrendWonData,//salesTrendWonData
     xField: 'typeValue',
     yField: 'opportunitSum',
     label: {},
@@ -385,39 +350,6 @@ const MarketingReport = () => {
     minBarWidth: 20,
     maxBarWidth: 20,
   };
-
-  const dataSource = [
-    {
-      key: "1",
-      name: "Mike",
-      age: 32000,
-      address: "RK, 3 September 2023",
-    },
-    {
-      key: "2",
-      name: "John",
-      age: 42000,
-      address: "SG, 1 September 2023",
-    },
-  ];
-
-  const columns = [
-    {
-      title: "Opportunity with Account name",
-      dataIndex: "name",
-      key: "name",
-    },
-    {
-      title: "Amount",
-      dataIndex: "age",
-      key: "age",
-    },
-    {
-      title: "Owner & Closing Date",
-      dataIndex: "address",
-      key: "address",
-    },
-  ];
 
   return (
     <>
@@ -599,7 +531,7 @@ const MarketingReport = () => {
                 <div className="chartjs-size-monitor">
                   <div className="chartjs-size-monitor-expand">
                     <div className="" style={{ height: 220 }}>
-                      {<Line {...chart3} />}
+                      {<Line {...leadTrendchart} />}
                     </div>
                   </div>
                   <div className="chartjs-size-monitor-shrink">

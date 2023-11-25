@@ -149,7 +149,7 @@ const LeadKanbanView = ({
                 onClick={() => checkPageLayout(2)}
               ></i>
             </span>
-            <Dropdown
+            {/* <Dropdown
               menu={{
                 items,
                 selectable: true,
@@ -162,7 +162,7 @@ const LeadKanbanView = ({
                   <DownOutlined />
                 </Space>
               </Button>
-            </Dropdown>
+            </Dropdown> */}
             <span className="ml-4 fs-23 mr-3">
               {/* <Select
                 name="note"

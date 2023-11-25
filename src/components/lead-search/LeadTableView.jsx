@@ -54,7 +54,7 @@ const LeadTableView = ({
                         <span className="m-1">results</span>
                       </h6>
                       <span className="ml-4 fs-23 mr-3"><i className=" las la-calendar" onClick={calendarShow}></i><i className=" btn  mr-3 ml-3 kanbanlist" onClick={()=>checkPageLayout(1)}></i><i className=" btn  kanbanview" onClick={()=>checkPageLayout(2)}></i></span>
-                      <Dropdown
+                      {/* <Dropdown
     menu={{
       items,
       selectable: true,
@@ -67,7 +67,7 @@ const LeadTableView = ({
         <DownOutlined />
       </Space>
     </Button>
-  </Dropdown>
+  </Dropdown> */}
   <span className="ml-4 fs-23 mr-3">
   {/* <Select
               name="note"

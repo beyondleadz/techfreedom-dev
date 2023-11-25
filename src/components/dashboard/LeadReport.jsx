@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import _ from "lodash";
 import { Funnel,Gauge,Line,Bar } from '@ant-design/plots';
-import { purple } from '@ant-design/colors';
 import { Table } from "antd";
 import {getTopClosedOpportunity,getTopOpenOpportunity,getGroupedCountData,getSalesTrendData} from "../../actionCreator/dashboardActionCreator"
 import { getUserInfo } from "../../utils/utils";
