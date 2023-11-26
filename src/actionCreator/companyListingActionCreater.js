@@ -130,7 +130,7 @@ export const getCompanyList = (payload, paginationValues,topSearch=false) => (di
   //    url = createPayload(payload, paginationValues, companyListingApiUrl);
   // }
 
-  return getMethod(url)
+  return getAuthMethod(url)
     .then((res) => {
       dispatch({
         type: COMPANYLIST,
