@@ -158,8 +158,8 @@ export const getCompanyList = (payload, paginationValues) => (dispatch) => {
 export const getCompanyListWithStartAndEnd = (paginationValues) => (
   dispatch
 ) => {
-  let url = `${companyListingApiUrl}?page=${paginationValues?.start}&size=${paginationValues?.end}`;
-  return getMethod(url)
+  let url = `${executiveEmployeeListingApiUrl}?page=${paginationValues?.start}&size=${paginationValues?.end}`;
+  return getAuthMethod(url)
     .then((res) => {
       dispatch({
         type: EXECUTIVE_COMPANYLIST,

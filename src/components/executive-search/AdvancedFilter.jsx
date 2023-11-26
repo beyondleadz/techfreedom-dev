@@ -248,7 +248,7 @@ const AdvancedFilter = ({
       companySelectedFilterList.selectedExecutiveLevel
     );
     setCheckAllExecutiveLevel(
-      companySelectedFilterList.selectedExecutiveLevel.length ===
+      companySelectedFilterList?.selectedExecutiveLevel?.length ===
         executiveFilterLevelList.length
     );
   }, [companySelectedFilterList]);
