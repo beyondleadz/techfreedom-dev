@@ -29,13 +29,13 @@ import {
   GET_EXECUTIVE_LEAD,
   GET_EXECUTIVE_LEAD_ERROR,
   EMPLOYEE_VIEWABLE_STATUS,
-  EMPLOYEE_VIEWABLE_STATUS_ERROR  
+  EMPLOYEE_VIEWABLE_STATUS_ERROR,
 } from "../actionType/companyDetailsType";
 import {
   getAuthMethod,
   getMethod,
   postAuthMethod,
-  putAuthMethod
+  putAuthMethod,
 } from "../services/HttpServices";
 import {
   companyListingApiUrl,
@@ -69,6 +69,7 @@ export const getCompanyDetails = (id) => (dispatch) => {
       });
     })
     .catch((err) => {
+      if (!err?.response?.data) return;
       dispatch({
         type: COMPANY_DETAILS_ERROR,
         payload:
@@ -90,20 +91,20 @@ export const getEmployeeList = (id, department) => (dispatch) => {
   }
   return getAuthMethod(url)
     .then((res) => {
+      // console.log(res,'res comapnyDetailActionCreator');
       dispatch({
         type: EMPLOYEE_LIST,
         payload: res.data,
       });
     })
     .catch((err) => {
-      if(err?.response?.data){
+      if (!err?.response?.data) return;
       dispatch({
         type: EMPLOYEE_LIST_ERROR,
         payload:
           { [errEnum.EMPLOYEE_LIST_ERROR]: err.response.data[ErrKey] } ||
           "Error Occured",
       });
-    }
     });
 };
 
@@ -116,6 +117,7 @@ export const getDepartmentList = () => (dispatch) => {
       });
     })
     .catch((err) => {
+      if (!err?.response?.data) return;
       //console.log(err, "sjkflskdjfkl");
       dispatch({
         type: DEPARTMENT_LIST_ERROR,
@@ -136,6 +138,7 @@ export const submitLead = (payload) => (dispatch) => {
       dispatch(getExecutiveLead(payload?.userId));
     })
     .catch((err) => {
+      if (!err?.response?.data) return;
       dispatch({
         type: SUBMIT_EXECUTIVE_LEAD_ERROR,
         payload:
@@ -154,7 +157,7 @@ export const getSimilarCompanyList = (payload, paginationValues) => (
   dispatch
 ) => {
   let url = createPayload(payload, paginationValues, companyListingApiUrl);
-  url+="&id.notEquals="+payload.cid;
+  url += "&id.notEquals=" + payload.cid;
   return getMethod(url)
     .then((res) => {
       dispatch({
@@ -163,6 +166,7 @@ export const getSimilarCompanyList = (payload, paginationValues) => (
       });
     })
     .catch((err) => {
+      if (!err?.response?.data) return;
       //console.log(err, "sjkflskdjfkl");
       dispatch({
         type: SIMILAR_COMPANYLIST_ERROR,
@@ -182,6 +186,7 @@ export const submitErrorForm = (payload) => (dispatch) => {
       });
     })
     .catch((err) => {
+      if (!err?.response?.data) return;
       //console.log(err, "sjkflskdjfkl");
       dispatch({
         type: SUBMIT_ERROR_FORM_ERROR,
@@ -203,6 +208,7 @@ export const createCompanyTag = (payload) => (dispatch) => {
       dispatch(getCompanyTag(payload?.company?.id, payload?.userId));
     })
     .catch((err) => {
+      if (!err?.response?.data) return;
       dispatch({
         type: SINGLE_COMPANY_TAG_ERROR,
         payload:
@@ -239,6 +245,7 @@ export const downloadCompany = (payload, urlSubstring) => (dispatch) => {
       });
     })
     .catch((err) => {
+      if (!err?.response?.data) return;
       //console.log(err, "skjfslkjdf", err.response.data.error);
       dispatch({
         type: DOWNLOAD_COMPANY_ERROR,
@@ -267,6 +274,7 @@ export const downloadExecutiveExl = (payload) => (dispatch) => {
       });
     })
     .catch((err) => {
+      if (!err?.response?.data) return;
       dispatch({
         type: DOWNLOAD_EXECUTIVE_ERROR,
         payload:
@@ -288,6 +296,7 @@ export const getCompanyTag = (cid, userId) => (dispatch) => {
       });
     })
     .catch((err) => {
+      if (!err?.response?.data) return;
       //console.log(err, "sjkflskdjfkl");
       dispatch({
         type: FETCH_COMPANY_TAG_ERROR,
@@ -304,15 +313,16 @@ export const resetCompanyTag = (payload) => {
 
 export const updateRelavantCompany = (payload) => (dispatch) => {
   //console.log(payload, "payloadpayload");
-  return putAuthMethod(postRelavantCompanyApiUrl,payload.id, payload)
+  return putAuthMethod(postRelavantCompanyApiUrl, payload.id, payload)
     .then((res) => {
       dispatch({
         type: POST_RELAVANT_COMPANY_TAG,
         payload: res.data,
       });
-      dispatch(getRelavantCompany(payload.userId,payload.companyId));
+      dispatch(getRelavantCompany(payload.userId, payload.companyId));
     })
     .catch((err) => {
+      if (!err?.response?.data) return;
       dispatch({
         type: POST_RELAVANT_COMPANY_TAG_ERROR,
         payload:
@@ -320,9 +330,8 @@ export const updateRelavantCompany = (payload) => (dispatch) => {
             [errEnum.POST_RELAVANT_COMPANY_TAG_ERROR]:
               err.response.data[ErrKey],
           } || "Error Occured",
-      });     
+      });
     });
-    
 };
 
 export const postRelavantCompany = (payload) => (dispatch) => {
@@ -333,9 +342,10 @@ export const postRelavantCompany = (payload) => (dispatch) => {
         type: POST_RELAVANT_COMPANY_TAG,
         payload: res.data,
       });
-      dispatch(getRelavantCompany(payload.userId,payload.companyId));
+      dispatch(getRelavantCompany(payload.userId, payload.companyId));
     })
     .catch((err) => {
+      if (!err?.response?.data) return;
       dispatch({
         type: POST_RELAVANT_COMPANY_TAG_ERROR,
         payload:
@@ -343,9 +353,8 @@ export const postRelavantCompany = (payload) => (dispatch) => {
             [errEnum.POST_RELAVANT_COMPANY_TAG_ERROR]:
               err.response.data[ErrKey],
           } || "Error Occured",
-      });     
+      });
     });
-    
 };
 
 export const getRelavantCompany = (id, cid) => (dispatch) => {
@@ -360,6 +369,7 @@ export const getRelavantCompany = (id, cid) => (dispatch) => {
       });
     })
     .catch((err) => {
+      if (!err?.response?.data) return;
       //console.log(err, "sjkflskdjfkl");
       dispatch({
         type: GET_RELAVANT_COMPANY_TAG_ERROR,
@@ -397,6 +407,7 @@ export const getExecutiveLead = (id) => (dispatch) => {
       });
     })
     .catch((err) => {
+      if (!err?.response?.data) return;
       //console.log(err, "sjkflskdjfkl");
       dispatch({
         type: GET_EXECUTIVE_LEAD_ERROR,
@@ -408,8 +419,9 @@ export const getExecutiveLead = (id) => (dispatch) => {
     });
 };
 
-
-export const getEmployeeViewableStatusUpdate = (type, payload,department) => (dispatch) => {
+export const getEmployeeViewableStatusUpdate = (type, payload, department) => (
+  dispatch
+) => {
   let url = `${employeeListUrl}/${type}/${payload.id}`;
   return getAuthMethod(url)
     .then((res) => {
@@ -418,24 +430,25 @@ export const getEmployeeViewableStatusUpdate = (type, payload,department) => (di
         payload: res.data,
       });
       //console.log('getEmployeeViewableStatusUpdate',payload)
-      if(department){
-        dispatch(getEmployeeList(payload?.directDial?.company.id,department));
-      }else{
+      if (department) {
+        dispatch(getEmployeeList(payload?.directDial?.company.id, department));
+      } else {
         dispatch(getEmployeeList(payload?.directDial?.company.id));
       }
-      
     })
     .catch((err) => {
+      if (!err?.response?.data) return;
       dispatch({
         type: EMPLOYEE_VIEWABLE_STATUS_ERROR,
         payload:
-          { [errEnum.EMPLOYEE_VIEWABLE_STATUS_ERROR]: err.response.data[ErrKey] } ||
-          "Error Occured",
+          {
+            [errEnum.EMPLOYEE_VIEWABLE_STATUS_ERROR]: err.response.data[ErrKey],
+          } || "Error Occured",
       });
     });
 };
 
-export const emptyDownload=()=>({
+export const emptyDownload = () => ({
   type: DOWNLOAD_EXECUTIVE,
-  payload: {},  
+  payload: {},
 });

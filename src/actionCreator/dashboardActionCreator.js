@@ -38,6 +38,7 @@ export const getTopClosedOpportunity = (payload) => (dispatch) => {
       });      
     })
     .catch((err) => {
+if(!err?.response?.data) return ;
       dispatch({
         type: CLOSED_OPPORTUNITY_ERROR,
         payload:
@@ -56,6 +57,7 @@ export const getTopOpenOpportunity = (payload) => (dispatch) => {
       });      
     })
     .catch((err) => {
+if(!err?.response?.data) return ;
       dispatch({
         type: OPEN_OPPORTUNITY_ERROR,
         payload:
@@ -74,6 +76,7 @@ export const getGroupedCountData = (payload) => (dispatch) => {
       });      
     })
     .catch((err) => {
+if(!err?.response?.data) return ;
       dispatch({
         type: DASHBOARD_GROUPED_COUNT_ERROR,
         payload:
@@ -92,6 +95,7 @@ export const getSalesTrendData = (payload) => (dispatch) => {
       });      
     })
     .catch((err) => {
+if(!err?.response?.data) return ;
       dispatch({
         type: DASHBOARD_SALES_TREND_ERROR,
         payload:
@@ -110,6 +114,7 @@ export const getGroupedBySourceData = (payload) => (dispatch) => {
       });      
     })
     .catch((err) => {
+if(!err?.response?.data) return ;
       dispatch({
         type: DASHBOARD_GROUPED_BYSOURCE_ERROR,
         payload:
@@ -128,6 +133,7 @@ export const getGroupedByIndustryData = (payload) => (dispatch) => {
       });      
     })
     .catch((err) => {
+if(!err?.response?.data) return ;
       dispatch({
         type: DASHBOARD_GROUPED_BYINDUSTRY_ERROR,
         payload:
@@ -147,6 +153,7 @@ export const getGroupedByActivityData = (payload) => (dispatch) => {
       });      
     })
     .catch((err) => {
+if(!err?.response?.data) return ;
      // console.log(err.response.status,err.response.data,'error data')
       dispatch({
         type: DASHBOARD_GROUPED_BYACTIVITY_ERROR,

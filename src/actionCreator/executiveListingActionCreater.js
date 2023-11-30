@@ -69,6 +69,7 @@ export const getIndustryList = (payload) => (dispatch) => {
       });
     })
     .catch((err) => {
+if(!err?.response?.data) return ;
       dispatch({
         type: EXECUTIVE_INDUSTRY_LIST_ERROR,
         payload:
@@ -87,6 +88,7 @@ export const getCompanyTypeList = (payload) => (dispatch) => {
       });
     })
     .catch((err) => {
+if(!err?.response?.data) return ;
       dispatch({
         type: EXECUTIVE_COMPANY_TYPE_ERROR,
         payload:
@@ -105,6 +107,7 @@ export const getEmployeeCountList = (payload) => (dispatch) => {
       });
     })
     .catch((err) => {
+if(!err?.response?.data) return ;
       dispatch({
         type: EXECUTIVE_EMPLOYEE_COUNT_ERROR,
         payload:
@@ -123,6 +126,7 @@ export const getRevenuerangeList = (payload) => (dispatch) => {
       });
     })
     .catch((err) => {
+if(!err?.response?.data) return ;
       dispatch({
         type: EXECUTIVE_REVENUE_RANGE_ERROR,
         payload:
@@ -146,6 +150,7 @@ export const getCompanyList = (payload, paginationValues) => (dispatch) => {
       dispatch(dispatchStatus(false));
     })
     .catch((err) => {
+if(!err?.response?.data) return ;
       dispatch({
         type: EXECUTIVE_COMPANYLIST_ERROR,
         payload:
@@ -168,6 +173,7 @@ export const getCompanyListWithStartAndEnd = (paginationValues) => (
       });
     })
     .catch((err) => {
+if(!err?.response?.data) return ;
       dispatch({
         type: EXECUTIVE_COMPANYLIST_ERROR,
         payload:
@@ -199,6 +205,7 @@ export const downloadExecutiveList = (payload, urlSubstring) => (dispatch) => {
       });
     })
     .catch((err) => {
+if(!err?.response?.data) return ;
       dispatch({
         type: EXECUTIVE_DOWNLOAD_COMPANYLIST_ERROR,
         payload:
@@ -252,6 +259,7 @@ export const saveSearchAction = (payload) => (dispatch) => {
       dispatch(saveExecutiveSearchList(payload?.userId));
     })
     .catch((err) => {
+if(!err?.response?.data) return ;
       dispatch({
         type: EXECUTIVE_SAVE_SEARCH_ERROR,
         payload:
@@ -276,6 +284,7 @@ export const saveExecutiveSearchList = (userId) => (dispatch) => {
       });
     })
     .catch((err) => {
+if(!err?.response?.data) return ;
       dispatch({
         type: EXECUTIVE_SAVE_SEARCH_LIST_ERROR,
         payload:
@@ -295,6 +304,7 @@ export const getExecutiveTagList = (userId) => (dispatch) => {
       });
     })
     .catch((err) => {
+if(!err?.response?.data) return ;
       dispatch({
         type: EXECUTIVE_COMPANY_TAG_LIST_ERROR,
         payload:
@@ -316,6 +326,7 @@ export const createGroupExecutiveTag = (payload) => (dispatch) => {
       dispatch(getExecutiveTagList(payload?.[0].userId));
     })
     .catch((err) => {
+if(!err?.response?.data) return ;
       dispatch({
         type: EXECUTIVE_GROUP_COMPANY_TAG_ERROR,
         payload:
@@ -340,6 +351,7 @@ export const getExecutiveEmployeeList = (payload, paginationValues) => (dispatch
       dispatch(dispatchStatus(false));
     })
     .catch((err) => {
+if(!err?.response?.data) return ;
       //console.log(err.response,'emp api error')
       if(err?.response){
       dispatch({
@@ -361,6 +373,7 @@ export const getExecutiveFunctionList = (payload) => (dispatch) => {
       });
     })
     .catch((err) => {
+if(!err?.response?.data) return ;
       dispatch({
         type: EXECUTIVE_FUNCTION_LIST_ERROR,
         payload:
@@ -379,6 +392,7 @@ export const getExecutiveLevelList = (payload) => (dispatch) => {
       });
     })
     .catch((err) => {
+if(!err?.response?.data) return ;
       dispatch({
         type: EXECUTIVE_LEVEL_LIST_ERROR,
         payload:

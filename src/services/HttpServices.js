@@ -19,13 +19,17 @@ const restAuthService = (token = sessionStorage.getItem('token')) => {
       }
    });
    instance.interceptors.response.use(response => {
-      //console.log('valid login case', response);
+      //console.log('valid login case', response);      
       return response;
     }, error => {
-      //console.log(error,'error');
-      if(error?.response?.data=="User login not found" && error?.response?.status==403){
+      if(error?.response?.data==="User login not found" && error?.response?.status===403){
       console.log('invalid login case', error,error.response.data);
       window.location.href="http://localhost:3000/beyondleads/signin";
+      }else{
+         if (error.response && error.response.status >= 400 && error.response.status <= 500) {
+            // this will trigger the `handleError` function in the promise chain
+            return Promise.reject(new Error("error"));
+         }
       }
     });
     return instance;

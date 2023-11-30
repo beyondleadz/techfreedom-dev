@@ -41,13 +41,13 @@ import {
   LEAD_EXECUTIVE_REMARKS,
   LEAD_EXECUTIVE_REMARKS_ERROR,
   UPDATE_LEAD_STATUS,
-  UPDATE_LEAD_STATUS_ERROR
+  UPDATE_LEAD_STATUS_ERROR,
 } from "../actionType/leadListingType";
 import {
   getAuthMethod,
   getMethod,
   postAuthMethod,
-  putAuthMethod
+  putAuthMethod,
 } from "../services/HttpServices";
 import { errEnum, ErrKey } from "../config";
 import {
@@ -70,11 +70,14 @@ import {
   getClientLeadsKanbanUrl,
   getLeadStatusApiUrl,
   getLeadRatingApiUrl,
-  getClientNotesApiUrl
+  getClientNotesApiUrl,
 } from "../constant/Constant";
 import { dispatchStatus } from "./commonActionCreator";
 import { Geolocation } from "../constant/Geolocation";
-import { createLeadPayload,createActivityPayloadForCalendar } from "../utils/utils";
+import {
+  createLeadPayload,
+  createActivityPayloadForCalendar,
+} from "../utils/utils";
 
 export const getIndustryList = (payload) => (dispatch) => {
   return getAuthMethod(industryApiUrl)
@@ -85,11 +88,14 @@ export const getIndustryList = (payload) => (dispatch) => {
       });
     })
     .catch((err) => {
+      if (!err?.response?.data) return;
       dispatch({
         type: LEAD_EXECUTIVE_INDUSTRY_LIST_ERROR,
         payload:
-          { [errEnum.LEAD_EXECUTIVE_INDUSTRY_LIST_ERROR]: err.response.data[ErrKey] } ||
-          "Error Occured",
+          {
+            [errEnum.LEAD_EXECUTIVE_INDUSTRY_LIST_ERROR]:
+              err.response.data[ErrKey],
+          } || "Error Occured",
       });
     });
 };
@@ -103,11 +109,14 @@ export const getCompanyTypeList = (payload) => (dispatch) => {
       });
     })
     .catch((err) => {
+      if (!err?.response?.data) return;
       dispatch({
         type: LEAD_EXECUTIVE_COMPANY_TYPE_ERROR,
         payload:
-          { [errEnum.LEAD_EXECUTIVE_COMPANY_TYPE_ERROR]: err.response.data[ErrKey] } ||
-          "Error Occured",
+          {
+            [errEnum.LEAD_EXECUTIVE_COMPANY_TYPE_ERROR]:
+              err.response.data[ErrKey],
+          } || "Error Occured",
       });
     });
 };
@@ -121,11 +130,14 @@ export const getEmployeeCountList = (payload) => (dispatch) => {
       });
     })
     .catch((err) => {
+      if (!err?.response?.data) return;
       dispatch({
         type: LEAD_EXECUTIVE_EMPLOYEE_COUNT_ERROR,
         payload:
-          { [errEnum.LEAD_EXECUTIVE_EMPLOYEE_COUNT_ERROR]: err.response.data[ErrKey] } ||
-          "Error Occured",
+          {
+            [errEnum.LEAD_EXECUTIVE_EMPLOYEE_COUNT_ERROR]:
+              err.response.data[ErrKey],
+          } || "Error Occured",
       });
     });
 };
@@ -139,18 +151,25 @@ export const getRevenuerangeList = (payload) => (dispatch) => {
       });
     })
     .catch((err) => {
+      if (!err?.response?.data) return;
       dispatch({
         type: LEAD_EXECUTIVE_REVENUE_RANGE_ERROR,
         payload:
-          { [errEnum.LEAD_EXECUTIVE_REVENUE_RANGE_ERROR]: err.response.data[ErrKey] } ||
-          "Error Occured",
+          {
+            [errEnum.LEAD_EXECUTIVE_REVENUE_RANGE_ERROR]:
+              err.response.data[ErrKey],
+          } || "Error Occured",
       });
     });
 };
 
 export const getCompanyList = (payload, paginationValues) => (dispatch) => {
   dispatch(dispatchStatus(true));
-  const url = createLeadPayload(payload, paginationValues, companyListingApiUrl);
+  const url = createLeadPayload(
+    payload,
+    paginationValues,
+    companyListingApiUrl
+  );
   // console.log(url,'urlurlurl')
   return getMethod(url)
     .then((res) => {
@@ -162,11 +181,14 @@ export const getCompanyList = (payload, paginationValues) => (dispatch) => {
       dispatch(dispatchStatus(false));
     })
     .catch((err) => {
+      if (!err?.response?.data) return;
       dispatch({
         type: LEAD_EXECUTIVE_COMPANYLIST_ERROR,
         payload:
-          { [errEnum.LEAD_EXECUTIVE_COMPANYLIST_ERROR]: err.response.data[ErrKey] } ||
-          "Error Occured",
+          {
+            [errEnum.LEAD_EXECUTIVE_COMPANYLIST_ERROR]:
+              err.response.data[ErrKey],
+          } || "Error Occured",
       });
     });
 };
@@ -184,11 +206,14 @@ export const getCompanyListWithStartAndEnd = (paginationValues) => (
       });
     })
     .catch((err) => {
+      if (!err?.response?.data) return;
       dispatch({
         type: LEAD_EXECUTIVE_COMPANYLIST_ERROR,
         payload:
-          { [errEnum.LEAD_EXECUTIVE_COMPANYLIST_ERROR]: err.response.data[ErrKey] } ||
-          "Error Occured",
+          {
+            [errEnum.LEAD_EXECUTIVE_COMPANYLIST_ERROR]:
+              err.response.data[ErrKey],
+          } || "Error Occured",
       });
     });
 };
@@ -215,11 +240,13 @@ export const downloadExecutiveList = (payload, urlSubstring) => (dispatch) => {
       });
     })
     .catch((err) => {
+      if (!err?.response?.data) return;
       dispatch({
         type: LEAD_EXECUTIVE_DOWNLOAD_COMPANYLIST_ERROR,
         payload:
-          { [errEnum.LEAD_EXECUTIVE_DOWNLOAD_ERROR]: err.response.data.error } ||
-          "Error Occured",
+          {
+            [errEnum.LEAD_EXECUTIVE_DOWNLOAD_ERROR]: err.response.data.error,
+          } || "Error Occured",
       });
     });
 };
@@ -257,7 +284,6 @@ export const selectedRow = (payload) => {
   };
 };
 
-
 export const saveSearchAction = (payload) => (dispatch) => {
   return postAuthMethod(saveSearch, payload)
     .then((res) => {
@@ -268,11 +294,14 @@ export const saveSearchAction = (payload) => (dispatch) => {
       dispatch(saveExecutiveSearchList(payload?.userId));
     })
     .catch((err) => {
+      if (!err?.response?.data) return;
       dispatch({
         type: LEAD_EXECUTIVE_SAVE_SEARCH_ERROR,
         payload:
-          { [errEnum.LEAD_EXECUTIVE_SAVE_SEARCH_ERROR]: err.response.data[ErrKey] } ||
-          "Error Occured",
+          {
+            [errEnum.LEAD_EXECUTIVE_SAVE_SEARCH_ERROR]:
+              err.response.data[ErrKey],
+          } || "Error Occured",
       });
     });
 };
@@ -283,7 +312,7 @@ export const emptyErrorObj = () => ({
 });
 
 export const saveExecutiveSearchList = (userId) => (dispatch) => {
-  const url=`${saveSearchListApiUrl}?source.equals=Executive&userId.equals=${userId}`
+  const url = `${saveSearchListApiUrl}?source.equals=Executive&userId.equals=${userId}`;
   return getAuthMethod(url)
     .then((res) => {
       dispatch({
@@ -292,17 +321,20 @@ export const saveExecutiveSearchList = (userId) => (dispatch) => {
       });
     })
     .catch((err) => {
+      if (!err?.response?.data) return;
       dispatch({
         type: LEAD_EXECUTIVE_SAVE_SEARCH_LIST_ERROR,
         payload:
-          { [errEnum.LEAD_EXECUTIVE_SAVE_SEARCH_LIST_ERROR]: err.response.data[ErrKey] } ||
-          "Error Occured",
+          {
+            [errEnum.LEAD_EXECUTIVE_SAVE_SEARCH_LIST_ERROR]:
+              err.response.data[ErrKey],
+          } || "Error Occured",
       });
     });
 };
 
 export const getExecutiveTagList = (userId) => (dispatch) => {
-  const url=`${getExecutiveTagApiUrl}${userId}`
+  const url = `${getExecutiveTagApiUrl}${userId}`;
   return getAuthMethod(url)
     .then((res) => {
       dispatch({
@@ -311,15 +343,17 @@ export const getExecutiveTagList = (userId) => (dispatch) => {
       });
     })
     .catch((err) => {
+      if (!err?.response?.data) return;
       dispatch({
         type: LEAD_EXECUTIVE_COMPANY_TAG_LIST_ERROR,
         payload:
-          { [errEnum.LEAD_EXECUTIVE_COMPANY_TAG_LIST_ERROR]: err.response.data[ErrKey] } ||
-          "Error Occured",
+          {
+            [errEnum.LEAD_EXECUTIVE_COMPANY_TAG_LIST_ERROR]:
+              err.response.data[ErrKey],
+          } || "Error Occured",
       });
     });
 };
-
 
 export const createGroupLeadTag = (payload) => (dispatch) => {
   //console.log(payload, "payloadpayload");
@@ -332,24 +366,29 @@ export const createGroupLeadTag = (payload) => (dispatch) => {
       dispatch(getExecutiveTagList(payload?.[0].userId));
     })
     .catch((err) => {
+      if (!err?.response?.data) return;
       dispatch({
         type: LEAD_EXECUTIVE_GROUP_COMPANY_TAG_ERROR,
         payload:
-          { [errEnum.LEAD_EXECUTIVE_GROUP_COMPANY_TAG_ERROR]: err.response.data[ErrKey] } ||
-          "Error Occured",
+          {
+            [errEnum.LEAD_EXECUTIVE_GROUP_COMPANY_TAG_ERROR]:
+              err.response.data[ErrKey],
+          } || "Error Occured",
       });
     });
 };
 
-export const getExecutiveEmployeeList = (payload, paginationValues) => (dispatch) => {
+export const getExecutiveEmployeeList = (payload, paginationValues) => (
+  dispatch
+) => {
   dispatch(dispatchStatus(true));
   //console.log(payload,'payloadpayload')
   //payload?.checkPageLayout
-  let apiUrl=getClientLeadsUrl;
-  if(payload?.selectedPageLayout===2){
-    apiUrl=getClientLeadsKanbanUrl;
+  let apiUrl = getClientLeadsUrl;
+  if (payload?.selectedPageLayout === 2) {
+    apiUrl = getClientLeadsKanbanUrl;
   }
-  const url = createLeadPayload(payload, paginationValues,apiUrl );  
+  const url = createLeadPayload(payload, paginationValues, apiUrl);
   return getAuthMethod(url)
     .then((res) => {
       dispatch({
@@ -361,11 +400,14 @@ export const getExecutiveEmployeeList = (payload, paginationValues) => (dispatch
       dispatch(dispatchStatus(false));
     })
     .catch((err) => {
+      if (!err?.response?.data) return;
       dispatch({
         type: LEAD_EXECUTIVE_EMPLOYEELIST_ERROR,
         payload:
-          { [errEnum.LEAD_EXECUTIVE_EMPLOYEELIST_ERROR]: err.response.data[ErrKey] } ||
-          "Error Occured",
+          {
+            [errEnum.LEAD_EXECUTIVE_EMPLOYEELIST_ERROR]:
+              err.response.data[ErrKey],
+          } || "Error Occured",
       });
     });
 };
@@ -379,6 +421,7 @@ export const getLeadStatusList = (payload) => (dispatch) => {
       });
     })
     .catch((err) => {
+      if (!err?.response?.data) return;
       dispatch({
         type: LEAD_STATUS_LIST_ERROR,
         payload:
@@ -397,6 +440,7 @@ export const getLeadRatingList = (payload) => (dispatch) => {
       });
     })
     .catch((err) => {
+      if (!err?.response?.data) return;
       dispatch({
         type: LEAD_RATING_LIST_ERROR,
         payload:
@@ -413,8 +457,8 @@ export const setPageLayout = (payload) => {
   };
 };
 
-export const getLeadExecutiveNotes = (payload={}) => (dispatch) => {
-  const url=`${getClientNotesApiUrl}`;
+export const getLeadExecutiveNotes = (payload = {}) => (dispatch) => {
+  const url = `${getClientNotesApiUrl}`;
   //const url =createActivityPayloadForCalendar(payload,apiUrl); getClientRemarksApiUrl
   return getMethod(url)
     .then((res) => {
@@ -424,6 +468,7 @@ export const getLeadExecutiveNotes = (payload={}) => (dispatch) => {
       });
     })
     .catch((err) => {
+      if (!err?.response?.data) return;
       dispatch({
         type: LEAD_EXECUTIVE_NOTES_ERROR,
         payload:
@@ -433,9 +478,9 @@ export const getLeadExecutiveNotes = (payload={}) => (dispatch) => {
     });
 };
 
-export const getLeadExecutiveRemarks = (payload={}) => (dispatch) => {
-  const url=`${getClientRemarksApiUrl}`;
-  //const url =createActivityPayloadForCalendar(payload,apiUrl); 
+export const getLeadExecutiveRemarks = (payload = {}) => (dispatch) => {
+  const url = `${getClientRemarksApiUrl}`;
+  //const url =createActivityPayloadForCalendar(payload,apiUrl);
   return getMethod(url)
     .then((res) => {
       dispatch({
@@ -444,36 +489,42 @@ export const getLeadExecutiveRemarks = (payload={}) => (dispatch) => {
       });
     })
     .catch((err) => {
+      if (!err?.response?.data) return;
       dispatch({
         type: LEAD_EXECUTIVE_REMARKS_ERROR,
         payload:
-          { [errEnum.LEAD_EXECUTIVE_REMARKS_ERROR]: err.response.data[ErrKey] } ||
-          "Error Occured",
+          {
+            [errEnum.LEAD_EXECUTIVE_REMARKS_ERROR]: err.response.data[ErrKey],
+          } || "Error Occured",
       });
     });
 };
 
 export const updateLeadStatus = (payload) => (dispatch) => {
-  return putAuthMethod(getClientLeadsUrl,payload.id, payload)
+  return putAuthMethod(getClientLeadsUrl, payload.id, payload)
     .then((res) => {
       dispatch({
         type: UPDATE_LEAD_STATUS,
         payload: res.data,
       });
-      if(payload?.customLayout){
-
-      }else{
-        dispatch(getExecutiveEmployeeList({selectedPageLayout:2}, {paginationValue:{start:0,end:10}}));
-      }     
+      if (payload?.customLayout) {
+      } else {
+        dispatch(
+          getExecutiveEmployeeList(
+            { selectedPageLayout: 2 },
+            { paginationValue: { start: 0, end: 10 } }
+          )
+        );
+      }
     })
     .catch((err) => {
+      if (!err?.response?.data) return;
       dispatch({
         type: UPDATE_LEAD_STATUS_ERROR,
         payload:
           {
-            [errEnum.UPDATE_LEAD_STATUS_ERROR]:
-              err.response.data[ErrKey],
+            [errEnum.UPDATE_LEAD_STATUS_ERROR]: err.response.data[ErrKey],
           } || "Error Occured",
-      });     
+      });
     });
-  }
+};

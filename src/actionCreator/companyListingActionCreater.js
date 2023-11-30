@@ -56,6 +56,7 @@ export const getIndustryList = (payload) => (dispatch) => {
       });
     })
     .catch((err) => {
+if(!err?.response?.data) return ;
      // console.log(err,'9798798')
       dispatch({
         type: INDUSTRY_LIST_ERROR,
@@ -75,6 +76,7 @@ export const getCompanyTypeList = (payload) => (dispatch) => {
       });
     })
     .catch((err) => {
+if(!err?.response?.data) return ;
       dispatch({
         type: COMPANY_TYPE_ERROR,
         payload:
@@ -93,6 +95,7 @@ export const getEmployeeCountList = (payload) => (dispatch) => {
       });
     })
     .catch((err) => {
+if(!err?.response?.data) return ;
       dispatch({
         type: EMPLOYEE_COUNT_ERROR,
         payload:
@@ -111,6 +114,7 @@ export const getRevenuerangeList = (payload) => (dispatch) => {
       });
     })
     .catch((err) => {
+if(!err?.response?.data) return ;
       dispatch({
         type: REVENUE_RANGE_ERROR,
         payload:
@@ -140,6 +144,7 @@ export const getCompanyList = (payload, paginationValues,topSearch=false) => (di
       dispatch(dispatchStatus(false));
     })
     .catch((err) => {
+if(!err?.response?.data) return ;
       dispatch({
         type: COMPANYLIST_ERROR,
         payload:
@@ -162,6 +167,7 @@ export const getCompanyListWithStartAndEnd = (paginationValues) => (
       });
     })
     .catch((err) => {
+if(!err?.response?.data) return ;
       dispatch({
         type: COMPANYLIST_ERROR,
         payload:
@@ -195,6 +201,7 @@ export const downloadCompanyList = (payload, urlSubstring) => (dispatch) => {
       //saveExcel();
     })
     .catch((err) => {
+if(!err?.response?.data) return ;
       dispatch({
         type: DOWNLOAD_COMPANYLIST_ERROR,
         payload:
@@ -248,6 +255,7 @@ export const saveSearchAction = (payload) => (dispatch) => {
       dispatch(saveSearchList(payload?.userId));
     })
     .catch((err) => {
+if(!err?.response?.data) return ;
       dispatch({
         type: SAVE_SEARCH_ERROR,
         payload:
@@ -272,6 +280,7 @@ export const saveSearchList = (userId) => (dispatch) => {
       });
     })
     .catch((err) => {
+if(!err?.response?.data) return ;
       dispatch({
         type: SAVE_SEARCH_LIST_ERROR,
         payload:
@@ -291,6 +300,7 @@ export const getCompanyTagList = (userId) => (dispatch) => {
       });
     })
     .catch((err) => {
+if(!err?.response?.data) return ;
       dispatch({
         type: COMPANY_TAG_LIST_ERROR,
         payload:
@@ -312,6 +322,7 @@ export const createGroupCompanyTag = (payload) => (dispatch) => {
       dispatch(getCompanyTagList(payload?.[0].userId));
     })
     .catch((err) => {
+if(!err?.response?.data) return ;
       dispatch({
         type: GROUP_COMPANY_TAG_ERROR,
         payload:

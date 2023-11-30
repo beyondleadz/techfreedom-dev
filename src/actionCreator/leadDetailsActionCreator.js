@@ -53,6 +53,7 @@ export const getLeadDetails = (id) => (dispatch) => {
       });
     })
     .catch((err) => {
+if(!err?.response?.data) return ;
       //console.log(err, "sjkflskdjfkl");
       dispatch({
         type: LEAD_DETAILS_ERROR,
@@ -75,6 +76,7 @@ export const updateLeadDetails = (payload,isUpdate) => (dispatch) => {
       dispatch(getLeadDetails(payload.id));
     })
     .catch((err) => {
+if(!err?.response?.data) return ;
       dispatch({
         type: UPDATE_LEAD_DETAILS_ERROR,
         payload:
@@ -94,6 +96,7 @@ export const updateLeadDetails = (payload,isUpdate) => (dispatch) => {
       dispatch(getLeadDetails(payload.id));
     })
     .catch((err) => {
+if(!err?.response?.data) return ;
       dispatch({
         type: UPDATE_LEAD_DETAILS_ERROR,
         payload:
@@ -117,6 +120,7 @@ export const submitLeadNotes = (payload) => (dispatch) => {
       dispatch(getAllLeadNotes(payload?.lead?.id));
     })
     .catch((err) => {
+if(!err?.response?.data) return ;
       dispatch({
         type: SAVE_CLIENT_NOTE_ERROR,
         payload:
@@ -135,6 +139,7 @@ export const submitLeadNotes = (payload) => (dispatch) => {
       dispatch(getAllLeadNotes(payload?.lead?.id));
     })
     .catch((err) => {
+if(!err?.response?.data) return ;
       dispatch({
         type: SAVE_CLIENT_NOTE_ERROR,
         payload:
@@ -161,6 +166,7 @@ export const deleteLeadNote = (id,leadId) => (dispatch) => {
       dispatch(getAllLeadNotes(leadId));
     })
     .catch((err) => {
+if(!err?.response?.data) return ;
       dispatch({
         type: DELETE_LEAD_NOTE_ERROR,
         payload:
@@ -184,6 +190,7 @@ export const getAllLeadNotes = (id,payload={}) => (dispatch) => {
       });
     })
     .catch((err) => {
+if(!err?.response?.data) return ;
       dispatch({
         type: LEAD_NOTES_ERROR,
         payload:
@@ -203,6 +210,7 @@ export const getLeadNoteDetails = (id) => (dispatch) => {
       });
     })
     .catch((err) => {
+if(!err?.response?.data) return ;
       dispatch({
         type: LEAD_NOTE_DETAIL_ERROR,
         payload:
@@ -225,6 +233,7 @@ export const getAllLeadRemarks = (id,payload={}) => (dispatch) => {
       });
     })
     .catch((err) => {
+if(!err?.response?.data) return ;
       dispatch({
         type: LEAD_REMARKS_ERROR,
         payload:
@@ -245,6 +254,7 @@ export const submitLeadRemarks = (payload) => (dispatch) => {
       dispatch(getAllLeadRemarks(payload?.lead?.id));
     })
     .catch((err) => {
+if(!err?.response?.data) return ;
       dispatch({
         type: SAVE_CLIENT_REMARKS_ERROR,
         payload:
@@ -263,6 +273,7 @@ export const submitLeadRemarks = (payload) => (dispatch) => {
       dispatch(getAllLeadRemarks(payload?.lead?.id));
     })
     .catch((err) => {
+if(!err?.response?.data) return ;
       dispatch({
         type: SAVE_CLIENT_REMARKS_ERROR,
         payload:
@@ -289,6 +300,7 @@ export const getLeadRemarksDetails = (id) => (dispatch) => {
       });
     })
     .catch((err) => {
+if(!err?.response?.data) return ;
       dispatch({
         type: LEAD_REMARK_DETAIL_ERROR,
         payload:
@@ -308,6 +320,7 @@ export const deleteLeadRemarks = (id,leadId) => (dispatch) => {
       dispatch(getAllLeadRemarks(leadId));
     })
     .catch((err) => {
+if(!err?.response?.data) return ;
       dispatch({
         type: DELETE_LEAD_REMARKS_ERROR,
         payload:
@@ -335,6 +348,7 @@ export const getLeadTasksStatusList = (payload) => (dispatch) => {
       });
     })
     .catch((err) => {
+if(!err?.response?.data) return ;
       dispatch({
         type: LEAD_TASKS_STATUS_LIST_ERROR,
         payload:

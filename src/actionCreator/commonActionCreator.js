@@ -34,6 +34,7 @@ export const getAccountInfo = (token) => (dispatch) => {
       sessionStorage.setItem("userInfo", JSON.stringify(res.data));
     })
     .catch((err) => {
+if(!err?.response?.data) return ;
       dispatch({
         type: ACCOUNTINFO_ERROR,
         payload:
@@ -56,6 +57,7 @@ export const getSubscriptionInfo = (token,data) => (dispatch) => {
     })
     
     .catch((err) => {
+if(!err?.response?.data) return ;
       dispatch({
         type: SUBSCRIPTIONACCOUNTINFO_ERROR,
         payload:
@@ -82,6 +84,7 @@ export const updateAccountInfo = (token,payload) => (dispatch) => {
       dispatch(getAccountInfo(token));
     })
     .catch((err) => {
+if(!err?.response?.data) return ;
       dispatch({
         type: UPDATEACCOUNTINFO_ERROR,
         payload:
