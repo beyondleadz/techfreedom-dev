@@ -96,12 +96,14 @@ export const getEmployeeList = (id, department) => (dispatch) => {
       });
     })
     .catch((err) => {
+      if(err?.response?.data){
       dispatch({
         type: EMPLOYEE_LIST_ERROR,
         payload:
           { [errEnum.EMPLOYEE_LIST_ERROR]: err.response.data[ErrKey] } ||
           "Error Occured",
       });
+    }
     });
 };
 
