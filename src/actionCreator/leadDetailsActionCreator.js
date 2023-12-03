@@ -1,6 +1,6 @@
 import {
   LEAD_DETAILS,
-  LEAD_DETAILS_ERROR,  
+  LEAD_DETAILS_ERROR,
   UPDATE_LEAD_DETAILS,
   UPDATE_LEAD_DETAILS_ERROR,
   SAVE_CLIENT_NOTE,
@@ -21,14 +21,14 @@ import {
   DELETE_LEAD_REMARKS,
   DELETE_LEAD_REMARKS_ERROR,
   LEAD_TASKS_STATUS_LIST,
-  LEAD_TASKS_STATUS_LIST_ERROR
+  LEAD_TASKS_STATUS_LIST_ERROR,
 } from "../actionType/leadDetailsType";
 import {
   deleteAuthMethod,
   getAuthMethod,
   getMethod,
   postAuthMethod,
-  putAuthMethod
+  putAuthMethod,
 } from "../services/HttpServices";
 import {
   getClientLeadsUrl,
@@ -36,11 +36,14 @@ import {
   getClientNotesApiUrl,
   getClientRemarksApiUrl,
   getLeadTasksStatusApiUrl,
- // getLeadNoteDetails
+  // getLeadNoteDetails
 } from "../constant/Constant";
 import { ErrKey, errEnum } from "../config";
 import { EMPTY_ERROR_COMMON_OBJ } from "../actionType/commonType";
-import { createActivityPayload, createActivityPayloadForRemarks } from "../utils/utils";
+import {
+  createActivityPayload,
+  createActivityPayloadForRemarks,
+} from "../utils/utils";
 
 export const getLeadDetails = (id) => (dispatch) => {
   const url = `${getClientLeadsUrl}/${id}`;
@@ -53,7 +56,7 @@ export const getLeadDetails = (id) => (dispatch) => {
       });
     })
     .catch((err) => {
-if(!err?.response?.data) return ;
+      if (!err?.response?.data) return;
       //console.log(err, "sjkflskdjfkl");
       dispatch({
         type: LEAD_DETAILS_ERROR,
@@ -64,99 +67,96 @@ if(!err?.response?.data) return ;
     });
 };
 
-export const updateLeadDetails = (payload,isUpdate) => (dispatch) => {
+export const updateLeadDetails = (payload, isUpdate) => (dispatch) => {
   //console.log(payload, "payloadpayload");
-  if(isUpdate){
-  return putAuthMethod(getClientLeadsUrl,payload.id, payload)
-    .then((res) => {
-      dispatch({
-        type: UPDATE_LEAD_DETAILS,
-        payload: res.data,
+  if (isUpdate) {
+    return putAuthMethod(getClientLeadsUrl, payload.id, payload)
+      .then((res) => {
+        dispatch({
+          type: UPDATE_LEAD_DETAILS,
+          payload: res.data,
+        });
+        dispatch(getLeadDetails(payload.id));
+      })
+      .catch((err) => {
+        if (!err?.response?.data) return;
+        dispatch({
+          type: UPDATE_LEAD_DETAILS_ERROR,
+          payload:
+            {
+              [errEnum.UPDATE_LEAD_DETAILS_ERROR]: err.response.data[ErrKey],
+            } || "Error Occured",
+        });
       });
-      dispatch(getLeadDetails(payload.id));
-    })
-    .catch((err) => {
-if(!err?.response?.data) return ;
-      dispatch({
-        type: UPDATE_LEAD_DETAILS_ERROR,
-        payload:
-          {
-            [errEnum.UPDATE_LEAD_DETAILS_ERROR]:
-              err.response.data[ErrKey],
-          } || "Error Occured",
-      });     
-    });
-  }else{
-    return postAuthMethod(getClientLeadsUrl,payload)
-    .then((res) => {
-      dispatch({
-        type: UPDATE_LEAD_DETAILS,
-        payload: res.data,
+  } else {
+    return postAuthMethod(getClientLeadsUrl, payload)
+      .then((res) => {
+        dispatch({
+          type: UPDATE_LEAD_DETAILS,
+          payload: res.data,
+        });
+        dispatch(getLeadDetails(payload.id));
+      })
+      .catch((err) => {
+        if (!err?.response?.data) return;
+        dispatch({
+          type: UPDATE_LEAD_DETAILS_ERROR,
+          payload:
+            {
+              [errEnum.UPDATE_LEAD_DETAILS_ERROR]: err.response.data[ErrKey],
+            } || "Error Occured",
+        });
       });
-      dispatch(getLeadDetails(payload.id));
-    })
-    .catch((err) => {
-if(!err?.response?.data) return ;
-      dispatch({
-        type: UPDATE_LEAD_DETAILS_ERROR,
-        payload:
-          {
-            [errEnum.UPDATE_LEAD_DETAILS_ERROR]:
-              err.response.data[ErrKey],
-          } || "Error Occured",
-      });     
-    });
   }
 };
 
-export const submitLeadNotes = (payload) => (dispatch) => {  
-  if(payload.update){
-    return putAuthMethod(saveClientNoteApiUrl,payload.id, payload)
-    .then((res) => {
-      dispatch({
-        type: SAVE_CLIENT_NOTE,
-        payload: res.data,
+export const submitLeadNotes = (payload) => (dispatch) => {
+  if (payload.update) {
+    return putAuthMethod(saveClientNoteApiUrl, payload.id, payload)
+      .then((res) => {
+        dispatch({
+          type: SAVE_CLIENT_NOTE,
+          payload: res.data,
+        });
+        dispatch(getAllLeadNotes(payload?.lead?.id));
+      })
+      .catch((err) => {
+        if (!err?.response?.data) return;
+        dispatch({
+          type: SAVE_CLIENT_NOTE_ERROR,
+          payload:
+            {
+              [errEnum.SAVE_CLIENT_NOTE_ERROR]: err.response.data,
+            } || "Error Occured",
+        });
       });
-      dispatch(getAllLeadNotes(payload?.lead?.id));
-    })
-    .catch((err) => {
-if(!err?.response?.data) return ;
-      dispatch({
-        type: SAVE_CLIENT_NOTE_ERROR,
-        payload:
-          {
-            [errEnum.SAVE_CLIENT_NOTE_ERROR]: err.response.data,
-          } || "Error Occured",
-      });
-    });
-  }else{
+  } else {
     return postAuthMethod(saveClientNoteApiUrl, payload)
-    .then((res) => {
-      dispatch({
-        type: SAVE_CLIENT_NOTE,
-        payload: res.data,
+      .then((res) => {
+        dispatch({
+          type: SAVE_CLIENT_NOTE,
+          payload: res.data,
+        });
+        dispatch(getAllLeadNotes(payload?.lead?.id));
+      })
+      .catch((err) => {
+        if (!err?.response?.data) return;
+        dispatch({
+          type: SAVE_CLIENT_NOTE_ERROR,
+          payload:
+            {
+              [errEnum.SAVE_CLIENT_NOTE_ERROR]: err.response.data,
+            } || "Error Occured",
+        });
       });
-      dispatch(getAllLeadNotes(payload?.lead?.id));
-    })
-    .catch((err) => {
-if(!err?.response?.data) return ;
-      dispatch({
-        type: SAVE_CLIENT_NOTE_ERROR,
-        payload:
-          {
-            [errEnum.SAVE_CLIENT_NOTE_ERROR]: err.response.data,
-          } || "Error Occured",
-      });
-    });
   }
-  
 };
 
 export const resetSubmitLeadNotes = (payload) => {
   return { type: SAVE_CLIENT_NOTE, payload: {} };
 };
 
-export const deleteLeadNote = (id,leadId) => (dispatch) => {
+export const deleteLeadNote = (id, leadId) => (dispatch) => {
   return deleteAuthMethod(`${saveClientNoteApiUrl}/${id}`)
     .then((res) => {
       dispatch({
@@ -166,22 +166,20 @@ export const deleteLeadNote = (id,leadId) => (dispatch) => {
       dispatch(getAllLeadNotes(leadId));
     })
     .catch((err) => {
-if(!err?.response?.data) return ;
+      if (!err?.response?.data) return;
       dispatch({
         type: DELETE_LEAD_NOTE_ERROR,
         payload:
           {
-            [errEnum.DELETE_LEAD_NOTE_ERROR]:
-              err.response.data[ErrKey],
+            [errEnum.DELETE_LEAD_NOTE_ERROR]: err.response.data[ErrKey],
           } || "Error Occured",
-      });     
+      });
     });
-    
 };
 
-export const getAllLeadNotes = (id,payload={}) => (dispatch) => {
-  let apiUrl=`${getClientNotesApiUrl}?leadId.equals=${id}`;
-  const url =createActivityPayload(payload,apiUrl); 
+export const getAllLeadNotes = (id, payload = {}) => (dispatch) => {
+  let apiUrl = `${getClientNotesApiUrl}?leadId.equals=${id}`;
+  const url = createActivityPayload(payload, apiUrl);
   return getMethod(url)
     .then((res) => {
       dispatch({
@@ -190,7 +188,7 @@ export const getAllLeadNotes = (id,payload={}) => (dispatch) => {
       });
     })
     .catch((err) => {
-if(!err?.response?.data) return ;
+      if (!err?.response?.data) return;
       dispatch({
         type: LEAD_NOTES_ERROR,
         payload:
@@ -210,7 +208,7 @@ export const getLeadNoteDetails = (id) => (dispatch) => {
       });
     })
     .catch((err) => {
-if(!err?.response?.data) return ;
+      if (!err?.response?.data) return;
       dispatch({
         type: LEAD_NOTE_DETAIL_ERROR,
         payload:
@@ -220,10 +218,9 @@ if(!err?.response?.data) return ;
     });
 };
 
-
-export const getAllLeadRemarks = (id,payload={}) => (dispatch) => {
-  let apiUrl=`${getClientRemarksApiUrl}?leadId.equals=${id}`;
-  const url =createActivityPayloadForRemarks(payload,apiUrl); 
+export const getAllLeadRemarks = (id, payload = {}) => (dispatch) => {
+  let apiUrl = `${getClientRemarksApiUrl}?leadId.equals=${id}`;
+  const url = createActivityPayloadForRemarks(payload, apiUrl);
   //const url = `${getClientRemarksApiUrl}?leadId.equals=${id}`;
   return getMethod(url)
     .then((res) => {
@@ -233,7 +230,7 @@ export const getAllLeadRemarks = (id,payload={}) => (dispatch) => {
       });
     })
     .catch((err) => {
-if(!err?.response?.data) return ;
+      if (!err?.response?.data) return;
       dispatch({
         type: LEAD_REMARKS_ERROR,
         payload:
@@ -243,47 +240,46 @@ if(!err?.response?.data) return ;
     });
 };
 
-export const submitLeadRemarks = (payload) => (dispatch) => {  
-  if(payload.update){
-    return putAuthMethod(getClientRemarksApiUrl,payload.id, payload)
-    .then((res) => {
-      dispatch({ 
-        type: SAVE_CLIENT_REMARKS,
-        payload: res.data,
+export const submitLeadRemarks = (payload) => (dispatch) => {
+  if (payload.update) {
+    return putAuthMethod(getClientRemarksApiUrl, payload.id, payload)
+      .then((res) => {
+        dispatch({
+          type: SAVE_CLIENT_REMARKS,
+          payload: res.data,
+        });
+        dispatch(getAllLeadRemarks(payload?.lead?.id));
+      })
+      .catch((err) => {
+        if (!err?.response?.data) return;
+        dispatch({
+          type: SAVE_CLIENT_REMARKS_ERROR,
+          payload:
+            {
+              [errEnum.SAVE_CLIENT_REMARKS_ERROR]: err.response.data,
+            } || "Error Occured",
+        });
       });
-      dispatch(getAllLeadRemarks(payload?.lead?.id));
-    })
-    .catch((err) => {
-if(!err?.response?.data) return ;
-      dispatch({
-        type: SAVE_CLIENT_REMARKS_ERROR,
-        payload:
-          {
-            [errEnum.SAVE_CLIENT_REMARKS_ERROR]: err.response.data,
-          } || "Error Occured",
-      });
-    });
-  }else{
+  } else {
     return postAuthMethod(getClientRemarksApiUrl, payload)
-    .then((res) => {
-      dispatch({
-        type: SAVE_CLIENT_REMARKS,
-        payload: res.data,
+      .then((res) => {
+        dispatch({
+          type: SAVE_CLIENT_REMARKS,
+          payload: res.data,
+        });
+        dispatch(getAllLeadRemarks(payload?.lead?.id));
+      })
+      .catch((err) => {
+        if (!err?.response?.data) return;
+        dispatch({
+          type: SAVE_CLIENT_REMARKS_ERROR,
+          payload:
+            {
+              [errEnum.SAVE_CLIENT_REMARKS_ERROR]: err.response.data,
+            } || "Error Occured",
+        });
       });
-      dispatch(getAllLeadRemarks(payload?.lead?.id));
-    })
-    .catch((err) => {
-if(!err?.response?.data) return ;
-      dispatch({
-        type: SAVE_CLIENT_REMARKS_ERROR,
-        payload:
-          {
-            [errEnum.SAVE_CLIENT_REMARKS_ERROR]: err.response.data,
-          } || "Error Occured",
-      });
-    });
   }
-  
 };
 
 export const resetSubmitLeadRemarkss = (payload) => {
@@ -300,7 +296,7 @@ export const getLeadRemarksDetails = (id) => (dispatch) => {
       });
     })
     .catch((err) => {
-if(!err?.response?.data) return ;
+      if (!err?.response?.data) return;
       dispatch({
         type: LEAD_REMARK_DETAIL_ERROR,
         payload:
@@ -310,7 +306,7 @@ if(!err?.response?.data) return ;
     });
 };
 
-export const deleteLeadRemarks = (id,leadId) => (dispatch) => {
+export const deleteLeadRemarks = (id, leadId) => (dispatch) => {
   return deleteAuthMethod(`${getClientRemarksApiUrl}/${id}`)
     .then((res) => {
       dispatch({
@@ -320,19 +316,16 @@ export const deleteLeadRemarks = (id,leadId) => (dispatch) => {
       dispatch(getAllLeadRemarks(leadId));
     })
     .catch((err) => {
-if(!err?.response?.data) return ;
+      if (!err?.response?.data) return;
       dispatch({
         type: DELETE_LEAD_REMARKS_ERROR,
         payload:
           {
-            [errEnum.DELETE_LEAD_REMARKS_ERROR]:
-              err.response.data[ErrKey],
+            [errEnum.DELETE_LEAD_REMARKS_ERROR]: err.response.data[ErrKey],
           } || "Error Occured",
-      });     
+      });
     });
-    
 };
-
 
 export const emptyErrorObj = () => ({
   type: LEAD_EMPTY_ERROR_OBJ,
@@ -348,12 +341,13 @@ export const getLeadTasksStatusList = (payload) => (dispatch) => {
       });
     })
     .catch((err) => {
-if(!err?.response?.data) return ;
+      if (!err?.response?.data) return;
       dispatch({
         type: LEAD_TASKS_STATUS_LIST_ERROR,
         payload:
-          { [errEnum.LEAD_TASKS_STATUS_LIST_ERROR]: err.response.data[ErrKey] } ||
-          "Error Occured",
+          {
+            [errEnum.LEAD_TASKS_STATUS_LIST_ERROR]: err.response.data[ErrKey],
+          } || "Error Occured",
       });
     });
 };

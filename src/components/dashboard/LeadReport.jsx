@@ -38,6 +38,13 @@ const LeadReport = () => {
     let lostOpportunity=0; 
     let salesOrderByStatus=[];
     let salesTrendWonData=[];
+    let top5OpprtunityData=[];
+    if(openOpprtunityData && openOpprtunityData?.length){
+      openOpprtunityData?.forEach((record) => {
+        record.fullname=record?.fullname?record.fullname:record?.firstname.trim()+" "+record.lastname;
+        top5OpprtunityData.push(record);                  
+    });
+    }
     if(salesTrendData?.dashboardDTOS?.length > 0){
       salesTrendData?.dashboardDTOS?.forEach((record) => {
           if(record?.typeValue =="WON"){
@@ -58,7 +65,7 @@ const LeadReport = () => {
           }
       });
       let rawData=groupedCountData?.dashboardDTOS;
-      salesOrderByStatus=_.orderBy(rawData, 'statusId', 'asc');
+      salesOrderByStatus=_.orderBy(rawData, 'countSum', 'desc');
       //setSalesReport(salesOrderByStatus);
       //console.log(salesTrendWonData,'salesTrendWonData')
     }
@@ -96,17 +103,17 @@ const LeadReport = () => {
         yField: 'countSum',
         legend: false,
         yAxis: {
-          visible: true,
+          visible: false,       
           label: {
               formatter: (v) => parseInt(v)
           },
-      },
-        meta: {
-            value: {
-            min: 0,
-            max: 10000,
-           },
-         },
+      }
+        // meta: {
+        //     value: {
+        //     min: 0,
+        //     max: 10000,
+        //    },
+        //  },
          //color:['#E6F7FF', '#BAE7FF', '#91D5FF', '#69C0FF', '#40A9FF', '#1890FF', '#096DD9', '#0050B3', '#003A8C', '#002766'],
       }; 
       let totalOpportunity=groupedCountData?.totalOpportunity;//50;
@@ -233,7 +240,7 @@ const LeadReport = () => {
 
       
       const chart4 = {
-        data:openOpprtunityData,
+        data:top5OpprtunityData,
         xField: 'oppurtunityAmount',
         yField: 'fullname',
         meta: {

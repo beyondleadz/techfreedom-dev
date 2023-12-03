@@ -37,7 +37,7 @@ import {
 import {
   getAuthMethod,
   getMethod,
-  postAuthMethod  
+  postAuthMethod,
 } from "../services/HttpServices";
 import { errEnum, ErrKey } from "../config";
 import {
@@ -54,7 +54,7 @@ import {
   getExecutiveFunctionApiUrl,
   getExecutiveLevelApiUrl,
   groupExecutiveTagUrl,
-  getRelavantCompanyApiUrl
+  getRelavantCompanyApiUrl,
 } from "../constant/Constant";
 import { dispatchStatus } from "./commonActionCreator";
 import { Geolocation } from "../constant/Geolocation";
@@ -69,12 +69,13 @@ export const getIndustryList = (payload) => (dispatch) => {
       });
     })
     .catch((err) => {
-if(!err?.response?.data) return ;
+      if (!err?.response?.data) return;
       dispatch({
         type: EXECUTIVE_INDUSTRY_LIST_ERROR,
         payload:
-          { [errEnum.EXECUTIVE_INDUSTRY_LIST_ERROR]: err.response.data[ErrKey] } ||
-          "Error Occured",
+          {
+            [errEnum.EXECUTIVE_INDUSTRY_LIST_ERROR]: err.response.data[ErrKey],
+          } || "Error Occured",
       });
     });
 };
@@ -88,12 +89,13 @@ export const getCompanyTypeList = (payload) => (dispatch) => {
       });
     })
     .catch((err) => {
-if(!err?.response?.data) return ;
+      if (!err?.response?.data) return;
       dispatch({
         type: EXECUTIVE_COMPANY_TYPE_ERROR,
         payload:
-          { [errEnum.EXECUTIVE_COMPANY_TYPE_ERROR]: err.response.data[ErrKey] } ||
-          "Error Occured",
+          {
+            [errEnum.EXECUTIVE_COMPANY_TYPE_ERROR]: err.response.data[ErrKey],
+          } || "Error Occured",
       });
     });
 };
@@ -107,12 +109,13 @@ export const getEmployeeCountList = (payload) => (dispatch) => {
       });
     })
     .catch((err) => {
-if(!err?.response?.data) return ;
+      if (!err?.response?.data) return;
       dispatch({
         type: EXECUTIVE_EMPLOYEE_COUNT_ERROR,
         payload:
-          { [errEnum.EXECUTIVE_EMPLOYEE_COUNT_ERROR]: err.response.data[ErrKey] } ||
-          "Error Occured",
+          {
+            [errEnum.EXECUTIVE_EMPLOYEE_COUNT_ERROR]: err.response.data[ErrKey],
+          } || "Error Occured",
       });
     });
 };
@@ -126,19 +129,24 @@ export const getRevenuerangeList = (payload) => (dispatch) => {
       });
     })
     .catch((err) => {
-if(!err?.response?.data) return ;
+      if (!err?.response?.data) return;
       dispatch({
         type: EXECUTIVE_REVENUE_RANGE_ERROR,
         payload:
-          { [errEnum.EXECUTIVE_REVENUE_RANGE_ERROR]: err.response.data[ErrKey] } ||
-          "Error Occured",
+          {
+            [errEnum.EXECUTIVE_REVENUE_RANGE_ERROR]: err.response.data[ErrKey],
+          } || "Error Occured",
       });
     });
 };
 
 export const getCompanyList = (payload, paginationValues) => (dispatch) => {
   dispatch(dispatchStatus(true));
-  const url = createExecutivePayload(payload, paginationValues, companyListingApiUrl);
+  const url = createExecutivePayload(
+    payload,
+    paginationValues,
+    companyListingApiUrl
+  );
   // console.log(url,'urlurlurl')
   return getMethod(url)
     .then((res) => {
@@ -150,12 +158,13 @@ export const getCompanyList = (payload, paginationValues) => (dispatch) => {
       dispatch(dispatchStatus(false));
     })
     .catch((err) => {
-if(!err?.response?.data) return ;
+      if (!err?.response?.data) return;
       dispatch({
         type: EXECUTIVE_COMPANYLIST_ERROR,
         payload:
-          { [errEnum.EXECUTIVE_COMPANYLIST_ERROR]: err.response.data[ErrKey] } ||
-          "Error Occured",
+          {
+            [errEnum.EXECUTIVE_COMPANYLIST_ERROR]: err.response.data[ErrKey],
+          } || "Error Occured",
       });
     });
 };
@@ -173,12 +182,13 @@ export const getCompanyListWithStartAndEnd = (paginationValues) => (
       });
     })
     .catch((err) => {
-if(!err?.response?.data) return ;
+      if (!err?.response?.data) return;
       dispatch({
         type: EXECUTIVE_COMPANYLIST_ERROR,
         payload:
-          { [errEnum.EXECUTIVE_COMPANYLIST_ERROR]: err.response.data[ErrKey] } ||
-          "Error Occured",
+          {
+            [errEnum.EXECUTIVE_COMPANYLIST_ERROR]: err.response.data[ErrKey],
+          } || "Error Occured",
       });
     });
 };
@@ -205,7 +215,7 @@ export const downloadExecutiveList = (payload, urlSubstring) => (dispatch) => {
       });
     })
     .catch((err) => {
-if(!err?.response?.data) return ;
+      if (!err?.response?.data) return;
       dispatch({
         type: EXECUTIVE_DOWNLOAD_COMPANYLIST_ERROR,
         payload:
@@ -248,7 +258,6 @@ export const selectedRow = (payload) => {
   };
 };
 
-
 export const saveSearchAction = (payload) => (dispatch) => {
   return postAuthMethod(saveSearch, payload)
     .then((res) => {
@@ -259,12 +268,13 @@ export const saveSearchAction = (payload) => (dispatch) => {
       dispatch(saveExecutiveSearchList(payload?.userId));
     })
     .catch((err) => {
-if(!err?.response?.data) return ;
+      if (!err?.response?.data) return;
       dispatch({
         type: EXECUTIVE_SAVE_SEARCH_ERROR,
         payload:
-          { [errEnum.EXECUTIVE_SAVE_SEARCH_ERROR]: err.response.data[ErrKey] } ||
-          "Error Occured",
+          {
+            [errEnum.EXECUTIVE_SAVE_SEARCH_ERROR]: err.response.data[ErrKey],
+          } || "Error Occured",
       });
     });
 };
@@ -275,7 +285,7 @@ export const emptyErrorObj = () => ({
 });
 
 export const saveExecutiveSearchList = (userId) => (dispatch) => {
-  const url=`${saveSearchListApiUrl}?source.equals=Executive&userId.equals=${userId}`
+  const url = `${saveSearchListApiUrl}?source.equals=Executive&userId.equals=${userId}`;
   return getAuthMethod(url)
     .then((res) => {
       dispatch({
@@ -284,18 +294,20 @@ export const saveExecutiveSearchList = (userId) => (dispatch) => {
       });
     })
     .catch((err) => {
-if(!err?.response?.data) return ;
+      if (!err?.response?.data) return;
       dispatch({
         type: EXECUTIVE_SAVE_SEARCH_LIST_ERROR,
         payload:
-          { [errEnum.EXECUTIVE_SAVE_SEARCH_LIST_ERROR]: err.response.data[ErrKey] } ||
-          "Error Occured",
+          {
+            [errEnum.EXECUTIVE_SAVE_SEARCH_LIST_ERROR]:
+              err.response.data[ErrKey],
+          } || "Error Occured",
       });
     });
 };
 
 export const getExecutiveTagList = (userId) => (dispatch) => {
-  const url=`${getExecutiveTagApiUrl}${userId}`
+  const url = `${getExecutiveTagApiUrl}${userId}`;
   return getAuthMethod(url)
     .then((res) => {
       dispatch({
@@ -304,16 +316,17 @@ export const getExecutiveTagList = (userId) => (dispatch) => {
       });
     })
     .catch((err) => {
-if(!err?.response?.data) return ;
+      if (!err?.response?.data) return;
       dispatch({
         type: EXECUTIVE_COMPANY_TAG_LIST_ERROR,
         payload:
-          { [errEnum.EXECUTIVE_COMPANY_TAG_LIST_ERROR]: err.response.data[ErrKey] } ||
-          "Error Occured",
+          {
+            [errEnum.EXECUTIVE_COMPANY_TAG_LIST_ERROR]:
+              err.response.data[ErrKey],
+          } || "Error Occured",
       });
     });
 };
-
 
 export const createGroupExecutiveTag = (payload) => (dispatch) => {
   //console.log(payload, "payloadpayload");
@@ -326,19 +339,27 @@ export const createGroupExecutiveTag = (payload) => (dispatch) => {
       dispatch(getExecutiveTagList(payload?.[0].userId));
     })
     .catch((err) => {
-if(!err?.response?.data) return ;
+      if (!err?.response?.data) return;
       dispatch({
         type: EXECUTIVE_GROUP_COMPANY_TAG_ERROR,
         payload:
-          { [errEnum.EXECUTIVE_GROUP_COMPANY_TAG_ERROR]: err.response.data[ErrKey] } ||
-          "Error Occured",
+          {
+            [errEnum.EXECUTIVE_GROUP_COMPANY_TAG_ERROR]:
+              err.response.data[ErrKey],
+          } || "Error Occured",
       });
     });
 };
 
-export const getExecutiveEmployeeList = (payload, paginationValues) => (dispatch) => {
+export const getExecutiveEmployeeList = (payload, paginationValues) => (
+  dispatch
+) => {
   dispatch(dispatchStatus(true));
-  const url = createExecutivePayload(payload, paginationValues, executiveEmployeeListingApiUrl);
+  const url = createExecutivePayload(
+    payload,
+    paginationValues,
+    executiveEmployeeListingApiUrl
+  );
   // console.log(url,'urlurlurl')
   return getAuthMethod(url)
     .then((res) => {
@@ -351,16 +372,17 @@ export const getExecutiveEmployeeList = (payload, paginationValues) => (dispatch
       dispatch(dispatchStatus(false));
     })
     .catch((err) => {
-if(!err?.response?.data) return ;
+      if (!err?.response?.data) return;
       //console.log(err.response,'emp api error')
-      if(err?.response){
-      dispatch({
-        type: EXECUTIVE_EMPLOYEELIST_ERROR,
-        payload:
-          { [errEnum.EXECUTIVE_EMPLOYEELIST_ERROR]: err.response.data[ErrKey] } ||
-          "Error Occured",
-      });
-    }
+      if (err?.response) {
+        dispatch({
+          type: EXECUTIVE_EMPLOYEELIST_ERROR,
+          payload:
+            {
+              [errEnum.EXECUTIVE_EMPLOYEELIST_ERROR]: err.response.data[ErrKey],
+            } || "Error Occured",
+        });
+      }
     });
 };
 
@@ -373,12 +395,13 @@ export const getExecutiveFunctionList = (payload) => (dispatch) => {
       });
     })
     .catch((err) => {
-if(!err?.response?.data) return ;
+      if (!err?.response?.data) return;
       dispatch({
         type: EXECUTIVE_FUNCTION_LIST_ERROR,
         payload:
-          { [errEnum.EXECUTIVE_FUNCTION_LIST_ERROR]: err.response.data[ErrKey] } ||
-          "Error Occured",
+          {
+            [errEnum.EXECUTIVE_FUNCTION_LIST_ERROR]: err.response.data[ErrKey],
+          } || "Error Occured",
       });
     });
 };
@@ -392,7 +415,7 @@ export const getExecutiveLevelList = (payload) => (dispatch) => {
       });
     })
     .catch((err) => {
-if(!err?.response?.data) return ;
+      if (!err?.response?.data) return;
       dispatch({
         type: EXECUTIVE_LEVEL_LIST_ERROR,
         payload:
@@ -402,8 +425,7 @@ if(!err?.response?.data) return ;
     });
 };
 
-export const emptyDownload=()=>({
+export const emptyDownload = () => ({
   type: EXECUTIVE_DOWNLOAD_COMPANYLIST,
-  payload: {},  
+  payload: {},
 });
-
