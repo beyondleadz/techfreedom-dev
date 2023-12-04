@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import _ from "lodash";
-import { Funnel,Gauge,Line,Bar } from '@ant-design/plots';
+import _, { forIn } from "lodash";
+import { Funnel, Gauge, Line, Bar } from "@ant-design/plots";
 import { Table } from "antd";
-import {getTopClosedOpportunity,getTopOpenOpportunity,getGroupedCountData,getSalesTrendData} from "../../actionCreator/dashboardActionCreator"
+import {
+  getTopClosedOpportunity,
+  getTopOpenOpportunity,
+  getGroupedCountData,
+  getSalesTrendData,
+} from "../../actionCreator/dashboardActionCreator";
 import { getUserInfo } from "../../utils/utils";
 
 const LeadReport = () => {
   const dispatch = useDispatch();
-  const [salesReport, setSalesReport] = useState([]);
-  
+  const [top5OpprtunityData, setTop5OpprtunityData] = useState([]);
+
   const userAccountInfo = useSelector(
     (state) => state.CommonReducer.accountInfo
   );
@@ -19,8 +24,12 @@ const LeadReport = () => {
   const openOpprtunityData = useSelector(
     (state) => state.DashboardReducer.openOpp
   );
-  const groupedCountData=useSelector((state)=>state.DashboardReducer.groupedCountData);
-  const salesTrendData=useSelector((state)=>state.DashboardReducer.salesTrendData);
+  const groupedCountData = useSelector(
+    (state) => state.DashboardReducer.groupedCountData
+  );
+  const salesTrendData = useSelector(
+    (state) => state.DashboardReducer.salesTrendData
+  );
   useEffect(() => {
     if (Object.keys(getUserInfo()).length) {
       dispatch(getTopClosedOpportunity());
@@ -29,233 +38,251 @@ const LeadReport = () => {
       dispatch(getSalesTrendData());
     }
   }, [userAccountInfo]);
-    //console.log(closedOpprtunityData,'closedOpprtunityData');
-    const dataSource =closedOpprtunityData;
-    let leadConversionValue=0;
-    let opportunityWonValue=0;
-    let leadConversionRate=0;
-    let opportunityWonRatio=0;
-    let lostOpportunity=0; 
-    let salesOrderByStatus=[];
-    let salesTrendWonData=[];
-    let top5OpprtunityData=[];
-    if(openOpprtunityData && openOpprtunityData?.length){
+
+  useEffect(() => {
+    let top5OpprtunityData = [];
+    let topData = {};
+    if (openOpprtunityData && openOpprtunityData?.length) {
       openOpprtunityData?.forEach((record) => {
-        record.fullname=record?.fullname?record.fullname:record?.firstname.trim()+" "+record.lastname;
-        top5OpprtunityData.push(record);                  
-    });
-    }
-    if(salesTrendData?.dashboardDTOS?.length > 0){
-      salesTrendData?.dashboardDTOS?.forEach((record) => {
-          if(record?.typeValue =="WON"){
-            salesTrendWonData.push(record);
-          }          
-      });
-    }
-    if(groupedCountData?.dashboardDTOS?.length > 0){
-      groupedCountData?.dashboardDTOS?.forEach((record) => {
-          if(record?.typeValue =="qulified"){
-            leadConversionValue+=Math.number(record.countSum);
-          }
-          if(record?.typeValue =="WON"){
-            opportunityWonValue+=Math.number(record.leadclosedOpportunity);
-          }
-          if(record?.typeValue =="un-qulified" || record?.typeValue =="lost"){
-            lostOpportunity+=Math.number(record.opportunitSum);
-          }
-      });
-      let rawData=groupedCountData?.dashboardDTOS;
-      salesOrderByStatus=_.orderBy(rawData, 'countSum', 'desc');
-      //setSalesReport(salesOrderByStatus);
-      //console.log(salesTrendWonData,'salesTrendWonData')
-    }
-    if(groupedCountData?.leadGenareatedCount > 0){
-      leadConversionRate=leadConversionValue/groupedCountData?.leadGenareatedCount * 100;
-      opportunityWonRatio=opportunityWonValue/groupedCountData?.leadGenareatedCount * 100;
-    }
-      const columns = [
-        {
-          title: 'Opportunity with Account name',
-          dataIndex: 'fullname',
-          key: 'fullname',
-        },
-        {
-          title: 'Amount',
-          dataIndex: 'oppurtunityAmount',
-          key: 'oppurtunityAmount',
-        },
-        {
-          title: 'Owner & Closing Date',
-          dataIndex: 'createdBy',
-          key: 'createdBy',
-        },
-      ];
-
-      // const salesOrderByStatus_dummy = [
-      //   {
-      //     typeValue: 'First',
-      //     countSum: 400,
-      //   }
-      // ];  
-    const config = {
-        data: salesOrderByStatus,
-        xField: 'typeValue',
-        yField: 'countSum',
-        legend: false,
-        yAxis: {
-          visible: false,       
-          label: {
-              formatter: (v) => parseInt(v)
-          },
-      }
-        // meta: {
-        //     value: {
-        //     min: 0,
-        //     max: 10000,
-        //    },
-        //  },
-         //color:['#E6F7FF', '#BAE7FF', '#91D5FF', '#69C0FF', '#40A9FF', '#1890FF', '#096DD9', '#0050B3', '#003A8C', '#002766'],
-      }; 
-      let totalOpportunity=groupedCountData?.totalOpportunity;//50;
-      let totalValueRate=groupedCountData?.totalValueRate;//100;
-      let salesTarget=0;
-      if(totalValueRate > 0){
-        salesTarget=(totalOpportunity/totalValueRate);
-      }      
-      const chart2 = {
-        percent: 0.1,
-        radius: 0.75,
-        innerRadius: 0.75,
-        indicator: null,
-        range: {
-          ticks: [salesTarget, 1],
-          color: [
-            "#F4664A",
-            "#FAAD14",
-          ]
-        },
-        statistic: {
-          title: {
-            style: ({ percent }) => {
-              return {
-                fontSize: "36px",
-                lineHeight: 1,
-                color: "#FAAD14"
-              };
-            }
-          },
-          content: {
-            offsetY: 36,
-            offsetX: 6,
-            style: {
-              fontSize: "24px",
-              color: "#4B535E"
-            },
-            formatter: () => ""
-          }
+        record.fullname = record?.fullname
+          ? record.fullname
+          : record?.firstname.trim() + " " + record.lastname;
+        if (topData[record.employeeId]) {
+          let amt =
+            Number(topData[record.employeeId].oppurtunityAmount) +
+            Number(record.oppurtunityAmount);
+          topData[record.employeeId].oppurtunityAmount = _.cloneDeep(amt);
+        } else {
+          topData[record.employeeId] = record;
         }
-      };
-      // const chart2_old = {
-      //   percent: 0.75,
-      //   range: {
-      //     color: 'l(0) 0:#B8E1FF 1:#3D76DD',
-      //   },
-      //   startAngle: 1,
-      //   endAngle: 0.75,
-      //   indicator: null,
-      //   statistic: {
-      //     title: {
-      //       offsetY: -36,
-      //       style: {
-      //         fontSize: '36px',
-      //         color: '#4B535E',
-      //       },
-      //       formatter: () => '70%',
-      //     },
-      //     content: {
-      //       style: {
-      //         fontSize: '24px',
-      //         lineHeight: '44px',
-      //         color: '#4B535E',
-      //       },
-      //       formatter: () => '',
-      //     },
-      //   },
-      // };
- 
-      // const salesTrendWonDataDummy = [
-      //   {
-      //     typeValue: '1991',
-      //     opportunitSum: 3,
-      //   },
-      //   {
-      //     typeValue: '1992',
-      //     opportunitSum: 4,
-      //   },
-      //   {
-      //     typeValue: '1993',
-      //     opportunitSum: 3.5,
-      //   },
-      //   {
-      //     typeValue: '1994',
-      //     opportunitSum: 5,
-      //   },
-      //   {
-      //     typeValue: '1995',
-      //     opportunitSum: '4.9',
-      //   }        
-      // ];      
-      const chart3 = {
-        data:salesTrendWonData,//salesTrendWonData
-        xField: 'typeValue',
-        yField: 'opportunitSum',
-        label: {},
-        point: {
-          size: 5,
-          shape: 'diamond',
-          style: {
-            fill: 'white',
-            stroke: '#5B8FF9',
-            lineWidth: 2,
-          },
-        },
-        tooltip: {
-          showMarkers: false,
-        },
-        state: {
-          active: {
-            style: {
-              shadowBlur: 4,
-              stroke: '#000',
-              fill: 'red',
-            },
-          },
-        },
-        interactions: [
-          {
-            type: 'marker-active',
-          },
-        ],
-      };
+      });
 
-      
-      const chart4 = {
-        data:top5OpprtunityData,
-        xField: 'oppurtunityAmount',
-        yField: 'fullname',
-        meta: {
-          fullname: {
-            alias: 'Category',
-          },
-          oppurtunityAmount: {
-            alias: 'Amount',
-          },
+      if (topData && Object.keys(topData)?.length) {
+        for (let key in topData) {
+          top5OpprtunityData.push(topData[key]);
+        }
+      }
+      setTop5OpprtunityData(top5OpprtunityData);
+    }
+  }, [openOpprtunityData.length]);
+  //console.log(closedOpprtunityData,'closedOpprtunityData');
+  const dataSource = closedOpprtunityData;
+  let leadConversionValue = 0;
+  let opportunityWonValue = 0;
+  let leadConversionRate = 0;
+  let opportunityWonRatio = 0;
+  let lostOpportunity = 0;
+  let salesOrderByStatus = [];
+  let salesTrendWonData = [];
+
+  if (salesTrendData?.dashboardDTOS?.length > 0) {
+    salesTrendData?.dashboardDTOS?.forEach((record) => {
+      if (record?.typeValue == "WON") {
+        salesTrendWonData.push(record);
+      }
+    });
+  }
+  if (groupedCountData?.dashboardDTOS?.length > 0) {
+    groupedCountData?.dashboardDTOS?.forEach((record) => {
+      if (record?.typeValue == "qulified") {
+        leadConversionValue += Math.number(record.countSum);
+      }
+      if (record?.typeValue == "WON") {
+        opportunityWonValue += Math.number(record.leadclosedOpportunity);
+      }
+      if (record?.typeValue == "un-qulified" || record?.typeValue == "lost") {
+        lostOpportunity += Math.number(record.opportunitSum);
+      }
+    });
+    let rawData = groupedCountData?.dashboardDTOS;
+    salesOrderByStatus = _.orderBy(rawData, "countSum", "desc");
+    //setSalesReport(salesOrderByStatus);
+    //console.log(salesTrendWonData,'salesTrendWonData')
+  }
+  if (groupedCountData?.leadGenareatedCount > 0) {
+    leadConversionRate =
+      (leadConversionValue / groupedCountData?.leadGenareatedCount) * 100;
+    opportunityWonRatio =
+      (opportunityWonValue / groupedCountData?.leadGenareatedCount) * 100;
+  }
+  const columns = [
+    {
+      title: "Opportunity with Account name",
+      dataIndex: "fullname",
+      key: "fullname",
+    },
+    {
+      title: "Amount",
+      dataIndex: "oppurtunityAmount",
+      key: "oppurtunityAmount",
+    },
+    {
+      title: "Owner & Closing Date",
+      dataIndex: "createdBy",
+      key: "createdBy",
+    },
+  ];
+
+  // const salesOrderByStatus_dummy = [
+  //   {
+  //     typeValue: 'First',
+  //     countSum: 400,
+  //   }
+  // ];
+  const config = {
+    data: salesOrderByStatus,
+    xField: "typeValue",
+    yField: "countSum",
+    legend: false,
+    yAxis: {
+      visible: false,
+      label: {
+        formatter: (v) => parseInt(v),
+      },
+    },
+    // meta: {
+    //     value: {
+    //     min: 0,
+    //     max: 10000,
+    //    },
+    //  },
+    //color:['#E6F7FF', '#BAE7FF', '#91D5FF', '#69C0FF', '#40A9FF', '#1890FF', '#096DD9', '#0050B3', '#003A8C', '#002766'],
+  };
+  let totalOpportunity = groupedCountData?.totalOpportunity; //50;
+  let totalValueRate = groupedCountData?.totalValueRate; //100;
+  let salesTarget = 0;
+  if (totalValueRate > 0) {
+    salesTarget = totalOpportunity / totalValueRate;
+  }
+  const chart2 = {
+    percent: 0.1,
+    radius: 0.75,
+    innerRadius: 0.75,
+    indicator: null,
+    range: {
+      ticks: [salesTarget, 1],
+      color: ["#F4664A", "#FAAD14"],
+    },
+    statistic: {
+      title: {
+        style: ({ percent }) => {
+          return {
+            fontSize: "36px",
+            lineHeight: 1,
+            color: "#FAAD14",
+          };
         },
-        minBarWidth: 20,
-        maxBarWidth: 20,
-      }; 
-      
-      
+      },
+      content: {
+        offsetY: 36,
+        offsetX: 6,
+        style: {
+          fontSize: "24px",
+          color: "#4B535E",
+        },
+        formatter: () => "",
+      },
+    },
+  };
+  // const chart2_old = {
+  //   percent: 0.75,
+  //   range: {
+  //     color: 'l(0) 0:#B8E1FF 1:#3D76DD',
+  //   },
+  //   startAngle: 1,
+  //   endAngle: 0.75,
+  //   indicator: null,
+  //   statistic: {
+  //     title: {
+  //       offsetY: -36,
+  //       style: {
+  //         fontSize: '36px',
+  //         color: '#4B535E',
+  //       },
+  //       formatter: () => '70%',
+  //     },
+  //     content: {
+  //       style: {
+  //         fontSize: '24px',
+  //         lineHeight: '44px',
+  //         color: '#4B535E',
+  //       },
+  //       formatter: () => '',
+  //     },
+  //   },
+  // };
+
+  // const salesTrendWonDataDummy = [
+  //   {
+  //     typeValue: '1991',
+  //     opportunitSum: 3,
+  //   },
+  //   {
+  //     typeValue: '1992',
+  //     opportunitSum: 4,
+  //   },
+  //   {
+  //     typeValue: '1993',
+  //     opportunitSum: 3.5,
+  //   },
+  //   {
+  //     typeValue: '1994',
+  //     opportunitSum: 5,
+  //   },
+  //   {
+  //     typeValue: '1995',
+  //     opportunitSum: '4.9',
+  //   }
+  // ];
+  const chart3 = {
+    data: salesTrendWonData, //salesTrendWonData
+    xField: "typeValue",
+    yField: "opportunitSum",
+    label: {},
+    point: {
+      size: 5,
+      shape: "diamond",
+      style: {
+        fill: "white",
+        stroke: "#5B8FF9",
+        lineWidth: 2,
+      },
+    },
+    tooltip: {
+      showMarkers: false,
+    },
+    state: {
+      active: {
+        style: {
+          shadowBlur: 4,
+          stroke: "#000",
+          fill: "red",
+        },
+      },
+    },
+    interactions: [
+      {
+        type: "marker-active",
+      },
+    ],
+  };
+
+  const chart4 = {
+    data: top5OpprtunityData,
+    xField: "oppurtunityAmount",
+    yField: "fullname",
+    meta: {
+      fullname: {
+        alias: "Category",
+      },
+      oppurtunityAmount: {
+        alias: "Amount",
+      },
+    },
+    minBarWidth: 20,
+    maxBarWidth: 20,
+  };
+
   return (
     <>
       <div className=" row mt-4 pt-4">
@@ -267,7 +294,9 @@ const LeadReport = () => {
               </div>
               <div className="row no-gutters align-items-center">
                 <div className="col mr-2">
-                  <div className="h5 mb-0 font-weight-bold text-gray-800">{groupedCountData?.leadGenareatedCount}</div>
+                  <div className="h5 mb-0 font-weight-bold text-gray-800">
+                    {groupedCountData?.leadGenareatedCount}
+                  </div>
                 </div>
                 <div className="col-auto">
                   <i className="las la-filter fa-2x text-gray-300"></i>
@@ -285,7 +314,9 @@ const LeadReport = () => {
               </div>
               <div className="row no-gutters align-items-center">
                 <div className="col mr-2">
-                  <div className="h5 mb-0 font-weight-bold text-gray-800">{leadConversionRate}%</div>
+                  <div className="h5 mb-0 font-weight-bold text-gray-800">
+                    {leadConversionRate}%
+                  </div>
                 </div>
                 <div className="col-auto">
                   <i className="las la-funnel-dollar fa-2x text-gray-300"></i>
@@ -338,7 +369,9 @@ const LeadReport = () => {
               </div>
               <div className="row no-gutters align-items-center">
                 <div className="col mr-2">
-                  <div className="h5 mb-0 font-weight-bold text-gray-800">{groupedCountData?.leadOpenOpportunity}</div>
+                  <div className="h5 mb-0 font-weight-bold text-gray-800">
+                    {groupedCountData?.leadOpenOpportunity}
+                  </div>
                 </div>
                 <div className="col-auto">
                   <i className="las la-comments fa-2x text-gray-300"></i>
@@ -356,7 +389,9 @@ const LeadReport = () => {
               </div>
               <div className="row no-gutters align-items-center">
                 <div className="col mr-2">
-                  <div className="h5 mb-0 font-weight-bold text-gray-800">{groupedCountData?.totalOpportunity}</div>
+                  <div className="h5 mb-0 font-weight-bold text-gray-800">
+                    {groupedCountData?.totalOpportunity}
+                  </div>
                 </div>
                 <div className="col-auto">
                   <i className="las la-hand-holding-usd fa-2x text-gray-300"></i>
@@ -374,7 +409,9 @@ const LeadReport = () => {
               </div>
               <div className="row no-gutters align-items-center">
                 <div className="col mr-2">
-                  <div className="h5 mb-0 font-weight-bold text-gray-800">{lostOpportunity}</div>
+                  <div className="h5 mb-0 font-weight-bold text-gray-800">
+                    {lostOpportunity}
+                  </div>
                 </div>
                 <div className="col-auto">
                   <i className="lab la-creative-commons-nc fa-2x text-gray-300"></i>
@@ -396,13 +433,12 @@ const LeadReport = () => {
               <div className="chart-pie pt-4 pb-2">
                 <div className="chartjs-size-monitor">
                   <div className="chartjs-size-monitor-expand">
-                    <div className="" style={{height:220}}>
-                    { <Funnel {...config} />  }
+                    <div className="" style={{ height: 220 }}>
+                      {<Funnel {...config} />}
                     </div>
                   </div>
                   <div className="chartjs-size-monitor-shrink">
-                    <div className="">                        
-                    </div>
+                    <div className=""></div>
                   </div>
                 </div>
               </div>
@@ -420,8 +456,8 @@ const LeadReport = () => {
               <div className="chart-pie pt-4 pb-2">
                 <div className="chartjs-size-monitor">
                   <div className="chartjs-size-monitor-expand">
-                  <div className="" style={{height:220}}>
-                       {<Gauge {...chart2} />} 
+                    <div className="" style={{ height: 220 }}>
+                      {<Gauge {...chart2} />}
                     </div>
                   </div>
                   <div className="chartjs-size-monitor-shrink">
@@ -443,8 +479,8 @@ const LeadReport = () => {
               <div className="chart-pie pt-4 pb-2">
                 <div className="chartjs-size-monitor">
                   <div className="chartjs-size-monitor-expand">
-                  <div className="" style={{height:220}}>
-                    { <Line {...chart3} />  }
+                    <div className="" style={{ height: 220 }}>
+                      {<Line {...chart3} />}
                     </div>
                   </div>
                   <div className="chartjs-size-monitor-shrink">
@@ -467,7 +503,11 @@ const LeadReport = () => {
 
             <div className="card-body">
               <div className="chart-area">
-              <Table pagination={{ position: ['none'] }} dataSource={dataSource} columns={columns} />
+                <Table
+                  pagination={{ position: ["none"] }}
+                  dataSource={dataSource}
+                  columns={columns}
+                />
               </div>
             </div>
           </div>
@@ -485,7 +525,9 @@ const LeadReport = () => {
               <div className="chart-pie pt-4 pb-2">
                 <div className="chartjs-size-monitor">
                   <div className="chartjs-size-monitor-expand">
-                  <div className="" style={{height:220}}><Bar {...chart4} /></div>
+                    <div className="" style={{ height: 220 }}>
+                      <Bar {...chart4} />
+                    </div>
                   </div>
                   <div className="chartjs-size-monitor-shrink">
                     <div className=""></div>

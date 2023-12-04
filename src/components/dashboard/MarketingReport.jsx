@@ -30,14 +30,26 @@ const MarketingReport = () => {
   let groupedIndustryData1=[];let groupedIndustryTotal=0;
   let groupedSourceData1=[];let groupedSourceTotal=0;
   if(groupedIndustryData?.dashboardDTOS?.length > 0){
-    groupedIndustryData1=groupedIndustryData.dashboardDTOS;
+    //groupedIndustryData1=groupedIndustryData.dashboardDTOS;
+    groupedIndustryData?.dashboardDTOS?.forEach((record) => {
+      if(record?.typeValue){
+      record.countSum=Number(record.countSum);
+      groupedIndustryData1.push(record);
+      }
+  });
     groupedIndustryTotal=groupedIndustryData.leadGenareatedCount;
   }
   if(groupedSourceData?.dashboardDTOS?.length > 0){
-    groupedSourceData1=groupedSourceData.dashboardDTOS;
+    groupedSourceData?.dashboardDTOS?.forEach((record) => {
+      if(record?.typeValue){
+        record.countSum=Number(record.countSum);
+        groupedSourceData1.push(record);
+      }
+    });
+    //groupedSourceData1=groupedSourceData.dashboardDTOS;
     groupedSourceTotal=groupedSourceData.leadGenareatedCount;
   }
-  //console.log(groupedSourceData1,'groupedSourceData1')
+  console.log(groupedIndustryData1,'groupedIndustryData1')
   let salesTrendWonData=[];
     if(salesTrendData && salesTrendData?.dashboardDTOS){
       salesTrendData?.dashboardDTOS?.forEach((record) => {
@@ -46,7 +58,7 @@ const MarketingReport = () => {
           }          
       });
     }
-  //const data = [{typeValue:"First",countSum:400,},{typeValue:"Second",countSum:600,}];
+ // const data = [{typeValue:"First",countSum:400,},{typeValue:"Second",countSum:600,}];
   const config = {
     appendPadding: 10,
     data:groupedSourceData1,
