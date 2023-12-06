@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import _, { forIn } from "lodash";
+import _, { forIn, round } from "lodash";
 import { Funnel, Gauge, Line, Bar } from "@ant-design/plots";
 import { Table } from "antd";
 import {
@@ -74,36 +74,39 @@ const LeadReport = () => {
   let lostOpportunity = 0;
   let salesOrderByStatus = [];
   let salesTrendWonData = [];
-
+  const wonStatus="Closed Won";
+  const lostStatus="Closed Lost";
+  const unQualifiedStatus="Un-Qualified";
+  const qualifiedStatus="Sales Qualified";
   if (salesTrendData?.dashboardDTOS?.length > 0) {
     salesTrendData?.dashboardDTOS?.forEach((record) => {
-      if (record?.typeValue == "WON") {
+      //if (record?.typeValue == wonStatus) {
         salesTrendWonData.push(record);
-      }
+      //}
     });
   }
   if (groupedCountData?.dashboardDTOS?.length > 0) {
     groupedCountData?.dashboardDTOS?.forEach((record) => {
-      if (record?.typeValue == "qulified") {
-        leadConversionValue += Math.number(record.countSum);
+      if (record?.typeValue == qualifiedStatus) {
+        leadConversionValue += Number(record.countSum);
       }
-      if (record?.typeValue == "WON") {
-        opportunityWonValue += Math.number(record.leadclosedOpportunity);
+      if (record?.typeValue == wonStatus) {
+        opportunityWonValue += Number(record.opportunitSum);
       }
-      if (record?.typeValue == "un-qulified" || record?.typeValue == "lost") {
-        lostOpportunity += Math.number(record.opportunitSum);
+      if (record?.typeValue == unQualifiedStatus || record?.typeValue == lostStatus) {
+        lostOpportunity += Number(record.opportunitSum);
       }
     });
     let rawData = groupedCountData?.dashboardDTOS;
     salesOrderByStatus = _.orderBy(rawData, "countSum", "desc");
     //setSalesReport(salesOrderByStatus);
-    //console.log(salesTrendWonData,'salesTrendWonData')
+    //console.log(salesTrendWonData,opportunityWonValue,'salesTrendWonData')
   }
   if (groupedCountData?.leadGenareatedCount > 0) {
     leadConversionRate =
-      (leadConversionValue / groupedCountData?.leadGenareatedCount) * 100;
+      round((leadConversionValue / groupedCountData?.leadGenareatedCount) * 100,2);
     opportunityWonRatio =
-      (opportunityWonValue / groupedCountData?.leadGenareatedCount) * 100;
+    round((opportunityWonValue / groupedCountData?.leadGenareatedCount) * 100,2);
   }
   const columns = [
     {
@@ -133,6 +136,8 @@ const LeadReport = () => {
     data: salesOrderByStatus,
     xField: "typeValue",
     yField: "countSum",
+    //showFacetTitle:false,
+    // label:'none',
     legend: false,
     yAxis: {
       visible: false,
@@ -140,12 +145,21 @@ const LeadReport = () => {
         formatter: (v) => parseInt(v),
       },
     },
-    // meta: {
-    //     value: {
-    //     min: 0,
-    //     max: 10000,
-    //    },
-    //  },
+    meta: {
+        value: {
+        min: 0,
+        max: 10000,
+       },
+     },
+    //  tooltip: {
+    //   formatter: (datum) => {
+    //     return {
+    //       name: datum.stage,
+    //       value: `${datum.number}个`,
+    //     };
+    //   },
+    // },
+    conversionTag: '',
     //color:['#E6F7FF', '#BAE7FF', '#91D5FF', '#69C0FF', '#40A9FF', '#1890FF', '#096DD9', '#0050B3', '#003A8C', '#002766'],
   };
   let totalOpportunity = groupedCountData?.totalOpportunity; //50;
@@ -430,10 +444,10 @@ const LeadReport = () => {
               </h6>
             </div>
             <div className="card-body">
-              <div className="chart-pie pt-4 pb-2">
+              <div className="chart-pie pt-4 pb-2" style={{ marginLeft: -70 }}>
                 <div className="chartjs-size-monitor">
                   <div className="chartjs-size-monitor-expand">
-                    <div className="" style={{ height: 220 }}>
+                    <div className="" style={{ height: 220,width:500 }}>
                       {<Funnel {...config} />}
                     </div>
                   </div>

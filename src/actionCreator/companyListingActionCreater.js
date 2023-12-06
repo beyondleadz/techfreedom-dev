@@ -45,7 +45,11 @@ import {
 } from "../constant/Constant";
 import { dispatchStatus } from "./commonActionCreator";
 import { Geolocation } from "../constant/Geolocation";
-import { createPayload, createPayloadWithTopSearch,saveExcel } from "../utils/utils";
+import {
+  createPayload,
+  createPayloadWithTopSearch,
+  saveExcel,
+} from "../utils/utils";
 
 export const getIndustryList = (payload) => (dispatch) => {
   return getAuthMethod(industryApiUrl)
@@ -56,13 +60,11 @@ export const getIndustryList = (payload) => (dispatch) => {
       });
     })
     .catch((err) => {
-if(!err?.response?.data) return ;
-     // console.log(err,'9798798')
+      if (!err?.response?.data) return;
+      // console.log(err,'9798798')
       dispatch({
         type: INDUSTRY_LIST_ERROR,
-        payload:
-          { [errEnum.INDUSTRY_LIST_ERROR]: err ||
-            "Error Occured"}
+        payload: { [errEnum.INDUSTRY_LIST_ERROR]: err || "Error Occured" },
       });
     });
 };
@@ -76,7 +78,7 @@ export const getCompanyTypeList = (payload) => (dispatch) => {
       });
     })
     .catch((err) => {
-if(!err?.response?.data) return ;
+      if (!err?.response?.data) return;
       dispatch({
         type: COMPANY_TYPE_ERROR,
         payload:
@@ -95,7 +97,7 @@ export const getEmployeeCountList = (payload) => (dispatch) => {
       });
     })
     .catch((err) => {
-if(!err?.response?.data) return ;
+      if (!err?.response?.data) return;
       dispatch({
         type: EMPLOYEE_COUNT_ERROR,
         payload:
@@ -114,7 +116,7 @@ export const getRevenuerangeList = (payload) => (dispatch) => {
       });
     })
     .catch((err) => {
-if(!err?.response?.data) return ;
+      if (!err?.response?.data) return;
       dispatch({
         type: REVENUE_RANGE_ERROR,
         payload:
@@ -124,7 +126,11 @@ if(!err?.response?.data) return ;
     });
 };
 
-export const getCompanyList = (payload, paginationValues,topSearch=false) => (dispatch) => {
+export const getCompanyList = (
+  payload,
+  paginationValues,
+  topSearch = false
+) => (dispatch) => {
   dispatch(dispatchStatus(true));
   let url = createPayload(payload, paginationValues, companyListingApiUrl);
 
@@ -144,7 +150,7 @@ export const getCompanyList = (payload, paginationValues,topSearch=false) => (di
       dispatch(dispatchStatus(false));
     })
     .catch((err) => {
-if(!err?.response?.data) return ;
+      if (!err?.response?.data) return;
       dispatch({
         type: COMPANYLIST_ERROR,
         payload:
@@ -167,7 +173,7 @@ export const getCompanyListWithStartAndEnd = (paginationValues) => (
       });
     })
     .catch((err) => {
-if(!err?.response?.data) return ;
+      if (!err?.response?.data) return;
       dispatch({
         type: COMPANYLIST_ERROR,
         payload:
@@ -201,7 +207,7 @@ export const downloadCompanyList = (payload, urlSubstring) => (dispatch) => {
       //saveExcel();
     })
     .catch((err) => {
-if(!err?.response?.data) return ;
+      if (!err?.response?.data) return;
       dispatch({
         type: DOWNLOAD_COMPANYLIST_ERROR,
         payload:
@@ -244,7 +250,6 @@ export const selectedRow = (payload) => {
   };
 };
 
-
 export const saveSearchAction = (payload) => (dispatch) => {
   return postAuthMethod(saveSearch, payload)
     .then((res) => {
@@ -255,7 +260,7 @@ export const saveSearchAction = (payload) => (dispatch) => {
       dispatch(saveSearchList(payload?.userId));
     })
     .catch((err) => {
-if(!err?.response?.data) return ;
+      if (!err?.response?.data) return;
       dispatch({
         type: SAVE_SEARCH_ERROR,
         payload:
@@ -271,7 +276,7 @@ export const emptyErrorObj = () => ({
 });
 
 export const saveSearchList = (userId) => (dispatch) => {
-  const url=`${saveSearchListApiUrl}?source.equals=Company&userId.equals=${userId}`
+  const url = `${saveSearchListApiUrl}?source.equals=Company&userId.equals=${userId}`;
   return getAuthMethod(url)
     .then((res) => {
       dispatch({
@@ -280,7 +285,7 @@ export const saveSearchList = (userId) => (dispatch) => {
       });
     })
     .catch((err) => {
-if(!err?.response?.data) return ;
+      if (!err?.response?.data) return;
       dispatch({
         type: SAVE_SEARCH_LIST_ERROR,
         payload:
@@ -291,7 +296,7 @@ if(!err?.response?.data) return ;
 };
 
 export const getCompanyTagList = (userId) => (dispatch) => {
-  const url=`${getCompanyTagApiUrl}${userId}`
+  const url = `${getCompanyTagApiUrl}${userId}`;
   return getAuthMethod(url)
     .then((res) => {
       dispatch({
@@ -300,7 +305,7 @@ export const getCompanyTagList = (userId) => (dispatch) => {
       });
     })
     .catch((err) => {
-if(!err?.response?.data) return ;
+      if (!err?.response?.data) return;
       dispatch({
         type: COMPANY_TAG_LIST_ERROR,
         payload:
@@ -309,7 +314,6 @@ if(!err?.response?.data) return ;
       });
     });
 };
-
 
 export const createGroupCompanyTag = (payload) => (dispatch) => {
   //console.log(payload, "payloadpayload");
@@ -322,7 +326,7 @@ export const createGroupCompanyTag = (payload) => (dispatch) => {
       dispatch(getCompanyTagList(payload?.[0].userId));
     })
     .catch((err) => {
-if(!err?.response?.data) return ;
+      if (!err?.response?.data) return;
       dispatch({
         type: GROUP_COMPANY_TAG_ERROR,
         payload:
@@ -332,7 +336,7 @@ if(!err?.response?.data) return ;
     });
 };
 
-export const emptyDownload=()=>({
-    type: DOWNLOAD_COMPANYLIST,
-    payload: {},  
+export const emptyDownload = () => ({
+  type: DOWNLOAD_COMPANYLIST,
+  payload: {},
 });

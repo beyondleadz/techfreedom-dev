@@ -35,13 +35,13 @@ import {
   POST_RELAVANT_EXECUTIVE_TAG,
   POST_RELAVANT_EXECUTIVE_TAG_ERROR,
   EXECUTIVE_EMPLOYEE_VIEWABLE_STATUS,
-  EXECUTIVE_EMPLOYEE_VIEWABLE_STATUS_ERROR
+  EXECUTIVE_EMPLOYEE_VIEWABLE_STATUS_ERROR,
 } from "../actionType/executiveDetailsType";
 import {
   getAuthMethod,
   getMethod,
   postAuthMethod,
-  putAuthMethod
+  putAuthMethod,
 } from "../services/HttpServices";
 import {
   companyListingApiUrl,
@@ -76,17 +76,18 @@ export const getExecutiveCompanyDetails = (id) => (dispatch) => {
       });
     })
     .catch((err) => {
-if(!err?.response?.data) return ;
+      if (!err?.response?.data) return;
       //console.log(err, "sjkflskdjfkl");
       dispatch({
         type: EXECUTIVE_COMPANY_DETAILS_ERROR,
         payload:
-          { [errEnum.EXECUTIVE_COMPANY_DETAILS_ERROR]: err.response.data[ErrKey] } ||
-          "Error Occured",
+          {
+            [errEnum.EXECUTIVE_COMPANY_DETAILS_ERROR]:
+              err.response.data[ErrKey],
+          } || "Error Occured",
       });
     });
 };
-
 
 export const getExecutiveDetails = (id) => (dispatch) => {
   const url = `${executiveEmployeeListingApiUrl}/${id}`;
@@ -98,7 +99,7 @@ export const getExecutiveDetails = (id) => (dispatch) => {
       });
     })
     .catch((err) => {
-if(!err?.response?.data) return ;
+      if (!err?.response?.data) return;
       dispatch({
         type: EXECUTIVE_DETAILS_ERROR,
         payload:
@@ -115,8 +116,8 @@ export const resetEmployeeList = () => ({
 
 export const getEmployeeList = (id, cid) => (dispatch) => {
   let url = `${employeeListUrl}?companyId.in=${cid}`;
-  if(id > 0){
-  url+="&id.notEquals="+id; 
+  if (id > 0) {
+    url += "&id.notEquals=" + id;
   }
   //console.log(url,"urlurl")
   return getMethod(url)
@@ -127,7 +128,7 @@ export const getEmployeeList = (id, cid) => (dispatch) => {
       });
     })
     .catch((err) => {
-if(!err?.response?.data) return ;
+      if (!err?.response?.data) return;
       //console.log(err, "sjkflskdjfkl");
       dispatch({
         type: EXECUTIVE_EMPLOYEE_LIST_ERROR,
@@ -147,7 +148,7 @@ export const getDepartmentList = () => (dispatch) => {
       });
     })
     .catch((err) => {
-if(!err?.response?.data) return ;
+      if (!err?.response?.data) return;
       //console.log(err, "sjkflskdjfkl");
       dispatch({
         type: EXECUTIVE_DEPARTMENT_LIST_ERROR,
@@ -168,7 +169,7 @@ export const submitLead = (payload) => (dispatch) => {
       dispatch(getExecutiveLead(payload?.userId));
     })
     .catch((err) => {
-if(!err?.response?.data) return ;
+      if (!err?.response?.data) return;
       dispatch({
         type: EXECUTIVE_SUBMIT_EXECUTIVE_LEAD_ERROR,
         payload:
@@ -188,7 +189,7 @@ export const getSimilarExecutiveList = (payload, paginationValues) => (
 ) => {
   let url = createExecutivePayload(payload, paginationValues, employeeListUrl);
   //console.log(payload, "payloadpayload");
-  url+="&id.notEquals="+payload.id;
+  url += "&id.notEquals=" + payload.id;
   return getMethod(url)
     .then((res) => {
       dispatch({
@@ -197,12 +198,14 @@ export const getSimilarExecutiveList = (payload, paginationValues) => (
       });
     })
     .catch((err) => {
-if(!err?.response?.data) return ;
+      if (!err?.response?.data) return;
       dispatch({
         type: EXECUTIVE_SIMILAR_COMPANYLIST_ERROR,
         payload:
-          { [errEnum.EXECUTIVE_SIMILAR_COMPANYLIST_ERROR]: err.response.data[ErrKey] } ||
-          "Error Occured",
+          {
+            [errEnum.EXECUTIVE_SIMILAR_COMPANYLIST_ERROR]:
+              err.response.data[ErrKey],
+          } || "Error Occured",
       });
     });
 };
@@ -217,7 +220,7 @@ export const submitErrorForm = (payload) => (dispatch) => {
       });
     })
     .catch((err) => {
-if(!err?.response?.data) return ;
+      if (!err?.response?.data) return;
       //console.log(err, "sjkflskdjfkl");
       dispatch({
         type: EXECUTIVE_SUBMIT_ERROR_FORM_ERROR,
@@ -239,7 +242,7 @@ export const createExecutiveTag = (payload) => (dispatch) => {
       dispatch(getExecutiveTag(payload?.company?.id, payload?.userId));
     })
     .catch((err) => {
-if(!err?.response?.data) return ;
+      if (!err?.response?.data) return;
       dispatch({
         type: EXECUTIVE_SINGLE_COMPANY_TAG_ERROR,
         payload:
@@ -276,7 +279,7 @@ export const downloadCompany = (payload, urlSubstring) => (dispatch) => {
       });
     })
     .catch((err) => {
-if(!err?.response?.data) return ;
+      if (!err?.response?.data) return;
       //console.log(err, "skjfslkjdf", err.response.data.error);
       dispatch({
         type: EXECUTIVE_DOWNLOAD_COMPANY_ERROR,
@@ -297,7 +300,7 @@ export const downloadExecutiveExl = (payload) => (dispatch) => {
     filter += `&id.notEquals=${payload?.id}`;
   }
   url = `${companyExlDownloadUrl}${filter}`;
-  
+
   return getAuthMethod(url)
     .then((res) => {
       dispatch({
@@ -306,7 +309,7 @@ export const downloadExecutiveExl = (payload) => (dispatch) => {
       });
     })
     .catch((err) => {
-if(!err?.response?.data) return ;
+      if (!err?.response?.data) return;
       dispatch({
         type: EXECUTIVE_DOWNLOAD_EXECUTIVE_ERROR,
         payload:
@@ -328,7 +331,7 @@ export const getExecutiveTag = (cid, userId) => (dispatch) => {
       });
     })
     .catch((err) => {
-if(!err?.response?.data) return ;
+      if (!err?.response?.data) return;
       //console.log(err, "sjkflskdjfkl");
       dispatch({
         type: EXECUTIVE_FETCH_COMPANY_TAG_ERROR,
@@ -365,7 +368,7 @@ export const getExecutiveLead = (id) => (dispatch) => {
       });
     })
     .catch((err) => {
-if(!err?.response?.data) return ;
+      if (!err?.response?.data) return;
       //console.log(err, "sjkflskdjfkl");
       dispatch({
         type: EXECUTIVE_GET_EXECUTIVE_LEAD_ERROR,
@@ -376,7 +379,6 @@ if(!err?.response?.data) return ;
       });
     });
 };
-
 
 export const getRelavantExecutive = (id, cid) => (dispatch) => {
   let filter = "userId.equals=" + id + "&emplaoyeeId.equals=" + cid;
@@ -390,13 +392,14 @@ export const getRelavantExecutive = (id, cid) => (dispatch) => {
       });
     })
     .catch((err) => {
-if(!err?.response?.data) return ;
+      if (!err?.response?.data) return;
       //console.log(err, "sjkflskdjfkl");
       dispatch({
         type: GET_RELAVANT_EXECUTIVE_TAG_ERROR,
         payload:
           {
-            [errEnum.GET_RELAVANT_EXECUTIVE_TAG_ERROR]: err.response.data[ErrKey],
+            [errEnum.GET_RELAVANT_EXECUTIVE_TAG_ERROR]:
+              err.response.data[ErrKey],
           } || "Error Occured",
       });
     });
@@ -404,16 +407,16 @@ if(!err?.response?.data) return ;
 
 export const updateRelavantExecutive = (payload) => (dispatch) => {
   //console.log(payload, "payloadpayload");
-  return putAuthMethod(postRelavantCompanyApiUrl,payload.id, payload)
+  return putAuthMethod(postRelavantCompanyApiUrl, payload.id, payload)
     .then((res) => {
       dispatch({
         type: POST_RELAVANT_EXECUTIVE_TAG,
         payload: res.data,
       });
-      dispatch(getRelavantExecutive(payload.userId,payload.emplaoyeeId));
+      dispatch(getRelavantExecutive(payload.userId, payload.emplaoyeeId));
     })
     .catch((err) => {
-if(!err?.response?.data) return ;
+      if (!err?.response?.data) return;
       dispatch({
         type: POST_RELAVANT_EXECUTIVE_TAG_ERROR,
         payload:
@@ -421,9 +424,8 @@ if(!err?.response?.data) return ;
             [errEnum.POST_RELAVANT_EXECUTIVE_TAG_ERROR]:
               err.response.data[ErrKey],
           } || "Error Occured",
-      });     
+      });
     });
-    
 };
 
 export const postRelavantExecutive = (payload) => (dispatch) => {
@@ -434,10 +436,10 @@ export const postRelavantExecutive = (payload) => (dispatch) => {
         type: POST_RELAVANT_EXECUTIVE_TAG,
         payload: res.data,
       });
-      dispatch(getRelavantExecutive(payload.userId,payload.emplaoyeeId));
+      dispatch(getRelavantExecutive(payload.userId, payload.emplaoyeeId));
     })
     .catch((err) => {
-if(!err?.response?.data) return ;
+      if (!err?.response?.data) return;
       dispatch({
         type: POST_RELAVANT_EXECUTIVE_TAG_ERROR,
         payload:
@@ -445,16 +447,17 @@ if(!err?.response?.data) return ;
             [errEnum.POST_RELAVANT_EXECUTIVE_TAG_ERROR]:
               err.response.data[ErrKey],
           } || "Error Occured",
-      });     
+      });
     });
-    
 };
 
 export const resetPostRelavantExecutive = (payload) => {
   return { type: POST_RELAVANT_EXECUTIVE_TAG, payload: [] };
 };
 
-export const getEmployeeViewableStatusUpdate = (type, payload) => (dispatch) => {
+export const getEmployeeViewableStatusUpdate = (type, payload) => (
+  dispatch
+) => {
   let url = `${employeeListUrl}/${type}/${payload.id}`;
   return getAuthMethod(url)
     .then((res) => {
@@ -463,30 +466,27 @@ export const getEmployeeViewableStatusUpdate = (type, payload) => (dispatch) => 
         payload: res.data,
       });
       //console.log('getEmployeeViewableStatusUpdate',payload)
-      if(payload?.pageFor && payload?.pageFor==1){
-        dispatch(getExecutiveDetails(payload.id));   
+      if (payload?.pageFor && payload?.pageFor == 1) {
+        dispatch(getExecutiveDetails(payload.id));
       }
-      if(payload?.pageFor && payload?.pageFor==2){
-      dispatch(getEmployeeList(payload.id,payload?.directDial?.company.id)); 
+      if (payload?.pageFor && payload?.pageFor == 2) {
+        dispatch(getEmployeeList(payload.id, payload?.directDial?.company.id));
       }
-      
-      
     })
     .catch((err) => {
-if(!err?.response?.data) return ;
+      if (!err?.response?.data) return;
       dispatch({
         type: EXECUTIVE_EMPLOYEE_VIEWABLE_STATUS_ERROR,
         payload:
-          { [errEnum.EXECUTIVE_EMPLOYEE_VIEWABLE_STATUS_ERROR]: err?.response?.data[ErrKey] } ||
-          "Error Occured",
+          {
+            [errEnum.EXECUTIVE_EMPLOYEE_VIEWABLE_STATUS_ERROR]:
+              err?.response?.data[ErrKey],
+          } || "Error Occured",
       });
     });
 };
 
-export const emptyDownload=()=>({
+export const emptyDownload = () => ({
   type: EXECUTIVE_DOWNLOAD_EXECUTIVE,
-  payload: {},  
+  payload: {},
 });
-
-
-

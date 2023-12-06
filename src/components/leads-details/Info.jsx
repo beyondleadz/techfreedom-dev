@@ -40,6 +40,7 @@ const Info = () => {
 
   const formIntialValue = {
     status: { disabled: true, value: leadDetail?.status, status: null },
+    oppurtunityAmount: { disabled: true, value: leadDetail?.oppurtunityAmount, status: null },
     rate: { disabled: true, value: leadDetail?.rate, status: null },
     phone: { disabled: false, value: leadDetail?.phoneNo, status: null },
     address: { disabled: false, value: leadDetail?.address, status: null },
@@ -81,6 +82,7 @@ const Info = () => {
     payload.description=form.description.value;
     payload.rate=form.rate.value;
     payload.status=form.status.value;
+    payload.oppurtunityAmount=form.oppurtunityAmount.value;
     //console.log(payload,'form on save');
     let isUpdate=false;
     if(payload?.id){  
@@ -272,21 +274,36 @@ const Info = () => {
       <div className="form">
         <div className="formcol1">Lead Rating</div>
         <div className="formcol2">
-          <Select
+        <Input
+            name="rate"
+            value={form?.rate?.value}
+            placeholder="rate"
+            onChange={onInputChange}
+          />   
+          {/* <Select
             showSearch
             value={form.rate}
             placeholder="Select"
             optionFilterProp="children"
             onChange={onSelectChange}
-            // onSearch={onSearch}
             filterOption={(input, option) =>
               (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
             }
             options={leadRatingList}
-          />
+          /> */}
         </div>
       </div>
-     
+      <div className="form">
+        <div className="formcol1">Opportunity Amount</div>
+        <div className="formcol2">
+        <Input
+            name="oppurtunityAmount"
+            value={form?.oppurtunityAmount?.value}
+            placeholder="oppurtunityAmount"
+            onChange={onInputChange}
+          />        
+        </div>
+      </div>
       <div className="form">
         <div className="formcol1">Lead Source</div>
         <div className="formcol2">

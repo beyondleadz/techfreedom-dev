@@ -14,6 +14,7 @@ const MarketingReport = () => {
   const salesTrendData=useSelector((state)=>state.DashboardReducer.salesTrendData);
   const groupedSourceData=useSelector((state)=>state.DashboardReducer.groupedSourceData);
   const groupedIndustryData=useSelector((state)=>state.DashboardReducer.groupedIndustryData);
+  const wonStatus="Closed Won";
   useEffect(() => {
     if (Object.keys(getUserInfo()).length) {
       dispatch(getGroupedCountData());
@@ -53,9 +54,9 @@ const MarketingReport = () => {
   let salesTrendWonData=[];
     if(salesTrendData && salesTrendData?.dashboardDTOS){
       salesTrendData?.dashboardDTOS?.forEach((record) => {
-          if(record?.typeValue =="WON"){
+          //if(record?.typeValue ==wonStatus){
             salesTrendWonData.push(record);
-          }          
+          //}          
       });
     }
  // const data = [{typeValue:"First",countSum:400,},{typeValue:"Second",countSum:600,}];
