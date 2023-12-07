@@ -99,7 +99,7 @@ setActivityData(activityItems);
         //console.log(formattedTodayData,"===",savedformattedDate,activityTime)
         obj.color =colorActivityObj[title]?.[2];  
         obj.dot =
-        <div><a href="#" className={`btn btn-${colorActivityObj[title]?.[0]} btn-sm btn-circle`} > <i className={`${colorActivityObj[title]?.[1]} fs-14`}></i></a></div>;
+        <div className="leadbg"><a href="#" className={`btn btn-${colorActivityObj[title]?.[0]} btn-sm btn-circle`} > <i className={`${colorActivityObj[title]?.[1]} fs-14`}></i></a></div>;
       obj.children =
         <div className="mt-3"><div className="col-md-12"><div id="steps" className=" row mt-3"> <div className="col-md-8 text-align-left fs-14 font-weight-normal " style={{"textTransform": "capitalize"}}>{title}
         <h6>{description}</h6></div>    <div className="col-sm-4 text-align-right"><a href="#" className="btn fs-20 " onClick={()=>editTimeline(item.id,isLeadNote)}> <i className="las la-edit "></i></a> <a href="#" className="btn fs-20 " onClick={()=>deleteTimeline(item.id,isLeadNote)}> <i className="las la-trash"></i></a><div className="fs-12 mt-1">{savedformattedDate}</div></div></div></div></div>;        
@@ -154,19 +154,21 @@ setActivityData(activityItems);
     <div className="col-md-3  float-right "><button className="btn btn-info btn-sm " onClick={switchToTaskTab}><i className="las la-plus"></i>Add New Task</button></div>
 </div>
 
-<div>
+<div >
   {/* <ActivityTimecopy /> */}
   <div className="mb-4 fs-14 font-weight-bold">Overdue Activity</div>
-
+  
 <Timeline
 items={itemData}
 />
+ 
 </div>
-<div className="mb-4 pb-2 fs-14 font-weight-bold">Past Activity</div>   
+<div className="mb-4 pb-2 fs-14 font-weight-bold">Past Activity </div> 
+
 <Timeline
-items={itemOverviewDueData}
+items={itemOverviewDueData} 
 />
-  
+ 
   </>
 )}
 

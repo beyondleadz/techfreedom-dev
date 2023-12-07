@@ -7446,7 +7446,16 @@ color: orange;
     padding-top: 2rem;
     padding-bottom: 2rem;
   }}
-  #leads .card{margin: 15px; padding: 15px;}
+
+  #leads .ant-timeline-item-head-custom {
+       padding-block: 0;}
+  .ant-tabs-nav{background-color: #eaeff5;
+    margin: 15px;
+    border: 1px solid #e3e6f0;
+    border-radius: 0.35rem; padding:0 15px;}
+
+  #leads .card{margin: 15px;}
+
 #leads .headername{margin: 30px 0 0 0;}
 #leads .profilePic
 {text-align: center;
@@ -7455,7 +7464,7 @@ color: orange;
   #leads .name {
     font-size: 14px;
     text-align: center;
-    color: #5d44ff;
+    color: #8e98a2;
     width: 100%;
     /* font-weight: bold; */
     margin: 5px 5px 10px 5px;
@@ -7746,7 +7755,14 @@ color: orange;
 
     /* org chart css */
     .node-template{font-size:12px;text-align:center;min-width:100px;}.node-template .position{text-align: center; font-weight:bold;  background-color:rgba(0,0,0,.1);display:flex;padding:.25em}.node-template span{display:flex;justify-content:center;padding:.25em}.node-template span a{color:#000;font-weight: normal;}.node-template button{margin-bottom:.5em}h1{margin-bottom:10px;text-align:center}.hierarchy-viewer{background:#f4f4f4;display:block;margin:20px;padding:15px}.level1{background-color:#e7e4ff}.level2{background-color:#ffede3}.level3{background-color:#f2f8e3}
-    
+   #leads .ant-tabs-tab-active{
+    border-radius: 10px;
+    border: 1px solid #e3e6f0;
+    border-radius: 0.35rem;
+    background-color: #fff;
+    padding: 0 13px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 3px 0 rgba(0, 0, 0, 0.19);}
+
     #leads .ant-steps-item.steps-pending  {background-color: #ebe9ed; border-radius: 10px 0 0 10px;}
     #leads .ant-steps.ant-steps-navigation .ant-steps-item.steps-pending::after{background-color: #ebe9ed;}
     #leads .ant-steps-item.steps-pending .ant-steps-item-title{color:rgba(0, 0, 0, 0.88);}

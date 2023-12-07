@@ -184,7 +184,7 @@ const LeadDetails = () => {
               <div className="row  col-md-12 ">
                 <div className="card shadow col-md-12">
                   <div className="row">
-                    <div className="col-md-4 col-custom">
+                    <div className="col-md-4 col-custom mb-4">
                       <div className="profilePic">
                         <i
                           className="btn btn-dark btn-circle btn-lg"
@@ -275,13 +275,13 @@ const LeadDetails = () => {
                         <div className="col-md-12"></div>
                       </div>
                     </div>
-                    <div className="col-md-8 col-custom-2">
-                      <div className="row">
+                    <div className="col-md-8 leadbg col-custom-2">
+                      <div className="row mt-3">
                         <Tabs
                           className="ml-4 "
                           activeKey={activeTab}
                           // defaultActiveKey="1"
-                          items={items}
+                          items={items}e
                           onChange={onChange}
                         />
                       </div>
