@@ -80,9 +80,9 @@ const LeadReport = () => {
   const qualifiedStatus="Sales Qualified";
   if (salesTrendData?.dashboardDTOS?.length > 0) {
     salesTrendData?.dashboardDTOS?.forEach((record) => {
-      //if (record?.typeValue == wonStatus) {
+      if (record?.statusId == 16) {
         salesTrendWonData.push(record);
-      //}
+      }
     });
   }
   if (groupedCountData?.dashboardDTOS?.length > 0) {
@@ -164,9 +164,10 @@ const LeadReport = () => {
   };
   let totalOpportunity = groupedCountData?.totalOpportunity; //50;
   let totalValueRate = groupedCountData?.totalValueRate; //100;
-  let salesTarget = 0;
+  let salesTarget = 0; let salesPerc=0;
   if (totalValueRate > 0) {
     salesTarget = totalOpportunity / totalValueRate;
+    salesPerc= round((totalOpportunity/totalValueRate)*100,2);
   }
   const chart2 = {
     percent: 0.1,
@@ -186,6 +187,7 @@ const LeadReport = () => {
             color: "#FAAD14",
           };
         },
+        formatter: () => salesPerc+'%',
       },
       content: {
         offsetY: 36,

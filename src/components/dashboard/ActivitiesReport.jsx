@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Pie, Column } from "@ant-design/plots";
-import { getGroupedByActivityData } from "../../actionCreator/dashboardActionCreator";
+import {
+  getGroupedByActivityData,
+  getGroupedByCallActivityData,
+  getGroupedByMeetingActivityData,
+  getGroupedByEmailActivityData,
+} from "../../actionCreator/dashboardActionCreator";
 import { getUserInfo } from "../../utils/utils";
 const ActivitiesReport = () => {
   const dispatch = useDispatch();
@@ -11,10 +16,22 @@ const ActivitiesReport = () => {
   const groupedActivityData = useSelector(
     (state) => state.DashboardReducer.groupedActivityData
   );
+  const groupedActivityCallData = useSelector(
+    (state) => state.DashboardReducer.groupedActivityCallData
+  );
+  const groupedActivityMeetingData = useSelector(
+    (state) => state.DashboardReducer.groupedActivityMeetingData
+  );
+  const groupedActivityEmailData = useSelector(
+    (state) => state.DashboardReducer.groupedActivityEmailData
+  );
   //const groupedActivityData = {dashboardDTOS:[{countSum:"1",opportunitSum:"5",rateSum:"5",statusId:3,typeValue:"call",},{countSum:"10",opportunitSum:"15",rateSum:"5",statusId:5,typeValue:"email",},{countSum:"17",opportunitSum:"35",rateSum:"5",statusId:8,typeValue:"demo",},{countSum:"6",opportunitSum:"65",rateSum:"5",statusId:4,typeValue:"meeting",},{countSum:"3",opportunitSum:"7",rateSum:"5",statusId:"3",typeValue:"chat",},{countSum:"9",opportunitSum:"9",rateSum:"5",statusId:"2",typeValue:"contact",},{countSum:"9",opportunitSum:"9",rateSum:"5",statusId:"2",typeValue:"followup",},],leadGenareatedCount:0,leadOpenOpportunity:0,leadOpenRate:0,leadclosedOpportunity:0,leadclosedRate:0,totalOpportunity:0,totalValueRate:0,type:"string"};
   useEffect(() => {
     if (Object.keys(getUserInfo()).length) {
       dispatch(getGroupedByActivityData());
+      dispatch(getGroupedByCallActivityData());
+      dispatch(getGroupedByMeetingActivityData());
+      dispatch(getGroupedByEmailActivityData());
     }
   }, [userAccountInfo]);
   let leadByStatusdata = [];

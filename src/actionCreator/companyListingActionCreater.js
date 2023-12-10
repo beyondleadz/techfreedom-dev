@@ -196,7 +196,7 @@ export const downloadCompanyList = (payload, urlSubstring) => (dispatch) => {
     );
     url = `${companyListingApiUrl}/${urlSubstring}${removedLastComma}`;
   } else {
-    url = `${companyListingApiUrl}/${urlSubstring}?id.in=11,12`;
+    url = `${companyListingApiUrl}/${urlSubstring}`;
   }
   return getAuthMethod(url)
     .then((res) => {

@@ -13,6 +13,12 @@ import {
   DASHBOARD_GROUPED_BYINDUSTRY_ERROR,
   DASHBOARD_GROUPED_BYACTIVITY,
   DASHBOARD_GROUPED_BYACTIVITY_ERROR,
+  DASHBOARD_GROUPED_BY_EMAIL_ACTIVITY,
+  DASHBOARD_GROUPED_BY_EMAIL_ACTIVITY_ERROR,
+  DASHBOARD_GROUPED_BY_CALL_ACTIVITY,
+  DASHBOARD_GROUPED_BY_CALL_ACTIVITY_ERROR,
+  DASHBOARD_GROUPED_BY_MEETING_ACTIVITY,
+  DASHBOARD_GROUPED_BY_MEETING_ACTIVITY_ERROR
 } from "../actionType/dashboardType";
 import {
   getDashboardClosedOpportunityApiUrl,
@@ -22,6 +28,9 @@ import {
   getDashboardGroupedBySourceApiUrl,
   getDashboardGroupedByIndustryApiUrl,
   getDashboardGroupedByActivityApiUrl,
+  getDashboardGroupedByCallActivityApiUrl,
+  getDashboardGroupedByMeetingActivityApiUrl,
+  getDashboardGroupedByEmailActivityApiUrl
 } from "../constant/Constant";
 
 import {
@@ -167,6 +176,66 @@ export const getGroupedByActivityData = (payload) => (dispatch) => {
         type: DASHBOARD_GROUPED_BYACTIVITY_ERROR,
         payload:
           { [errEnum.DASHBOARD_GROUPED_BYACTIVITY_ERROR]: err.response.data } ||
+          "Error Occured",
+      });
+    });
+};
+
+export const getGroupedByCallActivityData = (payload) => (dispatch) => {
+  return getAuthMethod(getDashboardGroupedByCallActivityApiUrl, payload)
+    .then((res) => {
+      dispatch({
+        type: DASHBOARD_GROUPED_BY_CALL_ACTIVITY,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      if (!err?.response?.data) return;
+      // console.log(err.response.status,err.response.data,'error data')
+      dispatch({
+        type: DASHBOARD_GROUPED_BY_CALL_ACTIVITY_ERROR,
+        payload:
+          { [errEnum.DASHBOARD_GROUPED_BY_CALL_ACTIVITY_ERROR]: err.response.data } ||
+          "Error Occured",
+      });
+    });
+};
+
+export const getGroupedByMeetingActivityData = (payload) => (dispatch) => {
+  return getAuthMethod(getDashboardGroupedByMeetingActivityApiUrl, payload)
+    .then((res) => {
+      dispatch({
+        type: DASHBOARD_GROUPED_BY_MEETING_ACTIVITY,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      if (!err?.response?.data) return;
+      // console.log(err.response.status,err.response.data,'error data')
+      dispatch({
+        type: DASHBOARD_GROUPED_BY_MEETING_ACTIVITY_ERROR,
+        payload:
+          { [errEnum.DASHBOARD_GROUPED_BY_MEETING_ACTIVITY_ERROR]: err.response.data } ||
+          "Error Occured",
+      });
+    });
+};
+
+export const getGroupedByEmailActivityData = (payload) => (dispatch) => {
+  return getAuthMethod(getDashboardGroupedByEmailActivityApiUrl, payload)
+    .then((res) => {
+      dispatch({
+        type: DASHBOARD_GROUPED_BY_EMAIL_ACTIVITY,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      if (!err?.response?.data) return;
+      // console.log(err.response.status,err.response.data,'error data')
+      dispatch({
+        type: DASHBOARD_GROUPED_BY_EMAIL_ACTIVITY_ERROR,
+        payload:
+          { [errEnum.DASHBOARD_GROUPED_BY_EMAIL_ACTIVITY_ERROR]: err.response.data } ||
           "Error Occured",
       });
     });

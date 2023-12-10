@@ -6,14 +6,14 @@ import {
   SUBSCRIPTIONACCOUNTINFO_ERROR,
   EMPTY_ERROR_COMMON_OBJ,
   UPDATEACCOUNTINFO,
-  UPDATEACCOUNTINFO_ERROR
+  UPDATEACCOUNTINFO_ERROR,
 } from "../actionType/commonType";
 import {
   accountInfoApiUrl,
   subscriptionaccountInfoApiUrl,
 } from "../constant/Constant";
 
-import { getAuthMethod,postAuthMethod } from "../services/HttpServices";
+import { getAuthMethod, postAuthMethod } from "../services/HttpServices";
 import { ErrKey, errEnum } from "../config";
 
 export const dispatchStatus = (payload) => {
@@ -30,11 +30,11 @@ export const getAccountInfo = (token) => (dispatch) => {
         type: ACCOUNTINFO,
         payload: res.data,
       });
-      dispatch(getSubscriptionInfo(token,res.data));
+      dispatch(getSubscriptionInfo(token, res.data));
       sessionStorage.setItem("userInfo", JSON.stringify(res.data));
     })
     .catch((err) => {
-if(!err?.response?.data) return ;
+      if (!err?.response?.data) return;
       dispatch({
         type: ACCOUNTINFO_ERROR,
         payload:
@@ -44,27 +44,36 @@ if(!err?.response?.data) return ;
     });
 };
 
-export const getSubscriptionInfo = (token,data) => (dispatch) => {
+export const getSubscriptionInfo = (token, data) => (dispatch) => {
   //console.log(data,'getSubscriptionInfo')
-  if(data?.subscriberId){ //subscriberId TODO previouse data - data?.account?.subscriberId
-  return getAuthMethod(subscriptionaccountInfoApiUrl+data?.subscriberId, token)
-    .then((res) => {
-      dispatch({
-        type: SUBSCRIPTIONACCOUNTINFO,
-        payload: res.data,
-      });  
-      sessionStorage.setItem("subscriptionuserInfo", JSON.stringify(res.data));    
-    })
-    
-    .catch((err) => {
-if(!err?.response?.data) return ;
-      dispatch({
-        type: SUBSCRIPTIONACCOUNTINFO_ERROR,
-        payload:
-          { [errEnum.SUBSCRIPTIONACCOUNTINFO_ERROR]: err.response.data[ErrKey] } ||
-          "Error Occured",
+  if (data?.subscriberId) {
+    //subscriberId TODO previouse data - data?.account?.subscriberId
+    return getAuthMethod(
+      subscriptionaccountInfoApiUrl + data?.subscriberId,
+      token
+    )
+      .then((res) => {
+        dispatch({
+          type: SUBSCRIPTIONACCOUNTINFO,
+          payload: res.data,
+        });
+        sessionStorage.setItem(
+          "subscriptionuserInfo",
+          JSON.stringify(res.data)
+        );
+      })
+
+      .catch((err) => {
+        if (!err?.response?.data) return;
+        dispatch({
+          type: SUBSCRIPTIONACCOUNTINFO_ERROR,
+          payload:
+            {
+              [errEnum.SUBSCRIPTIONACCOUNTINFO_ERROR]:
+                err.response.data[ErrKey],
+            } || "Error Occured",
+        });
       });
-    });
   }
 };
 
@@ -73,8 +82,7 @@ export const emptyCommonErrorObj = () => ({
   payload: {},
 });
 
-
-export const updateAccountInfo = (token,payload) => (dispatch) => {
+export const updateAccountInfo = (token, payload) => (dispatch) => {
   return postAuthMethod(accountInfoApiUrl, payload)
     .then((res) => {
       dispatch({
@@ -84,7 +92,7 @@ export const updateAccountInfo = (token,payload) => (dispatch) => {
       dispatch(getAccountInfo(token));
     })
     .catch((err) => {
-if(!err?.response?.data) return ;
+      if (!err?.response?.data) return;
       dispatch({
         type: UPDATEACCOUNTINFO_ERROR,
         payload:
@@ -93,4 +101,3 @@ if(!err?.response?.data) return ;
       });
     });
 };
-

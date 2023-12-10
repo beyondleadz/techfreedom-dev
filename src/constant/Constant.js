@@ -44,3 +44,6 @@ export const getDashboardSalesTrendApiUrl="api/grouped-salestrendz";
 export const getDashboardGroupedBySourceApiUrl="api/grouped-bysource";
 export const getDashboardGroupedByIndustryApiUrl="api/grouped-byindustry";
 export const getDashboardGroupedByActivityApiUrl="api/dashboard-groupcountOnactivity";
+export const getDashboardGroupedByCallActivityApiUrl="api/dashboard-groupMostCallTop5";
+export const getDashboardGroupedByMeetingActivityApiUrl="api/dashboard-groupMostMeetTop5";
+export const getDashboardGroupedByEmailActivityApiUrl="api/dashboard-groupMostEmailTop5";

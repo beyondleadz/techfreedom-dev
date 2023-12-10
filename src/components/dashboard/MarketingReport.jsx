@@ -243,16 +243,16 @@ const MarketingReport = () => {
   ];
  
   const leadByStatus = {
-    data: leadByStatusdata,
-    xField: "year",
-    yField: "value",
-    seriesField: "country",
-    isPercent: true,
+    data: salesTrendWonData,
+    xField: "typeValue",
+    yField: "opportunitSum",
+    seriesField: "statusId",
+    isPercent: false,
     isStack: true,
     label: {
       position: "middle",
       content: (item) => {
-        return item.value.toFixed(2);
+        return item.opportunitSum;//.toFixed(2)
       },
       style: {
         fill: "#fff",

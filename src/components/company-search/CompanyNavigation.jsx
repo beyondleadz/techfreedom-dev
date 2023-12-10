@@ -95,7 +95,7 @@ const CompanyNavigation = () => {
     const startValue =
       parseInt(quickSelection?.start) === 1
         ? 0
-        : parseInt(quickSelection?.start);
+        : parseInt(quickSelection?.start)-1;
 
     const pageValues = {
       start: startValue,

@@ -13,6 +13,12 @@ import {
   DASHBOARD_GROUPED_BYINDUSTRY_ERROR,
   DASHBOARD_GROUPED_BYACTIVITY,
   DASHBOARD_GROUPED_BYACTIVITY_ERROR,
+  DASHBOARD_GROUPED_BY_EMAIL_ACTIVITY,
+  DASHBOARD_GROUPED_BY_EMAIL_ACTIVITY_ERROR,
+  DASHBOARD_GROUPED_BY_CALL_ACTIVITY,
+  DASHBOARD_GROUPED_BY_CALL_ACTIVITY_ERROR,
+  DASHBOARD_GROUPED_BY_MEETING_ACTIVITY,
+  DASHBOARD_GROUPED_BY_MEETING_ACTIVITY_ERROR,
 } from "../actionType/dashboardType";
 
 const initialState = {
@@ -24,6 +30,9 @@ const initialState = {
   groupedIndustryData: {},
   groupedActivityData: {},
   errObj: {},
+  groupedActivityCallData: {},
+  groupedActivityMeetingData: {},
+  groupedActivityEmailData: {},
 };
 
 const DashboardReducer = (state = initialState, action) => {
@@ -43,6 +52,12 @@ const DashboardReducer = (state = initialState, action) => {
       return { ...state, groupedIndustryData: payload };
     case DASHBOARD_GROUPED_BYACTIVITY:
       return { ...state, groupedActivityData: payload };
+    case DASHBOARD_GROUPED_BY_CALL_ACTIVITY:
+      return { ...state, groupedActivityCallData: payload };
+    case DASHBOARD_GROUPED_BY_MEETING_ACTIVITY:
+      return { ...state, groupedActivityMeetingData: payload };
+    case DASHBOARD_GROUPED_BY_EMAIL_ACTIVITY:
+      return { ...state, groupedActivityEmailData: payload };
     case CLOSED_OPPORTUNITY_ERROR:
       return { ...state, errObj: { ...state.errObj, ...payload } };
     case OPEN_OPPORTUNITY_ERROR:
@@ -56,6 +71,12 @@ const DashboardReducer = (state = initialState, action) => {
     case DASHBOARD_GROUPED_BYINDUSTRY_ERROR:
       return { ...state, errObj: { ...state.errObj, ...payload } };
     case DASHBOARD_GROUPED_BYACTIVITY_ERROR:
+      return { ...state, errObj: { ...state.errObj, ...payload } };
+    case DASHBOARD_GROUPED_BY_CALL_ACTIVITY_ERROR:
+      return { ...state, errObj: { ...state.errObj, ...payload } };
+    case DASHBOARD_GROUPED_BY_MEETING_ACTIVITY_ERROR:
+      return { ...state, errObj: { ...state.errObj, ...payload } };
+    case DASHBOARD_GROUPED_BY_EMAIL_ACTIVITY_ERROR:
       return { ...state, errObj: { ...state.errObj, ...payload } };
     default:
       return state;
