@@ -4,6 +4,10 @@ import _ from "lodash";
 import { Line, Bar, Pie, Column } from "@ant-design/plots";
 import {getGroupedCountData,getSalesTrendData,getGroupedBySourceData,getGroupedByIndustryData} from "../../actionCreator/dashboardActionCreator"
 import { getUserInfo } from "../../utils/utils";
+import {
+  getLeadStatusList  
+} from "../../actionCreator/leadListingActionCreater";
+
 const MarketingReport = () => {
   const dispatch = useDispatch();
   const [salesReport, setSalesReport] = useState([]);
@@ -14,6 +18,10 @@ const MarketingReport = () => {
   const salesTrendData=useSelector((state)=>state.DashboardReducer.salesTrendData);
   const groupedSourceData=useSelector((state)=>state.DashboardReducer.groupedSourceData);
   const groupedIndustryData=useSelector((state)=>state.DashboardReducer.groupedIndustryData);
+
+  const leadStatusListing = useSelector(
+    (state) => state.leadListingReducer.leadStatusList
+  );
   const wonStatus="Closed Won";
   useEffect(() => {
     if (Object.keys(getUserInfo()).length) {
@@ -21,8 +29,12 @@ const MarketingReport = () => {
       dispatch(getSalesTrendData());
       dispatch(getGroupedBySourceData());
       dispatch(getGroupedByIndustryData());
+      dispatch(getLeadStatusList());
     }
   }, [userAccountInfo]);
+
+  //console.log(leadStatusListing,'leadStatusListing');
+
   let salesOrderByStatus=[];
   if(salesTrendData?.dashboardDTOS){
   let rawData=groupedCountData?.dashboardDTOS;
@@ -34,6 +46,7 @@ const MarketingReport = () => {
     //groupedIndustryData1=groupedIndustryData.dashboardDTOS;
     groupedIndustryData?.dashboardDTOS?.forEach((record) => {
       if(record?.typeValue){
+      record.typeValue=(record?.typeValue=="null")?"Other":record.typeValue;
       record.countSum=Number(record.countSum);
       groupedIndustryData1.push(record);
       }
@@ -43,6 +56,7 @@ const MarketingReport = () => {
   if(groupedSourceData?.dashboardDTOS?.length > 0){
     groupedSourceData?.dashboardDTOS?.forEach((record) => {
       if(record?.typeValue){
+        record.typeValue=(record?.typeValue=="null")?"Other":record.typeValue;
         record.countSum=Number(record.countSum);
         groupedSourceData1.push(record);
       }
@@ -50,15 +64,19 @@ const MarketingReport = () => {
     //groupedSourceData1=groupedSourceData.dashboardDTOS;
     groupedSourceTotal=groupedSourceData.leadGenareatedCount;
   }
-  console.log(groupedIndustryData1,'groupedIndustryData1')
+  //console.log(groupedIndustryData1,'groupedIndustryData1')
+  const statusMap = new Map();
+  leadStatusListing.forEach((item) => {
+    statusMap.set(item.id+"", item.text);
+  });
   let salesTrendWonData=[];
     if(salesTrendData && salesTrendData?.dashboardDTOS){
       salesTrendData?.dashboardDTOS?.forEach((record) => {
-          //if(record?.typeValue ==wonStatus){
-            salesTrendWonData.push(record);
-          //}          
+          record.status=statusMap.get(record.statusId);
+          salesTrendWonData.push(record);          
       });
     }
+    //console.log(salesTrendWonData,'salesTrendWonData')
  // const data = [{typeValue:"First",countSum:400,},{typeValue:"Second",countSum:600,}];
   const config = {
     appendPadding: 10,
@@ -246,7 +264,7 @@ const MarketingReport = () => {
     data: salesTrendWonData,
     xField: "typeValue",
     yField: "opportunitSum",
-    seriesField: "statusId",
+    seriesField: "status",
     isPercent: false,
     isStack: true,
     label: {
@@ -291,9 +309,22 @@ const MarketingReport = () => {
   //const leadTrendchartDummy = [{typeValue:'1991',opportunitSum:3,},{typeValue:'1992',opportunitSum:4,},{typeValue:'1993',opportunitSum:3.5,},{typeValue:'1994',opportunitSum:5,},{typeValue:'1995',opportunitSum:4.9,}];      
   const leadTrendchart = {
     data:salesTrendWonData,//salesTrendWonData
-    xField: 'typeValue',
-    yField: 'opportunitSum',
-    label: {},
+    xField: 'opportunitSum',
+    yField: 'typeValue',    
+    label: {
+      position: "middle",
+      content: (item) => {
+        return "";//item.opportunitSum.toFixed(2)
+      }
+    },
+     tooltip: {
+      formatter: (datum) => {
+        return {
+          name: "Opportunity",
+          value: `${datum.opportunitSum}`,
+        };
+      },
+    },
     point: {
       size: 5,
       shape: 'diamond',
@@ -302,24 +333,12 @@ const MarketingReport = () => {
         stroke: '#5B8FF9',
         lineWidth: 2,
       },
-    },
-    tooltip: {
-      showMarkers: false,
-    },
-    state: {
-      active: {
-        style: {
-          shadowBlur: 4,
-          stroke: '#000',
-          fill: 'red',
-        },
-      },
-    },
+    },    
     interactions: [
       {
         type: 'marker-active',
       },
-    ],
+    ],    
   };
 
   const chartFourData = [
