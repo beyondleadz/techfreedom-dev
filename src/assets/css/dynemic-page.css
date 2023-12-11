@@ -7459,8 +7459,11 @@ color: orange;
 #leads .headername{margin: 30px 0 0 0;}
 #leads .profilePic
 {text-align: center;
-  width: 80%;
+  width: 90%;
   margin: 10px;}
+  #leads .profilePic1{
+  width: 90%;
+  margin: 10px; padding: 20px 0 20px 10px;}
   #leads .name {
     font-size: 14px;
     text-align: center;
@@ -7761,6 +7764,7 @@ color: orange;
     background-color: #fff;
     padding: 0 20px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 3px 0 rgba(0, 0, 0, 0.19);}
+    #leads .pagebg{background-color: #d1d2d4;}
    #leads .ant-tabs {
       line-height: 1.1214285714285714;}
  #leads .ant-tabs-ink-bar{height: 2px; border-bottom-color: #fff;} 

@@ -7,6 +7,7 @@ import {Link} from 'react-router-dom'
 import Layout from "../layout/Layout";
 import { Steps,Modal, Button } from "antd";
 import Banner from "../components/about/Banner";
+import graphImage from '../assets/images/graph.jpg'
 import Services from "../components/about/Services";
 import Aim from "../components/about/Aim";
 import Stats from "../components/about/Stats";
@@ -182,7 +183,7 @@ const LeadDetails = () => {
               </div>
 
               <div className="row  col-md-12 ">
-                <div className="card shadow col-md-12">
+                <div className="card shadow pagebg col-md-12">
                   <div className="row">
                     <div className="col-md-4 col-custom mb-4">
                       <div className="profilePic">
@@ -235,8 +236,13 @@ const LeadDetails = () => {
                           </Tooltip>
                         </div>
                       </div>
-                      <div className="col-md-12">
-                        <div className=" row mt-3">
+                      <div className="clearfix"></div>
+                      <div className="profilePic1 card">
+                      <div className="row  pl-4 mb-1 fs-14 font-weight-bold">Activity Stats of the Month</div>
+                      <div align="center"><img src={graphImage} />
+              </div>
+                      <div className="row  pl-4  mt-3 mb-3 fs-14 font-weight-bold">About this Lead</div>
+                        <div className=" row">
                           {" "}
                           <span className="col-md-2 fs-14 ">
                             Designation
