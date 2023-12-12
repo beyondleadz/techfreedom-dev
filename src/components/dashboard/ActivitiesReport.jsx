@@ -43,6 +43,18 @@ const ActivitiesReport = () => {
       leadByStatusdata.push(record);
     });
   }
+  let groupedActivityCallDataArr = [];
+  if (groupedActivityCallData?.dashboardDTOS?.length > 0) {
+    groupedActivityCallDataArr = groupedActivityCallData.dashboardDTOS;
+  }
+  let groupedActivityMeetingDataArr = [];
+  if (groupedActivityMeetingData?.dashboardDTOS?.length > 0) {
+    groupedActivityMeetingDataArr = groupedActivityMeetingData.dashboardDTOS;
+  }
+  let groupedActivityEmailDataArr = [];
+  if (groupedActivityEmailData?.dashboardDTOS?.length > 0) {
+    groupedActivityEmailDataArr = groupedActivityEmailData.dashboardDTOS;
+  }
   const colorActivityObj = {
     call: ["las la-phone-volume", "green"],
     email: ["las la-envelope", "green"],
@@ -121,15 +133,16 @@ const ActivitiesReport = () => {
       },
     },
   };
-  const chartFourData = [
-    { type: "Test1", sales: 38 },
-    { type: "Test2", sales: 52 },
-    { type: "Test3", sales: 61 },
-  ];
-  const chart4 = {
-    data: chartFourData,
-    xField: "sales",
-    yField: "type",
+
+  // const groupedActivityCallDataArr = [
+  //   { typeValue: "Test1", countSum: "38" },
+  //   { typeValue: "Test2", countSum: "52" },
+  //   { typeValue: "Test3", countSum: "61" },
+  // ];
+  const chartForCall = {
+    data: groupedActivityCallDataArr,
+    xField: "countSum",
+    yField: "typeValue",
     minBarWidth: 20,
     maxBarWidth: 20,
     xAxis: {
@@ -139,6 +152,33 @@ const ActivitiesReport = () => {
       },
     },
   };
+  const chartForMeeting = {
+    data: groupedActivityMeetingDataArr,
+    xField: "countSum",
+    yField: "typeValue",
+    minBarWidth: 20,
+    maxBarWidth: 20,
+    xAxis: {
+      label: {
+        autoHide: true,
+        autoRotate: false,
+      },
+    },
+  };
+  const chartForEmail = {
+    data: groupedActivityEmailDataArr,
+    xField: "countSum",
+    yField: "typeValue",
+    minBarWidth: 20,
+    maxBarWidth: 20,
+    xAxis: {
+      label: {
+        autoHide: true,
+        autoRotate: false,
+      },
+    },
+  };
+
   let otherValues = 0;
   return (
     <>
@@ -211,7 +251,7 @@ const ActivitiesReport = () => {
                   <div className="chartjs-size-monitor-expand">
                     <div className="card-body">
                       <div className="chart-area">
-                        <Column {...leadByStatus} />
+                        <Column {...leadByStatus} style={{ height: 220 }}/>
                       </div>
                     </div>
                   </div>
@@ -258,7 +298,7 @@ const ActivitiesReport = () => {
                 <div className="chartjs-size-monitor">
                   <div className="chartjs-size-monitor-expand">
                     <div className="" style={{ height: 220 }}>
-                      <Column {...chart4} />
+                      <Column {...chartForMeeting} />
                     </div>
                   </div>
                   <div className="chartjs-size-monitor-shrink">
@@ -283,7 +323,7 @@ const ActivitiesReport = () => {
                 <div className="chartjs-size-monitor">
                   <div className="chartjs-size-monitor-expand">
                     <div className="" style={{ height: 220 }}>
-                      <Column {...chart4} />
+                      <Column {...chartForEmail} />
                     </div>
                   </div>
                   <div className="chartjs-size-monitor-shrink">
@@ -306,7 +346,7 @@ const ActivitiesReport = () => {
                 <div className="chartjs-size-monitor">
                   <div className="chartjs-size-monitor-expand">
                     <div className="" style={{ height: 220 }}>
-                      <Column {...chart4} />
+                      <Column {...chartForCall} />
                     </div>
                   </div>
                   <div className="chartjs-size-monitor-shrink">
