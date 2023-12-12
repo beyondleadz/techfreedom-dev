@@ -101,7 +101,7 @@ setActivityData(activityItems);
         obj.dot =
         <div className="leadbg"><a href="#" className={`btn btn-${colorActivityObj[title]?.[0]} btn-sm btn-circle`} > <i className={`${colorActivityObj[title]?.[1]} fs-14`}></i></a></div>;
       obj.children =
-        <div className="mt-3"><div className="col-md-12 card"><div id="steps" className=" row mt-3"> <div className="col-md-8 text-align-left fs-14 font-weight-normal " style={{"textTransform": "capitalize"}}>{title}
+        <div className="mt-1"><div className="col-md-12 card"><div id="steps" className=" row mt-1"> <div className="col-md-8 text-align-left fs-14 font-weight-normal " style={{"textTransform": "capitalize"}}>{title}
         <h6>{description}</h6></div>    <div className="col-sm-4 text-align-right"><a href="#" className="btn fs-20 " onClick={()=>editTimeline(item.id,isLeadNote)}> <i className="las la-edit "></i></a> <a href="#" className="btn fs-20 " onClick={()=>deleteTimeline(item.id,isLeadNote)}> <i className="las la-trash"></i></a><div className="fs-12 mt-1">{savedformattedDate}</div></div></div></div></div>;        
         if(formattedTodayData===savedformattedDate){         
         items.push(obj);
