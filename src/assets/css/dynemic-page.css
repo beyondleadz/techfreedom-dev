@@ -7195,7 +7195,7 @@ color: orange;
 .errorformcontainertitle h2{color: #1a1a1a; font-size: 18px; font-weight: 700;}
 /* .errorformcontainer{padding:0 40px;} */
 .errorformcontainer p{margin:14px 0}
-.errorformcontainer .form{display: flex; align-items: center; justify-content: space-between; padding: 5px 0;}
+.errorformcontainer .form{display: flex; align-items: center; justify-content: space-between; width:80%; padding: 5px 0;}
 .errorformcontainer .form .formcol1{width:30%}
 .errorformcontainer .form .formcol2{width:70%}
 .errorformcontainer .form.leadbox .formcol2{display: flex;}
