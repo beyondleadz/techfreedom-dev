@@ -69,9 +69,13 @@ const MarketingReport = () => {
   leadStatusListing.forEach((item) => {
     statusMap.set(item.id+"", item.text);
   });
+  const monthNames = ["","January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
   let salesTrendWonData=[];
     if(salesTrendData && salesTrendData?.dashboardDTOS){
       salesTrendData?.dashboardDTOS?.forEach((record) => {
+          record.month=record?.typeValue?monthNames[record.typeValue]:"";   
           record.status=statusMap.get(record.statusId);
           salesTrendWonData.push(record);          
       });
@@ -262,7 +266,7 @@ const MarketingReport = () => {
  
   const leadByStatus = {
     data: salesTrendWonData,
-    xField: "typeValue",
+    xField: "month",
     yField: "opportunitSum",
     seriesField: "status",
     isPercent: false,
@@ -310,7 +314,7 @@ const MarketingReport = () => {
   const leadTrendchart = {
     data:salesTrendWonData,//salesTrendWonData
     xField: 'opportunitSum',
-    yField: 'typeValue',    
+    yField: 'month',    
     label: {
       position: "middle",
       content: (item) => {

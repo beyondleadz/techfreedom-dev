@@ -78,8 +78,12 @@ const LeadReport = () => {
   const lostStatus="Closed Lost";
   const unQualifiedStatus="Un-Qualified";
   const qualifiedStatus="Sales Qualified";
+  const monthNames = ["","January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
   if (salesTrendData?.dashboardDTOS?.length > 0) {
     salesTrendData?.dashboardDTOS?.forEach((record) => {
+      record.month=record?.typeValue?monthNames[record.typeValue]:"";      
       if (record?.statusId == 16) {
         salesTrendWonData.push(record);
       }
@@ -253,7 +257,7 @@ const LeadReport = () => {
   const chart3 = {
     data: salesTrendWonData, //salesTrendWonData
     xField: "opportunitSum",
-    yField: "typeValue",
+    yField: "month",
     label: {
       position: "middle",
       content: (item) => {
