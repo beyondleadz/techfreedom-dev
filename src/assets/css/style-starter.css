@@ -2901,8 +2901,8 @@ fieldset:disabled a.btn {
   color: #000;  background-color: #f6f7f9;  border-color: #f6f7f9;  box-shadow: 0 0 0 0.2rem rgba(98, 100, 98, 0.5);
 }
 
-.btn-whatsapp {  color: #1f1f1f;  background-color: #00C600;  border-color: #00C600;}
-.btn-whatsapp:hover {  color: #fff;  background-color: #00C600;  border-color: #00C600;}
+.btn-whatsapp {  color: #5D44FF;  background-color: #fff;  border-color: #5D44FF;}
+.btn-whatsapp:hover {  color: #5D44FF;  background-color: #fff;  border-color: #fdc401;}
 .btn-whatsapp:focus,.btn-whatsapp.focus {
   color: #fff;  background-color: #8ffb60;  border-color: #8ffb60;  box-shadow: 0 0 0 0.2rem rgba(72, 180, 97, 0.5);
 }
@@ -2913,9 +2913,15 @@ fieldset:disabled a.btn {
   color: #000;  background-color: #f6f7f9;  border-color: #f6f7f9;  box-shadow: 0 0 0 0.2rem rgba(98, 100, 98, 0.5);
 }
 .leadbg{background-color: #f6f7f9;}
-.btn-email:hover { color: #8e98a2;  background-color: #fff;  border-color: #fdc401;}
-.btn-email {color: #8e98a2;  background-color: #fff;  border-color: #8e98a2;}
+.btn-email:hover { color: #5D44FF;  background-color: #fff;  border-color: #fdc401;}
+.btn-email {color: #5D44FF;  background-color: #fff;  border-color: #5D44FF;}
 .btn-email:focus,.btn-email.focus {
+  color: #000;  background-color: #f6f7f9;  border-color: #f6f7f9;  box-shadow: 0 0 0 0.2rem rgba(98, 100, 98, 0.5);
+}
+
+.btn-email1:hover { color: #8e98a2;  background-color: #fff;  border-color: #fdc401;}
+.btn-email1 {color: #8e98a2;  background-color: #fff;  border-color: #8e98a2;}
+.btn-email1:focus,.btn-email.focus {
   color: #000;  background-color: #f6f7f9;  border-color: #f6f7f9;  box-shadow: 0 0 0 0.2rem rgba(98, 100, 98, 0.5);
 }
 
@@ -2925,14 +2931,14 @@ fieldset:disabled a.btn {
   color: #000;  background-color: #f6f7f9;  border-color: #f6f7f9;  box-shadow: 0 0 0 0.2rem rgba(98, 100, 98, 0.5);
 }
 
-.btn-meet { color: #8e98a2;  background-color: #fff;  border-color: #8e98a2;}
-.btn-meet:hover {   color: #8e98a2;  background-color: #fff;  border-color: #fdc401;}
+.btn-meet { color: #5D44FF;  background-color: #fff;  border-color: #5D44FF;}
+.btn-meet:hover {   color: #5D44FF;  background-color: #fff;  border-color: #fdc401;}
 .btn-meet:focus,.btn-meet.focus {
   color: #000;  background-color: #f6f7f9;  border-color: #f6f7f9;  box-shadow: 0 0 0 0.2rem rgba(98, 100, 98, 0.5);
 }
 
-.btn-app { color: #8e98a2;  background-color: #fff;  border-color: #8e98a2;}
-.btn-app:hover { color: #8e98a2;  background-color: #fff;  border-color: #fdc401;}
+.btn-app { color: #5D44FF;  background-color: #fff;  border-color: #5D44FF;}
+.btn-app:hover { color: #5D44FF;  background-color: #fff;  border-color: #fdc401;}
 .btn-app:focus,.btn-app.focus {
   color: #000;  background-color: #f6f7f9;  border-color: #f6f7f9;  box-shadow: 0 0 0 0.2rem rgba(98, 100, 98, 0.5);
 }

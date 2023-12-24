@@ -212,7 +212,7 @@ const LeadDetails = () => {
                           <Tooltip overlayClassName="fs-12 " title="Email">
                             {" "}
                             <NavLink to="mailto:`${leadDetail?.emailId}`"
-                              className="btn btn-email btn-circle ml-3"
+                              className="btn btn-email1 btn-circle ml-3"
                             >
                               <i className="las la-envelope "></i>
                             </NavLink>
