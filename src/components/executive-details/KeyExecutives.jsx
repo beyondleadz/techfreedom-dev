@@ -11,7 +11,7 @@ import {
   storeSelectedColleagues,
   getEmployeeViewableStatusUpdate
 } from "../../actionCreator/executiveDetailsActionCreator";
-import popupImg from "../../assets/images/free-user-login-prompt.jpg.jpeg";
+import popupImg from "../../assets/images/subscribe-now-executive-prompt-img.jpg";
 import TrialModal from "../../common/TrialModal";
 const KeyExecutives = () => {
   const dispatch = useDispatch();
@@ -364,9 +364,9 @@ const KeyExecutives = () => {
               <div align="center">
                 <img src={popupImg} />
               </div>
-              <p style={{ color: "#0000FF" }}>
+              {/* <p style={{ color: "#0000FF" }}>
                 PLEASE SUBSCRIBE TO VIEW ALL DETAILS
-              </p>
+              </p> */}
               {/* <p style={{ color: "#0000FF" }}>
                 Get 10 free verified contacts with a BeyondLeadz Pro trial
               </p>

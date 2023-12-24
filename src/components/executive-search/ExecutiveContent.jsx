@@ -7,7 +7,7 @@ import _ from "lodash";
 import { Table, Input, Button, Modal } from "antd";
 import { PAGE_LENGTH } from "../../config";
 import defaultLogo from "../../assets/images/default_company_logo.jpg";
-import popupImg from "../../assets/images/free-user-login-prompt.jpg.jpeg";
+import popupImg from "../../assets/images/subscribe-now-executive-prompt-img.jpg";
 import TrialModal from "../../common/TrialModal";
 import { saveExcel, testImage } from "../../utils/utils";
 
@@ -895,9 +895,9 @@ const ExecutiveContent = () => {
               <div align="center">
                 <img src={popupImg} />
               </div>
-              <p style={{ color: "#0000FF" }}>
+              {/* <p style={{ color: "#0000FF" }}>
                 PLEASE SUBSCRIBE TO VIEW ALL DETAILS
-              </p>              
+              </p>  */}             
             </div>
           }
           modalWidth="400px"
