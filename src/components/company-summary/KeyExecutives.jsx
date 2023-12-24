@@ -405,9 +405,9 @@ const KeyExecutives = () => {
               <div align="center">
                 <img src={popupImg} />
               </div>
-              <p style={{ color: "#0000FF" }}>
-                PLEASE SUBSCRIBE TO VIEW ALL DETAILS
-              </p>
+              {/*<p style={{ color: "#0000FF" }}>
+                 PLEASE SUBSCRIBE TO VIEW ALL DETAILS 
+              </p>*/}
               {/* <p style={{ color: "#0000FF" }}>
                 Get 10 free verified contacts with a BeyondLeadz Pro trial
               </p>
