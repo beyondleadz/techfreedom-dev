@@ -197,8 +197,8 @@ const LeadDetails = () => {
                         </i>
                         <h3>{leadDetail?.fullname}</h3>
                         <div className="name mt-1">
-                        
-                        {leadDetail?.lastModifiedDate?moment(leadDetail?.lastModifiedDate).format('MMMM Do YYYY, h:mm a'):""}
+                        Last Activity : 
+                        {leadDetail?.lastModifiedDate?moment(leadDetail?.lastModifiedDate).format(' D MMMM YYYY, h:mm a'):""}
                         </div>
 
                         <div>
@@ -241,7 +241,7 @@ const LeadDetails = () => {
                       <div className="row  pl-4 mb-1 fs-14 font-weight-bold">Activity Stats of the Month</div>
                       <div align="center"><img src={graphImage} />
               </div>
-                      <div className="row  pl-4  mt-3 mb-3 fs-14 font-weight-bold">About this Lead</div>
+                      <div className="row  pl-4  mt-3 mb-3 fs-14 font-weight-bold">Lead Info</div>
                         <div className=" row">
                           {" "}
                           <span className="col-md-2 fs-14 ">
