@@ -205,7 +205,11 @@ const SummaryHeader = ({downloadPDFCallback}) => {
   };
 
   const toggleCompanyHeight = () => {
+    if (!getToken()) {
+      setShowModal(true);
+    }else{
     setIsCompanyBoxHeightFixed(!isCompanyBoxHeightFixed);
+    }
   };
 
   const checkLoginStatus = () => {

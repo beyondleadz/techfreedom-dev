@@ -182,6 +182,7 @@ const LeadReport = () => {
       ticks: [salesTarget, 1],
       color: ["#F4664A", "#FAAD14"],
     },
+    
     statistic: {
       title: {
         style: ({ percent }) => {

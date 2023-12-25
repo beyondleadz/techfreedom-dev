@@ -220,23 +220,30 @@ const CompanyContent = () => {
   };
 
   const onPageChange = (page, pageSize) => {
-    const pageValues = {
-      start: page - 1,
-      end: pageSize,
-    };
-    let payload = {
-      ...companySelectedFilterList,
-    };
-
-    if (topSearchValue) {
-      payload = {
-        ...payload,
-        topSearchValue: topSearchValue,
+    const isLoggedIn = checkLoginStatus();
+    if (!isLoggedIn && page > 1) {
+      setShowModal(true);
+      return false;
+    } else {
+      const pageValues = {
+        start: page - 1,
+        end: pageSize,
       };
+      let payload = {
+        ...companySelectedFilterList,
+      };
+  
+      if (topSearchValue) {
+        payload = {
+          ...payload,
+          topSearchValue: topSearchValue,
+        };
+      }
+  
+      dispatch(savePaginationValues(pageValues));
+      dispatch(getCompanyList(payload, pageValues));
     }
-
-    dispatch(savePaginationValues(pageValues));
-    dispatch(getCompanyList(payload, pageValues));
+    
   };
 
   const getDetails = (id) => {
@@ -555,6 +562,7 @@ const CompanyContent = () => {
                             pagination={{
                               responsive: true,
                               defaultCurrent: paginationValue?.start + 1,
+                              current: paginationValue?.start + 1,
                               total: companyFilterList?.totalCount,
                               pageSize:
                                 parseInt(PAGE_LENGTH) >
