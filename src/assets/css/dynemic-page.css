@@ -201,7 +201,15 @@ input[type="checkbox" i] {
     width: 100%;
     padding: 0 10px;
   }
-  
+  .col-md-9{ padding-left:0;} 
+  .col-md-12{padding-right: 8px;}
+  .companyintro.mobile_desk{padding: 0 14px 0 14px; margin-top: 0;}
+  .excelcontainer, .departmentcontainer  {display: none;}
+ 
+  #home .logobox {
+    min-width: 100px;
+    min-height: 100px;
+    width: 100px;}
   .data-table {
     font-size: 10px;
   }
@@ -2143,6 +2151,7 @@ input[type="button"].btn-block {
 }
 
 @media (min-width: 992px) {
+  
   .navbar-expand-lg {
     flex-flow: row nowrap;
     justify-content: flex-start;
@@ -2501,6 +2510,7 @@ input[type="button"].btn-block {
 }
 
 @media (min-width: 576px) {
+ 
   .card-deck {
     display: flex;
     flex-flow: row wrap;
@@ -6432,7 +6442,7 @@ cursor: pointer;
     font-size: 80%;
   }
  
-
+  #home .descbox{padding-bottom: 0;}
 
   .ant-tabs-nav{
     width: 50%;
@@ -6459,7 +6469,7 @@ cursor: pointer;
       white-space: break-spaces;} */
 
 
-    .headercontainer{flex-direction: column;
+    .headercontainer{
       white-space: nowrap;
       margin: 0;
       padding: 0; height: auto; padding:10px}
@@ -6751,6 +6761,7 @@ cursor: pointer;
       left: -4px;
       position: relative;}
     .headerblk2 > div{display: flex;  margin-right: 150px;}
+
     .headerblk2 div span::before{margin-left: 0;}
      .keyexebtn{
       padding: 0;
@@ -6811,9 +6822,18 @@ cursor: pointer;
         } */
 @media screen and (max-width: 760px) {
 
+  .headerblk2 > div{display: flex;  margin-right: 30px;}
   .breadcrumcontainer{
     padding: 10px;
   }
+  .companyintro.desktop {display: none;}
+  .readmoreoverview.desktop{display:none;}
+  .headerblk2{margin-top: 8px;}
+  .headerblk2-1{
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 5px;}
+  .btm-m5{margin-bottom: 5px;}
   .leftmenuheading {padding:10px 0;}
 
   .filter-button{
@@ -7205,7 +7225,6 @@ color: orange;
 .errorformcontainer .form.leadbox .formcol2 > .ant-picker{width:100%}
 .errorformcontainer .formfull{width:100%; padding: 5px 0;}
 .showemail{display: inline-block;}
-
 @media (min-width: 768px) {
   .compareContent {
     border-bottom: 1px solid #ddd;
@@ -7215,6 +7234,8 @@ color: orange;
     /* margin: 5px; */
     padding: 5px;
 }
+.mobile_desk{display: none;}
+
 .compareHead{font-size:12px; font-weight: 700;}
 }
 @media (min-width: 768px) {

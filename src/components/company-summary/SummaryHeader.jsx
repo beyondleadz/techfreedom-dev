@@ -343,11 +343,11 @@ const SummaryHeader = ({downloadPDFCallback}) => {
               {companyDetails?.address}
             </div>
           </div>
-          <div className="headerblk2">
+          <div className="headerblk2 headerblk2-1">
             <div>
               <span className=" la text-black  la-mobile fs-20 mr-2"></span>
               <strong className="mr-2 fs-12">Phone</strong>
-              <span className="fs-12"> {companyDetails?.phoneNo} </span>
+              <span className="fs-12 btm-m5"> {companyDetails?.phoneNo} </span>
             </div>
             <div className="fs-12">
               <span
@@ -369,7 +369,7 @@ const SummaryHeader = ({downloadPDFCallback}) => {
           <div style={{ position: "relative" }}>
             {/* <h3>Overview</h3> */}
             <div
-              className={`companyintro ${
+              className={`companyintro desktop ${
                 isCompanyBoxHeightFixed ? "setauto" : ""
               }`}
             >
@@ -377,7 +377,7 @@ const SummaryHeader = ({downloadPDFCallback}) => {
               {companyDetails?.introduction}
             </div>
             {companyDetails?.introduction && (
-              <span className="readmoreoverview" onClick={toggleCompanyHeight}>
+              <span className="readmoreoverview desktop" onClick={toggleCompanyHeight}>
                 {isCompanyBoxHeightFixed ? "Hide..." : "Read more..."}
               </span>
             )}
@@ -448,10 +448,24 @@ const SummaryHeader = ({downloadPDFCallback}) => {
             {renderSocialLinks(companyDetails?.socialLinks)}
           </span>
         </div> */}
+       
       </div>
-
-
-      
+      <div style={{ position: "relative" }}>
+            {/* <h3>Overview</h3> */}
+            <div
+              className={`companyintro mobile_desk ${
+                isCompanyBoxHeightFixed ? "setauto" : ""
+              }`}
+            >
+              <strong className="mr-2 fs-12">Description of business</strong>
+              {companyDetails?.introduction}
+            </div>
+            {companyDetails?.introduction && (
+              <span className="readmoreoverview mobile_desk " onClick={toggleCompanyHeight}>
+                {isCompanyBoxHeightFixed ? "Hide..." : "Read more..."}
+              </span>
+            )}
+          </div>
 
       {openErrorForm && (
         <Modal
