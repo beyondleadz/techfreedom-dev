@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getBaseUrl } from "../config";
+import { getBaseUrl,LOGINURL } from "../config";
 
 const restService = axios.create({
     baseURL: getBaseUrl(),
@@ -25,7 +25,7 @@ const restAuthService = (token = sessionStorage.getItem('token')) => {
       if(error?.response?.data==="User login not found" && error?.response?.status===403){
       console.log('invalid login case', error,error.response.data);
       //window.location.href="http://localhost:3000/beyondleads/signin";
-      window.location.href="http://besthosting4u.co.in/beyondleads/signin";
+      window.location.href=LOGINURL;
       }else{
          if (error.response && error.response.status >= 400 && error.response.status <= 500) {
             // this will trigger the `handleError` function in the promise chain

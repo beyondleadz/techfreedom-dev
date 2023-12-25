@@ -8,6 +8,7 @@ export const getBaseUrl = () => {
   }
   return baseUrl;
 };
+export const LOGINURL="http://besthosting4u.co.in/beyondleads/signin";
 
 export const LEFT_FILETERS_SIZE = [0, 1, 2, 3, 4, 5, 6, 7];
 export const MORE_FILETERS_SIZE = [
