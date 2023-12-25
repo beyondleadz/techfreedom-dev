@@ -18,7 +18,9 @@ import {
   DASHBOARD_GROUPED_BY_CALL_ACTIVITY,
   DASHBOARD_GROUPED_BY_CALL_ACTIVITY_ERROR,
   DASHBOARD_GROUPED_BY_MEETING_ACTIVITY,
-  DASHBOARD_GROUPED_BY_MEETING_ACTIVITY_ERROR
+  DASHBOARD_GROUPED_BY_MEETING_ACTIVITY_ERROR,
+  DASHBOARD_CONVERTED_LEADS,
+  DASHBOARD_CONVERTED_LEADS_ERROR
 } from "../actionType/dashboardType";
 import {
   getDashboardClosedOpportunityApiUrl,
@@ -30,7 +32,8 @@ import {
   getDashboardGroupedByActivityApiUrl,
   getDashboardGroupedByCallActivityApiUrl,
   getDashboardGroupedByMeetingActivityApiUrl,
-  getDashboardGroupedByEmailActivityApiUrl
+  getDashboardGroupedByEmailActivityApiUrl,
+  getDashboardConvertedLeadsApiUrl
 } from "../constant/Constant";
 
 import {
@@ -236,6 +239,25 @@ export const getGroupedByEmailActivityData = (payload) => (dispatch) => {
         type: DASHBOARD_GROUPED_BY_EMAIL_ACTIVITY_ERROR,
         payload:
           { [errEnum.DASHBOARD_GROUPED_BY_EMAIL_ACTIVITY_ERROR]: err.response.data } ||
+          "Error Occured",
+      });
+    });
+};
+
+export const getConvertedLeadsData = (payload) => (dispatch) => {
+  return getAuthMethod(getDashboardConvertedLeadsApiUrl, payload)
+    .then((res) => {
+      dispatch({
+        type: DASHBOARD_CONVERTED_LEADS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      if (!err?.response?.data) return;
+      dispatch({
+        type: DASHBOARD_CONVERTED_LEADS_ERROR,
+        payload:
+          { [errEnum.DASHBOARD_CONVERTED_LEADS_ERROR]: err.response.data[ErrKey] } ||
           "Error Occured",
       });
     });

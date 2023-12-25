@@ -455,7 +455,7 @@ const LeadReport = () => {
         </div>
       </div>
       <div className="row">
-        <div className="col-xl-4 col-lg-5">
+        <div className="col-xl-8 col-lg-7">
           <div className="card shadow mb-4">
             <div className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
               <h6 className="m-0 font-weight-bold text-uppercase text-gray-800">
@@ -466,7 +466,7 @@ const LeadReport = () => {
               <div className="chart-pie pt-4 pb-2" style={{ marginLeft: -70 }}>
                 <div className="chartjs-size-monitor">
                   <div className="chartjs-size-monitor-expand">
-                    <div className="" style={{ height: 220,width:500 }}>
+                    <div className="" style={{ height: 220 }}>
                       {<Funnel {...config} />}
                     </div>
                   </div>
@@ -501,6 +501,9 @@ const LeadReport = () => {
             </div>
           </div>
         </div>
+        </div>
+        <div className="row">
+        
         <div className="col-xl-4 col-lg-5">
           <div className="card shadow mb-4">
             <div className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -524,8 +527,6 @@ const LeadReport = () => {
             </div>
           </div>
         </div>
-      </div>
-      <div className="row">
         <div className="col-xl-8 col-lg-7">
           <div className="card shadow mb-4">
             <div className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -545,6 +546,9 @@ const LeadReport = () => {
             </div>
           </div>
         </div>
+      </div>
+      <div className="row">
+      
 
         <div className="col-xl-4 col-lg-5">
           <div className="card shadow mb-4">

@@ -47,3 +47,5 @@ export const getDashboardGroupedByActivityApiUrl="api/dashboard-groupcountOnacti
 export const getDashboardGroupedByCallActivityApiUrl="api/dashboard-groupMostCallTop5";
 export const getDashboardGroupedByMeetingActivityApiUrl="api/dashboard-groupMostMeetTop5";
 export const getDashboardGroupedByEmailActivityApiUrl="api/dashboard-groupMostEmailTop5";
+
+export const getDashboardConvertedLeadsApiUrl="api/dashBoard-top5ConvertedLeads";

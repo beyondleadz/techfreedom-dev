@@ -5,12 +5,12 @@ import TagsReport from "./TagsReport";
 
 const MyViewReport = () => {
   const onChange = (key: string) => {
-    console.log(key);
+    //console.log(key);
   };
   const items = [
     {
       key: "1",
-      label: "Save Searches",
+      label: "Saved Searches",
       children: <SaveSearchReport/>,
     },
     {

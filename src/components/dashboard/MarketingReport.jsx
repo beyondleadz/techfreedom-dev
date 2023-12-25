@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import _ from "lodash";
 import { Line, Bar, Pie, Column } from "@ant-design/plots";
-import {getGroupedCountData,getSalesTrendData,getGroupedBySourceData,getGroupedByIndustryData} from "../../actionCreator/dashboardActionCreator"
+import {getGroupedCountData,getSalesTrendData,getGroupedBySourceData,getGroupedByIndustryData,getConvertedLeadsData} from "../../actionCreator/dashboardActionCreator"
 import { getUserInfo } from "../../utils/utils";
 import {
   getLeadStatusList  
@@ -18,10 +18,11 @@ const MarketingReport = () => {
   const salesTrendData=useSelector((state)=>state.DashboardReducer.salesTrendData);
   const groupedSourceData=useSelector((state)=>state.DashboardReducer.groupedSourceData);
   const groupedIndustryData=useSelector((state)=>state.DashboardReducer.groupedIndustryData);
-
+  const convertedLeadsAllData=useSelector((state)=>state.DashboardReducer.convertedLeadsData);
   const leadStatusListing = useSelector(
     (state) => state.leadListingReducer.leadStatusList
   );
+
   const wonStatus="Closed Won";
   useEffect(() => {
     if (Object.keys(getUserInfo()).length) {
@@ -30,12 +31,15 @@ const MarketingReport = () => {
       dispatch(getGroupedBySourceData());
       dispatch(getGroupedByIndustryData());
       dispatch(getLeadStatusList());
+      dispatch(getConvertedLeadsData());
     }
   }, [userAccountInfo]);
 
-  //console.log(leadStatusListing,'leadStatusListing');
-
   let salesOrderByStatus=[];
+  let convertedLeadsData=convertedLeadsAllData?.length > 0?convertedLeadsAllData:[];
+  //console.log(convertedLeadsData,convertedLeadsAllData,'convertedLeadsData');
+
+  
   if(salesTrendData?.dashboardDTOS){
   let rawData=groupedCountData?.dashboardDTOS;
   salesOrderByStatus=_.orderBy(rawData, 'statusId', 'asc');
@@ -372,15 +376,15 @@ const MarketingReport = () => {
     },
   ];
   const chart4 = {
-    data: chartFourData,
-    xField: "sales",
-    yField: "type",
+    data: convertedLeadsData,
+    xField: "oppurtunityAmount",
+    yField: "fullname",
     meta: {
-      type: {
+      fullname: {
         alias: "Category",
       },
-      sales: {
-        alias: "Sales",
+      oppurtunityAmount: {
+        alias: "Opportunity Amount",
       },
     },
     minBarWidth: 20,

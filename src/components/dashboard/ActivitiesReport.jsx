@@ -25,7 +25,7 @@ const ActivitiesReport = () => {
   const groupedActivityEmailData = useSelector(
     (state) => state.DashboardReducer.groupedActivityEmailData
   );
-  //const groupedActivityData = {dashboardDTOS:[{countSum:"1",opportunitSum:"5",rateSum:"5",statusId:3,typeValue:"call",},{countSum:"10",opportunitSum:"15",rateSum:"5",statusId:5,typeValue:"email",},{countSum:"17",opportunitSum:"35",rateSum:"5",statusId:8,typeValue:"demo",},{countSum:"6",opportunitSum:"65",rateSum:"5",statusId:4,typeValue:"meeting",},{countSum:"3",opportunitSum:"7",rateSum:"5",statusId:"3",typeValue:"chat",},{countSum:"9",opportunitSum:"9",rateSum:"5",statusId:"2",typeValue:"contact",},{countSum:"9",opportunitSum:"9",rateSum:"5",statusId:"2",typeValue:"followup",},],leadGenareatedCount:0,leadOpenOpportunity:0,leadOpenRate:0,leadclosedOpportunity:0,leadclosedRate:0,totalOpportunity:0,totalValueRate:0,type:"string"};
+  //const groupedActivityData= {dashboardDTOS:[{countSum:"1",opportunitSum:"5",rateSum:"5",statusId:3,typeValue:"call",},{countSum:"10",opportunitSum:"15",rateSum:"5",statusId:5,typeValue:"email",},{countSum:"17",opportunitSum:"35",rateSum:"5",statusId:8,typeValue:"demo",},{countSum:"6",opportunitSum:"65",rateSum:"5",statusId:4,typeValue:"meeting",},{countSum:"3",opportunitSum:"7",rateSum:"5",statusId:"3",typeValue:"chat",},{countSum:"9",opportunitSum:"9",rateSum:"5",statusId:"2",typeValue:"contact",},{countSum:"9",opportunitSum:"9",rateSum:"5",statusId:"2",typeValue:"followup",},],leadGenareatedCount:0,leadOpenOpportunity:0,leadOpenRate:0,leadclosedOpportunity:0,leadclosedRate:0,totalOpportunity:0,totalValueRate:0,type:"string"};
   useEffect(() => {
     if (Object.keys(getUserInfo()).length) {
       dispatch(getGroupedByActivityData());
@@ -142,7 +142,15 @@ const ActivitiesReport = () => {
   const chartForCall = {
     data: groupedActivityCallDataArr,
     xField: "countSum",
-    yField: "typeValue",
+    yField: "statusId",
+    meta: {
+      statusId: {
+        alias: "Name",
+      },
+      countSum: {
+        alias: "Count",
+      },
+    },
     minBarWidth: 20,
     maxBarWidth: 20,
     xAxis: {
@@ -155,7 +163,15 @@ const ActivitiesReport = () => {
   const chartForMeeting = {
     data: groupedActivityMeetingDataArr,
     xField: "countSum",
-    yField: "typeValue",
+    yField: "statusId",
+    meta: {
+      statusId: {
+        alias: "Name",
+      },
+      countSum: {
+        alias: "Count",
+      },
+    },
     minBarWidth: 20,
     maxBarWidth: 20,
     xAxis: {
@@ -168,7 +184,15 @@ const ActivitiesReport = () => {
   const chartForEmail = {
     data: groupedActivityEmailDataArr,
     xField: "countSum",
-    yField: "typeValue",
+    yField: "statusId",
+    meta: {
+      statusId: {
+        alias: "Name",
+      },
+      countSum: {
+        alias: "Count",
+      },
+    },
     minBarWidth: 20,
     maxBarWidth: 20,
     xAxis: {
@@ -185,11 +209,11 @@ const ActivitiesReport = () => {
       <div className=" row mt-4 pt-4">
         {groupedActivityData?.dashboardDTOS?.map((record) => {
           const { typeValue, countSum } = record || {};
-          if (!typeValueBlock.includes(typeValue)) {
+          if (!typeValueBlock.includes(typeValue?.toLowerCase())) {
             otherValues += record.countSum && parseInt(record.countSum);
           }
           return (
-            typeValueBlock.includes(typeValue) && (
+            typeValueBlock.includes(typeValue?.toLowerCase()) && (
               <div className="col-xl-3 col-md-6 mb-4">
                 <div className="card border-left-primary shadow h-100 py-2">
                   <div className="card-body">
@@ -204,7 +228,7 @@ const ActivitiesReport = () => {
                       </div>
                       <div className="col-auto">
                         <i
-                          className={`${colorActivityObj[typeValue][0]} fa-2x text-gray-300`}
+                          className={`${colorActivityObj[typeValue?.toLowerCase()][0]} fa-2x text-gray-300`}
                         ></i>
                       </div>
                     </div>

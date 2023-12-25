@@ -177,9 +177,16 @@ const Header = (props) => {
         <nav className="navbar navbar-expand-lg stroke px-0">
           <div className="brand">
           <h1>
+          {!getToken() ? (
             <NavLink to={"/"} className="navbar-brand">
                <img className="logo-H" src={Logo1} /><img src={Logo} />
             </NavLink>
+          ) : (
+            <NavLink to={"/dashboard-view"} className="navbar-brand">
+               <img className="logo-H" src={Logo1} /><img src={Logo} />
+            </NavLink>
+          )}
+
           </h1>
           </div>
           <button

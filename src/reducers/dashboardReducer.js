@@ -19,6 +19,8 @@ import {
   DASHBOARD_GROUPED_BY_CALL_ACTIVITY_ERROR,
   DASHBOARD_GROUPED_BY_MEETING_ACTIVITY,
   DASHBOARD_GROUPED_BY_MEETING_ACTIVITY_ERROR,
+  DASHBOARD_CONVERTED_LEADS,
+  DASHBOARD_CONVERTED_LEADS_ERROR,
 } from "../actionType/dashboardType";
 
 const initialState = {
@@ -33,6 +35,7 @@ const initialState = {
   groupedActivityCallData: {},
   groupedActivityMeetingData: {},
   groupedActivityEmailData: {},
+  convertedLeadsData: [],
 };
 
 const DashboardReducer = (state = initialState, action) => {
@@ -58,6 +61,8 @@ const DashboardReducer = (state = initialState, action) => {
       return { ...state, groupedActivityMeetingData: payload };
     case DASHBOARD_GROUPED_BY_EMAIL_ACTIVITY:
       return { ...state, groupedActivityEmailData: payload };
+    case DASHBOARD_CONVERTED_LEADS:
+      return { ...state, convertedLeadsData: payload };
     case CLOSED_OPPORTUNITY_ERROR:
       return { ...state, errObj: { ...state.errObj, ...payload } };
     case OPEN_OPPORTUNITY_ERROR:
@@ -77,6 +82,8 @@ const DashboardReducer = (state = initialState, action) => {
     case DASHBOARD_GROUPED_BY_MEETING_ACTIVITY_ERROR:
       return { ...state, errObj: { ...state.errObj, ...payload } };
     case DASHBOARD_GROUPED_BY_EMAIL_ACTIVITY_ERROR:
+      return { ...state, errObj: { ...state.errObj, ...payload } };
+    case DASHBOARD_CONVERTED_LEADS_ERROR:
       return { ...state, errObj: { ...state.errObj, ...payload } };
     default:
       return state;
