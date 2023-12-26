@@ -1,15 +1,17 @@
-import React, { useState, useEffect,useMemo } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { Table, Modal, Button, Tooltip } from "antd";
 import { PAGE_LENGTH } from "../../config";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { getToken, getUserInfo } from "../../utils/utils";
+import { subscriptionContentInfo } from "../../config";
+
 import {
   submitLead,
   resetLead,
   getExecutiveLead,
   storeSelectedColleagues,
-  getEmployeeViewableStatusUpdate
+  getEmployeeViewableStatusUpdate,
 } from "../../actionCreator/executiveDetailsActionCreator";
 import popupImg from "../../assets/images/free-user-login-prompt.jpg.jpeg";
 import subscribepopupImg from "../../assets/images/subscribe-now-prompt-img.jpg";
@@ -35,7 +37,7 @@ const KeyExecutives = () => {
   const [addToLeads, setAddToLeads] = useState(0);
   const [showEmail, setShowEmail] = useState({});
   const [showPhone, setShowPhone] = useState({});
-  
+
   const navigate = useNavigate();
   const userAccountInfo = useSelector(
     (state) => state.CommonReducer.accountInfo
@@ -47,20 +49,19 @@ const KeyExecutives = () => {
     }
   }, [userAccountInfo]);
 
-  const updateEmailStatus = (showEmail,row) => {
+  const updateEmailStatus = (showEmail, row) => {
     setShowEmail({ ...showEmail, [row.id]: true });
     //call api to update status
-    if(!row?.isdownloadedEmail){
-    dispatch(getEmployeeViewableStatusUpdate('Email',row));    
+    if (!row?.isdownloadedEmail) {
+      dispatch(getEmployeeViewableStatusUpdate("Email", row));
     }
-    
   };
-  const updatePhoneStatus = (showPhone,row) => {
+  const updatePhoneStatus = (showPhone, row) => {
     setShowPhone({ ...showPhone, [row.id]: true });
-    if(!row?.isdownloadedMobile){
-    dispatch(getEmployeeViewableStatusUpdate('Mobile',row));
+    if (!row?.isdownloadedMobile) {
+      dispatch(getEmployeeViewableStatusUpdate("Mobile", row));
     }
-  }
+  };
 
   const isLeadsSubmitted = (selEmployeeId) => {
     //console.log("selEmployeeId",selEmployeeId)
@@ -83,6 +84,13 @@ const KeyExecutives = () => {
     {
       title: "Designation",
       dataIndex: "title",
+      render: (text, row) => {
+        return getToken() ? (
+          <span>{text}</span>
+        ) : (
+          <span>{text.substring(0,2)}</span>
+        );
+      }
     },
     {
       title: "Email",
@@ -92,8 +100,12 @@ const KeyExecutives = () => {
           //  <Tooltip title={text}>
           <>
             <h4
-              className={row?.isdownloadedEmail?" btn iconemail emails-open":" btn iconemail emails"}
-              onClick={()=>updateEmailStatus(showEmail,row)}
+              className={
+                row?.isdownloadedEmail
+                  ? " btn iconemail emails-open"
+                  : " btn iconemail emails"
+              }
+              onClick={() => updateEmailStatus(showEmail, row)}
             ></h4>
             {showEmail[row.id] && (
               <>
@@ -129,8 +141,10 @@ const KeyExecutives = () => {
             <span
               // style={{ height: "auto" }}
               // className="keyexebtn d-none d-sm-inline-block small btn btn-primary text-black"
-              className={row?.isdownloadedMobile?" btn mobile-open":" btn mobile"}
-              onClick={()=>updatePhoneStatus(showPhone,row)}
+              className={
+                row?.isdownloadedMobile ? " btn mobile-open" : " btn mobile"
+              }
+              onClick={() => updatePhoneStatus(showPhone, row)}
             >
               {/* <i className="las la-mobile fs-12  pr-1"></i> */}
               {/* VIEW */}
@@ -168,13 +182,13 @@ const KeyExecutives = () => {
         //     VIEW
         //   </Button>
         // );
-      }
+      },
     },
     {
       title: "",
       dataIndex: "leads",
       render: (record) => {
-        let checkLeadSubmitted =isLeadsSubmitted(record);
+        let checkLeadSubmitted = isLeadsSubmitted(record);
         return getToken() ? (
           <Button
             style={{ height: "auto" }}
@@ -184,9 +198,10 @@ const KeyExecutives = () => {
                 ? true
                 : false
             }
-            onClick={() => postLeads(record,checkLeadSubmitted)}
+            onClick={() => postLeads(record, checkLeadSubmitted)}
           >
-            <i className="las la-user-plus fs-12 pr-1"></i> {checkLeadSubmitted ? "LEAD ADDED" : "ADD TO LEADS"}
+            <i className="las la-user-plus fs-12 pr-1"></i>{" "}
+            {checkLeadSubmitted ? "LEAD ADDED" : "ADD TO LEADS"}
           </Button>
         ) : (
           <Button
@@ -206,8 +221,8 @@ const KeyExecutives = () => {
     },
   ];
 
-  const postLeads = (record,isLeadSubmit) => {
-    const { id,login } = getUserInfo();
+  const postLeads = (record, isLeadSubmit) => {
+    const { id, login } = getUserInfo();
     let leadPayload = {
       firstname: record.firstname,
       lastname: record.lastname,
@@ -218,25 +233,24 @@ const KeyExecutives = () => {
       phoneNo: record.phoneNo,
       bio: record.bio,
       description: record.description,
-      userId:id,
+      userId: id,
       employeeId: record.id,
-      address:record?.company?.address,
-      companyId:record?.company?.id,
-      companyName:record?.company?.name,
-      industryId:record?.company?.industry?.id,
-      industryText:record?.company?.industry?.name,
-      empSizeId:record?.company?.range?.name,
-      city:record?.company?.city,
-      state:record?.company?.state,
-      country:record?.company?.country
+      address: record?.company?.address,
+      companyId: record?.company?.id,
+      companyName: record?.company?.name,
+      industryId: record?.company?.industry?.id,
+      industryText: record?.company?.industry?.name,
+      empSizeId: record?.company?.range?.name,
+      city: record?.company?.city,
+      state: record?.company?.state,
+      country: record?.company?.country,
     };
     if (!isLeadSubmit) {
       dispatch(submitLead(leadPayload));
       setAddToLeads(record.id);
-    }else{
-     navigate("/lead-details/"+isLeadSubmit);
+    } else {
+      navigate("/lead-details/" + isLeadSubmit);
     }
-    
   };
 
   const resetLeadsData = () => {
@@ -252,13 +266,15 @@ const KeyExecutives = () => {
         {
           key: record.id,
           id: record.id,
-          fullname: (record?.fullname)?record.fullname:record.firstname+" "+record.lastname,
+          fullname: record?.fullname
+            ? record.fullname
+            : record.firstname + " " + record.lastname,
           title: record?.title,
           emailId: record?.emailId,
           phoneNo: record?.company?.phoneNo,
           directDial: record,
           leads: record,
-          pageFor:2
+          pageFor: 2,
         },
       ];
     });
@@ -290,14 +306,12 @@ const KeyExecutives = () => {
         selectedRows
       );
 
-      dispatch(storeSelectedColleagues(selectedRows))
-
+      dispatch(storeSelectedColleagues(selectedRows));
     },
     getCheckboxProps: (record) => ({
       disabled: record.name === "Disabled User", // Column configuration not to be checked
       name: record.name,
-    })
-
+    }),
   };
 
   const onPageChange = (page, pageSize) => {
@@ -335,7 +349,6 @@ const KeyExecutives = () => {
     }
   };
 
-
   return (
     <div className="card shadow card-body">
       <Table
@@ -359,22 +372,15 @@ const KeyExecutives = () => {
           closeModal={closeInfoBeforeLogin}
           redirectToSignup={redirectToSignup}
           redirect={true}
-          // buttonText="Start Free Trial"
-          buttonText="SUBSCRIBE NOW!"
+          buttonText={subscriptionContentInfo.btntext}
           modalBody={
             <div id="small-dialog2">
               <div align="center">
                 <img src={subscribepopupImg} />
               </div>
               <p style={{ color: "#0000FF" }}>
-                PLEASE SUBSCRIBE TO VIEW ALL DETAILS
-              </p>
-              {/* <p style={{ color: "#0000FF" }}>
-                Get 10 free verified contacts with a BeyondLeadz Pro trial
-              </p>
-              <p>
-                BeyondLeadz Pro customers close deals faster thanks to relevant
-              </p> */}
+                {subscriptionContentInfo.content}
+              </p>              
             </div>
           }
           modalWidth="400px"

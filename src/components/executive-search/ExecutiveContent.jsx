@@ -11,7 +11,7 @@ import popupImg from "../../assets/images/free-user-login-prompt.jpg.jpeg";
 import subscribepopupImg from "../../assets/images/subscribe-now-prompt-img.jpg";
 import TrialModal from "../../common/TrialModal";
 import { saveExcel, testImage } from "../../utils/utils";
-
+import { subscriptionContentInfo } from "../../config";
 import {
   getExecutiveEmployeeList,
   getCompanyList,
@@ -209,6 +209,13 @@ const ExecutiveContent = () => {
     {
       title: "Designation",
       dataIndex: "designation",
+      render: (text, row) => {
+        return getToken() ? (
+          <span>{text}</span>
+        ) : (
+          <span>{text.substring(0,2)}</span>
+        );
+      }
     },
     {
       title: "Email",
@@ -937,15 +944,14 @@ const ExecutiveContent = () => {
           closeModal={closeModal}
           redirectToSignup={redirectToSignup}
           redirect={true}
-          // buttonText="Start Free Trial"
-          buttonText="SUBSCRIBE NOW!"
+          buttonText={subscriptionContentInfo.btntext}
           modalBody={
             <div id="small-dialog2">
               <div align="center">
                 <img src={subscribepopupImg} />
               </div>
               <p style={{ color: "#0000FF" }}>
-                PLEASE SUBSCRIBE TO VIEW ALL DETAILS
+              {subscriptionContentInfo.content}
               </p>
             </div>
           }

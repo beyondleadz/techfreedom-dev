@@ -110,6 +110,13 @@ const KeyExecutives = () => {
     {
       title: "Designation",
       dataIndex: "title",
+      render: (text, row) => {
+        return getToken() ? (
+          <span>{text}</span>
+        ) : (
+          <span>{text.substring(0,2)}</span>
+        );
+      }
     },
     {
       title: "Email",

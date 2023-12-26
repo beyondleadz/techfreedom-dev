@@ -11,6 +11,7 @@ import AboutCompany from "./AboutCompany";
 import KeyExecutives from "./KeyExecutives";
 import OrgChart from "./OrgChart";
 import { saveExcel, testImage, getToken, getUserInfo } from "../../utils/utils";
+import { subscriptionContentInfo } from "../../config";
 import TrialModal from "../../common/TrialModal";
 import popupImg from "../../assets/images/free-user-login-prompt.jpg.jpeg";
 import subscribepopupImg from "../../assets/images/subscribe-now-prompt-img.jpg";
@@ -564,28 +565,21 @@ const SummaryContent = () => {
         ""
       )}
 
-{openModal?.open && (
+      {openModal?.open && (
         <TrialModal
           openModal={openModal}
           closeModal={closeModal}
           redirectToSignup={redirectToSignup}
           redirect={true}
-          // buttonText="Start Free Trial"
-          buttonText="SUBSCRIBE NOW!"
+          buttonText={subscriptionContentInfo.btntext}
           modalBody={
             <div id="small-dialog2">
               <div align="center">
                 <img src={subscribepopupImg} />
               </div>
               <p style={{ color: "#0000FF" }}>
-                PLEASE SUBSCRIBE TO VIEW ALL DETAILS
+                {subscriptionContentInfo.content}
               </p>
-              {/* <p style={{ color: "#0000FF" }}>
-                Get 10 free verified contacts with a BeyondLeadz Pro trial
-              </p>
-              <p>
-                BeyondLeadz Pro customers close deals faster thanks to relevant
-              </p> */}
             </div>
           }
           modalWidth="400px"

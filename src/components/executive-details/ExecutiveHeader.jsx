@@ -6,7 +6,7 @@ import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getEmployeeViewableStatusUpdate } from "../../actionCreator/executiveDetailsActionCreator";
-import { emailRegex } from "../../config";
+import { emailRegex,subscriptionContentInfo } from "../../config";
 import { getToken } from "../../utils/utils";
 import popupImg from "../../assets/images/free-user-login-prompt.jpg.jpeg";
 import subscribepopupImg from "../../assets/images/subscribe-now-prompt-img.jpg";
@@ -138,7 +138,7 @@ const ExecutiveHeader = () => {
                     <div className="fs-12 font-weight-bold">
                       Designation{" "}
                       <div className="font-weight-normal">
-                        {executiveDetails?.title}
+                      {getToken()?executiveDetails?.title:executiveDetails?.title.substring(0,2)}
                       </div>
                     </div>
                   </div>
@@ -244,15 +244,14 @@ getToken() ?
           closeModal={closeInfoBeforeLogin}
           redirectToSignup={redirectToSignup}
           redirect={true}
-          // buttonText="Start Free Trial"
-          buttonText="SUBSCRIBE NOW!"
+          buttonText={subscriptionContentInfo.btntext}
           modalBody={
             <div id="small-dialog2">
               <div align="center">
                 <img src={subscribepopupImg} />
               </div>
               <p style={{ color: "#0000FF" }}>
-                PLEASE SUBSCRIBE TO VIEW ALL DETAILS
+              {subscriptionContentInfo.content}
               </p>
             </div>
           }

@@ -104,3 +104,7 @@ export const errEnum = {
 };
 
 export const ErrKey = 'title'
+export const subscriptionContentInfo={
+  btntext:"SUBSCRIBE NOW!",
+  content:"PLEASE SUBSCRIBE TO VIEW ALL DETAILS"
+}

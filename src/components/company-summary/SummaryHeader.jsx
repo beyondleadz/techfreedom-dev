@@ -18,7 +18,7 @@ import {
   resetCompanyTag,
   downloadExecutiveExl,
 } from "../../actionCreator/companyDetailsActionCreator";
-import { emailRegex } from "../../config";
+import { emailRegex,subscriptionContentInfo } from "../../config";
 import {
   getSubscriptionUserInfo,
   getToken,
@@ -655,22 +655,15 @@ const SummaryHeader = ({downloadPDFCallback}) => {
           closeModal={closeModal}
           redirectToSignup={redirectToSignup}
           redirect={true}
-          // buttonText="Start Free Trial"
-          buttonText="SUBSCRIBE NOW!"
+          buttonText={subscriptionContentInfo.btntext}
           modalBody={
             <div id="small-dialog2">
               <div align="center">
                 <img src={subscribepopupImg} />
               </div>
               <p style={{ color: "#0000FF" }}>
-                PLEASE SUBSCRIBE TO VIEW ALL DETAILS
-              </p>
-              {/* <p style={{ color: "#0000FF" }}>
-                Get 10 free verified contacts with a BeyondLeadz Pro trial
-              </p>
-              <p>
-                BeyondLeadz Pro customers close deals faster thanks to relevant
-              </p> */}
+              {subscriptionContentInfo.content}
+              </p>             
             </div>
           }
           modalWidth="400px"
