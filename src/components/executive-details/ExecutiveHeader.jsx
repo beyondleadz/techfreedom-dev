@@ -9,6 +9,7 @@ import { getEmployeeViewableStatusUpdate } from "../../actionCreator/executiveDe
 import { emailRegex } from "../../config";
 import { getToken } from "../../utils/utils";
 import popupImg from "../../assets/images/free-user-login-prompt.jpg.jpeg";
+import subscribepopupImg from "../../assets/images/subscribe-now-prompt-img.jpg";
 import TrialModal from "../../common/TrialModal";
 
 const ExecutiveHeader = () => {
@@ -50,7 +51,11 @@ const ExecutiveHeader = () => {
   };
 
   const toggleCompanyHeight = () => {
+    if (!getToken()) {
+      setOpenModal({ info: null, open: true });
+    }else{
     setIsCompanyBoxHeightFixed(!isCompanyBoxHeightFixed);
+    }
   };
 
   const copyToClipboard = (text) => {
@@ -244,7 +249,7 @@ getToken() ?
           modalBody={
             <div id="small-dialog2">
               <div align="center">
-                <img src={popupImg} />
+                <img src={subscribepopupImg} />
               </div>
               <p style={{ color: "#0000FF" }}>
                 PLEASE SUBSCRIBE TO VIEW ALL DETAILS

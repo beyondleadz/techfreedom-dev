@@ -26,11 +26,15 @@ import {
 } from "../../utils/utils";
 import TrialModal from "../../common/TrialModal";
 import popupImg from "../../assets/images/free-user-login-prompt.jpg.jpeg";
+import subscribepopupImg from "../../assets/images/subscribe-now-prompt-img.jpg";
 import { useNavigate } from "react-router";
 const SummaryHeader = ({downloadPDFCallback}) => {
   const pdfRef=useRef();
   const [showModal, setShowModal] = useState(false);
-
+  const [openModal, setOpenModal] = useState({
+    info: null,
+    open: false,
+  });
   const formIntialValue = {
     telephone: { disabled: true, value: "", status: null },
     address: { disabled: true, value: "", status: null },
@@ -206,7 +210,8 @@ const SummaryHeader = ({downloadPDFCallback}) => {
 
   const toggleCompanyHeight = () => {
     if (!getToken()) {
-      setShowModal(true);
+      setShowModal(false);
+      setOpenModal({ info: null, open: true });
     }else{
     setIsCompanyBoxHeightFixed(!isCompanyBoxHeightFixed);
     }
@@ -302,6 +307,7 @@ const SummaryHeader = ({downloadPDFCallback}) => {
 
   const closeModal = () => {
     setShowModal(false);
+    setOpenModal(false);
     dispatch(emptyErrorObj());
   };
 
@@ -642,6 +648,33 @@ const SummaryHeader = ({downloadPDFCallback}) => {
         />
       ) : (
         ""
+      )}
+      {openModal?.open && (
+        <TrialModal
+          openModal={openModal}
+          closeModal={closeModal}
+          redirectToSignup={redirectToSignup}
+          redirect={true}
+          // buttonText="Start Free Trial"
+          buttonText="SUBSCRIBE NOW!"
+          modalBody={
+            <div id="small-dialog2">
+              <div align="center">
+                <img src={subscribepopupImg} />
+              </div>
+              <p style={{ color: "#0000FF" }}>
+                PLEASE SUBSCRIBE TO VIEW ALL DETAILS
+              </p>
+              {/* <p style={{ color: "#0000FF" }}>
+                Get 10 free verified contacts with a BeyondLeadz Pro trial
+              </p>
+              <p>
+                BeyondLeadz Pro customers close deals faster thanks to relevant
+              </p> */}
+            </div>
+          }
+          modalWidth="400px"
+        />
       )}
 
       {isApiFailed ? (

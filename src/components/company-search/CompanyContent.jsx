@@ -8,6 +8,7 @@ import { Table, Input, Button, Modal } from "antd";
 import { PAGE_LENGTH } from "../../config";
 import defaultLogo from "../../assets/images/default_company_logo.jpg";
 import popupImg from "../../assets/images/free-user-login-prompt.jpg.jpeg";
+import subscribepopupImg from "../../assets/images/subscribe-now-prompt-img.jpg";
 import TrialModal from "../../common/TrialModal";
 import { saveExcel, testImage } from "../../utils/utils";
 import {
@@ -78,6 +79,10 @@ const CompanyContent = () => {
   const [companyList, setCompanyList] = useState();
   const [showModal, setShowModal] = useState(false);
   const [showTagModal, setShowTagModal] = useState(false);
+  const [openModal, setOpenModal] = useState({
+    info: null,
+    open: false,
+  });
 
   const [tagValues, setTagValues] = useState({
     tagname: "",
@@ -221,8 +226,9 @@ const CompanyContent = () => {
 
   const onPageChange = (page, pageSize) => {
     const isLoggedIn = checkLoginStatus();
-    if (!isLoggedIn && page > 1) {
-      setShowModal(true);
+    if (!isLoggedIn) {
+      if(page > 1 || pageSize > PAGE_LENGTH)
+      setOpenModal({ info: null, open: true });setShowModal(false);
       return false;
     } else {
       const pageValues = {
@@ -272,6 +278,7 @@ const CompanyContent = () => {
 
   const closeModal = () => {
     setShowModal(false);
+    setOpenModal(false);
   };
 
   const onConfrim = () => {
@@ -670,6 +677,28 @@ const CompanyContent = () => {
         )
       ) : (
         ""
+      )}
+
+{openModal?.open && (
+        <TrialModal
+          openModal={openModal}
+          closeModal={closeModal}
+          redirectToSignup={redirectToSignup}
+          redirect={true}
+          // buttonText="Start Free Trial"
+          buttonText="SUBSCRIBE NOW!"
+          modalBody={
+            <div id="small-dialog2">
+              <div align="center">
+                <img src={subscribepopupImg} />
+              </div>
+              <p style={{ color: "#0000FF" }}>
+                PLEASE SUBSCRIBE TO VIEW ALL DETAILS
+              </p>
+            </div>
+          }
+          modalWidth="400px"
+        />
       )}
     </>
   );

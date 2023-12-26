@@ -8,6 +8,7 @@ import { Table, Input, Button, Modal } from "antd";
 import { PAGE_LENGTH } from "../../config";
 import defaultLogo from "../../assets/images/default_company_logo.jpg";
 import popupImg from "../../assets/images/free-user-login-prompt.jpg.jpeg";
+import subscribepopupImg from "../../assets/images/subscribe-now-prompt-img.jpg";
 import TrialModal from "../../common/TrialModal";
 import { saveExcel, testImage } from "../../utils/utils";
 
@@ -21,19 +22,23 @@ import {
   saveSearchList,
   downloadExecutiveList,
   createGroupExecutiveTag,
-  emptyDownload
+  emptyDownload,
 } from "../../actionCreator/executiveListingActionCreater";
-import { topSearch} from "../../actionCreator/headerActionCreater";
+import { topSearch } from "../../actionCreator/headerActionCreater";
 import {
   submitLead,
   getExecutiveLead,
-  getEmployeeViewableStatusUpdate
+  getEmployeeViewableStatusUpdate,
 } from "../../actionCreator/executiveDetailsActionCreator";
 import Loader from "../loader";
-import { getToken,getUserInfo,getSubscriptionUserInfo } from "../../utils/utils";
+import {
+  getToken,
+  getUserInfo,
+  getSubscriptionUserInfo,
+} from "../../utils/utils";
 
 const ExecutiveContent = () => {
-  const dispatch =useDispatch();
+  const dispatch = useDispatch();
   const { Search, TextArea } = Input;
   const [showEmail, setShowEmail] = useState({});
   const [showPhone, setShowPhone] = useState({});
@@ -41,17 +46,17 @@ const ExecutiveContent = () => {
     info: null,
     open: false,
   });
-    const colorArray = [
-      "#43ACFF",
-      "#EF5261",
-      "#FAC300",
-      "#9AD888",
-      "#18B0A7",
-      "#3C78D8",
-      "#43ACFF",
-      "#EF5261",
-      "#FAC300",
-      "#9AD888"
+  const colorArray = [
+    "#43ACFF",
+    "#EF5261",
+    "#FAC300",
+    "#9AD888",
+    "#18B0A7",
+    "#3C78D8",
+    "#43ACFF",
+    "#EF5261",
+    "#FAC300",
+    "#9AD888",
     /* "#b0b0e1",
     "#f3ca7f",
     "#e5e589",
@@ -78,32 +83,33 @@ const ExecutiveContent = () => {
   const getLeadsData = useSelector(
     (state) => state.executiveDetailsReducer?.getExecutiveLead
   );
-  // const colorArray= ['aqua', 'blue', 'fuchsia', 'gray', 'green', 
-  // 'lime', 'maroon', 'navy', 'olive', 'orange', 'purple', 'red', 
+  // const colorArray= ['aqua', 'blue', 'fuchsia', 'gray', 'green',
+  // 'lime', 'maroon', 'navy', 'olive', 'orange', 'purple', 'red',
   // 'silver', 'teal', 'white', 'yellow'];
-  const updateEmailStatus = (showEmail,row) => {
+  const updateEmailStatus = (showEmail, row) => {
     setShowEmail({ ...showEmail, [row.key]: true });
     //call api to update status
-    if(!row?.isdownloadedEmail){
-    dispatch(getEmployeeViewableStatusUpdate('Email',row));    
-    // const payload = {
-    //   ...companySelectedFilterList,
-    //   topSearchValue: topSearchValue,
-    // };
-    // dispatch(getExecutiveEmployeeList(payload, paginationValue, true));
-    }    
-  };
-  const updatePhoneStatus = (showPhone,row) => { console.log("click mob",row)
-    setShowPhone({ ...showPhone, [row.key]: true });
-    if(!row?.isdownloadedMobile){
-    dispatch(getEmployeeViewableStatusUpdate('Mobile',row));
-    // const payload = {
-    //   ...companySelectedFilterList,
-    //   topSearchValue: topSearchValue,
-    // };
-    // dispatch(getExecutiveEmployeeList(payload, paginationValue, true));
+    if (!row?.isdownloadedEmail) {
+      dispatch(getEmployeeViewableStatusUpdate("Email", row));
+      // const payload = {
+      //   ...companySelectedFilterList,
+      //   topSearchValue: topSearchValue,
+      // };
+      // dispatch(getExecutiveEmployeeList(payload, paginationValue, true));
     }
-  }
+  };
+  const updatePhoneStatus = (showPhone, row) => {
+    console.log("click mob", row);
+    setShowPhone({ ...showPhone, [row.key]: true });
+    if (!row?.isdownloadedMobile) {
+      dispatch(getEmployeeViewableStatusUpdate("Mobile", row));
+      // const payload = {
+      //   ...companySelectedFilterList,
+      //   topSearchValue: topSearchValue,
+      // };
+      // dispatch(getExecutiveEmployeeList(payload, paginationValue, true));
+    }
+  };
 
   const openInfoModel = () => {
     if (getToken()) {
@@ -112,8 +118,6 @@ const ExecutiveContent = () => {
       setOpenModal({ info: null, open: true });
     }
   };
-
-  
 
   useMemo(() => {
     if (Object.keys(getUserInfo()).length) {
@@ -138,24 +142,24 @@ const ExecutiveContent = () => {
       description: record.description,
       userId: id,
       employeeId: record.id,
-      address:record?.company?.address,
-      companyId:record?.company?.id,
-      companyName:record?.company?.name,
-      industryId:record?.company?.industry?.id,
-      industryText:record?.company?.industry?.name,
-      empSizeId:record?.company?.range?.name,
-      city:record?.company?.city,
-      state:record?.company?.state,
-      country:record?.company?.country
+      address: record?.company?.address,
+      companyId: record?.company?.id,
+      companyName: record?.company?.name,
+      industryId: record?.company?.industry?.id,
+      industryText: record?.company?.industry?.name,
+      empSizeId: record?.company?.range?.name,
+      city: record?.company?.city,
+      state: record?.company?.state,
+      country: record?.company?.country,
     };
     //console.log(isLeadSubmit,leadPayload,'leadpayload');
     if (!isLeadSubmit) {
       dispatch(submitLead(leadPayload));
       //setAddToLeads(record.id);
-    }else{
-     navigate("/lead-details/"+isLeadSubmit);
+    } else {
+      navigate("/lead-details/" + isLeadSubmit);
     }
-  }
+  };
 
   const isLeadsSubmitted = (selEmployeeId) => {
     //console.log("selEmployeeId",selEmployeeId)
@@ -170,26 +174,33 @@ const ExecutiveContent = () => {
   };
 
   const columns = [
-    
     {
       title: <div className="companyname">Executive Name</div>,
       dataIndex: "name",
       fixed: "left",
-      render: (record, row,index) => {
-        let cnt=index;
+      render: (record, row, index) => {
+        let cnt = index;
         return (
           <div className="namecol" onClick={() => getDetails(row.key)}>
-            <div className="logo" style={{textTransform: 'uppercase',backgroundColor:colorArray[index]}}>
-            {record?.firstname?.[0]}{record?.lastname?.[0]}
+            <div
+              className="logo"
+              style={{
+                textTransform: "uppercase",
+                backgroundColor: colorArray[index],
+              }}
+            >
+              {record?.firstname?.[0]}
+              {record?.lastname?.[0]}
             </div>
             <span className="cname">
               {/* {record?.fullname} */}
-              {(record?.fullname)?record.fullname:record.firstname+" "+record.lastname}
+              {record?.fullname
+                ? record.fullname
+                : record.firstname + " " + record.lastname}
             </span>
           </div>
         );
-        
-      }
+      },
     },
     {
       title: "Company",
@@ -207,8 +218,12 @@ const ExecutiveContent = () => {
         return getToken() ? (
           <>
             <h4
-             className={row?.isdownloadedEmail?" btn iconemail emails-open":" btn iconemail emails"}
-             onClick={()=>updateEmailStatus(showEmail,row)}
+              className={
+                row?.isdownloadedEmail
+                  ? " btn iconemail emails-open"
+                  : " btn iconemail emails"
+              }
+              onClick={() => updateEmailStatus(showEmail, row)}
             ></h4>
             {showEmail[row.key] && (
               <>
@@ -241,10 +256,11 @@ const ExecutiveContent = () => {
         return getToken() ? (
           <>
             <span
-              className={row?.isdownloadedMobile?" btn mobile-open":" btn mobile"}
-              onClick={()=>updatePhoneStatus(showPhone,row)}
-            >
-            </span>
+              className={
+                row?.isdownloadedMobile ? " btn mobile-open" : " btn mobile"
+              }
+              onClick={() => updatePhoneStatus(showPhone, row)}
+            ></span>
             {showPhone[row.key] && row?.mobile && (
               <>
                 <span className="phoneValue fs-12 pl-1">{row?.mobile}</span>
@@ -257,11 +273,7 @@ const ExecutiveContent = () => {
             )}
           </>
         ) : (
-          <span
-            className=" btn mobile"
-            onClick={() => openInfoModel()}
-          >
-          </span>
+          <span className=" btn mobile" onClick={() => openInfoModel()}></span>
         );
       },
     },
@@ -273,33 +285,33 @@ const ExecutiveContent = () => {
       title: "",
       dataIndex: "name",
       render: (record, row) => {
-        let checkLeadSubmitted =isLeadsSubmitted(record);
+        let checkLeadSubmitted = isLeadsSubmitted(record);
         return getToken() ? (
           <>
-          <Button
-            style={{ height: "auto" }}
-            className="keyexebtn d-none d-sm-inline-block small btn btn-primary text-black"
-            // loading={
-            //   !Object.keys(submitLeadRes).length && addToLeads === record.id
-            //     ? true
-            //     : false
-            // }
-            onClick={() => postLeads(record, checkLeadSubmitted)}
-          >
-            <i className="las la-user-plus fs-12 pr-1"></i>{" "}
-            {checkLeadSubmitted ? "LEAD ADDED" : "ADD TO LEADS"}
-          </Button>           
+            <Button
+              style={{ height: "auto" }}
+              className="keyexebtn d-none d-sm-inline-block small btn btn-primary text-black"
+              // loading={
+              //   !Object.keys(submitLeadRes).length && addToLeads === record.id
+              //     ? true
+              //     : false
+              // }
+              onClick={() => postLeads(record, checkLeadSubmitted)}
+            >
+              <i className="las la-user-plus fs-12 pr-1"></i>{" "}
+              {checkLeadSubmitted ? "LEAD ADDED" : "ADD TO LEADS"}
+            </Button>
           </>
         ) : (
           <>
-          <Button
-            style={{ height: "auto" }}
-            className="keyexebtn d-none d-sm-inline-block small btn btn-primary text-black"
-            onClick={() => openInfoModel()}
-          >
-            <i className="las la-user-plus  fs-12  pr-1"></i>ADD TO LEADS
-          </Button>
-          </>          
+            <Button
+              style={{ height: "auto" }}
+              className="keyexebtn d-none d-sm-inline-block small btn btn-primary text-black"
+              onClick={() => openInfoModel()}
+            >
+              <i className="las la-user-plus  fs-12  pr-1"></i>ADD TO LEADS
+            </Button>
+          </>
         );
       },
     },
@@ -312,7 +324,7 @@ const ExecutiveContent = () => {
 
   const [showModal, setShowModal] = useState(false);
   const [showTagModal, setShowTagModal] = useState(false);
-  
+
   const [tagValues, setTagValues] = useState({
     tagname: "",
     description: "",
@@ -323,7 +335,9 @@ const ExecutiveContent = () => {
     description: "",
     tagError: "",
   });
-  const companyFilterList = useSelector((state) => state.executiveListingReducer);
+  const companyFilterList = useSelector(
+    (state) => state.executiveListingReducer
+  );
   const companySelectedFilterList = useSelector(
     (state) => state.executiveListingReducer.selectedFilters
   );
@@ -334,7 +348,7 @@ const ExecutiveContent = () => {
   const selectedRecords = useSelector(
     (state) => state.executiveListingReducer.selectedRecords
   );
-  
+
   const topSearchValue = useSelector(
     (state) => state.HeaderReducer.topSearchValue
   );
@@ -343,7 +357,6 @@ const ExecutiveContent = () => {
     (state) => state.executiveListingReducer.download
   );
 
-  
   // useMemo(() => {
   //   dispatch(getExecutiveEmployeeList({}, paginationValue));
   // }, []);
@@ -355,7 +368,7 @@ const ExecutiveContent = () => {
         topSearchValue: topSearchValue,
       };
       dispatch(getExecutiveEmployeeList(payload, paginationValue, true));
-     // dispatch(topSearch("")); 
+      // dispatch(topSearch(""));
     } else {
       dispatch(getExecutiveEmployeeList({}, paginationValue));
     }
@@ -396,15 +409,17 @@ const ExecutiveContent = () => {
           executiveData: record,
           name: record,
           company: record?.company?.name,
-          location: `${record?.city ? record?.city + ',' : ""} ${record?.state ? record?.state : ''}`,
-          email:record?.emailId,
+          location: `${record?.city ? record?.city + "," : ""} ${
+            record?.state ? record?.state : ""
+          }`,
+          email: record?.emailId,
           phone: record?.company?.phoneNo,
-          mobile:record.phoneNo,
-          designation:record?.title,
+          mobile: record.phoneNo,
+          designation: record?.title,
           social: renderSocialLinks(record?.socialLinks),
-          isdownloadedEmail:record?.isdownloadedEmail,
-          isdownloadedMobile:record?.isdownloadedMobile,
-          directDial: record,       
+          isdownloadedEmail: record?.isdownloadedEmail,
+          isdownloadedMobile: record?.isdownloadedMobile,
+          directDial: record,
         },
       ];
     });
@@ -451,12 +466,18 @@ const ExecutiveContent = () => {
   };
 
   const onPageChange = (page, pageSize) => {
-    const pageValues = {
-      start: page - 1,
-      end: pageSize,
-    };
-    dispatch(savePaginationValues(pageValues));
-    dispatch(getExecutiveEmployeeList(companySelectedFilterList, pageValues));
+    const isLoggedIn = checkLoginStatus();
+    if (!isLoggedIn) {
+      if (page > 1 || pageSize > PAGE_LENGTH) setOpenModal({ info: null, open: true });setShowModal(false);
+      return false;
+    } else {
+      const pageValues = {
+        start: page - 1,
+        end: pageSize,
+      };
+      dispatch(savePaginationValues(pageValues));
+      dispatch(getExecutiveEmployeeList(companySelectedFilterList, pageValues));
+    }
   };
 
   const getDetails = (id) => {
@@ -467,7 +488,7 @@ const ExecutiveContent = () => {
     const isLoggedIn = checkLoginStatus();
     if (isLoggedIn) {
       setShowModal(true);
-    }else{
+    } else {
       //setShowModal(false);
     }
   };
@@ -495,16 +516,16 @@ const ExecutiveContent = () => {
         tagError: "error",
       });
     } else {
-      const {id,email,login}= getUserInfo();
+      const { id, email, login } = getUserInfo();
       const payload = {
         accountId: login,
         dataDump: JSON.stringify(companySelectedFilterList),
         fullName: searchValues.tagname,
         emailId: email,
-        source: 'Executive',
+        source: "Executive",
         userId: id,
       };
-      dispatch(saveSearchAction(payload));      
+      dispatch(saveSearchAction(payload));
       setShowModal(false);
     }
   };
@@ -526,9 +547,9 @@ const ExecutiveContent = () => {
     const isLoggedIn = checkLoginStatus();
     if (isLoggedIn) {
       //console.log("call tag api");
-      if(selectedRecords.length){
-      setShowTagModal(true);
-      }else{
+      if (selectedRecords.length) {
+        setShowTagModal(true);
+      } else {
         alert("please select record.");
       }
     }
@@ -542,41 +563,37 @@ const ExecutiveContent = () => {
     }
   };
 
-
-  
   const getSchema = (data) => {
-    var finaldata=[];
-    let cnt=0;
+    var finaldata = [];
+    let cnt = 0;
     data.forEach((obj) => {
       cnt++;
-      var dataObj={};
-      dataObj.id=obj.id;
-      dataObj.serealNo=cnt;
-      dataObj.firstName=obj.firstname;
-      dataObj.lastName=obj.lastname;
-      dataObj.designation=obj.title;
-      dataObj.email=obj.emailId;
-      dataObj.name=obj?.company?.name;
-      dataObj.revenueName=obj?.company?.revenue?.name;
-      dataObj.employeeRange=obj?.company?.range?.name;
-      dataObj.industryName=obj?.company?.industry?.name;
-      dataObj.country=obj?.company?.country;
-      dataObj.state=obj?.company?.state;
-      dataObj.city=obj?.company?.city;
-      dataObj.wedsite=obj?.company?.wedsite;
-      dataObj.address=obj?.company?.address;
-      dataObj.pincode=obj?.company?.pincode;
-      dataObj.phoneNo=obj.phoneNo;
-      finaldata.push(dataObj)
-    })
+      var dataObj = {};
+      dataObj.id = obj.id;
+      dataObj.serealNo = cnt;
+      dataObj.firstName = obj.firstname;
+      dataObj.lastName = obj.lastname;
+      dataObj.designation = obj.title;
+      dataObj.email = obj.emailId;
+      dataObj.name = obj?.company?.name;
+      dataObj.revenueName = obj?.company?.revenue?.name;
+      dataObj.employeeRange = obj?.company?.range?.name;
+      dataObj.industryName = obj?.company?.industry?.name;
+      dataObj.country = obj?.company?.country;
+      dataObj.state = obj?.company?.state;
+      dataObj.city = obj?.company?.city;
+      dataObj.wedsite = obj?.company?.wedsite;
+      dataObj.address = obj?.company?.address;
+      dataObj.pincode = obj?.company?.pincode;
+      dataObj.phoneNo = obj.phoneNo;
+      finaldata.push(dataObj);
+    });
     return finaldata;
-  }
-
+  };
 
   useEffect(() => {
-    
     if (downloadExcelData.length) {
-      const downloadedUpdatedData = getSchema(downloadExcelData)
+      const downloadedUpdatedData = getSchema(downloadExcelData);
 
       //console.log(downloadExcelData, "downloadExcelData",downloadedUpdatedData);
       const columns = [
@@ -603,7 +620,6 @@ const ExecutiveContent = () => {
     }
   }, [downloadExcelData]);
 
-
   const downloadPDF = () => {
     const isLoggedIn = checkLoginStatus();
     if (isLoggedIn) {
@@ -619,8 +635,6 @@ const ExecutiveContent = () => {
     }
   };
 
- 
-
   const closeTagModal = () => {
     setShowTagModal(false);
   };
@@ -632,21 +646,20 @@ const ExecutiveContent = () => {
         tagError: "error",
       });
     } else {
-      const {id}= getUserInfo();
-    let payload = []
+      const { id } = getUserInfo();
+      let payload = [];
       for (let i = 0; i < selectedRecords.length; i++) {
         payload = [
-           ...payload,
+          ...payload,
           {
             employee: selectedRecords[i]?.name,
             text: tagValues.tagname,
             userId: id,
-          }
-        ]
-        
+          },
+        ];
       }
       //console.log(payload,'payloadpayload');
-      dispatch(createGroupExecutiveTag(payload));      
+      dispatch(createGroupExecutiveTag(payload));
       setShowTagModal(false);
     }
   };
@@ -694,57 +707,86 @@ const ExecutiveContent = () => {
                 <div className="card shadow mb-4">
                   <div className="card-header py-3 f-rev d-flex align-items-center justify-content-between">
                     <h6 className="m-0 ml-2 font-weight-bold text-primary mob-t">
-                    Showing 1-
+                      Showing 1-
                       {parseInt(PAGE_LENGTH) >
                       parseInt(companyFilterList?.totalExecutiveCount)
                         ? companyFilterList?.totalExecutiveCount
-                        : (paginationValue.end)?paginationValue.end:PAGE_LENGTH}
+                        : paginationValue.end
+                        ? paginationValue.end
+                        : PAGE_LENGTH}
                       <span className="m-1">of</span>{" "}
                       {companyFilterList?.totalExecutiveCount}
                       <span className="m-1">results</span>
                     </h6>
 
                     <div className="buttons-container textsearch">
-                    <ul className="d-flex mt-1  m-mt">
+                      <ul className="d-flex mt-1  m-mt">
+                        <li>
+                          <a
+                            className=" mr-2"
+                            href="#"
+                            id=""
+                            role="button"
+                            data-toggle=""
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                          >
+                            <i
+                              className="right-icons las la-tags"
+                              aria-hidden="true"
+                              onClick={tagPage}
+                            ></i>
+                          </a>
+                        </li>
 
-                    <li><a className=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
-                    aria-expanded="false">
-                    <i className="right-icons las la-tags" aria-hidden="true" onClick={tagPage}></i>
-                  </a>
-                </li>
-                                         
-                  <li><a className=" mr-2"href="#" id="" role="button" data-toggle=""aria-haspopup="true"
-                    aria-expanded="false"><i className="right-icons la la-file-excel" aria-hidden="true" onClick={downloadExcel}></i>
-                  </a></li>
-                  <li>
-            <a
-              className=" mr-2"
-              role="button"
-              data-toggle=""
-              aria-haspopup="true"
-              aria-expanded="false"
-              onClick={downloadPDF}
-            >
-              <i className="right-icons la la-file-pdf" aria-hidden="true"></i>
-            </a>
-          </li>
-          <li>
-            <a
-              className=" mr-2"
-              role="button"
-              data-toggle=""
-              aria-haspopup="true"
-              aria-expanded="false"
-              onClick={printPage}
-            >
-              <i className="right-icons la la-print" aria-hidden="true"></i>
-            </a>
-          </li>
-                             
-                
-
-
-              </ul>
+                        <li>
+                          <a
+                            className=" mr-2"
+                            href="#"
+                            id=""
+                            role="button"
+                            data-toggle=""
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                          >
+                            <i
+                              className="right-icons la la-file-excel"
+                              aria-hidden="true"
+                              onClick={downloadExcel}
+                            ></i>
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            className=" mr-2"
+                            role="button"
+                            data-toggle=""
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                            onClick={downloadPDF}
+                          >
+                            <i
+                              className="right-icons la la-file-pdf"
+                              aria-hidden="true"
+                            ></i>
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            className=" mr-2"
+                            role="button"
+                            data-toggle=""
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                            onClick={printPage}
+                          >
+                            <i
+                              className="right-icons la la-print"
+                              aria-hidden="true"
+                            ></i>
+                          </a>
+                        </li>
+                      </ul>
                       <Search
                         placeholder="Search By Designation"
                         allowClear
@@ -778,11 +820,16 @@ const ExecutiveContent = () => {
                             dataSource={executiveEmployeeList}
                             pagination={{
                               responsive: true,
-                              defaultCurrent:paginationValue?.start + 1,
+                              defaultCurrent: paginationValue?.start + 1,
+                              current: paginationValue?.start + 1,
                               total: companyFilterList?.totalExecutiveCount,
-                              pageSize: parseInt(PAGE_LENGTH) > parseInt(companyFilterList?.totalExecutiveCount)
+                              pageSize:
+                                parseInt(PAGE_LENGTH) >
+                                parseInt(companyFilterList?.totalExecutiveCount)
                                   ? companyFilterList?.totalExecutiveCount
-                                  : (paginationValue.end)?paginationValue.end:PAGE_LENGTH,
+                                  : paginationValue.end
+                                  ? paginationValue.end
+                                  : PAGE_LENGTH,
                               position: ["bottomCenter"],
                               onChange: onPageChange,
                             }}
@@ -799,65 +846,66 @@ const ExecutiveContent = () => {
           </div>
         </div>
       </div>
-      {
-      showTagModal && getToken()?
-      <Modal
-        title="Tag Executive"
-        width={"400px"}
-        closable={true}
-        open={showTagModal}
-        onCancel={closeTagModal}
-        onOk={onTagConfrim}
-      >
-        <div className="pop-up errorformcontainer ">
-          <div className="form">
-            <div className="formcol1">
-              <label>Tag Name</label>
-            </div>
-            <div className="formcol2">
-              <Input
-                name="tagname"
-                status={tagValues?.tagError}
-                value={tagValues.tagname}
-                placeholder="Name"
-                onChange={onTagInputChange}
-              />
-            </div>
-          </div>
-        </div>
-      </Modal>
-      :""}
-
-      {showModal ? (
-        getToken()?
+      {showTagModal && getToken() ? (
         <Modal
-          title="Save Search"
+          title="Tag Executive"
           width={"400px"}
           closable={true}
-          open={showModal}
-          onCancel={closeModal}
-          onOk={onConfrim}
+          open={showTagModal}
+          onCancel={closeTagModal}
+          onOk={onTagConfrim}
         >
           <div className="pop-up errorformcontainer ">
             <div className="form">
               <div className="formcol1">
-                <label>Search Name</label>
+                <label>Tag Name</label>
               </div>
               <div className="formcol2">
                 <Input
                   name="tagname"
-                  status={searchValues?.tagError}
-                  value={searchValues.tagname}
+                  status={tagValues?.tagError}
+                  value={tagValues.tagname}
                   placeholder="Name"
-                  onChange={onInputChange}
+                  onChange={onTagInputChange}
                 />
               </div>
-            </div>            
+            </div>
           </div>
         </Modal>
-        :
-        <TrialModal
-          openModal={showModal}
+      ) : (
+        ""
+      )}
+
+      {showModal ? (
+        getToken() ? (
+          <Modal
+            title="Save Search"
+            width={"400px"}
+            closable={true}
+            open={showModal}
+            onCancel={closeModal}
+            onOk={onConfrim}
+          >
+            <div className="pop-up errorformcontainer ">
+              <div className="form">
+                <div className="formcol1">
+                  <label>Search Name</label>
+                </div>
+                <div className="formcol2">
+                  <Input
+                    name="tagname"
+                    status={searchValues?.tagError}
+                    value={searchValues.tagname}
+                    placeholder="Name"
+                    onChange={onInputChange}
+                  />
+                </div>
+              </div>
+            </div>
+          </Modal>
+        ) : (
+          <TrialModal
+            openModal={showModal}
             closeModal={closeModal}
             redirectToSignup={redirectToSignup}
             buttonText="Start Free Trial"
@@ -878,11 +926,12 @@ const ExecutiveContent = () => {
             }
             modalWidth="400px"
           />
+        )
       ) : (
         ""
       )}
 
-{openModal?.open && (
+      {openModal?.open && (
         <TrialModal
           openModal={openModal}
           closeModal={closeModal}
@@ -893,17 +942,16 @@ const ExecutiveContent = () => {
           modalBody={
             <div id="small-dialog2">
               <div align="center">
-                <img src={popupImg} />
+                <img src={subscribepopupImg} />
               </div>
               <p style={{ color: "#0000FF" }}>
                 PLEASE SUBSCRIBE TO VIEW ALL DETAILS
-              </p>              
+              </p>
             </div>
           }
           modalWidth="400px"
         />
       )}
-
     </>
   );
 };

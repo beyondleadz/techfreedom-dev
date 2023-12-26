@@ -13,6 +13,7 @@ import OrgChart from "./OrgChart";
 import { saveExcel, testImage, getToken, getUserInfo } from "../../utils/utils";
 import TrialModal from "../../common/TrialModal";
 import popupImg from "../../assets/images/free-user-login-prompt.jpg.jpeg";
+import subscribepopupImg from "../../assets/images/subscribe-now-prompt-img.jpg";
 import { useNavigate } from "react-router";
 
 import {
@@ -41,6 +42,10 @@ const SummaryContent = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [showModal, setShowModal] = useState(false);
+  const [openModal, setOpenModal] = useState({
+    info: null,
+    open: false,
+  });
   const [dropDownToggle, setDropdownToggle] = useState(false);
   const [tabActiveKey, setTabActiveKey] = useState("1");
   const [similarList, setSimilarList] = useState();
@@ -175,14 +180,14 @@ const SummaryContent = () => {
       children: <OrgChart />,
     },
     {
-       key: "4",
-       label: (
-         <span>
-           <i className="text-black fa fa-paper-plane fs-16 pr-2"></i>Triggers
-         </span>
-       ),
-       children: <OrgChart />,
-     },
+      key: "4",
+      label: (
+        <span>
+          <i className="text-black fa fa-paper-plane fs-16 pr-2"></i>Triggers
+        </span>
+      ),
+      children: <OrgChart />,
+    },
   ];
 
   useEffect(() => {
@@ -194,10 +199,15 @@ const SummaryContent = () => {
   }, [similarCompanyList]);
 
   const onChange = (key) => {
-    setTabActiveKey(key);
-    if (key !== "2" && key !== "3") {
-      setSelectedValue("Filter by Department");
-      dispatch(getEmployeeList(id));
+    if (!getToken() && (key == "3" || key == "4")) {
+      setShowModal(false);
+      setOpenModal({ info: null, open: true });
+    } else {
+      setTabActiveKey(key);
+      if (key !== "2" && key !== "3") {
+        setSelectedValue("Filter by Department");
+        dispatch(getEmployeeList(id));
+      }
     }
   };
 
@@ -294,6 +304,7 @@ const SummaryContent = () => {
 
   const closeModal = () => {
     setShowModal(false);
+    setOpenModal(false);
     dispatch(emptyErrorObj());
   };
 
@@ -551,6 +562,34 @@ const SummaryContent = () => {
         />
       ) : (
         ""
+      )}
+
+{openModal?.open && (
+        <TrialModal
+          openModal={openModal}
+          closeModal={closeModal}
+          redirectToSignup={redirectToSignup}
+          redirect={true}
+          // buttonText="Start Free Trial"
+          buttonText="SUBSCRIBE NOW!"
+          modalBody={
+            <div id="small-dialog2">
+              <div align="center">
+                <img src={subscribepopupImg} />
+              </div>
+              <p style={{ color: "#0000FF" }}>
+                PLEASE SUBSCRIBE TO VIEW ALL DETAILS
+              </p>
+              {/* <p style={{ color: "#0000FF" }}>
+                Get 10 free verified contacts with a BeyondLeadz Pro trial
+              </p>
+              <p>
+                BeyondLeadz Pro customers close deals faster thanks to relevant
+              </p> */}
+            </div>
+          }
+          modalWidth="400px"
+        />
       )}
 
       {isApiFailed ? (
