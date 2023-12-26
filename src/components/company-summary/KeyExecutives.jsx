@@ -106,6 +106,7 @@ const KeyExecutives = () => {
       >{row.fullname}
       </span>
       }
+      
     },
     {
       title: "Designation",
@@ -374,6 +375,8 @@ const KeyExecutives = () => {
 
   return (
     <div className="card shadow card-body">
+        <div className="table-container text-nowrap">
+                      <div className="table-wrapper">
       <Table
         rowSelection={{
           type: "checkbox",
@@ -392,6 +395,8 @@ const KeyExecutives = () => {
           onChange: onPageChange,
         }}
       />
+      </div>
+      </div>
       {openModal?.open && (
         <TrialModal
           openModal={openModal}

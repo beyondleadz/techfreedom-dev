@@ -205,15 +205,16 @@ input[type="checkbox" i] {
   .col-md-12{padding-right: 8px;}
   .companyintro.mobile_desk{padding: 0 14px 0 14px; margin-top: 0;}
   .excelcontainer, .departmentcontainer  {display: none;}
- 
+  #executive .buttons-c{position: static; white-space: nowrap;}
+  #executive .mr-4{ margin-right: 10px;}
   #home .logobox {
     min-width: 100px;
     min-height: 100px;
-    width: 100px;}
+    width: 100px; margin: 0 auto;}
   .data-table {
     font-size: 10px;
   }
-
+  
   .data-table th,
   .data-table td {
     padding: 5px;
@@ -6469,10 +6470,18 @@ cursor: pointer;
       white-space: break-spaces;} */
 
 
-    .headercontainer{
-      white-space: nowrap;
-      margin: 0;
-      padding: 0; height: auto; padding:10px}
+    .headercontainer{      margin: 0;
+      padding: 0; height: auto; padding:10px;
+      flex-direction: column;
+      white-space: normal;}
+
+     #home .mt-4 {margin-top: 5px;}
+     #home .companyintro{margin:5px 0;}
+     #home .descbox {margin-left:0; margin-top: 5px;}
+     #orgchart .hierarchy-viewer {
+      background-color: #fff;}
+      .executiveheader{flex-direction: column;}
+      .executivelogobox{margin: 0 auto 10px auto; }
 }
 .btn-lit {
   color: #212529;
@@ -7083,7 +7092,7 @@ color: orange;
 
   .buttons-c {
    position:absolute; right: 0; 
-   top: 33px;
+   top: 33px; z-index: 9;
    } 
 
  .executive h6{

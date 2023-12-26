@@ -261,18 +261,9 @@ const SummaryContent = () => {
   return (
     <>
     <div className="row">
-      <div className="col-md-12">
+      <div id="executive" className="col-md-12">
         <div className="mt-4 mb-4">
-          <div className="">
-            <Tabs
-              // defaultActiveKey="1"
-              activeKey={tabActiveKey}
-              items={items}
-              onChange={onChange}
-              type="card"
-            />
-
-            <div className="buttons-c mr-3">
+        <div className="buttons-c mr-3">
               <ul className="d-flex  m-mt">
                 <li>
                   <div className="btn btn-outline-secondary pr-1 mr-2">
@@ -318,6 +309,16 @@ const SummaryContent = () => {
 
               </ul>
             </div>
+          <div className="">
+            <Tabs
+              // defaultActiveKey="1"
+              activeKey={tabActiveKey}
+              items={items}
+              onChange={onChange}
+              type="card"
+            />
+
+           
           </div>
         </div>
       </div>
