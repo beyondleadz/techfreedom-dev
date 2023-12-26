@@ -13,7 +13,10 @@ const BannerSection=()=>{
                  <p className="mr-5">"Our terms and conditions are like a box of chocolates - you never know what you're gonna get, but we promise it'll be sweet!"
 </p>
                         
-            
+                    <div className="mt-md-5 mt-4 mb-lg-0 mb-4">
+                    {/* <NavLink to={"/signup"} className="btn btn-style"> Start Free Trial</NavLink> */}
+                    <NavLink to={"/contact-us"} className="btn btn-style">Contact us</NavLink>                     
+                    </div> 
             
                     
                  </div>

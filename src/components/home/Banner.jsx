@@ -1,4 +1,5 @@
 import React,{useState} from "react";
+import { useRoutes, NavLink, useNavigate, useLocation } from "react-router-dom";
 import BannerImage2 from '../../assets/images/banner-img2.jpg'
 const BannerSection=()=>{
     return(<section id="home" className="w3l-banner">
@@ -13,7 +14,9 @@ const BannerSection=()=>{
                 <p className="mr-5"> - Get 100% Verified B2B data that converts to higher sales revenue</p>
                 <p className="mr-5"> - Best prospecting solution and actionable insights for faster conversions</p>
                 <div className="mt-md-5 mt-4 mb-lg-0 mb-4">
-                    <a className="btn btn-style" href="about.html">Start Free Trial</a>  <a className="btn btn-style" href="about.html">See Plans</a>                        </div>
+                <NavLink to={"/signup"} className="btn btn-style"> Start Free Trial</NavLink>
+                <NavLink to={"/contact-us"} className="btn btn-style">Contact us</NavLink>                     
+                </div>
             </div>
             <div className="col-md-6 mt-md-0 mt-5 mb-lg-0 mb-5 right-banner-2 position-relative">
                 <div className="sub-banner-image">

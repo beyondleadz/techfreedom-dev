@@ -1,4 +1,5 @@
 import React,{useState} from "react";
+import { NavLink } from "react-router-dom";
 import BannerImage2 from '../../assets/images/career-header.jpg'
 const BannerSection=()=>{
     return( <section id="home" className="w3l-banner">
@@ -11,11 +12,11 @@ const BannerSection=()=>{
                     <span>Come </span>Join Us!</h3>
                  <p className="mr-5">Attracting top talent is crucial for any company, and Beyond Leadz is no exception!</p>
                         
-            
-            
-                    <div className="mt-md-5 mt-4 mb-lg-0 mb-4">
-                        <a className="btn btn-style" href="about.html">Start Free Trial</a>  <a className="btn btn-style" href="about.html">See Plans</a>                        </div>
-                </div>
+                 <div className="mt-md-5 mt-4 mb-lg-0 mb-4">
+                 <NavLink to={"/signup"} className="btn btn-style"> Start Free Trial</NavLink>
+                 <NavLink to={"/contact-us"} className="btn btn-style">Contact us</NavLink>                     
+                 </div>                
+                 </div>
                 <div className="col-md-6 mt-md-0 mt-5 mb-lg-0 mb-5 right-banner-2 position-relative">
                     <div className="sub-banner-inner-image">
                         <img src={BannerImage2}
@@ -23,7 +24,7 @@ const BannerSection=()=>{
                     </div>
                 </div>
                 <ul className="breadcrumbs-custom-path">
-                <li><a href="index.html">Home</a></li>
+                <li><NavLink to="/">Home</NavLink></li>
                 <li className="active"><i className="fas fa-angle-right mx-2"></i>Career</li>
             </ul>
             </div>

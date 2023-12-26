@@ -92,7 +92,7 @@ setActivityData(activityItems);
         let savedformattedDate="";
         if(activityTime){
         let savedDate = new Date(activityTime)
-        savedformattedDate = moment(savedDate).utc().format('YYYY-MM-DD');
+        savedformattedDate = moment(savedDate).utc().format('YYYY-MM-DD, h:mm a');
         }
         let obj = {};
        // console.log(colorActivityObj[title],'colorActivityObj?.title',title)

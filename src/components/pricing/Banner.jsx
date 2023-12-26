@@ -12,11 +12,11 @@ const BannerSection=()=>{
                     <span>Product </span>Pricing</h3>
                     <p className="mr-5">Get the best plan for your business
 You can upgrade, downgrade or cancel the plan anytime.</p>
-                        
-            
             
                     <div className="mt-md-5 mt-4 mb-lg-0 mb-4">
-                        <NavLink className="btn btn-style" to="/about-us">Start Free Trial</NavLink>  <NavLink className="btn btn-style" to="/about-us">See Plans</NavLink>                        </div>
+                    <NavLink to={"/signup"} className="btn btn-style"> Start Free Trial</NavLink>
+                    <NavLink to={"/contact-us"} className="btn btn-style">Contact us</NavLink>                     
+                    </div>
                 </div>
                 <div className="col-md-6 mt-md-0 mt-5 mb-lg-0 mb-5 right-banner-2 position-relative">
                     <div className="sub-banner-inner-image">

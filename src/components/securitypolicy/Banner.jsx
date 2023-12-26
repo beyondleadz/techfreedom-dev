@@ -12,8 +12,10 @@ const BannerSection=()=>{
                     <span>Security </span>Policy</h3>
                  <p className="mr-5">"Our security policy is like a superhero - it protects your data and fights off cyber villains, so you don't have to!"
 </p>
-                        
-            
+                    <div className="mt-md-5 mt-4 mb-lg-0 mb-4">
+                    {/* <NavLink to={"/signup"} className="btn btn-style"> Start Free Trial</NavLink> */}
+                    <NavLink to={"/contact-us"} className="btn btn-style">Contact us</NavLink>                     
+                    </div>   
 
                 </div>
                 <div className="col-md-6 mt-md-0 mt-5 mb-lg-0 mb-5 right-banner-2 position-relative">

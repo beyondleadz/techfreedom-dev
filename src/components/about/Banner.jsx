@@ -1,4 +1,5 @@
 import React,{useState} from "react";
+import { NavLink } from "react-router-dom";
 import BannerImage2 from '../../assets/images/about-us-header.jpg'
 const BannerSection=()=>{
     return(
@@ -12,11 +13,12 @@ const BannerSection=()=>{
                     <h3 className="mb-lg-4 mb-3 title">
                     <span>About </span>Us!</h3>
                  <p className="mr-5">Welcome to BeyondLeadz, a B2B data and lead management solutions provider. Our company specializes in providing businesses with accurate, up-to-date and actionable data that helps them identify potential leads and grow their customer base.</p>
-                        
-            
-            
+                     
                     <div className="mt-md-5 mt-4 mb-lg-0 mb-4">
-                        <a className="btn btn-style" href="about.html">Start Free Trial</a>  <a className="btn btn-style" href="about.html">See Plans</a>                        </div>
+                    <NavLink to={"/signup"} className="btn btn-style"> Start Free Trial</NavLink>
+                    <NavLink to={"/contact-us"} className="btn btn-style">Contact us</NavLink>                     
+                    </div>   
+
                 </div>
                 <div className="col-md-6 mt-md-0 mt-5 mb-lg-0 mb-5 right-banner-2 position-relative">
                     <div className="sub-banner-inner-image">

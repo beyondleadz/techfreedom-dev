@@ -14,7 +14,9 @@ const BannerSection=()=>{
                         <p className="mr-5">We're excited to hear from you - let's discuss something awesome!</p>
              
                     <div className="mt-md-5 mt-4 mb-lg-0 mb-4">
-                        <NavLink to="/about-us" className="btn btn-style">Start Free Trial</NavLink>  <NavLink className="btn btn-style" to="/about-us">See Plans</NavLink>                        </div>
+                    <NavLink to={"/signup"} className="btn btn-style"> Start Free Trial</NavLink>
+                    {/* <NavLink to={"/contact-us"} className="btn btn-style">Contact us</NavLink>                      */}
+                    </div> 
                 </div>
                 <div className="col-md-6 mt-md-0 mt-5 mb-lg-0 mb-5 right-banner-2 position-relative">
                     <div className="sub-banner-inner-image">

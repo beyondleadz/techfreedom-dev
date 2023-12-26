@@ -14,7 +14,9 @@ const BannerSection=()=>{
 						Find Prospects <span>with 95% data accuracy</span></h3>
                         <p className="mr-5">Discover qualified prospects in seconds with Beyond Leadz’s all-in-one prospecting tool.</p>
 						<div className="mt-md-5 mt-4 mb-lg-0 mb-4">
-                            <a className="btn btn-style" href="about.html">Start Free Trial</a>  <a className="btn btn-style" href="about.html">See Plans</a>                        </div>
+                        <NavLink to={"/signup"} className="btn btn-style"> Start Free Trial</NavLink>
+                        <NavLink to={"/contact-us"} className="btn btn-style">Contact us</NavLink>                     
+                        </div>                    
                     </div>
                     <div className="col-md-6 mt-md-0 mt-5 mb-lg-0 mb-5 right-banner-2 position-relative">
                         <div className="sub-banner-inner-image">
