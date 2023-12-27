@@ -7811,7 +7811,7 @@ color: orange;
     #leads .pagebg{background-color: #fff;}
    #leads .ant-tabs {
       line-height: 1.1214285714285714;}
- #leads .ant-tabs-ink-bar{height: 2px; border-bottom-color: #fff;} 
+ #leads .ant-tabs-ink-bar{height: 0; border-bottom-color: #fff;} 
     #leads .ant-steps-item.steps-pending  {background-color: #ebe9ed; border-radius: 10px 0 0 10px;}
     #leads .ant-steps.ant-steps-navigation .ant-steps-item.steps-pending::after{background-color: #ebe9ed;}
     #leads .ant-steps-item.steps-pending .ant-steps-item-title{color:rgba(0, 0, 0, 0.88);}
