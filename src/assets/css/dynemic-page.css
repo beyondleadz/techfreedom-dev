@@ -7484,9 +7484,14 @@ color: orange;
     border: 1px solid #e3e6f0;
     border-radius: 0.35rem; padding:0 15px;}
 
-  #leads .card{margin: 15px; width: -webkit-fill-available; width: 650px;}
+  #leads .card{margin: 0px 15px; width: -webkit-fill-available; width: 650px;}
 #leads .ant-timeline .ant-timeline-item {padding-bottom: 0;}
 #leads .headername{margin: 30px 0 0 0;}
+#leads .fordate{
+  text-align: right;
+  padding-right: 9%;
+  margin: 0;
+}
 #leads .profilePic
 {text-align: center;
   width: 90%;

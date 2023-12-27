@@ -50,32 +50,32 @@ const ActivityTime = ({setActiveTab}) => {
   
   
   useEffect(() => {
-//     const groupLeadNotesDataByStatus =  _.groupBy(leadNotes, function(b) { return b.lastUpdated});
-//     const groupLeadRemarksDataByStatus =  _.groupBy(leadRemarks, function(b) { return b.interactionDate});
-// console.log(groupLeadNotesDataByStatus,'groupLeadNotesDataByStatus');
-// console.log(groupLeadRemarksDataByStatus,'groupLeadRemarksDataByStatus');
-const activityItems=[{value:"",label:"ALL"}];
-    Object.entries(colorActivityObj).map((key,index)=>{
+    //     const groupLeadNotesDataByStatus =  _.groupBy(leadNotes, function(b) { return b.lastUpdated});
+    //     const groupLeadRemarksDataByStatus =  _.groupBy(leadRemarks, function(b) { return b.interactionDate});
+    // console.log(groupLeadNotesDataByStatus,'groupLeadNotesDataByStatus');
+    // console.log(groupLeadRemarksDataByStatus,'groupLeadRemarksDataByStatus');
+    const activityItems = [{ value: "", label: "ALL" }];
+    Object.entries(colorActivityObj).map((key, index) => {
       //console.log(key[0],'keykey')
-     return activityItems.push({value:key[0],label:key[0]});
+      return activityItems.push({ value: key[0], label: key[0] });
     });
-    
-setActivityData(activityItems);
-    const finalData=([...leadNotes,...leadRemarks]);
+
+    setActivityData(activityItems);
+    const finalData = ([...leadNotes, ...leadRemarks]);
     //console.log(finalData,'finalDatafinalData');
-    let items = [];let overdueItems = [];
-      
+    let items = []; let overdueItems = [];
+
     if (finalData.length) {
       let today = new Date();
       let formattedTodayData = moment(today).utc().format('YYYY-MM-DD')
-      finalData.forEach((item,index) => {        
-        let isLeadNote=item?.note?1:0;
-        let title="";let description="";let activityTime="";
-        if(isLeadNote){
-          title=item.note;
-          description=item.notefor;
-          activityTime=item.lastUpdated;          
-        }else{
+      finalData.forEach((item, index) => {
+        let isLeadNote = item?.note ? 1 : 0;
+        let title = ""; let description = ""; let activityTime = "";
+        if (isLeadNote) {
+          title = item.note;
+          description = item.notefor;
+          activityTime = item.lastUpdated;
+        } else {
           //isContacted isToDisplay
           // if(item.isContacted){
           //   title="Contact";
@@ -84,35 +84,53 @@ setActivityData(activityItems);
           // }else{
           //   title=item.isContactBackRequired?"Contact Back":"Custom";
           // }
-          title=item.title;
-          description=item.remarks;
-          activityTime=item.interactionDate;
+          title = item.title;
+          description = item.remarks;
+          activityTime = item.interactionDate;
         }
         //console.log(isLeadNote,item);
-        let savedformattedDate="";
-        if(activityTime){
-        let savedDate = new Date(activityTime)
-        savedformattedDate = moment(savedDate).utc().format('YYYY-MM-DD, h:mm a');
+        let savedformattedDate = "";
+        if (activityTime) {
+          let savedDate = new Date(activityTime)
+          savedformattedDate = moment(savedDate).utc().format('YYYY-MM-DD, h:mm a');
         }
         let obj = {};
-       // console.log(colorActivityObj[title],'colorActivityObj?.title',title)
+        // console.log(colorActivityObj[title],'colorActivityObj?.title',title)
         //console.log(formattedTodayData,"===",savedformattedDate,activityTime)
-        obj.color =colorActivityObj[title]?.[2];  
+        obj.color = colorActivityObj[title]?.[2];
         obj.dot =
-        <div className="leadbg"><a href="#" className={`btn btn-${colorActivityObj[title]?.[0]} btn-sm btn-circle`} > <i className={`${colorActivityObj[title]?.[1]} fs-14`}></i></a></div>;
-      obj.children =
-        <div className="mt-1"><div className="col-md-12 card"><div id="steps" className=" row mt-1"> <div className="col-md-8 text-align-left fs-14 font-weight-normal " style={{"textTransform": "capitalize"}}>{title}
-        <h6>{description}</h6></div>    <div className="col-sm-4 text-align-right"><a href="#" className="btn fs-20 " onClick={()=>editTimeline(item.id,isLeadNote)}> <i className="las la-edit "></i></a> <a href="#" className="btn fs-20 " onClick={()=>deleteTimeline(item.id,isLeadNote)}> <i className="las la-trash"></i></a><div className="fs-12 mt-1">{savedformattedDate}</div></div></div></div></div>;        
-        if(formattedTodayData===savedformattedDate){         
-        items.push(obj);
-        }else{
-        overdueItems.push(obj);
+          <div className="leadbg"><a href="#" className={`btn btn-${colorActivityObj[title]?.[0]} btn-sm btn-circle`} > <i className={`${colorActivityObj[title]?.[1]} fs-14`}></i></a></div>;
+        obj.children =
+          <div className="mt-1">
+            <div className="fs-12 fordate mt-1">{savedformattedDate}</div>
+            <div className="col-md-12 card">
+              <div id="steps" className=" row mt-1">
+                <div className="col-md-8 text-align-left fs-14 font-weight-normal " style={{ "textTransform": "capitalize" }}>
+                  {title}
+                  <h6>{description}</h6>
+                </div>
+                <div className="col-sm-4 text-align-right">
+                  <a href="#" className="btn fs-20 " onClick={() => editTimeline(item.id, isLeadNote)}>
+                    <i className="las la-edit "></i>
+                  </a>
+                  <a href="#" className="btn fs-20 " onClick={() => deleteTimeline(item.id, isLeadNote)}>
+                    <i className="las la-trash"></i>
+                  </a>
+                  
+                </div>
+              </div>
+            </div>
+          </div>;
+        if (formattedTodayData === savedformattedDate) {
+          items.push(obj);
+        } else {
+          overdueItems.push(obj);
         }
-      });      
+      });
     }
     setItemOverviewDueData(overdueItems);
     setItemData(items);
-  }, [leadNotes,leadRemarks]);
+  }, [leadNotes, leadRemarks]);  
 
   const onActivityChange=(value)=>{
     setSelectedActivity(value);
