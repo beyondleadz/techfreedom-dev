@@ -15,8 +15,7 @@ const Subscribe = () => {
            </div>
              <div className="subscribe2">
              <div className="form">
-                 {/* <input type="text" className="text" placeholder="Email"/> */}
-                 <input placeholder="Your Email" name="email" type="email" required=""/>
+                 <input type="text" className="text" placeholder="Email"/>
                  <input type="submit" value="Submit"/>
              </div>
          </div>
