@@ -8558,7 +8558,7 @@ button.bg-dark:focus {
 .w-100 {
   width: 100% ;
   border-bottom: 1px solid #ccc;
-    margin: 15px;
+    /* margin: 15px; */
 }
 .w-100- {
   width: 100% ;
