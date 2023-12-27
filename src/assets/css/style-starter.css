@@ -22440,13 +22440,13 @@ html[xmlns] .slides {display: block;
 } */
 
 /* gallery */
-/* .col-md-3 {
+.col-md-3 {
 position: relative;
   min-height: 1px;
   padding-right: 32px;
   padding-left: 15px;
   float: left;
-} */
+} 
 .gallery {
   padding: 4em 0;
 }
