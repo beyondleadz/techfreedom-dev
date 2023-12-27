@@ -35,7 +35,7 @@ const CompanyContent = () => {
       dataIndex: "name",
       render: (record, row) => {
         return (
-          <div className="namecol" onClick={() => getDetails(row.key)}>
+          <div className="namecol" onClick={() => getDetails(row.key,record?.name)}>
             <div className="logo">
               <img
                 src={record?.companyLogoUrl || defaultLogo}
@@ -252,8 +252,9 @@ const CompanyContent = () => {
     
   };
 
-  const getDetails = (id) => {
-    navigate(`/company-summary/${id}`);
+  const getDetails = (id,name) => {
+    let cname=name.replaceAll(" ","-",name);
+    navigate(`/company-summary/${id}/${cname}`);
   };
 
   const onHandleSaveSearch = () => {

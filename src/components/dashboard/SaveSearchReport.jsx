@@ -33,11 +33,53 @@ const SaveSearchReport = () => {
   const dataSource = companySaveSearchList;
   const executiveDataSource = executiveSaveSearchList;
 
+  let filterDataSource=[]; let filterExecutiveDataSource=[];
+  dataSource.map((obj)=>{
+    let obj1={text:obj.fullName,value:obj.fullName};
+    filterDataSource.push(obj1);
+  });
+  executiveDataSource.map((obj)=>{
+    let obj1={text:obj.fullName,value:obj.fullName};
+    filterExecutiveDataSource.push(obj1);
+  });
+  //console.log("filterDataSource",filterDataSource,dataSource)
+  const doFilterByCompany=(row)=>{
+console.log("click",row)
+  }
   const columns = [
     {
       title: "Search",
       dataIndex: "fullName",
       key: "fullName",
+      filters: filterDataSource,
+      onFilter: (value, record) => record.fullName.startsWith(value),
+      filterSearch: true,
+      width: '40%',
+      render: (text, row) => {
+        return (
+          <>
+            <span style={{cursor:"pointer"}} onClick={() => doFilterByCompany(row)}
+            >{text}</span>           
+          </>
+        ) 
+      },
+    },
+    {
+      title: "Source",
+      dataIndex: "source",
+      key: "source",
+    },
+  ];
+
+  const executiveColumns = [
+    {
+      title: "Search",
+      dataIndex: "fullName",
+      key: "fullName",
+      filters: filterExecutiveDataSource,
+      onFilter: (value, record) => record.fullName.startsWith(value),
+      filterSearch: true,
+      width: '40%',
     },
     {
       title: "Source",
@@ -97,7 +139,7 @@ const SaveSearchReport = () => {
                         : ["none"],
                   }}
                   dataSource={executiveDataSource}
-                  columns={columns}
+                  columns={executiveColumns}
                 />
               </div>
             </div>

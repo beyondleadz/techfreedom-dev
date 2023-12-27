@@ -82,12 +82,13 @@ const AppRoutes = (props) => {
                 <Route path='/prospecting-search' element={<ProspectingSearch/>}/>
                 <Route path='/executive-search' element={<ExecutiveSearch/>}/>
                 <Route path='/executive-details/:id' element={<ExecutiveDetails/>}/>
+                <Route path='/executive-details/:id/:name' element={<ExecutiveDetails/>}/>
                 <Route path='/executive-details1' element={<ExecutiveDetails1/>}/>
                 <Route path='/product-comparison' element={<ProductComparison/>}/>
                 <Route path='/search-company' element={<CompanySearch tab='1'/>}/>
                 <Route path='/search-executive' element={<ExecutiveSearch tab='2'/>}/>
                 <Route path='/search-lead' element={<LeadSearch tab='3'/>}/>
-                {/* <Route path='/company-summary' element={<CompanySummary/>}/> */}
+                <Route path='/company-summary/:id/:name' element={<CompanySummary/>}/>
                 <Route path='/company-summary/:id' element={<CompanySummary/>}/>
                 {/* <Route path='/summary' element={<Summary/>}/> */}
                 <Route path='/our-data' element={<OurData/>}/>

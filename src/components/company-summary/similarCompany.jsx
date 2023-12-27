@@ -152,8 +152,9 @@ const SimilarCompany = () => {
     setTabActiveKey("2");
   };
 
-  const getDetails = (id) => { 
-    navigate(`/company-summary/${id}`);
+  const getDetails = (id,name) => {
+    let cname=name.replaceAll(" ","-",name);
+    navigate(`/company-summary/${id}/${cname}`);
   };
 
   const renderSimilarCompanyList = () => {
@@ -168,7 +169,7 @@ const SimilarCompany = () => {
           </div>
           <div className="similar-desc">
             <div>
-            <a onClick={() => getDetails(`${similarCompanyList[i]?.id}`)} className="font-weight-bold fs-14 text-dark" title="">
+            <a onClick={() => getDetails(`${similarCompanyList[i]?.id}`,`${similarCompanyList[i]?.name}`)} className="font-weight-bold fs-14 text-dark" title="">
                 {similarCompanyList[i]?.name}
               </a>
             </div>

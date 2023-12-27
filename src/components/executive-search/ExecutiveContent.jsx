@@ -181,7 +181,7 @@ const ExecutiveContent = () => {
       render: (record, row, index) => {
         let cnt = index;
         return (
-          <div className="namecol" onClick={() => getDetails(row.key)}>
+          <div className="namecol" onClick={() => getDetails(row.key,record?.fullname)}>
             <div
               className="logo"
               style={{
@@ -487,8 +487,9 @@ const ExecutiveContent = () => {
     }
   };
 
-  const getDetails = (id) => {
-    navigate(`/executive-details/${id}`);
+  const getDetails = (id,name) => {
+    let cname=name.replaceAll(" ","-",name);
+    navigate(`/executive-details/${id}/${cname}`);
   };
 
   const onHandleSaveSearch = () => {

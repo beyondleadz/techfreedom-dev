@@ -29,7 +29,7 @@ const ExecutiveDetails = () => {
    // dispatch(getDepartmentList());
     dispatch(getExecutiveDetails(id));
     dispatch(getExecutiveCompanyDetails(id));    
-  }, []);
+  }, [id]);
 
   useMemo(() => {
     //console.log(executiveDetails, "executiveDetails");
@@ -61,6 +61,7 @@ const ExecutiveDetails = () => {
   useEffect(() => {
     Object.keys(executiveDetails).length ? setLoading(false) : setLoading(true);
   }, [Object.keys(executiveDetails).length]);
+
 
   return (
     <>

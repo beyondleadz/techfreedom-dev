@@ -118,7 +118,7 @@ return (
                       {node.position?
                       <>
                       <span className="position">{node.position} </span>
-                      <span><Link to={`/executive-details/${node?.id}`}>{node.name}</Link> </span>
+                      <span><Link to={`/executive-details/${node?.id}/${node.name.replaceAll(" ","-",node.name)}`}>{node.name}</Link> </span>
                       </>
                       :<span>{node.name} </span>
                       }

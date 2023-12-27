@@ -87,8 +87,10 @@ const KeyExecutives = () => {
     }
   };
 
-  const viewExecutiveDetails=(row)=>{
-    navigate(`/executive-details/${row.id}`);
+  const viewExecutiveDetails=(row,name)=>{
+    let cname=name.replaceAll(" ","-",name);
+    navigate(`/executive-details/${row.id}/${cname}`);
+    
   };
   const columns = [
     // {
@@ -102,7 +104,7 @@ const KeyExecutives = () => {
       fixed: "left",
       render: (text, row) => {
         return  <span className="namecol"
-        onClick={() => viewExecutiveDetails(row)}
+        onClick={() => viewExecutiveDetails(row,row.fullname)}
       >{row.fullname}
       </span>
       }

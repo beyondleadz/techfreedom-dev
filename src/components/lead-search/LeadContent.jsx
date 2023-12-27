@@ -108,8 +108,9 @@ const LeadContent = () => {
     }
   };
 
-  const getCompanyDetails = (id) => {
-    navigate(`/company-summary/${id}`);
+  const getCompanyDetails = (id,name) => {
+    let cname=name.replaceAll(" ","-",name);
+    navigate(`/company-summary/${id}/${cname}`);
   };
 
   const columns = [
@@ -153,7 +154,7 @@ const LeadContent = () => {
         return (
           <div
             className="namecol"
-            onClick={() => getCompanyDetails(row?.companyId)}
+            onClick={() => getCompanyDetails(row?.companyId,row?.companyName)}
           >
             <span className="cname">{row?.companyName}</span>
           </div>
