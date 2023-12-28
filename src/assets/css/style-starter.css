@@ -18985,15 +18985,15 @@ h4.small-text-banner {
 
 .sub-banner-image {
   background: var(--secondary-color);
-  /*background: #CBDDFF;*/
-  margin-top: 2em;
+  /*background: #CBDDFF;
+  margin-top: 2em;*/
   border-radius: 0 40px;
 }
 
 .sub-banner-inner-image {
   /*background: var(--secondary-color);*/
-  /*background: #CBDDFF;*/
-  margin-top: 2em;
+  /*background: #CBDDFF;
+  margin-top: 2em;*/
   border-radius: 0 40px;
 }
 
