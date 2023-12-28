@@ -1,4 +1,5 @@
 import React,{useState} from "react";
+import { NavLink } from "react-router-dom";
 import FeatureSearchImage from "../../assets/images/features-search-icon.png";
 import ProspectSearchImage from "../../assets/images/prospect-search.jpg";
 import leadsImage from "../../assets/images/leads.jpg";
@@ -55,10 +56,12 @@ const Faq=()=>{
                             <h3 className="title-style">Subscribe <span>Now !</span></h3>
                             <p className="mt-3 text-dark" style={{"color":"#343a40"}}>Get ready access to verified data</p>
                             <div className="form-style-w3ls mt-4">
-                                <input placeholder="Your Name" name="name" type="text" required=""/>
+                                {/* <input placeholder="Your Name" name="name" type="text" required=""/>
                                 <input placeholder="Your Email" name="email" type="email" required=""/>
-                                <input placeholder="Phone Number" name="phone" type="text" required=""/>
+                                <input placeholder="Phone Number" name="phone" type="text" required=""/> */}
+                                <NavLink to={"/signup"}>
                                 <button className="btn btn-style w-100"> Subscribe</button>
+                                 </NavLink>
                             </div>
                         </form>                        
                     </div>
