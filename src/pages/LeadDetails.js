@@ -143,8 +143,8 @@ const LeadDetails = () => {
         <div id="leads" className="wrapper">
           <div id="content-wrapper" className="d-flex flex-column">
             <div className="row mob-block col-md-12">
-              <div className="row col-md-12 mt-3 ">
-                {" "}
+              <div className=" col-md-12 mt-3 ">
+             
                 <Breadcrumb
                   separator=""
                   items={[
@@ -241,36 +241,36 @@ const LeadDetails = () => {
                       <div className="row  pl-4 mb-1 fs-14 font-weight-bold">Activity Stats of the Month</div>
                       <div align="center"><img src={graphImage} />
               </div>
-                      <div className="row  pl-4  mt-3 mb-3 fs-14 font-weight-bold">Lead Info</div>
-                        <div className=" row">
-                          {" "}
-                          <span className="col-md-2 fs-14 ">
+                      <div className=" pl-3  mt-3 mb-3 fs-14 font-weight-bold">Lead Info</div>
+                        <div className="pl-3">
+                         
+                          <span className=" fs-14 ">
                             Designation
-                          </span>{" "}
+                          </span>
                           <span className="col namedc">
-                            {" "}
+                            
                             {leadDetail?.title}
-                          </span>{" "}
+                          </span>
                         </div>
-                        <div  className=" row mt-2">
-                          {" "}
-                          <span className="col-md-2 fs-14">Phone </span>{" "}
+                        <div  className=" pl-3 mt-2">
+                         
+                          <span className="fs-14">Phone </span>{" "}
                           <span className="col namedc">
                             {" "}
                             {leadDetail?.phoneNo}
                           </span>{" "}
                         </div>
-                        <div className="row  mt-2">
+                        <div className=" pl-3 mt-2">
                           {" "}
-                          <span className="col-md-2 fs-14"> Email </span>
+                          <span className=" fs-14"> Email </span>
                           <span className="col namedc">
                             {" "}
                             {leadDetail?.emailId}
                           </span>{" "}
                         </div>
-                        <div className="row mt-2">
+                        <div className=" pl-3 mt-2">
                           {" "}
-                          <span className="col-md-2 fs-14">Address</span>
+                          <span className=" fs-14">Address</span>
                           <span className="col namedc">
                             {leadDetail?.address}
                           </span>
@@ -282,7 +282,7 @@ const LeadDetails = () => {
                       </div>
                     </div>
                     <div className="col-md-8 leadbg col-custom-2">
-                      <div className="row mt-3">
+                      <div className=" mt-3">
                         <Tabs
                           className="ml-4 "
                           activeKey={activeTab}

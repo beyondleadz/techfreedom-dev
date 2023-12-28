@@ -203,9 +203,17 @@ input[type="checkbox" i] {
     width: 100%;
     padding: 0 10px;
   }
+   #leads .name{margin: 0; font-size: 14px;
+    text-align: center;
+    color: #8e98a2;
+    width: 100%;} 
+
+  #leads .profilePic1{
+    width: 100%;
+    margin: 10px 0; padding: 20px 0 20px 0;}
 
   #leads .mob-card{width: 90%;}
-#leads .col-md-8{width: 96%;}
+
   #leads .ant-tabs >.ant-tabs-nav,  .ant-tabs-tab-btn{
     font-size: 12px;
     margin: 0;
@@ -227,7 +235,7 @@ input[type="checkbox" i] {
   #leads .scrol{width: 100%; overflow: scroll;}
   #leads .mob-block{width: 100%; margin: 0; padding: 0;}
   .col-md-9{ padding-left:0;} 
-  .col-md-12{padding-right: 8px;}
+ 
   .companyintro.mobile_desk{padding: 0 14px 0 14px; margin-top: 0;}
   .excelcontainer, .departmentcontainer  {display: none;}
   #executive .buttons-c{position: static; white-space: nowrap;}
@@ -1030,10 +1038,14 @@ input[type="button"].btn-block {
 
 
 @media (min-width: 768px) {
+
+  #leads .profilePic1{
+    width: 90%;
+    margin: 10px; padding: 20px 0 20px 10px;}
   #leads .ant-tabs >.ant-tabs-nav, :where(.css-dev-only-do-not-override-1mqg3i0).ant-tabs >div>.ant-tabs-nav {
     width: 690px;
 }
-#leads .card{margin: 0px 15px; width: -webkit-fill-available; width: 650px;}
+#leads .card{margin: 0px 15px; width: -webkit-fill-available; }
 #leads .col-md-3 {
   flex: 0 0 30%;
   max-width: 30%;
@@ -1049,7 +1061,7 @@ input[type="button"].btn-block {
   }
   
 }
-#leads .btn-margin{padding-left: 23px; margin-right: 5px;}
+#leads .btn-margin{padding-left:10px; margin-right: 5px;}
 @media (min-width: 992px) {
   .dropdown-menu-lg-left {
     right: auto;
@@ -6482,7 +6494,7 @@ cursor: pointer;
     
 @media only screen and (max-width: 768px) {
 
- 
+  .btn-circle{margin: 10px 10px 10px 20px;}
 
   #leads .ml-4 {
     margin-left: 0;
@@ -7523,7 +7535,15 @@ color: orange;
     width: 285px;
     padding-top: 2rem;
     padding-bottom: 2rem;
-  }}
+  }
+  #leads .name {
+    font-size: 14px;
+    text-align: center;
+    color: #8e98a2;
+    width: 100%;
+        margin: 5px;
+}
+}
 
   #leads .ant-timeline-item-head-custom {
        padding-block: 0;}
@@ -7544,19 +7564,10 @@ color: orange;
 }
 #leads .profilePic
 {text-align: center;
-  width: 90%;
-  margin: 10px;}
-  #leads .profilePic1{
-  width: 90%;
-  margin: 10px; padding: 20px 0 20px 10px;}
-  #leads .name {
-    font-size: 14px;
-    text-align: center;
-    color: #8e98a2;
-    width: 100%;
-    /* font-weight: bold; */
-    margin: 5px 5px 10px 5px;
-}
+ 
+  }
+ 
+  
   #leads .named {
     font-size: 14px;
     width: 100%;
@@ -7584,7 +7595,7 @@ color: orange;
           padding-top: 0; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji';   }
 #steps .btn{padding: 0 1px;
   line-height: 10px;}
- #steps .col-md-8{padding: 0;}
+ #steps .col-md-8{padding: 0 0 0 8px;}
 
 #leads .btn-circle.btn-lg, .btn-group-lg > .btn-circle.btn {
   height: 4.5rem;
