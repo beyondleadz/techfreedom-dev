@@ -1315,7 +1315,13 @@ pre code {
     flex: 0 0 8.33333%;
     max-width: 8.33333%;
   }
-
+  #lead-form .sub-btn{display: flex;}
+#lead-form .col-md-1 {
+  flex: none;
+    max-width: 45%;}
+#lead-form .col-md-3 {
+  flex: 0 0 70%;
+  max-width: 70%;}
   .col-md-2 {
     flex: 0 0 16.66667%;
     max-width: 16.66667%;

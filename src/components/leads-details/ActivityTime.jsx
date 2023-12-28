@@ -149,7 +149,7 @@ const ActivityTime = ({setActiveTab}) => {
 
     return(
 <>
-<div className="row mb-4 pb-4 pt-4">
+<div id="lead-form" className="row mb-4 pb-4 pt-4">
     <div className="col-sm-2 mr-4 "><div className="form">
         {/* <div className="formcol1"></div> */}
         <div className="formcol2 ">
@@ -167,9 +167,12 @@ const ActivityTime = ({setActiveTab}) => {
         </div>
         </div></div>
         
-    <div className="col-md-5"><RangePicker  onChange={changeDate}/></div>
-    <div className="col-md-1 "><button className="btn btn-info btn-sm " onClick={()=>getTimelineActivity(id)}>Submit</button></div>
-    <div className="col-md-3  float-right "><button className="btn btn-info btn-sm " onClick={switchToTaskTab}><i className="las la-plus"></i>Add New Task</button></div>
+    <div className="col-md-5 marg5"><RangePicker  onChange={changeDate}/></div>
+
+    <div className="sub-btn">
+    <div className="btn-margin "><button className="btn btn-info btn-sm " onClick={()=>getTimelineActivity(id)}>Submit</button></div>
+    <div className=" pad0 "><button className="btn btn-info btn-sm " onClick={switchToTaskTab}><i className="las la-plus"></i>Add New Task</button></div>
+    </div>
 </div>
 
 <div >
@@ -183,9 +186,9 @@ items={itemData}
 </div>
 <div className="mb-4 pb-2 fs-14 font-weight-bold">Past Activity </div> 
 
-<Timeline
+ <Timeline
 items={itemOverviewDueData} 
-/>
+/> 
  
   </>
 )}

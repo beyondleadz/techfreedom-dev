@@ -142,7 +142,7 @@ const LeadDetails = () => {
       <Layout>
         <div id="leads" className="wrapper">
           <div id="content-wrapper" className="d-flex flex-column">
-            <div className="row col-md-12">
+            <div className="row mob-block col-md-12">
               <div className="row col-md-12 mt-3 ">
                 {" "}
                 <Breadcrumb
@@ -165,11 +165,11 @@ const LeadDetails = () => {
                     },
                   ]}
                 />
-                <div className="row col-md-12">
+                <div className="row mob-block col-md-12">
                   <div className="row headername">
                     <h3>Leads</h3>
                   </div>
-                  <div className="row col-md-12 mt-3">
+                  <div className="row scrol col-md-12 mt-3">
                     <div className="col-md-10">
                       <Stepsbar />
                     </div>
@@ -182,7 +182,7 @@ const LeadDetails = () => {
                 </div>
               </div>
 
-              <div className="row  col-md-12 ">
+              <div className="row mob-block col-md-12 ">
                 <div className="card shadow pagebg col-md-12">
                   <div className="row">
                     <div className="col-md-4 col-custom mb-4">
