@@ -204,6 +204,8 @@ input[type="checkbox" i] {
     padding: 0 10px;
   }
 
+  #leads .mob-card{width: 90%;}
+#leads .col-md-8{width: 96%;}
   #leads .ant-tabs >.ant-tabs-nav,  .ant-tabs-tab-btn{
     font-size: 12px;
     margin: 0;
@@ -1031,6 +1033,7 @@ input[type="button"].btn-block {
   #leads .ant-tabs >.ant-tabs-nav, :where(.css-dev-only-do-not-override-1mqg3i0).ant-tabs >div>.ant-tabs-nav {
     width: 690px;
 }
+#leads .card{margin: 0px 15px; width: -webkit-fill-available; width: 650px;}
 #leads .col-md-3 {
   flex: 0 0 30%;
   max-width: 30%;
@@ -7529,7 +7532,7 @@ color: orange;
     border: 1px solid #e3e6f0;
     border-radius: 0.35rem; padding:0 15px;}
 
-  #leads .card{margin: 0px 15px; width: -webkit-fill-available; width: 650px;}
+  
 #leads .ant-timeline .ant-timeline-item {padding-bottom: 0;}
 #leads .headername{margin: 30px 0 0 0;}
 

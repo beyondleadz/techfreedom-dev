@@ -103,7 +103,7 @@ const ActivityTime = ({setActiveTab}) => {
         obj.children =
           <div className="mt-1">
             <div className="fs-12 fordate mt-1">{savedformattedDate}</div>
-            <div className="col-md-12 card">
+            <div className="col-md-12 mob-card card">
               <div id="steps" className=" row mt-1">
                 <div className="col-md-8 text-align-left fs-14 font-weight-normal " style={{ "textTransform": "capitalize" }}>
                   {title}
