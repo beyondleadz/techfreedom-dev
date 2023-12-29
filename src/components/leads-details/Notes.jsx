@@ -257,7 +257,7 @@ const Notes = () => {
         modalBody={
           <div id="small-dialog2">
             <p style={{ color: "#0000FF" }}>
-              Notes Submitted.
+            Notes has been submitted! 
             </p>            
           </div>
         }

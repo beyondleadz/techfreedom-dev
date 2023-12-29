@@ -2,6 +2,7 @@ import React, { useEffect, useState, useMemo } from "react";
 import { Modal, Checkbox, Input, Divider, Button, Select } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import {getUserInfo} from "../../utils/utils";
+import TrialModal from "../../common/TrialModal";
 
 import _ from "lodash";
 import {
@@ -12,6 +13,7 @@ const Info = () => {
   
   const [leadStatusList,setLeadStatusList]=useState([]);
   const [leadRatingList,setLeadRatingList]=useState([]);
+  const [showModal, setShowModal] = useState(false);
   const leadDetail= useSelector(
     (state) => state.LeadDetailsReducer.leadDetails
   );
@@ -20,6 +22,9 @@ const Info = () => {
   );
   const leadRatingListing = useSelector(
     (state) => state.leadListingReducer.leadRatingList
+  );
+  const updateleadDetailsInfo= useSelector(
+    (state) => state.LeadDetailsReducer.updateleadDetails
   );
   useEffect(()=>{
     const statusItem=[];
@@ -35,7 +40,15 @@ const Info = () => {
   },[leadStatusListing])
  // console.log(leadStatusList,'leadStatusList')
 
+ useEffect(() => {
+  if (Object.keys(updateleadDetailsInfo).length) {
+    setShowModal(true);
+  }      
+}, [updateleadDetailsInfo]);
 
+const closeModal = () => {
+  setShowModal(false);
+};
 
 
   const formIntialValue = {
@@ -124,6 +137,7 @@ const Info = () => {
     });
   };
   return (
+    <>
     <div className="errorformcontainer mt-3">
       <div className="form">
         <div className="formcol1">First Name</div>
@@ -332,6 +346,25 @@ const Info = () => {
               <span className="mt-3 mr-3"><Button className="btn-info" type="primary" onClick={updateLead}>Save</Button></span>
               </div>
     </div>
+    {showModal ? (
+      <TrialModal
+        openModal={showModal}
+        closeModal={closeModal}
+        redirect={false}
+        buttonText="OK"
+        modalBody={
+          <div id="small-dialog2">
+            <p style={{ color: "#0000FF" }}>
+            Lead Details has been updated!
+            </p>            
+          </div>
+        }
+        modalWidth="400px"
+      />
+    ) : (
+      ""
+    )}
+    </>
   );
 };
 export default Info;
