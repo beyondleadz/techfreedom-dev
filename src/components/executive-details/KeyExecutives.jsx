@@ -3,7 +3,11 @@ import { Table, Modal, Button, Tooltip } from "antd";
 import { PAGE_LENGTH } from "../../config";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-import { getToken, getUserInfo } from "../../utils/utils";
+import {
+  getToken,
+  getUserInfo,
+  getPartialPhoneNumber,
+} from "../../utils/utils";
 import { subscriptionContentInfo } from "../../config";
 
 import {
@@ -84,13 +88,6 @@ const KeyExecutives = () => {
     {
       title: "Designation",
       dataIndex: "title",
-      render: (text, row) => {
-        return getToken() ? (
-          <span>{text}</span>
-        ) : (
-          <span>{text.substring(0,2)}</span>
-        );
-      }
     },
     {
       title: "Email",
@@ -131,6 +128,9 @@ const KeyExecutives = () => {
     {
       title: "Phone Number",
       dataIndex: "phoneNo",
+      render: (text, row) => {
+        return getPartialPhoneNumber(text);
+      },
     },
     {
       title: "Direct Dial/Mobile    ",
@@ -200,8 +200,15 @@ const KeyExecutives = () => {
             }
             onClick={() => postLeads(record, checkLeadSubmitted)}
           >
-            <i className="las la-user-plus fs-12 pr-1"></i>{" "}
-            {checkLeadSubmitted ? "LEAD ADDED" : "ADD TO LEADS"}
+            {checkLeadSubmitted ? (
+              <span>
+                <i className="las la-check fs-12 pr-1"></i>LEAD ADDED
+              </span>
+            ) : (
+              <span>
+                <i className="las la-user-plus fs-12 pr-1"></i>ADD TO LEADS
+              </span>
+            )}
           </Button>
         ) : (
           <Button
@@ -380,7 +387,7 @@ const KeyExecutives = () => {
               </div>
               <p style={{ color: "#0000FF" }}>
                 {subscriptionContentInfo.content}
-              </p>              
+              </p>
             </div>
           }
           modalWidth="400px"

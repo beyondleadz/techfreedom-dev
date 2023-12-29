@@ -25,7 +25,7 @@ import {
 import { topSearch} from "../../actionCreator/headerActionCreater";
 
 import Loader from "../loader";
-import { getToken, getUserInfo } from "../../utils/utils";
+import { getToken, getUserInfo, getPartialPhoneNumber } from "../../utils/utils";
 
 const CompanyContent = () => {
   const { Search, TextArea } = Input;
@@ -67,6 +67,9 @@ const CompanyContent = () => {
     {
       title: "Phone Number",
       dataIndex: "phone",
+      render: (text, row) => {
+        return getPartialPhoneNumber(text);
+      }
     },
     {
       title: "Social",

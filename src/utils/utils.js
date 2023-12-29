@@ -675,3 +675,11 @@ export const createActivityPayloadForCalendar=(payload,url)=>{
   url = `${url}${activityTime}`;
   return url;
 }
+
+export const getPartialPhoneNumber = (text) => {
+  if(getToken()){
+    return text;
+  }else{
+  return `${text?"***"+text.replaceAll(" ","",text).substr(5,3)+"***" : ""}`;
+  }
+};

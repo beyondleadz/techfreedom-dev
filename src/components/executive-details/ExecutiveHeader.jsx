@@ -138,7 +138,7 @@ const ExecutiveHeader = () => {
                     <div className="fs-12 font-weight-bold">
                       Designation{" "}
                       <div className="font-weight-normal">
-                      {getToken()?executiveDetails?.title:executiveDetails?.title.substring(0,2)}
+                      {executiveDetails?.title}
                       </div>
                     </div>
                   </div>

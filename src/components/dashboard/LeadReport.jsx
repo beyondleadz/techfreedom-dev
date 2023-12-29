@@ -94,6 +94,7 @@ const LeadReport = () => {
       if (record?.typeValue == qualifiedStatus) {
         leadConversionValue += Number(record.countSum);
       }
+      record.opportunitSum=(record.opportunitSum==="null")?0:record.opportunitSum;
       if (record?.typeValue == wonStatus) {
         opportunityWonValue += Number(record.opportunitSum);
       }
@@ -371,7 +372,7 @@ const LeadReport = () => {
                   <div className="row no-gutters align-items-center">
                     <div className="col-auto">
                       <div className="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                        {opportunityWonRatio}%
+                        {opportunityWonRatio}
                       </div>
                     </div>
                     <div className="col">
@@ -464,7 +465,7 @@ const LeadReport = () => {
               </h6>
             </div>
             <div className="card-body">
-              <div className="chart-pie pt-4 pb-2" style={{ marginLeft: -70 }}>
+              <div className="chart-pie pt-4 pb-2">
                 <div className="chartjs-size-monitor">
                   <div className="chartjs-size-monitor-expand">
                     <div className="" style={{ height: 220 }}>

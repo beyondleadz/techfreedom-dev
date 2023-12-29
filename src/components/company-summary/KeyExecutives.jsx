@@ -3,14 +3,19 @@ import { Table, Modal, Button, Tooltip } from "antd";
 import { PAGE_LENGTH } from "../../config";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-import { getToken, getUserInfo,getSubscriptionUserInfo } from "../../utils/utils";
+import {
+  getToken,
+  getUserInfo,
+  getSubscriptionUserInfo,
+  getPartialPhoneNumber,
+} from "../../utils/utils";
 import {
   submitLead,
   resetLead,
   storeSelectedExecutive,
   getExecutiveLead,
   getEmployeeList,
-  getEmployeeViewableStatusUpdate
+  getEmployeeViewableStatusUpdate,
 } from "../../actionCreator/companyDetailsActionCreator";
 
 import popupImg from "../../assets/images/subscribe-now-prompt-img.jpg";
@@ -87,10 +92,9 @@ const KeyExecutives = () => {
     }
   };
 
-  const viewExecutiveDetails=(row,name)=>{
-    let cname=name.replaceAll(" ","-",name);
+  const viewExecutiveDetails = (row, name) => {
+    let cname = name.replaceAll(" ", "-", name);
     navigate(`/executive-details/${row.id}/${cname}`);
-    
   };
   const columns = [
     // {
@@ -103,22 +107,19 @@ const KeyExecutives = () => {
       dataIndex: "fullname",
       fixed: "left",
       render: (text, row) => {
-        return  <span className="namecol"
-        onClick={() => viewExecutiveDetails(row,row.fullname)}
-      >{row.fullname}
-      </span>
-      }
+        return (
+          <span
+            className="namecol"
+            onClick={() => viewExecutiveDetails(row, row.fullname)}
+          >
+            {row.fullname}
+          </span>
+        );
+      },
     },
     {
       title: "Designation",
       dataIndex: "title",
-      render: (text, row) => {
-        return getToken() ? (
-          <span>{text}</span>
-        ) : (
-          <span>{text.substring(0,2)}</span>
-        );
-      }
     },
     {
       title: "Email",
@@ -159,6 +160,9 @@ const KeyExecutives = () => {
     {
       title: "Phone Number",
       dataIndex: "phoneNo",
+      render: (text, row) => {
+        return getPartialPhoneNumber(text);
+      },
     },
     {
       title: "Direct Dial/Mobile    ",
@@ -228,8 +232,15 @@ const KeyExecutives = () => {
             }
             onClick={() => postLeads(record, checkLeadSubmitted)}
           >
-            <i className="las la-user-plus fs-12 pr-1"></i>{" "}
-            {checkLeadSubmitted ? "LEAD ADDED" : "ADD TO LEADS"}
+            {checkLeadSubmitted ? (
+              <span>
+                <i className="las la-check fs-12 pr-1"></i>LEAD ADDED
+              </span>
+            ) : (
+              <span>
+                <i className="las la-user-plus fs-12 pr-1"></i>ADD TO LEADS
+              </span>
+            )}
           </Button>
         ) : (
           <Button
@@ -293,22 +304,22 @@ const KeyExecutives = () => {
       description: record.description,
       userId: id,
       employeeId: record.id,
-      address:companyDetails?.address,
-      companyId:companyDetails?.id,
-      companyName:companyDetails?.name,
-      industryId:companyDetails?.industry?.id,
-      industryText:companyDetails?.industry?.name,
-      empSizeId:companyDetails?.range?.name,
-      city:companyDetails?.city,
-      state:companyDetails?.state,
-      country:companyDetails?.country
+      address: companyDetails?.address,
+      companyId: companyDetails?.id,
+      companyName: companyDetails?.name,
+      industryId: companyDetails?.industry?.id,
+      industryText: companyDetails?.industry?.name,
+      empSizeId: companyDetails?.range?.name,
+      city: companyDetails?.city,
+      state: companyDetails?.state,
+      country: companyDetails?.country,
     };
     //console.log(leadPayload,'leadpayload');
     if (!isLeadSubmit) {
       dispatch(submitLead(leadPayload));
       setAddToLeads(record.id);
-    }else{
-     navigate("/lead-details/"+isLeadSubmit);
+    } else {
+      navigate("/lead-details/" + isLeadSubmit);
     }
   };
 
@@ -319,19 +330,21 @@ const KeyExecutives = () => {
 
   useEffect(() => {
     let data = [];
-    
+
     employeeList?.forEach((record) => {
       data = [
         ...data,
         {
           key: record.id,
           id: record.id,
-          fullname: (record?.fullname)?record.fullname:record.firstname+" "+record.lastname,
+          fullname: record?.fullname
+            ? record.fullname
+            : record.firstname + " " + record.lastname,
           title: record?.title,
           emailId: record?.emailId,
           phoneNo: record?.company?.phoneNo,
           directDial: record,
-          leads: record
+          leads: record,
         },
       ];
     });

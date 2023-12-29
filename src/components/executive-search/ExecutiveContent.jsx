@@ -35,6 +35,7 @@ import {
   getToken,
   getUserInfo,
   getSubscriptionUserInfo,
+  getPartialPhoneNumber,
 } from "../../utils/utils";
 
 const ExecutiveContent = () => {
@@ -181,7 +182,10 @@ const ExecutiveContent = () => {
       render: (record, row, index) => {
         let cnt = index;
         return (
-          <div className="namecol" onClick={() => getDetails(row.key,record?.fullname)}>
+          <div
+            className="namecol"
+            onClick={() => getDetails(row.key, record?.fullname)}
+          >
             <div
               className="logo"
               style={{
@@ -209,13 +213,6 @@ const ExecutiveContent = () => {
     {
       title: "Designation",
       dataIndex: "designation",
-      render: (text, row) => {
-        return getToken() ? (
-          <span>{text}</span>
-        ) : (
-          <span>{text.substring(0,2)}</span>
-        );
-      }
     },
     {
       title: "Email",
@@ -255,6 +252,9 @@ const ExecutiveContent = () => {
       title: "Phone",
       dataIndex: "phone",
       className: "phone",
+      render: (text, row) => {
+        return getPartialPhoneNumber(text);
+      },
     },
     {
       title: "Mobile",
@@ -305,8 +305,15 @@ const ExecutiveContent = () => {
               // }
               onClick={() => postLeads(record, checkLeadSubmitted)}
             >
-              <i className="las la-user-plus fs-12 pr-1"></i>{" "}
-              {checkLeadSubmitted ? "LEAD ADDED" : "ADD TO LEADS"}
+              {checkLeadSubmitted ? (
+                <span>
+                  <i className="las la-check fs-12 pr-1"></i>LEAD ADDED
+                </span>
+              ) : (
+                <span>
+                  <i className="las la-user-plus fs-12 pr-1"></i>ADD TO LEADS
+                </span>
+              )}
             </Button>
           </>
         ) : (
@@ -475,7 +482,9 @@ const ExecutiveContent = () => {
   const onPageChange = (page, pageSize) => {
     const isLoggedIn = checkLoginStatus();
     if (!isLoggedIn) {
-      if (page > 1 || pageSize > PAGE_LENGTH) setOpenModal({ info: null, open: true });setShowModal(false);
+      if (page > 1 || pageSize > PAGE_LENGTH)
+        setOpenModal({ info: null, open: true });
+      setShowModal(false);
       return false;
     } else {
       const pageValues = {
@@ -487,8 +496,8 @@ const ExecutiveContent = () => {
     }
   };
 
-  const getDetails = (id,name) => {
-    let cname=name.replaceAll(" ","-",name);
+  const getDetails = (id, name) => {
+    let cname = name.replaceAll(" ", "-", name);
     navigate(`/executive-details/${id}/${cname}`);
   };
 
@@ -952,7 +961,7 @@ const ExecutiveContent = () => {
                 <img src={subscribepopupImg} />
               </div>
               <p style={{ color: "#0000FF" }}>
-              {subscriptionContentInfo.content}
+                {subscriptionContentInfo.content}
               </p>
             </div>
           }

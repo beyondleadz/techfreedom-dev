@@ -23,6 +23,7 @@ import {
   getSubscriptionUserInfo,
   getToken,
   getUserInfo,
+  getPartialPhoneNumber
 } from "../../utils/utils";
 import TrialModal from "../../common/TrialModal";
 import popupImg from "../../assets/images/free-user-login-prompt.jpg.jpeg";
@@ -357,7 +358,7 @@ const SummaryHeader = ({downloadPDFCallback}) => {
             <div>
               <span className=" la text-black  la-mobile fs-20 mr-2"></span>
               <strong className="mr-2 fs-12">Phone</strong>
-              <span className="fs-12"> {companyDetails?.phoneNo} </span>
+              <span className="fs-12"> {getPartialPhoneNumber(companyDetails?.phoneNo)} </span>
             </div>
             <div className="fs-12">
               <span
