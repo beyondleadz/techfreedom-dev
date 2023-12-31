@@ -104,7 +104,7 @@ let chartData1=[
 //let chartData1=chartData;
 return (
     <div className="card shadow card-body">
-      <div className="row">
+      <div id="orgchart" className="row">
         <div className="orgchart">
           <div className="hierarchy-viewer">
             {chartData.length?

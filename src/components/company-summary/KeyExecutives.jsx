@@ -402,6 +402,8 @@ const KeyExecutives = () => {
 
   return (
     <div className="card shadow card-body">
+        <div className="table-container text-nowrap">
+                      <div className="table-wrapper">
       <Table
         rowSelection={{
           type: "checkbox",
@@ -420,6 +422,8 @@ const KeyExecutives = () => {
           onChange: onPageChange,
         }}
       />
+      </div>
+      </div>
       {openModal?.open && (
         <TrialModal
           openModal={openModal}
@@ -433,9 +437,9 @@ const KeyExecutives = () => {
               <div align="center">
                 <img src={popupImg} />
               </div>
-              <p style={{ color: "#0000FF" }}>
-                PLEASE SUBSCRIBE TO VIEW ALL DETAILS
-              </p>
+              {/*<p style={{ color: "#0000FF" }}>
+                 PLEASE SUBSCRIBE TO VIEW ALL DETAILS 
+              </p>*/}
               {/* <p style={{ color: "#0000FF" }}>
                 Get 10 free verified contacts with a BeyondLeadz Pro trial
               </p>

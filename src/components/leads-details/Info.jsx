@@ -341,7 +341,7 @@ const closeModal = () => {
           />
         </div>
       </div>
-      <div className="mt-3">
+      <div className="mt-3 mb-3">
               <span className="mt-3 mr-3"> <Button className="btn-info" type="primary">Cancel</Button></span>
               <span className="mt-3 mr-3"><Button className="btn-info" type="primary" onClick={updateLead}>Save</Button></span>
               </div>

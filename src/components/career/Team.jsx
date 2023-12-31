@@ -31,7 +31,7 @@ const Team=()=>{
 </div>
 <br/>
 
-		<div className="choose jarallax">
+		{/* <div className="choose jarallax">
 		<div className="w3-agile-testimonial">
 			<div className="container">
 				<div className="w3-agileits-choose">
@@ -92,7 +92,8 @@ const Team=()=>{
 							</div>
 
 						</div>
-					</div>
+					</div> */}
+
 					<div className="clearfix"> </div>
     </>
     )

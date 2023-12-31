@@ -112,7 +112,7 @@ console.log("lead data",id);
         //     color: "red",
         //     dot: (
         //       <div>
-        //         <a href="#" className="btn btn-whatsapp btn-sm btn-circle">
+        //         <a href="#" className="btn btn-email btn-sm btn-circle">
         //           {" "}
         //           <i className="lab la-whatsapp fs-14"></i>
         //         </a>
@@ -146,7 +146,7 @@ console.log("lead data",id);
         //   {
         //     dot: (
         //       <div>
-        //         <a href="#" className="btn btn-meet btn-sm btn-circle">
+        //         <a href="#" className="btn btn-email btn-sm btn-circle">
         //           {" "}
         //           <i className="las la-handshake fs-14"></i>
         //         </a>
@@ -180,7 +180,7 @@ console.log("lead data",id);
         //   },
         //   // {
         //   //   color: 'gray',
-        //   //   dot: <div><a href="#" className="btn btn-act btn-sm btn-circle"> <i className="las la-phone fs-14"></i></a></div>,
+        //   //   dot: <div><a href="#" className="btn btn-email btn-sm btn-circle"> <i className="las la-phone fs-14"></i></a></div>,
         //   //   children: (
         //   //     <>
         //   //       <div><div>Follow up</div>
@@ -191,7 +191,7 @@ console.log("lead data",id);
         //   // },
         //   // {
         //   //   color: 'gray',
-        //   //   dot: <div><a href="#" className="btn btn-app btn-sm btn-circle"> <i className="las la-mobile fs-14"></i></a></div>,
+        //   //   dot: <div><a href="#" className="btn btn-email btn-sm btn-circle"> <i className="las la-mobile fs-14"></i></a></div>,
         //   //   children: (
         //   //     <>
         //   //       <div><div>Chat</div>
@@ -202,7 +202,7 @@ console.log("lead data",id);
         //   // },
         //   // {
         //   //   color: '#00CCFF',
-        //   //   dot: <div><a href="#" className="btn btn-document btn-sm btn-circle"> <i className="las la-phone fs-14"></i></a></div>,
+        //   //   dot: <div><a href="#" className="btn btn-email btn-sm btn-circle"> <i className="las la-phone fs-14"></i></a></div>,
         //   //   children: <div><div>Review received</div>
         //   //   <p>Feedback received (Open Review)</p>
         //   //           </div>,

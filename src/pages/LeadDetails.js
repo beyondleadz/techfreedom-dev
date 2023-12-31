@@ -7,6 +7,7 @@ import {Link} from 'react-router-dom'
 import Layout from "../layout/Layout";
 import { Steps,Modal, Button } from "antd";
 import Banner from "../components/about/Banner";
+import graphImage from '../assets/images/graph.jpg'
 import Services from "../components/about/Services";
 import Aim from "../components/about/Aim";
 import Stats from "../components/about/Stats";
@@ -141,9 +142,9 @@ const LeadDetails = () => {
       <Layout>
         <div id="leads" className="wrapper">
           <div id="content-wrapper" className="d-flex flex-column">
-            <div className="row col-md-12">
-              <div className="row col-md-12 mt-3 ">
-                {" "}
+            <div className="row mob-block col-md-12">
+              <div className=" col-md-12 mt-3 ">
+             
                 <Breadcrumb
                   separator=""
                   items={[
@@ -164,11 +165,11 @@ const LeadDetails = () => {
                     },
                   ]}
                 />
-                <div className="row col-md-12">
+                <div className="row mob-block col-md-12">
                   <div className="row headername">
                     <h3>Leads</h3>
                   </div>
-                  <div className="row col-md-12 mt-3">
+                  <div className="row scrol col-md-12 mt-3">
                     <div className="col-md-10">
                       <Stepsbar />
                     </div>
@@ -181,10 +182,10 @@ const LeadDetails = () => {
                 </div>
               </div>
 
-              <div className="row  col-md-12 ">
-                <div className="card shadow col-md-12">
+              <div className="row mob-block col-md-12 ">
+                <div className="card shadow pagebg col-md-12">
                   <div className="row">
-                    <div className="col-md-4 col-custom">
+                    <div className="col-md-4 col-custom mb-4">
                       <div className="profilePic">
                         <i
                           className="btn btn-dark btn-circle btn-lg"
@@ -196,8 +197,8 @@ const LeadDetails = () => {
                         </i>
                         <h3>{leadDetail?.fullname}</h3>
                         <div className="name mt-1">
-                        
-                        {leadDetail?.lastModifiedDate?moment(leadDetail?.lastModifiedDate).format('MMMM Do YYYY, h:mm a'):""}
+                        Last Activity : 
+                        {leadDetail?.lastModifiedDate?moment(leadDetail?.lastModifiedDate).format(' D MMMM YYYY, h:mm a'):""}
                         </div>
 
                         <div>
@@ -211,7 +212,7 @@ const LeadDetails = () => {
                           <Tooltip overlayClassName="fs-12 " title="Email">
                             {" "}
                             <NavLink to="mailto:`${leadDetail?.emailId}`"
-                              className="btn btn-email btn-circle ml-3"
+                              className="btn btn-email1 btn-circle ml-3"
                             >
                               <i className="las la-envelope "></i>
                             </NavLink>
@@ -235,36 +236,41 @@ const LeadDetails = () => {
                           </Tooltip>
                         </div>
                       </div>
-                      <div className="col-md-12">
-                        <div className=" row mt-3">
-                          {" "}
-                          <span className="col-md-2 fs-14 ">
+                      <div className="clearfix"></div>
+                      <div className="profilePic1 card">
+                      <div className="row  pl-4 mb-1 fs-14 font-weight-bold">Activity Stats of the Month</div>
+                      <div align="center"><img src={graphImage} />
+              </div>
+                      <div className=" pl-3  mt-3 mb-3 fs-14 font-weight-bold">Lead Info</div>
+                        <div className="pl-3">
+                         
+                          <span className=" fs-14 ">
                             Designation
-                          </span>{" "}
+                          </span>
                           <span className="col namedc">
-                            {" "}
+                            
                             {leadDetail?.title}
-                          </span>{" "}
+                          </span>
                         </div>
-                        <div  className=" row mt-2">
-                          {" "}
-                          <span className="col-md-2 fs-14">Phone </span>{" "}
+                        <div  className=" pl-3 mt-2">
+                         
+                          <span className="fs-14">Phone </span>{" "}
                           <span className="col namedc">
                             {" "}
                             {leadDetail?.phoneNo}
                           </span>{" "}
                         </div>
-                        <div className="row  mt-2">
+                        <div className=" pl-3 mt-2">
                           {" "}
-                          <span className="col-md-2 fs-14"> Email </span>
+                          <span className=" fs-14"> Email </span>
                           <span className="col namedc">
                             {" "}
                             {leadDetail?.emailId}
                           </span>{" "}
                         </div>
-                        <div className="row mt-2">
+                        <div className=" pl-3 mt-2">
                           {" "}
-                          <span className="col-md-2 fs-14">Address</span>
+                          <span className=" fs-14">Address</span>
                           <span className="col namedc">
                             {leadDetail?.address}
                           </span>
@@ -275,13 +281,13 @@ const LeadDetails = () => {
                         <div className="col-md-12"></div>
                       </div>
                     </div>
-                    <div className="col-md-8 col-custom-2">
-                      <div className="row">
+                    <div className="col-md-8 leadbg col-custom-2">
+                      <div className=" mt-3">
                         <Tabs
                           className="ml-4 "
                           activeKey={activeTab}
                           // defaultActiveKey="1"
-                          items={items}
+                          items={items}e
                           onChange={onChange}
                         />
                       </div>

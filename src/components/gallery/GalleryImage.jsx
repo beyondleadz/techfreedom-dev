@@ -67,8 +67,8 @@ const GalleryImage = () => {
 				<div className="container">
 					<div className="w3-heading-all">
 						<h3 className="title-style-clients mb-2">Enjoy Our Gallery!</h3>
-					</div>
-					<p> <strong>Beyond Leadz</strong> are so in trend these days which provides a different dimension to the room. Explore the range of modern wallpapers design from us and get the premium quality designer wallpapers both usable for residential and commercial purposes. The modern motif style, bold and graphic, the quirky style, some simple and subtle patterns, marble print, and so much more in sophisticated modern colours which are to die for.</p><br />
+					</div><br/>
+					{/* <p> <strong>Beyond Leadz</strong> are so in trend these days which provides a different dimension to the room. Explore the range of modern wallpapers design from us and get the premium quality designer wallpapers both usable for residential and commercial purposes. The modern motif style, bold and graphic, the quirky style, some simple and subtle patterns, marble print, and so much more in sophisticated modern colours which are to die for.</p><br /> */}
 
 					<div className="inner_w3l_agile_grids-1">
 

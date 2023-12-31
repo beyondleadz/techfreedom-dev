@@ -322,7 +322,7 @@ const SummaryHeader = ({downloadPDFCallback}) => {
   };
   //console.log(taggedCompany,"setTaggedCompanysetTaggedCompanysetTaggedCompany")
   return (
-    <div className=" navbar-light  mt-4" id="onScroll">
+    <div className=" navbar-light mrgn mt-4" id="onScroll">
       <div
         className={`headercontainer ${
           isCompanyBoxHeightFixed ? "setauto" : ""
@@ -338,7 +338,6 @@ const SummaryHeader = ({downloadPDFCallback}) => {
         </div>
 
         <div className="descbox">
-          {/* <div className="fs-12">{companyDetails?.industry?.name}</div> */}
           <div className="font-weight-bold mb-2 companyname">
             <h3>{companyDetails?.name}</h3>
             <div className="">
@@ -354,11 +353,11 @@ const SummaryHeader = ({downloadPDFCallback}) => {
               {companyDetails?.address}
             </div>
           </div>
-          <div className="headerblk2">
+          <div className="headerblk2 headerblk2-1">
             <div>
               <span className=" la text-black  la-mobile fs-20 mr-2"></span>
               <strong className="mr-2 fs-12">Phone</strong>
-              <span className="fs-12"> {getPartialPhoneNumber(companyDetails?.phoneNo)} </span>
+              <span className="fs-12 btm-m5"> {getPartialPhoneNumber(companyDetails?.phoneNo)} </span>
             </div>
             <div className="fs-12">
               <span
@@ -378,7 +377,6 @@ const SummaryHeader = ({downloadPDFCallback}) => {
           </div>
 
           <div style={{ position: "relative" }}>
-            {/* <h3>Overview</h3> */}
             <div
               className={`companyintro ${
                 isCompanyBoxHeightFixed ? "setauto" : ""
@@ -430,38 +428,12 @@ const SummaryHeader = ({downloadPDFCallback}) => {
                 </a>
               </li>
 
-              {/* <li>
-              <a
-                className=" mr-2"
-                role="button"
-                data-toggle=""
-                aria-haspopup="true"
-                aria-expanded="false"
-                onClick={() => downloadExcel()}
-              >
-                <i
-                  className="right-icons la la-file-excel"
-                  aria-hidden="true"
-                ></i>
-              </a>
-            </li> 
-             <li>
-              <a className=" mr-2" onClick={handleErrorForm}>
-                <i className="right-icons las la-flag" aria-hidden="true"></i>
-              </a>
-            </li> */}
+           
             </ul>
           </div>
-        </div>
+        </div> 
 
-        {/* <div className=" d-flex social-icons fs-12 ml-3 pl-2">
-          <span className="  mr-2">
-            {renderSocialLinks(companyDetails?.socialLinks)}
-          </span>
-        </div> */}
       </div>
-
-
       
 
       {openErrorForm && (
