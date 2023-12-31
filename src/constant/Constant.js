@@ -49,3 +49,5 @@ export const getDashboardGroupedByMeetingActivityApiUrl="api/dashboard-groupMost
 export const getDashboardGroupedByEmailActivityApiUrl="api/dashboard-groupMostEmailTop5";
 
 export const getDashboardConvertedLeadsApiUrl="api/dashBoard-top5ConvertedLeads";
+export const getDashboardRecomendationCompanyApiUrl="api/recomendation/company";
+export const getDashboardRecomendationEmployeeApiUrl="/api/recomendation/employee";

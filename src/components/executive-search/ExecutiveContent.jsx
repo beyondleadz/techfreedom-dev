@@ -84,32 +84,37 @@ const ExecutiveContent = () => {
   const getLeadsData = useSelector(
     (state) => state.executiveDetailsReducer?.getExecutiveLead
   );
+  const getEmployeeViewableData = useSelector(
+    (state) => state.executiveDetailsReducer?.executiveEmployeeViewableStatus
+  );
+  
   // const colorArray= ['aqua', 'blue', 'fuchsia', 'gray', 'green',
   // 'lime', 'maroon', 'navy', 'olive', 'orange', 'purple', 'red',
   // 'silver', 'teal', 'white', 'yellow'];
   const updateEmailStatus = (showEmail, row) => {
     setShowEmail({ ...showEmail, [row.key]: true });
     //call api to update status
-    if (!row?.isdownloadedEmail) {
+    //if (!row?.isdownloadedEmail) {
       dispatch(getEmployeeViewableStatusUpdate("Email", row));
+      //console.log("getEmployeeViewableData",getEmployeeViewableData);
       // const payload = {
       //   ...companySelectedFilterList,
       //   topSearchValue: topSearchValue,
       // };
       // dispatch(getExecutiveEmployeeList(payload, paginationValue, true));
-    }
+    //}
   };
   const updatePhoneStatus = (showPhone, row) => {
-    console.log("click mob", row);
+    //console.log("click mob", row);
     setShowPhone({ ...showPhone, [row.key]: true });
-    if (!row?.isdownloadedMobile) {
+    //if (!row?.isdownloadedMobile) {
       dispatch(getEmployeeViewableStatusUpdate("Mobile", row));
       // const payload = {
       //   ...companySelectedFilterList,
       //   topSearchValue: topSearchValue,
       // };
       // dispatch(getExecutiveEmployeeList(payload, paginationValue, true));
-    }
+    //}
   };
 
   const openInfoModel = () => {
@@ -229,13 +234,13 @@ const ExecutiveContent = () => {
               }
               onClick={() => updateEmailStatus(showEmail, row)}
             ></h4>
-            {showEmail[row.key] && (
+            {showEmail[row.key] && row.key===getEmployeeViewableData?.id && (
               <>
-                <span className="emailvalue pl-1 fs-12">{text}</span>
+                <span className="emailvalue pl-1 fs-12">{getEmployeeViewableData?.emailId}</span>
                 <span
                   title="copy email"
                   className="  fs-17 btn  la  la-copy text-black"
-                  onClick={() => copyToClipboard(text)}
+                  onClick={() => copyToClipboard(getEmployeeViewableData?.emailId)}
                 ></span>
               </>
             )}
@@ -268,13 +273,13 @@ const ExecutiveContent = () => {
               }
               onClick={() => updatePhoneStatus(showPhone, row)}
             ></span>
-            {showPhone[row.key] && row?.mobile && (
+            {showPhone[row.key] && row.key===getEmployeeViewableData?.id && (
               <>
-                <span className="phoneValue fs-12 pl-1">{row?.mobile}</span>
+                <span className="phoneValue fs-12 pl-1">{getEmployeeViewableData?.phoneNo}</span>
                 <span
                   title="copy phone"
                   className="  fs-17 btn  la  la-copy text-black"
-                  onClick={() => copyToClipboard(row?.mobile)}
+                  onClick={() => copyToClipboard(getEmployeeViewableData?.phoneNo)}
                 ></span>
               </>
             )}

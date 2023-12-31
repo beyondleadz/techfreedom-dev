@@ -22,10 +22,14 @@ import {
   createGroupCompanyTag,
   emptyDownload,
 } from "../../actionCreator/companyListingActionCreater";
-import { topSearch} from "../../actionCreator/headerActionCreater";
+import { topSearch } from "../../actionCreator/headerActionCreater";
 
 import Loader from "../loader";
-import { getToken, getUserInfo, getPartialPhoneNumber } from "../../utils/utils";
+import {
+  getToken,
+  getUserInfo,
+  getPartialPhoneNumber,
+} from "../../utils/utils";
 
 const CompanyContent = () => {
   const { Search, TextArea } = Input;
@@ -35,7 +39,10 @@ const CompanyContent = () => {
       dataIndex: "name",
       render: (record, row) => {
         return (
-          <div className="namecol" onClick={() => getDetails(row.key,record?.name)}>
+          <div
+            className="namecol"
+            onClick={() => getDetails(row.key, record?.name)}
+          >
             <div className="logo">
               <img
                 src={record?.companyLogoUrl || defaultLogo}
@@ -69,7 +76,7 @@ const CompanyContent = () => {
       dataIndex: "phone",
       render: (text, row) => {
         return getPartialPhoneNumber(text);
-      }
+      },
     },
     {
       title: "Social",
@@ -124,11 +131,11 @@ const CompanyContent = () => {
         topSearchValue: topSearchValue,
       };
       dispatch(getCompanyList(payload, paginationValue, true));
-     // dispatch(topSearch(""));  
+      // dispatch(topSearch(""));
     } else {
       dispatch(getCompanyList({}, paginationValue));
     }
-  }, [topSearchValue]);
+  }, [topSearchValue,companySelectedFilterList]);
 
   const renderSocialLinks = (socialLinks) => {
     return socialLinks?.map((link) => {
@@ -230,8 +237,9 @@ const CompanyContent = () => {
   const onPageChange = (page, pageSize) => {
     const isLoggedIn = checkLoginStatus();
     if (!isLoggedIn) {
-      if(page > 1 || pageSize > PAGE_LENGTH)
-      setOpenModal({ info: null, open: true });setShowModal(false);
+      if (page > 1 || pageSize > PAGE_LENGTH)
+        setOpenModal({ info: null, open: true });
+      setShowModal(false);
       return false;
     } else {
       const pageValues = {
@@ -241,22 +249,21 @@ const CompanyContent = () => {
       let payload = {
         ...companySelectedFilterList,
       };
-  
+
       if (topSearchValue) {
         payload = {
           ...payload,
           topSearchValue: topSearchValue,
         };
       }
-  
+
       dispatch(savePaginationValues(pageValues));
       dispatch(getCompanyList(payload, pageValues));
     }
-    
   };
 
-  const getDetails = (id,name) => {
-    let cname=name.replaceAll(" ","-",name);
+  const getDetails = (id, name) => {
+    let cname = name.replaceAll(" ", "-", name);
     navigate(`/company-summary/${id}/${cname}`);
   };
 
@@ -328,34 +335,32 @@ const CompanyContent = () => {
   };
 
   const getSchema = (data) => {
-    var finaldata=[];
-    let cnt=0;
+    var finaldata = [];
+    let cnt = 0;
     data.forEach((obj) => {
       cnt++;
-      var dataObj={};
-      dataObj.id=obj.id;
-      dataObj.serealNo=cnt;
-      dataObj.name=obj.name;
-      dataObj.revenueName=obj?.revenue?.name;
-      dataObj.employeeRange=obj?.range?.name;
-      dataObj.industryName=obj?.industry?.name;
-      dataObj.country=obj.country;
-      dataObj.state=obj.state;
-      dataObj.city=obj.city;
-      dataObj.wedsite=obj.wedsite;
-      dataObj.address=obj.address;
-      dataObj.pincode=obj.pincode;
-      dataObj.phoneNo=obj.phoneNo;
-      finaldata.push(dataObj)
-    })
+      var dataObj = {};
+      dataObj.id = obj.id;
+      dataObj.serealNo = cnt;
+      dataObj.name = obj.name;
+      dataObj.revenueName = obj?.revenue?.name;
+      dataObj.employeeRange = obj?.range?.name;
+      dataObj.industryName = obj?.industry?.name;
+      dataObj.country = obj.country;
+      dataObj.state = obj.state;
+      dataObj.city = obj.city;
+      dataObj.wedsite = obj.wedsite;
+      dataObj.address = obj.address;
+      dataObj.pincode = obj.pincode;
+      dataObj.phoneNo = obj.phoneNo;
+      finaldata.push(dataObj);
+    });
     return finaldata;
-  }
-
+  };
 
   useEffect(() => {
-    
     if (downloadExcelData.length) {
-      const downloadedUpdatedData = getSchema(downloadExcelData)
+      const downloadedUpdatedData = getSchema(downloadExcelData);
 
       //console.log(downloadExcelData, "downloadExcelData",downloadedUpdatedData);
       const columns = [
@@ -364,7 +369,7 @@ const CompanyContent = () => {
         // { header: "LastName", key: "" },
         // { header: "Designation", key: "" },
         // { header: "Email Available", key: "" },
-        // 
+        //
         { header: "Company Name", key: "name" },
         { header: "Phone", key: "phoneNo" },
         { header: "Address", key: "address" },
@@ -428,7 +433,6 @@ const CompanyContent = () => {
         ];
       }
       dispatch(createGroupCompanyTag(payload));
-
       setShowTagModal(false);
     }
   };
@@ -683,7 +687,7 @@ const CompanyContent = () => {
         ""
       )}
 
-{openModal?.open && (
+      {openModal?.open && (
         <TrialModal
           openModal={openModal}
           closeModal={closeModal}

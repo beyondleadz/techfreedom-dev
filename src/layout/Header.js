@@ -10,7 +10,11 @@ import "../assets/css/dropdown1.css";
 import "../assets/css/line-awesome.css";
 import "../assets/css/line-awesome.min.css";
 import { doLogin } from "../actionCreator/signUpActionCreater";
-import { topSearch, selectItem,topSearchClick} from "../actionCreator/headerActionCreater";
+import {
+  topSearch,
+  selectItem,
+  topSearchClick,
+} from "../actionCreator/headerActionCreater";
 import TrialModal from "../common/TrialModal";
 import {
   getAccountInfo,
@@ -28,7 +32,8 @@ const Header = (props) => {
   const [dropDownToggle, setDropdownToggle] = useState(false);
   // const [selectedValue, setSelectedValue] = useState("Advanced");
   const [showModal, setShowModal] = useState(false);
-  const [searchValue,setSearchValue] = useState(topSearchValue);
+  const [showPasswordModal, setPasswordModal] = useState(false);
+  const [searchValue, setSearchValue] = useState(topSearchValue);
   const [searchValues, setSearchValues] = useState({
     fname: "",
     lname: "",
@@ -37,10 +42,18 @@ const Header = (props) => {
     lnameError: "",
     emailError: "",
   });
+  const [passValues, setPassValues] = useState({
+    cpass: "",
+    npass: "",
+    curpass: "",
+    curpassError: "",
+    npassError: "",
+    cpassError: "",
+  });
+
   const navigate = useNavigate();
   const token = useSelector((state) => state?.SignUpReducer?.signInData);
-  
-  
+
   const selectedItem = useSelector(
     (state) => state?.HeaderReducer?.selectedItem
   );
@@ -55,7 +68,7 @@ const Header = (props) => {
   };
 
   useEffect(() => {
-    console.log(location.pathname,'header location.pathname')
+    console.log(location.pathname, "header location.pathname");
     if (location.pathname === "/search-executive") {
       dispatch(selectItem("Executive"));
     } else if (location.pathname === "/search-company") {
@@ -63,24 +76,24 @@ const Header = (props) => {
     } else {
       dispatch(selectItem("Company"));
       dispatch(topSearch(""));
-      setSearchValue("")      
+      setSearchValue("");
     }
   }, [location.pathname]);
 
-  const setValue = (val, btn = false) => { 
+  const setValue = (val, btn = false) => {
     //if (val == "Advanced") {
     //setShowModal(true);
     //return;
     //}
-     dispatch(selectItem(val));
+    dispatch(selectItem(val));
     dispatch(topSearchClick(Math.random()));
     // setSelectedValue(val);
     if (!btn) {
       setDropdownToggle(!dropDownToggle);
     }
     dispatch(topSearch(searchValue));
-    
-    if (val === "Company") { 
+
+    if (val === "Company") {
       navigate("/search-company");
     } else {
       navigate("/search-executive");
@@ -95,6 +108,7 @@ const Header = (props) => {
   };
 
   const showSetting = () => {
+    setPasswordModal(false);
     const { id, email, firstName, lastName } = getUserInfo();
     setSearchValues({ fname: firstName, lname: lastName, email: email });
     // console.log(Object.keys(userAccountInfo).length,'bjhghgf')
@@ -105,7 +119,17 @@ const Header = (props) => {
     setShowModal(true);
   };
 
-  const updatePassword = () => {};
+  const showPasswordSetting = () => {
+    setShowModal(false);
+    const { id, email, firstName, lastName } = getUserInfo();
+    setSearchValues({ fname: firstName, lname: lastName, email: email });
+    // console.log(Object.keys(userAccountInfo).length,'bjhghgf')
+    if (Object.keys(userAccountInfo).length) {
+    } else {
+      dispatch(getAccountInfo(getToken()));
+    }
+    setPasswordModal(true);
+  };
 
   const onInputChange = (e) => {
     setSearchValues({
@@ -113,9 +137,24 @@ const Header = (props) => {
       [e.target.name]: e.target.value,
     });
   };
+  const onPassInputChange = (e) => {
+    setPassValues({
+      ...passValues,
+      [e.target.name]: e.target.value,
+    });
+  };
 
   const closeModal = () => {
+    setPassValues({
+      cpass: "",
+      npass: "",
+      curpass: "",
+      curpassError: "",
+      npassError: "",
+      cpassError: "",
+    });
     setShowModal(false);
+    setPasswordModal(false);
   };
 
   const updateSetting = () => {
@@ -142,13 +181,38 @@ const Header = (props) => {
       setShowModal(false);
     }
   };
+  const updatePasswordSetting = () => {
+    if (!passValues.curpass) {
+      setPassValues({
+        ...passValues,
+        curpassError: "error",
+      });
+    } else if (!passValues.npass) {
+      setPassValues({
+        ...passValues,
+        npassError: "error",
+      });
+    } else if (!passValues.cpass) {
+      setPassValues({
+        ...passValues,
+        cpassError: "error",
+      });
+    } else {
+      // userAccountInfo.firstName = passValues.curpass;
+      // userAccountInfo.lastName = passValues.npass;
+      // userAccountInfo.email = passValues.cpass;
+      // dispatch(updateAccountInfo(getToken(), userAccountInfo));
+      // setShowModal(false);
+    }
+  };
 
   const content = (
     <div className="fontf">
       <p className="fs-12" onClick={showSetting}>
         <i className=" text-center fs-16 pop-img las la-cog"></i>Setting
       </p>
-      <p className="fs-12" onClick={updatePassword}>
+      <p className="fs-12">
+         {/* onClick={showPasswordSetting} */}      
         <i className=" text-center fs-16 pop-img las la-user-lock"></i>Password
       </p>
       <p className="fs-12" onClick={doLogout}>
@@ -159,16 +223,16 @@ const Header = (props) => {
   );
 
   const handleSetValue = (event) => {
-    console.log(event,'slkjdfskd')
-    setSearchValue(event.target.value)
-  }
+    console.log(event, "slkjdfskd");
+    setSearchValue(event.target.value);
+  };
 
   const handleKeyPress = (event) => {
-    if(event.key === 'Enter'){
-    //console.log('enter press here! ',selectedItem,searchRef.current.value)
-    setValue(selectedItem, true);
+    if (event.key === "Enter") {
+      //console.log('enter press here! ',selectedItem,searchRef.current.value)
+      setValue(selectedItem, true);
     }
-    }
+  };
   //console.log(selectedItem, "sdfd");
 
   return (
@@ -176,18 +240,19 @@ const Header = (props) => {
       <div className="container">
         <nav className="navbar navbar-expand-lg stroke px-0">
           <div className="brand">
-          <h1>
-          {!getToken() ? (
-            <NavLink to={"/"} className="navbar-brand">
-               <img className="logo-H" src={Logo1} /><img src={Logo} />
-            </NavLink>
-          ) : (
-            <NavLink to={"/dashboard-view"} className="navbar-brand">
-               <img className="logo-H" src={Logo1} /><img src={Logo} />
-            </NavLink>
-          )}
-
-          </h1>
+            <h1>
+              {!getToken() ? (
+                <NavLink to={"/"} className="navbar-brand">
+                  <img className="logo-H" src={Logo1} />
+                  <img src={Logo} />
+                </NavLink>
+              ) : (
+                <NavLink to={"/dashboard-view"} className="navbar-brand">
+                  <img className="logo-H" src={Logo1} />
+                  <img src={Logo} />
+                </NavLink>
+              )}
+            </h1>
           </div>
           <button
             className={
@@ -281,7 +346,7 @@ const Header = (props) => {
                                 Profile your ideal customers and build your
                                 leads
                               </span>
-                              </NavLink>
+                            </NavLink>
 
                             {/* <i className="icondrop list-building-icon"></i> */}
                             <i className="icondrop text-success la la-user-plus"></i>
@@ -290,7 +355,7 @@ const Header = (props) => {
                               <span className="menu-sub">
                                 Create a list of potential customers{" "}
                               </span>
-                              </NavLink>
+                            </NavLink>
 
                             {/* <i className="icondrop enrichment"></i> */}
                             <i className="icondrop la la-cloud-upload-alt"></i>
@@ -299,7 +364,7 @@ const Header = (props) => {
                               <span className="menu-sub">
                                 Match and append data{" "}
                               </span>
-                              </NavLink>
+                            </NavLink>
                           </div>
                           <div className="column1">
                             {/* <i className="icondrop extension"></i> */}
@@ -309,7 +374,7 @@ const Header = (props) => {
                               <span className="menu-sub">
                                 Build data through Linkedin and Web real time
                               </span>
-                              </NavLink>
+                            </NavLink>
 
                             {/* <i className="icondrop integrations"></i> */}
                             <i className="icondrop la la-plug"></i>
@@ -318,7 +383,7 @@ const Header = (props) => {
                               <span className="menu-sub">
                                 Integrate with your existing crm or app{" "}
                               </span>
-                              </NavLink>
+                            </NavLink>
                           </div>
 
                           <div className="column">
@@ -331,7 +396,7 @@ const Header = (props) => {
                               <span className="menu-sub">
                                 Find more leads and build your pipeline{" "}
                               </span>
-                              </NavLink>
+                            </NavLink>
 
                             {/* <i className="icondrop marketing"></i> */}
                             <i className="icondrop la la-briefcase"></i>
@@ -340,7 +405,7 @@ const Header = (props) => {
                               <span className="menu-sub">
                                 Profile your targeted audience{" "}
                               </span>
-                              </NavLink>
+                            </NavLink>
 
                             {/* <i className="icondrop recruiters"></i> */}
                             <i className="icondrop la la-user-tie"></i>
@@ -349,7 +414,7 @@ const Header = (props) => {
                               <span className="menu-sub">
                                 Reach out to top hiring talent and companies{" "}
                               </span>
-                              </NavLink>
+                            </NavLink>
                           </div>
 
                           <div className="column">
@@ -361,7 +426,7 @@ const Header = (props) => {
                               <span className="menu-sub">
                                 Streamline your Marketing efforts{" "}
                               </span>
-                              </NavLink>
+                            </NavLink>
 
                             {/* <i className="icondrop technology"></i> */}
                             <i className="icondrop la la-microchip"></i>
@@ -370,7 +435,7 @@ const Header = (props) => {
                               <span className="menu-sub">
                                 Automate and Optimize lead generation{" "}
                               </span>
-                              </NavLink>
+                            </NavLink>
 
                             {/* <i className="icondrop finance"></i> */}
                             <i className="icondrop la la-money-bill-wave"></i>
@@ -379,7 +444,7 @@ const Header = (props) => {
                               <span className="menu-sub">
                                 Gain insights into potential clients{" "}
                               </span>
-                              </NavLink>
+                            </NavLink>
                             <span className="menu-sub">…more industries </span>
                           </div>
                         </div>
@@ -421,12 +486,12 @@ const Header = (props) => {
                   </li>
 
                   <li className="nav-item">
-                  <NavLink
+                    <NavLink
                       to="/dashboard-view"
                       className="hvr-underline-from-center"
                     >
                       Dashboard
-                    </NavLink>                    
+                    </NavLink>
                   </li>
 
                   <li className="nav-item mt-2 account">
@@ -524,6 +589,63 @@ const Header = (props) => {
                 value={searchValues.email}
                 placeholder="Email"
                 onChange={onInputChange}
+              />
+            </div>
+          </div>
+        </div>
+      </Modal>
+      <Modal
+        title="Change Password"
+        open={showPasswordModal}
+        closable={true}
+        buttonText="Update"
+        onCancel={closeModal}
+        onOk={updatePasswordSetting}
+        width={"600px"}
+      >
+        <div className="pop-up errorformcontainer ">
+          <div className="form">
+            <div className="formcol1">
+              <label>Current Password</label>
+            </div>
+            <div className="formcol2">
+              <Input
+                type="password"
+                name="curpass"
+                status={passValues?.curpassError}
+                value={passValues.curpass}
+                placeholder="Current Password"
+                onChange={onPassInputChange}
+              />
+            </div>
+          </div>
+          <div className="form">
+            <div className="formcol1">
+              <label>New Password</label>
+            </div>
+            <div className="formcol2">
+              <Input
+                type="password"
+                name="npass"
+                status={passValues?.npassError}
+                value={passValues.npass}
+                placeholder="New Password"
+                onChange={onPassInputChange}
+              />
+            </div>
+          </div>
+          <div className="form">
+            <div className="formcol1">
+              <label>Confirm Password</label>
+            </div>
+            <div className="formcol2">
+              <Input
+                type="password"
+                name="cpass"
+                status={passValues?.cpassError}
+                value={passValues.cpass}
+                placeholder="Confirm Password"
+                onChange={onPassInputChange}
               />
             </div>
           </div>

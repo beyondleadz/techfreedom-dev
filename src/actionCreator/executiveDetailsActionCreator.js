@@ -470,7 +470,7 @@ export const getEmployeeViewableStatusUpdate = (type, payload) => (
         dispatch(getExecutiveDetails(payload.id));
       }
       if (payload?.pageFor && payload?.pageFor == 2) {
-        dispatch(getEmployeeList(payload.id, payload?.directDial?.company.id));
+        dispatch(getEmployeeList(payload?.executiveDetailId, payload?.directDial?.company.id));
       }
     })
     .catch((err) => {

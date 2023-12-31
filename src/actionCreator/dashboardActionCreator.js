@@ -20,7 +20,11 @@ import {
   DASHBOARD_GROUPED_BY_MEETING_ACTIVITY,
   DASHBOARD_GROUPED_BY_MEETING_ACTIVITY_ERROR,
   DASHBOARD_CONVERTED_LEADS,
-  DASHBOARD_CONVERTED_LEADS_ERROR
+  DASHBOARD_CONVERTED_LEADS_ERROR,
+  DASHBOARD_RECOMENDATION_COMPANY,
+  DASHBOARD_RECOMENDATION_COMPANY_ERROR,
+  DASHBOARD_RECOMENDATION_EMPLOYEE,
+  DASHBOARD_RECOMENDATION_EMPLOYEE_ERROR,
 } from "../actionType/dashboardType";
 import {
   getDashboardClosedOpportunityApiUrl,
@@ -33,7 +37,9 @@ import {
   getDashboardGroupedByCallActivityApiUrl,
   getDashboardGroupedByMeetingActivityApiUrl,
   getDashboardGroupedByEmailActivityApiUrl,
-  getDashboardConvertedLeadsApiUrl
+  getDashboardConvertedLeadsApiUrl,
+  getDashboardRecomendationCompanyApiUrl,
+  getDashboardRecomendationEmployeeApiUrl,
 } from "../constant/Constant";
 
 import {
@@ -198,8 +204,10 @@ export const getGroupedByCallActivityData = (payload) => (dispatch) => {
       dispatch({
         type: DASHBOARD_GROUPED_BY_CALL_ACTIVITY_ERROR,
         payload:
-          { [errEnum.DASHBOARD_GROUPED_BY_CALL_ACTIVITY_ERROR]: err.response.data } ||
-          "Error Occured",
+          {
+            [errEnum.DASHBOARD_GROUPED_BY_CALL_ACTIVITY_ERROR]:
+              err.response.data,
+          } || "Error Occured",
       });
     });
 };
@@ -218,8 +226,10 @@ export const getGroupedByMeetingActivityData = (payload) => (dispatch) => {
       dispatch({
         type: DASHBOARD_GROUPED_BY_MEETING_ACTIVITY_ERROR,
         payload:
-          { [errEnum.DASHBOARD_GROUPED_BY_MEETING_ACTIVITY_ERROR]: err.response.data } ||
-          "Error Occured",
+          {
+            [errEnum.DASHBOARD_GROUPED_BY_MEETING_ACTIVITY_ERROR]:
+              err.response.data,
+          } || "Error Occured",
       });
     });
 };
@@ -238,8 +248,10 @@ export const getGroupedByEmailActivityData = (payload) => (dispatch) => {
       dispatch({
         type: DASHBOARD_GROUPED_BY_EMAIL_ACTIVITY_ERROR,
         payload:
-          { [errEnum.DASHBOARD_GROUPED_BY_EMAIL_ACTIVITY_ERROR]: err.response.data } ||
-          "Error Occured",
+          {
+            [errEnum.DASHBOARD_GROUPED_BY_EMAIL_ACTIVITY_ERROR]:
+              err.response.data,
+          } || "Error Occured",
       });
     });
 };
@@ -257,8 +269,52 @@ export const getConvertedLeadsData = (payload) => (dispatch) => {
       dispatch({
         type: DASHBOARD_CONVERTED_LEADS_ERROR,
         payload:
-          { [errEnum.DASHBOARD_CONVERTED_LEADS_ERROR]: err.response.data[ErrKey] } ||
-          "Error Occured",
+          {
+            [errEnum.DASHBOARD_CONVERTED_LEADS_ERROR]:
+              err.response.data[ErrKey],
+          } || "Error Occured",
+      });
+    });
+};
+
+export const getRecomendationCompanyData = (payload) => (dispatch) => {
+  return getAuthMethod(getDashboardRecomendationCompanyApiUrl, payload)
+    .then((res) => {
+      dispatch({
+        type: DASHBOARD_RECOMENDATION_COMPANY,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      if (!err?.response?.data) return;
+      dispatch({
+        type: DASHBOARD_RECOMENDATION_COMPANY_ERROR,
+        payload:
+          {
+            [errEnum.DASHBOARD_RECOMENDATION_COMPANY_ERROR]:
+              err.response.data[ErrKey],
+          } || "Error Occured",
+      });
+    });
+};
+
+export const getRecomendationEmployeeData = (payload) => (dispatch) => {
+  return getAuthMethod(getDashboardRecomendationEmployeeApiUrl, payload)
+    .then((res) => {
+      dispatch({
+        type: DASHBOARD_RECOMENDATION_EMPLOYEE,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      if (!err?.response?.data) return;
+      dispatch({
+        type: DASHBOARD_RECOMENDATION_EMPLOYEE_ERROR,
+        payload:
+          {
+            [errEnum.DASHBOARD_RECOMENDATION_EMPLOYEE_ERROR]:
+              err.response.data[ErrKey],
+          } || "Error Occured",
       });
     });
 };

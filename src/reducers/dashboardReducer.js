@@ -21,6 +21,10 @@ import {
   DASHBOARD_GROUPED_BY_MEETING_ACTIVITY_ERROR,
   DASHBOARD_CONVERTED_LEADS,
   DASHBOARD_CONVERTED_LEADS_ERROR,
+  DASHBOARD_RECOMENDATION_COMPANY,
+  DASHBOARD_RECOMENDATION_COMPANY_ERROR,
+  DASHBOARD_RECOMENDATION_EMPLOYEE,
+  DASHBOARD_RECOMENDATION_EMPLOYEE_ERROR,
 } from "../actionType/dashboardType";
 
 const initialState = {
@@ -36,6 +40,8 @@ const initialState = {
   groupedActivityMeetingData: {},
   groupedActivityEmailData: {},
   convertedLeadsData: [],
+  recommendedEmployeeData: [],
+  recommendedCompanyData: [],
 };
 
 const DashboardReducer = (state = initialState, action) => {
@@ -63,6 +69,14 @@ const DashboardReducer = (state = initialState, action) => {
       return { ...state, groupedActivityEmailData: payload };
     case DASHBOARD_CONVERTED_LEADS:
       return { ...state, convertedLeadsData: payload };
+    case DASHBOARD_RECOMENDATION_COMPANY:
+      return { ...state, recommendedCompanyData: payload };
+    case DASHBOARD_RECOMENDATION_EMPLOYEE:
+      return { ...state, recommendedEmployeeData: payload };
+    case DASHBOARD_RECOMENDATION_COMPANY_ERROR:
+      return { ...state, errObj: { ...state.errObj, ...payload } };
+    case DASHBOARD_RECOMENDATION_EMPLOYEE_ERROR:
+      return { ...state, errObj: { ...state.errObj, ...payload } };
     case CLOSED_OPPORTUNITY_ERROR:
       return { ...state, errObj: { ...state.errObj, ...payload } };
     case OPEN_OPPORTUNITY_ERROR:

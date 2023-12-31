@@ -32,7 +32,13 @@ const KeyExecutives = () => {
   const getLeadsData = useSelector(
     (state) => state.executiveDetailsReducer?.getExecutiveLead
   );
+  const getEmployeeViewableData1 = useSelector(
+    (state) => state.executiveDetailsReducer?.executiveEmployeeViewableStatus
+  );
 
+  const executiveDetails = useSelector(
+    (state) => state.executiveDetailsReducer.executiveDetails
+  );
   const [employeeData, setEmployeeData] = useState([]);
   const [openModal, setOpenModal] = useState({
     info: null,
@@ -41,6 +47,7 @@ const KeyExecutives = () => {
   const [addToLeads, setAddToLeads] = useState(0);
   const [showEmail, setShowEmail] = useState({});
   const [showPhone, setShowPhone] = useState({});
+  const [employeeViewableData, setEmployeeViewableData] = useState({});
 
   const navigate = useNavigate();
   const userAccountInfo = useSelector(
@@ -52,19 +59,31 @@ const KeyExecutives = () => {
       dispatch(getExecutiveLead(id));
     }
   }, [userAccountInfo]);
+  useEffect(()=>{
+    console.log(employeeViewableData,showEmail,'mployeeViewableData')
+    setEmployeeViewableData(getEmployeeViewableData1);
+  },[getEmployeeViewableData1]);
 
   const updateEmailStatus = (showEmail, row) => {
     setShowEmail({ ...showEmail, [row.id]: true });
+    //setShowPhone({ ...showPhone, [row.id]: false });
     //call api to update status
-    if (!row?.isdownloadedEmail) {
+    //if (!row?.isdownloadedEmail) {
+      row.pageFor=2;
+      row.executiveDetailId=executiveDetails?.id;
       dispatch(getEmployeeViewableStatusUpdate("Email", row));
-    }
+    //}
   };
+  
   const updatePhoneStatus = (showPhone, row) => {
+   // console.log("row",row);
     setShowPhone({ ...showPhone, [row.id]: true });
-    if (!row?.isdownloadedMobile) {
+    //setShowEmail({ ...showEmail, [row.id]: false });
+    //if (!row?.isdownloadedMobile) {
+      row.pageFor=2;
+      row.executiveDetailId=executiveDetails?.id;
       dispatch(getEmployeeViewableStatusUpdate("Mobile", row));
-    }
+    //}
   };
 
   const isLeadsSubmitted = (selEmployeeId) => {
@@ -98,19 +117,19 @@ const KeyExecutives = () => {
           <>
             <h4
               className={
-                row?.isdownloadedEmail
+                row?.directDial?.isdownloadedEmail
                   ? " btn iconemail emails-open"
                   : " btn iconemail emails"
               }
               onClick={() => updateEmailStatus(showEmail, row)}
             ></h4>
-            {showEmail[row.id] && (
+            {showEmail[row.id] && row.id===employeeViewableData?.id && (
               <>
-                <span className="emailvalue pl-1 fs-12">{text}</span>
+                <span className="emailvalue pl-1 fs-12">{employeeViewableData?.emailId}</span>
                 <span
                   title="copy email"
                   className="  fs-17 btn  la  la-copy text-black"
-                  onClick={() => copyToClipboard(text)}
+                  onClick={() => copyToClipboard(employeeViewableData?.emailId)}
                 ></span>
               </>
             )}
@@ -142,20 +161,20 @@ const KeyExecutives = () => {
               // style={{ height: "auto" }}
               // className="keyexebtn d-none d-sm-inline-block small btn btn-primary text-black"
               className={
-                row?.isdownloadedMobile ? " btn mobile-open" : " btn mobile"
+                row?.directDial?.isdownloadedMobile ? " btn mobile-open" : " btn mobile"
               }
               onClick={() => updatePhoneStatus(showPhone, row)}
             >
               {/* <i className="las la-mobile fs-12  pr-1"></i> */}
               {/* VIEW */}
             </span>
-            {showPhone[row.id] && record?.phoneNo && (
+            {showPhone[row.id] && row.id===employeeViewableData?.id && (
               <>
-                <span className="phoneValue fs-12 pl-1">{record?.phoneNo}</span>
+                <span className="phoneValue fs-12 pl-1">{employeeViewableData?.phoneNo}</span>
                 <span
                   title="copy phone"
                   className="  fs-17 btn  la  la-copy text-black"
-                  onClick={() => copyToClipboard(record?.phoneNo)}
+                  onClick={() => copyToClipboard(employeeViewableData?.phoneNo)}
                 ></span>
               </>
             )}

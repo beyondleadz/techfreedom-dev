@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Tabs, TabsProps } from "antd";
 import SaveSearchReport from "./SaveSearchReport";
 import TagsReport from "./TagsReport";
+import RecommendedReport from "./RecommendedReport";
 
 const MyViewReport = () => {
   const onChange = (key: string) => {
@@ -21,18 +22,18 @@ const MyViewReport = () => {
     {
       key: "3",
       label: "Recommendation",
-      children: "Content of Tab Pane 3",
+      children: <RecommendedReport/>,
     },
-    {
-      key: "4",
-      label: "Reports",
-      children: "Content of Tab Pane 4",
-    },
-    {
-      key: "5",
-      label: "Usage",
-      children: "Content of Tab Pane 5",
-    },
+    // {
+    //   key: "4",
+    //   label: "Reports",
+    //   children: "Content of Tab Pane 4",
+    // },
+    // {
+    //   key: "5",
+    //   label: "Usage",
+    //   children: "Content of Tab Pane 5",
+    // },
   ];
 
   return (

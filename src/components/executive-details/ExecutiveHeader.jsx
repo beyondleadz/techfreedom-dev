@@ -20,6 +20,9 @@ const ExecutiveHeader = () => {
   const executiveDetails = useSelector(
     (state) => state.executiveDetailsReducer.executiveDetails
   );
+  const getEmployeeViewableData = useSelector(
+    (state) => state.executiveDetailsReducer?.executiveEmployeeViewableStatus
+  );
   const [showEmail, setShowEmail] = useState(false);
   const [openModal, setOpenModal] = useState({
     info: null,
@@ -104,13 +107,13 @@ const ExecutiveHeader = () => {
   const updateEmailStatus = (row) => {
     setShowEmail(true);
     //call api to update status
-    if(!row?.isdownloadedEmail){
+    //if(!row?.isdownloadedEmail){
      const payload= {
         id: row.id,
         pageFor:1
       }  
     dispatch(getEmployeeViewableStatusUpdate('Email',payload));    
-    }    
+    //}    
   };
 
   return (
@@ -164,17 +167,17 @@ getToken() ?
             <span onClick={() => openInfoModel()}>View Email</span> */}
 
                     {getToken() ? (
-                      showEmail ? (
+                      showEmail && executiveDetails?.id===getEmployeeViewableData?.id ? (
                         <>
                         <i className={executiveDetails?.isdownloadedEmail?" btn iconemail emails-open":" btn iconemail emails"}></i>
                           <span className="emailvalue pl-1 fs-12">
-                            {executiveDetails?.emailId}
+                            {getEmployeeViewableData?.emailId}
                           </span>
                           <span
                             title="copy email"
                             className="  fs-17 btn  la  la-copy text-black"
                             onClick={() =>
-                              copyToClipboard(executiveDetails?.emailId)
+                              copyToClipboard(getEmployeeViewableData?.emailId)
                             }
                           ></span>
                           
@@ -204,7 +207,7 @@ getToken() ?
                   </div>
                   <div className="col">
                     <div className="fs-12 font-weight-bold">Phone</div>
-                    {executiveDetails?.phoneNo}
+                    {executiveDetails?.company?.phoneNo}
                   </div>
                   <div className="col">
                     <div className="fs-12 font-weight-bold">Social</div>

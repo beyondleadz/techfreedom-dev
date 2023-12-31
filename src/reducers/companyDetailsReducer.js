@@ -28,6 +28,8 @@ import {
   SELECTED_DEPARTMENT,
   GET_EXECUTIVE_LEAD,
   GET_EXECUTIVE_LEAD_ERROR,
+  EMPLOYEE_VIEWABLE_STATUS,
+  EMPLOYEE_VIEWABLE_STATUS_ERROR,
 } from "../actionType/companyDetailsType";
 
 const initialState = {
@@ -47,6 +49,7 @@ const initialState = {
   downloadExecutive: "",
   selectedDepartment: "",
   getExecutiveLead: [],
+  executiveEmployeeViewableStatus: {},
 };
 
 const CompanyDetailsReducer = (state = initialState, action) => {
@@ -82,7 +85,10 @@ const CompanyDetailsReducer = (state = initialState, action) => {
       return { ...state, selectedDepartment: payload };
     case GET_EXECUTIVE_LEAD:
       return { ...state, getExecutiveLead: payload };
-
+    case EMPLOYEE_VIEWABLE_STATUS:
+      return { ...state, executiveEmployeeViewableStatus: payload };
+    case EMPLOYEE_VIEWABLE_STATUS_ERROR:
+      return { ...state, errObj: { ...state.errObj, ...payload } };
     case SINGLE_COMPANY_TAG_ERROR:
       return { ...state, errObj: { ...state.errObj, ...payload } };
     case SIMILAR_COMPANYLIST_ERROR:

@@ -5,7 +5,7 @@ import { Funnel, Gauge, Line, Bar } from "@ant-design/plots";
 import { purple } from "@ant-design/colors";
 import { Table } from "antd";
 import { saveExecutiveSearchList } from "../../actionCreator/executiveListingActionCreater";
-import { saveSearchList } from "../../actionCreator/companyListingActionCreater";
+import { saveSearchList,saveAdvancedSelectedFilters } from "../../actionCreator/companyListingActionCreater";
 
 import { getUserInfo } from "../../utils/utils";
 
@@ -44,7 +44,21 @@ const SaveSearchReport = () => {
   });
   //console.log("filterDataSource",filterDataSource,dataSource)
   const doFilterByCompany=(row)=>{
-console.log("click",row)
+console.log("click",row);
+// const searchPayload = JSON.parse(row.dataDump);
+// let payload = {
+//   selectedCountry: [],
+//     selectedState: [],
+//     selectedCity: [],
+//     selectedIndustry: [],
+//     selectedCompanytype: [],
+//     selectedEmployeecount: [],
+//     selectedRevenuerange: [],
+//     searchKeyword: "",
+//     selectedCompanyTag: [],
+//   selectedSavedSearch: searchPayload,
+// };
+// dispatch(saveAdvancedSelectedFilters(payload));
   }
   const columns = [
     {
@@ -58,8 +72,8 @@ console.log("click",row)
       render: (text, row) => {
         return (
           <>
-            <span style={{cursor:"pointer"}} onClick={() => doFilterByCompany(row)}
-            >{text}</span>           
+            <a style={{cursor:"pointer"}} onClick={() => doFilterByCompany(row)}
+            >{text}</a>           
           </>
         ) 
       },
